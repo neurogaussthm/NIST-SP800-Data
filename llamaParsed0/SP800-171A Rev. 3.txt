@@ -1,0 +1,3429 @@
+# Abstract
+The protection of Controlled Unclassified Information (CUI) is of paramount importance to federal agencies and can directly impact the ability of the Federal Government to successfully conduct its essential missions and functions. This publication provides organizations with assessment procedures and a methodology that can be used to conduct assessments of the security requirements in NIST Special Publication 800-171, Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations. The assessment procedures are flexible and can be customized to the needs of organizations and assessors. Assessments can be conducted as independent, third-party assessments or as government-sponsored assessments. The assessments can be applied with various degrees of rigor based on customer-defined depth and coverage attributes.
+
+## 1. Introduction
+The security assessment process gathers information and produces evidence to determine the effectiveness of security requirements by:
+- Identifying potential problems or shortfalls in security and risk management programs
+- Identifying security weaknesses and deficiencies in systems and the environments in which those systems operate
+- Prioritizing risk mitigation decisions and activities
+- Confirming that identified security weaknesses and deficiencies in the system and environment of operation have been addressed
+- Supporting continuous monitoring activities and providing information security situational awareness
+
+### 1.1. Purpose and Applicability
+The purpose of this publication is to provide procedures for assessing the security requirements in NIST Special Publication (SP) 800-171, Protecting Controlled Unclassified Information (CUI) in Nonfederal Systems and Organizations. Organizations can use the assessment procedures to generate evidence that the security requirements have been satisfied. The scope of the security assessments conducted using the procedures described in this publication is guided and informed by the system security plans for systems that process, store, or transmit CUI. The assessment procedures offer the flexibility to customize assessments based on organizational policies and requirements, known threat and vulnerability information, system and platform dependencies, operational considerations, and tolerance for risk.
+
+### 1.2. Organization of This Publication
+The remainder of this special publication is organized as follows:
+- Section 2 describes the fundamental concepts associated with assessments of security requirements, including assessment procedures, methods, objects, and assurance cases that can be created using the evidence produced during assessments.
+- Section 3 provides assessment procedures for the security requirements in SP 800-171, including assessment objectives and potential assessment methods and objects for each.# Procedure
+
+The following sections provide additional information to support the protection of CUI:
+
+- **References**
+- **Appendix A: Acronyms**
+- **Appendix B: Glossary**
+- **Appendix C: Security Requirement Assessments**
+- **Appendix D: Organization-Defined Parameters**
+- **Appendix E: Change Log**
+
+The contents of this publication can be used for many different assessment-related purposes to determine organizational compliance with the security requirements. The broad range of potential assessment methods and objects listed in this publication does not necessarily reflect and should not be directly associated with actual compliance or noncompliance. Rather, the selection of specific assessment methods and objects from the list provided can help generate a picture of overall compliance with the security requirements.
+
+There is no expectation about the number of methods or objects needed to determine compliance with the security requirements. Moreover, the entire list of potential assessment objects should not be viewed as required artifacts needed to determine compliance. Organizations have the flexibility to determine the specific methods and objects sufficient to obtain the needed evidence to support any claims of compliance.
+
+## 2. The Fundamentals
+
+The process used by organizations and assessors to assess the security requirements in SP 800-171 includes:
+
+1. Preparing for the assessment
+2. Developing a security assessment plan
+3. Conducting the assessment
+4. Documenting, analyzing, and reporting the assessment results
+
+The remainder of this section describes the structure and content of the procedures used to assess the security requirements and the importance of assurance cases in providing the evidence necessary to determine compliance with the requirements.
+
+### 2.1. Assessment Procedures
+
+The security requirements in SP 800-171 are organized into 17 families, as illustrated in Table 1. The assessment procedures in Section 3 are grouped by similar family designations to ensure the completeness and consistency of assessments. The procedures have been derived from the assessment procedures in SP 800-53A.
+
+An assessment procedure consists of an assessment objective and a set of potential assessment methods and objects that can be used to conduct the assessment. Each potential assessment objective includes a determination statement related to the security requirement. If there is an organization-defined parameter (ODP) in the security requirement, then the assessment objective begins with a determination statement related to the definition of the ODP. The determination statements are linked to the content of the security requirements to help ensure traceability of the assessment results to the requirements.# Assessment Objects and Methods
+
+## Assessment Objects
+Assessment objects identify the specific items being assessed and can include:
+
+- **Specifications**: Documented artifacts (e.g., plans, policies, procedures, requirements, functional and assurance specifications, design documentation, and architectures) associated with a system.
+- **Mechanisms**: Hardware, software, and firmware safeguards implemented within a system.
+- **Activities**: Protection-related actions supporting a system that involve people (e.g., conducting system backup operations, exercising an incident response plan, and monitoring network traffic).
+- **Individuals**: The people applying the specifications, mechanisms, or activities described above.
+
+## Assessment Methods
+Assessment methods define the nature and extent of the assessor’s actions and are used to facilitate understanding, achieve clarification, or obtain evidence. The assessment methods include:
+
+- **Examine**: The process of reviewing, studying, inspecting, or analyzing assessment objects.
+- **Interview**: The process of holding discussions with individuals or groups about assessment objects.
+- **Test**: The process of exercising assessment objects (i.e., activities, mechanisms) under specified conditions to compare actual with expected behavior.
+
+Assessment methods include attributes of depth and coverage, which define the rigor, scope, and level of effort for the assessment as well as the degree of assurance that the security requirements have been satisfied. See SP 800-53A, Appendix C, Assessment Method Descriptions.
+
+## Example Assessment Procedure
+
+### 03.01.06 Least Privilege – Privileged Accounts
+
+#### Assessment Objective
+Determine if:
+- **A.03.01.06.ODP[01]**: Personnel or roles to which privileged accounts on the system are to be restricted are defined.
+- **A.03.01.06.a**: Privileged accounts on the system are restricted to `<A.03.01.06.ODP[01]: personnel or roles>`.
+- **A.03.01.06.b**: Users (or roles) with privileged accounts are required to use non-privileged accounts when accessing non-security functions or non-security information.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: access control policy and procedures; procedures for least privilege; list of system-generated privileged accounts; list of system administration personnel; system audit records; system configuration settings; system security plan; list of system-generated security functions or security-relevant information assigned to system accounts or roles; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with responsibilities for defining least privileges; personnel with information security responsibilities; system administrators]
+
+- **Test**:
+- [Details to be specified]# Mechanisms for Implementing Least Privilege Functions
+
+## References
+- **Source Assessment Procedures**: AC-06(02), AC-06(05)
+
+Determination statements have alphanumeric identifiers. Each determination statement begins with the letter “A” to indicate that it is part of an assessment procedure. The next sequence of numbers or letters (e.g., 03.01.01.e or 03.01.01.f.02) indicates the security requirement identifier from NIST SP 800-171 (and the specific control item if it is a multi-part requirement) that is the target of the assessment. Organization-defined parameters are indicated by the letters “ODP.” If there are multiple ODPs in the determination statement, the ODP number is indicated in a square bracket (e.g., A.03.01.08.ODP[01]). Square brackets are also used to denote when an assessment procedure further decomposes a requirement into more granular determination statements (e.g., A.03.01.12.a[01], A.03.01.12.a[02], A.03.01.12.a[03]).
+
+The application of an assessment procedure to a security requirement produces assessment results or findings. The findings are compiled and used as evidence to determine whether the security requirement has been satisfied or other than satisfied. A finding of satisfied indicates that the assessment objective has been met, producing a fully acceptable result. A finding of other than satisfied indicates that there are potential anomalies that may need to be addressed by the organization. A finding of other than satisfied may also indicate that the assessor was unable to obtain sufficient information to make the determination called for in the determination statement.
+
+## 2.2 Assurance Cases
+Building an effective assurance case to determine compliance with security requirements involves compiling evidence from a variety of sources and conducting different types of activities during an assessment. An assurance case is a body of evidence organized into an argument demonstrating that some claim about a system is true. For security assessments conducted using the procedures in this publication, that claim is “compliance” with the security requirements in SP 800-171.
+
+Assessors obtain evidence during security assessments to allow designated officials to make objective determinations about compliance with the security requirements. The evidence needed to make such determinations can be obtained from various sources, including independent, third-party assessments or other types of assessments, depending on the needs of the organization establishing the requirements and the organization conducting the assessments.
+
+For example, many technical security requirements are satisfied by security capabilities that are built into commercial information technology products and systems. Product assessments are typically conducted by independent, third-party testing organizations. These assessments...# Security Assessment Procedures
+
+## Introduction
+Examine the security functions of products and established configuration settings. Assessments can also be conducted to demonstrate compliance with industry, national, or international security standards as well as developer and vendor claims. Since many information technology products are assessed by commercial testing organizations and then subsequently deployed in hundreds of thousands of systems, these types of assessments can be carried out at a greater level of depth and provide deeper insights into the security capabilities of the products.
+
+The evidence needed to determine compliance with the security requirements is obtained by assessing the implementation of the safeguards and countermeasures selected to satisfy the requirements. Assessors can build on previously developed materials that started with the specification of the information security needs of the organization and were further improved during the design, development, and implementation of the system. These materials provide the initial evidence for an assurance case.
+
+Assessments can be conducted by system developers, system integrators, auditors, system owners, or the security staffs of organizations. The assessors or assessment teams bring available information about the system together, such as the results of component product assessments. The assessors can conduct additional system-level assessments using the assessment methods and procedures contained in this publication and the implementation information provided by the nonfederal organization in its system security plan.
+
+Assessments can be used to compile and evaluate the evidence needed by organizations to help determine the effectiveness of the safeguards implemented to protect Controlled Unclassified Information (CUI), the actions needed to mitigate security risks to the organization, and compliance with the security requirements.
+
+The assessment procedures in this publication are based on and sourced to the assessment procedures in SP 800-53A. For additional information and guidance on preparing for security assessments, developing assessment plans, conducting assessments, and analyzing assessment report results, consult SP 800-53A.
+
+## The Procedures
+This section provides assessment procedures for the security requirements defined in NIST SP 800-171. Organizations that conduct security requirement assessments can develop their security assessment plans by using the information provided in the assessment procedures and selecting the specific assessment methods and objects that meet the organization’s needs. Organizations also have flexibility in defining the level of rigor and detail associated with the assessment based on the assurance requirements of the organization.
+
+### 3.1 Access Control
+#### 03.01.01 Account Management
+**Assessment Objective**
+Determine if:# Account Management Policies
+
+## A.03.01.01.ODP
+
+1. **A.03.01.01.ODP[01]**: The time period for account inactivity before disabling is defined.
+2. **A.03.01.01.ODP[02]**: The time period within which to notify account managers and designated personnel or roles when accounts are no longer required is defined.
+3. **A.03.01.01.ODP[03]**: The time period within which to notify account managers and designated personnel or roles when users are terminated or transferred is defined.
+4. **A.03.01.01.ODP[04]**: The time period within which to notify account managers and designated personnel or roles when system usage or the need-to-know changes for an individual is defined.
+5. **A.03.01.01.ODP[05]**: The time period of expected inactivity requiring users to log out of the system is defined.
+6. **A.03.01.01.ODP[06]**: Circumstances requiring users to log out of the system are defined.
+
+## A.03.01.01.a
+
+1. **A.03.01.01.a[01]**: System account types allowed are defined.
+2. **A.03.01.01.a[02]**: System account types prohibited are defined.
+
+## A.03.01.01.b
+
+1. **A.03.01.01.b[01]**: System accounts are created in accordance with organizational policy, procedures, prerequisites, and criteria.
+2. **A.03.01.01.b[02]**: System accounts are enabled in accordance with organizational policy, procedures, prerequisites, and criteria.
+3. **A.03.01.01.b[03]**: System accounts are modified in accordance with organizational policy, procedures, prerequisites, and criteria.
+4. **A.03.01.01.b[04]**: System accounts are disabled in accordance with organizational policy, procedures, prerequisites, and criteria.
+5. **A.03.01.01.b[05]**: System accounts are removed in accordance with organizational policy, procedures, prerequisites, and criteria.
+
+## A.03.01.01.c
+
+1. **A.03.01.01.c[01]**: Authorized users of the system are specified.
+2. **A.03.01.01.c[02]**: Group and role memberships are specified.
+3. **A.03.01.01.c[03]**: Access authorizations (i.e., privileges) for each account are specified.
+
+## A.03.01.01.d
+
+1. **A.03.01.01.d[01]**: Access to the system is authorized based on a valid access authorization.
+2. **A.03.01.01.d[02]**: Access to the system is authorized based on intended system usage.
+
+## A.03.01.01.e
+
+- The use of system accounts is monitored.
+
+## A.03.01.01.f
+
+1. **A.03.01.01.f[01]**: System accounts are disabled when the accounts have expired.
+2. **A.03.01.01.f[02]**: System accounts are disabled when the accounts have been inactive for <A.03.01.01.ODP[01]: time period>.
+3. **A.03.01.01.f[03]**: System accounts are disabled when the accounts are no longer associated with a user or individual.
+4. **A.03.01.01.f[04]**: System accounts are disabled when the accounts violate organizational policy.
+5. **A.03.01.01.f[05]**: System accounts are disabled when significant risks associated with individuals are discovered.
+
+## A.03.01.01.g
+
+1. **A.03.01.01.g[01]**: Account managers and designated personnel or roles are notified within <A.03.01.01.ODP[02]: time period> when accounts are no longer required.
+2. **A.03.01.01.g[02]**: Account managers and designated personnel or roles are notified within <A.03.01.01.ODP[03]: time period> when users are terminated or transferred.
+3. **A.03.01.01.g[03]**: Account managers and designated personnel or roles are notified within <A.03.01.01.ODP[04]: time period> when system usage or the need-to-know changes for an individual.
+
+## A.03.01.01.h
+
+- Users are required to log out of the system after <A.03.01.01.ODP[05]: time period> of expected inactivity or when the following circumstances occur: <A.03.01.01.ODP[06]: circumstances>.
+
+# Assessment Methods and Objects
+
+- Examine:
+- Access control policy and procedures
+- Personnel termination or transfer policies and procedures
+- Procedures for account management
+- List of active accounts# System Access and Security Assessment
+
+## Overview
+This document outlines the assessment objectives, methods, and references related to system access and security, focusing on account management, access enforcement, and information flow enforcement.
+
+## 1. Account Management
+
+### Assessment Objective
+Determine if:
+- **A.03.01.01[01]**: System accounts and the name of the individual associated with each account are properly managed.
+- **A.03.01.01[02]**: System design documentation is maintained.
+- **A.03.01.01[03]**: Conditions for group and role membership are defined.
+- **A.03.01.01[04]**: System configuration settings are documented.
+- **A.03.01.01[05]**: Notifications of recent transfers, separations, or terminations of employees are recorded.
+- **A.03.01.01[06]**: A list of recently disabled system accounts and the associated individuals is maintained.
+- **A.03.01.01[07]**: User activities that pose significant organizational risks are identified.
+- **A.03.01.01[08]**: Access authorization records are kept.
+- **A.03.01.01[09]**: Account management compliance reviews are conducted.
+- **A.03.01.01[10]**: System monitoring and audit records are maintained.
+- **A.03.01.01[11]**: A system security plan is in place.
+- **A.03.01.01[12]**: System-generated lists of accounts removed, emergency accounts disabled, and disabled accounts are available.
+- **A.03.01.01[13]**: Other relevant documents and records are maintained.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Personnel with account management responsibilities
+- System administrators
+- Personnel with information security responsibilities
+- System developers
+
+#### Interview
+- Processes for account management on the system
+- Mechanisms for implementing account management
+
+### References
+- Source Assessment Procedures: AC-02, AC-02(03), AC-02(05), AC-02(13)
+
+## 2. Access Enforcement
+
+### Assessment Objective
+Determine if:
+- **A.03.01.02[01]**: Approved authorizations for logical access to Controlled Unclassified Information (CUI) are enforced in accordance with applicable access control policies.
+- **A.03.01.02[02]**: Approved authorizations for logical access to system resources are enforced in accordance with applicable access control policies.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Access control policy and procedures
+- Procedures for access enforcement
+- System design documentation
+- System configuration settings
+- List of approved authorizations (i.e., user privileges)
+- System audit records
+- System security plan
+- Other relevant documents or records
+
+#### Interview
+- Personnel with access enforcement responsibilities
+- System administrators
+- Personnel with information security responsibilities
+- System developers
+
+#### Test
+- Mechanisms for implementing the access control policy
+
+### References
+- Source Assessment Procedure: AC-03
+
+## 3. Information Flow Enforcement
+
+### Assessment Objective
+Determine if:
+- **A.03.01.03[01]**: Approved authorizations are enforced for controlling the flow of CUI within the system.
+- **A.03.01.03[02]**: Approved authorizations are enforced for controlling the flow of CUI between connected systems.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Access control policy and procedures
+- Information flow control policies
+- Procedures for information flow enforcement
+- Security architecture and design documentation
+- System configuration settings
+- System baseline configuration
+- System audit records
+- List of information flow authorizations
+- System security plan
+
+----
+
+This markdown document provides a structured overview of the assessment objectives and methods for system access and security, ensuring clarity and ease of navigation.# Assessment Procedures
+
+## Separation of Duties
+
+### Assessment Objective
+Determine if:
+- **A.03.01.04.a**: Duties of individuals requiring separation are identified.
+- **A.03.01.04.b**: System access authorizations to support separation of duties are defined.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Access control policy and procedures
+- Procedures for the separation of duties and the division of responsibilities
+- System configuration settings
+- System audit records
+- System access authorizations
+- List of divisions of responsibility and separation of duties
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with responsibilities for defining the separation of duties and the division of responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+- **Test**:
+- Mechanisms for implementing the separation of duties policy
+
+### References
+- Source Assessment Procedure: AC-04
+
+----
+
+## Least Privilege
+
+### Assessment Objective
+Determine if:
+- **A.03.01.05.ODP[01]**: Security functions for authorized access are defined.
+- **A.03.01.05.ODP[02]**: Security-relevant information for authorized access is defined.
+- **A.03.01.05.ODP[03]**: The frequency at which to review the privileges assigned to roles or classes of users is defined.
+- **A.03.01.05.a**: System access for users (or processes acting on behalf of users) is authorized only when necessary to accomplish assigned organizational tasks.
+- **A.03.01.05.b[01]**: Access to **A.03.01.05.ODP[01]**: Security functions is authorized.
+- **A.03.01.05.b[02]**: Access to **A.03.01.05.ODP[02]**: Security-relevant information is authorized.
+- **A.03.01.05.c**: The privileges assigned to roles or classes of users are reviewed **A.03.01.05.ODP[03]**: Frequency to validate the need for such privileges.
+- **A.03.01.05.d**: Privileges are reassigned or removed, as necessary.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Access control policy and procedures
+- Procedures for least privilege
+- List of assigned access authorizations (i.e., privileges)
+- System configuration settings
+- System audit records
+- List of security functions (implemented in hardware, software, and firmware)
+- Security-relevant information for which access must be explicitly authorized
+- List of system-generated roles or classes of users and assigned privileges
+
+### References
+- Source Assessment Procedure: AC-05# Validation Reviews of Privileges
+
+## Overview
+- Validation reviews of privileges assigned to roles or classes of users.
+- Records of privilege removals or reassignments for roles or classes of users.
+- System security plan.
+- System design documentation.
+- Other relevant documents or records.
+
+## Assessment Procedures
+
+### Interview
+- Personnel with responsibilities for defining least privileges.
+- Personnel with information security responsibilities.
+- System administrators.
+
+### Test
+- Mechanisms for implementing least privilege functions.
+- Mechanisms for implementing reviews of user privileges.
+
+## References
+- Source Assessment Procedures: AC-06, AC-06(01), AC-06(07), AU-09(04).
+
+----
+
+# Least Privilege – Privileged Accounts
+
+## Assessment Objective
+Determine if:
+- **A.03.01.06.ODP[01]**: Personnel or roles to which privileged accounts on the system are to be restricted are defined.
+- **A.03.01.06.a**: Privileged accounts on the system are restricted to **A.03.01.06.ODP[01]: personnel or roles**.
+- **A.03.01.06.b**: Users (or roles) with privileged accounts are required to use non-privileged accounts when accessing non-security functions or non-security information.
+
+## Assessment Methods and Objects
+
+### Examine
+- Access control policy and procedures.
+- Procedures for least privilege.
+- List of system-generated privileged accounts.
+- List of system administration personnel.
+- System audit records.
+- System configuration settings.
+- System security plan.
+- List of system-generated security functions or security-relevant information assigned to system accounts or roles.
+- Other relevant documents or records.
+
+### Interview
+- Personnel with responsibilities for defining least privileges.
+- Personnel with information security responsibilities.
+- System administrators.
+
+### Test
+- Mechanisms for implementing least privilege functions.
+
+## References
+- Source Assessment Procedures: AC-06(02), AC-06(05).
+
+----
+
+# Least Privilege – Privileged Functions
+
+## Assessment Objective
+Determine if:
+- **A.03.01.07.a**: Non-privileged users are prevented from executing privileged functions.
+- **A.03.01.07.b**: The execution of privileged functions is logged.
+
+## Assessment Methods and Objects
+
+### Examine
+- Access control policy and procedures.
+- Procedures for least privilege.
+- System design documentation.
+- System configuration settings.
+- System audit records.
+- List of audited events.
+- List of privileged functions to be audited and associated user account assignments.
+- System security plan.
+- Other relevant documents or records.
+
+### Interview
+- Personnel with responsibilities for reviewing least privileges.
+- Personnel with information security responsibilities.
+- System developers.
+- System administrators.
+
+### Test
+- Mechanisms for auditing the execution of least privilege functions.
+- Mechanisms for implementing least privilege functions for non-privileged users.# References
+
+## Source Assessment Procedures: AC-06(09), AC-06(10)
+
+### 03.01.08 Unsuccessful Logon Attempts
+
+#### Assessment Objective
+Determine if:
+- **A.03.01.08.ODP[01]**: the number of consecutive invalid logon attempts by a user allowed during a time period is defined.
+- **A.03.01.08.ODP[02]**: the time period to which the number of consecutive invalid logon attempts by a user is limited is defined.
+- **A.03.01.08.ODP[03]**: one or more of the following PARAMETER VALUES are selected:
+- the account or node is locked automatically for `<A.03.01.08.ODP[04]: time period>`
+- the account or node is locked automatically until released by an administrator
+- the next logon prompt is delayed automatically
+- the system administrator is notified automatically
+- other action is taken automatically
+- **A.03.01.08.ODP[04]**: the time period for an account or node to be locked is defined (if selected).
+- **A.03.01.08.a**: a limit of `<A.03.01.08.ODP[01]: number>` consecutive invalid logon attempts by a user during `<A.03.01.08.ODP[02]: time period>` is enforced.
+- **A.03.01.08.b**: `<A.03.01.08.ODP[03]: SELECTED PARAMETER VALUES>` when the maximum number of unsuccessful attempts is exceeded.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: access control policy and procedures; procedures for unsuccessful logon attempts; system design documentation; system audit records; system configuration settings; system security plan; other relevant documents or records]
+- **Interview**:
+- [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]
+- **Test**:
+- [SELECT FROM: mechanisms for implementing the access control policy for unsuccessful logon attempts]
+
+## References
+Source Assessment Procedure: AC-07
+
+### 03.01.09 System Use Notification
+
+#### Assessment Objective
+Determine if:
+- **A.03.01.09**: a system use notification message with privacy and security notices consistent with applicable CUI rules is displayed before granting access to the system.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: access control policy and procedures; privacy and security policies; procedures for system use notification; documented approval of system use notification messages; system audit records; user acknowledgements of system use notification messages; system design documentation; system configuration settings; system use notification messages; system security plan; other relevant documents or records]
+- **Interview**:
+- [SELECT FROM: personnel with information security responsibilities; legal counsel; system developers; system administrators]
+- **Test**:
+- [SELECT FROM: mechanisms for implementing system use notifications]
+
+## References
+Source Assessment Procedure: AC-08
+
+### 03.01.10 Device Lock
+
+#### Assessment Objective
+Determine if:
+- **A.03.01.10.ODP[01]**: one or more of the following PARAMETER VALUES are selected:
+- a device lock is initiated after `<A.03.01.10.ODP[02]: time period>` of...# Inactivity and Device Lock
+
+The user is required to initiate a device lock before leaving the system unattended.
+
+## A.03.01.10.ODP[02]
+- The time period of inactivity after which a device lock is initiated is defined (if selected).
+
+### A.03.01.10.a
+- Access to the system is prevented by **A.03.01.10.ODP[01]: SELECTED PARAMETER VALUES**.
+
+### A.03.01.10.b
+- The device lock is retained until the user reestablishes access using established identification and authentication procedures.
+
+### A.03.01.10.c
+- Information previously visible on the display is concealed via device lock with a publicly viewable image.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: access control policy and procedures; procedures for session lock and identification and authentication; system design documentation; system configuration settings; display screen with session lock activated; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]
+
+### Test
+- [SELECT FROM: mechanisms for implementing the access control policy for session lock; session lock mechanisms]
+
+## References
+- Source Assessment Procedures: AC-11, AC-11(01)
+
+----
+
+# Session Termination
+
+## Assessment Objective
+Determine if:
+- **A.03.01.11.ODP[01]**: Conditions or trigger events that require session disconnect are defined.
+- **A.03.01.11**: A user session is terminated automatically after **A.03.01.11.ODP[01]: conditions or trigger events**.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: access control policy and procedures; procedures for session termination; system design documentation; system configuration settings; list of conditions or trigger events requiring session disconnect; system audit records; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]
+
+### Test
+- [SELECT FROM: automated mechanisms for implementing user session termination]
+
+## References
+- Source Assessment Procedure: AC-12
+
+----
+
+# Remote Access
+
+## Assessment Objective
+Determine if:
+- **A.03.01.12.a[01]**: Types of allowable remote system access are defined.
+- **A.03.01.12.a[02]**: Usage restrictions are established for each type of allowable remote system access.
+- **A.03.01.12.a[03]**: Configuration requirements are established for each type of allowable remote system access.
+- **A.03.01.12.a[04]**: Connection requirements are established for each type of allowable remote system access.
+- **A.03.01.12.b**: Each type of remote system access is authorized prior to establishing such connections.
+- **A.03.01.12.c[01]**: Remote access to the system is routed through authorized access.# Control Points
+
+## Remote Access Control
+
+### A.03.01.12.c[02]
+Remote access to the system is routed through managed access control points.
+
+### A.03.01.12.d[1]
+Remote execution of privileged commands is authorized.
+
+### A.03.01.12.d[2]
+Remote access to security-relevant information is authorized.
+
+## Assessment Methods and Objects
+
+### Examine
+- Access control policy and procedures
+- Procedures for remote system access
+- Remote system access configuration and connection requirements
+- Configuration management plan
+- System configuration settings
+- Remote access authorizations
+- System audit records
+- System design documentation
+- Procedures for remote access to the system
+- System monitoring records
+- List of managed network access control points
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with responsibilities for managing remote access connections
+- Personnel with information security responsibilities
+- System administrators
+
+### Test
+- Mechanisms for monitoring and controlling remote access methods
+- Mechanisms for routing remote accesses through managed access control points
+- Remote access management capability for the system
+
+## References
+- Source Assessment Procedures: AC-17, AC-17(03), AC-17(04)
+
+## Withdrawn Items
+- **03.01.13**: Addressed by 03.13.08.
+- **03.01.14**: Incorporated into 03.01.12.
+- **03.01.15**: Incorporated into 03.01.12.
+
+## Wireless Access
+
+### A.03.01.16 Assessment Objective
+Determine if:
+- **A.03.01.16.a[01]**: Each type of wireless access to the system is defined.
+- **A.03.01.16.a[02]**: Usage restrictions are established for each type of wireless access to the system.
+- **A.03.01.16.a[03]**: Configuration requirements are established for each type of wireless access to the system.
+- **A.03.01.16.a[04]**: Connection requirements are established for each type of wireless access to the system.
+- **A.03.01.16.b**: Each type of wireless access to the system is authorized prior to establishing such connections.
+- **A.03.01.16.c**: Wireless networking capabilities not intended for use are disabled prior to issuance and deployment.
+- **A.03.01.16.d[01]**: Wireless access to the system is protected using authentication.
+- **A.03.01.16.d[02]**: Wireless access to the system is protected using encryption.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Access control policy and procedures
+- Procedures for wireless system access
+- Wireless system access configuration and connection requirements
+- Configuration management plan
+- System configuration settings
+- Wireless access authorizations
+- System audit records
+- System design documentation
+- System security plan
+- Other relevant documents or records
+
+#### Interview
+- Personnel with responsibilities for managing wireless access connections
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+#### Test
+- Wireless access management capability for the system
+- Mechanisms for monitoring and controlling wireless access methods# Wireless Access Protections Implementation
+
+## References
+- Source Assessment Procedures: AC-18, AC-18(01), AC-18(03)
+
+### Withdrawn
+- 03.01.17: Incorporated into 03.01.16.
+
+## Access Control for Mobile Devices (03.01.18)
+
+### Assessment Objective
+Determine if:
+- **A.03.01.18.a[01]**: Usage restrictions are established for mobile devices.
+- **A.03.01.18.a[02]**: Configuration requirements are established for mobile devices.
+- **A.03.01.18.a[03]**: Connection requirements are established for mobile devices.
+- **A.03.01.18.b**: The connection of mobile devices to the system is authorized.
+- **A.03.01.18.c**: Full-device or container-based encryption is implemented to protect the confidentiality of CUI on mobile devices.
+
+### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: access control policy and procedures; procedures for mobile device access control; system design documentation; configuration management plan; system configuration settings; authorizations for mobile device connections to organizational systems; system audit records; encryption mechanisms and associated configuration documentation; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with access control responsibilities for mobile devices; personnel using mobile devices to access organizational systems; personnel with information security responsibilities; system administrators]
+
+- **Test**:
+- [SELECT FROM: access control capability for mobile device connections to organizational systems; encryption mechanisms for protecting the confidentiality of CUI on mobile devices; configurations of mobile devices]
+
+## References
+- Source Assessment Procedures: AC-19, AC-19(05)
+
+### Withdrawn
+- 03.01.19: Incorporated into 03.01.18.
+
+## Use of External Systems (03.01.20)
+
+### Assessment Objective
+Determine if:
+- **A.03.01.20.ODP[01]**: Security requirements to be satisfied on external systems prior to allowing the use of or access to those systems by authorized individuals are defined.
+- **A.03.01.20.a**: The use of external systems is prohibited unless the systems are specifically authorized.
+- **A.03.01.20.b**: The following security requirements to be satisfied on external systems prior to allowing the use of or access to those systems by authorized individuals are established: <A.03.01.20.ODP[01]: security requirements>.
+- **A.03.01.20.c.01**: Authorized individuals are permitted to use external systems to access the organizational system or to process, store, or transmit CUI only after verifying that the security requirements on the external systems as specified in the organization’s system security plans have been satisfied.
+- **A.03.01.20.c.02**: Authorized individuals are permitted to use external systems to access the organizational system or to process, store, or transmit CUI only after retaining approved system connection or processing agreements with the organizational entity hosting the external systems.
+- **A.03.01.20.d**: The use of organization-controlled portable storage devices by authorized individuals on external systems is restricted.
+
+### Assessment Methods and Objects
+- **Examine**:
+- [Further details to be provided]# Access Control Policy and Procedures
+
+## Procedures for the Use of External Systems
+- Terms and conditions for the use of external systems
+- External systems security requirements
+- List of types of applications accessible from external systems
+- System configuration settings
+- System security plan
+- Other relevant documents or records
+
+## Interview
+- Personnel with responsibilities for defining terms, conditions, and security requirements for the use of external systems
+- Personnel with information security responsibilities
+- System administrators
+
+## Test
+- Mechanisms for implementing or enforcing terms, conditions, and security requirements for the use of external systems
+
+## References
+- Source Assessment Procedures: AC-20, AC-20(01), AC-20(02)
+
+----
+
+# Publicly Accessible Content
+
+## Assessment Objective
+Determine if:
+- **A.03.01.22.a**: Authorized individuals are trained to ensure that publicly accessible information does not contain Controlled Unclassified Information (CUI).
+- **A.03.01.22.b[01]**: The content on publicly accessible systems is reviewed for CUI.
+- **A.03.01.22.b[02]**: CUI is removed from publicly accessible systems, if discovered.
+
+## Assessment Methods and Objects
+
+### Examine
+- Access control policy and procedures
+- Procedures for publicly accessible content
+- List of users authorized to post publicly accessible content on organizational systems
+- Training materials or records
+- Records of publicly accessible information reviews
+- Records of response to CUI discovered on public websites
+- System audit logs
+- Security awareness training records
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with responsibilities for managing publicly accessible information posted on organizational systems
+- Personnel with information security responsibilities
+
+### Test
+- Mechanisms for implementing the management of publicly accessible content
+
+## References
+- Source Assessment Procedure: AC-22
+
+----
+
+# Awareness and Training
+
+## Literacy Training and Awareness
+
+### Assessment Objective
+Determine if:
+- **A.03.02.01.ODP[01]**: The frequency at which to provide security literacy training to system users after initial training is defined.
+- **A.03.02.01.ODP[02]**: Events that require security literacy training for system users are defined.
+- **A.03.02.01.ODP[03]**: The frequency at which to update security literacy training content is defined.
+- **A.03.02.01.ODP[04]**: Events that require security literacy training content updates are defined.# Security Literacy Training and Role-Based Training
+
+## Security Literacy Training
+
+### Initial Training
+- **A.03.02.01.a.01[01]**: Security literacy training is provided to system users as part of initial training for new users.
+- **A.03.02.01.a.01[02]**: Security literacy training is provided to system users after initial training.
+
+### Ongoing Training
+- **A.03.02.01.a.02**: Security literacy training is provided to system users when required by system changes or following specific events.
+
+### Insider Threat Awareness
+- **A.03.02.01.a.03[01]**: Security literacy training is provided to system users on recognizing indicators of insider threat.
+- **A.03.02.01.a.03[02]**: Security literacy training is provided to system users on reporting indicators of insider threat.
+
+### Social Engineering Awareness
+- **A.03.02.01.a.03[03]**: Security literacy training is provided to system users on recognizing indicators of social engineering.
+- **A.03.02.01.a.03[04]**: Security literacy training is provided to system users on reporting indicators of social engineering.
+
+### Social Mining Awareness
+- **A.03.02.01.a.03[05]**: Security literacy training is provided to system users on recognizing indicators of social mining.
+- **A.03.02.01.a.03[06]**: Security literacy training is provided to system users on reporting indicators of social mining.
+
+### Content Updates
+- **A.03.02.01.b[01]**: Security literacy training content is updated regularly.
+- **A.03.02.01.b[02]**: Security literacy training content is updated following specific events.
+
+## Assessment Methods and Objects
+
+### Examine
+- Security literacy training and awareness policy and procedures.
+- Procedures for security literacy training and awareness implementation.
+- Codes of federal regulations.
+- Security literacy and awareness training curriculum.
+- Security literacy and awareness training materials.
+- Training records.
+- System security plan.
+- Other relevant documents or records.
+
+### Interview
+- Personnel with responsibilities for security literacy training and awareness.
+- Personnel comprising the general system user community.
+- Personnel with information security responsibilities.
+
+### Test
+- Mechanisms for managing information security literacy training and awareness.
+
+## References
+- Source Assessment Procedures: AT-02, AT-02(02), AT-02(03)
+
+## Role-Based Training
+
+### Assessment Objective
+Determine if:
+- **A.03.02.02.ODP[01]**: The frequency at which to provide role-based security training to assigned personnel after initial training is defined.
+- **A.03.02.02.ODP[02]**: Events that require role-based security training are defined.
+- **A.03.02.02.ODP[03]**: The frequency at which to update role-based security training content is defined.
+- **A.03.02.02.ODP[04]**: Events that require role-based security training content updates are defined.
+
+### Role-Based Training Provision
+- **A.03.02.02.a.01[01]**: Role-based security training is provided to organizational personnel before authorizing access to the system or Controlled Unclassified Information (CUI).
+- **A.03.02.02.a.01[02]**: Role-based security training is provided to organizational personnel before performing assigned duties.
+- **A.03.02.02.a.01[03]**: Role-based security training is provided to organizational personnel at defined frequencies after initial training.# Personnel
+
+## System Changes and Training Updates
+- When required by system changes or following events:
+- **A.03.02.02.b[01]**: Role-based security training content is updated.
+- **A.03.02.02.b[02]**: Role-based security training content is updated following events.
+
+## Assessment Methods and Objects
+
+### Examine
+- Select from:
+- Security awareness and training policy and procedures
+- Procedures for security training implementation
+- Codes of federal regulations
+- Security training curriculum
+- Security training materials
+- Training records
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Select from:
+- Personnel with responsibilities for role-based security training
+- Personnel with assigned system security roles and responsibilities
+
+### Test
+- Select from:
+- Mechanisms for managing role-based security training and awareness
+
+## References
+- Source Assessment Procedure: AT-03
+
+----
+
+# Audit and Accountability
+
+## Event Logging
+
+### Assessment Objective
+Determine if:
+- **A.03.03.01.ODP[01]**: Event types selected for logging within the system are defined.
+- **A.03.03.01.ODP[02]**: The frequency of event types selected for logging are reviewed and updated.
+- **A.03.03.01.a**: The following event types are specified for logging within the system:
+- Event types.
+- **A.03.03.01.b[01]**: The event types selected for logging are reviewed.
+- **A.03.03.01.b[02]**: The event types selected for logging are updated.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Select from:
+- Audit and accountability policy and procedures
+- Procedures for auditable events
+- System design documentation
+- System configuration settings
+- System audit records
+- System auditable events
+- System security plan
+- Other relevant documents or records
+
+#### Interview
+- Select from:
+- Personnel with audit and accountability responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+#### Test
+- Select from:
+- Mechanisms for implementing system auditing
+
+## References
+- Source Assessment Procedure: AU-02
+
+----
+
+## Audit Record Content
+
+### Assessment Objective
+Determine if:
+- **A.03.03.02.a.01**: Audit records contain information that establishes what type of event occurred.
+- **A.03.03.02.a.02**: Audit records contain information that establishes when the event occurred.
+- **A.03.03.02.a.03**: Audit records contain information that establishes where the event occurred.# Audit and Accountability Assessment
+
+## 03.03.02 Audit Record Content
+
+### Assessment Objective
+Determine if:
+- **A.03.03.02.a.04**: Audit records contain information that establishes the source of the event.
+- **A.03.03.02.a.05**: Audit records contain information that establishes the outcome of the event.
+- **A.03.03.02.a.06**: Audit records contain information that establishes the identity of the individuals, subjects, objects, or entities associated with the event.
+- **A.03.03.02.b**: Additional information for audit records is provided, as needed.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Audit and accountability policy and procedures
+- Procedures for the content of audit records
+- List of organization-defined auditable events
+- System design documentation
+- System configuration settings
+- System audit records
+- System incident reports
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with audit and accountability responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test**:
+- Mechanisms for implementing system auditing of auditable events
+- System audit capability
+
+### References
+- Source Assessment Procedures: AU-03, AU-03(01)
+
+## 03.03.03 Audit Record Generation
+
+### Assessment Objective
+Determine if:
+- **A.03.03.03.a**: Audit records for the selected event types and audit record content specified in 03.03.01 and 03.03.02 are generated.
+- **A.03.03.03.b**: Audit records are retained for a time period consistent with the records retention policy.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Audit and accountability policy and procedures
+- Procedures for audit record generation
+- System design documentation
+- List of auditable events
+- System audit records
+- Audit record retention policy and procedures
+- Organization-defined retention period for audit records
+- Audit record archives
+- System configuration settings
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with audit record generation responsibilities
+- Personnel with audit record retention responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test**:
+- Mechanisms for implementing the audit record generation capability
+
+### References
+- Source Assessment Procedures: AU-11, AU-12
+
+## 03.03.04 Response to Audit Logging Process Failures
+
+### Assessment Objective
+Determine if:
+- **A.03.03.04.ODP[01]**: The time period for organizational personnel or roles receiving audit logging process failure alerts is defined.
+- **A.03.03.04.ODP[02]**: Additional actions to be taken in the event of an audit logging process failure are defined.# Audit and Accountability Assessment
+
+## A.03.03.04 Audit Processing Failures
+
+### A.03.03.04.a
+Organizational personnel or roles are alerted in the event of an audit logging process failure within `<A.03.03.04.ODP[01]: time period>`.
+
+### A.03.03.04.b
+The following additional actions are taken: `<A.03.03.04.ODP[02]: additional actions>`.
+
+## Assessment Methods and Objects
+
+### Examine
+- Audit and accountability policy and procedures
+- Procedures for responding to audit processing failures
+- System design documentation
+- System configuration settings
+- List of personnel to be notified in case of an audit processing failure
+- System audit records
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with audit and accountability responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+### Test
+- Mechanisms for implementing system response to audit processing failures
+
+## References
+- Source Assessment Procedure: AU-05
+
+----
+
+## A.03.03.05 Audit Record Review, Analysis, and Reporting
+
+### Assessment Objective
+Determine if:
+- **A.03.03.05.ODP[01]**: The frequency at which system audit records are reviewed and analyzed is defined.
+- **A.03.03.05.a**: System audit records are reviewed and analyzed `<A.03.03.05.ODP[01]: frequency>` for indications and the potential impact of inappropriate or unusual activity.
+- **A.03.03.05.b**: Findings are reported to organizational personnel or roles.
+- **A.03.03.05.c[01]**: Audit records across different repositories are analyzed to gain organization-wide situational awareness.
+- **A.03.03.05.c[02]**: Audit records across different repositories are correlated to gain organization-wide situational awareness.
+
+## Assessment Methods and Objects
+
+### Examine
+- Audit and accountability policy and procedures
+- Procedures for audit record review, analysis, and reporting
+- Reports of audit record findings
+- Records of actions taken in response to reviews and analyses of audit records
+- System design documentation
+- System audit records across different repositories
+- System security plan
+- System configuration settings
+- Other relevant documents or records
+
+### Interview
+- Personnel with audit record review, analysis, and reporting responsibilities
+- Personnel with information security responsibilities
+
+### Test
+- Mechanisms for supporting the analysis and correlation of audit records
+
+## References
+- Source Assessment Procedures: AU-06, AU-06(03)
+
+----
+
+## A.03.03.06 Audit Record Reduction and Report Generation
+
+### Assessment Objective
+Determine if:
+- **A.03.03.06.a[01]**: An audit record reduction and report generation capability that supports audit record review is implemented.# Audit and Accountability Assessment
+
+## A.03.03.06 Audit Record Reduction and Report Generation
+
+### A.03.03.06.a
+- **A.03.03.06.a[02]**: An audit record reduction and report generation capability that supports audit record analysis is implemented.
+- **A.03.03.06.a[03]**: An audit record reduction and report generation capability that supports audit record reporting requirements is implemented.
+- **A.03.03.06.a[04]**: An audit record reduction and report generation capability that supports after-the-fact investigations of incidents is implemented.
+
+### A.03.03.06.b
+- **A.03.03.06.b[01]**: The original content of audit records is preserved.
+- **A.03.03.06.b[02]**: The original time ordering of audit records is preserved.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: audit and accountability policy and procedures; procedures for audit record reduction and report generation; audit record reduction, review, analysis, and reporting tools; system audit records; system design documentation; system configuration settings; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with audit record reduction and report generation responsibilities; personnel with information security responsibilities]
+
+### Test
+- [SELECT FROM: mechanisms for supporting audit record reduction and report generation capability]
+
+## References
+- Source Assessment Procedure: AU-07
+
+----
+
+## A.03.03.07 Time Stamps
+
+### Assessment Objective
+Determine if:
+- **A.03.03.07.ODP[01]**: Granularity of time measurement for audit record time stamps is defined.
+- **A.03.03.07.a**: Internal system clocks are used to generate time stamps for audit records.
+- **A.03.03.07.b[01]**: Time stamps are recorded for audit records that meet <A.03.03.07.ODP[01]: granularity of time measurement>.
+- **A.03.03.07.b[02]**: Time stamps are recorded for audit records that use Coordinated Universal Time (UTC), have a fixed local time offset from UTC, or include the local time offset as part of the time stamp.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: audit and accountability policy and procedures; procedures for timestamp generation; system design documentation; system configuration settings; system audit records; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]
+
+### Test
+- [SELECT FROM: mechanisms for implementing timestamp generation]
+
+## References
+- Source Assessment Procedure: AU-08
+
+----
+
+## A.03.03.08 Protection of Audit Information
+
+### Assessment Objective
+Determine if:
+- **A.03.03.08.a[01]**: Audit information is protected from unauthorized access, modification, and deletion.
+- **A.03.03.08.a[02]**: Audit logging tools are protected from unauthorized access, modification, and deletion.
+- **A.03.03.08.b**: Access to management of audit logging functionality is authorized to...# Assessment Methods and Objects
+
+## Examine
+- **Select from:**
+- Audit and accountability policy and procedures
+- Access control policy and procedures
+- Procedures for the protection of audit information
+- System configuration settings
+- System audit records
+- Audit tools
+- System-generated list of privileged users with access to the management of audit functionality
+- Access authorizations
+- Access control list
+- System design documentation
+- System security plan
+- Other relevant documents or records
+
+## Interview
+- **Select from:**
+- Personnel with audit and accountability responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+## Test
+- **Select from:**
+- Mechanisms for implementing audit information protection
+- Mechanisms for managing access to audit functionality
+
+# References
+- Source Assessment Procedures: AU-09, AU-09(04)
+
+----
+
+## 3.4 Configuration Management
+
+### 03.04.01 Baseline Configuration
+
+#### Assessment Objective
+Determine if:
+- **A.03.04.01.ODP[01]:** The frequency of baseline configuration review and update is defined.
+- **A.03.04.01.a[01]:** A current baseline configuration of the system is developed.
+- **A.03.04.01.a[02]:** A current baseline configuration of the system is maintained under configuration control.
+- **A.03.04.01.b[01]:** The baseline configuration of the system is reviewed (A.03.04.01.ODP[01]: frequency).
+- **A.03.04.01.b[02]:** The baseline configuration of the system is updated (A.03.04.01.ODP[01]: frequency).
+- **A.03.04.01.b[03]:** The baseline configuration of the system is reviewed when system components are installed or modified.
+- **A.03.04.01.b[04]:** The baseline configuration of the system is updated when system components are installed or modified.
+
+#### Assessment Methods and Objects
+
+##### Examine
+- **Select from:**
+- Configuration management policy and procedures
+- Procedures for the baseline system configuration
+- Configuration management plan
+- Enterprise architecture
+- System design documentation
+- System architecture
+- System configuration settings
+- System component inventory
+- Change control records
+- System security plan
+- Other relevant documents or records
+
+##### Interview
+- **Select from:**
+- Personnel with configuration management responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+##### Test
+- **Select from:**
+- Processes for managing baseline configurations
+- Mechanisms for supporting configuration control of the baseline configuration
+
+# References
+- Source Assessment Procedure: CM-02
+
+----
+
+### 03.04.02 Configuration Settings
+
+#### Assessment Objective
+Determine if:
+- **A.03.04.02.ODP[01]:** Configuration settings for the system that reflect the most...# Configuration Management and Change Control
+
+## Restrictive Mode Configuration Settings
+
+### A.03.04.02.a[01]
+- The following configuration settings for the system that reflect the most restrictive mode consistent with operational requirements are established and documented: `<A.03.04.02.ODP[01]: configuration settings>`.
+
+### A.03.04.02.a[02]
+- The following configuration settings for the system are implemented: `<A.03.04.02.ODP[01]: configuration settings>`.
+
+### A.03.04.02.b[01]
+- Any deviations from established configuration settings are identified and documented.
+
+### A.03.04.02.b[02]
+- Any deviations from established configuration settings are approved.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: configuration management policy and procedures; procedures for system configuration settings; configuration management plan; system design documentation; system configuration settings; common secure configuration checklists; system component inventory; evidence supporting approved deviations from established configuration settings; change control records; system data processing and retention permissions; system audit records; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with security configuration management responsibilities; personnel with information security responsibilities; system administrators]
+
+### Test
+- [SELECT FROM: processes for managing configuration settings; mechanisms that implement, monitor, or control system configuration settings; mechanisms that identify or document deviations from established configuration settings]
+
+## References
+- Source Assessment Procedure: CM-06
+
+## Configuration Change Control
+
+### A.03.04.03 Configuration Change Control
+
+#### Assessment Objective
+Determine if:
+- **A.03.04.03.a**: The types of changes to the system that are configuration-controlled are defined.
+- **A.03.04.03.b[01]**: Proposed configuration-controlled changes to the system are reviewed with explicit consideration for security impacts.
+- **A.03.04.03.b[02]**: Proposed configuration-controlled changes to the system are approved or disapproved with explicit consideration for security impacts.
+- **A.03.04.03.c[01]**: Approved configuration-controlled changes to the system are implemented.
+- **A.03.04.03.c[02]**: Approved configuration-controlled changes to the system are documented.
+- **A.03.04.03.d[01]**: Activities associated with configuration-controlled changes to the system are monitored.
+- **A.03.04.03.d[02]**: Activities associated with configuration-controlled changes to the system are reviewed.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: configuration management policy and procedures; procedures for system configuration change control; configuration management plan; system architecture; configuration settings; change control records; system audit records; change control audit and review reports; agenda, minutes, and documentation from configuration change control oversight meetings; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with configuration change control responsibilities; personnel with information security responsibilities; members of change control board or similar; system administrators]# Test
+
+## References
+- Source Assessment Procedure: CM-03
+
+### 03.04.04 Impact Analyses
+
+#### Assessment Objective
+Determine if:
+- **A.03.04.04.a**: changes to the system are analyzed to determine potential security impacts prior to change implementation.
+- **A.03.04.04.b**: the security requirements for the system continue to be satisfied after the system changes have been implemented.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: configuration management policy and procedures; procedures for security impact analyses for system changes; configuration management plan; security impact analysis documentation; system design documentation; analysis tools and outputs; change control records; system audit records; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with security impact analysis responsibilities; personnel with information security responsibilities; members of change control board; system developers; system administrators]
+
+- **Test**:
+- [SELECT FROM: processes for security impact analyses]
+
+## References
+- Source Assessment Procedure: CM-04, CM-04(02)
+
+### 03.04.05 Access Restrictions for Change
+
+#### Assessment Objective
+Determine if:
+- **A.03.04.05[01]**: physical access restrictions associated with changes to the system are defined and documented.
+- **A.03.04.05[02]**: physical access restrictions associated with changes to the system are approved.
+- **A.03.04.05[03]**: physical access restrictions associated with changes to the system are enforced.
+- **A.03.04.05[04]**: logical access restrictions associated with changes to the system are defined and documented.
+- **A.03.04.05[05]**: logical access restrictions associated with changes to the system are approved.
+- **A.03.04.05[06]**: logical access restrictions associated with changes to the system are enforced.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: configuration management policy and procedures; procedures for access restrictions for system changes; configuration management plan; system design documentation; system architecture; system configuration settings; logical access approvals; physical access approvals; access credentials; change control records; system audit records; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with logical access control responsibilities; personnel with physical access control responsibilities; personnel with information security responsibilities]# Responsibilities of System Administrators
+
+## Test
+
+### Select From:
+- Processes for managing access restrictions for system changes
+- Mechanisms for supporting, implementing, or enforcing access restrictions associated with system changes
+
+## References
+- Source Assessment Procedure: CM-05
+
+## 03.04.06 Least Functionality
+
+### Assessment Objective
+Determine if:
+- **A.03.04.06.ODP[01]**: Functions to be prohibited or restricted are defined.
+- **A.03.04.06.ODP[02]**: Ports to be prohibited or restricted are defined.
+- **A.03.04.06.ODP[03]**: Protocols to be prohibited or restricted are defined.
+- **A.03.04.06.ODP[04]**: Connections to be prohibited or restricted are defined.
+- **A.03.04.06.ODP[05]**: Services to be prohibited or restricted are defined.
+- **A.03.04.06.ODP[06]**: The frequency at which to review the system to identify unnecessary or nonsecure functions, ports, protocols, connections, or services is defined.
+- **A.03.04.06.a**: The system is configured to provide only mission-essential capabilities.
+- **A.03.04.06.b[01]**: The use of the following functions is prohibited or restricted: `<A.03.04.06.ODP[01]: functions>`.
+- **A.03.04.06.b[02]**: The use of the following ports is prohibited or restricted: `<A.03.04.06.ODP[02]: ports>`.
+- **A.03.04.06.b[03]**: The use of the following protocols is prohibited or restricted: `<A.03.04.06.ODP[03]: protocols>`.
+- **A.03.04.06.b[04]**: The use of the following connections is prohibited or restricted: `<A.03.04.06.ODP[04]: connections>`.
+- **A.03.04.06.b[05]**: The use of the following services is prohibited or restricted: `<A.03.04.06.ODP[05]: services>`.
+- **A.03.04.06.c**: The system is reviewed `<A.03.04.06.ODP[06]: frequency>` to identify unnecessary or nonsecure functions, ports, protocols, connections, and services.
+- **A.03.04.06.d**: Unnecessary or nonsecure functions, ports, protocols, connections, and services are disabled or removed.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [Select from: configuration management policy and procedures; procedures for least functionality in the system; configuration management plan; system design documentation; system configuration settings; system component inventory; common secure configuration checklists; documented reviews of functions, ports, protocols, and services; change control records; system audit records; system security plan; other relevant documents or records]
+
+#### Interview
+- [Select from: personnel with configuration management responsibilities; personnel with responsibilities for reviewing functions, ports, protocols, and services; personnel with information security responsibilities; system developers; system administrators]
+
+#### Test
+- [Select from: processes for prohibiting or restricting functions, ports, protocols, and services; processes for reviewing or disabling functions, ports, protocols, and services; mechanisms for implementing the review and disabling of functions, ports, protocols, and services; mechanisms for implementing restrictions on or the prohibition of functions, ports, protocols, and services]
+
+## References
+- Source Assessment Procedures: CM-07, CM-07(01)
+
+## 03.04.07 Withdrawn# Incorporated into 03.04.06 and 03.04.08
+
+## 03.04.08 Authorized Software – Allow by Exception
+
+### ASSESSMENT OBJECTIVE
+Determine if:
+- **A.03.04.08.ODP[01]**: the frequency at which to review and update the list of authorized software programs is defined.
+- **A.03.04.08.a**: software programs authorized to execute on the system are identified.
+- **A.03.04.08.b**: a deny-all, allow-by-exception policy for the execution of authorized software programs on the system is implemented.
+- **A.03.04.08.c**: the list of authorized software programs is reviewed and updated <A.03.04.08.ODP[01]: frequency>.
+
+### ASSESSMENT METHODS AND OBJECTS
+#### Examine
+- [SELECT FROM: configuration management policy and procedures; procedures for least functionality in the system; configuration management plan; system design documentation; system configuration settings; list of software programs authorized to execute on the system; system component inventory; records associated with the review and update of the list of authorized software programs; common secure configuration checklists; change control records; system audit records; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with responsibilities for identifying software authorized to execute on the system; personnel with information security responsibilities; system administrators]
+
+#### Test
+- [SELECT FROM: processes for identifying, reviewing, and updating programs authorized to execute on the system; processes for implementing authorized software policy; mechanisms for supporting or implementing authorized software policy]
+
+### REFERENCES
+- Source Assessment Procedure: CM-07(05)
+
+## 03.04.09 Withdrawn
+Addressed by 03.01.05, 03.01.06, 03.01.07, 03.04.08, and 03.12.03.
+
+## 03.04.10 System Component Inventory
+
+### ASSESSMENT OBJECTIVE
+Determine if:
+- **A.03.04.10.ODP[01]**: the frequency at which to review and update the system component inventory is defined.
+- **A.03.04.10.a**: an inventory of system components is developed and documented.
+- **A.03.04.10.b[01]**: the system component inventory is reviewed <A.03.04.10.ODP[01]: frequency>.
+- **A.03.04.10.b[02]**: the system component inventory is updated <A.03.04.10.ODP[01]: frequency>.
+- **A.03.04.10.c[01]**: the system component inventory is updated as part of component installations.
+- **A.03.04.10.c[02]**: the system component inventory is updated as part of component removals.
+- **A.03.04.10.c[03]**: the system component inventory is updated as part of system updates.
+
+### ASSESSMENT METHODS AND OBJECTS
+#### Examine
+- [SELECT FROM: configuration management policy and procedures; procedures for system component inventory; configuration management plan; system design documentation; system component inventory; inventory reviews and update records; component installation records; change control records; component removal records; system change records; system security plan; other relevant documents or records]
+
+#### Interview
+- [Content not provided in the original text]# Current Page Raw OCR Text
+
+## Personnel Responsibilities
+- **Select from:**
+- Personnel with component inventory management responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+## Test
+
+## Processes for Managing System Component Inventory
+- **Select from:**
+- Processes for managing the system component inventory
+- Mechanisms for supporting or implementing the system component inventory
+- Processes for updating the system component inventory
+- Mechanisms for supporting or implementing the system component inventory updates
+
+## References
+- Source Assessment Procedures: CM-08, CM-08(01)
+
+## 03.04.11 Information Location
+
+### Assessment Objective
+Determine if:
+- **A.03.04.11.a[01]:** The location of CUI is identified and documented.
+- **A.03.04.11.a[02]:** The system components on which CUI is processed are identified and documented.
+- **A.03.04.11.a[03]:** The system components on which CUI is stored are identified and documented.
+- **A.03.04.11.b[01]:** Changes to the system or system component location where CUI is processed are documented.
+- **A.03.04.11.b[02]:** Changes to the system or system component location where CUI is stored are documented.
+
+### Assessment Methods and Objects
+- **Examine:**
+- Configuration management policy and procedures
+- Configuration management plan
+- Procedures for identification and documentation of information location
+- System audit records
+- Architecture documentation
+- System design documentation
+- List of users with system and system component access
+- Change control records
+- System component inventory
+- System security plan
+- Other relevant documents or records
+
+- **Interview:**
+- Personnel with responsibilities for managing information location and user access
+- Personnel with responsibilities for operating, using, or maintaining the system
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test:**
+- Processes governing information location
+- Mechanisms for enforcing policies and methods for governing information location
+
+## References
+- Source Assessment Procedure: CM-12
+
+## 03.04.12 System and Component Configuration for High-Risk Areas
+
+### Assessment Objective
+Determine if:
+- **A.03.04.12.ODP[01]:** Configurations for systems or system components to be issued to individuals traveling to high-risk locations are defined.
+- **A.03.04.12.ODP[02]:** Security requirements to be applied to the system or system components when individuals return from travel are defined.
+- **A.03.04.12.a:** Systems or system components with the following configurations are issued to individuals traveling to high-risk locations: `<A.03.04.12.ODP[01]: configurations>`.
+- **A.03.04.12.b:** The following security requirements are applied to the system or system components when the individuals return from travel: `<A.03.04.12.ODP[02]: security requirements>`.
+
+### Assessment Methods and Objects
+- **Examine:**
+- Configuration management policy and procedures
+- Configuration management plan
+- Procedures for the baseline configuration of the system
+- Procedures for system component installations and upgrades
+- System component inventory
+- System component installations or upgrades and associated records# System Configuration and Security Assessment
+
+## 1. System Baseline Configuration Reviews
+- Records of system baseline configuration reviews and updates
+- System configuration settings
+- System architecture
+- Change control records
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with configuration management responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+### Test
+- Processes for managing baseline configurations
+
+### References
+- Source Assessment Procedure: CM-02(07)
+
+----
+
+## 2. Identification and Authentication
+
+### 2.1 User Identification, Authentication, and Re-Authentication
+
+#### Assessment Objective
+Determine if:
+- **A.03.05.01.ODP[01]**: Circumstances or situations that require re-authentication are defined.
+- **A.03.05.01.a[01]**: System users are uniquely identified.
+- **A.03.05.01.a[02]**: System users are authenticated.
+- **A.03.05.01.a[03]**: Processes acting on behalf of users are associated with uniquely identified and authenticated system users.
+- **A.03.05.01.b**: Users are reauthenticated when circumstances or situations defined in **A.03.05.01.ODP[01]** occur.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- Identification and authentication policy and procedures
+- List of circumstances or situations requiring re-authentication
+- System design documentation
+- System configuration settings
+- System audit records
+- List of system accounts
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with identification and authentication responsibilities
+- Personnel with system operations responsibilities
+- Personnel with account management responsibilities
+- System developers
+- Personnel with information security responsibilities
+- System administrators
+
+- **Test**:
+- Processes for uniquely identifying and authenticating users
+- Mechanisms for supporting or implementing identification and authentication capabilities
+
+#### References
+- Source Assessment Procedures: IA-02, IA-11
+
+----
+
+### 2.2 Device Identification and Authentication
+
+#### Assessment Objective
+Determine if:
+- **A.03.05.02.ODP[01]**: Devices or types of devices to be uniquely identified and authenticated before establishing a connection are defined.
+- **A.03.05.02[01]**: Devices or types of devices defined in **A.03.05.02.ODP[01]** are uniquely identified before establishing a system connection.
+- **A.03.05.02[02]**: Devices or types of devices defined in **A.03.05.02.ODP[01]** are authenticated before establishing a system connection.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- Identification and authentication policy and procedures
+- Procedures for device identification and authentication
+- System design documentation
+- List of devices requiring unique identification and authentication
+- Device connection reports
+- System configuration settings
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with responsibilities for device identification and authentication# Authentication Assessment Procedures
+
+## 03.05.03 Multi-Factor Authentication
+
+### Assessment Objective
+Determine if:
+- **A.03.05.03[01]**: Multi-factor authentication for access to privileged accounts is implemented.
+- **A.03.05.03[02]**: Multi-factor authentication for access to non-privileged accounts is implemented.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Identification and authentication policy and procedures
+- System design documentation
+- List of system accounts
+- System configuration settings
+- System audit records
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with system operations responsibilities
+- Personnel with account management responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test**:
+- Mechanisms for supporting or implementing a multi-factor authentication capability
+
+### References
+- Source Assessment Procedures: IA-02(01), IA-02(02)
+
+----
+
+## 03.05.04 Replay-Resistant Authentication
+
+### Assessment Objective
+Determine if:
+- **A.03.05.04[01]**: Replay-resistant authentication mechanisms for access to privileged accounts are implemented.
+- **A.03.05.04[02]**: Replay-resistant authentication mechanisms for access to non-privileged accounts are implemented.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Identification and authentication policy and procedures
+- System design documentation
+- System audit records
+- System configuration settings
+- List of privileged system accounts
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with system operations responsibilities
+- Personnel with account management responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test**:
+- Mechanisms for supporting or implementing identification and authentication capabilities
+- Mechanisms for supporting or implementing replay-resistance
+
+### References
+- Source Assessment Procedure: IA-02(08)
+
+----
+
+## 03.05.05 Identifier Management
+
+### Assessment Objective
+Determine if:
+- **A.03.05.05.ODP[01]**: The time period for preventing the reuse of identifiers is defined.
+- **A.03.05.05.ODP[02]**: Characteristics used to identify individual status are defined.
+- **A.03.05.05.a**: Authorization is received from organizational personnel or roles to assign an individual, group, role, service, or device identifier.# Identifier Management
+
+## A.03.05.05.b
+- **A.03.05.05.b[01]**: An identifier that identifies an individual, group, role, service, or device is selected.
+- **A.03.05.05.b[02]**: An identifier that identifies an individual, group, role, service, or device is assigned.
+
+## A.03.05.05.c
+- The reuse of identifiers for **<A.03.05.05.ODP[01]: time period>** is prevented.
+
+## A.03.05.05.d
+- Individual identifiers are managed by uniquely identifying each individual as **<A.03.05.05.ODP[02]: characteristic>**.
+
+# Assessment Methods and Objects
+
+## Examine
+- [SELECT FROM: identification and authentication policy and procedures; procedures for identifier management; procedures for account management; system design documentation; list of system accounts; list of characteristics identifying individual status; system configuration settings; list of identifiers generated from physical access control devices; system security plan; other relevant documents or records]
+
+## Interview
+- [SELECT FROM: personnel with identifier management responsibilities; personnel with information security responsibilities; system developers; system administrators]
+
+## Test
+- [SELECT FROM: mechanisms for supporting or implementing identifier management]
+
+# References
+- Source Assessment Procedures: IA-04, IA-04(04)
+- Consistency with SP 800-53 [8].
+
+# Password Management
+
+## A.03.05.07 Assessment Objective
+Determine if:
+- **A.03.05.07.ODP[01]**: The frequency at which to update the list of commonly used, expected, or compromised passwords is defined.
+- **A.03.05.07.ODP[02]**: Password composition and complexity rules are defined.
+- **A.03.05.07.a[01]**: A list of commonly used, expected, or compromised passwords is maintained.
+- **A.03.05.07.a[02]**: A list of commonly used, expected, or compromised passwords is updated **<A.03.05.07.ODP[01]: frequency>**.
+- **A.03.05.07.a[03]**: A list of commonly used, expected, or compromised passwords is updated when organizational passwords are suspected to have been compromised.
+- **A.03.05.07.b**: Passwords are verified not to be found on the list of commonly used, expected, or compromised passwords when they are created or updated by users.
+- **A.03.05.07.c**: Passwords are only transmitted over cryptographically protected channels.
+- **A.03.05.07.d**: Passwords are stored in a cryptographically protected form.
+- **A.03.05.07.e**: A new password is selected upon first use after account recovery.
+- **A.03.05.07.f**: The following composition and complexity rules for passwords are enforced: **<A.03.05.07.ODP[02]: rules>**.
+
+# Assessment Methods and Objects
+
+## Examine
+- [SELECT FROM: identification and authentication policy and procedures; password policy; procedures for authenticator management; system design documentation; system configuration settings; password configurations; system security plan; other relevant documents or records]
+
+## Interview
+- [SELECT FROM: personnel with authenticator management responsibilities; personnel with information security responsibilities; system developers; system administrators]
+
+## Test
+- [SELECT FROM: mechanisms for supporting or implementing password management]# Mechanisms for Supporting or Implementing a Password-Based Authenticator Management Capability
+
+## References
+
+### Source Assessment Procedure: IA-05(01)
+- **03.05.08** Withdrawn
+- **03.05.09** Withdrawn
+- **03.05.10** Withdrawn (Incorporated into 03.05.07)
+- **03.05.11** Authentication Feedback
+
+## Assessment Objective
+
+Determine if:
+- **A.03.05.11**: Feedback of authentication information during the authentication process is obscured.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: identification and authentication policy and procedures; procedures for authenticator feedback; system design documentation; system configuration settings; system audit records; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]
+
+### Test
+- [SELECT FROM: mechanisms for supporting or implementing the obscuring of feedback of authentication information during authentication]
+
+## References
+
+### Source Assessment Procedure: IA-06
+- **03.05.12** Authenticator Management
+
+## Assessment Objective
+
+Determine if:
+- **A.03.05.12.ODP[01]**: The frequency for changing or refreshing authenticators is defined.
+- **A.03.05.12.ODP[02]**: Events that trigger the change or refreshment of authenticators are defined.
+- **A.03.05.12.a**: The identity of the individual, group, role, service, or device receiving the authenticator as part of the initial authenticator distribution is verified.
+- **A.03.05.12.b**: Initial authenticator content for any authenticators issued by the organization is established.
+- **A.03.05.12.c[01]**: Administrative procedures for initial authenticator distribution are established.
+- **A.03.05.12.c[02]**: Administrative procedures for lost, compromised, or damaged authenticators are established.
+- **A.03.05.12.c[03]**: Administrative procedures for revoking authenticators are established.
+- **A.03.05.12.c[04]**: Administrative procedures for initial authenticator distribution are implemented.
+- **A.03.05.12.c[05]**: Administrative procedures for lost, compromised, or damaged authenticators are implemented.
+- **A.03.05.12.c[06]**: Administrative procedures for revoking authenticators are implemented.
+- **A.03.05.12.d**: Default authenticators are changed at first use.
+- **A.03.05.12.e**: Authenticators are changed or refreshed according to the defined frequency or when specific events occur.
+- **A.03.05.12.f[01]**: Authenticator content is protected from unauthorized disclosure.
+- **A.03.05.12.f[02]**: Authenticator content is protected from unauthorized modification.# Assessment Methods and Objects
+
+## Examine
+- Identification and authentication policy and procedures
+- Procedures for authenticator management
+- System configuration settings
+- List of system authenticator types
+- System design documentation
+- System audit records
+- Change control records associated with managing system authenticators
+- System security plan
+- Other relevant documents or records
+
+## Interview
+- Personnel with authenticator management responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+## Test
+- Mechanisms for supporting or implementing the authenticator management capability
+
+## References
+- Source Assessment Procedure: IA-05
+
+----
+
+# 3.6 Incident Response
+
+## 03.06.01 Incident Handling
+
+### Assessment Objective
+Determine if:
+- **A.03.06.01[01]**: An incident-handling capability that is consistent with the incident response plan is implemented.
+- **A.03.06.01[02]**: The incident handling capability includes preparation.
+- **A.03.06.01[03]**: The incident handling capability includes detection and analysis.
+- **A.03.06.01[04]**: The incident handling capability includes containment.
+- **A.03.06.01[05]**: The incident handling capability includes eradication.
+- **A.03.06.01[06]**: The incident handling capability includes recovery.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Incident response policy and procedures
+- Contingency planning policy and procedures
+- Procedures for incident handling
+- Procedures for incident response planning
+- Incident response plan
+- Contingency plan
+- Records of incident response plan reviews and approvals
+- System security plan
+- Other relevant documents or records
+
+#### Interview
+- Personnel with incident handling responsibilities
+- Personnel with incident response planning responsibilities
+- Personnel with contingency planning responsibilities
+- Personnel with information security responsibilities
+
+#### Test
+- Incident handling capability for the organization
+- Incident response plan
+
+### References
+- Source Assessment Procedure: IR-04
+
+----
+
+## 03.06.02 Incident Monitoring, Reporting, and Response Assistance
+
+### Assessment Objective
+Determine if:
+- **A.03.06.02.ODP[01]**: The time period to report suspected incidents to the organizational incident response capability is defined.
+- **A.03.06.02.ODP[02]**: Authorities to whom incident information is to be reported are defined.
+- **A.03.06.02.a[01]**: System security incidents are tracked.
+- **A.03.06.02.a[02]**: System security incidents are documented.
+- **A.03.06.02.b**: Suspected incidents are reported to the organizational incident response capability within the defined time period.
+- **A.03.06.02.c**: Incident information is reported to the defined authorities.
+- **A.03.06.02.d**: An incident response support resource that offers advice and assistance to system users on handling and reporting incidents is provided.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Incident response policy and procedures
+- Procedures for incident handling
+- Procedures for incident reporting
+- Incident monitoring records
+- Other relevant documents or records# Incident Response Procedures
+
+## Monitoring
+- Procedures for incident response assistance
+- Incident response records and documentation
+- Incident response plan
+- System security plan
+- Other relevant documents or records
+
+## Interview
+- **Select from:**
+- Personnel with incident monitoring responsibilities
+- Personnel with incident response assistance and support responsibilities
+- Personnel with information security responsibilities
+
+## Test
+- **Select from:**
+- Processes for incident reporting
+- Incident monitoring capability
+- Mechanisms for supporting or implementing the tracking and documenting of system security incidents
+- Mechanisms for supporting or implementing incident reporting
+- Mechanisms for supporting or implementing incident response assistance
+- Processes for incident response assistance
+
+## References
+- Source Assessment Procedures: IR-05, IR-06, IR-07
+
+----
+
+# 03.06.03 Incident Response Testing
+
+## Assessment Objective
+Determine if:
+- **A.03.06.03.ODP[01]:** The frequency at which to test the effectiveness of the incident response capability for the system is defined.
+- **A.03.06.03:** The effectiveness of the incident response capability is tested.
+
+## Assessment Methods and Objects
+
+### Examine
+- **Select from:**
+- Incident response policy and procedures
+- Contingency planning policy and procedures
+- Procedures for incident response testing
+- Procedures for contingency plan testing
+- Incident response testing material
+- Incident response test results
+- Incident response test plan
+- Incident response plan
+- Contingency plan
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- **Select from:**
+- Personnel with incident response testing responsibilities
+- Personnel with information security responsibilities
+
+## References
+- Source Assessment Procedure: IR-03
+
+----
+
+# 03.06.04 Incident Response Training
+
+## Assessment Objective
+Determine if:
+- **A.03.06.04.ODP[01]:** The time period within which incident response training is to be provided to system users is defined.
+- **A.03.06.04.ODP[02]:** The frequency at which to provide incident response training to users after initial training is defined.
+- **A.03.06.04.ODP[03]:** The frequency at which to review and update incident response training content is defined.
+- **A.03.06.04.ODP[04]:** Events that initiate a review of the incident response training content are defined.
+- **A.03.06.04.a.01:** Incident response training for system users consistent with assigned roles and responsibilities is provided within **<A.03.06.04.ODP[01]: time period>** of assuming an incident response role or responsibility or acquiring system access.
+- **A.03.06.04.a.02:** Incident response training for system users consistent with assigned roles and responsibilities is provided when required by system changes.
+- **A.03.06.04.a.03:** Incident response training for system users consistent with assigned roles and responsibilities is provided **<A.03.06.04.ODP[02]: frequency>** thereafter.
+- **A.03.06.04.b[01]:** Incident response training content is reviewed **<A.03.06.04.ODP[03]: frequency>**.# Incident Response Training and Planning
+
+## Incident Response Training Content
+
+- **A.03.06.04.b[02]**: Incident response training content is updated.
+- **A.03.06.04.b[03]**: Incident response training content is reviewed following events.
+- **A.03.06.04.b[04]**: Incident response training content is updated following events.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: incident response policy and procedures; procedures for incident response training; incident response training curriculum; incident response training materials; incident response plan; incident response training records; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with incident response training and operational responsibilities; personnel with information security responsibilities]
+
+## References
+- Source Assessment Procedure: IR-02
+
+----
+
+## Incident Response Plan
+
+### Assessment Objective
+
+Determine if:
+- **A.03.06.05.a.01**: An incident response plan is developed that provides the organization with a roadmap for implementing its incident response capability.
+- **A.03.06.05.a.02**: An incident response plan is developed that describes the structure and organization of the incident response capability.
+- **A.03.06.05.a.03**: An incident response plan is developed that provides a high-level approach for how the incident response capability fits into the overall organization.
+- **A.03.06.05.a.04**: An incident response plan is developed that defines reportable incidents.
+- **A.03.06.05.a.05**: An incident response plan is developed that addresses the sharing of incident information.
+- **A.03.06.05.a.06**: An incident response plan is developed that designates responsibilities to organizational entities, personnel, or roles.
+- **A.03.06.05.b[01]**: Copies of the incident response plan are distributed to designated incident response personnel (identified by name or by role).
+- **A.03.06.05.b[02]**: Copies of the incident response plan are distributed to organizational elements.
+- **A.03.06.05.c**: The incident response plan is updated to address system and organizational changes or problems encountered during plan implementation, execution, or testing.
+- **A.03.06.05.d**: The incident response plan is protected from unauthorized disclosure.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [SELECT FROM: incident response policy; procedures addressing incident response planning; incident response plan; system security plan; records of incident response plan reviews and approvals; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with incident response planning responsibilities; personnel with information security responsibilities]
+
+#### Test
+- [SELECT FROM: incident response plan and related processes]
+
+## References
+- Source Assessment Procedure: IR-08
+
+----
+
+## Maintenance
+
+### 03.07.01
+- Withdrawn
+- Recategorized as NCO.
+
+### 03.07.02
+- Withdrawn# Maintenance Tools and Nonlocal Maintenance Assessment
+
+## Incorporated Sections
+- Incorporated into 03.07.04 and 03.07.06.
+- 03.07.03 Withdrawn
+- Incorporated into 03.08.03.
+
+## 03.07.04 Maintenance Tools
+
+### Assessment Objective
+Determine if:
+- **A.03.07.04.a[01]**: the use of system maintenance tools is approved.
+- **A.03.07.04.a[02]**: the use of system maintenance tools is controlled.
+- **A.03.07.04.a[03]**: the use of system maintenance tools is monitored.
+- **A.03.07.04.b**: media with diagnostic and test programs are checked for malicious code before the media are used in the system.
+- **A.03.07.04.c**: the removal of system maintenance equipment containing CUI is prevented by verifying that there is no CUI on the equipment, sanitizing or destroying the equipment, or retaining the equipment within the facility.
+
+### Assessment Methods and Objects
+#### Examine
+- [SELECT FROM: maintenance policy and procedures; procedures for system maintenance tools; system maintenance tools; maintenance tool inspection records; equipment sanitization records; media sanitization records; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with system maintenance responsibilities; personnel responsible for media sanitization; personnel with information security responsibilities]
+
+#### Test
+- [SELECT FROM: processes for approving, controlling, and monitoring maintenance tools; mechanisms for supporting or implementing the approval, control, or monitoring of maintenance tools; processes for preventing the unauthorized removal of information; processes for inspecting media for malicious code; mechanisms for supporting media sanitization or the destruction of equipment; mechanisms for supporting the verification of media sanitization; processes for inspecting maintenance tools; mechanisms for supporting or implementing the inspection of maintenance tools; mechanisms for supporting or implementing the inspection of media used for maintenance]
+
+### References
+- Source Assessment Procedures: MA-03, MA-03(01), MA-03(02), MA-03(03)
+
+## 03.07.05 Nonlocal Maintenance
+
+### Assessment Objective
+Determine if:
+- **A.03.07.05.a[01]**: nonlocal maintenance and diagnostic activities are approved.
+- **A.03.07.05.a[02]**: nonlocal maintenance and diagnostic activities are monitored.
+- **A.03.07.05.b[01]**: multi-factor authentication is implemented in the establishment of nonlocal maintenance and diagnostic sessions.
+- **A.03.07.05.b[02]**: replay resistance is implemented in the establishment of nonlocal maintenance and diagnostic sessions.
+- **A.03.07.05.c[01]**: session connections are terminated when nonlocal maintenance is completed.
+- **A.03.07.05.c[02]**: network connections are terminated when nonlocal maintenance is completed.
+
+### Assessment Methods and Objects
+#### Examine
+- [SELECT FROM: maintenance policy and procedures; remote access policy and procedures; procedures for nonlocal system maintenance; records of remote access; maintenance records; diagnostic records; system design documentation; system configuration settings; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with system maintenance responsibilities; personnel with...]# Information Security Responsibilities
+
+## System Administrators
+
+### Test
+- **Select from**:
+- Processes for managing nonlocal maintenance
+- Mechanisms for implementing, supporting, or managing nonlocal maintenance
+- Mechanisms for implementing multi-factor authentication and replay resistance
+- Mechanisms for terminating nonlocal maintenance sessions and network connections
+
+## References
+- Source Assessment Procedure: MA-04
+
+## 03.07.06 Maintenance Personnel
+
+### Assessment Objective
+Determine if:
+- **A.03.07.06.a**: A process for maintenance personnel authorization is established.
+- **A.03.07.06.b**: A list of authorized maintenance organizations or personnel is maintained.
+- **A.03.07.06.c**: Non-escorted personnel who perform maintenance on the system possess the required access authorizations.
+- **A.03.07.06.d[01]**: Organizational personnel with required access authorizations are designated to supervise the maintenance activities of personnel who do not possess the required access authorizations.
+- **A.03.07.06.d[02]**: Organizational personnel with required technical competence are designated to supervise the maintenance activities of personnel who do not possess the required access authorizations.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Maintenance policy and procedures
+- Service provider contracts
+- Service-level agreements
+- List of authorized personnel
+- Maintenance records
+- Access control records
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with system maintenance responsibilities
+- Personnel with information security responsibilities
+
+- **Test**:
+- Processes for authorizing and managing maintenance personnel
+- Mechanisms for supporting or implementing the authorization of maintenance personnel
+
+## References
+- Source Assessment Procedure: MA-05
+
+## 3.8 Media Protection
+
+### 03.08.01 Media Storage
+
+#### Assessment Objective
+Determine if:
+- **A.03.08.01[01]**: System media that contain CUI are physically controlled.
+- **A.03.08.01[02]**: System media that contain CUI are securely stored.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- Physical protection policy and procedures
+- Media protection policy and procedures
+- Procedures for media storage
+- Access control policy and procedures
+- System media
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with system media protection and storage responsibilities
+- Personnel with information security responsibilities
+
+- **Test**:
+- Processes for storing information media
+- Mechanisms for supporting or implementing secure media storage/media protection
+
+## References
+- Source Assessment Procedure: MP-04
+
+### 03.08.02 Media Access
+
+#### Assessment Objective
+(Continuation of the document)# Assessment of Controlled Unclassified Information (CUI) Media Protection
+
+## 03.08.02 Access Control to CUI on System Media
+
+### Assessment Objective
+Determine if:
+- **A.03.08.02**: Access to CUI on system media is restricted to authorized personnel or roles.
+
+### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: physical protection policy and procedures; media protection policy and procedures; procedures for media access restrictions; access control policy and procedures; media storage facilities; access control records; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with system media protection responsibilities; personnel with information security responsibilities; system administrators]
+
+- **Test**:
+- [SELECT FROM: processes for restricting information on media; mechanisms for supporting or implementing media access restrictions]
+
+### References
+- Source Assessment Procedure: MP-02
+
+----
+
+## 03.08.03 Media Sanitization
+
+### Assessment Objective
+Determine if:
+- **A.03.08.03**: System media that contain CUI are sanitized prior to disposal, release out of organizational control, or release for reuse.
+
+### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: media protection policy and procedures; procedures for media sanitization and disposal; applicable standards and policies that address media sanitization policy; system audit records; media sanitization records; system design documentation; system configuration settings; records retention and disposition policy; records retention and disposition procedures; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with media sanitization responsibilities; personnel with records retention and disposition responsibilities; personnel with information security responsibilities; system administrators]
+
+- **Test**:
+- [SELECT FROM: processes for media sanitization; mechanisms for supporting or implementing media sanitization]
+
+### References
+- Source Assessment Procedure: MP-06
+
+----
+
+## 03.08.04 Media Marking
+
+### Assessment Objective
+Determine if:
+- **A.03.08.04[01]**: System media that contain CUI are marked to indicate distribution limitations.
+- **A.03.08.04[02]**: System media that contain CUI are marked to indicate handling caveats.
+- **A.03.08.04[03]**: System media that contain CUI are marked to indicate applicable CUI markings.
+
+### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: physical protection policy and procedures; media protection policy and procedures; procedures for media marking; list of system media marking security attributes; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with system media protection and marking responsibilities; personnel with information security responsibilities]
+
+- **Test**:
+- [SELECT FROM: processes for media marking; mechanisms for supporting or implementing media marking]# Media Protection Assessment
+
+## References
+- Source Assessment Procedure: MP-03
+- 03.08.05 Media Transport
+
+## Assessment Objective
+Determine if:
+- **A.03.08.05.a[01]**: System media that contain CUI are protected during transport outside of controlled areas.
+- **A.03.08.05.a[02]**: System media that contain CUI are controlled during transport outside of controlled areas.
+- **A.03.08.05.b**: Accountability for system media that contain CUI is maintained during transport outside of controlled areas.
+- **A.03.08.05.c**: Activities associated with the transport of system media that contain CUI are documented.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: physical protection policy and procedures; media protection policy and procedures; procedures for media storage; access control policy and procedures; authorized personnel list; system media; designated controlled areas; system and communications protection policy and procedures; cryptographic mechanisms and configuration documentation; procedures for the protection of information at rest; system design documentation; system configuration settings; list of information at rest requiring confidentiality protections; system audit records; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with system media protection and storage responsibilities; personnel with information security responsibilities; system developers; system administrators]
+
+### Test
+- [SELECT FROM: processes for storing information media; mechanisms for supporting or implementing media storage/media protection; mechanisms for supporting or implementing confidentiality protections for information at rest]
+
+## References
+- Source Assessment Procedures: MP-05, SC-28
+- 03.08.06 Withdrawn (Addressed by 03.13.08)
+
+## 03.08.07 Media Use
+
+### Assessment Objective
+Determine if:
+- **A.03.08.07.ODP[01]**: Types of system media with usage restrictions or that are prohibited from use are defined.
+- **A.03.08.07.a**: The use of the following types of system media is restricted or prohibited: <A.03.08.07.ODP[01]: types of system media>.
+- **A.03.08.07.b**: The use of removable system media without an identifiable owner is prohibited.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [SELECT FROM: system media protection policy and procedures; system use policy; procedures for media usage restrictions; rules of behavior; system audit records; system design documentation; system configuration settings; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with system media use responsibilities; personnel with information security responsibilities; system administrators]
+
+#### Test
+- [Content not provided]# Assessment Procedures for Media Use and Personnel Security
+
+## 1. Media Use Assessment
+
+### 1.1 Source Assessment Procedure: MP-07
+- **Date Withdrawn:** 03.08.08
+- **Incorporated into:** 03.08.07
+
+### 1.2 System Backup – Cryptographic Protection
+
+#### Assessment Objective
+Determine if:
+- **A.03.08.09.a:** The confidentiality of backup information is protected.
+- **A.03.08.09.b:** Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI at backup storage locations.
+
+#### Assessment Methods and Objects
+- **Examine:**
+- Contingency planning policy and procedures
+- Procedures for system backup
+- Contingency plan
+- System design documentation
+- System configuration settings
+- System security plan
+- Other relevant documents or records
+
+- **Interview:**
+- Personnel with system backup responsibilities
+- Personnel with information security responsibilities
+
+- **Test:**
+- Mechanisms for supporting or implementing the cryptographic protection of backup information
+
+### 1.3 References
+- Source Assessment Procedures: CP-09, CP-09(08)
+
+## 2. Personnel Security
+
+### 2.1 Personnel Screening
+
+#### Assessment Objective
+Determine if:
+- **A.03.09.01.ODP[01]:** Conditions that require the rescreening of individuals are defined.
+- **A.03.09.01.a:** Individuals are screened prior to authorizing access to the system.
+- **A.03.09.01.b:** Individuals are rescreened in accordance with the defined conditions.
+
+#### Assessment Methods and Objects
+- **Examine:**
+- Personnel security policy and procedures
+- Procedures for personnel screening and rescreening
+- Records of screened personnel
+- System security plan
+- Other relevant documents or records
+
+- **Interview:**
+- Personnel with personnel security responsibilities
+- Personnel with information security responsibilities
+
+- **Test:**
+- Processes for personnel screening and rescreening
+
+### 2.2 References
+- Source Assessment Procedure: PS-03
+
+### 2.3 Personnel Termination and Transfer
+
+#### Assessment Objective
+Determine if:
+- **A.03.09.02.ODP[01]:** The time period within which to disable system access is defined.
+- **A.03.09.02.a.01:** Upon termination of individual employment, system access is disabled within the defined time period.
+- **A.03.09.02.a.02[01]:** Upon termination of individual employment, authenticators associated with the individual are terminated or revoked.
+- **A.03.09.02.a.02[02]:** Upon termination of individual employment, credentials associated with the individual are terminated or revoked.
+- **A.03.09.02.a.03:** Upon termination of individual employment, security-related system property is retrieved.
+- **A.03.09.02.b.01[01]:** Upon individual reassignment or transfer to other positions in the organization, the ongoing operational need for current logical and physical access authorizations to the system and facility is reviewed.# Current Page Raw OCR Text
+
+## A.03.09.02.b.01
+Upon individual reassignment or transfer to other positions in the organization, the ongoing operational need for current logical and physical access authorizations to the system and facility is confirmed.
+
+## A.03.09.02.b.02
+Upon individual reassignment or transfer to other positions in the organization, access authorization is modified to correspond with any changes in operational need.
+
+## Assessment Methods and Objects
+
+### Examine
+- Personnel security policy and procedures
+- Procedures for personnel termination
+- Records of personnel transfer actions
+- Procedures for personnel transfer
+- List of system and facility access authorizations
+- Records of personnel termination actions
+- Records of terminated or revoked authenticators or credentials
+- List of system accounts
+- Records of exit interviews
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with personnel security responsibilities
+- Personnel with account management responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+### Test
+- Processes for personnel termination
+- Processes for personnel transfer
+- Mechanisms for supporting or implementing personnel transfer notifications
+- Mechanisms for supporting or implementing personnel termination notifications
+- Mechanisms for disabling system access and revoking authenticators
+
+## References
+- Source Assessment Procedures: PS-04, PS-05
+
+# 3.10. Physical Protection
+
+## 03.10.01 Physical Access Authorizations
+
+### Assessment Objective
+Determine if:
+- **A.03.10.01.ODP[01]**: The frequency at which to review the access list detailing authorized facility access by individuals is defined.
+- **A.03.10.01.a[01]**: A list of individuals with authorized access to the facility where the system resides is developed.
+- **A.03.10.01.a[02]**: A list of individuals with authorized access to the facility where the system resides is approved.
+- **A.03.10.01.a[03]**: A list of individuals with authorized access to the facility where the system resides is maintained.
+- **A.03.10.01.b**: Authorization credentials for facility access are issued.
+- **A.03.10.01.c**: The facility access list is reviewed <A.03.10.01.ODP[01]: frequency>.
+- **A.03.10.01.d**: Individuals from the facility access list are removed when access is no longer required.
+
+### Assessment Methods and Objects
+
+#### Examine
+- Physical protection policy and procedures
+- Procedures for physical access authorizations
+- Authorized personnel access list
+- Physical access list reviews
+- Physical access termination records
+- Authorization credentials
+- System security plan
+- Other relevant documents or records
+
+#### Interview
+- Personnel with physical access authorization responsibilities
+- Personnel with physical access to the facility where the system resides
+- Personnel with information security responsibilities# Test
+
+## References
+- Source Assessment Procedure: PE-02
+- 03.10.02 Monitoring Physical Access
+
+## Assessment Objective
+Determine if:
+- **A.03.10.02.ODP[01]**: The frequency at which to review physical access logs is defined.
+- **A.03.10.02.ODP[02]**: Events or potential indications of events requiring physical access logs to be reviewed are defined.
+- **A.03.10.02.a[01]**: Physical access to the facility where the system resides is monitored to detect physical security incidents.
+- **A.03.10.02.a[02]**: Physical security incidents are responded to.
+- **A.03.10.02.b[01]**: Physical access logs are reviewed <A.03.10.02.ODP[01]: frequency>.
+- **A.03.10.02.b[02]**: Physical access logs are reviewed upon occurrence of <A.03.10.02.ODP[02]: events or potential indications of events>.
+
+## Assessment Methods and Objects
+### Examine
+- [SELECT FROM: physical protection policy and procedures; procedures for physical access monitoring; physical access logs or records; physical access monitoring records; physical access log reviews; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with physical access monitoring responsibilities; personnel with incident response responsibilities; personnel with information security responsibilities]
+
+### Test
+- [SELECT FROM: processes for monitoring physical access; mechanisms for supporting or implementing physical access monitoring; mechanisms for supporting or implementing the review of physical access logs]
+
+## References
+- Source Assessment Procedure: PE-06
+- 03.10.03 Withdrawn (Incorporated into 03.10.07)
+- 03.10.04 Withdrawn (Incorporated into 03.10.07)
+- 03.10.05 Withdrawn (Incorporated into 03.10.07)
+
+## 03.10.06 Alternate Work Site
+
+### Assessment Objective
+Determine if:
+- **A.03.10.06.ODP[01]**: Security requirements to be employed at alternate work sites are defined.
+- **A.03.10.06.a**: Alternate work sites allowed for use by employees are determined.
+- **A.03.10.06.b**: The following security requirements are employed at alternate work sites: <A.03.10.06.ODP[01]: security requirements>.
+
+### Assessment Methods and Objects
+#### Examine
+- [SELECT FROM: physical protection policy and procedures; procedures for alternate work sites for personnel; list of security requirements for alternate work sites; assessments of security requirements at alternate work sites; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel approving the use of alternate work sites; personnel using]# Security Assessment Procedures
+
+## Alternate Work Sites
+- **Personnel Assessing Security Requirements**: Personnel with information security responsibilities at alternate work sites.
+
+### Test
+- **Select From**:
+- Processes for security at alternate work sites
+- Mechanisms for supporting alternate work sites
+- Security requirements employed at alternate work sites
+- Means of communication between personnel at alternate work sites and security personnel
+
+## References
+- Source Assessment Procedure: PE-17
+
+## 03.10.07 Physical Access Control
+
+### Assessment Objective
+Determine if:
+- **A.03.10.07.a.01**: Physical access authorizations are enforced at entry and exit points to the facility where the system resides by verifying individual physical access authorizations before granting access.
+- **A.03.10.07.a.02**: Physical access authorizations are enforced at entry and exit points to the facility where the system resides by controlling ingress and egress with physical access control systems, devices, or guards.
+- **A.03.10.07.b**: Physical access audit logs for entry or exit points are maintained.
+- **A.03.10.07.c[01]**: Visitors are escorted.
+- **A.03.10.07.c[02]**: Visitor activity is controlled.
+- **A.03.10.07.d**: Keys, combinations, and other physical access devices are secured.
+- **A.03.10.07.e**: Physical access to output devices is controlled to prevent unauthorized individuals from obtaining access to Controlled Unclassified Information (CUI).
+
+### Assessment Methods and Objects
+- **Examine**:
+- Physical protection policy and procedures
+- Procedures for physical access control
+- Physical access control logs or records
+- Inventory records of physical access control devices
+- System entry and exit points
+- Records of key and lock combination changes
+- Storage locations for physical access control devices
+- Physical access control devices
+- List of security safeguards controlling access to designated publicly accessible areas within the facility
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with physical access control responsibilities
+- Personnel with information security responsibilities
+
+- **Test**:
+- Processes for physical access control
+- Mechanisms for supporting or implementing physical access control
+- Physical access control devices
+
+## References
+- Source Assessment Procedure: PE-03, PE-05
+
+## 03.10.08 Access Control for Transmission
+
+### Assessment Objective
+Determine if:
+- **A.03.10.08**: Physical access to system distribution and transmission lines within organizational facilities is controlled.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Physical protection policy and procedures
+- Procedures for access control for transmission mediums
+- System design documentation
+- Facility communications and wiring diagrams
+- List of physical security safeguards applied to system distribution and transmission lines
+- Procedures for access control for display medium
+- Facility layout of system components
+- List of output devices and...# Security Assessment Procedures
+
+## 3.11 Risk Assessment
+
+### 03.11.01 Risk Assessment
+
+#### Assessment Objective
+Determine if:
+- **A.03.11.01.ODP[01]**: The frequency at which to update the risk assessment is defined.
+- **A.03.11.01.a**: The risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of Controlled Unclassified Information (CUI) is assessed.
+- **A.03.11.01.b**: Risk assessments are updated at the defined frequency.
+
+#### Assessment Methods and Objects
+
+**Examine**
+- [SELECT FROM: risk assessment policy and procedures; security planning policy and procedures; procedures for organizational assessments of risk; risk assessment; risk assessment results; risk assessment reviews; risk assessment updates; Supply Chain Risk Management (SCRM) policy and procedures; inventory of critical systems, system components, and system services; procedures for organizational assessments of supply chain risk; acquisition policy; SCRM plan; system security plan; other relevant documents or records]
+
+**Interview**
+- [SELECT FROM: personnel with risk assessment responsibilities; personnel with SCRM responsibilities; personnel with security responsibilities]
+
+**Test**
+- [SELECT FROM: processes for organizational risk assessments; mechanisms for supporting or conducting, documenting, reviewing, disseminating, and updating risk assessments; mechanisms for supporting or conducting, documenting, reviewing, disseminating, and updating supply chain risk assessments]
+
+#### References
+- Source Assessment Procedures: RA-03, RA-03(01), SR-06
+
+### 03.11.02 Vulnerability Monitoring and Scanning
+
+#### Assessment Objective
+Determine if:
+- **A.03.11.02.ODP[01]**: The frequency at which the system is monitored for vulnerabilities is defined.
+- **A.03.11.02.ODP[02]**: The frequency at which the system is scanned for vulnerabilities is defined.
+- **A.03.11.02.ODP[03]**: Response times to remediate system vulnerabilities are defined.
+- **A.03.11.02.ODP[04]**: The frequency at which to update system vulnerabilities to be scanned is defined.
+- **A.03.11.02.a[01]**: The system is monitored for vulnerabilities at the defined frequency.# Security Assessment and Monitoring
+
+## Vulnerability Scanning
+
+### Objectives
+- **A.03.11.02.a[02]**: The system is scanned for vulnerabilities at a defined frequency.
+- **A.03.11.02.a[03]**: The system is monitored for vulnerabilities when new vulnerabilities that affect the system are identified.
+- **A.03.11.02.a[04]**: The system is scanned for vulnerabilities when new vulnerabilities that affect the system are identified.
+- **A.03.11.02.b**: System vulnerabilities are remediated within defined response times.
+- **A.03.11.02.c[01]**: System vulnerabilities to be scanned are updated at a defined frequency.
+- **A.03.11.02.c[02]**: System vulnerabilities to be scanned are updated when new vulnerabilities are identified and reported.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Risk assessment policy and procedures
+- Procedures for vulnerability scanning
+- Patch and vulnerability management records
+- Vulnerability scanning tools and configuration documentation
+- Vulnerability scanning results
+- Risk assessment
+- Risk assessment report
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with risk assessment and vulnerability scanning responsibilities
+- Personnel with vulnerability scan analysis responsibilities
+- Personnel with vulnerability remediation responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+- **Test**:
+- Processes for vulnerability monitoring, scanning, analysis, and remediation
+- Mechanisms for supporting or implementing vulnerability monitoring, scanning, analysis, and remediation
+
+### References
+- Source Assessment Procedures: RA-05, RA-05(02)
+
+## Risk Response
+
+### Assessment Objective
+Determine if:
+- **A.03.11.04[01]**: Findings from security assessments are responded to.
+- **A.03.11.04[02]**: Findings from security monitoring are responded to.
+- **A.03.11.04[03]**: Findings from security audits are responded to.
+
+### Assessment Methods and Objects
+- **Examine**:
+- Risk assessment policy
+- Assessment reports
+- System audit records
+- Event logs
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with assessment and auditing responsibilities
+- System administrators
+- Personnel with security responsibilities
+
+- **Test**:
+- Processes for assessments and audits
+- Mechanisms and tools supporting or implementing assessments and auditing
+
+### References
+- Source Assessment Procedure: RA-07
+
+## Security Assessment and Monitoring
+
+### Security Assessment
+
+#### Assessment Objective
+Determine if:
+- **A.03.12.01.ODP[01]**: The frequency at which to assess the security requirements for the system and its environment of operation is defined.
+- **A.03.12.01**: The security requirements for the system and its environment of operation are defined.# Assessment Procedures
+
+## 1. Operation Assessment
+Operation are assessed to determine if the requirements have been satisfied.
+
+### Assessment Methods and Objects
+- **Examine**
+- Security assessment and monitoring policy and procedures
+- Procedures for security assessment planning
+- Security assessment plan
+- Security assessment report
+- System security plan
+- Other relevant documents or records
+
+- **Interview**
+- Personnel with security assessment responsibilities
+- Personnel with information security responsibilities
+
+- **Test**
+- Mechanisms for supporting security assessments
+- Processes for security assessment plan development
+- Security assessment reporting
+
+### References
+- Source Assessment Procedure: CA-02
+
+----
+
+## 2. Plan of Action and Milestones
+
+### Assessment Objective
+Determine if:
+- A.03.12.02.a.01: A plan of action and milestones for the system is developed to document the planned remediation actions for correcting weaknesses or deficiencies noted during security assessments.
+- A.03.12.02.a.02: A plan of action and milestones for the system is developed to reduce or eliminate known system vulnerabilities.
+- A.03.12.02.b.01: The existing plan of action and milestones is updated based on the findings from security assessments.
+- A.03.12.02.b.02: The existing plan of action and milestones is updated based on the findings from audits or reviews.
+- A.03.12.02.b.03: The existing plan of action and milestones is updated based on the findings from continuous monitoring activities.
+
+### Assessment Methods and Objects
+- **Examine**
+- Security assessment and monitoring policy and procedures
+- Procedures for plans of action and milestones
+- Security assessment plan
+- Security assessment report
+- Security assessment evidence
+- Plan of action and milestones
+- System security plan
+- Other relevant documents or records
+
+- **Interview**
+- Personnel with plans of action and milestones development and implementation responsibilities
+- Personnel with information security responsibilities
+
+- **Test**
+- Mechanisms for developing, implementing, and maintaining plans of action and milestones
+
+### References
+- Source Assessment Procedure: CA-05
+
+----
+
+## 3. Continuous Monitoring
+
+### Assessment Objective
+Determine if:
+- A.03.12.03[01]: A system-level continuous monitoring strategy is developed.
+- A.03.12.03[02]: A system-level continuous monitoring strategy is implemented.
+- A.03.12.03[03]: Ongoing monitoring is included in the continuous monitoring strategy.
+- A.03.12.03[04]: Security assessments are included in the continuous monitoring strategy.
+
+### Assessment Methods and Objects
+- **Examine**
+- Security assessment and monitoring policy and procedures
+- Organizational continuous monitoring strategy
+- System-level continuous monitoring strategy
+- Procedures for continuous monitoring of the system
+- Procedures for continuous monitoring activities# Configuration Management and Security Assessment
+
+## Overview
+This document outlines the procedures and objectives for configuration management and security assessments, including the necessary records and personnel involved.
+
+## Key Documents
+- Configuration management
+- Security assessment report
+- Plan of action and milestones
+- System monitoring records
+- Configuration management records
+- Impact analyses
+- Status reports
+- System security plan
+- Other relevant documents or records
+
+## Interview
+### Personnel Selection
+- Personnel with continuous monitoring responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+## Test
+### Mechanisms to Evaluate
+- Mechanisms for implementing continuous monitoring
+- Mechanisms for supporting response actions for assessment and monitoring results
+- Mechanisms for supporting security status reporting
+
+## References
+- **Source Assessment Procedure:** CA-07
+- 03.12.04 Withdrawn (Incorporated into 03.15.02)
+- 03.12.05 Information Exchange
+
+## Assessment Objective
+Determine if:
+- **A.03.12.05.ODP[01]:** One or more of the following parameter values are selected:
+- Interconnection security agreements
+- Information exchange security agreements
+- Memoranda of understanding or agreement
+- Service-level agreements
+- User agreements
+- Non-disclosure agreements
+- Other types of agreements
+
+- **A.03.12.05.ODP[02]:** The frequency at which to review and update agreements is defined.
+
+- **A.03.12.05.a[01]:** The exchange of Controlled Unclassified Information (CUI) between the system and other systems is approved using the selected parameter values.
+
+- **A.03.12.05.a[02]:** The exchange of CUI between the system and other systems is managed using the selected parameter values.
+
+- **A.03.12.05.b[01]:** Interface characteristics for each system are documented as part of the exchange agreements.
+
+- **A.03.12.05.b[02]:** Security requirements for each system are documented as part of the exchange agreements.
+
+- **A.03.12.05.b[03]:** Responsibilities for each system are documented as part of the exchange agreements.
+
+- **A.03.12.05.c[01]:** Exchange agreements are reviewed at the defined frequency.
+
+- **A.03.12.05.c[02]:** Exchange agreements are updated at the defined frequency.
+
+## Assessment Methods and Objects
+### Examine
+- Access control policy and procedures
+- Procedures for system connections
+- System and communications protection policy and procedures
+- System interconnection security agreements
+- Information exchange security agreements
+- Service-level agreements
+- Memoranda of understanding or agreements
+- Non-disclosure agreements
+- System design documentation
+- Enterprise architecture
+- Security architecture
+- System configuration settings
+- System security plan
+- Other relevant documents or records
+
+### Interview
+#### Personnel Selection
+- Personnel with development, implementation, and approval responsibilities for system interconnection agreements
+- Personnel who manage systems to which the exchange agreements apply
+- Personnel with information security responsibilities
+
+## References
+- **Source Assessment Procedure:** CA-03
+- **3.13. System and Communications Protection**
+- **03.13.01 Boundary Protection**
+
+## Assessment Objective
+Determine if:
+- **A.03.13.01.a[01]:** Communications at external managed interfaces to the system are adequately protected.# Security Assessment Procedures
+
+## A.03.13.01 Communications Protection
+
+### A.03.13.01.a
+1. **[02]**: Communications at external managed interfaces to the system are controlled.
+2. **[03]**: Communications at key internal managed interfaces within the system are monitored.
+3. **[04]**: Communications at key internal managed interfaces within the system are controlled.
+
+### A.03.13.01.b
+- Subnetworks are implemented for publicly accessible system components that are physically or logically separated from internal networks.
+
+### A.03.13.01.c
+- External system connections are only made through managed interfaces that consist of boundary protection devices arranged in accordance with an organizational security architecture.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: system and communications protection policy and procedures; procedures for boundary protection; list of key internal boundaries within the system; boundary protection hardware and software; system configuration settings; security architecture; system audit records; system design documentation; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with boundary protection responsibilities; personnel with information security responsibilities; system developers; system administrators]
+
+### Test
+- [SELECT FROM: mechanisms for implementing boundary protection capabilities]
+
+## References
+- Source Assessment Procedure: SC-07
+
+----
+
+## A.03.13.03 Withdrawn
+- Recategorized as NCO.
+
+## A.03.13.04 Information in Shared System Resources
+
+### Assessment Objective
+Determine if:
+1. **[01]**: Unauthorized information transfer via shared system resources is prevented.
+2. **[02]**: Unintended information transfer via shared system resources is prevented.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [SELECT FROM: system and communications protection policy and procedures; procedures for information protection in shared system resources; system configuration settings; system audit records; system design documentation; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with information security responsibilities; system developers; system administrators]
+
+#### Test
+- [SELECT FROM: mechanisms for preventing the unauthorized and unintended transfer of information via shared system resources]
+
+## References
+- Source Assessment Procedure: SC-04
+
+----
+
+## A.03.13.05 Withdrawn
+- Incorporated into A.03.13.01.
+
+## A.03.13.06 Network Communications – Deny by Default – Allow by Exception
+
+### Assessment Objective
+Determine if:
+1. **[01]**: Network communications traffic is denied by default.# Network Communications Traffic Assessment
+
+## A.03.13.06: Network Communications Traffic
+- **Assessment Objective**: Network communications traffic is allowed by exception.
+
+### Assessment Methods and Objects
+- **Examine**:
+- System and communications protection policy and procedures
+- Procedures for boundary protection
+- System design documentation
+- System configuration settings
+- System audit records
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with boundary protection responsibilities
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test**:
+- Mechanisms for implementing traffic management at managed interfaces
+
+### References
+- Source Assessment Procedure: SC-07(05)
+
+----
+
+## A.03.13.08: Transmission and Storage Confidentiality
+### Assessment Objective
+Determine if:
+- **A.03.13.08[01]**: Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of Controlled Unclassified Information (CUI) during transmission.
+- **A.03.13.08[02]**: Cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI while in storage.
+
+### Assessment Methods and Objects
+- **Examine**:
+- System and communications protection policy and procedures
+- Procedures for transmission confidentiality
+- Procedures for the protection of information at rest
+- System design documentation
+- System configuration settings
+- Cryptographic mechanisms and associated configuration documentation
+- Information in storage requiring confidentiality protection
+- System audit records
+- System security plan
+- Other relevant documents or records
+
+- **Interview**:
+- Personnel with information security responsibilities
+- System developers
+- System administrators
+
+- **Test**:
+- Mechanisms for supporting or implementing transmission confidentiality
+- Cryptographic mechanisms for supporting or implementing transmission confidentiality
+- Mechanisms for supporting or implementing confidentiality protection for information in storage
+- Cryptographic mechanisms for implementing confidentiality protections for information in storage
+
+### References
+- Source Assessment Procedures: SC-08, SC-08(01), SC-28, SC-28(01)
+
+----
+
+## A.03.13.09: Network Disconnect
+### Assessment Objective
+Determine if:
+- **A.03.13.09.ODP[01]**: The time period of inactivity after which the system terminates a network connection associated with a communications session is defined.
+- **A.03.13.09**: The network connection associated with a communications session is terminated at the end of the session or after the defined time period of inactivity.
+
+### Assessment Methods and Objects
+- **Examine**:
+- System and communications protection policy and procedures
+- Procedures for network disconnect
+- System design documentation
+- System configuration settings
+- System audit records
+- System security plan
+- Other relevant documents or records# Interview
+
+## Test
+- **Select from:** personnel with information security responsibilities; system developers; system administrators
+
+## References
+- Source Assessment Procedure: SC-10
+
+### 03.13.10 Cryptographic Key Establishment and Management
+
+#### Assessment Objective
+Determine if:
+- **A.03.13.10.ODP[01]:** requirements for key generation, distribution, storage, access, and destruction are defined.
+- **A.03.13.10[01]:** cryptographic keys are established in the system in accordance with the following key management requirements: <A.03.13.10.ODP[01]: requirements>.
+- **A.03.13.10[02]:** cryptographic keys are managed in the system in accordance with the following key management requirements: <A.03.13.10.ODP[01]: requirements>.
+
+#### Assessment Methods and Objects
+- **Examine:**
+- [Select from: system and communications protection policy and procedures; procedures for cryptographic key establishment and management; system design documentation; system configuration settings; cryptographic mechanisms; system audit records; system security plan; other relevant documents or records]
+
+- **Interview:**
+- [Select from: personnel with responsibilities for cryptographic key establishment or management; personnel with information security responsibilities; system administrators]
+
+- **Test:**
+- [Select from: mechanisms for supporting or implementing cryptographic key establishment and management]
+
+## References
+- Source Assessment Procedure: SC-12
+
+### 03.13.11 Cryptographic Protection
+
+#### Assessment Objective
+Determine if:
+- **A.03.13.11.ODP[01]:** the types of cryptography for protecting the confidentiality of CUI are defined.
+- **A.03.13.11:** the following types of cryptography are implemented to protect the confidentiality of CUI: <A.03.13.11.ODP[01]: types of cryptography>.
+
+#### Assessment Methods and Objects
+- **Examine:**
+- [Select from: system and communications protection policy and procedures; procedures for cryptographic protection; system design documentation; system configuration settings; cryptographic module validation certificates; list of FIPS-validated cryptographic modules; system audit records; system security plan; other relevant documents or records]
+
+- **Interview:**
+- [Select from: personnel with responsibilities for cryptographic protection; personnel with information security responsibilities; system developers; system administrators]
+
+- **Test:**
+- [Select from: mechanisms for supporting or implementing cryptographic protection]
+
+## References
+- Source Assessment Procedure: SC-13
+
+### 03.13.12 Collaborative Computing Devices and Applications
+
+#### Assessment Objective
+Determine if:
+- **A.03.13.12.ODP[01]:** exceptions where remote activation is to be allowed are defined.# Assessment Procedures
+
+## 03.13.12 Remote Activation of Collaborative Computing Devices
+
+### Assessment Objective
+Determine if:
+- **A.03.13.12.a**: The remote activation of collaborative computing devices and applications is prohibited with the following exceptions: `<A.03.13.12.ODP[01]: exceptions>`.
+- **A.03.13.12.b**: An explicit indication of use is provided to users who are physically present at the devices.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [SELECT FROM: system and communications protection policy and procedures; procedures for collaborative computing; access control policy and procedures; system configuration settings; system design documentation; system audit records; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with responsibilities for managing collaborative computing devices; personnel with information security responsibilities; system developers; system administrators]
+
+#### Test
+- [SELECT FROM: mechanisms for supporting or implementing the management of remote activation of collaborative computing devices; mechanisms for providing an indication of use of collaborative computing devices]
+
+### References
+- Source Assessment Procedure: SC-15
+
+----
+
+## 03.13.13 Mobile Code
+
+### Assessment Objective
+Determine if:
+- **A.03.13.13.a[01]**: Acceptable mobile code is defined.
+- **A.03.13.13.a[02]**: Acceptable mobile code technologies are defined.
+- **A.03.13.13.b[01]**: The use of mobile code is authorized.
+- **A.03.13.13.b[02]**: The use of mobile code is monitored.
+- **A.03.13.13.b[03]**: The use of mobile code is controlled.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [SELECT FROM: system and communications protection policy and procedures; procedures for mobile code; mobile code implementation policy and procedures; list of acceptable mobile code and mobile code technologies; authorization records; system monitoring records; system audit records; system security plan; other relevant documents or records]
+
+#### Interview
+- [SELECT FROM: personnel with responsibilities for managing mobile code; personnel with information security responsibilities; system administrators]
+
+#### Test
+- [SELECT FROM: processes for authorizing, monitoring, and controlling mobile code; mechanisms for supporting or implementing the management of mobile code; mechanisms for supporting or implementing mobile code monitoring]
+
+### References
+- Source Assessment Procedure: SC-18
+
+----
+
+## 03.13.14 Withdrawn
+- Technology-specific.
+
+----
+
+## 03.13.15 Session Authenticity
+
+### Assessment Objective
+Determine if:
+- **A.03.13.15**: The authenticity of communications sessions is protected.
+
+### Assessment Methods and Objects
+
+#### Examine
+- [SELECT FROM: system and communications protection policy and procedures; procedures for session authenticity; system design documentation; system configuration settings; system audit records; system security plan; other relevant documents or records]# System and Information Integrity
+
+## 3.14. System and Information Integrity
+
+### 3.14.01 Flaw Remediation
+
+#### ASSESSMENT OBJECTIVE
+Determine if:
+- **A.03.14.01.ODP[01]**: The time period within which to install security-relevant software updates after the release of the updates is defined.
+- **A.03.14.01.ODP[02]**: The time period within which to install security-relevant firmware updates after the release of the updates is defined.
+- **A.03.14.01.a[01]**: System flaws are identified.
+- **A.03.14.01.a[02]**: System flaws are reported.
+- **A.03.14.01.a[03]**: System flaws are corrected.
+- **A.03.14.01.b[01]**: Security-relevant software updates are installed within the defined time period of the release of the updates.
+- **A.03.14.01.b[02]**: Security-relevant firmware updates are installed within the defined time period of the release of the updates.
+
+#### ASSESSMENT METHODS AND OBJECTS
+**Examine**
+- [SELECT FROM: system and information integrity policy and procedures; procedures for flaw remediation; procedures for configuration management; list of recent security flaw remediation actions performed on the system; list of flaws and vulnerabilities that may potentially affect the system; test results from the installation of software and firmware updates to correct system flaws; installation and change control records for security-relevant software and firmware updates; system security plan; other relevant documents or records]
+
+**Interview**
+- [SELECT FROM: personnel responsible for installing, configuring, or maintaining the system; personnel responsible for flaw remediation; personnel with configuration management responsibilities; personnel with information security responsibilities; system administrators]
+
+**Test**
+- [SELECT FROM: processes for identifying, reporting, and correcting system flaws; processes for installing software and firmware updates; mechanisms for supporting or implementing the reporting and correction of system flaws; mechanisms for supporting or implementing the testing of software and firmware updates]
+
+#### REFERENCES
+- Source Assessment Procedure: SC-23
+- 03.13.16 Withdrawn
+- Incorporated into 03.13.08.
+
+### 3.14.02 Malicious Code Protection
+
+#### ASSESSMENT OBJECTIVE
+Determine if:
+- **A.03.14.02.ODP[01]**: The frequency at which malicious code protection mechanisms perform scans is defined.
+- **A.03.14.02.a[01]**: Malicious code protection mechanisms are implemented at system entry and exit points to detect malicious code.
+- **A.03.14.02.a[02]**: Malicious code protection mechanisms are implemented at system entry and exit points to eradicate malicious code.
+- **A.03.14.02.b**: Malicious code protection mechanisms are updated as new releases are available in accordance with configuration management policy and procedures.
+- **A.03.14.02.c.01[01]**: Malicious code protection mechanisms are configured to perform scans of the system at the defined frequency.
+- **A.03.14.02.c.01[02]**: Malicious code protection mechanisms are configured to... (incomplete text)# Malicious Code Protection and Security Alerts
+
+## Malicious Code Protection Mechanisms
+
+### Real-Time Scans
+- Perform real-time scans of files from external sources at endpoints or system entry and exit points as the files are downloaded, opened, or executed.
+
+### Configuration
+- **A.03.14.02.c.02**: Malicious code protection mechanisms are configured to:
+- Block malicious code
+- Quarantine malicious code
+- Take other actions in response to malicious code detection
+
+## Assessment Methods and Objects
+
+### Examine
+Select from:
+- System and information integrity policy and procedures
+- Configuration management policy and procedures
+- Procedures for malicious code protection
+- Records of malicious code protection updates
+- System design documentation
+- System configuration settings
+- Scan results from malicious code protection mechanisms
+- Record of actions initiated by malicious code protection mechanisms in response to malicious code detection
+- System audit records
+- System security plan
+- Other relevant documents or records
+
+### Interview
+Select from:
+- Personnel responsible for malicious code protection
+- Personnel with system installation, configuration, or maintenance responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+### Test
+Select from:
+- Processes for employing, updating, and configuring malicious code protection mechanisms
+- Processes for addressing the detection of false positives and resulting potential impacts
+- Mechanisms for supporting or implementing, employing, updating, and configuring malicious code protection mechanisms
+- Mechanisms for supporting or implementing malicious code scanning and the execution of subsequent actions
+
+## References
+- Source Assessment Procedure: SI-03
+
+----
+
+## Security Alerts, Advisories, and Directives
+
+### Assessment Objective
+Determine if:
+- **A.03.14.03.a**: System security alerts, advisories, and directives from external organizations are received on an ongoing basis.
+- **A.03.14.03.b[01]**: Internal security alerts, advisories, and directives are generated, as necessary.
+- **A.03.14.03.b[02]**: Internal security alerts, advisories, and directives are disseminated, as necessary.
+
+## Assessment Methods and Objects
+
+### Examine
+Select from:
+- System and information integrity policy and procedures
+- Procedures for security alerts, advisories, and directives
+- Records of security alerts and advisories
+- System security plan
+- Other relevant documents or records
+
+### Interview
+Select from:
+- Personnel with security alert and advisory responsibilities
+- Personnel implementing, operating, maintaining, and using the system
+- Personnel, organizational elements, or external organizations to whom alerts, advisories, and directives are to be disseminated
+- Personnel with information security responsibilities
+- System administrators
+
+### Test
+Select from:
+- Processes for defining, receiving, generating, disseminating, and complying with security alerts, advisories, and directives
+- Mechanisms for supporting or implementing security directives
+- Mechanisms for supporting or implementing the definition, receipt, generation, and dissemination of security alerts, advisories, and directives
+
+## References
+- Source Assessment Procedure: SI-05
+
+----
+
+## Withdrawn
+- **03.14.04**: Withdrawn# Incorporated into 03.14.02
+
+## 03.14.05 Withdrawn
+Addressed by 03.14.02.
+
+## 03.14.06 System Monitoring
+
+### ASSESSMENT OBJECTIVE
+Determine if:
+- **A.03.14.06.a.01[01]**: the system is monitored to detect attacks.
+- **A.03.14.06.a.01[02]**: the system is monitored to detect indicators of potential attacks.
+- **A.03.14.06.a.02**: the system is monitored to detect unauthorized connections.
+- **A.03.14.06.b**: unauthorized use of the system is identified.
+- **A.03.14.06.c[01]**: inbound communications traffic is monitored to detect unusual or unauthorized activities or conditions.
+- **A.03.14.06.c[02]**: outbound communications traffic is monitored to detect unusual or unauthorized activities or conditions.
+
+### ASSESSMENT METHODS AND OBJECTS
+#### Examine
+[SELECT FROM: system and information integrity policy and procedures; procedures for system monitoring tools and techniques; continuous monitoring strategy; facility diagram or layout; system design documentation; locations within the system where monitoring devices are deployed; system configuration settings; system protocols; system audit records; system security plan; other relevant documents or records]
+
+#### Interview
+[SELECT FROM: personnel with responsibilities for installing, configuring, or maintaining the system; personnel with system monitoring responsibilities; personnel with intrusion detection responsibilities; personnel with information security responsibilities; system administrators]
+
+#### Test
+[SELECT FROM: processes for intrusion detection and system monitoring; mechanisms for supporting or implementing system monitoring capabilities; mechanisms for supporting or implementing intrusion detection and system monitoring capabilities; mechanisms for supporting or implementing the monitoring of inbound and outbound communications traffic]
+
+### REFERENCES
+Source Assessment Procedures: SI-04, SI-04(04)
+
+## 03.14.07 Withdrawn
+Incorporated into 03.14.06.
+
+## 03.14.08 Information Management and Retention
+
+### ASSESSMENT OBJECTIVE
+Determine if:
+- **A.03.14.08[01]**: CUI within the system is managed in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.
+- **A.03.14.08[02]**: CUI within the system is retained in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.
+- **A.03.14.08[03]**: CUI output from the system is managed in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.
+- **A.03.14.08[04]**: CUI output from the system is retained in accordance with applicable laws, Executive Orders, directives, regulations, policies, standards, guidelines, and operational requirements.
+
+### ASSESSMENT METHODS AND OBJECTS
+#### Examine
+[SELECT FROM: system and information integrity policy and procedures; laws, Executive Orders, directives, policies, regulations, standards, and operational requirements applicable to information management and retention; records]# Retention and Disposition Policy
+
+## Records Retention and Disposition Procedures
+
+### Media Protection Policy
+- Media Protection Procedures
+- Audit Findings
+- System Security Plan
+- Other Relevant Documents or Records
+
+## Interview
+- **Select from:**
+- Personnel with information and records management, retention, and disposition responsibilities
+- Personnel with information security responsibilities
+- System administrators
+
+## Test
+- **Select from:**
+- Processes for information management, retention, and disposition
+- Mechanisms for supporting or implementing information management, retention, and disposition
+
+## References
+- Source Assessment Procedure: SI-12
+
+# 3.15. Planning
+
+## 03.15.01 Policy and Procedures
+
+### Assessment Objective
+Determine if:
+- **A.03.15.01.ODP[01]:** The frequency at which the policies and procedures for satisfying security requirements are reviewed and updated is defined.
+- **A.03.15.01.a[01]:** Policies needed to satisfy the security requirements for the protection of CUI are developed and documented.
+- **A.03.15.01.a[02]:** Policies needed to satisfy the security requirements for the protection of CUI are disseminated to organizational personnel or roles.
+- **A.03.15.01.a[03]:** Procedures needed to satisfy the security requirements for the protection of CUI are developed and documented.
+- **A.03.15.01.a[04]:** Procedures needed to satisfy the security requirements for the protection of CUI are disseminated to organizational personnel or roles.
+- **A.03.15.01.b[01]:** Policies and procedures are reviewed <A.03.15.01.ODP[01]: frequency>.
+- **A.03.15.01.b[02]:** Policies and procedures are updated <A.03.15.01.ODP[01]: frequency>.
+
+### Assessment Methods and Objects
+- **Examine:**
+- Security policies and procedures associated with the protection of CUI
+- Audit findings
+- System security plan
+- Other relevant documents or records
+
+- **Interview:**
+- Personnel with information security responsibilities
+
+### References
+- Source Assessment Procedures: AC-01, AT-01, AU-01, CA-01, CM-01, IA-01, IR-01, MA-01, MP-01, PE-01, PL-01, PS-01, RA-01, SA-01, SC-01, SI-01, SR-01
+
+## 03.15.02 System Security Plan
+
+### Assessment Objective
+Determine if:
+- **A.03.15.02.ODP[01]:** The frequency at which the system security plan is reviewed and updated is defined.
+- **A.03.15.02.a.01:** A system security plan that defines the constituent system components is developed.
+- **A.03.15.02.a.02:** A system security plan that identifies the information types processed, stored, and transmitted by the system is developed.
+- **A.03.15.02.a.03:** A system security plan that describes specific threats to the system that are of concern to the organization is developed.
+- **A.03.15.02.a.04:** A system security plan that describes the operational environment for the system and any dependencies on or connections to other systems or system components is developed.
+- **A.03.15.02.a.05:** A system security plan that provides an overview of the security requirements for the system is developed.
+- **A.03.15.02.a.06:** A system security plan that describes the safeguards in place or planned for meeting the security requirements is developed.
+- **A.03.15.02.a.07:** A system security plan that identifies individuals that fulfill...# System Security Plan and Rules of Behavior
+
+## Roles and Responsibilities
+- A.03.15.02.a.08: A system security plan that includes other relevant information necessary for the protection of Controlled Unclassified Information (CUI) is developed.
+- A.03.15.02.b[01]: The system security plan is reviewed at a defined frequency.
+- A.03.15.02.b[02]: The system security plan is updated at a defined frequency.
+- A.03.15.02.c: The system security plan is protected from unauthorized disclosure.
+
+## Assessment Methods and Objects
+
+### Examine
+- Security planning policy and procedures
+- Procedures for system security plan development and implementation
+- Procedures for system security plan reviews and updates
+- Enterprise architecture
+- System security plan
+- Records of system security plan reviews and updates
+- Risk assessments
+- Risk assessment results
+- Security architecture and design documentation
+- Other relevant documents or records
+
+### Interview
+- Personnel with system security planning and plan implementation responsibilities
+- System developers
+- Personnel with information security responsibilities
+
+### Test
+- Processes for system security plan development, review, update, and approval
+
+## References
+- Source Assessment Procedure: PL-02
+- 03.15.03 Rules of Behavior
+
+## Assessment Objective
+Determine if:
+- A.03.15.03.ODP[01]: The frequency at which the rules of behavior are reviewed and updated is defined.
+- A.03.15.03.a: Rules that describe responsibilities and expected behavior for system usage and protecting CUI are established.
+- A.03.15.03.b: Rules are provided to individuals who require access to the system.
+- A.03.15.03.c: A documented acknowledgment from individuals indicating that they have read, understand, and agree to abide by the rules of behavior is received before authorizing access to CUI and the system.
+- A.03.15.03.d[01]: The rules of behavior are reviewed at a defined frequency.
+- A.03.15.03.d[02]: The rules of behavior are updated at a defined frequency.
+
+## Assessment Methods and Objects
+
+### Examine
+- Security planning policy and procedures
+- Rules of behavior for system users
+- Signed acknowledgments of rules of behavior
+- Records for rules of behavior reviews and updates
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with rules of behavior establishment, review, and update responsibilities
+- Personnel with literacy training and awareness responsibilities
+- Personnel with role-based training responsibilities
+- Authorized users of the system who have signed rules of behavior
+- Personnel with information security responsibilities
+
+### Test
+- Processes for establishing, reviewing, disseminating, and updating rules of behavior# Rules of Behavior
+
+## Mechanisms for Supporting or Implementing the Establishment
+- Dissemination
+- Review
+- Update of Rules of Behavior
+
+## References
+- Source Assessment Procedure: PL-04
+
+## 3.16. System and Services Acquisition
+
+### 03.16.01 Systems Security Engineering Principles
+
+#### Assessment Objective
+Determine if:
+- **A.03.16.01.ODP[01]**: Systems security engineering principles to be applied to the development or modification of the system and system components are defined.
+- **A.03.16.01**: <A.03.16.01.ODP[01]: systems security engineering principles> are applied to the development or modification of the system and system components.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: system and services acquisition policy; system and services acquisition procedures; procedures addressing security engineering principles used in the development and modification of the system; system design documentation; security requirements and specifications for the system; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with acquisition/contracting responsibilities; personnel with information security responsibilities; personnel with system development and modification responsibilities; system developers]
+
+- **Test**:
+- [SELECT FROM: processes for applying security engineering principles in system development and modification; mechanisms supporting the application of security engineering principles in system development and modification]
+
+## References
+- Source Assessment Procedure: SA-08
+
+### 03.16.02 Unsupported System Components
+
+#### Assessment Objective
+Determine if:
+- **A.03.16.02.a**: System components are replaced when support for the components is no longer available from the developer, vendor, or manufacturer.
+- **A.03.16.02.b**: Options for risk mitigation or alternative sources for continued support for unsupported components that cannot be replaced are provided.
+
+#### Assessment Methods and Objects
+- **Examine**:
+- [SELECT FROM: system and services acquisition policy and procedures; procedures for the replacement or continued use of unsupported system components; documented evidence of replacing unsupported system components; documented approvals (including justification) for the continued use of unsupported system components; SCRM plan; system security plan; other relevant documents or records]
+
+- **Interview**:
+- [SELECT FROM: personnel with system and service acquisition responsibilities; personnel responsible for component replacement; personnel with system development life cycle responsibilities; personnel with information security responsibilities]
+
+- **Test**:
+- [SELECT FROM: processes for replacing unsupported system components; mechanisms for supporting or implementing the replacement of unsupported system components]
+
+## References
+- Source Assessment Procedure: SA-22
+
+### 03.16.03 External System Services
+
+#### Assessment Objective
+Determine if:
+- **A.03.16.03.ODP[01]**: Security requirements to be satisfied by external system service providers are defined.# Security Requirements for External System Services
+
+## A.03.16.03 External System Services
+
+### A.03.16.03.a
+The providers of external system services used for the processing, storage, or transmission of Controlled Unclassified Information (CUI) comply with the following security requirements:
+**<A.03.16.03.ODP[01]: security requirements>**.
+
+### A.03.16.03.b
+User roles and responsibilities with regard to external system services, including shared responsibilities with external service providers, are defined and documented.
+
+### A.03.16.03.c
+Processes, methods, and techniques to monitor security requirement compliance by external service providers on an ongoing basis are implemented.
+
+## Assessment Methods and Objects
+
+### Examine
+- [SELECT FROM: system and services acquisition policy and procedures; procedures for monitoring security requirement compliance by external service providers; acquisition documentation; contracts; service-level agreements; interagency agreements; licensing agreements; list of security requirements for external provider services; assessment results or reports from external service providers; SCRM plan; system security plan; other relevant documents or records]
+
+### Interview
+- [SELECT FROM: personnel with acquisition responsibilities; external providers of system services; personnel with SCRM responsibilities; personnel with information security responsibilities]
+
+### Test
+- [SELECT FROM: organizational processes for monitoring security and privacy control compliance by external service providers on an ongoing basis; mechanisms for monitoring security and privacy control compliance by external service providers on an ongoing basis]
+
+## References
+- Source Assessment Procedure: SA-09
+
+# 3.17 Supply Chain Risk Management
+
+## 03.17.01 Supply Chain Risk Management Plan
+
+### Assessment Objective
+Determine if:
+- **A.03.17.01.ODP[01]**: The frequency at which to review and update the supply chain risk management plan is defined.
+- **A.03.17.01.a[01]**: A plan for managing supply chain risks is developed.
+- **A.03.17.01.a[02]**: The SCRM plan addresses risks associated with the research and development of the system, system components, or system services.
+- **A.03.17.01.a[03]**: The SCRM plan addresses risks associated with the design of the system, system components, or system services.
+- **A.03.17.01.a[04]**: The SCRM plan addresses risks associated with the manufacturing of the system, system components, or system services.
+- **A.03.17.01.a[05]**: The SCRM plan addresses risks associated with the acquisition of the system, system components, or system services.
+- **A.03.17.01.a[06]**: The SCRM plan addresses risks associated with the delivery of the system, system components, or system services.
+- **A.03.17.01.a[07]**: The SCRM plan addresses risks associated with the integration of the system, system components, or system services.
+- **A.03.17.01.a[08]**: The SCRM plan addresses risks associated with the operation of the system, system components, or system services.
+- **A.03.17.01.a[09]**: The SCRM plan addresses risks associated with the maintenance of the system, system components, or system services.
+- **A.03.17.01.a[10]**: The SCRM plan addresses risks associated with the disposal of the system, system components, or system services.# Supply Chain Risk Management (SCRM) Assessment
+
+## A.03.17.01 - SCRM Plan Review and Update
+
+### Objectives
+- **A.03.17.01.b[01]**: The SCRM plan is reviewed at a defined frequency.
+- **A.03.17.01.b[02]**: The SCRM plan is updated at a defined frequency.
+- **A.03.17.01.c**: The SCRM plan is protected from unauthorized disclosure.
+
+## Assessment Methods and Objects
+
+### Examine
+- SCRM policy and procedures
+- SCRM plan
+- System and services acquisition policy and procedures
+- System and services acquisition procedures
+- Procedures for supply chain protection
+- Procedures for protecting the SCRM plan from unauthorized disclosure
+- System development life cycle procedures
+- Procedures for the integration of information security requirements into the acquisition process
+- Acquisition documentation
+- Service-level agreements
+- Acquisition contracts for the system, system components, or system services
+- List of supply chain threats
+- List of safeguards for supply chain threats
+- System life cycle documentation (including research and development, design, manufacturing, acquisition, delivery, integration, operations, maintenance, and disposal)
+- Interorganizational agreements and procedures
+- System security plan
+- Other relevant documents or records
+
+### Interview
+- Personnel with acquisition responsibilities
+- Personnel with SCRM responsibilities
+- Personnel with information security responsibilities
+
+### Test
+- Organizational processes for defining and documenting the system development life cycle (SDLC)
+- Organizational processes for identifying SDLC roles and responsibilities
+- Organizational processes for integrating SCRM into the SDLC
+- Mechanisms for supporting or implementing the SDLC
+
+## References
+- Source Assessment Procedure: SR-02
+
+----
+
+## A.03.17.02 - Acquisition Strategies, Tools, and Methods
+
+### Assessment Objective
+Determine if:
+- **A.03.17.02[01]**: Acquisition strategies, contract tools, and procurement methods are developed to identify supply chain risks.
+- **A.03.17.02[02]**: Acquisition strategies, contract tools, and procurement methods are developed to protect against supply chain risks.
+- **A.03.17.02[03]**: Acquisition strategies, contract tools, and procurement methods are developed to mitigate supply chain risks.
+- **A.03.17.02[04]**: Acquisition strategies, contract tools, and procurement methods are implemented to identify supply chain risks.
+- **A.03.17.02[05]**: Acquisition strategies, contract tools, and procurement methods are implemented to protect against supply chain risks.
+- **A.03.17.02[06]**: Acquisition strategies, contract tools, and procurement methods are implemented to mitigate supply chain risks.
+
+## Assessment Methods and Objects
+
+### Examine
+- SCRM policy and procedures
+- SCRM plan
+- System and services acquisition policy and procedures
+- Procedures for supply chain protection
+- Procedures for the integration of information security requirements into the acquisition process
+- Solicitation documentation
+- Acquisition documentation (including purchase orders)
+- Service-level agreements
+- Acquisition contracts for the system, system components, or services
+- Documentation of identified supply chain risks# Supply Chain Risk Management Assessment
+
+## Risks and Mitigation Plans
+- Documentation of training, education, and awareness programs for personnel regarding supply chain risk.
+- System security plan.
+- Other relevant documents or records.
+
+## Interview
+- **Select from:**
+- Personnel with acquisition responsibilities.
+- Personnel with SCRM (Supply Chain Risk Management) responsibilities.
+- Personnel with information security responsibilities.
+
+## Test
+- **Select from:**
+- Processes for defining and employing tailored acquisition strategies, contract tools, and procurement methods.
+- Mechanisms for implementing tailored acquisition strategies, contract tools, and procurement methods.
+
+## References
+- Source Assessment Procedure: SR-05
+- 03.17.03 Supply Chain Requirements and Processes
+
+## Assessment Objective
+Determine if:
+- **A.03.17.03.ODP[01]:** Security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events are defined.
+- **A.03.17.03.a[01]:** A process for identifying weaknesses or deficiencies in the supply chain elements and processes is established.
+- **A.03.17.03.a[02]:** A process for addressing weaknesses or deficiencies in the supply chain elements and processes is established.
+- **A.03.17.03.b:** The following security requirements are enforced to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences of supply chain-related events: <A.03.17.03.ODP[01]: security requirements>.
+
+## Assessment Methods and Objects
+### Examine
+- **Select from:**
+- SCRM policy and procedures.
+- SCRM strategy.
+- SCRM plan.
+- Systems and critical system components inventory documentation.
+- System and services acquisition policy and procedures.
+- Procedures for the integration of security requirements into the acquisition process.
+- Solicitation documentation.
+- Acquisition documentation (including purchase orders).
+- Shipping and handling procedures.
+- Configuration management documentation and records.
+- Acquisition contracts for systems or services.
+- Service-level agreements.
+- Risk register documentation.
+- System security plan.
+- Other relevant documents or records.
+
+### Interview
+- **Select from:**
+- Personnel with acquisition responsibilities.
+- Personnel with information security responsibilities.
+- Personnel with SCRM responsibilities.
+
+### Test
+- **Select from:**
+- Processes for identifying and addressing supply chain element and process deficiencies.
+
+## References
+- Source Assessment Procedure: SR-03

@@ -1,0 +1,2028 @@
+# Executive Summary
+
+An information security assessment is the process of determining how effectively an entity being assessed (e.g., host, system, network, procedure, person—known as the assessment object) meets specific security objectives. Three types of assessment methods can be used to accomplish this—testing, examination, and interviewing.
+
+## Assessment Methods
+
+### Testing
+Testing is the process of exercising one or more assessment objects under specified conditions to compare actual and expected behaviors.
+
+### Examination
+Examination is the process of checking, inspecting, reviewing, observing, studying, or analyzing one or more assessment objects to facilitate understanding, achieve clarification, or obtain evidence.
+
+### Interviewing
+Interviewing is the process of conducting discussions with individuals or groups within an organization to facilitate understanding, achieve clarification, or identify the location of evidence.
+
+Assessment results are used to support the determination of security control effectiveness over time.
+
+## Purpose of the Document
+
+This document is a guide to the basic technical aspects of conducting information security assessments. It presents technical testing and examination methods and techniques that an organization might use as part of an assessment, and offers insights to assessors on their execution and the potential impact they may have on systems and networks.
+
+For an assessment to be successful and have a positive impact on the security posture of a system (and ultimately the entire organization), elements beyond the execution of testing and examination must support the technical process. Suggestions for these activities—including a robust planning process, root cause analysis, and tailored reporting—are also presented in this guide.
+
+## Objectives
+
+The processes and technical guidance presented in this document enable organizations to:
+
+- Develop information security assessment policy, methodology, and individual roles and responsibilities related to the technical aspects of assessment.
+- Accurately plan for a technical information security assessment by providing guidance on determining which systems to assess and the approach for assessment, addressing logistical considerations, developing an assessment plan, and ensuring legal and policy considerations are addressed.
+- Safely and effectively execute a technical information security assessment using the presented methods and techniques, and respond to any incidents that may occur during the assessment.
+- Appropriately handle technical data (collection, storage, transmission, and destruction) throughout the assessment process.
+- Conduct analysis and reporting to translate technical findings into risk mitigation actions that will improve the organization’s security posture.
+
+## Assessment Purposes
+
+The information presented in this publication is intended to be used for a variety of assessment purposes. For example, some assessments focus on verifying that a particular security control (or controls) meets requirements, while others are intended to identify, validate, and assess a system’s exploitable security weaknesses. Assessments are also performed to increase an organization’s ability to maintain a proactive security posture.# Computer Network Defense
+
+Assessments are not meant to take the place of implementing security controls and maintaining system security.
+
+## Recommendations for Technical Security Assessments
+
+To accomplish technical security assessments and ensure that technical security testing and examinations provide maximum value, NIST recommends that organizations:
+
+### Establish an Information Security Assessment Policy
+
+This identifies the organization’s requirements for executing assessments and provides accountability for the appropriate individuals to ensure assessments are conducted in accordance with these requirements. Topics that an assessment policy should address include:
+
+- Organizational requirements with which assessments must comply
+- Roles and responsibilities
+- Adherence to an established assessment methodology
+- Assessment frequency
+- Documentation requirements
+
+### Implement a Repeatable and Documented Assessment Methodology
+
+This provides consistency and structure to assessments, expedites the transition of new assessment staff, and addresses resource constraints associated with assessments. Using such a methodology enables organizations to maximize the value of assessments while minimizing possible risks introduced by certain technical assessment techniques.
+
+These risks can range from not gathering sufficient information on the organization’s security posture for fear of impacting system functionality to affecting the system or network availability by executing techniques without the proper safeguards in place. Processes that minimize risk caused by certain assessment techniques include:
+
+- Using skilled assessors
+- Developing comprehensive assessment plans
+- Logging assessor activities
+- Performing testing off-hours
+- Conducting tests on duplicates of production systems (e.g., development systems)
+
+Organizations need to determine the level of risk they are willing to accept for each assessment and tailor their approaches accordingly.
+
+### Determine the Objectives of Each Security Assessment
+
+Security assessments have specific objectives, acceptable levels of risk, and available resources. Because no individual technique provides a comprehensive picture of an organization’s security when executed alone, organizations should use a combination of techniques. This also helps organizations to limit risk and resource usage.
+
+### Analyze Findings and Develop Risk Mitigation Techniques
+
+To ensure that security assessments provide their ultimate value, organizations should conduct root cause analysis upon completion of an assessment to enable the translation of findings into actionable mitigation techniques. These results may indicate that organizations should address not only technical weaknesses but weaknesses in organizational processes and procedures as well.
+
+## 1. Introduction
+
+### 1.1 Authority
+
+The National Institute of Standards and Technology (NIST) developed this document in furtherance of its statutory responsibilities under the Federal Information Security Management Act (FISMA) of 2002.# Public Law 107-347
+
+NIST is responsible for developing standards and guidelines, including minimum requirements, for providing adequate information security for all agency operations and assets; but such standards and guidelines shall not apply to national security systems. This guideline is consistent with the requirements of the Office of Management and Budget (OMB) Circular A-130, Section 8b (3), “Securing Agency Information Systems,” as analyzed in A-130, Appendix IV: Analysis of Key Sections. Supplemental information is provided in A-130, Appendix III.
+
+This guideline has been prepared for use by federal agencies. It may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright, though attribution is desired. Nothing in this document should be taken to contradict standards and guidelines made mandatory and binding on federal agencies by the Secretary of Commerce under statutory authority; nor should these guidelines be interpreted as altering or superseding the existing authorities of the Secretary of Commerce, Director of the OMB, or any other federal official.
+
+## 1.2 Purpose and Scope
+
+The purpose of this document is to provide guidelines for organizations on planning and conducting technical information security testing and assessments, analyzing findings, and developing mitigation strategies. It provides practical recommendations for designing, implementing, and maintaining technical information relating to security testing and assessment processes and procedures, which can be used for several purposes—such as finding vulnerabilities in a system or network and verifying compliance with a policy or other requirements. This guide is not intended to present a comprehensive information security testing or assessment program, but rather an overview of the key elements of technical security testing and assessment with emphasis on specific techniques, their benefits and limitations, and recommendations for their use.
+
+This document replaces NIST Special Publication 800-42, Guideline on Network Security Testing.
+
+## 1.3 Audience
+
+This guide is intended for use by computer security staff and program managers, system and network administrators, and other technical staff who are responsible for the technical aspects of preparing, operating, and securing systems and network infrastructures. Managers can also use the information presented to facilitate the technical decision-making processes associated with security testing and assessments. Material in this document is technically oriented, and assumes that readers have at least a basic understanding of system and network security.
+
+## 1.4 Document Structure
+
+The remainder of this document is organized into seven major sections:
+
+- **Section 2** presents an overview of information security assessments, including policies, roles and responsibilities, methodologies, and techniques.
+- **Section 3** provides a detailed description of several technical examination techniques, including documentation review, log review, network sniffing, and file integrity checking.
+- **Section 4** describes several techniques for identifying targets and analyzing...# Security Assessment Guide
+
+## Overview
+This guide provides a comprehensive overview of security assessment techniques and methodologies. It includes sections on vulnerability validation, planning, execution, reporting, and appendices with additional resources.
+
+## Sections
+
+### Section 5: Validation Techniques
+Explains techniques commonly used to validate the existence of vulnerabilities, such as:
+- Password cracking
+- Penetration testing
+
+### Section 6: Planning a Security Assessment
+Presents an approach and process for planning a security assessment.
+
+### Section 7: Execution Factors
+Discusses key factors for executing security assessments, including:
+- Coordination
+- The assessment itself
+- Analysis
+- Data handling
+
+### Section 8: Reporting Findings
+Presents an approach for reporting assessment findings and provides an overview of remediation activities.
+
+## Appendices
+This guide also contains the following appendices:
+
+### Appendix A: Live OS Distributions
+Describes two live operating system (OS) CD distributions that allow the user to boot a computer to a CD containing a fully operational OS and testing tools.
+
+### Appendix B: Rules of Engagement Template
+Provides a template for creating Rules of Engagement (ROE).
+
+### Appendix C: Application Security Assessment
+Briefly discusses application security assessment.
+
+### Appendix D: Remote Access Testing Recommendations
+Contains recommendations for performing remote access testing.
+
+### Appendix E: Resources for Security Assessment
+Offers a list of resources that may facilitate the security assessment process.
+
+### Appendix F: Glossary of Terms
+Features a glossary of terms used throughout this document.
+
+### Appendix G: Acronyms and Abbreviations
+Provides a list of acronyms and abbreviations.
+
+## 2. Security Testing and Examination Overview
+An information security assessment is the process of determining how effectively an entity being assessed (e.g., host, system, network, procedure, person—known as the assessment object) meets specific security objectives.
+
+### Assessment Methods
+Three types of assessment methods can be used to accomplish this:
+- **Testing**: The process of exercising one or more assessment objects under specified conditions to compare actual and expected behaviors.
+- **Examination**: The process of checking, inspecting, reviewing, observing, studying, or analyzing one or more assessment objects to facilitate understanding, achieve clarification, or obtain evidence.
+- **Interviewing**: The process of conducting discussions with individuals or groups within an organization to facilitate understanding, achieve clarification, or identify the location of evidence.
+
+Assessment results are used to support the determination of security control effectiveness over time.
+
+### Purpose of Security Testing and Examination
+This publication addresses technical testing and examination techniques that can be used to identify, validate, and assess technical vulnerabilities and assist organizations in understanding and improving the security posture of their systems and networks. Security testing and examination is required by FISMA and other regulations. It is not meant to replace the implementation of security controls and maintaining system security, but to help organizations confirm that their systems are properly secured and identify any organizational security requirements that are not met, as well as other security weaknesses that should be addressed.
+
+### 2.1 Information Security Assessment Methodology
+A repeatable and documented security assessment methodology is beneficial in that it can:# Information Security Assessment Methodology
+
+## Introduction
+- Provide consistency and structure to security testing, which can minimize testing risks.
+- Expedite the transition of new assessment staff.
+- Address resource constraints associated with security assessments.
+
+## Resource Constraints
+Information security assessment requires resources such as time, staff, hardware, and software. Resource availability is often a limiting factor in the type and frequency of security assessments.
+
+Evaluating the types of security tests and examinations the organization will execute, developing an appropriate methodology, identifying the resources required, and structuring the assessment process to support expected requirements can mitigate the resource challenge. This gives the organization the ability to:
+- Reuse pre-established resources such as trained staff and standardized testing platforms.
+- Decrease time required to conduct the assessment and the need to purchase testing equipment and software.
+- Reduce overall assessment costs.
+
+## Phased Information Security Assessment Methodology
+A phased information security assessment methodology offers a number of advantages. The structure is easy to follow and provides natural breaking points for staff transition. Its methodology should contain at minimum the following phases:
+
+### 1. Planning
+Critical to a successful security assessment, the planning phase is used to gather information needed for assessment execution—such as the assets to be assessed, the threats of interest against the assets, and the security controls to be used to mitigate those threats—and to develop the assessment approach.
+
+A security assessment should be treated as any other project, with a project management plan to address:
+- Goals and objectives
+- Scope
+- Requirements
+- Team roles and responsibilities
+- Limitations
+- Success factors
+- Assumptions
+- Resources
+- Timeline
+- Deliverables
+
+*Section 6 of this guide covers planning.*
+
+### 2. Execution
+Primary goals for the execution phase are to identify vulnerabilities and validate them when appropriate. This phase should address activities associated with the intended assessment method and technique.
+
+Although specific activities for this phase differ by assessment type, upon completion of this phase assessors will have identified system, network, and organizational process vulnerabilities.
+
+*This phase is discussed in more depth in Section 7.*
+
+### 3. Post-Execution
+The post-execution phase focuses on analyzing identified vulnerabilities to determine root causes, establish mitigation recommendations, and develop a final report.
+
+*Section 8 of this guide addresses reporting and mitigation.*
+
+## Accepted Methodologies
+Several accepted methodologies exist for conducting different types of information security assessments. References to several of these methodologies are found in Appendix E.
+
+For example, NIST has created a methodology—documented in Special Publication (SP) 800-53A, Guide for Assessing the Security Controls in Federal Information Systems—which offers suggestions for assessing the effectiveness of the security controls outlined in NIST SP 800-53.
+
+Another widely used assessment methodology is the Open Source Security Testing Methodology Manual (OSSTMM).
+
+Because there are numerous reasons...# Technical Assessment Techniques
+
+To conduct assessments, an organization may want to use multiple methodologies. This publication offers recommendations for technical testing and examination techniques that can be used for many assessment methodologies and leveraged for many assessment purposes.
+
+## 2.2 Technical Assessment Techniques
+
+Dozens of technical security testing and examination techniques exist that can be used to assess the security posture of systems and networks. The most commonly used techniques from the standpoint of this document will be discussed in more depth later in this guide and are grouped into the following three categories:
+
+### Review Techniques
+
+These are examination techniques used to evaluate systems, applications, networks, policies, and procedures to discover vulnerabilities, and are generally conducted manually. They include:
+- Documentation review
+- Log review
+- Ruleset review
+- System configuration review
+- Network sniffing
+- File integrity checking
+
+Section 3 provides additional information on review techniques.
+
+### Target Identification and Analysis Techniques
+
+These testing techniques can identify systems, ports, services, and potential vulnerabilities. They may be performed manually but are generally performed using automated tools. They include:
+- Network discovery
+- Network port and service identification
+- Vulnerability scanning
+- Wireless scanning
+- Application security examination
+
+Further discussion of these techniques is presented in Section 4.
+
+### Target Vulnerability Validation Techniques
+
+These testing techniques corroborate the existence of vulnerabilities and may be performed manually or by using automatic tools, depending on the specific technique used and the skill of the test team. Target vulnerability validation techniques include:
+- Password cracking
+- Penetration testing
+- Social engineering
+- Application security testing
+
+More information on these techniques is found in Section 5.
+
+## Conclusion
+
+Since no one technique can provide a complete picture of the security of a system or network, organizations should combine appropriate techniques to ensure robust security assessments. For example, penetration testing usually relies on performing both network port/service identification and vulnerability scanning to identify hosts and services that may be targets for future penetration.
+
+Also, multiple technical ways exist to meet an assessment requirement, such as determining whether patches have been applied properly. This publication focuses on explaining how these different technical techniques can be performed and does not specify which techniques should be used for which circumstances—thus providing organizations with the flexibility to choose the techniques that best meet their requirements.
+
+In addition to the technical techniques described in this publication, there are many non-technical techniques that may be used in addition to or instead of the technical techniques. One example is physical security testing, which confirms the existence of physical security vulnerabilities by attempting to circumvent locks, badge readers, and other physical security controls.# Unauthorized Access and Asset Identification
+
+To gain unauthorized access to specific hosts, organizations may employ various techniques. One notable approach is manual asset identification.
+
+## Manual Asset Identification
+
+An organization may choose to identify assets to be assessed through:
+- Asset inventories
+- Physical walkthroughs of facilities
+- Other non-technical means
+
+This method contrasts with relying solely on technical techniques for asset identification. While details on non-technical techniques are outside the scope of this publication, it is important to recognize their value and consider when they may be more appropriate than their technical counterparts.
+
+## Comparing Tests and Examinations
+
+### Examinations
+
+Examinations primarily involve the review of documents such as:
+- Policies
+- Procedures
+- Security plans
+- Security requirements
+- Standard operating procedures
+- Architecture diagrams
+- Engineering documentation
+- Asset inventories
+- System configurations
+- Rulesets
+- System logs
+
+These reviews are conducted to determine whether a system is properly documented and to gain insight on aspects of security that are only available through documentation. This documentation identifies the intended design, installation, configuration, operation, and maintenance of the systems and network. Its review and cross-referencing ensure conformance and consistency.
+
+For example, an environment’s security requirements should drive documentation such as system security plans and standard operating procedures. Assessors should ensure that all plans, procedures, architectures, and configurations are compliant with stated security requirements and applicable policies. Another example is reviewing a firewall’s ruleset to ensure compliance with the organization’s security policies regarding Internet usage, such as:
+- Use of instant messaging
+- Peer-to-peer (P2P) file sharing
+- Other prohibited activities
+
+Examinations typically have no impact on the actual systems or networks in the target environment aside from accessing necessary documentation, logs, or rulesets. However, if system configuration files or logs are to be retrieved from a given system, such as a router or firewall, only system administrators and similarly trained individuals should undertake this work to ensure that settings are not inadvertently modified or deleted.
+
+### Testing
+
+Testing involves hands-on work with systems and networks to identify security vulnerabilities. It can be executed across an entire enterprise or on selected systems. The use of scanning and penetration techniques can provide valuable information on potential vulnerabilities and predict the likelihood that an adversary or intruder will be able to exploit them.
+
+Testing also allows organizations to measure levels of compliance in areas such as:
+- Patch management
+- Password policy
+- Configuration management
+
+Although testing can provide a more accurate picture of an organization’s security posture than what is gained through examinations, it is more intrusive and can impact systems or networks in the target environment. The level of potential impact depends on the specific types of testing techniques used, which can interact with the target systems and networks in various ways—such as sending normal network packets to determine open and closed ports, or sending specially crafted packets.# Vulnerability Testing Overview
+
+## Introduction
+Packets are used to test for vulnerabilities. Any time that a test or tester directly interacts with a system or network, the potential exists for unexpected system halts and other denial of service conditions. Organizations should determine their acceptable levels of intrusiveness when deciding which techniques to use. Excluding tests known to create denial of service conditions and other disruptions can help reduce these negative impacts.
+
+## Limitations of Testing
+Testing does not provide a comprehensive evaluation of the security posture of an organization and often has a narrow scope because of resource limitations—particularly in the area of time. Malicious attackers, on the other hand, can take whatever time they need to exploit and penetrate a system or network.
+
+While organizations tend to avoid using testing techniques that impact systems or networks, attackers are not bound by this constraint and use whatever techniques they feel necessary. As a result, testing is less likely than examinations to identify weaknesses related to security policy and configuration. In many cases, combining testing and examination techniques can provide a more accurate view of security.
+
+## 2.4 Testing Viewpoints
+Tests can be performed from a number of viewpoints—for example, how easily could an external attacker or malicious insider successfully attack a system?
+
+### 2.4.1 External and Internal
+External security testing is conducted from outside the organization’s security perimeter. This offers the ability to view the environment’s security posture as it appears outside the security perimeter—usually as seen from the Internet—with the goal of revealing vulnerabilities that could be exploited by an external attacker.
+
+External testing often begins with reconnaissance techniques that search public registration data, Domain Name System (DNS) server information, newsgroup postings, and other publicly available information to collect information (e.g., system names, Internet Protocol [IP] addresses, operating systems, technical points of contact) that may help the assessor to identify vulnerabilities.
+
+Next, enumeration begins by using network discovery and scanning techniques to determine external hosts and listening services. Since perimeter defenses such as firewalls, routers, and access control lists often limit the types of traffic allowed into the internal network, assessors often use techniques that evade these defenses—just as external attackers would.
+
+Depending on the protocols allowed through, initial attacks are generally focused on commonly used and allowed application protocols such as File Transfer Protocol (FTP), Hypertext Transfer Protocol (HTTP), Simple Mail Transfer Protocol (SMTP), and Post Office Protocol (POP). Servers that are externally accessible are tested for vulnerabilities that might allow access to internal servers and private information. External security testing also concentrates on discovering access method vulnerabilities, such as wireless access points, modems, and portals.# Internal Security Testing
+
+For internal security testing, assessors work from the internal network and assume the identity of a trusted insider or an attacker who has penetrated the perimeter defenses. This kind of testing can reveal vulnerabilities that could be exploited and demonstrates the potential damage this type of attacker could cause. Internal security testing also focuses on system-level security and configuration—including application and service configuration, authentication, access control, and system hardening.
+
+## Access Levels for Assessors
+
+Assessors who perform internal testing are often granted some level of access to the network, normally as general users, and are provided with information that users with similar privileges would have. This level of temporary access depends on the goals of the test and can be up to and including the privileges of a system or network administrator. Working from whatever level of access they have been granted, assessors attempt to gain additional access to the network and systems through privilege escalation—i.e., increasing user-level privileges to administrator-level privileges, or increasing system administrator privileges to domain administrator privileges.
+
+## Limitations of Internal Testing
+
+Internal testing is not as limited as external testing because it takes place behind perimeter defenses, even though there may be internal firewalls, routers, and switches in place that pose limitations. Examination techniques such as network sniffing may be used in addition to testing techniques.
+
+If both internal and external testing is to be performed, the external testing usually takes place first. This is particularly beneficial if the same assessors will be performing both types of testing, as it keeps them from acquiring insider information on network architecture or system configuration that would not be available to an adversary—an advantage that would reduce the validity of the test.
+
+## Overt and Covert Testing
+
+### Overt Testing
+
+Overt security testing, also known as white hat testing, involves performing external and/or internal testing with the knowledge and consent of the organization’s IT staff, enabling comprehensive evaluation of the network or system security posture. Because the IT staff is fully aware of and involved in the testing, it may be able to provide guidance to limit the testing’s impact. Testing may also provide a training opportunity, with staff observing the activities and methods used by assessors to evaluate and potentially circumvent implemented security measures. This gives context to the security requirements implemented or maintained by the IT staff and also may help teach IT staff how to conduct testing.
+
+### Covert Testing
+
+Covert security testing, also known as black hat testing, takes an adversarial approach by performing testing without the knowledge of the organization’s IT staff but with the full knowledge and permission of upper management. Some organizations designate a trusted third party to ensure that the target organization does not initiate response measures associated with the attack without first verifying that an attack is indeed underway (e.g., that the activity being detected does not originate from a test). In such situations, the trusted third party provides an agent for the assessors.# Covert Testing in Security Assessments
+
+Covert testing involves the IT staff and security staff that mediates activities and facilitates communications. This type of test is useful for:
+
+- Testing technical security controls
+- Evaluating IT staff response to perceived security incidents
+- Assessing staff knowledge and implementation of the organization’s security policy
+
+Covert testing may be conducted with or without warning.
+
+## Purpose of Covert Testing
+
+The primary purpose of covert testing is to examine the damage or impact an adversary can cause. It does not focus on identifying vulnerabilities. Key points include:
+
+- Covert testing does not test every security control or assess all systems within an organization.
+- It examines the organization from an adversarial perspective, identifying and exploiting rudimentary vulnerabilities to gain network access.
+- If the goal is to mirror a specific adversary, special considerations are required, such as acquiring and modeling threat data.
+
+The resulting scenarios provide an overall strategic view of potential methods of exploit, risk, and impact of an intrusion.
+
+## Boundaries of Covert Testing
+
+Covert testing usually has defined boundaries, such as:
+
+- Stopping testing when a certain level of access is achieved
+- Ceasing when a certain type of damage is achievable as a next step in testing
+
+Having such boundaries prevents damage while still demonstrating that damage could occur.
+
+## Limitations of Covert Testing
+
+Despite its benefits, covert testing has several limitations:
+
+- It often fails to identify many vulnerabilities.
+- It can be time-consuming and costly due to its stealth requirements.
+- To operate in a stealth environment, a test team must slow its scans and actions to stay “under the radar” of the target organization’s security staff.
+- In-house testing requires consideration of training in terms of time and budget.
+
+While organizations may have staff trained for regular activities like scanning and vulnerability assessments, they may lack expertise in specialized techniques such as penetration or application security testing.
+
+## Comparison with Overt Testing
+
+Overt testing is generally less expensive, carries less risk than covert testing, and is more frequently used. However, covert testing provides a better indication of the everyday security of the target organization because system administrators will not have heightened awareness.
+
+# Review Techniques
+
+Review techniques passively examine systems, applications, networks, policies, and procedures to discover security vulnerabilities. They also gather information to facilitate and optimize other assessment techniques. Because review techniques are passive, they pose minimal risk to systems and networks. This section covers several common review techniques:
+
+- Documentation review
+- Log review
+- Ruleset review
+- System configuration review
+- Network sniffing
+- File integrity checking
+
+## 3.1 Documentation Review
+
+Documentation review determines if the technical aspects of policies and procedures are current and comprehensive. These documents provide the foundation for an organization’s security posture but are often overlooked during technical assessments.
+
+Security groups within the organization should provide assessors with appropriate documentation to ensure a comprehensive review. Documents to review for technical accuracy and completeness include:
+
+- Security policies
+- Architectures# Security Documentation and Log Review
+
+## Documentation Review
+
+Documentation review is essential for identifying gaps and weaknesses that could lead to missing or improperly implemented security controls. Assessors typically verify that the organization’s documentation complies with standards and regulations such as FISMA. They look for policies that are deficient or outdated.
+
+### Common Documentation Weaknesses
+- OS security procedures or protocols that are no longer used.
+- Failure to include a new OS and its protocols.
+
+It is important to note that documentation review does not ensure that security controls are implemented properly; it only confirms that the direction and guidance exist to support the security infrastructure.
+
+### Utilizing Documentation Review Results
+The results of documentation review can be used to fine-tune other testing and examination techniques. For example, if a password management policy specifies requirements for minimum password length and complexity, this information can be leveraged to configure password-cracking tools for more efficient performance.
+
+## Log Review
+
+Log review is a process that determines if security controls are logging the proper information and if the organization is adhering to its log management policies. As a source of historical information, audit logs can help validate that the system operates in accordance with established policies.
+
+### Importance of Log Review
+For instance, if the logging policy states that all authentication attempts to critical servers must be logged, the log review will determine if this information is being collected and if it shows the appropriate level of detail. Log review may also reveal problems such as:
+- Misconfigured services and security controls.
+- Unauthorized accesses.
+- Attempted intrusions.
+
+For example, if an intrusion detection system (IDS) sensor is placed behind a firewall, its logs can be used to examine communications that the firewall allows into the network. If the sensor registers activities that should be blocked, it indicates that the firewall is not configured securely.
+
+### Useful Log Information for Technical Security Assessments
+- **Authentication server or system logs**: May include successful and failed authentication attempts.
+- **System logs**: May include system and service startup and shutdown information, installation of unauthorized software, file accesses, security policy changes, account changes (e.g., account creation and deletion, account privilege assignment), and privilege use.
+- **Intrusion detection and prevention system logs**: May include malicious activity and inappropriate use.
+- **Firewall and router logs**: May include outbound connections that indicate compromised internal devices (e.g., rootkits, bots, Trojan horses, spyware).
+- **Firewall logs**: May include unauthorized connection attempts and inappropriate use.
+- **Application logs**: May include unauthorized connection attempts, account changes, use of privileges, and application or database usage information.
+- **Antivirus logs**: May include update failures and other indications of outdated software.# Security Audit Overview
+
+## 1. Introduction
+This document outlines the processes involved in security audits, focusing on log reviews, ruleset reviews, and system configuration reviews.
+
+## 2. Log Review
+Security logs, particularly from patch management and some Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS), may record information on known vulnerable services and applications.
+
+### 2.1 Challenges
+Manually reviewing logs can be extremely time-consuming and cumbersome.
+
+### 2.2 Automated Tools
+Automated audit tools are available that can significantly reduce review time and generate predefined and customized reports that summarize log contents and track them to a set of specific activities. Assessors can also use these automated tools to facilitate log analysis by converting logs in different formats to a single, standard format for analysis.
+
+### 2.3 Specific Actions
+If assessors are reviewing a specific action—such as the number of failed logon attempts in an organization—they can use these tools to filter logs based on the activity being checked.
+
+## 3. Ruleset Review
+A ruleset is a collection of rules or signatures that network traffic or system activity is compared against to determine what action to take—for example, forwarding or rejecting a packet, creating an alert, or allowing a system event.
+
+### 3.1 Purpose
+Review of these rulesets is done to ensure comprehensiveness and identify gaps and weaknesses on security devices and throughout layered defenses such as network vulnerabilities, policy violations, and unintended or vulnerable communication paths. A review can also uncover inefficiencies that negatively impact a ruleset’s performance.
+
+### 3.2 Types of Rulesets
+Rulesets to review include network- and host-based firewall and IDS/IPS rulesets, and router access control lists. The following list provides examples of the types of checks most commonly performed in ruleset reviews:
+
+#### 3.2.1 Router Access Control Lists
+- Each rule is still required (for example, rules that were added for temporary purposes are removed as soon as they are no longer needed).
+- Only traffic that is authorized per policy is permitted, and all other traffic is denied by default.
+
+#### 3.2.2 Firewall Rulesets
+- Each rule is still required.
+- Rules enforce least privilege access, such as specifying only required IP addresses and ports.
+- More specific rules are triggered before general rules.
+- There are no unnecessary open ports that could be closed to tighten perimeter security.
+- The ruleset does not allow traffic to bypass other security defenses.
+- For host-based firewall rulesets, the rules do not indicate the presence of backdoors, spyware activity, or prohibited applications such as peer-to-peer file sharing programs.
+
+#### 3.2.3 IDS/IPS Rulesets
+- Unnecessary signatures have been disabled or removed to eliminate false positives and improve performance.
+- Necessary signatures are enabled and have been fine-tuned and properly maintained.
+
+## 4. System Configuration Review
+System configuration review is the process of identifying weaknesses in security configuration controls, such as systems not being hardened or configured according to security policies.
+
+### 4.1 Example
+This type of review ensures that systems are compliant with established security standards and practices.# Security Configuration Review
+
+## Overview
+A review of security configurations will reveal unnecessary services and applications, improper user account and password settings, and improper logging and backup settings. Examples of security configuration files that may be reviewed include Windows security policy settings and Unix security configuration files such as those in `/etc`.
+
+## Manual Review Techniques
+Assessors using manual review techniques rely on security configuration guides or checklists to verify that system settings are configured to minimize security risks. To perform a manual system configuration review, assessors access various security settings on the device being evaluated and compare them with recommended settings from the checklist. Settings that do not meet minimum security standards are flagged and reported.
+
+## Automated Review Techniques
+The Security Content Automation Protocol (SCAP) is a method for using specific standards to enable automated vulnerability management, measurement, and policy compliance evaluation. NIST SCAP files are written for FISMA compliance and NIST SP 800-53A security control testing. Other tools can be used to retrieve and report security settings and provide remediation guidance.
+
+Automated tools are often executed directly on the device being assessed but can also be executed on a system with network access to the device being assessed. While automated system configuration reviews are faster than manual methods, there may still be settings that must be checked manually. Both manual and automated methods require root or administrator privileges to view selected security settings.
+
+Generally, it is preferable to use automated checks instead of manual checks whenever feasible. Automated checks can be done very quickly and provide consistent, repeatable results. Having a person manually checking hundreds or thousands of settings is tedious and error-prone.
+
+## Network Sniffing
+
+### Overview
+Network sniffing is a passive technique that monitors network communication, decodes protocols, and examines headers and payloads to flag information of interest. Besides being used as a review technique, network sniffing can also be used as a target identification and analysis technique.
+
+### Reasons for Using Network Sniffing
+Reasons for using network sniffing include the following:
+- Capturing and replaying network traffic
+- Performing passive network discovery (e.g., identifying active devices on the network)
+- Identifying operating systems, applications, services, and protocols, including unsecured (e.g., telnet) and unauthorized (e.g., peer-to-peer file sharing) protocols
+- Identifying unauthorized and inappropriate activities, such as the unencrypted transmission of sensitive information
+- Collecting information, such as unencrypted usernames and passwords.
+
+### Impact on Systems and Networks
+Network sniffing has little impact on systems and networks, with the most noticeable impact being on bandwidth or computing power utilization. The sniffer—the tool used to conduct network sniffing—requires a means to connect to the network, such as a hub, tap, or switch with port spanning. Port spanning is the process of copying the traffic transmitted on all other ports to the port where the sniffer is installed. Organizations can deploy network sniffers in a number of locations within an environment.# Network Security Techniques
+
+## Network Sniffing
+
+These commonly include the following:
+
+- At the perimeter, to assess traffic entering and exiting the network
+- Behind firewalls, to assess that rulesets are accurately filtering traffic
+- Behind IDSs/IPSs, to determine if signatures are triggering and being responded to appropriately
+- In front of a critical system or application to assess activity
+- On a specific network segment, to validate encrypted protocols.
+
+### Limitations of Network Sniffing
+
+One limitation to network sniffing is the use of encryption. Many attackers take advantage of encryption to hide their activities—while assessors can see that communication is taking place, they are unable to view the contents.
+
+Another limitation is that a network sniffer is only able to sniff the traffic of the local segment where it is installed. This requires the assessor to move it from segment to segment, install multiple sniffers throughout the network, and/or use port spanning. Assessors may also find it challenging to locate an open physical network port for scanning on each segment.
+
+In addition, network sniffing is a fairly labor-intensive activity that requires a high degree of human involvement to interpret network traffic.
+
+## File Integrity Checking
+
+File integrity checkers provide a way to identify that system files have been changed by computing and storing a checksum for every guarded file, and establishing a file checksum database. Stored checksums are later recomputed to compare their current value with the stored value, which identifies file modifications. A file integrity checker capability is usually included with any commercial host-based IDS and is also available as a standalone utility.
+
+### Effectiveness of File Integrity Checking
+
+Although an integrity checker does not require a high degree of human interaction, it must be used carefully to ensure its effectiveness. File integrity checking is most effective when system files are compared with a reference database created using a system known to be secure—this helps ensure that the reference database was not built with compromised files.
+
+The reference database should be stored offline to prevent attackers from compromising the system and covering their tracks by modifying the database. In addition, because patches and other updates change files, the checksum database should be kept up-to-date.
+
+For file integrity checking, strong cryptographic checksums such as Secure Hash Algorithm 1 (SHA-1) should be used to ensure the integrity of data stored in the checksum database. Federal agencies are required by Federal Information Processing Standard (FIPS) PUB 140-2, Security Requirements for Cryptographic Modules, to use SHA (e.g., SHA-1, SHA-256).
+
+## Summary
+
+Table 3-1 summarizes the major capabilities of review techniques discussed in Section 3. Risks are associated with each technique and their combinations. To ensure that all are executed safely and accurately, each assessor should have a certain baseline skill set. Table 3-2 provides guidelines for the minimum skill set needed for each technique presented in Section 3.
+
+# Target Identification and Analysis Techniques
+
+This section addresses technical target identification and analysis techniques, which focus on identifying active devices and their associated ports and services, and analyzing them for potential vulnerabilities.# Vulnerability Assessment Techniques
+
+The assessor uses this information to continue to explore devices that will validate the existence of vulnerabilities. Organizations often use non-technical techniques in addition to or instead of technical techniques to identify the assets to be analyzed. For example, organizations may have existing asset inventories or other lists of assets to be targeted; another example is assessors performing a walkthrough of a facility to identify assets that were not found by technical techniques, such as hosts that were shut off or disconnected from the network when the technical techniques were used. Target identification and analysis techniques for application security examination are briefly discussed in Appendix C.
+
+## 4.1 Network Discovery
+
+Network discovery uses a number of methods to discover active and responding hosts on a network, identify weaknesses, and learn how the network operates. Both passive (examination) and active (testing) techniques exist for discovering devices on a network.
+
+### Passive Techniques
+
+Passive techniques use a network sniffer to monitor network traffic and record the IP addresses of the active hosts. They can report which ports are in use and which operating systems have been discovered on the network. Passive discovery can also identify the relationships between hosts—including which hosts communicate with each other, how frequently their communication occurs, and the type of traffic that is taking place—and is usually performed from a host on the internal network where it can monitor host communications. This is done without sending out a single probing packet.
+
+Passive discovery takes more time to gather information than does active discovery, and hosts that do not send or receive traffic during the monitoring period might not be reported.
+
+### Active Techniques
+
+Active techniques send various types of network packets, such as Internet Control Message Protocol (ICMP) pings, to solicit responses from network hosts, generally through the use of an automated tool. One activity, known as OS fingerprinting, enables the assessor to determine the system’s OS by sending it a mix of normal, abnormal, and illegal network traffic.
+
+Another activity involves sending packets to common port numbers to generate responses that indicate the ports are active. The tool analyzes the responses from these activities and compares them with known traits of packets from specific operating systems and network services—enabling it to identify hosts, the operating systems they run, their ports, and the state of those ports. This information can be used for purposes that include gathering information on targets for penetration testing, generating topology maps, determining firewall and IDS configurations, and discovering vulnerabilities in systems and network configurations.
+
+### Considerations for Network Discovery
+
+Network discovery tools have many ways to acquire information through scanning. Enterprise firewalls and intrusion detection systems can identify many instances of scans, particularly those that use the most suspicious packets (e.g., SYN/FIN scan, NULL scan). Assessors who plan on performing discovery through firewalls and intrusion detection systems should consider which types of scans are most likely to provide results without drawing the attention of security administrators.# How Scans Can Be Conducted
+
+## Stealthy Scanning Techniques
+Scans can be conducted in a more stealthy manner (such as more slowly or from a variety of source IP addresses) to improve their chances of success. Assessors should also be cautious when selecting types of scans to use against older systems, particularly those known to have weak security, because some scans can cause system failures. Typically, the closer the scan is to normal activity, the less likely it is to cause operational problems.
+
+## Network Discovery
+Network discovery may also detect unauthorized or rogue devices operating on a network. For example, an organization that uses only a few operating systems could quickly identify rogue devices that utilize different ones.
+
+### Identifying Rogue Devices
+Once a wired rogue device is identified, it can be located by using existing network maps and information already collected on the device’s network activity to identify the switch to which it is connected. It may be necessary to generate additional network activity with the rogue device—such as pings—to find the correct switch. The next step is to identify the switch port on the switch associated with the rogue device and to physically trace the cable connecting that switch port to the rogue device.
+
+## Tools for Network Discovery
+A number of tools exist for use in network discovery, and it should be noted that many active discovery tools can be used for passive network sniffing and port scanning as well. Most offer a graphical user interface (GUI), and some also offer a command-line interface.
+
+### Command-Line Interfaces vs. GUIs
+Command-line interfaces may take longer to learn than GUIs because of the number of commands and switches that specify what tests the tool should perform and which an assessor must learn to use the tool effectively. Additionally, developers have written a number of modules for open source tools that allow assessors to easily parse tool output.
+
+For example, combining a tool’s Extensible Markup Language (XML) output capabilities, a little scripting, and a database creates a more powerful tool that can monitor the network for unauthorized services and machines. Learning what the many commands do and how to combine them is best achieved with the help of an experienced security engineer. Most experienced IT professionals, including system administrators and other network engineers, should be able to interpret results, but working with the discovery tools themselves is more efficiently handled by an engineer.
+
+## Advantages and Disadvantages of Active Discovery
+Some of the advantages of active discovery, as compared to passive discovery, are that an assessment can be conducted from a different network and usually requires little time to gather information. In passive discovery, ensuring that all hosts are captured requires traffic to hit all points, which can be time-consuming—especially in larger enterprise networks.
+
+### Disadvantages of Active Discovery
+A disadvantage to active discovery is that it tends to generate network noise, which sometimes results in network latency. Since active discovery sends out queries to receive responses, this additional network activity could slow down traffic or cause packets to be dropped in poorly configured networks if performed at high volume. Active discovery can also trigger IDS alerts, since unlike passive discovery it reveals its origination point. The ability to successfully discover all network systems can be affected by environments with protected network segments and perimeter security devices and techniques.# Network Discovery and Identification
+
+## Introduction
+Network discovery is a critical process for organizations to understand their network environment. It involves identifying devices, services, and configurations within a network. This document discusses the challenges and methodologies associated with network discovery, including both passive and active discovery techniques.
+
+## Challenges in Network Discovery
+- **Network Address Translation (NAT)**: Environments using NAT may not be accurately discovered from external points or protected segments. NAT allows organizations to use internal, non-publicly routed IP addresses that are translated to a different set of public IP addresses for external traffic.
+- **Firewalls**: Personal and host-based firewalls on target devices may block discovery traffic, leading to incomplete information.
+- **Misinformation**: Active discovery can yield misleading information, as it only identifies hosts that are online and connected during the discovery process. If systems are offline, there may be significant gaps in device discovery.
+
+## Discovery Techniques
+### Passive Discovery
+- Passive discovery identifies devices that transmit or receive communications during the discovery period.
+- Continuous discovery capabilities can be enhanced using network management software, which can automatically generate alerts when new devices are detected.
+
+### Active Discovery
+- Active discovery involves instigating activity from devices to gather information. However, it is limited to devices that are online during the assessment.
+
+### Continuous Discovery
+- Continuous discovery can scan IP address ranges for new addresses or monitor new IP address requests.
+- Many discovery tools can be scheduled to run regularly, providing more accurate results than sporadic scans.
+
+## Network Port and Service Identification
+Network port and service identification is a crucial step in understanding the services operating on active hosts.
+
+### Port Scanning
+- A port scanner is used to identify network ports and services, such as FTP and HTTP, and the applications running each identified service (e.g., Microsoft Internet Information Server (IIS) or Apache for HTTP).
+- Organizations should conduct network port and service identification to flag potentially vulnerable services and determine targets for penetration testing.
+
+### OS Fingerprinting
+- Basic scanners can identify active hosts and open ports, while some can provide additional information about the scanned hosts.
+- Information gathered during an open port scan can assist in identifying the target operating system through a process called OS fingerprinting. For example, if a host has TCP ports 135, 139, and 445 open, it is likely a Windows host or a Unix host running Samba.
+- OS fingerprinting is not foolproof, as firewalls may block certain ports, and system administrators can configure systems to respond in nonstandard ways.
+
+### Service Identification
+- Some scanners can identify the application running on a particular port through service identification.
+- Many scanners use a services file that lists common port numbers and typical associated services. For instance, if TCP port 80 is open on a host, the scanner may report that a web server is listening at that port, but additional steps are needed for confirmation.
+
+## Conclusion
+Understanding network discovery and identification is essential for maintaining a secure and efficient network environment. By employing both passive and active discovery techniques, organizations can better identify their assets and potential vulnerabilities.# Network Scanning Techniques
+
+## Introduction
+Before this can be confirmed, some scanners can initiate communications with an observed port and analyze its communications to determine what service is there, often by comparing the observed activity to a repository of information on common services and service implementations.
+
+## Version Scanning
+These techniques may also be used to identify the service application and application version, such as which Web server software is in use—this process is known as version scanning.
+
+### Banner Grabbing
+A well-known form of version scanning, called banner grabbing, involves capturing banner information transmitted by the remote port when a connection is initiated. This information can include:
+- Application type
+- Application version
+- OS type and version
+
+Version scanning is not foolproof, because a security-conscious administrator can alter the transmitted banners or other characteristics in hopes of concealing the service’s true nature. However, version scanning is far more accurate than simply relying on a scanner’s services file.
+
+## Scanner Models
+Scanner models support the various scanning methods with strengths and weaknesses that are normally explained in their documentation. For example:
+- Some scanners work best scanning through firewalls.
+- Others are better suited for scans inside the firewall.
+
+Results will differ depending on the port scanner used. Some scanners respond with a simple open or closed response for each port, while others offer additional detail (e.g., filtered or unfiltered) that can assist the assessor in determining what other types of scans would be helpful to gain additional information.
+
+## Network Discovery
+Network port and service identification often uses the IP address results of network discovery as the devices to scan. Port scans can also be run independently on entire blocks of IP addresses—here, port scanning performs network discovery by default through identifying the active hosts on the network.
+
+### Results of Scanning
+The result of network discovery and network port and service identification is a list of all active devices operating in the address space that responded to the port scanning tool, along with responding ports. Additional active devices could exist that did not respond to scanning, such as those that are shielded by firewalls or turned off.
+
+Assessors can try to find these devices by:
+- Scanning the devices themselves
+- Placing the scanner on a segment that can access the devices
+- Attempting to evade the firewall through the use of alternate scan types (e.g., SYN/FIN or Xmas scan)
+
+## Recommendations for Scanning
+It is recommended that if both external and internal scanning are to be used and the assessors are intentionally performing the testing “blind,” that external scanning be performed first. Done in this order, logs can be reviewed and compared before and during internal testing.
+
+### External Scanning
+When performing external scanning, assessors may use any existing stealth techniques to get packets through firewalls while evading detection by IDS and IPS. Tools that use fragmentation, duplication, overlap, out-of-order, and timing techniques to alter packets so that they blend into and appear more like normal traffic are recommended.
+
+### Internal Testing
+Internal testing tends to use less aggressive scanning methods because these scans are blocked less often than external scans. Using more aggressive scans internally significantly increases the chances of detection.# Network Scanning and Vulnerability Assessment
+
+## Introduction
+Disrupting operations without necessarily improving scan results can be a concern when scanning a network. Being able to scan a network with customized packets is beneficial for internal testing, as checking for specific vulnerabilities requires highly customized packets. Tools with packet-builder capabilities are helpful in this process.
+
+## Customized Packet Scanning
+Once built, packets can be sent through a second scanning program that will collect the results. However, customized packets can trigger a denial of service (DoS) attack, so this type of test should be conducted during periods of low network traffic—such as overnight or on the weekend.
+
+## Port Scanning
+Although port scanners identify active hosts, operating systems, ports, services, and applications, they do not identify vulnerabilities. Additional investigation is needed to confirm the presence of insecure protocols (e.g., Trivial File Transfer Protocol [TFTP], telnet), malware, unauthorized applications, and vulnerable services.
+
+### Identifying Vulnerable Services
+To identify vulnerable services, the assessor compares identified version numbers of services with a list of known vulnerable versions or performs automated vulnerability scanning as discussed in Section 4.3. The scanning process is highly automated, but interpretation of the scanned data is not.
+
+### Impact of Port Scanning
+Port scanning can disrupt network operations by consuming bandwidth and slowing network response times. However, it enables an organization to ensure that its hosts are configured to run only approved network services. Scanning software should be carefully selected to minimize disruptions to operations, and port scanning can also be conducted after hours to cause minimal impact.
+
+## 4.3 Vulnerability Scanning
+Like network port and service identification, vulnerability scanning identifies hosts and host attributes (e.g., operating systems, applications, open ports), but it also attempts to identify vulnerabilities rather than relying on human interpretation of the scanning results.
+
+### Features of Vulnerability Scanners
+Many vulnerability scanners are equipped to accept results from network discovery and network port and service identification, which reduces the amount of work needed for vulnerability scanning. Some scanners can perform their own network discovery and network port and service identification. Vulnerability scanning can help identify outdated software versions, missing patches, and misconfigurations, and validate compliance with or deviations from an organization’s security policy.
+
+### Benefits of Vulnerability Scanning
+Vulnerability scanners can:
+- Check compliance with host application usage and security policies
+- Provide information on targets for penetration testing
+- Provide information on how to mitigate discovered vulnerabilities
+
+### Scanning Methods
+Vulnerability scanners can be run against a host either locally or from the network. Some network-based scanners have administrator-level credentials on individual hosts and can extract vulnerability information from hosts using those credentials. Other network-based scanners do not have such credentials and must rely on conducting scanning of networks to locate hosts and then scan those hosts for vulnerabilities.# Network-Based Scanning
+
+In such cases, network-based scanning is primarily used to perform network discovery and identify open ports and related vulnerabilities—in most cases, it is not limited by the OS of the targeted systems.
+
+## Internal vs External Scanning
+
+Network-based scanning without host credentials can be performed both internally and externally. Although internal scanning usually uncovers more vulnerabilities than external scanning, testing from both viewpoints is important.
+
+### Challenges of External Scanning
+
+External scanning must contend with perimeter security devices that block traffic, limiting assessors to scanning only the ports authorized to pass traffic. Assessors performing external scanning may find challenges similar to those faced with network discovery, such as the use of NAT or personal and host-based firewalls.
+
+## Overcoming NAT Challenges
+
+To overcome the challenges of NAT and conduct successful network-based scanning, assessors can:
+
+- Ask the firewall administrator to enable port forwarding on specific IP addresses or groups of addresses if this is supported by the firewall.
+- Request network access behind the device performing NAT.
+- Request that personal or host-based firewalls be configured to permit traffic from test system IP addresses during the assessment period.
+
+These steps will give assessors increased insight into the network but do not accurately reflect the capabilities of an external attacker—although they may offer a better indication of the capabilities available to a malicious insider or an external attacker with access to another host on the internal network.
+
+## Local Vulnerability Scanning
+
+Assessors can also perform scanning on individual hosts. For local vulnerability scanning, a scanner is installed on each host to be scanned. This is done primarily to identify host OS and application misconfigurations and vulnerabilities—both network-exploitable and locally exploitable.
+
+### Advantages of Local Scanning
+
+Local scanning is able to detect vulnerabilities with a higher level of detail than network-based scanning because local scanning usually requires both host (local) access and a root or administrative account. Some scanners also offer the capability of repairing local misconfigurations.
+
+## Understanding Surface Vulnerabilities
+
+A vulnerability scanner is a relatively fast and easy way to quantify an organization's exposure to surface vulnerabilities. A surface vulnerability is a weakness that exists in isolation, independent from other vulnerabilities.
+
+### Scanning Techniques
+
+The system’s behaviors and outputs in response to attack patterns submitted by the scanner are compared against those that characterize the signatures of known vulnerabilities, and the tool reports any matches that are found.
+
+Besides signature-based scanning, some vulnerability scanners attempt to simulate the reconnaissance attack patterns used to probe for exposed, exploitable vulnerabilities, and report the vulnerabilities found when these techniques are successful.
+
+## Limitations of Vulnerability Scanners
+
+One difficulty in identifying the risk level of vulnerabilities is that they rarely exist in isolation. For example, there could be several low-risk vulnerabilities that present a higher risk when combined. Scanners are unable to detect vulnerabilities that are revealed only as the result of potentially unending combinations of attack patterns.
+
+The tool may assign a low risk to each vulnerability, leaving the assessor falsely confident in the security measures in place. A more reliable way of...# Identifying the Risk of Vulnerabilities
+
+Identifying the risk of vulnerabilities in aggregate is through penetration testing, which is discussed in Section 5.2.
+
+## Challenges in Risk Level Identification
+
+Another problem with identifying the risk level of vulnerabilities is that vulnerability scanners often use their own proprietary methods for defining the levels. For example, one scanner might use the levels low, medium, and high, while another scanner might use the levels informational, low, medium, high, and critical. This makes it difficult to compare findings among multiple scanners.
+
+Also, the risk levels assigned by a scanner may not reflect the actual risk to the organization. For example, a scanner might label an FTP server as a moderate risk because it transmits passwords in cleartext, but if the organization only uses the FTP server as an anonymous public server that does not use passwords, then the actual risk might be considerably lower. Assessors should determine the appropriate risk level for each vulnerability and not simply accept the risk levels assigned by vulnerability scanners.
+
+## Limitations of Network-Based Vulnerability Scanning
+
+Network-based vulnerability scanning has some significant weaknesses. As with network sniffing and discovery, this type of scanning uncovers vulnerabilities only for active systems. This generally covers surface vulnerabilities and is unable to address the overall risk level of a scanned network.
+
+Although the process itself is highly automated, vulnerability scanners can have a high false positive error rate (i.e., reporting vulnerabilities when none exist). An individual with expertise in networking and OS security should interpret the results.
+
+Because network-based vulnerability scanning requires more information than port scanning to reliably identify the vulnerabilities on a host, it tends to generate significantly more network traffic than port scanning. This may have a negative impact on the hosts or network being scanned, or on network segments through which scanning traffic is traversing. Many vulnerability scanners also include network-based tests for DoS attacks that, in the hands of an inexperienced assessor, can have a marked negative impact on scanned hosts. Scanners often allow all DoS attack tests to be suppressed so as to reduce the risk of impacting hosts through testing.
+
+## Dependency on Signature Repositories
+
+Another significant limitation of vulnerability scanners is that, like virus scanners and IDSs, they rely on a repository of signatures. This requires the assessors to update these signatures frequently to enable the scanner to recognize the latest vulnerabilities. Before running any scanner, an assessor should install the latest updates to its vulnerability database. Some vulnerability scanner databases are updated more regularly than others—this update frequency should be a major consideration when selecting a vulnerability scanner.
+
+## Levels of Scanning
+
+Most vulnerability scanners allow the assessor to perform different levels of scanning that vary in terms of thoroughness. While more comprehensive scanning may detect a greater number of vulnerabilities, it can slow the overall scanning process. Less comprehensive scanning can take less time but identifies only well-known vulnerabilities. It is generally recommended that assessors conduct a thorough vulnerability scan if resources permit.# Vulnerability Scanning
+
+Vulnerability scanning is a somewhat labor-intensive activity that requires a high degree of human involvement to interpret results. It may also disrupt network operations by taking up bandwidth and slowing response times. Nevertheless, vulnerability scanning is extremely important in ensuring that vulnerabilities are mitigated before they are discovered and exploited by adversaries.
+
+## False Positives and Negatives
+
+As with all pattern-matching and signature-based tools, application vulnerability scanners typically have high false positive rates. Assessors should configure and calibrate their scanners to minimize both false positives and false negatives to the greatest possible extent, and meaningfully interpret results to identify the real vulnerabilities. Scanners also suffer from the high false negative rates that characterize other signature-based tools—but vulnerabilities that go undetected by automated scanners can potentially be caught using multiple vulnerability scanners or additional forms of testing. A common practice is to use multiple scanners—this provides assessors with a way to compare results.
+
+# Wireless Scanning
+
+Wireless technologies, in their simplest sense, enable one or more devices to communicate without the need for physical connections such as network or peripheral cables. They range from simple technologies like wireless keyboards and mice to complex cell phone networks and enterprise wireless local area networks (WLAN). As the number and availability of wireless-enabled devices continues to increase, it is important for organizations to actively test and secure their enterprise wireless environments. Wireless scans can help organizations determine corrective actions to mitigate risks posed by wireless-enabled technologies.
+
+## Considerations for Wireless Security Assessments
+
+The following factors in the organization’s environment should be taken into consideration when planning technical wireless security assessments:
+
+- The location of the facility being scanned, because the physical proximity of a building to a public area (e.g., streets and public common areas) or its location in a busy metropolitan area may increase the risk of wireless threats.
+- The security level of the data to be transmitted using wireless technologies.
+- How often wireless devices connect to and disconnect from the environment, and the typical traffic levels for wireless devices (e.g., occasional activity or fairly constant activity)—this is because only active wireless devices are discoverable during a wireless scan.
+- Existing deployments of wireless intrusion detection and prevention systems (WIDPS), which may already collect most of the information that would be gathered by testing.
+
+## Conducting Wireless Scans
+
+Wireless scanning should be conducted using a mobile device with wireless analyzer software installed and configured—such as a laptop, handheld device, or specialty device. The scanning software or tool should allow the operator to configure the device for specific scans, and to scan in both passive and active modes. The scanning software should also be configurable by the operator to identify deviations from the organization’s wireless security configuration requirements.
+
+The wireless scanning tool should be capable of scanning all Institute of Electrical and Electronics Engineers (IEEE) 802.11a/b/g/n channels, whether domestic or international. In some cases, the device...# Wireless Scanning Tools and Techniques
+
+## Overview
+Wireless scanning tools are essential for identifying and mitigating wireless threats and vulnerabilities. These tools should be equipped with external antennas to enhance radio frequency (RF) capturing capabilities. Additionally, support for other wireless technologies, such as Bluetooth, is crucial for evaluating the presence of additional threats.
+
+## Limitations of Scanning Tools
+It is important to note that devices using nonstandard technology or frequencies outside the scanning tool’s RF range will not be detected or properly recognized. To assist organizations in identifying transmissions within a specific frequency range, tools such as RF spectrum analyzers can be utilized. These analyzers typically cover a large frequency range (e.g., 3 to 18 GHz) and help assess wireless activity without analyzing traffic.
+
+## Mapping and Location Plotting
+Some wireless scanning devices support mapping and physical location plotting through mapping tools, and in some cases, they may utilize Global Positioning System (GPS)-based mapping. However, it is important to recognize that GPS has limited capabilities indoors.
+
+## Operator Expertise
+Individuals operating wireless scanning tools should possess a strong understanding of wireless networking, particularly IEEE 802.11a/b/g/n technologies. Proper training on the functionality and capabilities of the scanning tools and software is essential for effectively interpreting captured information and identifying potential threats or malicious activity. Additionally, individuals with similar expertise should analyze the data and results from wireless scans. Scanning tool operators must also be aware of other RF signals authorized for use in the scanned area.
+
+## Passive Wireless Scanning
+### Importance of Passive Scanning
+Passive wireless scanning should be conducted regularly to supplement existing wireless security measures, such as Wireless Intrusion Detection and Prevention Systems (WIDPSs).
+
+### Functionality of Passive Scanning Tools
+Wireless scanning tools that conduct completely passive scans do not transmit data, ensuring they do not affect the operation of deployed wireless devices. By remaining undetected, passive scanning tools reduce the likelihood of malicious users disconnecting or disabling unauthorized devices.
+
+### Data Captured by Passive Scanning Tools
+Passive scanning tools capture wireless traffic transmitted within the range of their antennas. Key attributes regarding discovered wireless devices include:
+- Service Set Identifier (SSID)
+- Device type
+- Channel
+- Media Access Control (MAC) address
+- Signal strength
+- Number of packets transmitted
+
+This information is vital for evaluating the security of the wireless environment and identifying potential rogue devices and unauthorized ad hoc networks.
+
+### Analyzing Captured Packets
+The wireless scanning tool should also assess captured packets to determine if any operational anomalies or threats exist. Wireless scanning tools typically scan each IEEE 802.11a/b/g/n channel/frequency separately, often for only several hundred milliseconds at a time, which may result in not receiving all transmissions.# Wireless Scanning Techniques
+
+## Introduction
+Wireless scanning is a critical process for identifying rogue devices within an organization's network. This document outlines the methods and considerations for both passive and active wireless scanning.
+
+## Passive Wireless Scanning
+Passive scanning involves monitoring wireless channels without actively engaging with the devices. This method allows security personnel to identify rogue devices through various indicators.
+
+### Key Considerations
+- **Dwell Time**: The tool's dwell time must be long enough to capture packets but short enough to efficiently scan each channel. Configurations will vary based on the device or tool used.
+- **Movement**: Security personnel should move slowly through the area being scanned to minimize the number of undetected devices.
+
+### Identifying Rogue Devices
+Rogue devices can be identified through several methods during passive scanning:
+
+- **MAC Address Analysis**:
+- The MAC address of a discovered wireless device indicates the vendor of the device’s wireless interface. If an organization only uses devices from vendors A and B, any other vendor's interface may indicate a rogue device.
+
+- **Comparison with Authorized Devices**:
+- If an organization maintains accurate records of its deployed wireless devices, assessors can compare the MAC addresses of discovered devices with those of authorized devices. Most scanning tools allow for the entry of a list of authorized devices. However, since MAC addresses can be spoofed, this method should not be solely relied upon.
+
+- **SSID Verification**:
+- Rogue devices may use SSIDs that are not authorized by the organization. Additionally, some rogue devices may use authorized SSIDs but fail to comply with the organization’s wireless security configuration requirements.
+
+- **Signal Strength Assessment**:
+- The signal strength of potential rogue devices should be reviewed to determine their location. Devices operating outside the organization’s confines may still pose risks, as the organization’s devices might inadvertently associate with them.
+
+## Active Wireless Scanning
+Active scanning goes beyond passive methods by attempting to connect to discovered devices for penetration or vulnerability testing.
+
+### Key Considerations
+- **Building on Passive Scans**: Active scanning builds on the information collected during passive scans and aims to ensure that authorized wireless devices meet security configuration requirements, including authentication mechanisms, data encryption, and administration access.
+
+- **Caution with Neighboring Devices**: Organizations must be careful not to inadvertently scan devices owned or operated by neighboring organizations that are within range. Evaluating the physical location of devices is crucial before conducting active scans.
+
+- **Rogue Device Caution**: Organizations should also exercise caution when performing active scans on rogue devices that appear to be operating within their facility. These devices could belong to visitors or neighboring organizations.
+
+## Conclusion
+Organizations should prioritize identifying and locating potential rogue devices while being mindful of the implications of both passive and active scanning techniques. Properly executed wireless scanning can significantly enhance an organization's security posture.# Active Scanning of Wireless Devices
+
+Organizations may use active scanning when conducting penetration testing on their own wireless devices. Tools are available that employ scripted attacks and functions, attempt to circumvent implemented security measures, and evaluate the security level of devices.
+
+## Wireless Penetration Testing Tools
+
+For example, tools used to conduct wireless penetration testing attempt to connect to access points (AP) through various methods to circumvent security configurations. If the tool can gain access to the AP, it can obtain information and identify the wired networks and wireless devices to which the AP is connected. Some active tools may also identify vulnerabilities discovered on the wireless client devices or conduct wired network vulnerability tests as outlined in Section 4.
+
+## Monitoring WIDPS During Active Scanning
+
+While active scanning is being performed, the organization’s Wireless Intrusion Detection and Prevention Systems (WIDPSs) can be monitored to evaluate their capabilities and performance. Depending on assessment goals, assessors conducting these scans may need to inform the WIDPS administrators and wireless network administrators of pending scanning to prepare them for possible alarms and alerts. In addition, some WIDPSs can be configured to ignore alarms and alerts triggered by a specific device—such as one used to perform scanning.
+
+## Identifying Unauthorized Devices
+
+Tools and processes to identify unauthorized devices and vulnerabilities on wired networks can also be used to identify rogue and misconfigured wireless devices. Wired-side scanning is another process that can be conducted to discover, and possibly locate, rogue wireless devices. Sections 3.5 and 4.1 discuss wired scanning.
+
+# Wireless Device Location Tracking
+
+Security personnel who operate the wireless scanning tool should attempt to locate suspicious devices. RF signals propagate in a manner relative to the environment, which makes it important for the operator to understand how wireless technology supports this process. Mapping capabilities are useful here, but the main factors needed to support this capability are a knowledgeable operator and an appropriate wireless antenna.
+
+## Handling Rogue Devices
+
+If rogue devices are discovered and physically located during the wireless scan, security personnel should ensure that specific policies and processes are followed on how the rogue device is handled—such as shutting it down, reconfiguring it to comply with the organization’s policies, or removing the device completely. If the device is to be removed, security personnel should evaluate the activity of the rogue device before it is confiscated. This can be done through monitoring transmissions and attempting to access the device.
+
+## Locating Undiscovered Devices
+
+If discovered wireless devices cannot be located during the scan, security personnel should attempt to use a WIDPS to support the location of discovered devices. This requires the WIDPS to locate a specific MAC address that was discovered during the scan. Properly deployed WIDPSs should have the ability to assist security personnel in locating these devices, and usually involves the use of multiple WIDPS sensors to increase location identification granularity.# Device Scanning Techniques
+
+## 4.4.4 Bluetooth Scanning
+
+For organizations that want to confirm compliance with their Bluetooth security requirements, passive scanning for Bluetooth-enabled wireless devices should be conducted to evaluate potential presence and activity. Because Bluetooth has a very short range (on average 9 meters [30 feet], with some devices having ranges of as little as 1 meter [3 feet]), scanning for devices can be difficult and time-consuming. Assessors should take range limitations into consideration when scoping this type of scanning.
+
+Organizations may want to perform scanning only in areas of their facilities that are accessible by the public—to see if attackers could gain access to devices via Bluetooth—or to perform scanning in a sampling of physical locations rather than throughout the entire facility. Because many Bluetooth-enabled devices (such as cell phones and personal digital assistants [PDA]) are mobile, conducting passive scanning several times over a period of time may be necessary. Organizations should also scan any Bluetooth infrastructure, such as access points, that they deploy. If rogue access points are discovered, the organization should handle them in accordance with established policies and processes.
+
+A number of tools are available for actively testing the security and operation of Bluetooth devices. These tools attempt to connect to discovered devices and perform attacks to surreptitiously gain access and connectivity to Bluetooth-enabled devices. Assessors should be extremely cautious of performing active scanning because of the likelihood of inadvertently scanning personal Bluetooth devices, which are found in many environments. As a general rule, assessors should use active scanning only when they are certain that the devices being scanned belong to the organization.
+
+Active scanning can be used to evaluate the security mode in which a Bluetooth device is operating, and the strength of Bluetooth password identification numbers (PIN). Active scanning can also be used to verify that these devices are set to the lowest possible operational power setting to minimize their range. As with IEEE 802.11a/b/g rogue devices, rogue Bluetooth devices should be dealt with in accordance with policies and guidance.
+
+## 4.5 Summary
+
+Table 4-1 summarizes the major capabilities of the target identification and analysis techniques discussed in Section 4. There are risks associated with each technique and combination of techniques. To ensure that all are executed safely and accurately, each assessor should have a certain baseline skill set. Table 4-2 provides guidelines for the minimum skill set needed for each technique presented in Section 4.
+
+# 5. Target Vulnerability Validation Techniques
+
+This section addresses target vulnerability validation techniques, which use information produced from target identification and analysis to further explore the existence of potential vulnerabilities. The objective is to prove that a vulnerability exists, and to demonstrate the security exposures that occur when...# Target Vulnerability Validation
+
+Target vulnerability validation involves the greatest amount of risk in assessments, since these techniques have more potential to impact the target system or network than other techniques. Target vulnerability validation techniques for application security testing are briefly discussed in Appendix C.
+
+## 5.1 Password Cracking
+
+When a user enters a password, a hash of the entered password is generated and compared with a stored hash of the user’s actual password. If the hashes match, the user is authenticated. Password cracking is the process of recovering passwords from password hashes stored in a computer system or transmitted over networks. It is usually performed during assessments to identify accounts with weak passwords.
+
+Password cracking is performed on hashes that are either intercepted by a network sniffer while being transmitted across a network, or retrieved from the target system, which generally requires administrative-level access on, or physical access to, the target system. Once these hashes are obtained, an automated password cracker rapidly generates additional hashes until a match is found or the assessor halts the cracking attempt.
+
+### Methods of Password Cracking
+
+1. **Dictionary Attack**: This method uses all words in a dictionary or text file. There are numerous dictionaries available on the Internet that encompass major and minor languages, names, popular television shows, etc.
+
+2. **Hybrid Attack**: This builds on the dictionary method by adding numeric and symbolic characters to dictionary words. Depending on the password cracker being used, this type of attack can try a number of variations, such as using common substitutions of characters and numbers for letters (e.g., p@ssword and h4ckme). Some will also try adding characters and numbers to the beginning and end of dictionary words (e.g., password99, password$%).
+
+3. **Brute Force Method**: This generates all possible passwords up to a certain length and their associated hashes. Since there are so many possibilities, it can take months to crack a password. Although brute force can take a long time, it usually takes far less time than most password policies specify for password changing. Consequently, passwords found during brute force attacks are still too weak. Theoretically, all passwords can be cracked by a brute force attack, given enough time and processing power, although it could take many years and require serious computing power. Assessors and attackers often have multiple machines over which they can spread the task of cracking passwords, which greatly shortens the time involved.
+
+4. **Rainbow Tables**: Password cracking can also be performed with rainbow tables, which are lookup tables with pre-computed password hashes. For example, a rainbow table can be created that contains every possible password for a given character set up to a certain character length. Assessors may then search the table for the password hashes that they are trying to crack. Rainbow tables require large amounts of storage space and can take a long time to generate, but their primary shortcoming is that they may be ineffective against password hashing that uses salting. Salting is the inclusion of a random value to the password before hashing, which makes pre-computed tables ineffective.# Password Hashing and Security Testing
+
+## Password Hashing
+
+Salting is a crucial piece of information in the password hashing process that decreases the likelihood of identical passwords returning the same hash. Rainbow tables will not produce correct results without taking salting into account, but this dramatically increases the amount of storage space that the tables require. Many operating systems use salted password hashing mechanisms to reduce the effectiveness of rainbow tables and other forms of password cracking.
+
+Password crackers can be run during an assessment to ensure policy compliance by verifying acceptable password composition. For example, if the organization has a password expiration policy, then password crackers can be run at intervals that coincide with the intended password lifetime. Password cracking that is performed offline produces little or no impact on the system or network, and the benefits of this operation include validating the organization’s password policy and verifying policy compliance.
+
+## 5.2 Penetration Testing
+
+Penetration testing is security testing in which assessors mimic real-world attacks to identify methods for circumventing the security features of an application, system, or network. It often involves launching real attacks on real systems and data that use tools and techniques commonly used by attackers. Most penetration tests involve looking for combinations of vulnerabilities on one or more systems that can be used to gain more access than could be achieved through a single vulnerability.
+
+### Objectives of Penetration Testing
+
+Penetration testing can also be useful for determining:
+
+- How well the system tolerates real-world-style attack patterns
+- The likely level of sophistication an attacker needs to successfully compromise the system
+- Additional countermeasures that could mitigate threats against the system
+- Defenders’ ability to detect attacks and respond appropriately
+
+### Considerations for Penetration Testing
+
+Penetration testing can be invaluable, but it is labor-intensive and requires great expertise to minimize the risk to targeted systems. Systems may be damaged or otherwise rendered inoperable during the course of penetration testing, even though the organization benefits in knowing how a system could be rendered inoperable by an intruder. Although experienced penetration testers can mitigate this risk, it can never be fully eliminated. Penetration testing should be performed only after careful consideration, notification, and planning.
+
+### Non-Technical Methods of Attack
+
+Penetration testing often includes non-technical methods of attack. For example, a penetration tester could breach physical security controls and procedures to connect to a network, steal equipment, capture sensitive information (possibly by installing keylogging devices), or disrupt communications. Caution should be exercised when performing physical security testing—security guards should be made aware of how to verify the validity of tester activity, such as via a point of contact or documentation.
+
+Another non-technical means of attack is the use of social engineering, such as posing as a help desk agent and calling to request a user’s passwords, or calling the help desk posing as a user and asking for a password to be reset. Additional information on physical security testing, social engineering techniques, and other non-technical means of attack included in penetration testing lies outside the scope of this publication.# 5.2.1 Penetration Testing Phases
+
+Figure 5-1 represents the four phases of penetration testing. In the planning phase, rules are identified, management approval is finalized and documented, and testing goals are set. The planning phase sets the groundwork for a successful penetration test. No actual testing occurs in this phase.
+
+## Discovery Phase
+
+The discovery phase of penetration testing includes two parts. The first part is the start of actual testing and covers information gathering and scanning. Network port and service identification, described in Section 4.2, is conducted to identify potential targets. In addition to port and service identification, other techniques are used to gather information on the targeted network:
+
+- Host name and IP address information can be gathered through many methods, including DNS interrogation, InterNIC (WHOIS) queries, and network sniffing (generally only during internal tests).
+- Employee names and contact information can be obtained by searching the organization’s Web servers or directory servers.
+- System information, such as names and shares, can be found through methods such as NetBIOS enumeration (generally only during internal tests) and Network Information System (NIS) (generally only during internal tests).
+- Application and service information, such as version numbers, can be recorded through banner grabbing.
+
+In some cases, techniques such as dumpster diving and physical walkthroughs of facilities may be used to collect additional information on the targeted network, and may also uncover additional information to be used during the penetration tests, such as passwords written on paper.
+
+### Vulnerability Analysis
+
+The second part of the discovery phase is vulnerability analysis, which involves comparing the services, applications, and operating systems of scanned hosts against vulnerability databases (a process that is automatic for vulnerability scanners) and the testers’ own knowledge of vulnerabilities. Human testers can use their own databases—or public databases such as the National Vulnerability Database (NVD)—to identify vulnerabilities manually. Appendix E has more information on these publicly available vulnerability databases. Manual processes can identify new or obscure vulnerabilities that automated scanners may miss, but are much slower than an automated scanner.
+
+## Attack Phase
+
+Executing an attack is at the heart of any penetration test. Figure 5-2 represents the individual steps of the attack phase—the process of verifying previously identified potential vulnerabilities by attempting to exploit them. If an attack is successful, the vulnerability is verified and safeguards are identified to mitigate the associated security exposure.
+
+In many cases, exploits that are executed do not grant the maximum level of potential access to an attacker. They may instead result in the testers learning more about the targeted network and its potential vulnerabilities, or induce a change in the state of the targeted network’s security. Some exploits enable testers to escalate their privileges on the system or network to gain access to additional resources. If this occurs, additional analysis and testing are required to...# Penetration Testing and Vulnerability Exploitation
+
+## Introduction
+Determining the true level of risk for a network involves identifying the types of information that can be gleaned, changed, or removed from the system. In the event that an attack on a specific vulnerability proves impossible, the tester should attempt to exploit another discovered vulnerability.
+
+## Exploiting Vulnerabilities
+If testers are able to exploit a vulnerability, they can install more tools on the target system or network to facilitate the testing process. These tools are used to gain access to additional systems or resources on the network and obtain information about the network or organization. Testing and analysis on multiple systems should be conducted during a penetration test to determine the level of access an adversary could gain. This process is represented in the feedback loop between the attack and discovery phase of a penetration test.
+
+## Vulnerability Scanning vs. Penetration Testing
+While vulnerability scanners check only for the possible existence of a vulnerability, the attack phase of a penetration test exploits the vulnerability to confirm its existence. Most vulnerabilities exploited by penetration testing fall into the following categories:
+
+### 1. Misconfigurations
+Misconfigured security settings, particularly insecure default settings, are usually easily exploitable.
+
+### 2. Kernel Flaws
+Kernel code is the core of an operating system (OS) and enforces the overall security model for the system. Any security flaw in the kernel puts the entire system in danger.
+
+### 3. Buffer Overflows
+A buffer overflow occurs when programs do not adequately check input for appropriate length. When this occurs, arbitrary code can be introduced into the system and executed with the privileges—often at the administrative level—of the running program.
+
+### 4. Insufficient Input Validation
+Many applications fail to fully validate the input they receive from users. An example is a web application that embeds a value from a user in a database query. If the user enters SQL commands instead of or in addition to the requested value, and the web application does not filter the SQL commands, the query may be run with malicious changes that the user requested—causing what is known as a SQL injection attack.
+
+### 5. Symbolic Links
+A symbolic link (symlink) is a file that points to another file. Operating systems include programs that can change the permissions granted to a file. If these programs run with privileged permissions, a user could strategically create symlinks to trick these programs into modifying or listing critical system files.
+
+### 6. File Descriptor Attacks
+File descriptors are numbers used by the system to keep track of files in lieu of filenames. Specific types of file descriptors have implied uses. When a privileged program assigns an inappropriate file descriptor, it exposes that file to compromise.
+
+### 7. Race Conditions
+Race conditions can occur during the time a program or process has entered into a privileged mode. A user can time an attack to take advantage of elevated privileges while the program or process is still in the privileged mode.
+
+### 8. Incorrect File and Directory Permissions
+File and directory permissions control the access assigned to users and processes. Poor permissions could allow many types of attacks.
+
+## Conclusion
+Understanding the various types of vulnerabilities and their implications is crucial for effective penetration testing and securing networks against potential threats.# Penetration Testing Overview
+
+## Introduction
+Penetration testing involves various phases, including the reading or writing of password files or additions to the list of trusted remote hosts.
+
+## Phases of Penetration Testing
+The reporting phase occurs simultaneously with the other three phases of the penetration test.
+
+### Planning Phase
+In the planning phase, the assessment plan—or Rules of Engagement (ROE)—is developed.
+
+### Discovery and Attack Phases
+During the discovery and attack phases, written logs are usually kept, and periodic reports are made to system administrators and/or management.
+
+### Conclusion of the Test
+At the conclusion of the test, a report is generally developed to describe identified vulnerabilities, present a risk rating, and provide guidance on how to mitigate the discovered weaknesses. Section 8 discusses post-testing activities such as reporting in more detail.
+
+## 5.2.2 Penetration Testing Logistics
+Penetration test scenarios should focus on locating and targeting exploitable defects in the design and implementation of an application, system, or network. Tests should reproduce both the most likely and most damaging attack patterns, including worst-case scenarios such as malicious actions by administrators.
+
+### Testing Scenarios
+Since a penetration test scenario can be designed to simulate an inside attack, an outside attack, or both, external and internal security testing methods are considered. If both internal and external testing is to be performed, the external testing usually occurs first.
+
+#### Outsider Scenarios
+Outsider scenarios simulate the outsider-attacker who has little or no specific knowledge of the target and who works entirely from assumptions. To simulate an external attack, testers are provided with no real information about the target environment other than targeted IP addresses or address ranges. They perform open-source research by collecting information on the targets from public web pages, newsgroups, and similar sites. Port scanners and vulnerability scanners are then used to identify target hosts.
+
+Since the testers’ traffic usually goes through a firewall, the amount of information obtained from scanning is far less than if the test were undertaken from an insider perspective. After identifying hosts on the network that can be reached from outside, testers attempt to compromise one of the hosts. If successful, this access may then be used to compromise other hosts that are not generally accessible from outside the network. Penetration testing is an iterative process that leverages minimal access to gain greater access.
+
+#### Insider Scenarios
+Insider scenarios simulate the actions of a malicious insider. An internal penetration test is similar to an external test, except that the testers are on the internal network (i.e., behind the firewall) and have been granted some level of access to the network or specific network systems. Using this access, the penetration testers try to gain a greater level of access to the network and its systems through privilege escalation.
+
+Testers are provided with network information that someone with their level of access would normally have—generally as a standard employee, although depending on the goals of the test, it could instead be information that a system or network administrator might possess.
+
+## Importance of Penetration Testing
+Penetration testing is important for determining the vulnerability of an organization’s network and the level of damage that can occur if the network is compromised. It is important to be aware that depending on the context, the implications of these vulnerabilities can vary significantly.# Penetration Testing and Social Engineering
+
+## Penetration Testing
+
+On an organization’s policies, testers may be prohibited from using particular tools or techniques or may be limited to using them only during certain times of the day or days of the week. Penetration testing also poses a high risk to the organization’s networks and systems because it uses real exploits and attacks against production systems and data.
+
+Because of its high cost and potential impact, penetration testing of an organization’s network and systems on an annual basis may be sufficient. Also, penetration testing can be designed to stop when the tester reaches a point when an additional action will cause damage. The results of penetration testing should be taken seriously, and any vulnerabilities discovered should be mitigated. Results, when available, should be presented to the organization’s managers.
+
+Organizations should consider conducting less labor-intensive testing activities on a regular basis to ensure that they are maintaining their required security posture. A well-designed program of regularly scheduled network and vulnerability scanning, interspersed with periodic penetration testing, can help prevent many types of attacks and reduce the potential impact of successful ones.
+
+## Social Engineering
+
+Social engineering is an attempt to trick someone into revealing information (e.g., a password) that can be used to attack systems or networks. It is used to test the human element and user awareness of security, and can reveal weaknesses in user behavior—such as failing to follow standard procedures.
+
+Social engineering can be performed through many means, including analog (e.g., conversations conducted in person or over the telephone) and digital (e.g., e-mail, instant messaging). One form of digital social engineering is known as phishing, where attackers attempt to steal information such as credit card numbers, Social Security numbers, user IDs, and passwords. Phishing uses authentic-looking emails to request information or direct users to a bogus website to collect information. Other examples of digital social engineering include crafting fraudulent e-mails and sending attachments that could mimic worm activity.
+
+Social engineering may be used to target specific high-value individuals or groups in the organization, such as executives, or may have a broad target set. Specific targets may be identified when the organization knows of an existing threat or feels that the loss of information from a person or specific group of persons could have a significant impact. For example, phishing attacks can be targeted based on publicly available information about specific individuals (e.g., titles, areas of interest).
+
+Individual targeting can lead to embarrassment for those individuals if testers successfully elicit information or gain access. It is important that the results of social engineering testing are used to improve the security of the organization and not to single out individuals. Testers should produce a detailed final report that identifies both successful and unsuccessful tactics used. This level of detail will help organizations to tailor their security awareness training programs.
+
+## Summary
+
+Each information security testing technique has its own strengths and weaknesses.# Security Assessment Planning
+
+Proper planning is critical to a successful security assessment. This section provides guidance on creating an assessment policy, prioritizing and scheduling assessments, selecting the appropriate assessment approach, and addressing logistical considerations. It also provides recommendations for developing an assessment plan and outlines assessment-related legal considerations that organizations may need to address.
+
+## 6.1 Developing a Security Assessment Policy
+
+Organizations should develop an information security assessment policy to provide direction and guidance for their security assessments. This policy should identify security assessment requirements and hold accountable those individuals responsible for ensuring that assessments comply with the requirements. It should address:
+
+- Organizational requirements with which assessments must comply
+- Appropriate roles and responsibilities (at a minimum, for those individuals approving and executing assessments)
+- Adherence to established methodology
+- Assessment frequency
+- Documentation requirements, such as assessment plans and assessment results.
+
+Once developed and approved by the appropriate senior officials, the policy should be disseminated to the appropriate staff—which might include the offices of the Chief Information Officer (CIO), Chief Information Security Officer (CISO), and Chief Technology Officer (CTO). Leadership should also communicate the policy to any third parties who are to conduct assessments.
+
+It is recommended that organizations review their assessment policy at least annually, and whenever there are new assessment-related requirements. These reviews will determine the policy’s continued applicability, address any necessary modifications, and provide opportunities for incorporating lessons learned.
+
+## 6.2 Prioritizing and Scheduling Assessments
+
+As part of planning, organizations should decide which systems should undergo technical security assessments and how often these assessments should be done. This prioritization is based on system categorization, expected benefits, scheduling requirements, and applicable regulations where assessment is a requirement.
+
+A good starting point is to evaluate system categorization and associated requirements for security assessment. Here, an evaluation of the system’s impact rating (e.g., low, moderate, high) and security assessment status (e.g., when was an assessment last conducted) is necessary to determine a schedule for moving forward. For instance, organizations should generally assess a high-impact system before a moderate-impact system—but a moderate-impact system that is overdue may need to be prioritized.# Security Assessment and Testing Frequency
+
+## Overview
+Security assessments are crucial for high-impact systems, especially when the last security assessment is still within an acceptable timeframe. Continuous monitoring requires that a number of NIST SP 800-53 security controls be constantly tested.
+
+## Assessment Frequency
+The frequency of assessments is often driven by an organization’s need to demonstrate compliance with specific regulations or policies. For instance, the Federal Information Security Management Act (FISMA) mandates periodic testing based on risk, with a minimum requirement of annual assessments. NIST Special Publications (SPs) 800-53 and 800-53A offer recommendations regarding the frequency of conducting these security assessments.
+
+### Snapshot of Security
+Since an assessment provides a snapshot of security at a given point in time, organizations may opt for more frequent assessments based on their specific needs.
+
+## Technical Considerations
+Several important technical considerations can influence the frequency of testing:
+
+- **Presence of Weaknesses**: If a system is suspected to have multiple weaknesses, testing may be conducted sooner to confirm their existence or delayed until the weaknesses are mitigated to verify resolution.
+
+- **Testing Objectives**: The timing of testing is also dependent on the objectives of the assessment.
+
+- **Impact on Functionality**: Organizations must consider whether any system or network activities required by the testing could affect the functionality or security of the environment. For example, if a major upgrade is imminent, testing might be postponed until after the upgrade.
+
+### Identifying Rogue Devices
+Organizations may want to identify rogue devices on wired networks. This can be achieved through various techniques, such as:
+
+- Performing network discovery via passive sniffing or active scanning.
+- Reviewing data collected by network management software, network intrusion detection sensors, or other monitoring devices.
+
+If monitoring devices can generate alerts upon detecting a new, potentially rogue device, there may be little need for periodic testing, as effective testing is continuously performed.
+
+## Resource Availability
+Organizations must carefully evaluate resource availability for testing. Resources should first be allocated to high-priority systems, with lower-priority systems tested less frequently. If there is a gap between required and available resources, organizations may need to allocate additional resources or reduce the scope of planned assessments.
+
+### Scoping Elements
+Relevant scoping elements may include:
+
+- **Size of the Assessment**: This includes the number of components (e.g., single database, all user systems, or entire architecture) and network size (e.g., Local Area Network [LAN] or Wide Area Network [WAN], including the number of network locations that a tester will need to physically access for testing).
+
+- **Complexity of the Environment**: More heterogeneous environments typically require more resources due to the need for diverse skill sets and tools.
+
+- **Feasibility of Sampling**: The feasibility of using a sample for assessment, along with the sample size and its composition, can also impact resource allocation. For example, it may be more efficient—and nearly as effective—to conduct a port scan of a sample rather than the entire system.# Assessment Techniques and Considerations
+
+## Introduction
+When conducting assessments, organizations must consider various factors that influence the selection and customization of testing techniques.
+
+## Factors Influencing Assessment Techniques
+
+### Resource Level
+- The level of resources needed to conduct specific testing or examination techniques.
+- For example, it could take many hours for a skilled assessor to review a system’s complete security documentation.
+
+### Human Interaction
+- The level of human interaction required.
+- If assessors work in tandem with IT staff, it may serve as training for the IT staff but will likely increase the time needed to complete the assessment compared to independent work.
+
+## Selecting and Customizing Techniques
+
+### Assessment Objectives
+Organizations should first determine their assessment objectives, such as:
+- Verifying compliance with a particular mandate.
+- Verifying a system’s security as part of certification and accreditation (C&A) activities.
+- Identifying exploitable vulnerabilities in a group of systems.
+- Evaluating intrusion detection system and incident handling procedure performance.
+
+### Technique Selection
+Next, organizations should select the classes of techniques (e.g., review, target identification and analysis, target vulnerability validation) to support their objectives, and specific techniques within each selected class.
+
+### Assessors’ Viewpoint
+For some testing techniques, organizations must also determine the assessors’ viewpoint (e.g., internal versus external, covert versus overt) and select corresponding techniques.
+
+### Resource Considerations
+Since more than one technique can often meet an assessment objective, organizations need to determine which techniques are best for each case. Important considerations include:
+- **Cost**: Some techniques may require more resources due to the types of tools needed and the number of hours of staff time.
+- **Time**: If there is a short timeframe for conducting an assessment, less extensive or resource-intensive techniques may be necessary, such as performing vulnerability scanning instead of a penetration test.
+- **Skills**: Organizations may lack assessors with the appropriate skill sets for certain specialized techniques.
+
+### Risk Considerations
+Organizations should carefully consider risk when selecting testing techniques. Some techniques, such as penetration testing, could lead to:
+- Loss of system availability.
+- Exposure of sensitive data.
+
+### Testing Environment
+Organizations should consider whether testing should be performed on production systems or similarly configured non-production systems, if available. Additionally, restricting certain techniques to off-hours can minimize operational impact.
+
+### Impact Evaluation
+Factors to evaluate when making decisions about testing techniques include:
+- The possible impact on production systems. For example, if a particular test technique is likely to disrupt services or compromise data integrity.# Security Assessment Techniques
+
+## Considerations for Testing Environments
+
+- **Denial of Service Risks**: Testing should ideally be conducted on non-production systems to avoid potential denial of service.
+
+- **Sensitive Personally Identifiable Information (PII)**: If testing may expose sensitive PII (e.g., Social Security numbers or credit card information) to unauthorized individuals, organizations should consider using non-production systems with test data instead of actual PII.
+
+- **Configuration Similarity**: The degree to which production and non-production systems can be configured is crucial. Inconsistencies between these environments can lead to missed vulnerabilities.
+
+Organizations often employ a mix of techniques to conduct thorough security assessments while managing acceptable risk levels. As noted in Section 2, non-technical techniques may complement technical ones, and many assessments utilize a combination of both.
+
+## Examples of Technical Techniques
+
+The following examples illustrate how various technical techniques can work together and how the selection of techniques can relate to risk concerns. These are meant as examples rather than strict recommendations, as each organization's assessment requirements and objectives may differ.
+
+### Identifying Technical Weaknesses
+
+1. **Documentation Review**: Identify policy and procedure weaknesses and security architecture flaws.
+
+2. **Ruleset and Security Configuration Review**: Identify deviations from organizational security policies in the system’s network security architecture and security flaws.
+
+3. **Wireless Scanning**: Identify rogue wireless devices near the system and additional security architecture weaknesses related to the wireless networks used.
+
+4. **Network Discovery and Vulnerability Scanning**: Identify all active hosts within the system and their known vulnerabilities.
+
+### Validating Technical Weaknesses
+
+1. **Ruleset and Security Configuration Review**: Identify deviations from organizational security policies in the system’s network security architecture and security flaws.
+
+2. **Network Discovery and Vulnerability Scanning**: Identify all active hosts within the system and their known vulnerabilities.
+
+3. **Penetration Test with Social Engineering**: Validate vulnerabilities in the system.
+
+### External Attacker's Viewpoint
+
+- Identify and validate technical weaknesses in a system’s security architecture and security configuration from an external attacker’s perspective, including attempts to exploit selected vulnerabilities.# Security Assessment Guide
+
+## 1. Introduction
+This document outlines the steps and logistics involved in conducting security assessments, particularly focusing on penetration testing and the evaluation of audit capabilities.
+
+## 2. Penetration Testing Steps
+
+### Step 1: External Penetration Testing
+- Perform external network discovery, port scanning, vulnerability scanning, and attacks to identify and validate system vulnerabilities.
+
+### Step 2: Log Review
+- Review security control audit logs for the system to determine their effectiveness in capturing information relating to external penetration testing activities.
+
+## 3. Assessment Logistics
+Addressing logistics for technical assessments includes identifying all resources required for conducting the assessment, the environment from which to test, and required hardware and software testing tools.
+
+### 3.1 Logistical Requirements
+In addition to the standard logistical requirements discussed below, it is equally important to identify logistical requirements for each test during the planning phase. Depending on the scope and the environment, individual tests may have additional logistical requirements such as:
+- Submitting a visit request for an external test team.
+- Shipping equipment to a facility to enable testing.
+- Planning for local or long-distance travel.
+
+These needs should be addressed on a case-by-case basis during the planning process.
+
+## 4. Assessor Selection and Skills
+Assessors conduct examinations and tests using technical methods and techniques, such as those described in this guide. Organizations should take care when selecting assessors, as properly vetted, skilled, and experienced assessors will lower the risks involved in conducting security tests.
+
+### 4.1 Access to Sensitive Information
+Assessors may require access to sensitive information on network architecture, security posture, and weaknesses. Some organizations may require background checks or security clearances for assessors.
+
+### 4.2 Conflicts of Interest
+Organizations should be mindful of possible conflicts of interest, such as a single individual conducting a formal assessment and being responsible for addressing the findings of that assessment.
+
+### 4.3 Internal Assessment Teams
+Many organizations have dedicated internal assessment teams. Depending on an organization’s structure, size, location, and available resources, these teams may be divided by geographical location or centralized and deployed to various sites to conduct their assessments.
+
+### 4.4 Technical Competencies
+Some teams address specific technical competencies, such as wireless security testing, while other teams can address many areas of security in varying levels of depth. For instance, a team may have among its members:
+- Individuals capable of reviewing a system configuration.
+- Those who can use automated assessment tools to identify known vulnerabilities.
+- Others who are able to actively exploit vulnerabilities to demonstrate ineffective security measures.
+
+### 4.5 Required Knowledge
+Assessors should have significant security and networking knowledge, including expertise in:
+- Network security
+- Firewalls
+- Intrusion detection systems
+- Operating systems
+- Programming
+- Networking protocols (such as TCP/IP)
+
+A wide range of technical skill sets is required to conduct testing effectively.# Assessment Team Skills and Composition
+
+## Overview
+Effective and efficient assessments are crucial for ensuring minimal risk to an organization. Assessors must possess specific skills and experience to conduct various technical tests, including vulnerability identification, security configuration, vulnerability management, and penetration testing.
+
+## Importance of Experience
+Operational experience is preferred over classroom or laboratory training. Inexperienced or untrained staff conducting technical tests can negatively impact an organization’s systems and networks, potentially hindering its mission and damaging the credibility of its security program management office and assessors.
+
+## Role of Technical Writers
+Having a technical writer or an individual with strong technical writing skills on the team is beneficial. This role helps convey the results of the assessment effectively, especially to less technical readers.
+
+## Team Leadership
+When assessments are performed by a team, the team leader plays a critical role in facilitating the assessment process. Key responsibilities include:
+- Demonstrating an understanding of the organization’s environment and requirements.
+- Easing communication between assessors and the organization’s security group.
+
+### Selection of Team Leaders
+Team leaders should be selected based on:
+- Overall technical knowledge and experience with the techniques being executed.
+- Knowledge of the assets being assessed.
+- Strong communication, organization, planning, and conflict resolution skills.
+
+## Balanced Skill Set
+The skills possessed by an assessment team should be balanced to provide a comprehensive view of the organization’s security posture. For instance:
+- While having a specialist in perimeter defense is helpful, a team composed entirely of perimeter defense specialists may be redundant unless the focus is solely on perimeter security.
+
+### Assembling the Team
+Ideally, a team should be assembled based on the specific requirements of the examinations and tests being conducted. System characteristics, such as those found in supervisory control and data acquisition (SCADA) systems, may require unique expertise that traditional security assessors may lack.
+
+## Subject Matter Experts (SMEs)
+In cases where specialized knowledge is needed, one or more subject matter experts (SMEs) may be required to augment the regular assessors. SMEs can be:
+- Experienced security testers and system experts.
+- Skilled in the specific system being tested.
+
+### Involvement of SMEs
+SMEs should be educated on the goals, objectives, approach, and process of the assessment. Their involvement in the planning process is crucial, as they may have critical knowledge to contribute.
+
+## Continuous Learning
+Assessors must stay updated on new technology and the latest attack methods. Regular activities to maintain and enhance their skills include:
+- Attending technical training courses.
+- Performing hands-on testing in a test environment.
+- Researching the latest vulnerabilities and exploits.
+
+### Regular Testing
+Assessors should also conduct technical hands-on tests in operational environments regularly to maintain their proficiency and effectiveness.# Responsibilities of Assessors
+
+Assessors play a crucial role in security assessments, and their responsibilities include:
+
+## Informing Relevant Parties
+- Informing the appropriate parties—such as security officers, management, system administrators, and users—of security assessment activities.
+
+## Developing Assessment Plans
+- Developing assessment plans with system managers, the Information Systems Security Officer (ISSO), and the Chief Information Security Officer (CISO).
+
+## Executing Examinations and Tests
+- Executing examinations and tests, and collecting all relevant data.
+
+## Analyzing Data
+- Analyzing collected data and developing mitigation recommendations.
+
+## Conducting Additional Tests
+- Conducting additional examinations and tests when needed to validate mitigation actions.
+
+## Engaging Third Parties
+In some cases, engaging third parties (e.g., auditors, contractor support staff) to conduct the assessment offers an independent view and approach that internal assessors may not be able to provide. Organizations may also use third parties to provide specific subject matter expertise that is not available internally.
+
+### Risks of External Assessors
+While it can be beneficial to gain an external perspective on the security posture, giving outsiders access to an organization’s systems can introduce additional risk. External entities should be properly vetted to ensure that they possess the necessary skills, experience, and integrity, and should be asked to assume some of the risk associated with the security assessment in that they may be responsible for damages incurred by the organization being assessed. External entities should also understand and comply with the organization’s applicable policies and operational and security requirements.
+
+## Responsibilities for External Assessors
+In addition to those listed above, the responsibilities for external assessors include:
+
+- Coordinating and communicating with the organization being assessed.
+- Ensuring that proper authority is granted, and maintaining a signed copy of the assessment plan to ensure all updates are documented.
+- Signing and abiding by any required nondisclosure agreements.
+- Properly protecting data in accordance with the organization’s regulations, including handling, transmission, storage, and deletion of all collected data and resulting reports.
+
+# Location Selection
+
+The environment in which assessors operate differs according to the techniques being used. For many types of tests, assessors can operate either onsite or offsite, with onsite testing defined as testing executed at the organization’s location.
+
+## Onsite vs. Offsite Testing
+Placing assessors offsite, however, may make the test more realistic (e.g., when applying the covert testing approach). For examinations, assessors are generally located onsite so they can easily access the organization’s security documentation, logs, and other information.
+
+## Access Levels for Third Parties
+For assessments performed by third parties, the organization will need to determine the appropriate level of physical access (e.g., unrestricted, escorted). For technical assessments conducted from within the network—such as security configuration reviews and vulnerability scanning—assessors should be provided network access either onsite, through an encrypted virtual private network (VPN) tunnel, or via a dedicated connection from a trusted environment such as an approved test lab.
+
+## Access Requirements
+Assessors may require different levels of access to the network depending on the tools that they use. Some tools require network or domain administrator privileges—if this is the case, organizations should ensure appropriate access is granted.# Creating New Administrator Accounts for Assessments
+
+## Overview
+It is essential to create new administrator accounts for use during assessments. Each assessor should have his or her own account—administrator accounts should not be shared for any reason. This approach allows the organization to monitor these accounts, which will be disabled or deleted at the assessment’s conclusion.
+
+## Technical Assessments from Outside the Network
+Technical assessments conducted from outside the network’s perimeter can be executed following a number of scenarios, of which the most common are discussed here.
+
+### Direct Connection to Perimeter Device
+The assessors’ systems can be connected directly to a perimeter device (e.g., border router), which keeps the assessors within the organization’s logical and physical boundaries. However, use of this location does not provide a true evaluation of the organization’s security posture from an adversarial viewpoint.
+
+### Test Lab with Independent Internet Connection
+External tests can also be executed from a test lab with an Internet connection that is independent from the network of the organization being tested—and, if applicable, the organization conducting the testing (e.g., third-party assessors conducting the tests from their own facility).
+
+### Renting a Server
+Organizations conducting external tests may also choose to rent a server and an independent Internet connection. These services are provided by a variety of vendors, typically for a monthly fee. If a rented server is used, assessors should securely delete the data on the system and rebuild it before conducting a security test. Once testing is complete, the team should follow the guidelines provided in Section 7.4 for data handling.
+
+## Considerations for Assessment Locations
+When selecting a location for assessment activities, organizations should consider the inherent risks of using external locations.
+
+### Risks of External Locations
+- **Less Control**: External locations typically offer less control over physical and logical access than internal locations, which may place assessment systems and data at a greater risk of compromise.
+- **Network Traffic Monitoring**: Network traffic between the external location and the organization’s facilities is also at greater risk of being monitored by unauthorized parties, potentially exposing security weaknesses detected by tests.
+- **Testing Issues**: There may also be issues with performing certain types of testing, such as penetration testing, over third-party networks—such tests may appear malicious in nature to security staff monitoring network usage and may even violate the security policies of the network provider.
+
+## Impact of Assessment System Location on Results
+As previously discussed in Section 5, the location of the assessment systems may affect the results of certain types of tests.
+
+### Examples of Impact
+- **Vulnerability Scanning**: If vulnerability scanning network traffic passes through a firewall, that firewall might inadvertently block portions of the traffic and prevent certain vulnerabilities from being detected.
+- **Intrusion Detection Systems**: Intrusion detection and prevention systems and other security controls might block network traffic perceived as malicious in nature, such as certain types of tests.
+
+These problems are exacerbated when tests are run from an external location over a third-party network, in which case neither assessors nor the organization may have knowledge of or control over the security features interfering with test activities.
+
+## Technical Tools and Resources Selection
+Information systems built to execute a security assessment should meet the requirements of the specific type of assessment and its expected tools. For example, systems for document...# Review of Test Systems for Vulnerability Assessments
+
+## Overview
+The review should have applications installed to read documents, track vulnerabilities, and compose reports. Systems designed to execute tests such as vulnerability assessments and penetration testing are more complex in terms of system requirements and software tools.
+
+## System Requirements
+### Types of Systems
+- **Servers**: Typically used in test labs or onsite locations.
+- **Workstations**: Also used in test labs or onsite locations.
+- **Laptops**: Generally used by traveling assessors.
+
+Assessors may establish a network from which to execute techniques, enabling an environment that supports centralized logging of activities and servers dedicated to activities that require increased processing power.
+
+### Processing and Memory Requirements
+The requirements of test systems vary. A system that can handle the processing and memory requirements of all tools, operating systems, and virtual machines (VM) should be used to lessen the likelihood of the system crashing during a test. A crash could cause that component of the test to need to be redone, data to be lost, and test systems to be rebuilt.
+
+Processing power and memory requirements are driven by both the tools used and the speed with which the test team expects to process certain components. For example, password cracking generally requires increased processing power and memory, so test teams may wish to have a dedicated password-cracking server. A dedicated system will allow the team to execute other test objectives during the password-cracking process.
+
+### Hard Drive Requirements
+Hard drive requirements will depend on the expected amount of data collected during a test. In the event that long-term storage of the data is required, a storage method (e.g., independent system or removable media) should be identified and procured as appropriate.
+
+## Tools for Testing
+Tools used by the test team will vary depending on the individual test scope, but the team should have a core set of tools that it uses and keeps up to date. Depending on the engagement and organization, a team may use a combination of:
+- Tools developed in-house
+- Open source tools
+- Commercial or government off-the-shelf (GOTS) tools
+
+Tools should be obtained from well-established sources. Some organizations may also have specific tools they require or encourage teams to use—for example, an organization may purchase a license for a product that all its test teams can use. Many freeware tools are available as well.
+
+### Tool Evaluation
+Organizations should take care to evaluate each tool before using it in a test. This process could range from downloading the tool from a trusted site to conducting an in-depth code review to ensure that the tool does not contain malicious code.
+
+## Operating System Requirements
+Often, tools will determine the operating system required to execute the testing, including the need for multiple operating systems. Systems may be configured in a variety of ways, including:
+- Single OS
+- Single OS with VM images
+- Dual-boot systems
+
+### Example of Dual-Boot Systems
+An example of a dual-boot system is a system that can be booted to either a version of Microsoft Windows or a version of Linux such as Red Hat, Mandrake, or SuSE. A dual-boot system allows a tester to use two operating systems from a single machine.# Testing Systems and Tools
+
+## Introduction
+Testing systems can be inconvenient because the tester needs to reboot the system to switch between each OS and its tools.
+
+## Virtual Machines (VMs)
+Another more popular and functional option is to use VMs. Many testing tools require a specific operating system, and VMs allow testers to use a wider variety of tools more easily because they allow testers to switch from one OS to another without rebooting the system—enabling them to run multiple operating systems simultaneously.
+
+### Benefits of Using VMs
+This has several possible benefits, including:
+- Logging
+- Documentation capabilities
+- Executing simultaneous tests
+
+Since the system hosting the VM supports two or more operating systems at once, test systems running VMs require greater processing power and memory.
+
+## Tester Knowledge and Experience
+Testers should be knowledgeable, experienced, and comfortable using all operating systems found on the test system because system modifications are frequently required to operate specific tools or system capabilities successfully.
+
+### Example Scenario
+For example, if the test team is using Red Hat Linux to conduct a wireless security test, the team will need to be familiar with installing and configuring wireless network cards because the steps for doing so may not be obvious to a Red Hat Linux novice.
+
+## Baseline Image Development
+Regardless of the system installation method used, organizations conducting security tests should develop and maintain a baseline image from which to conduct their tests.
+
+### Importance of a Baseline Image
+An image provides a standardized toolkit for the team to use and enables rapid deployment of a team. The baseline image should consist of:
+- The operating system
+- Drivers
+- Requisite system and security configurations
+- Applications
+- Tools to conduct testing, including mechanisms for automatically logging assessor actions (e.g., commands issued)
+
+### Hardware Dependency
+Full system images are often hardware-dependent, so installing an image on another system with different hardware (e.g., video cards) requires the test team to modify the image—which involves specific skills and is time-consuming.
+
+### Advantages of VM Images
+VM images are more versatile and do not carry the same hardware restrictions as full system images, making them a more favorable option for test teams. Multifunction teams—such as those with the skills to conduct wireless scans, application testing, vulnerability assessments, and penetration tests—may have one image that contains the tools required to execute all test types or multiple images for various techniques.
+
+Using one image is generally preferable, as retaining multiple images requires additional maintenance.
+
+## Updating VM Images
+The VM image should be updated periodically to ensure that only the latest tools and versions are being used.
+
+### Update Procedures
+During this update period, the team should:
+- Confirm tool functionality
+- Identify—with documentation as appropriate—any changes in the functionality or use
+
+Updating tools that discover vulnerabilities (e.g., vulnerability scanners) before each test helps ensure that recently discovered vulnerabilities are part of the testing.
+
+### Toolkit Assessment
+In addition to maintaining their existing toolset, the team should periodically assess its toolkit to identify obsolete tools to be removed and new tools that should be added.
+
+## Security Patches and Services
+Before using test systems in a security test, the test team should apply the latest security patches and enable only the services needed for connectivity and testing.# Recommendations for Testing Systems
+
+## Overview
+The recommendations apply to all operating systems that may be used for testing, including those in virtual machines (VMs). The organization’s security group may validate that test systems are compliant with the organization’s security requirements and approved for testing before connecting these systems to the network.
+
+## Validation of Test Systems
+Validation can be done via the same systems used for technical tests such as vulnerability scans. Test systems may not meet all of the organization’s security requirements because of the requirements of the tools used for testing. For example, some security controls may interfere with tool operation because they attempt to stop scans or attacks performed using those tools. In such cases, assessors may need to disable these security controls when the tools are in use.
+
+## Flyaway Kit for Traveling Teams
+Traveling teams should maintain a flyaway kit that includes:
+- Systems
+- Images
+- Additional tools
+- Cables
+- Projectors
+- Other equipment that a team may need when performing testing at other locations.
+
+If an organization uses an external test team, this team should not use the organization’s resources unless required to do so. If the organization does not authorize external systems to be connected to its network, the external test team will need to either:
+- Install all required tools onto an approved client system, or
+- Bring a bootable system emulation capability such as a live CD.
+
+### Live CD Distributions
+Appendix A provides examples of two live CD distributions. If tools are directly installed onto a client system, the test team should ensure that the tools and any files that they generate are removed from the system when testing is done.
+
+## Assessment Plan Development
+An assessment plan provides structure and accountability by documenting the activities planned for an assessment, along with other related information. NIST SP 800-53A provides additional information on assessment plans and addresses several distinct steps that assessors should consider in developing a plan. These steps are:
+
+1. Determining the type of security control assessment.
+2. Determining the security controls and control enhancements to be included in the assessment.
+3. Selecting the appropriate assessment procedures to be used during the assessment based on security controls and control enhancements in the system security plan.
+4. Tailoring the selected assessment procedures for the information system impact level and organization’s operating environment.
+5. Developing additional assessment procedures, if necessary, to address other security controls and control enhancements.
+6. Developing a strategy to apply the extended assessment procedure.
+7. Optimizing assessment procedures to reduce duplication of effort and provide cost-effective assessment solutions.
+8. Finalizing the assessment plan and obtaining the approvals needed for its execution.
+
+## Importance of Assessment Plans
+Each assessment should be addressed in an assessment plan, regardless of the scope, level of intrusiveness, or party performing the test (i.e., internal, third party). This plan provides the rules and boundaries to which assessors must adhere and protects the organization by reducing the risk of an incident such as accidental system disruption or the inadvertent disclosure of sensitive information.# Assessment Plans
+
+Assessment plans are crucial for protecting the test team and ensuring that the organization’s management understands and agrees to the assessment’s scope, activities, and limitations. The development of the assessment plan should be a collaborative process between the assessors and key members of the organization’s security group.
+
+## Key Questions Addressed by the Assessment Plan
+
+The assessment plan should answer the following basic questions:
+
+- **What is the scope of the assessment?**
+- **Who is authorized to conduct the assessment?**
+- **What are the assessment’s logistics?**
+- **How should sensitive data be handled?**
+- **What should occur in the event of an incident?**
+
+## Scope and Authorization
+
+The assessment plan should identify which systems and networks are authorized to be examined and tested. This can be done by providing the number of systems and the IP addresses or address ranges that they use. The plan should also list specific systems—at a minimum by IP address and preferably also by system name—that are not authorized to be examined or tested.
+
+For example, if an organization’s payroll database is deemed too mission-critical for a particular type of testing, the system name and IP address should be included in the assessment plan’s exclusion list. If the organization does not control part or all of its network, such as having a portion of its systems housed on a third party’s network, the owner of the other network usually must also consent in writing to the assessment plan. A similar situation involves systems that are shared by organizations, such as a system using virtual machine technology to provide services to multiple organizations. By signing the assessment plan, all parties acknowledge and approve of the assessment.
+
+## Testing Type and Level
+
+Besides determining which systems are authorized for assessment, the assessment plan should also detail the type and level of testing permitted. For example, if the organization desires a vulnerability assessment, the assessment plan should provide information on activities authorized to be performed on the target network—such as:
+
+- Port and service identification
+- Vulnerability scanning
+- Security configuration review
+- Password cracking
+
+The plan should include enough detail to describe the type of testing, approach, and tools. For instance, if password cracking will be used, the method through which the passwords will be obtained (e.g., sniffed off the network or copied from the OS password file) should be included in the assessment plan. The plan should also explicitly state any activities that are prohibited—for example, file creation and modification—in a way that leaves no room for interpretation. If questions regarding scope and level of authorization arise during the course of an assessment, the assessors and the organization’s identified point of contact should meet to discuss them.
+
+## Logistical Details
+
+The plan should also address the logistical details of the engagement, including:
+
+- The hours of operation for assessors
+- The clearance or background check level required
+- A call plan with current contact information, network and security operations centers, and the organization’s main point of contact for the assessment
+- The physical location where assessment activities will originate
+- The equipment and tools that will be used to conduct the assessment
+
+Any requirements to inform parent organizations or stakeholders should also be included in the assessment plan.# Security Assessment Plan Guidelines
+
+## Introduction
+Organizations, law enforcement, and a computer incident response team (CIRT) should be identified in the assessment plan.
+
+## Responsibilities
+In addition, the person responsible for informing the organizations of the pending security assessment should be identified. In the case of covert or other unannounced testing, the assessment plan should also define how test activity detected and reported by the organization’s security staff, CIRT, and others should be handled—including the escalation processes to be followed. The primary purpose for this is to ensure that assessment activity does not trigger reporting of security breaches to external parties, such as external incident response teams.
+
+## Assessment Activities
+IP addresses of the machines from which assessment activities will be conducted should be identified in the assessment plan to enable administrators to differentiate assessment activities such as penetration testing attacks from actual malicious attacks. If appropriate for the goals of the assessment, security administrators can configure intrusion detection systems and other security monitoring devices to ignore activity generated by these IP addresses during testing.
+
+## Data Handling Requirements
+Data handling requirements should be addressed in the assessment plan, including:
+
+- **Storage of organizational data** during the assessment on the assessors’ systems, including physical security of the systems, passwords, and data encryption.
+- **Data storage upon conclusion of the assessment**, to meet long-term storage requirements or vulnerability tracking.
+- **Transmission of data** during or after the assessment across internal or external networks (e.g., the Internet).
+- **Removal of data from systems** upon conclusion of the assessment—in particular, for third-party assessments that include references to specific requirements set forth by the governing organization’s policies or procedures.
+
+## Incident Handling
+Finally, the assessment plan should provide specific guidance on incident handling in the event that assessors cause or uncover an incident during the course of the assessment. This section of the plan should define the term "incident" and provide guidelines for determining whether or not an incident has occurred.
+
+### Points of Contact
+The plan should identify specific primary and alternate points of contact for the assessors, generally the assessment team leader and assistant team leader, and the organization’s security group.
+
+### Actions Upon Incident Detection
+Guidelines should be included that clearly state actions to be taken by both the assessors and the organization’s security group upon determination that an incident has occurred. For example, if the assessors discover an actual intruder or an intruder’s footprints within the network, should testing stop? If so, when can testing recommence—and by whose authority? The assessment plan should provide clear-cut instructions on what actions assessors should take in these situations.
+
+## Rules of Engagement (ROE)
+Some assessments use ROE in addition to or instead of an assessment plan. The ROE contains the same information as an assessment plan and also addresses testing activities that are usually prohibited by the organization. For example, some activities that are often performed during penetration testing, such as...# Security Assessment Guidelines
+
+## 6.6 Legal Considerations
+
+An evaluation of potential legal concerns for an assessment should be addressed before the assessment begins. While the involvement of legal advisors is at the discretion of the organization, it is recommended that they always be involved for intrusive tests such as penetration testing. If an organization authorizes an external entity to conduct an assessment, the legal departments of each organization may be involved.
+
+These departments may assist in reviewing the assessment plan and providing indemnity or limitation of liability clauses into contracts that govern security assessments—particularly for types of tests that are deemed intrusive. The legal department may also require external entities to sign nondisclosure agreements that prohibit assessors from disclosing any sensitive, proprietary, or otherwise restricted information to unapproved entities.
+
+The legal department should also address any privacy concerns that the organization may have. Most organizations have warning banners or signed user agreements that disclose their systems are monitored, warning that individuals consent to monitoring by their use of the system. However, not all organizations have these in place, and the legal department should address potential privacy violations before the assessment begins.
+
+In addition, captured data may include sensitive data that does not belong to the organization—or personal employee data, which may create privacy concerns. Assessors should be aware of these risks and conduct packet captures that follow any requirements set forth by the legal department. The legal department may also determine data handling requirements to ensure data confidentiality (e.g., vulnerabilities).
+
+## 6.7 Summary
+
+Information security assessment is a complex activity because of organizational requirements, the number and type of systems within an organization, the technical techniques to be used, and the logistics associated with assessments. Security assessments can be simplified and associated risks reduced through an established, repeatable planning process. Accurate and timely planning of a security assessment can also ensure that all factors necessary for assessment success are taken into account.
+
+The core activities involved in planning for an assessment include:
+
+- **Developing a security assessment policy.** Organizations should develop an information security assessment policy to provide direction and guidance for their security assessments. This policy should identify security assessment requirements and hold accountable those individuals responsible for ensuring that assessments comply with the requirements.# Approved Policy Dissemination
+
+The approved policy should be disseminated to the appropriate staff, as well as third parties who are to conduct assessments for the organization. The policy should be reviewed at least annually and whenever there are new assessment-related requirements.
+
+## Prioritizing and Scheduling Assessments
+
+Organizations should decide which systems should undergo assessments and how often these assessments should be done. This prioritization is based on:
+
+- System categorization
+- Expected benefits
+- Scheduling requirements
+- Applicable regulations where assessment is a requirement
+- Resource availability
+
+Technical considerations can also help determine assessment frequency, such as waiting until known weaknesses are corrected or a planned upgrade to the system is performed before conducting testing.
+
+## Selecting and Customizing Technical Testing Techniques
+
+There are many factors for organizations to consider when determining which techniques should be used for a particular assessment. Factors include:
+
+- The assessment objectives
+- The classes of techniques that can obtain information to support those objectives
+- The appropriate techniques within each class
+
+Some techniques also require the organization to determine the assessors’ viewpoint (e.g., internal versus external) so that corresponding techniques can be selected.
+
+## Determining the Logistics of the Assessment
+
+This includes identifying all required resources, including the assessment team; selecting environments and locations from which to perform the assessment; and acquiring and configuring all necessary technical tools.
+
+## Developing the Assessment Plan
+
+The assessment plan documents the activities planned for an assessment and other related information. A plan should be developed for every assessment to provide the rules and boundaries to which assessors must adhere. The plan should identify:
+
+- The systems and networks to be assessed
+- The type and level of testing permitted
+- Logistical details of the assessment
+- Data handling requirements
+- Guidance for incident handling
+
+## Addressing Legal Considerations
+
+Organizations should evaluate potential legal concerns before commencing an assessment, particularly if the assessment involves intrusive tests (e.g., penetration testing) or if the assessment is to be performed by an external entity. Legal departments may review the assessment plan, address privacy concerns, and perform other functions in support of assessment planning.
+
+# Security Assessment Execution
+
+During execution of the security assessment, vulnerabilities are identified by the methods and techniques decided upon in the planning phase and identified in the assessment plan or ROE. It is critical that the assessment be conducted in accordance with the plan or ROE—and the purpose of this section is to highlight key points for assessors to consider throughout the execution phase.
+
+For example, proper coordination throughout the assessment facilitates the assessment process and reduces the possibility of...# Assessment Coordination and Considerations
+
+## Overview
+This section discusses the associated risks, key considerations such as incident handling, and the challenges organizations face when conducting assessments. It also highlights the analysis process and provides recommendations for the collection, storage, transmission, and destruction of assessment-related data.
+
+## 7.1 Coordination
+Throughout an assessment, it is critical for assessors to coordinate with various entities in the organization. Coordination requirements are determined by the assessment plan or Rules of Engagement (ROE) and should be followed accordingly. Proper coordination helps to ensure that:
+
+- **Stakeholder Awareness**: Stakeholders are aware of the assessment schedule, activities, and potential impacts the assessment may have.
+- **Timing of Assessment**: The assessment does not take place during upgrades, new technology integration, or other times when the system security is being altered (e.g., testing occurs during maintenance windows or periods of low utilization).
+- **Access Levels**: Assessors are provided with required levels of access to the facility and systems, as appropriate.
+- **Vulnerability Reporting**: Appropriate personnel such as the Chief Information Officer (CIO), Chief Information Security Officer (CISO), and Information System Security Officer (ISSO) are informed of any critical high-impact vulnerabilities as soon as they are discovered.
+- **Incident Communication**: Appropriate individuals (e.g., assessors, incident response team, senior management) are informed in the event of an incident. Should this occur, it is recommended that activities cease until the incident is addressed and the assessors are given approval to resume their activities in accordance with the assessment plan or ROE.
+
+### Suspension of Activities
+The extent to which assessment activities should be suspended varies based on the organization and the type of incident. In many cases, the only activities suspended are those involving the systems directly involved in the incident.
+
+### Coordination Levels
+The level of coordination between assessors and the organization is driven primarily by the system and the assessment being conducted. Critical systems generally require more coordination to ensure system availability throughout the engagement. Assessment techniques pose varying levels of risk to the target system during execution:
+
+- **Review Category**: Minimal risk
+- **Target Identification and Analysis Category**: Moderate risk
+- **Target Vulnerability Validation Category**: High risk
+
+For instance, a critical system undergoing penetration testing generally requires more coordination than would a document review of a critical system or a penetration test of a noncritical system. However, organizations may encounter circumstances where the reverse is true, and in such cases, the level of coordination should be commensurate with requirements and organizational considerations.
+
+### Vigilance and Access
+Assessors and other stakeholders—such as system owners—should remain vigilant during the execution of assessments. The level of access required by assessors will also drive coordination to ensure they have appropriate physical and system access (e.g., when testing the insider threat).
+
+Assessors should be proactive in their communication with the appropriate stakeholders.# Communication and Reporting in Assessments
+
+This communication can be maintained through periodic status meetings and daily or weekly reports. Meeting attendees and report recipients should be identified in the assessment plan or ROE, and may include the assessors, ISSO, CISO, and CIO. The frequency of status meetings and reports will be driven by the assessment’s length and complexity.
+
+For example, for a one-month penetration test, status meetings may be held weekly with daily reports provided during the active testing phase (i.e., the period during which systems are being exploited). Meetings and reports should address activities completed to date, success rate, problems encountered, and critical findings/recommended remediation.
+
+## 7.2 Assessing
+
+As discussed in Section 6, the assessment plan or ROE provides guidelines for conducting the assessment. The plan or ROE should be followed unless specific permission to deviate has been obtained, normally in writing, from the original signatory or individual in command. It is critical that all assessors read and understand the plan or ROE. It is recommended that assessors periodically review the plan or ROE during the assessment—particularly in the case of activities in the target vulnerability validation category.
+
+During an assessment, the organization’s incident response team may detect an incident. This could be caused by the assessors’ actions—or by a real adversary that happens to perform an attack while the assessment is in progress. Regardless, the incident response team or individual discovering the incident should follow the organization’s normal escalation procedures, and assessors should follow the guidelines set forth by the assessment plan or ROE unless instructed otherwise. If the presence of an adversary is found during the assessment, it should immediately be reported to the appropriate individual and assessors should follow the protocol identified in the assessment plan or ROE. It is recommended that assessors stop assessing the systems involved in the incident while the organization carries out its response.
+
+In addition to encountering new incidents or uncovering existing ones, assessors may face other technical, operational, and political challenges during an assessment. These can include:
+
+- **Resistance:** Resistance to assessments can come from many sources within an organization, including system and network administrators and end users. Reasons may include fear of losing system or network availability, fear of being reprimanded, inconvenience, and resistance to change. Obtaining upper management approval and support will help resolve problems related to resistance, and incorporating security assessments into the organization’s overall security policy will help establish a process that does not surprise administrators and users.
+
+- **Lack of Realism:** In preparing for an assessment, users and administrators sometimes modify settings to make their systems more secure, resistant to attack, or more compliant with policies and other requirements. While this can be viewed as positive, changes made under these circumstances are generally only maintained for the duration of the assessment.# Security Assessment Challenges
+
+## Introduction
+Security assessments are critical for identifying vulnerabilities within systems. However, several challenges can arise during the assessment process.
+
+## Key Challenges
+
+### 1. Immediate Mitigation
+- As security weaknesses are identified during an assessment, administrators may want to take immediate steps to mitigate them.
+- It is important for assessors to communicate the necessity of adhering to the organization’s change management policies and procedures.
+
+### 2. Time Constraints
+- Security assessments are often incorporated into development or deployment with little notice and narrow timeframes.
+- Testing critical systems and networks in production can pose challenges, as testing techniques may risk loss of availability or other issues.
+- Assessors are often restricted to specific testing timeframes, unlike real attackers who do not face such limitations.
+
+### 3. Resource Availability
+- Obtaining and maintaining adequate resources, such as a skilled test team and up-to-date hardware and software, is a continual challenge.
+- Organizations should designate specific equipment for assessments and consider purchasing continuous licenses and support contracts for commercial assessment software.
+- It is crucial to ensure that all assessment software is properly patched and up to date before the assessment begins.
+- If internal assessors are unavailable or do not meet requirements, finding reliable outside assessors can be difficult. Organizations should seek firms with established methodologies and proven processes.
+
+### 4. Evolving Technology
+- Assessors must stay current with tools and testing techniques.
+- Budgets should allow for annual training classes and conferences to help assessors update and refresh their skills.
+
+### 5. Operational Impact
+- While assessments are planned to minimize operational impact, there is always a risk of accidental or unexpected complications.
+- Every test conducted should be meticulously recorded, including timestamps, test types, tools used, commands executed, and the IP address of testing equipment.
+- It is recommended to use a logging script to capture all commands and activities during the assessment.
+
+## Conclusion
+Addressing these challenges is essential for effective security assessments. Organizations must prioritize proper planning, resource allocation, and continuous training to enhance their security posture.# Testing Process and Analysis
+
+## Keystrokes and Recording
+Keystrokes used during the testing process can be recorded using terminal and GUI tools. This type of recording can assist in countering accusations that testing has negatively impacted operations and system performance. Due to the risk of operational impact, it is recommended that an established incident response plan be in place during testing.
+
+## 7.3 Analysis
+Although some analysis may be performed after an assessment has been completed (see Section 8.1), most analysis occurs during the assessment itself. The primary goals in conducting analysis are to:
+
+- Identify false positives
+- Categorize vulnerabilities
+- Determine the vulnerabilities’ causes
+
+Automated tools can produce a significant number of findings, but these findings often need to be validated to isolate false positives. Assessors may validate vulnerabilities by manually examining the vulnerable system or by using a second automated tool and comparing the results. Although this can be done quickly, these comparison tools can often produce similar results—including the same false positives. Manual examination typically provides more accurate results than comparing results from multiple tools, but it also has the potential to be time-consuming.
+
+Organizations may choose to categorize their findings according to the security controls and control families in NIST SP 800-53, which organizes controls into families such as incident response and access control. This categorization may facilitate vulnerability analysis, remediation, and documentation.
+
+### Identifying Root Causes
+While individual vulnerabilities need to be identified and resolved, identifying the root cause of vulnerabilities is key to improving the organization’s overall security posture because a root cause can often be traced to program-level weaknesses. Some common root causes include:
+
+- **Insufficient patch management**: Failing to apply patches in a timely fashion or failing to apply patches to all vulnerable systems.
+- **Insufficient threat management**: Including outdated antivirus signatures, ineffective spam filtering, and firewall rulesets that do not enforce the organization’s security policy.
+- **Lack of security baselines**: Such as inconsistent security configuration settings on similar systems.
+- **Poor integration of security into the system development life cycle**: Such as missing or unsatisfied security requirements and vulnerabilities in organization-developed application code.
+- **Security architecture weaknesses**: Such as security technologies not being properly integrated into the infrastructure (e.g., poor placement, insufficient coverage, or outdated technologies), or poor placement of systems that increases their risk of compromise.
+- **Inadequate incident response procedures**: Such as delayed responses to penetration testing activities.
+- **Inadequate training**: Both for end users (e.g., failure to recognize social engineering and phishing attacks, deployment of rogue wireless access points) and for network and system administrators (e.g., deployment of weakly secured systems, poor security maintenance).
+- **Lack of security policies or policy enforcement**: Such as open ports and active vulnerabilities.# Vulnerability Assessment and Data Handling
+
+## Introduction
+In the context of vulnerability assessments, it is crucial to address various factors such as unsecured services, rogue hosts, and weak passwords. A valuable resource during the analysis phase is the NIST National Vulnerability Database (NVD), which provides information on Common Vulnerabilities and Exposures (CVE).
+
+## NIST National Vulnerability Database (NVD)
+The NVD is a comprehensive database that includes:
+- **Common Vulnerabilities and Exposures (CVE)**: A standardized list of known vulnerabilities.
+- **Common Vulnerability Scoring System (CVSS)**: A scoring system that rates the severity of vulnerabilities.
+- **Mitigation Recommendations**: Additional resources and vendor websites for addressing vulnerabilities.
+
+## Goals of Analysis
+One of the primary goals during the assessment is to identify critical vulnerabilities that require immediate attention. For example, if penetration testing reveals a vulnerability that allows assessors to gain administrator rights on a critical system, it is essential to notify the designated person in the assessment plan or Rules of Engagement (ROE) immediately.
+
+## Data Handling
+The method of handling an organization’s data during the assessment is vital for protecting sensitive information, including system architecture, security configurations, and vulnerabilities. Organizations should document data handling requirements in the assessment plan or ROE and adhere to their governing policies.
+
+### 7.4 Data Collection
+Relevant information must be collected throughout the assessment, including:
+- **Architecture and Configuration Data**: This data is driven by the assessment type and desired outcome and may include:
+- System names
+- IP addresses
+- Operating Systems (OS)
+- Physical and logical network positions
+- Security configurations
+- Vulnerabilities
+
+- **Assessor Activities**: Assessors should maintain a log that includes:
+- Assessment system information
+- A step-by-step record of their activities
+
+This log provides an audit trail, distinguishing between the actions of assessors and actual adversaries. It is also useful for developing the assessment results report.
+
+#### Keystroke Logging
+Using a keystroke logger on an assessor’s system can create a detailed log of tester actions, although it may not capture mouse clicks and certain other actions. For automated tools, assessors can maintain audit logs from each tool used.
+
+Assessors may choose to centralize the output of the keystroke logger or tool audit logs onto a separate system for better storage and auditing capabilities. Alternatively, a manual activities log can track each command executed by the assessors.# Assessors on the Network
+
+This approach is time-consuming for the assessors and leaves room for error.
+
+## Activities Log
+
+If an activities log is used, it should include at a minimum the following information:
+- Date and time
+- Assessor’s name
+- Assessment system identifier (i.e., IP or MAC)
+- Target system identifier (i.e., IP or MAC)
+- Tool used
+- Command executed
+- Comments
+
+## Data Storage
+
+Secure storage of data collected during the assessment, including vulnerabilities, analysis results, and mitigation recommendations, is the assessors’ responsibility. Inappropriate release of this information can damage the organization’s reputation and increase the likelihood of exploitation.
+
+At a minimum, assessors should store the following information to be used for identifying, analyzing, and reporting on the security posture of the organization, and provide an audit trail of testing activities:
+- Assessment plans and ROEs
+- Documentation on system security configuration and network architecture
+- Results from automated tools and other findings
+- Assessment results report
+- Corrective action plan or Plan of Action and Milestones (POA&M)
+
+Many options exist for storing information on discovered vulnerabilities, such as keeping the findings in the format output by the tool that was used, or importing the findings into a database. Most vulnerability scanning tools have report formats that list the system, vulnerabilities, and recommended mitigation techniques. This may be an acceptable approach if the assessment is small in scope (e.g., only uses one tool).
+
+For more in-depth assessments, larger organizations, or assessments that use multiple tools or approaches, a more robust and collaborative storage method—such as a spreadsheet or database—can be developed. Although functionality is limited, a spreadsheet may be appropriate for individual examinations or tests, as it is easy to use, usually quick to develop, and can accommodate a number of tools that can output findings in a compatible format.
+
+For complex examinations or tests with multiple technical approaches, assessment actions that regularly recur, or situations with a need to correlate data easily, developing a database may be beneficial.
+
+Organizations should ensure the secure storage of all sensitive assessment data, such as the assessment plan or ROE, raw vulnerability data, and assessment reports. In the hands of an adversary, information regarding network architecture, system configuration, security controls, and specific system vulnerabilities would provide a blueprint and roadmap for exploiting the organization’s information systems.
+
+Organizations may choose to store this data on removable media or on an information system that could be accessed as needed. The removable media or system designed to store this information should be isolated physically or logically from day-to-day network resources. Access to this system and the information it contains should be limited to those individuals whose access is needed to fulfill roles and responsibilities.
+
+This data is also recommended to be encrypted in compliance with FIPS 140-2 to ensure that it remains secure.
+
+Retention requirements for security assessments data vary and may not be...# Assessment Data Management
+
+## Record Retention
+It is explicitly stated for an organization that retention requirements for the assessment should be specified in the assessment plan or ROE. Maintaining accurate records for an assessment provides an organization with an audit trail of its vulnerabilities and the remediation actions it has taken to mitigate identified risks. An audit trail maintained over time may allow organizations to evaluate the effectiveness of their information security program by conducting trend analyses of metrics involving vulnerability type, frequency of occurrence, mean time to remediation, etc.
+
+## Security of Assessment Systems
+Assessment systems—such as servers, laptops, or other mobile devices—should not be left unattended when storing sensitive data without the proper physical and logical security safeguards in place.
+
+### Physical Safeguards
+For example:
+- Mobile systems should not be left in unlocked vehicles or in plain sight in locked vehicles.
+- Mobile devices in hotel rooms should be secured by a cable lock, stored in a room safe, or physically secured by other means.
+
+### Configuration and Protection
+In addition to these physical safeguards, assessors should ensure that the system is configured in a way that deters adversaries from compromising it. Assessors should take appropriate measures to ensure the integrity and confidentiality of data a system contains, and protect the system at a minimum with a strong password. It is suggested that organizations consider using two-factor authentication. Additionally, all sensitive data on the system should be encrypted, and an authentication mechanism separate from the system authentication should be used to restrict access to the encrypted information.
+
+## Data Transmission
+It may be necessary to transmit assessment data, such as system configurations and vulnerabilities, over the network or Internet. It is important to ensure the security of the data being transmitted to protect it from compromise. The assessment plan or ROE should address the requirements of, and process for, transmitting sensitive system information across the network or Internet.
+
+### Secure Data Transmission Methods
+Secure data transmission methods include:
+- Encrypting individual files containing sensitive information.
+- Encrypting communication channels using FIPS-compliant encryption (e.g., VPNs, Secure Sockets Layer [SSL] protocol).
+- Providing information through delivered or mailed hard or soft copies.
+
+## Data Destruction
+When assessment data is no longer needed, the assessment systems, hard copy documentation, and media should be appropriately sanitized. NIST SP 800-88, Guidelines for Media Sanitization, divides media sanitization into four categories:
+
+### Categories of Media Sanitization
+- **Disposal**: The act of discarding media with no other sanitization considerations. This is most often done by recycling paper that contains nonconfidential information, but may also include other media.
+- **Clearing**: A level of media sanitization that would protect information confidentiality against a robust keyboard attack. Simple deletion of items does not suffice for clearing. Clearing must keep information from being retrieved by data, disk, or file recovery utilities.# Media Sanitization and Post-Testing Activities
+
+## Media Sanitization Methods
+
+### Clearing
+- **Definition**: A process that makes data recovery difficult but not impossible.
+- **Example**: Overwriting is an acceptable method for clearing media.
+
+### Purging
+- **Definition**: A media sanitization process that protects information confidentiality against a laboratory attack.
+- **Note**: For some media, clearing does not suffice for purging.
+- **Examples**:
+- Executing the firmware Secure Erase command (for Advanced Technology Attachment [ATA] drives only).
+- Degaussing.
+
+### Destruction
+- **Definition**: Physical obliteration of media to render it no longer usable for its intended purpose and making the data it contains no longer retrievable.
+- **Methods**:
+- Disintegration
+- Incineration
+- Pulverizing
+- Shredding
+- Melting
+
+## Organizational Policies
+Organizations should maintain a policy on their sanitization requirements for assessment systems. NIST SP 800-88 presents a decision-flow diagram to assist organizations in determining which sanitization method is most applicable for their circumstances. An assessment plan or ROE may also specify destruction requirements for particular tests.
+
+### Third-Party Assessors
+Third-party assessors should ensure that they understand the organization’s requirements for sanitization, as policy may differ between organizations and possibly among divisions within the same organization. For example, some organizations prohibit third-party assessors from having any access to assessment data once their final reports have been submitted. In such cases, a qualified individual from the organization being assessed should verify that appropriate sanitization measures have been carried out.
+
+## Post-Testing Activities
+Following the execution phase—whose findings are expressed in terms of vulnerabilities—the organization should take steps to address the vulnerabilities that have been identified. This section presents ways that organizations can translate their findings into actions that will improve security.
+
+### Steps to Address Vulnerabilities
+1. **Final Analysis**: Perform a final analysis of the findings and develop mitigation actions.
+2. **Reporting**: Develop a report to present the recommendations.
+3. **Implementation**: Carry out the mitigation activities. Many of the actions presented in this section may occur outside of the testing process itself—for example, as part of a risk assessment that utilizes testing results.
+
+### Mitigation Recommendations
+As described in Section 7.3, most analysis occurs during the testing process. Final analysis, such as the development of overall conclusions, usually takes place after all testing activities have been completed and involves the development of mitigation recommendations.
+
+- **Importance**: While identifying and categorizing vulnerabilities is important, a security test is much more valuable if it also results in a mitigation strategy being developed and implemented.
+- **Types of Recommendations**:
+- Technical recommendations (e.g., applying a particular patch).
+- Non-technical recommendations that address the organization’s processes (e.g., updating the patch management process).
+
+### Examples of Mitigation Actions
+- [Further details on specific actions can be added here as needed.]# Security Control Mitigation and Reporting
+
+## 1. Introduction
+This document outlines the necessary modifications to policies, processes, and procedures, including security architecture changes, deployment of new security technologies, and the application of OS and application patches.
+
+## 2. Mitigation Recommendations
+NIST SP 800-53 suggests mitigation recommendations for each security control. Organizations should compare potential mitigation actions against operational requirements to determine the actions that best balance functionality and security.
+
+### 2.1 Implementation of Mitigation Recommendations
+Refer to Section 8.3 for a detailed discussion on the implementation of mitigation recommendations.
+
+## 3. Reporting
+
+### 3.1 Report Generation
+Upon completion of analysis, a report should be generated that identifies system, network, and organizational vulnerabilities along with their recommended mitigation actions.
+
+### 3.2 Uses of Security Testing Results
+Security testing results can be utilized in the following ways:
+- As a reference point for corrective action
+- In defining mitigation activities to address identified vulnerabilities
+- As a benchmark for tracking an organization’s progress in meeting security requirements
+- To assess the implementation status of system security requirements
+- To conduct cost/benefit analysis for improvements to system security
+- To enhance other life cycle activities, such as risk assessments, C&A, and process improvement efforts
+- To meet reporting requirements, such as those of FISMA.
+
+### 3.3 Documentation and Audience
+Security testing results should be documented and made available to appropriate staff, which may include the CIO, CISO, ISSO, and relevant program managers or system owners.
+
+#### 3.3.1 Report Formats
+Because a report may have multiple audiences, multiple report formats may be required to ensure that all are appropriately addressed. For example, organizations developing reports for FISMA compliance need to address:
+- Findings from evaluations
+- Compliance with NIST standards
+- Significant deficiencies
+- Planned remediation activities
+
+Reports that will remain within the organization can be tailored for specific audiences, such as program management, information management, security engineers, configuration management, or technical staff.
+
+### 3.4 Internal Reports
+Internal reports should include:
+- Test methodology
+- Test results
+- Analysis
+- Plan of Action and Milestones (POA&M)
+
+A POA&M will ensure that individual vulnerabilities are addressed with specific, measurable, attainable, realistic, and tangible actions.
+
+## 4. Remediation/Mitigation
+
+### 4.1 Plan of Action and Milestones (POA&M)
+The POA&M provides the program management office with the details and required actions needed to appropriately and acceptably mitigate risk.
+
+### 4.2 Implementation Strategy
+As a complement to the POA&M, organizations may consider developing a strategy or process for implementing the plan.
+
+### 4.3 Remediation Implementation Process
+Organizations should follow at least the four steps outlined below during their remediation implementation process to provide consistency and structure for security personnel and program managers.
+
+1. **Testing the Remediation Recommendation**: Before implementing technical modifications to a production asset, testing should be conducted on test systems in an environment that replicates the network in which the mitigation action would be implemented. For example, before being pushed to the enterprise, patches should be installed on comparable systems.# Implementation Strategy for POA&M
+
+## Testing Environment
+The test environment is crucial to determine if there are any negative implications. Such testing significantly reduces, but does not eliminate, the risk of a system reacting adversely to a technical modification.
+
+## Coordination through Configuration Management
+The POA&M should be coordinated through an organization’s configuration control or configuration management board because it likely proposes changes to existing systems, networks, policy, or processes.
+
+### Communication of Changes
+Communicating POA&M changes both before deployment and upon completion ensures that the appropriate individuals are aware of the pending changes and their impact on the environment, mission, and operations. At a minimum, the program manager or system owner should be contacted before executing any POA&M actions and should provide approval of the planned mitigation actions before they are implemented.
+
+## Management Approval
+Obtaining management approval can be challenging. It may be beneficial to identify why it is needed (i.e., whether it is driven by policy or technology) and the positive impact that will be realized with the mitigation action (i.e., increased security posture or compliance).
+
+### Cost/Benefit Analysis
+A cost/benefit analysis may also provide managers with a quantitative analysis of the increased savings to be realized by implementing the POA&M items. Additional benefits that may be communicated to senior management include:
+- Decreased exposure
+- Increased control of assets
+- Decreased vulnerabilities
+- A proactive approach to security
+- Maintenance of compliance
+
+## Implementation and Verification of Mitigation Actions
+Mitigation actions are implemented and verified to ensure their appropriate and accurate implementation.
+
+### Verification Methods
+Verification can take place by:
+- Conducting an audit of the system
+- Retesting the system and its components
+- Holding personnel accountable through documentation
+
+A system audit provides technical verification of the changes that have been implemented on the system and can be conducted by onsite security personnel or an external security test team. The audit team may use the mitigation strategy as a checklist for ensuring that each action is accomplished.
+
+### Importance of Retesting
+Retesting the system will validate that the mitigation actions have been completed. It is important to note that the test team will be able to verify its implementation only if a mirror copy of the original test is performed. As technology evolves, additional vulnerabilities may be uncovered during follow-up security tests.
+
+### Non-Technical Verification
+An organization may also choose to verify the implementation of the mitigation strategy through non-technical means such as documentation. For example, it may be appropriate and cost-effective to hold the security personnel responsible for implementing the mitigation strategy accountable by requesting that they sign a document describing all of the accomplished actions. While this method is more cost-effective in the short term for an organization, there are risks posed by not technically verifying that changes have been implemented.
+
+## Continuous Update of POA&Ms
+As part of the implementation strategy, it is important to continuously update POA&Ms to identify activities that have been accomplished, partially accomplished, or are pending action by another individual or system. Ensuring that the POA&M is integrated into the organization’s configuration management process is essential for ongoing effectiveness.# Management Process Overview
+
+The management process will facilitate centralized tracking and management of changes to systems, policies, processes, and procedures. It will also provide an oversight mechanism that will address compliance requirements.

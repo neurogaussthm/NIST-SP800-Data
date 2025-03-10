@@ -1,0 +1,376 @@
+# Abstract
+System primitives allow formalisms, reasoning, simulations, and reliability and security risk-tradeoffs to be formulated and argued. In this work, five core primitives belonging to most distributed systems are presented. These primitives apply well to systems with large amounts of data, scalability concerns, heterogeneity concerns, temporal concerns, and elements of unknown pedigree with possible nefarious intent. These primitives are the basic building blocks for a Network of 'Things' (NoT), including the Internet of Things (IoT). This document offers an underlying and foundational understanding of IoT based on the realization that IoT involves sensing, computing, communication, and actuation. The material presented here is generic to all distributed systems that employ IoT technologies (i.e., 'things' and networks). The expected audience is computer scientists, IT managers, networking specialists, and networking and cloud computing software engineers. To our knowledge, the ideas and the manner in which IoT is presented here is unique.
+
+# 1 Introduction
+From agriculture, to manufacturing, to smart homes, to healthcare, and beyond, there is value in having numerous sensory devices connected to larger infrastructures. This technology advance acknowledges the reality that human society is moving towards 'smart' and 'smarter' systems. The rapid advances in computer science, software engineering, systems engineering, networking, sensing, communication, and artificial intelligence are converging. The tethering factor is data.
+
+There is no formal, analytic, or even descriptive set of the building blocks that govern the operation, trustworthiness, and lifecycle of IoT. A composability model and vocabulary that defines principles common to most, if not all networks of things, is needed to address the question: "what is the science, if any, underlying IoT?" This document offers an underlying and foundational science to IoT based on a belief that IoT involves sensing, computing, communication, and actuation.
+
+This document uses two acronyms, IoT and NoT (Network of Things), extensively and interchangeably—the relationship between NoT and IoT is subtle. IoT is an instantiation of a NoT; more specifically, IoT has its 'things' tethered to the Internet. A different type of NoT could be a Local Area Network (LAN), with none of its 'things' connected to the Internet. Social media networks, sensor networks, and the Industrial Internet are all variants of NoTs.
+
+This differentiation in terminology provides ease in separating out use cases from varying vertical and quality domains (e.g., transportation, medical, financial, agricultural, safety-critical, security-critical, performance-critical, high assurance, to name a few). That is useful since there is no singular IoT, and it is meaningless to speak of comparing one IoT to another.# Primitives in Networks of Things (NoTs)
+
+Primitives are building blocks that offer the possibility of an answer to the aforementioned questions and statements by allowing comparisons between NoTs. We use the term **primitive** to represent smaller pieces from which larger blocks or systems can be built. For example, in software coding, primitives typically include the arithmetic and logical operations (plus, minus, and, or, etc.). In this document, we do not employ the restriction that primitives cannot be developed or derived from something else; this is often a common, paraphrased definition for "primitive," but it is not employed here.
+
+## Definition of 'Thing'
+
+This model does not specify a definition for what is or is not a 'thing.' Instead, we consider that each primitive injects a behavior representing that 'thing' into a NoT's workflow and dataflow. 'Things' can occur in physical space or virtual space.
+
+### Physical Space
+
+In physical space, consider:
+- Humans
+- Vehicles
+- Residences
+- Computers
+- Switches
+- Routers
+- Smart devices
+- Road networks
+- Office buildings
+
+### Virtual Space
+
+In virtual space, consider:
+- Software
+- Social media threads
+- Files
+- Data streams
+- Virtual machines
+- Virtual networks
+
+More ideas concerning 'things' are presented in Appendix C.
+
+## Importance of Primitives
+
+Primitives offer a unifying vocabulary that allows for composition and information exchange among differently purposed networks. They provide clarity regarding concerns that are subtle, including:
+- Interoperability
+- Composability
+- Continuously-binding assets that come and go on-the-fly
+
+Because no simple, actionable, and universally-accepted definition for IoT exists, the model and vocabulary proposed here reveal the underlying foundations of the IoT, i.e., they expose the ingredients that can express how the IoT behaves, without defining IoT. This offers insights into issues specific to trust.
+
+## Distributed Systems
+
+Further, we employ a paraphrased, general definition for a distributed system: a software system in which components located on networked computers communicate and coordinate their actions by passing messages. The components interact with each other in order to achieve a common goal. NoTs satisfy this definition. Thus, we consider IoT to be one type of a NoT and a NoT to be one type of a distributed system.
+
+# The Primitives
+
+The primitives of a NoT are:
+1. Sensor
+2. Aggregator
+3. Communication channel
+4. External utility (eUtility)
+5. Decision trigger
+
+There may be some NoTs that do not contain all of these, but that will be rare.
+
+Each primitive, along with its definition, assumptions, properties, and role, is presented. We employ a data-flow model, captured as a sequence of four figures in this document, to illustrate how primitives, when composed in a certain manner, could impact confidence in the trustworthiness of NoTs. Although this model may seem overly abstract at first glance, its simplicity offers a certain elegance by not over-complicating IoT's small handful of building blocks.
+
+## 2.1 Primitive #1: Sensor
+
+A sensor is an electronic utility that measures physical properties such as...# Overview of Sensors
+
+Sensors are devices that measure various physical properties such as temperature, acceleration, weight, sound, location, presence, identity, etc. They employ mechanical, electrical, chemical, optical, or other effects at an interface to a controlled process or open environment. Below are some basic properties, assumptions, recommendations, and general statements about sensors:
+
+## Basic Properties and Assumptions
+
+1. **Physical Nature**: Sensors are physical; some may have Internet access capability.
+2. **Data Output**: Sensor output is data; in our writings, `s1 -> d1` means that sensor 1 has produced a piece of data that is numbered 1. Likewise, `s2 -> d2` means that sensor 2 has produced a piece of data that is numbered 2. (d1, d2, d3, … dn will likely be digital data.) Analog sensors such as microphones and voltmeters are counterexamples.
+3. **Device Identification**: A sensor may also transmit device identification information, such as via Radio Frequency Identification (RFID).
+4. **Identity Association**: Sensors may have an identity or have the identity of the 'thing' to which they are attached.
+5. **Software Functionality**: Sensors may have little or no software functionality and computing power; more advanced sensors may have software functionality and computing power.
+6. **Heterogeneity**: Sensors may be heterogeneous, from different manufacturers, and collect data with varying levels of data integrity.
+7. **Geographic Location**: Sensors may be associated with fixed geographic locations or may be mobile.
+8. **Surveillance Capability**: Sensors may provide surveillance. Cameras and microphones are sensors.
+9. **Ownership and Control**: Sensors may have owner(s) who will have control of the data their sensors collect, who is allowed to access it, and when.
+10. **Pedigree**: Sensors will have pedigree – geographic locations of origin and manufacturers. Pedigree may be unknown and suspect.
+11. **Cost and Durability**: Sensors may be cheap, disposable, and susceptible to wear-out over time.
+12. **Security and Reliability**: There may be differentials in sensor security, safety, and reliability, e.g., between consumer grade, military grade, industrial grade, etc.
+13. **Data Quality**: Sensors may return no data, totally flawed data, partially flawed data, or correct and acceptable data. Sensors may fail completely or intermittently. They may lose sensitivity or calibration.
+14. **Data Range Expectations**: Sensors are expected to return data in certain ranges, e.g., [1 … 100]. When ranges are violated, rules may be needed on whether to turn control over to a human or machine when ignoring out-of-bounds data is inappropriate.
+15. **Serviceability**: Sensors may be disposable or serviceable in terms of calibration, sensitivity, or other forms of refresh. Complex and expensive sensors may be repaired instead of replaced.
+16. **Power Sources**: Sensors may be powered in a variety of ways including alternating current (AC), solar, wind, battery, or passively via radio waves.
+17. **Acquisition**: Sensors may be acquired off-the-shelf or built to specification.
+18. **Data Acquisition Methods**: Sensors acquire data that can be event-driven, driven by manual input, command-driven, or released at pre-defined times.
+19. **Data Integrity**: Sensors may have a level of data integrity ascribed (see Section 2.2.2).
+20. **Data Encryption**: Sensors may have their data encrypted to void some security concerns.
+21. **Authentication Capability**: Sensors should have the capability to be authenticated as genuine.# Sensor Data and Aggregators
+
+## 1. Sensor Data
+
+22. Sensor data may be sent and communicated to multiple NoTs. A sensor may have multiple recipients of its data. Sensor data may be leased to one or more NoTs.
+
+23. The frequency with which sensors release data impacts the data's currency and relevance. Sensors may return valid but stale data. Sensor data may be 'at rest' for long periods of time.
+
+24. A sensor's precision may determine how much information is provided. Uncertainty of sensor data should be considered.
+
+25. Sensors may transmit data about the "health" of a system, such as is done in prognostics and health management (PHM).
+
+26. In this document and model, we do not classify humans as sensors; humans are classified as an eUtility, our fourth primitive (see Section 2.4), and/or classified as our fourth element, owner (see Section 3). When classified as an eUtility, humans can still act in a sensor-like role by manually feeding data into a NoT's workflow and dataflow.
+
+27. Humans can influence sensor performance through failure to follow policy, sensor misplacement, etc. (or their positive analogs). Humans are potential contributors to sensor failures.
+
+28. Security is a concern for sensors if they or their data is tampered with, stolen, deleted, dropped, or transmitted insecurely so it can be accessed by unauthorized parties. Building security into specific sensors may or may not be necessary based on the overall system design.
+
+29. Reliability is a concern for sensors.
+
+## 2. Primitive #2: Aggregator
+
+An aggregator is a software implementation based on mathematical function(s) that transforms groups of raw data into intermediate, aggregated data. Raw data can come from any source. Aggregators help in managing 'big' data. Basic properties, assumptions, recommendations, and general statements about aggregators include:
+
+1. Aggregators may be virtual due to the benefit of changing implementations quickly and increased malleability. A situation may exist where aggregators are physically manufactured, e.g., a field-programmable gate array (FPGA) or hard-coded aggregator that is not programmable. Aggregators may also act in a similar way as n-version voters.
+
+2. Aggregators require computing horsepower; however, this assumption can be relaxed by changing the definition and assumption of virtual to physical, e.g., firmware, microcontroller, or microprocessor. For example, aggregators could execute on faster hardware such as a smartphone. Aggregators will likely use weights (see Section 2.2.2) to compute intermediate, aggregated data.
+
+3. Aggregators have two actors for consolidating large volumes of data into lesser amounts: Clusters (see Section 2.2.1) and Weights (see Section 2.2.2). Aggregators process big data concerns within NoTs, and to satisfy this role, computational "performance enhancing" technologies will be needed. This is the only primitive with actors.
+
+4. Sensors may communicate directly with other sensors, and thus act in some situations.# Aggregators and Clusters in Networks of Things (NoTs)
+
+## 1. Aggregators
+
+Aggregators play a crucial role in the processing of data within networks of things (NoTs). Here are some key points regarding aggregators:
+
+1. **Information Loss**: Intermediate, aggregated data may suffer from some level of information loss. Proper care in the aggregation process should be given to significant digits, rounding, averaging, and other arithmetic operations to avoid unnecessary loss of precision.
+
+2. **Cluster Association**: For each cluster (see Section 2.2.1), there should be an aggregator or a set of potential aggregators.
+
+3. **Execution Types**: Aggregators can be executed at a specific time and for a fixed time interval, or they can be event-driven.
+
+4. **Acquisition**: Aggregators may be acquired off-the-shelf. However, they may also be non-existent and need to be home-grown, which can create challenges for handling large volumes of data within a NoT.
+
+5. **Direct Communication**: Some NoTs may not have an aggregator; for example, a single light sensor may send a signal directly to a smart lightbulb to turn it off or on.
+
+6. **Security Concerns**: Security is a concern for aggregators, including risks from malware or general defects, as well as the sensitivity of their aggregated data. Aggregators could be attacked by denying them the ability to operate or by feeding them bogus data.
+
+7. **Reliability Issues**: Reliability is also a concern for aggregators due to potential general defects.
+
+## 2. Actor #1: Cluster (or "Sensor Cluster")
+
+A cluster is an abstract grouping of sensors that can appear and disappear instantaneously. Here are some basic properties, assumptions, recommendations, and general statements about clusters:
+
+1. **Abstraction of Sensors**: Clusters are abstractions of a set of sensors along with the data they output. They may be created in an ad hoc manner or organized according to fixed rules.
+
+2. **Non-Physical Nature**: Clusters are not inherently physical.
+
+3. **Composition of Clusters**: A cluster \( C_i \) is essentially a collection of sensor data from \( n \geq 1 \) sensors, represented as \( \{d_1, d_2, d_3, \ldots, d_n\} \).
+
+4. **Shared Sensors**: \( C_i \) may share one or more sensors with \( C_k \) (where \( i \neq k \)) or with other NoTs. This is important because competing organizations may receive data they believe to be unique, not realizing that a competitor is also receiving the same sensor data.
+
+5. **Trustworthiness Concerns**: Continuous binding of a sensor to a cluster may result in limited ability to mitigate trustworthiness concerns of a real-time NoT if the binding occurs late.
+
+6. **Malleability**: Clusters are malleable and can change their collection of sensors and their data at any time.
+
+7. **Impact of Aggregation Mechanism**: The composition of clusters is dependent on the mechanism employed to aggregate the data, which ultimately impacts the purpose and requirements of a specific NoT. Note item 4 in the above list; it is subtly important as it relates to business competition for highly valued data.
+
+## 3. Actor #2: Weight
+
+Weight refers to the degree to which a particular sensor's data will impact an aggregator's computation. Here are some basic properties, assumptions, recommendations, and general statements about weight:
+
+1. **Modification**: A weight may be hardwired or modified on-the-fly.
+
+2. **Trustworthiness Basis**: A weight may be based on a sensor's perceived trustworthiness, which can depend on factors such as the sensor's owner, manufacturer, and geographic location where the sensor is operating.# Sensor Data Management in Networks of Things (NoTs)
+
+## 1. Sensor Data Considerations
+
+### 1.1 Weighting Factors
+- Age or version of the sensor
+- Previous failures or partial failures of the sensor
+- Sensor tampering
+- Delays in returning data
+- Worth of the data
+- Uniqueness
+- Relation to mission goals
+
+### 1.2 Leveraging Sensor Data
+- Different NoTs may leverage the same sensor data and recalibrate the weights based on the specific purpose of a NoT.
+
+### 1.3 Aggregator Functionality
+- It is not implied that an aggregator is necessarily a functionally linear combination of sensor outputs.
+- Weights could be based on logical insights, such as:
+- If sensor A output is greater than 1, use Sensor B output; else, use Sensor C's output.
+
+### 1.4 Artificial Intelligence in Aggregators
+- Aggregators may employ artificial intelligence techniques to modify their clusters and weights on-the-fly.
+
+### 1.5 Impact of Weights
+- Weights will affect the degree of information loss during the creation of intermediate data.
+- Redundant sensors may increase a sensor's weight if a grouping of redundant sensor data is in agreement and produces the same result.
+- Repeated sampling of the same sensor might also affect a sensor's weighting, either positively or negatively, depending on the continuity of a particular output value during a fixed time interval.
+
+### 1.6 Security Concerns
+- Security concerns for weights are related to possible tampering of the weights.
+
+### 1.7 Importance of Correct Weights
+- The appropriateness (or correctness) of the weights is crucial for the purpose of a NoT.
+- A simple aggregator might implement the summation divided by x, where x is the number of data points, and where the weight for each data point is uniform.
+
+## 2. Communication Channel
+
+### 2.1 Definition
+- A communication channel is a medium by which data is transmitted (e.g., physical via Universal Serial Bus (USB), wireless, wired, verbal, etc.).
+
+### 2.2 Properties and Assumptions
+1. Communication channels move data between computing, sensing, and actuation.
+2. Since data is the "blood" of a NoT, communication channels are the "veins" and "arteries," as data moves to and from intermediate events at different snapshots in time.
+3. Communication channels will have a physical or virtual aspect to them, or both. Protocols and associated implementations provide a virtual dimension, while wires provide a physical dimension.
+4. Communication channel dataflow may be unidirectional or bi-directional. There are conditions where an aggregator might query more advanced sensors or potentially recalibrate them (e.g., request more observations per time interval).
+5. No standardized communication channel protocol is assumed; a specific NoT may have multiple communication protocols between different entities.
+6. Communication channels may be wireless.
+7. Communication channels may be an offering (service or product) from third-party providers.# Communication Channels and Sensor Reliability
+
+## Key Points on Communication Channels
+1. Communication channel trustworthiness may make sensors appear to be failing when actually the communication channel is failing.
+2. Communication channels can experience disturbances, delays, and interruptions.
+3. Redundancy can improve communication channel reliability. There may be more than one distinct communication channel between a computing primitive and a sensing primitive.
+4. Performance and availability of communication channels will greatly impact any NoT that has time-to-decision requirements (see the Decision trigger primitive in Section 2.5).
+5. Security and reliability are concerns for communication channels.
+
+## Sensor Failures
+In Figure 1, 15 sensors are shown – the blue sensors indicate that these 2 sensors are 'somehow' failing and at specific times, that is, they are not satisfying their purpose and expectations. As mentioned earlier, there could be a variety of sensor failure modes, some temporal, and some related to data quality.
+
+Further, the temporal failure modes for sensors may be actually a result of the transport of that data failing, and not the sensors themselves. Consider also that the two failing sensors in Figure 1 should probably be assigned lower weights.
+
+Figure 1 also shows the 15 sensors clustered into 3 clusters with 5 unique sensors assigned to each. The data coming out from each of the three clusters is inputted to 3 corresponding aggregators. It is now the responsibility of the 3 aggregators to turn those 15 sensor inputs into 3 intermediate data points.
+
+## Relationship Between Clusters and Aggregators
+Note the close relationship between clusters and aggregators. For example, in Figure 1, aggregator A1 might be determining how busy restaurant X is. Five independent sensors in C1 could be taking pictures from inside and outside (parking lot) of X, room temperature measurement in the kitchen, motion detectors from the dining area, sound and volume sensors, light detectors, etc.
+
+So while the sensors are certainly not homogeneous, their data is processed to make a new piece of data to address one question with possible results such as is the restaurant busy, not busy, closed, etc. Aggregators A2 and A3 might be doing the same for restaurants Y and Z respectively. Consider also that an aggregator can be associated with different clusters.
+
+## Primitive #4: eUtility (External Utility)
+An eUtility (external utility) is a software or hardware product or service. The current definition of eUtility is deliberately broad, to allow for unforeseen future services and products that will be incorporated in future types of NoTs yet to be defined. (Breaking this primitive down into sub-primitives is future work.)
+
+### Basic Properties of eUtility
+1. eUtilities execute processes or feed data into the overall workflow of a NoT.
+2. eUtilities could be acquired off-the-shelf from 3rd parties.
+3. eUtilities may include databases, mobile devices, miscellaneous software or hardware systems, clouds, computers, CPUs, etc.
+
+The eUtility primitive can be subdivided, and...# eUtilities and Decision Triggers in IoT
+
+## eUtilities
+
+1. eUtilities, such as clouds, provide computing power that aggregators may not have.
+2. A human may be viewed as an eUtility. A human is sometimes considered as a 'thing' in public discourse related to IoT.
+3. Data supplied by an eUtility may be weighted.
+4. An eUtility may be counterfeit; this is mentioned later in element Device_ID (see Section 3).
+5. Non-human eUtilities may have Device_IDs; Device_IDs may be crucial for identification and authentication.
+6. Security and reliability are concerns for all eUtilities.
+
+**Figure 2** illustrates using two cloud eUtilities to execute five aggregator implementations. (Note that there is no suggestion here that aggregators must execute on cloud platforms – this was for illustration only – aggregators can execute on any computing platform.) Figure 2 shows the addition of one non-cloud eUtility, eU1 (a laptop).
+
+## Primitive #5: Decision Trigger
+
+A decision trigger creates the final result(s) needed to satisfy the purpose, specification, and requirements of a specific NoT. Basic properties, assumptions, recommendations, and general statements about decision triggers include:
+
+1. A decision trigger is a conditional expression that triggers an action. A decision trigger's outputs can control actuators and transactions (see Figure 3 and Figure 4). Decision triggers abstractly define the end-purpose of a NoT.
+2. A NoT may or may not control an actuator (via a decision trigger).
+3. A decision may have a binary output, but there will also be situations where the output of a decision trigger is a non-discrete output, i.e., a continuum of output values.
+4. A decision trigger may have a built-in adaptation capability as the environment element (see Section 3) changes.
+5. A decision trigger will likely have a corresponding virtual implementation, i.e., code.
+6. A decision trigger may have a unique owner.
+7. Decision triggers may be acquired off-the-shelf or homegrown.
+8. Decision triggers are executed at specific times or may execute continuously as new data becomes available.
+9. Decision trigger results may be predictions.
+10. Analytics could be implemented within decision triggers; however, analytics could also be implemented within aggregators (that are executed by eUtilities).
+11. If a decision trigger feeds data signals into an actuator, then the actuator may be considered as an eUtility if the actuator feeds data back into the NoT. Also, an actuator can and often should be considered as a component of the environment element (see Section 3). This model treats actuators as "consumers" of the outputs from decision triggers. Actuators are 'things,' but not all things are primitives in this model.
+12. A decision trigger may feed its output back into the NoT creating a feedback loop (See Figure 4).
+13. It is fair to view a decision trigger as an if-then rule, although they will not all have this structure.# Decision Triggers in Network of Things (NoT)
+
+## Overview
+Decision triggers are predicates that must be true to initiate a command or action. They are often represented as if-then rules, although this may not always be the case. Variables within the predicate may represent data or sensor values from parts of the NoT.
+
+## Key Points
+
+1. **Parallelizability**: The workflow up to decision trigger execution may be partially parallelizable.
+
+2. **Failure Causes**: Failure to execute decision triggers at time `tx` may occur due to:
+- Tardy data collection
+- Inhibited sensors or eUtilities
+- Inhibited communication channels
+- Low performance aggregators
+- A variety of other subsystem failure modes
+
+3. **Economic Factors**: Economics and costs can influence the quality of the decision trigger's output.
+
+4. **Intermediate Triggers**: There may be intermediate decision triggers at any point in a NoT's workflow.
+
+5. **Aggregator Similarity**: Decision triggers act similarly to aggregators and can be viewed as a special case of an aggregator.
+
+6. **Security Concerns**: Security is a concern for decision triggers, including:
+- Malware or general defects
+- Indirect manipulation of input values to the trigger by tampering with or restricting the input values
+
+7. **Reliability Issues**: Reliability is a concern for decision triggers due to:
+- General defects
+- Inconsistencies, self-contradictions, and incompleteness
+- The need to understand how bad data propagates to affect decision triggers
+
+## Importance of Reliability
+Reliability is essential, indicating the need for strong testing and assurance of decision triggers. Fortunately, methods and tools for testing access control rules are well developed and may apply to a large set of decision trigger testing problems (Kuhn 2016).
+
+## Access Control Rules
+Access control rules typically take the form of predicates evaluating to two-valued decisions – either grant or deny. For example, a building access control system may include a rule such as:
+
+- "If subject is an employee and time is between 6 am and 9 pm, then grant access."
+
+Access control rules are composed into policies, which may include hundreds of rules with a large number of variables interacting in complex ways. Methods and tools exist to check complex access control policies for consistency and completeness, and to generate tests for assurance of policies implemented in code. These access control policy testing tools could be adapted to NoT verification and testing, providing a level of assurance that will be essential for more critical NoT applications.
+
+## Feedback Loops
+Figure 4 illustrates an alternative to the notion that a NoT's dataflow is necessarily uni-directional. It depicts a decision trigger that feeds its computation for `g(x, y)` back into the NoT, creating a continuous feedback loop. For example, if new sensor data were fed continuously into a NoT's workflow and dataflow, that data can be combined with the results of previous decision trigger outputs to create updated decisions.# Trigger Results at Later Points in Time
+
+## 2.6 Additional Notes on the Primitives
+
+Now, a few additional points concerning the interplay and relationship between the five primitives are as follows:
+
+1. **Sensor Feeds Aggregator**: The first primitive.
+2. **Aggregator**: Executes on various eUtilities of a NoT.
+3. **Communication Channels**: These are the veins and arteries that connect sensor, aggregator, eUtility, and decision trigger with the data that flows between them.
+4. **Events Firing**: Sensor, aggregator, communication channel, eUtility, and decision trigger all have events firing at specific snapshot times. A large challenge for IoT and NoTs is to keep these events in sync, just as for any distributed system.
+
+It is important to treat all events with respect to their temporal location, i.e., their geographical place and at what time. For example, the older events become, the staler or less interesting they may be relative to immediate decision making. Historical information may be useful in other calculations such as statistical reporting or model generation.
+
+# 3 The Elements
+
+To complete this model, we define six elements: environment, cost, geographic location, owner, Device_ID, and snapshot, that although are not primitives, are key players in trusting NoTs. These elements play a major role in fostering the degree of trustworthiness that a specific NoT can provide.
+
+1. **Environment**: The universe that all primitives in a specific NoT operate in; this is essentially the operational profile of a NoT. The environment is particularly important to the sensor and aggregator primitives since it offers context to them. An analogy is the various weather profiles that an aircraft operates in or a particular factory setting that a NoT operates in. This will likely be difficult to correctly define.
+
+2. **Cost**: The expenses, in terms of time and money, that a specific NoT incurs in terms of the non-mitigated reliability and security risks; additionally, the costs associated with each of the primitive components needed to build and operate a NoT. Cost is an estimation or prediction that can be measured or approximated. Cost drives the design decisions in building a NoT.
+
+3. **Geographic Location**: The physical place where a sensor or eUtility operates in, e.g., using RFID to decide where a 'thing' actually resides. Note that the operating location may change over time. A sensor's or eUtility's geographic location, along with communication channel reliability and data security, may affect the data flow throughout a NoT's workflow in a timely manner. Geographic location determinations may sometimes not be possible. If not possible, the data should be suspect.
+
+4. **Owner**: The person or organization that owns a particular sensor, communication channel, aggregator, decision trigger, or eUtility. There can be multiple owners for any of these five. Note that owners may have nefarious intentions that affect overall trustworthiness.# Trust and Device Identification in Networks of Things (NoTs)
+
+## 1. Trust and Ownership
+- Owners may remain anonymous.
+- There is a role for an operator, which is simplified into the owner element.
+
+## 2. Device Identification
+### 2.1 Device_ID
+- A unique identifier for a particular sensor, communication channel, aggregator, decision trigger, or eUtility.
+- Device_ID may be the only sensor data transmitted.
+- Typically originates from the manufacturer but can be modified or forged, potentially using RFID for physical primitives.
+
+## 3. Snapshots
+### 3.1 Definition
+- A snapshot represents an instant in time.
+
+### 3.2 Basic Properties and Assumptions
+1. Different events, data transfers, and computations occur at different snapshots due to the distributed nature of NoTs.
+2. Snapshots may be aligned to a clock synchronized within their own network (NIST 2015). A global clock may be burdensome for sensor networks operating in the wild, though some argue in favor of it (Li 2004). This publication does not endorse either scheme at this time.
+3. Data without an "agreed upon" time stamping mechanism is of limited or reduced value.
+4. NoTs can affect business performance; sensing, communicating, and computing can speed up or slow down a NoT's workflow, impacting the perceived performance of the environment it operates in or controls.
+5. Snapshots may be tampered with, making it unclear when events actually occurred. This can happen by changing the recorded time of an event in the workflow or computation, e.g., by inserting a delay() function call.
+6. Malicious latency can induce delays, affecting when decision triggers can execute.
+7. The reliability and performance of a NoT may be highly dependent on points 5 and 6.
+
+## 4. Additional Considerations
+### 4.1 Open vs. Closed NoTs
+- NoTs can be open, closed, or somewhere in between.
+- Example: An automobile with numerous sensors and CPUs, without wireless access to the outside, illustrates a closed NoT. This mitigates most wireless security concerns but may still face issues with malware and counterfeit 'things'.
+- A fully open system would allow any 'thing' to interoperate with any other 'thing' at any time, which is impossible to assure from a trustworthiness standpoint.
+- Most NoTs will exist between these extremes, with a continuum likely present.
+
+### 4.2 Design Patterns
+- There is an envisioned future demand for design patterns that facilitate the development of larger NoTs.

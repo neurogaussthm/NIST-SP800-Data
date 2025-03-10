@@ -1,0 +1,655 @@
+```markdown
+# Abstract
+Mobile applications are an integral part of our everyday personal and professional lives. As both public and private organizations rely more on mobile applications, ensuring that they are reasonably free from vulnerabilities and defects becomes paramount. This paper outlines and details a mobile application vetting process. This process can be used to ensure that mobile applications conform to an organization's security requirements and are reasonably free from vulnerabilities.
+
+# 1 Introduction
+Mobile applications (or apps) have had a transformative effect on organizations. Through ever-increasing functionality, ubiquitous connectivity, and faster access to mission-critical information, mobile apps continue to provide unprecedented support for facilitating organizational objectives. Despite their utility, these apps can pose serious security risks to an organization and its users due to vulnerabilities that may exist within their software. Such vulnerabilities may be exploited to steal information, control a user's device, deplete hardware resources, or result in unexpected app or device behavior.
+
+App vulnerabilities are caused by several factors including design flaws and programming errors, which may have been inserted intentionally or inadvertently. In the app marketplace, apps containing vulnerabilities are prevalent due in part to the submission of apps by developers who may trade security for functionality in order to reduce cost and time to market.
+
+The commercial app stores provided by mobile operating system vendors (Android, iOS) review the apps for issues such as malware, objectionable content, collecting user information without notice, performance impact (e.g., battery), etc. prior to allowing them to be hosted in their app market. The level and type of reviews conducted are opaque to consumers and the federal government. Furthermore, these app markets serve a global customer base that numbers in the billions and their reviews of apps are consumer- and brand-focused.
+
+Enterprise organizations—federal agencies, regulated industries, other non-governmental organizations—that plan to use consumer apps for their business will need to make risk-based decisions for app acquisition based on their own security, privacy, and policy requirements and risk tolerance.
+
+The level of risk related to vulnerabilities varies depending on several factors including the data accessible to an app. For example, apps that access data such as precise and continuous geolocation information, personal health metrics, or personally identifiable information (PII) may be considered to be of higher risk than those that do not access sensitive data. In addition, apps that depend on wireless network technologies (e.g., Wi-Fi, cellular, Bluetooth) for data transmission may also be of high risk since these technologies can also be used as vectors for remote exploits. Even apps considered low risk, however, can have significant impact if...
+```# App Vetting Process for Mobile Applications
+
+## 1. Introduction
+
+Mobile applications play a crucial role in various sectors, including public safety. However, vulnerabilities in these applications can lead to severe consequences, including loss of life. To mitigate potential security risks associated with mobile apps, organizations should employ a software assurance process that ensures a level of confidence that software is free from vulnerabilities, whether intentionally designed or accidentally inserted during its lifecycle. This document defines a software assurance process for mobile applications, referred to as the app vetting process.
+
+## 1.1 Purpose
+
+This document outlines the app vetting process and provides guidance on:
+
+1. Planning and implementing an app vetting process.
+2. Developing security requirements for mobile apps.
+3. Identifying appropriate tools for testing mobile apps.
+4. Determining if a mobile app is acceptable for deployment on an organization's mobile devices.
+
+An overview of techniques commonly used by software assurance professionals is provided, including methods of testing for discrete software vulnerabilities and misconfigurations related to mobile app software.
+
+## 1.2 Scope
+
+Software assurance activities for a mobile application may occur in one or more phases of the mobile application lifecycle:
+
+1. **App Development Phase**: During the development of the app by its developer.
+2. **App Acquisition Phase**: After receiving a developed app but prior to its deployment by the end-user organization.
+3. **App Deployment Phase**: During deployment of the app by the end-user organization.
+
+This document focuses primarily on the software assurance activities of the app vetting process, which is defined as part of the app acquisition phase of the mobile application lifecycle. Therefore, software assurance activities performed during the app's development phase (e.g., by source code analyzers) or during the app's deployment phase (e.g., by endpoint solutions) are considered out of scope for this document.
+
+Additionally, this document does not address the use of Enterprise Mobility Management (EMM), mobile app management, or mobile threat defense systems, although integrations with these systems are briefly examined. The security of Internet of Things (IoT) apps and the security of underlying mobile platforms and operating systems are also not discussed in this document, as these subjects are addressed in other publications.
+
+Finally, it should be noted that mobile apps, and the devices they run on, communicate using various network infrastructures such as Wi-Fi, cellular networks, and Bluetooth. These networks represent possible failure points for the security of an app. A deep evaluation of these aspects is essential for ensuring the overall security of mobile applications.# Mobile App Security Document
+
+## 1. Introduction
+
+### 1.1 Scope
+The scope of this document does not include the network infrastructures associated with mobile applications.
+
+### 1.2 Intended Audience
+This document is intended for public- and private-sector organizations that seek to improve the software assurance of mobile apps deployed on their mobile devices. More specifically, this document is intended for those who are:
+- Responsible for establishing an organization's mobile device security posture,
+- Responsible for the management and security of mobile devices within an organization,
+- Responsible for determining which apps are used within an organization, and
+- Interested in understanding what types of assurances the app vetting process provides.
+
+### 1.3 Document Structure
+The remainder of this document is organized into the following sections:
+- **Section 2** – App Security Requirements
+- **Section 3** – App Vetting Process
+- **Section 4** – App Testing Approaches and Vulnerability Classifiers
+- **Section 5** – App Vetting Considerations
+- **Section 6** – App Vetting Systems
+- **Appendix A** – Threats to Mobile Applications
+- **Appendix B** – Android App Vulnerability Types
+- **Appendix C** – iOS App Vulnerability Types
+- **Appendix D** – Acronyms and Abbreviations
+- **Appendix E** – Glossary
+- **Appendix F** – References
+
+### 1.4 Document Conventions
+Applications written specifically for a mobile platform are referred to as "apps" throughout this special publication.
+
+## 2. App Security Requirements
+Before vetting a mobile app for security, an organization must define the security requirements that an app must meet in order to be approved for use by the organization. In this document, we define two types of app security requirements that organizations should develop: general and organization-specific.
+
+### 2.1 General Requirements
+General app security requirements define the software and behavioral characteristics of an app that should or should not be present in order to ensure the security of the app. These requirements are considered "general" since they can be applied across all mobile applications and tailored to meet the security needs and risk tolerance of an organization. General app security requirements may be derived from a number of available standards, best practices, and resources including those specified by NIAP, OWASP, MITRE, and NIST.
+
+#### 2.1.1 National Information Assurance Partnership (NIAP)
+The NIAP Protection Profiles (PPs) specify an implementation-independent set of security requirements for a category of information technology (IT) products that meet specific federal customer needs. Specifically, the NIAP PPs are intended for use in certifying products for use in national security systems to meet a defined set of security requirements. NIAP PP certified products are also used by federal organizations in non-national security systems. The NIAP PPs define in detail the security objectives, requirements, and assurance activities.# Mobile App Security Evaluation
+
+## Introduction
+This document outlines the requirements that must be met for a product evaluation to be considered International Organization for Standardization (ISO)/International Electrotechnical Commission (IEC) 15408 certified. While many mobile apps fall outside the defined scope for requiring ISO/IEC 15408 certification, security analysis of these apps is still useful. For these apps, the National Information Assurance Partnership (NIAP) recommends a set of activities and evaluations defined in the "Requirements for Vetting Mobile Apps" from the Protection Profile for Application Software.
+
+## Categories of Requirements
+The requirements defined in this document are divided into two broad categories:
+
+### 1. Functional Requirements
+Declarations concerning the required existence or absence of particular software behavior or attributes.
+
+### 2. Assurance Requirements
+Declarations concerning actions the evaluator must take or stipulations that must be true for vetting to successfully execute.
+
+## Summary of NIAP Functional Requirements
+Table 1 summarizes the NIAP functional requirements.
+
+### Assurance Requirements
+The Assurance Requirements found in the protection profile can be summarized as follows:
+- The application shall be labeled with a unique reference.
+- The evaluator shall test a subset of the Target of Evaluation (TOE) security functions (TSF) to confirm that the TSF operates as specified.
+- The application shall be suitable for testing (free from obfuscation).
+- The evaluator shall perform a search of public domain sources to identify potential vulnerabilities in the TOE.
+
+## 2.1 OWASP Mobile Risks, Controls, and App Testing Guidance
+The Open Web Application Security Project (OWASP) maintains multiple useful resources concerning mobile app testing and security. Their Mobile Application Security Verification Standard (MASVS) is a detailed model for mobile app security that can be used to provide baseline security requirements for an organization.
+
+### MASVS Verification Levels
+Like the NIAP Protection Profile, the MASVS defines a set of declarations concerning the structure and behavior of an app. However, the MASVS also defines three verification levels:
+- **Standard Security (Level 1)**
+- **Defense in Depth (Level 2)**
+- **Resilience against Reverse Engineering and Threats (Level 3)**
+
+Each level's control lists are divided into the following categories, with the object described for each control depending on the desired verification level:
+- Architecture, Design, and Threat Modeling Requirements
+- Data Storage and Privacy Requirements
+- Cryptography Requirements
+- Authentication and Session Management Requirements
+- Network Communication Requirements
+- Platform Integration Requirements
+- Code Quality and Build-Setting Requirements
+- Resilience Requirements
+
+### OWASP Mobile Security Testing Guide (MSTG)
+The OWASP Mobile Security Testing Guide (MSTG) is a manual for testing the security of mobile apps. It describes the technical processes for verifying the requirements listed in the MASVS.
+
+## 2.1.3 MITRE App Evaluation Criteria
+In 2016, the MITRE Corporation (MITRE) performed an analysis of the effectiveness of mobile app evaluations.# App Security Vetting Solutions
+
+## Overview
+App security vetting solutions assist enterprises in automating portions of their vetting process.
+
+## MITRE's Analysis
+To perform the analysis, MITRE developed solution criteria based on NIAP's Protection Profile for Application Software, as well as additional criteria to address broader app vetting solution capabilities, threats against the app vetting solution itself, and other common mobile app vulnerabilities and malicious behaviors.
+
+### Testing Methodology
+Using its criteria, MITRE developed or obtained multiple vulnerable and malicious-appearing apps for use in assessing mobile app vetting solutions. MITRE used these apps to test the capabilities of mobile app vetting solutions.
+
+### Technical Report
+MITRE published a technical report describing their methodology, evaluation criteria, test applications, and overall results from analyzing the then-available solutions. The report and test applications are available on MITRE's GitHub site.
+
+## NIST SP 800-53
+NIST Special Publication 800-53 provides an extensive catalog of security and privacy controls designed for federal information systems.
+
+### Control Selection Process
+The document defines a process for selecting controls to defend IT systems, individuals, and other organizational assets from a variety of threats, such as hostile cyber-attacks, natural disasters, structural failures, and human errors. The controls can be customized to an organization-specific process to manage information security and privacy risk.
+
+### Security Control Baselines
+A set of three security control baselines are provided based on high, medium, and low impact. Furthermore, the publication describes how to develop specialized sets of controls, also known as control overlays, that can be tailored for unique or specific types of missions, business functions, and technologies.
+
+### Security Functionality and Assurance
+The NIST 800-53 security controls address privacy and security from a functionality perspective (the strength of security functions and mechanisms provided) and an assurance perspective (the measures of confidence in the implemented security capability). Addressing both security functionality and security assurance ensures that information technology products and the information systems built from those products, using sound systems and security engineering principles, are sufficiently trustworthy.
+
+## Organization-Specific Requirements
+Organization-specific security requirements define the policies, regulations, and guidance that an organization must follow to ensure its security posture.
+
+### Examples
+Examples include banning social media apps from installation on the organization's mobile devices and restricting the installation of apps developed by specific vendors.
+
+### Developing Security Requirements
+To help develop organization-specific security requirements, it is helpful to identify non-vulnerability-related factors that can impact the security posture of mobile apps. Such factors can be derived by considering the criteria as shown in Table 2.# App Evaluation and Security Assessment
+
+## Introduction
+Some information can be gleaned from app documentation in certain cases, but even if documentation does exist, it might lack technical clarity and/or use jargon specific to the circle of users who would normally purchase the app. Since the documentation for different apps will be structured in different ways, it may also be time-consuming to find this information for evaluation.
+
+## Standardized Questionnaires
+Therefore, a standardized questionnaire might be appropriate for determining the software's purpose and assessing an app developer's efforts to address security weaknesses. Such questionnaires aim to identify software quality issues and security weaknesses by helping developers address questions from end-users/adopters about their software development processes.
+
+### Example Questions
+For example, developers can use the Department of Homeland Security (DHS) Custom Software Questionnaire to answer questions such as:
+- "Does your software validate inputs from untrusted resources?"
+- "What threat assumptions were made when designing protections for your software?"
+
+Another useful question, not included in the DHS questionnaire, is:
+- "Does your app access a network application programming interface (API)?"
+
+Note that such questionnaires can be used only in certain circumstances, such as when source code is available and when developers can answer questions.
+
+## Vulnerability Databases
+Known flaws in app design and coding may be reported in publicly accessible vulnerability databases such as the U.S. National Vulnerability Database (NVD). Before conducting the full vetting process for a publicly available app, analysts should check one or more vulnerability databases to determine if there are known flaws in the corresponding version of the app.
+
+### Decision Making
+If one or more serious flaws already have been discovered, this finding alone might be sufficient grounds to reject the version of the app for organizational use, thus allowing the rest of the vetting process to be skipped. However, in most cases, such flaws will not be known, and the full vetting process will be needed. This necessity is because there are many forms of vulnerabilities other than known flaws in app design and coding.
+
+Identifying these weaknesses necessitates first defining the app security requirements, so that deviations from these requirements can be flagged as weaknesses.
+
+## Organizational Requirements
+In some cases, an organization will have no defined organization-specific requirements. As a result, analysts will evaluate the security posture of the app based solely on reports and risk assessments from test tools.
+
+### Manual Evaluation
+Note that the satisfaction or violation of an organization-specific requirement is not based on the presence or absence of a software vulnerability and thus cannot typically be determined by test tools. Instead, the satisfaction or violation of organization-specific requirements must be determined manually by an analyst.
+
+## Risk Management and Risk Tolerance
+The NIST Risk Management Framework (RMF) represents a joint effort spearheaded...# Risk Management Framework (RMF)
+
+by NIST, the Department of Defense (DoD), and the Committee on National Security Systems (CNSS).
+
+The RMF describes a process through which an organization establishes, maintains, and communicates a strategy to manage organizational risk in relation to an information system.
+
+## RMF Steps
+
+The RMF is a seven-step process consisting of the following steps:
+
+### Step 0: Prepare
+- Identifying key individuals and their assigned roles within the organization.
+- Identification, organization, and prioritization of required resources.
+
+### Step 1: Categorize
+- Identifying the security requirements associated with a system by classifying the system according to legislation, policies, directives, regulations, standards, and organizational mission/business/operational requirements.
+
+### Step 2: Select
+- Determining the baseline set of security controls that match the organization's risk tolerance.
+
+### Step 3: Implement
+- Implementing and documenting the selected controls.
+
+### Step 4: Assess
+- Examining the implementation of the security controls with respect to the organization's requirements.
+
+### Step 5: Authorize
+- Enabling the system to be used within the organization.
+
+### Step 6: Monitor
+- Ongoing and/or reoccurring reassessment of the selected security controls.
+
+Figure 2 describes the relationship between the steps of the RMF, as well as showing appropriate supporting documentation for each step.
+
+## Risk Tolerance
+
+A key activity in Step 0 involves identifying an organization's risk tolerance. Risk tolerance is the level of risk, or degree of uncertainty, that is acceptable to an organization. A defined risk tolerance level identifies the degree to which an organization should be protected against confidentiality, integrity, or availability compromise.
+
+Risk tolerance should take into account the following factors:
+- Compliance with security regulations, recommendations, and best practices.
+- Privacy risks.
+- Security threats.
+- Data and asset value.
+- Industry and competitive pressure.
+- Management preferences.
+
+# App Vetting Process
+
+An app vetting process is a sequence of activities performed by an organization to determine if a mobile app conforms to the organization's app security requirements. If an app is found to conform to the organization's app security requirements, the app is typically accepted for deployment on the organization's devices. An overview of the app vetting process is shown in Figure 3.
+
+Although app vetting processes may vary among organizations, each instance of the process should be repeatable, efficient, and consistent. The process should also limit errors to the extent possible (e.g., false-positive results). Typically, an app vetting process is performed manually or by an app vetting system that manages and automates all or part of the app vetting activities.# App Vetting Process
+
+As part of an app vetting system, one or more test tools may be used to analyze an app for the existence of software vulnerabilities or malicious behavior consistent with malware.
+
+## Overview
+
+Organizations perform an app vetting process during the app acquisition phase of a mobile application lifecycle; that is, when the app is received by the organization but prior to the app's deployment on the organization's devices. The rationale for this approach stems from the fact that while developers may perform their own software assurance processes on an app, there is no guarantee the app will conform to an organization's security requirements.
+
+Furthermore, because testing of the app by the developer occurs outside the vetting process, an organization must trust the work of these previously-performed assurance activities. Organizations should not assume an app has been fully vetted or conforms to their security requirements simply because it is available through an official app store.
+
+## Relationship with Developers
+
+It should be noted that when organizations have a close relationship with the app developer, the core loop of app vetting -> rejection -> vendor feedback -> app vetting can be accelerated if organizations are tightly embedded in an app developer's testing infrastructure. That is, organizations can leverage modern agile software development models to better meet their security requirements.
+
+## Benefits of App Vetting
+
+Performing an app vetting process prior to deployment on a mobile device affords certain benefits including rigorous and comprehensive analysis that can leverage scalable computational resources. Furthermore, since testing occurs before deployment, the vetting process is not limited by timing constraints for remediating discovered threats.
+
+However, while this document focuses on the vetting of mobile apps during the organization's app acquisition phase, NIST recommends organizations also perform security analysis during the deployment phase using, for example, an endpoint solution on a mobile device.
+
+## App Vetting Process Components
+
+An app vetting process comprises four sub-processes:
+
+1. App Intake
+2. App Testing
+3. App Approval/Rejection
+4. Results Submission
+
+These processes are shown in the relevant figures.
+
+### 3.1 App Intake
+
+The app intake process begins when an app is received for analysis. This process is typically performed manually by an organization administrator or automatically by an app vetting system.
+
+The app intake process has two primary inputs:
+
+- The app under consideration (required)
+- Additional testing artifacts such as reports from previous app vetting results (optional)
+
+After receiving an app, the app may be registered by recording information about the app including developer information, time and date of submission, and any other relevant information needed for the app vetting process. After registration, an app may also be preprocessed. Preprocessing typically involves decoding or decompiling the app to extract relevant data.# App Security Testing Process
+
+## 1. Introduction
+The app security testing process involves several key steps to ensure that applications are free from vulnerabilities and meet security requirements.
+
+## 2. Required Meta-Data
+- **App Name**
+- **Version Number**
+
+The app developer may also provide optional software assurance artifacts, including previous security analysis reports. Organizations accepting these artifacts must trust the validity and integrity of the app quality statements made by the developer.
+
+## 3. App Testing
+
+### 3.1 Overview
+The app testing process begins after an app has been registered and preprocessed. The app is then forwarded to one or more test tools.
+
+### 3.2 Test Tools
+A test tool is a software tool or service that tests an app for the presence of software vulnerabilities. Testing may involve different analysis methodologies, such as static analysis, and can be performed manually or automatically.
+
+- **Common Vulnerabilities**: Tests may identify vulnerabilities that are common across different apps and often satisfy general app security requirements (e.g., those specified by NIAP).
+
+### 3.3 Reporting
+After testing, a test tool generates a report that identifies any detected software vulnerabilities or potentially harmful behaviors. The report typically includes:
+- A score estimating the likelihood of exploitation of detected vulnerabilities.
+- The potential impact of the vulnerabilities on the app or its related device or network.
+
+Some test tools may conform to existing standards, such as NIAP, and can detect violations of general app security requirements but may not identify organization-specific policy violations.
+
+### 3.4 Workflow
+When an app is received by a test tool:
+- It is saved as a file on the tool vendor's server.
+- If the test tool is static, the app's code is analyzed by decoding, decompiling, or decrypting it from its binary executable form.
+- If the test tool is dynamic, the app is installed and executed on a device or emulator for behavior analysis.
+
+After analysis, the tool generates a vulnerability report and risk assessment, which is submitted to the app vetting system.
+
+## 4. App Approval/Rejection
+
+### 4.1 Process Overview
+The app approval/rejection process begins after a vulnerability and risk report is generated by a test tool and made available to one or more security analysts.
+
+### 4.2 Role of Security Analysts
+A security analyst inspects vulnerability reports and risk assessments from one or more test tools to ensure that an app meets all general app security requirements. Analysts also evaluate organization-specific app security requirements to determine if an app violates any security policies.# Mobile App Security Evaluation Process
+
+## 1. Introduction
+The mobile app security evaluation process involves several key steps to ensure that applications meet the organization's security requirements before deployment on mobile devices.
+
+## 2. Analyst Report
+After evaluating all general and organization-specific app security requirements, an analyst will collate this information into a report that specifies a recommendation for approving or rejecting the app for deployment on the organization's mobile devices.
+
+### 2.1 Role of the Authorizing Official
+The recommendation report from an analyst is then made available to an authorizing official, who is a senior official of the organization responsible for determining which apps will be deployed on the organization's mobile devices. An authorizing official decides the approval or rejection of an app using the recommendations provided by the analysts and considers other organization-specific (non-security-related) criteria including cost, need, etc.
+
+### 2.2 Mitigating Controls
+The analyst may add potential mitigating controls for some findings, such as the use of a per-app Virtual Private Network (VPN) to protect data in transit. When making the app determination, the authorizing official considers these mitigations as well as the sensitivity of data generated or accessed by the app, the type of users, how the app will be used, who owns and manages the device, and whether the app will access back-end systems or data (see Step 1 of the Risk Management Framework [13]).
+
+### 2.3 Final Approval/Rejection Report
+These analyst reports describe the app's security posture as well as possibly other non-security-related requirements. The organization's official approval or rejection is specified in a final approval/rejection report.
+
+## 3. Results Submission
+The results submission process begins after the final app approval/rejection report is finalized by the authorizing official and artifacts are prepared for submission to the requesting source.
+
+### 3.1 Artifacts
+These artifacts may include the final approval/rejection report, test tool reports, and possibly a digitally signed version of the app that indicates the app has completed the app vetting process. The use of a digital signature provides source authentication and integrity protection, attesting that the version of the analyzed app is the same as the version that was initially submitted and was not deliberately modified.
+
+## 4. App Re-Vetting
+The threat landscape for mobile apps is a constantly moving target. As time progresses, new vulnerabilities are discovered. Likewise, the tools used to identify them attempt to keep pace.
+
+### 4.1 Importance of Re-Vetting
+As such, vulnerabilities can be discovered in an app at any point in an app's lifecycle, even post-deployment. Furthermore, the current paradigm of mobile app development allows for apps to receive multiple updates and patches that add functionality, provide bug fixes, and patch vulnerabilities.
+
+### 4.2 Evaluation of Updated Apps
+From the perspective of a security analyst, these updates can force the evaluation of updated apps to be treated as wholly new pieces of software. Depending on the risk tolerance of an organization, this can make the re-vetting of mobile apps critical for certain apps. Organizations will need to establish protocols for what conditions trigger app re-vetting.# Complete Analysis of Re-Vetting Policies
+
+## Introduction
+Complete analysis of these triggers is out of scope for this document. However, organizations should consider the following when establishing their re-vetting policies:
+
+## Re-Vetting Considerations
+- Depending on the risk tolerance of an organization, applications that are not receiving regular updates can be re-vetted periodically (e.g., quarterly, biannually, annually) to benefit from improved analysis tools and techniques.
+- Organizations can leverage business relationships with app developers who purpose-build applications for their use to understand the degree to which app updates may affect an app's risk profile.
+- If allowed/enforced by organization policy, apps originating from commercial app stores can receive updates automatically. This can occur either by allowing devices to pull app updates directly from their respective app store or by having Mobile Application Management (MAM) software push updated apps to enrolled devices. These actions can dramatically alter the risk profile of an organization at scale.
+
+## Tracking and Analyzing App Updates
+Ideally, an organization would be able to track and analyze all apps after an update prior to allowing installation; however, this is resource-intensive and introduces delay for users. Some app security vendors provide "continuous mobile app vetting" of an organization's managed apps through automated tracking of installed apps and security analysis of updates. While this practice doesn’t stop app updates that are pushed to a device, it does reduce the window of exposure for a potentially vulnerable updated app.
+
+# App Testing and Vulnerability Classifiers
+
+During the app testing process, test tools are used to test for the existence of app vulnerabilities and malicious behavior. Often, such tools are based on standards such as NIAP and thus may be used to determine the satisfaction of general app security requirements. This section covers some of the strategies and approaches used by test tools and services to analyze mobile apps for vulnerabilities. It also describes various classifiers and quantifiers used to describe vulnerabilities.
+
+## Testing Approaches
+Test tools employ several different analysis techniques including correctness testing, analysis of source code or binary code, use of static or dynamic analysis, and manual or automatic app testing.
+
+### Correctness Testing
+One approach for testing an app is software correctness testing. Software correctness testing is the process of executing a program to detect errors. Although the objective of software correctness testing is improving quality assurance as well as verifying and validating described functionality or estimating reliability, it also can help reveal potential security vulnerabilities that often can have a negative effect on the quality, functionality, and reliability of the software. For example, software that crashes or exhibits unexpected behavior is often indicative of a security flaw. A prime advantage of software correctness testing is that it is...# Software Testing and Security
+
+## 1. Introduction
+Traditionally, software testing is based on specifications of the software to be tested. These specifications can be transformed into requirements that specify how the software is expected to behave while undergoing testing. This is distinguished from security assessment approaches that often require the tester to derive requirements themselves; often such requirements are largely based on security requirements that are common across many different software artifacts and may not test for vulnerabilities that are unique to the software under test. Nonetheless, because of the tight coupling between security and quality, and functionality and reliability, it is recommended that software correctness testing be performed when possible.
+
+## 2. Source and Binary Code Testing
+A major factor in performing app testing is whether source code is available. Typically, apps downloaded from an app store do not come with access to source code. When source code is available, such as in the case of an open-source app, a variety of tools can be used to analyze it.
+
+### 2.1 Goals of Source Code Review
+The goals of a source code review are to find vulnerabilities in the source code and to verify the results of test tools. Even with automated aids, the analysis is labor-intensive. Benefits to using automated static analysis tools include introducing consistency between different reviews and making possible reviews of large codebases. Reviewers should generally use automated static analysis tools whether they are conducting an automated or a manual review, and they should express their findings in terms of Common Weakness Enumeration (CWE) identifiers or some other widely accepted nomenclature.
+
+### 2.2 Requirements for Secure Code Review
+Performing a secure code review requires software development and domain-specific knowledge in the area of app security. Organizations should ensure the individuals performing source code reviews have the required skills and expertise. Organizations that intend to develop apps in-house also should refer to guidance on secure programming techniques and software quality assurance processes to appropriately address the entire software development lifecycle.
+
+### 2.3 Binary Code Analysis
+When an app's source code is not available, its binary code can be analyzed instead. In the context of apps, the term "binary code" can refer to either byte-code or machine code. For example, Android apps are compiled to byte code that is executed on a virtual machine, similar to the Java Virtual Machine (JVM), but they can also come with custom libraries that are provided in the form of machine code, i.e., code executed directly on a mobile device's CPU. Android binary apps include byte-code that can be analyzed without hardware support using emulated and virtual environments.
+
+## 3. Static and Dynamic Testing
+Analysis tools are often characterized as either static or dynamic. Static analysis examines the app source code and binary code and attempts to reason all possible behaviors that might arise at runtime.# Dynamic and Static Analysis in Software Assurance
+
+## Dynamic Analysis
+
+Dynamic analysis provides a level of assurance that analysis results accurately describe the program's behavior regardless of the input or execution environment. It operates by executing a program using a set of input use-cases and analyzing the program's runtime behavior.
+
+### Challenges in Dynamic Analysis
+
+In some cases, the enumeration of input test cases is large, resulting in lengthy processing times. However, methods such as combinatorial testing can reduce the number of dynamic input test case combinations, thereby reducing the amount of time needed to derive analysis results. Despite its advantages, dynamic analysis is unlikely to provide 100 percent code coverage.
+
+### Balancing Static and Dynamic Tools
+
+Organizations should consider the technical tradeoff differences between what static and dynamic tools offer and balance their usage given the organization's software assurance goals.
+
+## Static Analysis
+
+Static analysis requires that binary code be reverse engineered when source code is not available. This process is relatively easy for bytecode but can be difficult for machine code. Many commercial static analysis tools already support bytecode, as do a number of open-source and academic tools.
+
+### Challenges in Machine Code Analysis
+
+For machine code, it is especially hard to track the flow of control across many functions and to track data flow through variables, since most variables are stored in anonymous memory locations that can be accessed in different ways. The most common way to reverse engineer machine code is to use a disassembler or a decompiler that attempts to recover the original source code.
+
+These techniques are especially useful if the purpose of reverse engineering is to allow humans to examine the code because the outputs are in a form that can be understood by humans with appropriate skills. However, even the best disassemblers make mistakes. If the code is being reverse engineered for static analysis, it is preferable to disassemble the machine code directly to a form that the static analyzer understands rather than creating human-readable code as an intermediate byproduct. A static analysis tool aimed at machine code is likely to automate this process.
+
+## Comparison of Static and Dynamic Analysis
+
+In contrast to static analysis, the most important dynamic analysis requirement is to see the workings of the code as it is being executed. There are two primary ways to obtain this information:
+
+1. **Remote Debugging**: An executing app can be connected to a remote debugger.
+2. **Emulation**: The code can be run on an emulator that has built-in debugging capabilities.
+
+### Advantages of Running on Mobile Devices vs. Emulators
+
+Running the code on the intended mobile device allows the test tool to select the exact characteristics of the device and can provide a more accurate view of how the app will behave. On the other hand, an emulator provides more control, especially when the emulator is open-source and can be modified by the evaluator to capture whatever information is needed.
+
+### Limitations of Emulators
+
+Although emulators can simulate different devices, they do not simulate all of them, and therefore the simulation may not be completely accurate. Note that malware increasingly detects the use of emulators, which can affect the analysis results.# Emulators as a Testing Platform
+
+Emulators can change their behavior to avoid detection, making it essential for test tools to utilize a combination of emulated and physical mobile devices. This approach helps to prevent false negatives from malware that employs anti-detection techniques.
+
+## Observing App Behavior
+
+Useful information can be gathered by observing an app's behavior, even without knowing the purposes of individual functions. For instance, a test tool can monitor how the app interacts with external resources, recording the services it requests from the operating system and the permissions it exercises.
+
+### Inferred Device Capabilities
+
+While many device capabilities used by an app can be inferred (e.g., a camera app requiring access to the device's camera), an app may also have access to additional capabilities beyond its described functionality (e.g., a camera app accessing the device's network).
+
+### Contextual Evaluation of Capabilities
+
+If the app's behavior is observed for specific inputs, the evaluator can assess whether the exercised capabilities make sense in that context. For example, a calendar app may legitimately send calendar data across the network to sync across multiple devices. However, if a user merely requests a list of the day's appointments and the app sends additional data not needed for the handshaking process, the test tool should investigate the purpose of that data.
+
+# Vulnerability Classifiers and Quantifiers
+
+Using a common language to describe vulnerabilities in mobile apps is advantageous. The following sections outline some commonly used classifiers and quantifiers for identifying, describing, and measuring the severity of vulnerabilities.
+
+## Common Weakness Enumeration (CWE)
+
+CWE is a software weakness classification system maintained by the MITRE Corporation. It serves as a common language for software weakness categories, allowing different programming languages to create language-specific versions of the same software error. CWE ensures that terminology exists to refer to the same error across various languages and offers mitigation strategies for each. It is utilized worldwide in industry, government, and academia.
+
+## Common Vulnerabilities and Exposures (CVE)
+
+The CVE dictionary is a naming scheme for software vulnerabilities, also hosted by MITRE. When a vulnerability is identified, it can be reported to a CVE Numbering Authority, which provides a unique, industry-wide identifier for the vulnerability. CVEs are reported to the National Vulnerability Database (NVD) for scoring and description. The NVD is the U.S. government repository of standards-based vulnerability management data, collecting, analyzing, and storing data on specific computer system vulnerabilities. Additionally, the NVD hosts databases of security checklists, security-related software flaws, misconfigurations, product names, and impact metrics. The NVD extensively uses both CWE and CVE to fulfill its mission.
+
+## Common Vulnerability Scoring System (CVSS)
+
+[Content for CVSS section is not provided in the original text.]# The Common Vulnerability Scoring System (CVSS)
+
+The Common Vulnerability Scoring System Version (CVSS) is a vulnerability scoring system owned and maintained by the Forum of Incident Response and Security Teams (FIRST) [29]. The CVSS model attempts to ensure repeatable and accurate measurement, while enabling users to view the underlying vulnerability characteristics used to generate numerical scores. This common measurement system can be used by industries, organizations, and governments that require accurate and consistent vulnerability exploit and impact scores.
+
+The algorithm used to calculate vulnerability scores is open to all and is derived principally by human analyst-provided inputs for three metric categories: base, temporal, and environmental. Common uses of CVSS include calculating the severity and prioritization of vulnerability remediation activities. The NVD provides vulnerability scores via the CVSS.
+
+## 5 App Vetting Considerations
+
+This section describes additional criteria that organizations should consider when establishing their app vetting processes.
+
+### 5.1 Managed and Unmanaged Apps
+
+Enterprise applications, or third-party applications deployed on enterprise devices (or personal devices used for enterprise tasks), may be managed throughout the deployment lifecycle, from initial deployment and configuration through removal of the app from a device. Administering such managed applications can be performed using enterprise Mobile Application Management (MAM) systems, which are designed to enable enterprise control over mobile applications that access enterprise services and/or data.
+
+Unmanaged (personal use) applications are applications that are not administered by MAM (or similar) systems. One benefit of managing only applications (as opposed to the entire device) is that MAM systems do not require the user/owner to enroll the entire device under enterprise management, nor must the owner accept installation of an enterprise profile on the device.
+
+MAM solutions can enable an enterprise to integrate an in-house enterprise applications catalog with a mobile device vendor's App Store (e.g., Apple's App Store, Google Play, or the Microsoft Store) to allow mobile users to easily install an enterprise app. Enterprise system administrators may be able to deploy apps or push out over-the-air app updates to mobile users; they may also be able to restrict app functionalities without affecting the entire device, which may be preferred by Bring Your Own Device (BYOD) users.
+
+Some Mobile Device Management (MDM) systems also include MAM functionality, enabling fine-grained control over different applications on a single managed device. MDM and MAM features can be used to restrict the flow of enterprise data between managed and unmanaged applications.
+
+An enterprise should consider the trade-offs between managed and unmanaged apps when designing its mobility solutions, requirements, and policies for managing mobile applications (examples of such security requirements can be found in the DoD Chief).# Mobile Application Security Requirements
+
+## 5.2 App Whitelisting and App Blacklisting
+
+Application whitelisting and blacklisting refers to allowing or disallowing the use of applications based on a pre-specified list to protect against the installation of malicious, vulnerable, or flawed applications. NIST SP 800-53 Rev. 4 defines these control enhancements under configuration management (CM) control number CM-7, least functionality, as follows:
+
+- **Enhancement CM-7 (4) Least Functionality, Unauthorized Software—Blacklisting**: Blacklisting is an allow-all, deny-by-exception policy that prohibits the execution of unauthorized software programs on a system. Blacklisting requires the organization to develop and maintain a list of unauthorized software (apps).
+
+- **Enhancement CM-7 (5) Least Functionality, Unauthorized Software—Whitelisting**: Whitelisting is a deny-all, permit-by-exception policy to allow the execution of only authorized software programs on the system. This requires the organization to develop and maintain a list of authorized software (apps).
+
+Both whitelisting and blacklisting can be augmented and facilitated via MAM/MDM software. For federal organizations, it is important to note that at the time of this document's publication, 800-53 Rev. 4 recommends blacklisting for systems in the moderate baseline allocation and whitelisting for systems with high baseline allocation. Future revisions of 800-53 may also recommend blacklisting and whitelisting in both the moderate and high baseline allocations.
+
+## 5.3 App Vetting Limitations
+
+As with any software assurance process, there is no guarantee that even the most thorough vetting process will uncover all potential vulnerabilities or malicious behavior. Organizations should be made aware that although app security assessments generally improve the security posture of the organization, the degree to which they do so may not be easily or immediately ascertained.
+
+Organizations should also be made aware of what the vetting process does and does not provide in terms of security. Additionally, organizations should be educated on the value of humans in security assessment processes and ensure that their app vetting does not rely solely on automated tests.
+
+Security analysis is primarily a human-driven process; automated tools by themselves cannot address many of the contextual and nuanced interdependencies that underlie software security. The most obvious reason for this is that fully understanding software behavior is one of the classic impossible problems of computer science, and in fact, current technology has not even reached the limits of what is theoretically possible. Complex, multifaceted issues remain a challenge in the realm of software security.# Software Architectures
+
+Software architectures cannot be fully analyzed by automated means. Additionally, current software analysis tools do not inherently understand what software has to do to behave in a secure manner in a particular context. For example, failure to encrypt data transmitted to the cloud may not be a security issue if the transmission is tunneled through a virtual private network (VPN).
+
+Even if the security requirements for an app have been correctly predicted and are completely understood, there is no current technology for unambiguously translating human-readable requirements into a form that can be understood by machines. For these reasons, security analysis requires human analysts to be in the loop, and by extension, the quality of the outcome depends, among other things, on the level of human effort and expertise available for an evaluation. Analysts should be familiar with standard processes and best practices for software security assessment.
+
+In order to be successful, a robust app vetting process should use a toolbox approach where multiple assessment tools and processes, as well as human interaction, work together. Reliance on only a single tool, even with human interaction, is a significant risk because of the inherent limitations of each tool.
+
+## 5.4 Local and Remote Tools and Services
+
+There are many tools and services dedicated to analyzing mobile apps. Depending on the model employed by the tool/service provider, app analysis may occur in different physical locations. For example, an analysis tool may be installed and run within the network of the organization for whom the app is intended. Other vendors may host their test services offsite.
+
+Offsite tools may reside on the premises of the tool/service provider or may reside in a cloud infrastructure. Each of these scenarios should be understood by an organization prior to employing a vetting tool/service, especially in those cases where the app's code base may contain sensitive or classified information.
+
+## 5.5 Automated Approval/Rejection
+
+In some cases, the activities conducted by analysts to derive recommendations for approving or rejecting an app can be automated, particularly if no organization-specific policies, regulations, etc. are required. Here, an app vetting system used to support the specification of rules can be configured to automatically approve or reject an app based on risk assessments from multiple tools.
+
+For example, an app vetting system could be configured to automatically recommend an app if all test tools deem the app as having "LOW" risk. Similarly, an app vetting system could be configured to automatically enforce organization-specific requirements. For example, using metadata extracted during the preprocessing of an app, an app vetting system could automatically reject an app from a specific vendor.
+
+## 5.6 Reciprocity
+
+Reciprocity involves sharing results across app vetting teams to reduce re-work.# App Vetting Process and Information Sharing
+
+## Overview
+The app vetting process occurs when a federal agency leverages results from another agency that has previously performed app vetting on the same app. This enables the receiving agency to reuse the app testing results when making their own risk determination on the deployment of the app.
+
+## Security Vetting Results Sharing
+To share the security vetting results, the testing agency captures the results of app security testing against a common set of security requirements (e.g., NIAP) in a standardized reciprocity report format. The intention is to make the information available for use by other agencies.
+
+### Recommendations
+Given the different potential uses any individual app may have and the different mobile architectures between different agencies, sharing risk decisions (approval/rejection) is not recommended. Instead, findings from tests conducted by one federal agency should be made available to other federal agencies. This allows agencies to make their own risk-based determinations without having to repeat tests already conducted by other agencies.
+
+### Benefits
+This sharing of an organization's findings for an app can greatly reduce the duplication and cost of app vetting efforts for other organizations. Information sharing within the software assurance community is vital and can help test tools benefit from the collective efforts of security professionals around the world.
+
+## National Vulnerability Database (NVD)
+The National Vulnerability Database (NVD) is the U.S. government repository of standards-based vulnerability management data represented using the Security Content Automation Protocol (SCAP). This data enables automation of vulnerability management, security measurement, and compliance.
+
+### NVD Components
+The NVD includes databases of:
+- Security checklists
+- Security-related software flaws
+- Misconfigurations
+- Product names
+- Impact metrics
+
+## Security Content Automation Protocol (SCAP)
+SCAP is a suite of specifications that standardize the format and nomenclature by which security software products communicate software flaw and security configuration information. It is a multipurpose protocol that supports:
+- Automated vulnerability checking
+- Technical control compliance activities
+- Security measurements
+
+### Goals of SCAP
+The goals for the development of SCAP include:
+- Standardizing system security management
+- Promoting interoperability of security products
+- Fostering the use of standard expressions of security content
+
+## Common Weakness Enumeration (CWE) and CAPEC
+The CWE and Common Attack Pattern Enumeration and Classification (CAPEC) collections can provide a useful list of weaknesses and attack approaches to drive a binary or live system penetration test.
+
+### Ongoing Efforts
+Classifying and expressing software vulnerabilities is an ongoing and developing effort in the software assurance community. It is essential to prioritize among the various weaknesses that can be in an app so that an organization can address those that pose the most danger to the app, given its intended use/mission. This is crucial due to the differences in the effectiveness and coverage of the various available tools and techniques.
+
+## Tool Report Analysis
+(Section 5.7 Tool Report Analysis)# Report and Risk Analysis Challenges
+
+One issue related to report and risk analysis stems from the difficulty in collating, normalizing, and interpreting different reports and risk assessments due to the wide variety of security-related definitions, semantics, nomenclature, and metrics used by different test tools.
+
+For example, one test tool may classify the estimated risk for using an app as low, moderate, high, or severe risk, while another may classify the estimated risk as pass, warning, or fail. While some standards exist for expressing risk assessment and vulnerability reporting, the current adoption of these standards by test tools is low.
+
+To the extent possible, it is recommended that an organization use test tools that leverage vulnerability reporting and risk assessment standards. If this approach is not possible, it is recommended that the organization provide sufficient training to analysts on the interpretation of reports and risk assessments generated by test tools.
+
+## Compliance versus Certification
+
+For mobile application vetting, two terms are frequently used to demonstrate proof of successful implementation of mobile app security requirements: compliance and certification.
+
+### Compliance
+
+Compliance for mobile application security means either self-attestation or attestation from an unofficial third party that has validated the mobile app meets such security requirements. For example, an enterprise may choose to use their own internally developed mobile application vetting process to validate the security and privacy of a mobile application. By going through their own internal process, they approve the mobile application for use in their organization or on their organization's mobile assets.
+
+### Certification
+
+On the other hand, certification means successful validation from the authorized validator. For example, for NIAP certification, a formal NIAP validation process must be followed. In this case, vendors may choose an approved Common Criteria Testing Lab to conduct the product evaluation against an applicable NIAP-approved Protection Profile. Following successful completion of the validation process, a formal certification would be granted and listed on an approved product list.
+
+NIAP lists products on a product-compliant list when a certification has been successfully granted. This is an official list and requires NIAP's official certification for use in federal information systems.
+
+It should be noted that the certification requirements evaluated by NIAP certification may not map directly into non-federal requirements. In the case of regulated industries, such as the financial and health industries, it is important that organizations should...# App Development and Vetting Process
+
+## 5.9 Budget and Staffing
+
+App software assurance activity costs should be included in project budgets and should not be an afterthought. Such costs may be significant and can include licensing costs for test tools and salaries for analysts, approvers, and administrators. Organizations that hire contractors to develop apps should specify that app assessment costs be included as part of the app development process.
+
+Note, however, that for apps developed in-house, attempting to implement app vetting solely at the end of the development effort will lead to increased costs and lengthened project timelines. It is strongly recommended to identify potential vulnerabilities or weaknesses during the development process when they can still be addressed by the original developers. Identifying and fixing errors during the development process is also significantly cheaper than fixing errors once a product is released.
+
+To provide an optimal app vetting process implementation, it is critical for the organization to hire personnel with appropriate expertise. For example, organizations should hire analysts experienced in software security and information assurance as well as administrators experienced in mobile security.
+
+## 6 App Vetting Systems
+
+While an app vetting process may be performed manually, it is typically advantageous to perform an app vetting process in a semi-or full-automated fashion using an app vetting system (e.g., the DHS AppVet system). An app vetting system is a system that manages and automates an app vetting process and may be implemented as a web-based service. It is typically part of a larger app vetting ecosystem that comprises test tools/services, app stores, EMMs, and users.
+
+An app vetting system is used by a security analyst (often an enterprise system administrator) to identify app security issues before an app is deployed to a user's mobile device. After the system analyzes the app, the security analyst considers the vetting results within the context of the security posture of the larger enterprise environment and makes a security recommendation. An authorizing official then decides whether to approve the use of the app, given the user's role, the mission need addressed by the app, and the security recommendation of the security analyst.
+
+### Reference Architecture
+
+At the center of the diagram is the app vetting system. This system is the central hub to the larger app vetting ecosystem. The app vetting system coordinates requests and responses among all the other system components, the security analyst, and the authorizing official. A crucial component and function of the vetting system is that it serves as the long-term memory and decision repository for the app vetting process.# The Database Symbol
+
+The database symbol connected to the app vetting system. This database should store testing reports as well as the inputs of the security analyst and authorizing official for posterity.
+
+## App Usage in Enterprises
+
+An enterprise mobile device seeking to use an app may do so in several ways. The enterprise may host a specific app store that only contains vetted applications. Alternately, the device may have policy rules enforced by an enterprise mobility management (EMM) system that regulates what apps may be installed from any source.
+
+These systems are represented by the box in the upper left corner of the diagram. Information about the requested app (usually app binary code, but sometimes app source code for apps developed "in house") is sent from this system to the app vetting coordination hub to begin the app vetting process.
+
+## App Vetting Strategies
+
+There are many different strategies for examining an app and evaluating its security characteristics. No single algorithm, tool, or product offers a complete picture of an app's security characteristics.
+
+The reference architecture shows how an organization might take input from multiple (three are shown at right in the figure) test tools to better inform the security analyst. After the request for app vetting is sent from the App Store or EMM system to the vetting hub, the hub contacts each of the three test tools in the diagram. Each tool receives a copy of the information provided about the app (e.g., binary or source code), performs its independent assessment, and returns a vulnerability report and some form of risk score.
+
+## Results Gathering and Analysis
+
+The vetting hub then gathers the results reported by the various test tools, potentially summarizing those results and offering them to the security analyst in a dashboard view. After reviewing the results of the various tests, the security analyst submits a recommendation, which is recorded by the vetting hub.
+
+The authorizing official can then consider the security analyst's recommendation together with mission needs to approve or reject the use of the app by the mobile user. If the app is approved for installation, the vetting hub can provide digitally-signed artifacts, including digitally-signed apps, back to the App Store or EMM system to enable the app deployment.
+
+## Deployment Scenarios
+
+While the figure depicts a locally hosted app vetting system (i.e., the app vetting hub, test tools, database, and App Store are shown as residing on hosts), many app vetting systems may be hosted in a cloud environment.
+
+In a cloud-hosted scenario, the boxes shown in the diagram would be hosted by a private or public cloud service provider and much of the functionality would be virtualized. The security analyst and authorizing official need not know how the vetting system is implemented.
+
+In either type of deployment, users in these roles would interact with the system through a dashboard providing the appropriate services and views. Both types of deployment enable modular extension of the app vetting system to accommodate new vetting tests.# App Vetting System
+
+## Overview
+An app vetting system utilizes application programming interfaces (APIs), network protocols, and schemas to integrate with distributed third-party test tools as well as clients, including app stores.
+
+## Components of an App Vetting System
+
+### User Interface (UI) Dashboard
+The app vetting system may include a UI dashboard that allows various users, such as:
+- Administrators
+- Analysts
+- Authorizing officials
+
+### Features of the UI Dashboard
+The dashboard enables users to:
+- View reports and risk assessments
+- Provide recommendations
+- Approve or reject apps
+
+## Integration
+Figure 7 illustrates how an app vetting system, utilizing APIs and a UI, can support integration with all components and users in an app vetting ecosystem.

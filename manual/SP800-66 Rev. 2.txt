@@ -1,0 +1,871 @@
+Abstract
+The HIPAA Security Rule focuses on safeguarding electronic protected health information (ePHI)
+held or maintained by regulated entities. The ePHI that a regulated entity creates, receives,
+maintains, or transmits must be protected against reasonably anticipated threats, hazards, and
+impermissible uses and/or disclosures. This publication provides practical guidance and
+resources that can be used by regulated entities of all sizes to safeguard ePHI and better
+understand the security concepts discussed in the HIPAA Security Rule.
+Executive Summary
+This publication aims to help educate readers about the security standards included in the
+Health Insurance Portability and Accountability Act (HIPAA) Security Rule [Sec. Rule], as
+amended by the Modifications to the HIPAA Privacy, Security, Enforcement, and Breach
+Notification Rules Under the Health Information Technology for Economic and Clinical Health
+Act [HITECH] and the Genetic Information Nondiscrimination Act and Other Modifications to
+the HIPAA Rules [OMNIBUS], as well as assist regulated entities in their implementation of the
+Security Rule. It includes a brief overview of the HIPAA Security Rule, provides guidance for
+regulated entities on assessing and managing risks to electronic protected health information
+(ePHI), identifies typical activities that a regulated entity might consider implementing as part
+of an information security program, and lists additional resources that regulated entities may
+find useful when implementing the Security Rule.
+The Security Rule is flexible, scalable, and technology-neutral. For that reason, there is no one
+single compliance approach that will work for all regulated entities. This publication presents
+guidance that entities can utilize in whole or in part to help improve their cybersecurity posture
+and assist with achieving compliance with the Security Rule.
+The HIPAA Security Rule specifically focuses on safeguarding the confidentiality, integrity, and
+availability of ePHI. All HIPAA-regulated entities must comply with the requirements of the
+Security Rule. The ePHI that a regulated entity creates, receives, maintains, or transmits must
+be protected against reasonably anticipated threats, hazards, and impermissible uses and/or
+disclosures. In general, the requirements, standards, and implementation specifications of the
+Security Rule apply to the following regulated entities:
+• Covered Healthcare Providers — Any provider of medical or other health services or
+supplies who transmits any health information in electronic form in connection with a
+transaction for which the U.S. Department of Health and Human Services (HHS) has
+adopted a standard.
+• Health Plans — Any individual or group plan that provides or pays the cost of medical
+care (e.g., a health insurance issuer and the Medicare and Medicaid programs).
+• Healthcare Clearinghouses — A public or private entity that processes another entity's
+healthcare transactions from a standard format to a non-standard format or vice versa.
+• Business Associate — A person or entity that performs certain functions or activities
+that involve the use or disclosure of protected health information on behalf of or
+provides services to a covered entity. A business associate is liable for their own HIPAA
+violations. 
+The Security Rule is separated into six main sections that each include several standards that a
+regulated entity must meet. Many of the standards contain implementation specifications. An
+implementation specification is a more detailed description of the method or approach that
+regulated entities can use to meet a particular standard. Implementation specifications are
+either required or addressable. Regulated entities must comply with required implementation
+specifications. Regulated entities must perform an assessment to determine whether each
+addressable implementation specification is a reasonable and appropriate safeguard to
+implement in the regulated entity's environment.
+The assessment, analysis, and management of risk to ePHI provide the foundation for a
+regulated entity's Security Rule compliance efforts and the protection of ePHI. Readers are
+reminded of the Security Rule's flexibility of approach. The HHS Office for Civil Rights (OCR)
+does not prescribe any particular risk assessment or risk management methodology. Section 3
+and Sec. 4 provide background information about risk assessment and risk management
+processes, respectively, as well as approaches that regulated entities may choose to use in
+assessing and managing risk to ePHI.
+Many regulated entities may benefit from more specific guidance concerning how to comply
+with the standards and implementation specifications of the Security Rule. To that end, Sec. 5
+highlights considerations for a regulated entity when implementing the Security Rule. Key
+activities, descriptions, and sample questions are provided for each standard. The key activities
+suggest actions that are often associated with the security functions suggested by that
+standard. Many of these key activities are often included in a robust security program and may
+be useful to regulated entities. The descriptions provide expanded explanations about each of
+the key activities and the types of activities that a regulated entity may pursue when
+implementing the standard. The sample questions are a non-exhaustive list of questions that a
+regulated entity may ask itself to determine whether the standard has been adequately
+implemented.
+Regulated entities may implement the Security Rule more effectively if they are shown controls
+catalogs and cybersecurity activities that align with each standard. To assist regulated entities,
+this publication includes mappings of the Security Rule's standards and implementation
+specifications to Cybersecurity Framework [NIST CSF] Subcategories and applicable security
+controls detailed in NIST Special Publication (SP) 800-53r5 (Revision 5), Security and Privacy
+Controls for Information Systems and Organizations [SP 800-53]. The mapping also lists
+additional NIST publications relevant to each Security Rule standard. Readers may draw upon
+these NIST publications and mappings for assistance in implementing the Security Rule.
+Additionally, Appendix F links to a wide variety of resources (e.g., guidance, templates, tools)
+that regulated entities may find useful for complying with the Security Rule and improving the
+security posture of their organizations. For ease of use, the resources are organized by topic.
+Regulated entities could consult these resources when they need additional information or
+guidance about a particular topic. 
+The Security Rule is scalable and flexible by design. While the required
+standards and implementation specifications are the same for all regulated
+entities, reasonable and appropriate implementations of such standards and
+implementation specifications may be different for different organizations.
+For example, all regulated entities are required to implement hardware,
+software, and/or procedural mechanisms that record and examine activity in
+information systems that contain or use ePHI. An implementation of
+generating and examining these required audit logs that is reasonable and
+appropriate to reduce applicable risks to ePHI will often be vastly different
+for a small medical practice than for a national health plan.
+1. Introduction
+The Health Insurance Portability and Accountability Act (HIPAA) Security Rule [Sec. Rule]
+specifically focuses on safeguarding electronic protected health information (ePHI). All HIPAA-covered entities and business associates must comply with the requirements of the Security
+Rule. Throughout this publication, covered entities and business associates will be referred to
+as regulated entities. Whenever the term regulated entity or regulated entities appears, it is to
+be understood as applying to both covered entities and business associates as defined in the
+Security Rule.
+1.1. Purpose and Scope
+NIST Special Publication (SP) 800-66 aims to help educate readers about the security standards
+included in the HIPAA Security Rule and assist regulated entities in their implementation of the
+Security Rule. It includes a brief overview of the HIPAA Security Rule, provides guidance for
+regulated entities in assessing and managing risk to ePHI, identifies typical activities that a
+regulated entity should consider when implementing an information security program, and lists
+additional resources that regulated entities may find useful when implementing the Security
+Rule.
+This publication is intended to aid understanding of the HIPAA Security Rule and does not
+supplement, replace, modify, or supersede the Security Rule itself. Anyone seeking clarifications
+on the HIPAA Security Rule should contact the U.S. Department of Health and Human Services
+(HHS) Office for Civil Rights (OCR). For general HIPAA Security Rule information, visit the HHS
+Security Rule website.
+The NIST publications available as of the publication date of SP 800-66r2 (Revision 2) were used
+in preparing this document. NIST frequently publishes new standards and guidelines or updates
+existing publications that may also serve as useful references. To remain current with the latest
+available list of NIST security publications, the reader should periodically visit the NIST
+Computer Security Resource Center (CSRC).
+1.2. Applicability
+The guidance provided in this publication is applicable to all covered entities and their business
+associates of all sizes that store, process, or transmit ePHI. While the Security Rule requires
+regulated entities to safeguard ePHI, covered entities are required by the Privacy Rule to
+safeguard all forms of protected health information (PHI). The HIPAA Privacy Rule at
+164.530(c)(1) states, "A covered entity must have in place appropriate administrative, technical,
+and physical safeguards to protect the privacy of protected health information." Essentially, this
+covers all oral, written, and electronic PHI (to the extent not covered by the Security Rule).
+Business associates maintain their own direct liability under the HIPAA Privacy, Security, and 
+Breach Notification Rules (collectively, the "HIPAA Rules") with respect to their role as business
+associates. For example, business associates are required to comply with the Security Rule in its
+entirety; business associate breach notification obligations differ from that of a covered entity;
+and business associates are subject to liability for only certain provisions of the Privacy Rule. A
+summary of a business associate's direct HIPAA liability is available. Federal, state, local, and
+tribal governments and private-sector organizations that compose the critical health
+infrastructure of the United States are encouraged to consider using the guidance in this
+publication, as appropriate.
+NIST publications may be useful to any entity seeking to understand the security issues raised
+by the HIPAA Security Rule, regardless of that entity's size, structure, or distribution of security
+responsibilities. However, specific organizational missions, resources, and structures vary
+greatly, and entities' approaches to implementing the HIPAA Security Rule to ensure the
+confidentiality, integrity, and availability of ePHI may diverge significantly. SP 800-66 aims to
+assist all entities seeking further information on the security safeguards discussed in the HIPAA
+Security Rule, regardless of the structures, methodologies, and approaches used to address its
+requirements.
+The preamble of the Security Rule states that HHS does not rate or endorse the use of industry-developed guidelines and/or models. Organizations that choose to use this publication must
+determine the value of its content for implementing the Security Rule standards in their
+environments. The use of this publication or any other NIST publication does not ensure or
+guarantee that an organization will be compliant with the Security Rule. This document
+addresses only the security standards of the Security Rule and no other provisions adopted or
+raised by the HIPAA Rules, such as 45 CFR § 164.105. This document does not directly address
+provisions in the HIPAA Privacy, Breach Notification, or Enforcement Rules.
+1.3. Document Organization
+The remaining sections and appendices of this publication include the following:
+• Section 2 — HIPAA Security Rule explains the key concepts included in the HIPAA
+Security Rule.
+• Section 3 — Risk Assessment Guidelines provides a methodology for conducting a risk
+assessment, the results of which will enable regulated entities to identify appropriate
+security controls for reducing risk to ePHI.
+• Section 4 — Risk Management Guidelines introduces a structured, flexible, extensible,
+and repeatable process that regulated entities may utilize to manage identified risks and
+achieve risk-based protection of ePHI.
+• Section 5 — Considerations When Applying the HIPAA Security Rule highlights key
+activities that a regulated entity may wish to consider implementing, as well as
+questions that a regulated entity might ask itself when implementing the Security Rule. 
+• References provides references and related source material.
+• Appendix A — List of Symbols, Abbreviations, and Acronyms identifies and defines the
+acronyms used within this document.
+• Appendix B — Glossary defines the terms used in this document.
+• Appendix C — Risk Assessment Tables includes many tables referenced in Section 3,
+Risk Assessment Guidelines.
+• Appendix D — Security Rule Standards and Implementation Specifications Crosswalk
+provides a catalog of the HIPAA Security Rule standards and implementation
+specifications and maps each to relevant Cybersecurity Framework [NIST CSF]
+Subcategories and the security controls in [SP 800-53]. It also provides a crosswalk to
+other relevant NIST publications that regulated entities may find useful when
+implementing the Security Rule.
+• Appendix E — National Online Informative References (OLIR) Program introduces the
+OLIR program and how it can assist regulated entities in implementing the Security Rule.
+• Appendix F — HIPAA Security Rule Resources provides an annotated, topical list of
+additional resources that regulated entities may find useful when implementing the
+standards and implementation specifications of the Security Rule.
+• Appendix G — Change Log provides a list of the changes made in Revision 2.
+1.4. How to Use This Document
+Readers are reminded that the Security Rule is flexible, scalable, and technology-neutral. For
+that reason, there is no one single compliance approach that will work for all regulated entities.
+This publication presents guidance that entities can utilize in whole or in part to help improve
+their cybersecurity posture and assist with achieving compliance with the Security Rule.
+Readers are encouraged to use this document as a resource for concepts and tools to assist
+regulated entities in complying with the HIPAA Security Rule. Risk assessment and risk
+management processes are foundational to a regulated entity's compliance with the Security
+Rule and the safeguarding of ePHI. For that reason, regulated entities may benefit from initially
+focusing on Sec. 3 and Sec. 4 to build fundamental risk management processes. Section 5 may
+be useful to regulated entities seeking activities to implement for each of the Security Rule
+standards or for regulated entities that want sample questions to self-evaluate their protection
+of ePHI. Regulated entities may also find value in the appendices that provide an annotated list
+of relevant resources, discussions of relevant topics, and a crosswalk to controls and practices
+that may help in implementing the Security Rule.
+Small, regulated entities may benefit from the resources listed in Appendix F, especially the
+Health Industry Cybersecurity Practices (HICP) Technical Volume 1: Cybersecurity Practices for
+Small Health Care Organizations. Additionally, smaller entities may find the HHS Security Risk
+Assessment (SRA) Tool [SRA Tool] helpful in the essential task of assessing risk to ePHI. More
+information about the SRA tool can be found in Sec. 3.4. Medium and large regulated entities 
+may find the HICP Technical Volume 2: Cybersecurity Practices for Medium and Large Health
+Care Organizations (also in Appendix F) useful.
+This resource guide can support the compliance efforts of regulated entities in many ways,
+including:
+• Ensuring that each organization is selecting security practices and controls that
+adequately safeguard ePHI of which they are the steward,
+• Informing the development of compliance strategies that are in concert with the size
+and structure of the entity,
+• Providing guidance on best practices for developing and implementing a risk
+management program, and
+• Creating appropriate documentation that demonstrates effective compliance with the
+HIPAA Security Rule.
+Regulated entities should consider that employing cybersecurity practices can not only help a
+HIPAA regulated entity comply with the Security Rule but can also assist with compliance with
+other federal mandates. There are also business reasons to employ cyber practices, such as
+averting costly breach clean-up expenses or immense reputational harm due to a cyber event.
+With breaches amounting to hundreds of thousands to millions of dollars and the costs to
+secure cyber insurance doubling or more, taking steps to improve organizational cyber posture
+is mission-critical. Finally, there are a growing number of occurrences in which a cybersecurity 
+incident resulted in harms to patients. Implementing and improving cybersecurity practices can
+help regulated entities ensure the safety of patients.
+2. HIPAA Security Rule
+The HIPAA Security Rule [Sec. Rule] specifically focuses on safeguarding the confidentiality,
+integrity, and availability of ePHI. The ePHI that a regulated entity creates, receives, maintains,
+or transmits must be protected against reasonably anticipated threats, hazards, and
+impermissible uses and/or disclosures. In general, the requirements, standards, and
+implementation specifications of the Security Rule apply to the following regulated entities:
+• Covered Healthcare Providers — Any provider of medical or other health services or
+supplies who transmits any health information in electronic form in connection with a
+transaction for which HHS has adopted a standard.
+• Health Plans — Any individual or group plan that provides or pays the cost of medical
+care (e.g., a health insurance issuer and the Medicare and Medicaid programs).
+• Healthcare Clearinghouses — A public or private entity that processes another entity's
+healthcare transactions from a standard format to a non-standard format or vice versa.
+• Business Associate — A person or entity that performs certain functions or activities
+that involve the use or disclosure of protected health information on behalf of or
+provides services to a covered entity. A business associate is liable for its own HIPAA
+Security Rule violations.
+Covered entities and business associates are required to obtain written
+satisfactory assurances from business associates that PHI will be
+protected. Covered entities and business associates are permitted to
+require more of their business associates and even include more
+stringent cybersecurity requirements in a business associate
+agreement (BAA). These requirements would need to be agreed upon
+by both the covered entity and the business associate.
+2.1. Security Rule Goals and Objectives
+As required by the "Security standards: General rules" section of the HIPAA Security Rule, each
+regulated entity must:
+• Ensure the confidentiality, integrity, and availability of all ePHI that it creates, receives,
+maintains, or transmits;
+• Protect against any reasonably anticipated threats and hazards to the security or
+integrity of ePHI;
+• Protect against reasonably anticipated uses or disclosures of such information that are
+not permitted by the Privacy Rule; and
+• Ensure compliance with the Security Rule by its workforce.
+The Security Rule's flexibility of approach allows regulated entities to customize how they
+implement HIPAA's Security Rule requirements. Cybersecurity practices will vary depending on
+an organization's size, complexity, technical infrastructure, and hardware, software, and
+security capabilities. In complying with this section of the Security Rule, regulated entities
+must be aware of the definitions provided for confidentiality, integrity, and availability, as given
+by § 164.304 of the Security Rule:
+• Confidentiality is "the property that data or information is not made available or
+disclosed to unauthorized persons or processes."
+• Integrity is "the property that data or information have not been altered or destroyed in
+an unauthorized manner."
+• Availability is "the property that data or information is accessible and useable upon
+demand by an authorized person."
+2.2. Security Rule Organization
+Understanding the requirements and the terminology in the HIPAA Security Rule makes it
+easier to see which resources might assist in Security Rule implementation and where to find
+more information. The Security Rule is separated into six main sections that each include
+several standards and implementation specifications that a regulated entity must address:
+1. Security Standards: General Rules — Includes the general requirements that all
+regulated entities must meet, establishes flexibility of approach, identifies standards
+and implementation specifications (both required and addressable), outlines decisions
+that a regulated entity must make regarding addressable implementation specifications,
+and requires the maintenance of security measures to continue reasonable and
+appropriate protection of ePHI
+2. Administrative Safeguards — Defined in the Security Rule as the "administrative actions
+and policies, and procedures to manage the selection, development, implementation,
+and maintenance of security measures to protect electronic protected health
+information and to manage the conduct of the covered entity's workforce in relation to
+the protection of that information"
+3. Physical Safeguards — Defined as the "physical measures, policies, and procedures to
+protect a covered entity's electronic information systems and related buildings and
+equipment, from natural and environmental hazards, and unauthorized intrusion"
+4. Technical Safeguards — Defined as "the technology and the policy and procedures for
+its use that protect electronic protected health information and control access to it"
+5. Organizational Requirements — Includes standards for business associate contracts and
+other arrangements between a covered entity and a business associate and between a
+business associate and a subcontractor, as well as requirements for group health plans
+6. Policies and Procedures and Documentation Requirements — Requires the
+implementation of reasonable and appropriate policies and procedures to comply with
+the standards, implementation specifications, and other requirements of the Security
+Rule; the maintenance of written (may be electronic) documentation and/or records
+that include the policies, procedures, actions, activities, or assessments required by the
+Security Rule; and retention, availability, and update requirements related to the
+documentation
+A regulated entity is required to comply with all of the standards of the Security Rule with
+respect to all of its ePHI. Many of the standards contain implementation specifications (see
+Table 1). An implementation specification is a more detailed description of the method or
+approach that regulated entities can use to meet a particular standard. Implementation
+specifications are either required or addressable. However, regardless of whether a standard
+includes implementation specifications, regulated entities must comply with each standard.
+• A required implementation specification is similar to a standard in that a regulated
+entity must comply with it.
+• To meet the addressable implementation specifications, a regulated entity must (i)
+assess whether each implementation specification is a reasonable and appropriate
+safeguard in its environment when analyzed with reference to the likely contribution to
+protecting the ePHI and (ii) as applicable to the regulated entity:
+o Implement the implementation specification if reasonable and appropriate; or
+o If implementing the implementation specification is not reasonable and
+appropriate, (1) document why it would not be reasonable and appropriate to
+implement the implementation specification, and (2) implement an equivalent
+alternative measure that is reasonable and appropriate.
+Regulated entities are required to document these assessments and all decisions. For federal
+agencies, all of the HIPAA Security Rule's addressable implementation specifications will most
+likely be reasonable and appropriate safeguards for implementation, given their sizes, missions,
+and resources.
+Where there are no implementation specifications identified in the Security Rule for a particular
+standard, such as for the "Assigned Security Responsibility" and "Evaluation" standards,
+compliance with the standard itself is required.
+Appendix D of this document provides a mapping of the HIPAA Security Rule standards and
+implementation specifications to Cybersecurity Framework [NIST CSF] Subcategories and the
+security controls detailed in [SP 800-53]. It also provides a crosswalk to other relevant NIST
+publications that regulated entities may find useful when implementing the Security Rule.
+For general HIPAA Security Rule information, visit the HHS Security Rule website.
+3. Risk Assessment Guidance
+Risk assessment and risk management processes are foundational to a regulated entity's
+compliance with the Security Rule [Sec. Rule] and the safeguarding of ePHI. Readers are
+reminded of the Security Rule's flexibility of approach. HHS OCR does not prescribe any
+particular risk assessment or risk management methodology. This section provides foundational
+information about risk assessments and an approach that regulated entities may choose to use
+to assess risk to ePHI. Regulated entities are free to use another risk assessment methodology that provides a comprehensive assessment of risk to ePHI.
+This section incorporates the risk assessment concepts and processes described in the NIST IR
+8286 [IR 8286] series (specifically, IR 8286A [IR 8286A], Identifying and Estimating Cybersecurity
+Risk for Enterprise Risk Management); SP 800-30r1, Effective Use of Risk Assessments in
+Managing Enterprise Risk [SP 800-30]; and SP 800-37r2, Risk Management Framework for
+Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy
+[SP 800-37]. It is intended to assist regulated entities in identifying risks to ePHI.
+The purpose of a risk assessment is to identify conditions where ePHI could be used or
+disclosed without proper authorization, improperly modified, or made unavailable when
+needed. The results of the risk assessment are used to make risk management decisions on the
+implementation of security measures required by the Security Rule to bring risk to ePHI into an
+organizationally established risk tolerance range (i.e., reasonable and appropriate level) or if
+additional security controls are necessary.
+Key Terms Defined
+When talking about risk, it is important that terminology be clearly understood. This subsection
+defines important terms associated with risk assessment and risk management.
+• Threat events are circumstances or events that can have a negative impact on ePHI.
+Threat events can be:
+o Intentional (e.g., malicious intent)
+o Unintentional (e.g., misconfigured server, data entry error)
+• Threat sources refer to the intent and method targeted at causing harm to ePHI. Threat
+sources can be:
+o Natural (e.g., floods, earthquakes, storms, tornados)
+o Human (e.g., intentional, such as identity thieves, hackers, spyware authors;
+unintentional, such as data entry error, accidental deletions)
+o Environmental (e.g., power surges and spikes, hazardous material
+contamination, environmental pollution) 
+• Vulnerabilities are flaws or weaknesses in a system, system security procedures, internal
+controls, or implementation that could be exploited or triggered by a threat event.
+• Likelihood refers to the probability that a given threat event is capable of exploiting a
+given vulnerability to cause harm.
+• Impact refers to the magnitude of harm that can be expected to result from the loss of
+confidentiality, integrity, and/or the availability of ePHI.
+• Risk refers to the extent to which an entity is threatened by a potential circumstance or
+event. Risk is typically a function of the likelihood and impact calculations.
+It can be easy to confuse some of these terms. For example, an organization may determine
+that it is vulnerable to damage from power surges. The threat sources that could exploit this
+vulnerability may include overloaded circuits or too much load on the local grid. Other threat
+sources (e.g., a data entry error) may be unable to exploit this vulnerability. In this example
+scenario, recommended security controls could range from installing uninterruptible power
+supply (UPS) systems, additional fuse boxes, and standby generators to rewiring the office.
+These additional security controls may help to mitigate the vulnerability.
+3.1. HIPAA Risk Assessment Requirements
+Standard 164.308(a)(1)(i), Security Management Process, requires regulated entities to:
+Implement policies and procedures to prevent, detect, contain, and correct security
+violations.
+The Security Management Process standard includes four required implementation
+specifications. Two of these specifications deal directly with risk analysis and risk
+management:
+1. Risk Analysis (R) — 164.308(a)(1)(ii)(A): Conduct an accurate and thorough
+assessment of the potential risks and vulnerabilities to the confidentiality, integrity, and
+availability of electronic protected health information held by the covered entity or
+business associate.
+2. Risk Management (R) — 164.308(a)(1)(ii)(B): Implement security measures sufficient to
+reduce risks and vulnerabilities to a reasonable and appropriate level to comply with
+Section 164.306(a).
+Section 3.2 provides a risk assessment methodology that regulated entities may choose to
+utilize in accordance with 164.308(a)(1)(ii)(A). Section 4 provides risk management best
+practices. 
+3.2. How to Conduct the Risk Assessment
+Risk assessments can be conducted using many different methodologies. There is no single
+methodology that will work for all regulated entities and all situations. The following steps
+represent key elements in a comprehensive risk assessment process and provide an example of
+the risk assessment methodology described in [IR 8286A] and [SP 800-30]. These steps should
+be customized to effectively identify risk for a regulated entity. The steps listed are not
+prescriptive in the order that they should be conducted. Some steps could be conducted
+simultaneously rather than sequentially.
+1. Prepare for the assessment. Before beginning the risk assessment, the regulated entity
+should understand where ePHI is created, received, maintained, processed, and
+transmitted. Identify where ePHI is generated within the organization, where and how it
+enters the organization (e.g., web portals), where it moves and flows within the
+organization (e.g., to specific information systems), where it is stored, and where it
+leaves the organization. Determine whether ePHI is transmitted to external third
+parties, such as cloud service providers or other service providers. The regulated entity
+can also note how access to ePHI is controlled and whether ePHI is encrypted in storage
+and in transit.
+The scope of a risk assessment should include both the physical boundaries of a
+regulated entity's location and a logical boundary that covers any devices or media that
+contain ePHI, including electronic networks through which ePHI is transmitted,
+regardless of its location. Ensure that the risk assessment scope considers teleworkers
+and any remote workforce, including external service providers who may have remote
+access to ePHI. The scope should include all removable media and portable computing
+devices (e.g., laptops, mobile devices) as well as the myriad of medical devices (e.g.,
+Internet of Things [IoT] used in healthcare) that can store, process, or transmit ePHI.
+Modern mobile devices and installed apps may not only contain ePHI but may also pose
+a greater risk to ePHI due to theft or loss. In many ways, the risk assessment process will
+consider risks to ePHI as it enters the organization, flows within the organization, and
+leaves the organization. Additionally, the regulated entity should consider identifying
+the security controls currently being used to protect ePHI.
+This preparation step is essential to ensuring that vulnerabilities and threats are
+correctly identified in the risk assessment process. For example, if the regulated entity
+does not fully identify all parties or systems to which ePHI is transmitted, it may not be
+possible to completely identify all relevant threats and vulnerabilities. The level of effort
+needed to gather the necessary information depends heavily on the scope of the
+assessment and the size and complexity of the regulated entity. Regulated entities may
+benefit from completing a business impact analysis (BIA) to evaluate, record, and
+monitor the criticality of organizational assets, including ePHI. The BIA can help inform
+ the determination of organizational risk tolerance levels, which is valuable for the risk
+management processes discussed in Sec. 4. Additionally, a completed BIA facilitates the
+completion of Step 5, "Determine the Impact of a Threat Exploiting a Vulnerability," in
+this proposed risk assessment process.
+2. Identify reasonably anticipated threats. The regulated entity identifies the potential
+threat events and threat sources that are applicable to it and its operating environment.
+The list of threat events and threat sources should include reasonably anticipated and
+probable human and natural incidents that can negatively impact the regulated entity's
+ability to protect ePHI. Use the information gathered from Step 1 (i.e., the preparation
+step) to identify reasonably anticipated threats to ePHI. Be sure to consider threats to
+the confidentiality, integrity, and availability of ePHI via phishing, ransomware, or
+insider threat.
+Regulated entities may use various sources when identifying relevant threats. Some of
+the resources listed in Appendix F may help regulated entities identify common threats
+to small, medium, and large organizations. Internet searches, vendor information,
+insurance data, and crime statistics are also viable sources of threat data. Regulated
+entities may benefit from participating in an information sharing and analysis center
+(ISAC) or information sharing and analysis organization (ISAO) to receive threat
+intelligence. Ultimately, regulated entities should identify all reasonably anticipated
+threats to ePHI. Examples of some common threat sources are listed in Table 2.
+Regulated entities can also use Tables 30–32 in Appendix C as resources for identifying
+relevant threat events and threat sources.
+3. Identify potential vulnerabilities and predisposing conditions. For any of the various
+threats identified above to result in an impactful risk, each needs a vulnerability or
+predisposing condition that can be exploited. A vulnerability is a weakness in an
+information system, system security procedures, internal controls, or implementation
+that could be exploited by a threat source. A predisposing condition is a condition that
+exists within an organization, a mission/business process, or information system that
+contributes to (i.e., increases or decreases) the likelihood that a threat event will result
+in adverse impacts once initiated. The identification of vulnerabilities or predisposing
+conditions that a threat could exploit to cause an impact is an important component of
+risk assessment. While it is necessary to review threats and vulnerabilities as unique
+elements, they are often considered at the same time. Many organizations will consider
+a given loss scenario and evaluate both, such as what threat sources might initiate
+which threat events or what vulnerabilities or predisposing conditions those threat
+sources might exploit to cause an adverse impact.
+The regulated entity develops a list of vulnerabilities (i.e., flaws or weaknesses) that
+could be exploited by potential threat sources. This list should focus on both technical
+and non-technical areas where ePHI can be disclosed without proper authorization,
+improperly modified, or made unavailable when needed. Regulated entities should use
+internal and external sources to identify potential vulnerabilities. Internal sources may
+include previous risk assessments, vulnerability scan and system security test results
+(e.g., penetration tests), and audit reports. External sources may include internet
+searches, vendor information, insurance data, and vulnerability databases, such as the
+National Vulnerability Database [NIST NVD]. Appendix F provides a suggested (but not
+all-inclusive) resource list that organizations may wish to use in vulnerability
+identification.
+4. Determine the likelihood that a threat will exploit a vulnerability. The regulated entity
+determines the likelihood of a threat successfully exploiting a vulnerability. For each
+threat event/threat source identified in Step 2, consider:
+• The likelihood that the threat will occur
+• The likelihood that an occurred threat would exploit a vulnerability identified in
+Step 3 and result in an adverse impact
+A regulated entity might consider assigning a likelihood value (e.g., very low, low,
+moderate, high, or very high) to each threat/vulnerability pairing, as shown in Table 3.
+Regulated entities should feel free to use a different likelihood scale based on
+organizational needs.
+For example, a regulated entity may determine that the likelihood of a tornado
+occurring is "Low" (located along the leftmost column of Table 3) but that if it did occur,
+the tornado would have a "Moderate" likelihood (located along the top of Table 3) of
+exploiting a weakness in the facility's physical structure and resulting in an adverse
+impact. Using Table 3, the regulated entity locates the intersection of the two individual
+likelihood values to assign an overall likelihood of "Low" to this threat/vulnerability
+pairing. As another example, the regulated entity may determine that the likelihood of a
+phishing attack occurring is "Very High" and that the likelihood of the event exploiting a
+human vulnerability is "Moderate," resulting in an overall likelihood rating of "High."
+The regulated entity could perform this likelihood assessment for each
+threat/vulnerability pairing. Consider that some threat events — regardless of their
+likelihood of occurrence — may have no vulnerability to exploit, resulting in a likelihood
+rating of "Very Low" or even "N/A." Conversely, some identified vulnerabilities may
+have no identified threat event that could exploit the vulnerability, also possibly
+resulting in a likelihood rating of "N/A."
+5. Determine the impact of a threat exploiting a vulnerability. The regulated entity
+determines the impact that could occur to ePHI if a threat event were to exploit a
+vulnerability. As with likelihood determination, a regulated entity may choose to express
+this impact in qualitative terms (e.g., "low," "moderate," and "high") or use any other
+scale that the entity chooses. When selecting an impact rating, the regulated entity may
+consider how the threat event can affect the loss or degradation of the confidentiality,
+integrity, and/or availability of ePHI. Table 4 provides a brief description of each security
+objective (i.e., confidentiality, integrity, and availability) and the impact of it not being
+met. The regulated entity should select an impact rating for each identified
+threat/vulnerability pair. 
+Impact information can sometimes be obtained from existing organizational
+documentation, such as business impact and asset criticality assessments. A business
+impact assessment prioritizes the impact levels associated with the compromise of an
+organization's information assets based on a qualitative or quantitative assessment of
+the sensitivity and criticality of those assets. An asset criticality assessment identifies
+and prioritizes the organization information assets (e.g., hardware, software, systems,
+services, and related technology assets) that support the organization's critical missions.
+Some tangible impacts can be measured quantitatively in terms of lost revenue, the cost
+of repairing the system, or the level of effort required to correct problems caused by a
+successful threat action. Other impacts cannot be measured in specific units (e.g., the
+loss of public confidence, the loss of credibility, or damage to an organization's
+interests) but can be qualitatively described (e.g., in terms of "high," "moderate," and
+"low" impacts). Qualitative and quantitative methods can both be used to determine
+the impact of a threat event exploiting a vulnerability to cause an adverse impact.
+Regulated entities may consult Table 5 for help with identifying potential adverse
+impacts and subsequently assigning an impact rating to each threat/vulnerability pair.
+6. Determine the level of risk. The regulated entity assesses the level of risk to ePHI while
+considering the information gathered and determinations made during the previous
+steps. The level of risk is determined by analyzing the values assigned to the overall
+likelihood of threat occurrence (i.e., Step 4) and the resulting impact of threat
+occurrence (i.e., Step 5). Table 6 and Table 7 show examples of risk-level matrices that
+can assist in determining risk levels for each threat event/vulnerability pair. Regulated
+entities can use a different risk matrix that aligns with the ratings scales used for
+likelihood and impact in Steps 4 and 5.
+To clarify the use of the risk matrix, consider the examples presented in Step 4. For the
+tornado threat event, the overall likelihood was assigned a rating of "Low." However,
+the impact of this threat event could easily be assigned a rating of "High." Using the
+matrix in Table 6, the intersection of "Low" likelihood and "High" impact results in an
+overall risk rating of "Low." For the phishing threat example, the overall likelihood was
+rated "High." If the regulated entity determined that the impact of a phishing threat was
+likely to be "Moderate," this would result in an overall risk rating of "Moderate." The
+regulated entity should determine the level of risk for each identified
+threat/vulnerability pair.
+7. Document the risk assessment results. Once the risk assessment has been completed
+(i.e., threat events, threat sources, and vulnerabilities identified; likelihood and impact
+ratings calculated; and risk levels determined), the results of the risk assessment should
+be documented. Regulated entities may benefit from documenting the risk assessment
+results in a risk register. Appendix K of NIST [SP 800-30] provides a sample risk
+assessment report outline that may prove useful to regulated entities. Other entities
+may prefer to input the risk assessment results into a governance, risk, and compliance
+(GRC) or enterprise risk management (ERM) tool. Principally, the regulated entity should
+document all threat/vulnerability pairs (i.e., a scenario in which an identified threat can
+exploit a vulnerability) applicable to the organization, the likelihood and impact
+calculations, and the overall risk to ePHI for the threat/vulnerability pair. Regulated
+entities should consider sharing the risk assessment results with organizational
+leadership, whose review can be crucial to the organization's ongoing risk management.
+3.3. Risk Assessment Results Affect Risk Management
+The results of a risk assessment play a significant role in executing an organization's risk
+management strategy (presented in Sec. 4). To that end, regulated entities should not view risk
+assessment as a one-time, static task but as an ongoing activity. Threats change, and some
+identified vulnerabilities may be remediated while new vulnerabilities appear. The regulated
+entity may implement policies or procedures that reduce the likelihood and/or impact of a
+threat event. This dynamic environment requires the risk assessment to be updated on a
+periodic basis in order for risks to be properly identified, documented, and subsequently
+managed.
+3.4. Risk Assessment Resources
+Regulated entities may find the HHS Security Risk Assessment (SRA) Tool [SRA Tool] helpful in
+getting started with a risk assessment. The SRA tool was primarily developed to assist small and
+medium-sized regulated entities. The SRA Tool is a questionnaire that guides a regulated entity
+through many of the same risk assessment steps described in this section. In that sense, it is
+meant to be used in conjunction with the risk assessment guidance above. Regulated entities
+should be aware that, as a questionnaire, there are some things that the SRA tool cannot do.
+For example, it cannot identify technical vulnerabilities, so it — or any questionnaire tool —
+should be paired with a methodology that could identify technical vulnerabilities (e.g.,
+vulnerability scanning or a vulnerability management program). Software like the SRA tool will
+provide output that is only as good as the information put into the tool. For that reason,
+regulated entities should follow an established risk assessment methodology, even when using
+tools for risk assessment. Regulated entities should also be aware that use of the SRA Tool or
+any risk assessment/management tool does not necessarily equate to compliance with the
+HIPAA Security Rule. Regulated entities may find additional resources in Appendix F that can
+assist in the risk assessment process.
+4. Risk Management Guidance
+The assessment and management of risk to ePHI provide the foundation for a regulated entity's
+Security Rule [Sec. Rule] compliance efforts. Readers are reminded of the Security Rule's
+flexibility of approach. HHS OCR does not prescribe any particular risk assessment or risk
+management methodology. This section provides background information about risk
+management as well as an approach from [IR 8286] that regulated entities may choose to use
+when managing risk to ePHI. However, regulated entities are free to use another risk
+management methodology that effectively safeguards the confidentiality, integrity, and
+availability of ePHI.
+All ePHI created, received, maintained, or transmitted by a regulated entity is subject to the
+Security Rule. Regulated entities are required to implement reasonable and appropriate
+security measures to protect against reasonably anticipated threats or vulnerabilities to the
+confidentiality, integrity, and availability of ePHI. Risk management should be performed with
+regular frequency to examine past decisions, reevaluate risk likelihood and impact levels, and
+assess the effectiveness of past remediation efforts.
+4.1. HIPAA Risk Management Requirements
+Standard 164.308(a)(1)(i), Security Management Process, requires regulated entities to:
+Implement policies and procedures to prevent, detect, contain, and correct security
+violations.
+The Security Management Process standard includes four required implementation
+specifications. Two of these specifications deal directly with risk analysis and risk management.
+1. Risk Analysis (R) – 164.308(a)(1)(ii)(A): Conduct an accurate and thorough assessment
+of the potential risks and vulnerabilities to the confidentiality, integrity, and availability
+of electronic protected health information held by the covered entity or business
+associate.
+2. Risk Management (R) – 164.308(a)(1)(ii)(B): Implement security measures sufficient to
+reduce risks and vulnerabilities to a reasonable and appropriate level to comply with
+Section 164.306(a).
+Section 3.2 provided a risk assessment methodology that regulated entities may choose to
+utilize in accordance with 164.308(a)(1)(ii)(A). This section provides risk management guidance
+in accordance with 164.308(a)(1)(ii)(B).
+4.2. Determining Risks to ePHI in Accordance With Organizational Risk Tolerance
+Regulated entities are required to assess risks and vulnerabilities in their environments and to
+implement security controls to address those risks and vulnerabilities. Once the risk assessment 
+has been completed and documented, the regulated entity will have a listing of applicable
+threat/vulnerability pairs as well as the overall risk rating of each pair to the confidentiality,
+integrity, and availability of ePHI.
+Risk Appetite and Risk Tolerance
+NIST IR 8286A presents two concepts — risk appetite and risk tolerance — that may be helpful
+to regulated entities in managing risk to ePHI. Risk appetite regarding cybersecurity risks is
+declared at the enterprise (i.e., highest) level of the organization and provides a guidepost to
+the types and amount of risk that senior leaders are willing to accept in pursuit of mission
+objectives. Risk tolerance represents the specific level of performance risk deemed acceptable
+within the risk appetite set by senior leadership. Regulated entities may choose to express risk
+tolerance qualitatively (e.g., Very Low, Low, Moderate, High, or Very High) in alignment with
+the guidance presented in Sec. 3.
+Risk appetite and risk tolerance are related but distinct. Where risk appetite statements define
+the overarching risk guidance, risk tolerance statements define the specific application of that
+direction. This means that risk tolerance statements are always more specific than the
+corresponding risk appetite statements. Together, risk appetite and risk tolerance statements
+represent risk limits that can assist regulated entities in managing risk to ePHI.
+Some threat/vulnerability pairs may indicate a moderate or high level of risk to ePHI, while
+others may indicate a low level of risk to ePHI. The regulated entity will need to determine what
+risk rating poses an unacceptable level of risk to ePHI, and any threat/vulnerability pairs that
+indicate a risk rating above the organizational risk tolerance will need to be addressed. If using
+a scale of "low," "moderate," and "high," the regulated entity may determine that any
+moderate or high level of risk to ePHI is unacceptable and must be remediated.
+Once a regulated entity implements the standards, required implementation specifications, and
+addressable implementation specifications in accordance with the Security Rule, the
+regulated entity should determine whether the risks to ePHI have been sufficiently addressed.
+That is, do the implemented standards and implementation specifications reduce the risk of the
+threat/vulnerability pairs that were deemed unacceptably high to levels that are within the
+organizational risk tolerance?
+For example, a regulated entity's risk assessment may have identified that their ability to
+recover from ransomware attacks poses a high level of risk to ePHI (i.e., high likelihood rating
+and high impact rating). After implementing three required implementation specifications —
+Response and Reporting [164.308(a)(6)((ii)], Data Backup Plan [(164.308(a)(7)(ii)(A)], and
+Disaster Recovery Plan [164.308(a)(7)(ii)(B)] — the regulated entity reassesses that the level of
+risk due to ransomware attacks has been reduced to "Low." The likelihood of a ransomware
+attack may still be rated "High," but the three required implementation specifications have 
+helped reduce the impact rating to "Low," resulting in an overall risk rating that is within
+organizational risk tolerance. Another regulated entity may have determined during a risk
+assessment that the loss of confidentiality of ePHI during transmission to an external party is an
+unacceptably high risk (i.e., outside of established risk tolerance) and that the implemented
+standards and implementation specifications do not reduce that risk to levels that are within
+organizational risk tolerance. Therefore, additional controls are needed.
+Ultimately, the regulated entity's risk assessment processes should inform its decisions
+regarding the implementation of security measures that sufficiently reduce risks to ePHI to
+levels within organizational risk tolerance. Each regulated entity must document the security
+controls determined to be reasonable and appropriate, including analyses, decisions, and the
+rationale for decisions made to refine or adjust the security controls.
+4.3. Selecting Additional Security Controls to Reduce Risk to ePHI
+A regulated entity may determine that there are identified risks to ePHI that cannot be brought
+within established risk tolerance by any standards, required implementation specifications, or
+addressable implementation specifications in the Security Rule. Regulated entities should
+consider implementing additional security controls to reduce the risk to ePHI to established
+risk tolerance. Appendix D provides a catalog of the HIPAA Security Rule standards and
+implementation specifications, each of which is mapped to relevant [NIST CSF] Subcategory
+outcomes and the security controls in [SP 800-53]. Regulated entities may benefit from the
+mapping to identify desired cybersecurity outcomes and SP 800-53 management, operational,
+or technical controls that can reduce the risk to ePHI to established risk tolerance.
+Many organizations implement a variety of technical and non-technical controls separate from
+the protection of ePHI. These controls may consist of policies, processes, or technology. A
+thorough understanding of the entirety of security controls in place for a regulated entity may
+reduce the list of applicable vulnerabilities, as well as the realistic probability of a threat
+exploiting a vulnerability. Regulated entities should consider all technical and non-technical
+security controls at all places where ePHI is created, received, maintained, processed, or
+transmitted. Regulated entities should also determine whether these implemented or planned
+security measures are adequate to protect ePHI and reduce risk to ePHI to established risk
+tolerance. The appropriateness and adequacy of security measures may vary depending on the
+structure, size, and geographical dispersion of the covered entity.
+For some threats and/or vulnerabilities, the regulated entity may determine that the risk to
+ePHI cannot be brought within established risk tolerance through any standards,
+implementation specifications, or additional security controls. In this case, the regulated
+entity's leadership may choose to revisit the established risk tolerance. The resulting 
+discussions present an opportunity for leadership to determine the best course of action to
+refine risk acceptance and tolerance in light of mission objectives (e.g., through a risk exception
+process, an adjustment to the risk tolerance statement, or increased security requirements).
+However, if an unacceptable level of risk to ePHI cannot be adequately treated in a cost-effective manner, that risk should be avoided. Such a condition may require significantly
+redesigning relevant systems or processes that handle ePHI.
+4.4. Documenting Risk Management Activities
+As with the risk assessment, risk management activities should be documented. The regulated
+entity may build on the documentation developed during the risk assessment by indicating how
+threat/vulnerability pairs with risk levels above established risk tolerance are mitigated or
+avoided. Some regulated entities may choose to document their risk management activities
+through a risk register that records assessment findings, remediation plans, timelines,
+responsible parties, and other relevant information. Other regulated entities may choose to
+utilize free or commercially available tools to document their risk management activities. The
+documentation and retention of risk assessment and risk management activities may be
+important for future risk management efforts.
+5. Considerations When Implementing the HIPAA Security Rule
+This section presents security measures that are relevant to each standard of the Security Rule.
+Each standard is presented in a consistent tabular format. The following tables, organized by
+HIPAA Security Rule [Sec. Rule] standard, are designed to initiate the thought process for
+regulated entities to implement the requirements of the Security Rule. These tables highlight
+considerations for a regulated entity when implementing the Security Rule. They are not meant
+to be prescriptive and should not be considered comprehensive for all considerations when
+implementing the Security Rule.
+In addition to the HIPAA Security Rule standard name and description, each table includes the
+following information:
+• Key Activities — The Key Activities column lists actions that are often associated with
+the security functions suggested by each HIPAA Security Rule standard. Some of these
+key activities are also the implementation specifications for that standard. Each key
+activity that is also an implementation specification has been identified as such in the
+table (in italics in the Description section of the table) along with a note as to whether
+the implementation specification is required or addressable.
+Other key activities are not implementation specifications. These activities are not
+specifically discussed or required by the HIPAA Security Rule, and their inclusion here is
+in no way meant to expand upon the requirements of the Security Rule. However, many
+of these activities are often included in a robust security process and may be useful to
+regulated entities. These activities may also normally be performed as part of one or
+more of the standard's implementation specifications. For clarity, these activities are
+listed as separate key activities with a footnote explaining any relationship to associated
+implementation specifications.
+The tables address all HIPAA Security Rule standards and all associated implementation
+specifications, both required and addressable. Seven of the standards include all of the
+necessary instructions for implementation and have no associated implementation
+specifications. In these instances, the standards themselves also serve as the
+implementation specification. As noted earlier in this document, even if there are no
+implementation specifications outlined in the Security Rule, such as with Assigned
+Security Responsibility and Evaluation, compliance with the standard itself is still
+required.
+The listed key activities are illustrative and not all-inclusive. There may be additional
+activities that an organization will need to consider that are not included in the key
+activities of the tables. Each regulated entity will need to identify which activities
+beyond those listed in the tables are necessary and appropriate in its environment,
+implement those activities, and document them.
+The tables are meant to serve as only a general introduction to the security topics raised
+by the HIPAA Security Rule. For more detailed information about the key activities,
+readers may consult the crosswalk presented in Appendix D. For each Security Rule 
+standard, the crosswalk lists one or more relevant NIST publications that could provide
+more context or information.
+• Description — The Description column in each table includes an expanded explanation
+about the key activities and the types of activities that a regulated entity may pursue
+when implementing a standard . These explanations are designed to help get an entity
+started in addressing the HIPAA Security Rule. The first description bullet of each key
+activity that is also an implementation specification is in italics. When a relationship
+exists between description bullets and other Security Rule standards or implementation
+specifications, it is indicated in an accompanying footnote.
+• Sample Questions — This column includes questions that a regulated entity may ask
+itself to determine whether the standard has been adequately implemented. These
+sample questions are not exhaustive but are representative of the questions that a
+regulated entity may find helpful when implementing the Security Rule standards and
+implementation specifications. Affirmative answers to these questions do not
+necessarily imply that an entity is meeting all of the requirements of the HIPAA Security
+Rule standards. Negative answers to these questions should prompt the regulated entity
+to consider whether it needs to take further action to comply with the standards.
+Organizations with existing information security programs may have already considered
+many of the sample questions. The questions that an organization asks in implementing
+the Security Rule should be tailored to fit the unique circumstances of each entity.
+This document does not discuss Section 164.105 of the HIPAA Security Rule, Organizational
+Requirements, in detail as it does not set out general security principles. HIPAA-regulated
+entities are encouraged to review this section of the HIPAA Security Rule in full and seek further
+guidance if needed.
+Readers are reminded of the Security Rule's flexibility of approach. The following key activities,
+descriptions, and sample questions are meant to be informative, not prescriptive. This flexibility
+allows regulated entities to customize how they implement HIPAA's Security Rule
+requirements. Regulated entities should customize the key activities, descriptions, and sample
+questions to best fit their organization.
+Each regulated entity (i.e., covered entity or business associate) is responsible for its own
+Security Rule compliance and violations and should review the following key activities,
+descriptions, and sample questions through the lens of its own organization. 
+5.1. Administrative Safeguards
+5.1.1. Security Management Process (§ 164.308(a)(1))
+HIPAA Standard: Implement policies and procedures to prevent, detect, contain, and correct security violations.
+5.1.2. Assigned Security Responsibility (§ 164.308(a)(2))
+HIPAA Standard: Identify the security official who is responsible for the development and implementation of the policies and
+procedures required by this subpart for the covered entity or business associate. 
+5.1.3. Workforce Security (§ 164.308(a)(3))
+HIPAA Standard: Implement policies and procedures to ensure that all members of its workforce have appropriate access to
+electronic protected health information, as provided under paragraph (a)(4) of this section, and to prevent those workforce members
+who do not have access under paragraph (a)(4) of this section from obtaining access to electronic protected health information.
+5.1.4. Information Access Management (§ 164.308(a)(4)) 
+HIPAA Standard: Implement policies and procedures for authorizing access to electronic protected health information that are
+consistent with the applicable requirements of subpart E of this part.
+5.1.5. Security Awareness and Training (§ 164.308(a)(5)) 
+HIPAA Standard: Implement a security awareness and training program for all members of its workforce (including management). 
+5.1.6. Security Incident Procedures (§ 164.308(a)(6)) 
+HIPAA Standard: Implement policies and procedures to address security incidents. 
+5.1.7. Contingency Plan (§ 164.308(a)(7)) HIPAA Standard: Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence
+(for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health
+information.
+5.1.8. Evaluation (§ 164.308(a)(8)) 
+HIPAA Standard: Perform a periodic technical and nontechnical evaluation, based initially upon the standards implemented under
+this rule and subsequently, in response to environmental or operational changes affecting the security of electronic protected health
+information, that establishes the extent to which a covered entity's or business associate's security policies and procedures meet the
+requirements of this subpart.
+5.1.9. Business Associate Contracts and Other Arrangements (§ 164.308(b)(1)) HIPAA Standard: A covered entity may permit a business associate to create, receive, maintain, or transmit electronic protected
+health information on the covered entity's behalf only if the covered entity obtains satisfactory assurances, in accordance with §
+164.314(a), that the business associate will appropriately safeguard the information. A covered entity is not required to obtain such
+satisfactory assurances from a business associate that is a subcontractor.
+Covered entities need to be cognizant of differentiating between best practices versus what the Security Rule requires. Vendor
+management and supply chain risks are important topics due to the potential they have to introduce new threats and risks to
+organizations. However, to the extent that such vendors and service providers are business associates, HIPAA treats them the same
+as covered entities with respect to Security Rule compliance. Covered entities and business associates are required to obtain written
+satisfactory assurances that PHI will be protected. Covered entities and business associates are permitted to require more of their
+business associates and even include more stringent cybersecurity requirements in a business associate agreement (BAA). These
+requirements would need to be agreed upon by both the covered entity and the business associate. 
+5.2. Physical Safeguards
+5.2.1. Facility Access Controls (§ 164.310(a)) 
+HIPAA Standard: Implement policies and procedures to limit physical access to its electronic information systems and the facility or
+facilities in which they are housed, while ensuring that properly authorized access is allowed. 
+5.2.2. Workstation Use (§ 164.310(b))
+HIPAA Standard: Implement policies and procedures that specify the proper functions to be performed, the manner in which those
+functions are to be performed, and the physical attributes of the surroundings of a specific workstation or class of workstation that
+can access electronic protected health information. 
+5.2.3. Workstation Security (§ 164.310(c))
+HIPAA Standard: Implement physical safeguards for all workstations that access electronic protected health information, to restrict
+access to authorized users.
+5.2.4. Device and Media Controls (§ 164.310(d))
+HIPAA Standard: Implement policies and procedures that govern the receipt and removal of hardware and electronic media that
+contain electronic protected health information into and out of a facility, and the movement of these items within the facility.
+5.3. Technical Safeguards
+5.3.1. Access Control (§ 164.312(a))
+HIPAA Standard: Implement technical policies and procedures for electronic information systems that maintain electronic protected
+health information to allow access only to those persons or software programs that have been granted access rights as specified in §
+164.308(a)(4). 
+5.3.2. Audit Controls (§ 164.312(b))
+HIPAA Standard: Implement hardware, software, and/or procedural mechanisms that record and examine activity in information
+systems that contain or use electronic protected health information.
+5.3.3. Integrity (§ 164.312(c))
+HIPAA Standard: Implement policies and procedures to protect electronic protected health information from improper alteration or
+destruction. 
+5.3.4. Person or Entity Authentication (§ 164.312(d))
+HIPAA Standard: Implement procedures to verify that a person or entity seeking access to electronic protected health information is
+the one claimed.
+5.3.5. Transmission Security (§ 164.312(e)(1))
+HIPAA Standard: Implement technical security measures to guard against unauthorized access to electronic protected health
+information that is being transmitted over an electronic communications network. 
+5.4. Organizational Requirements
+5.4.1. Business Associate Contracts or Other Arrangements (§ 164.314(a))
+HIPAA Standard: (i) The contract or other arrangement between the covered entity and its business associate required by §
+164.308(b)(3) must meet the requirements of paragraph (a)(2)(i), (a)(2)(ii), or (a)(2)(iii) of this section, as applicable. (ii) A covered
+entity is in compliance with paragraph (a)(1) of this section if it has another arrangement in place that meets the requirements of §
+164.504(e)(3). (iii) The requirements of paragraphs (a)(2)(i) and (a)(2)(ii) of this section apply to the contract or other arrangement
+between a business associate and a subcontractor required by § 164.308(b)(4) in the same manner as such requirements apply to
+contracts or other arrangements between a covered entity and business associate.
+Covered entities need to be cognizant of differentiating between best practices versus what the Security Rule requires. Vendor
+management and supply chain risks are important topics due to the potential they have to introduce new threats and risks to
+organizations. To the extent that such vendors and service providers are business associates, HIPAA treats them the same as covered
+entities with respect to Security Rule compliance. Covered entities and business associates are required to obtain written
+satisfactory assurances from business associates that PHI will be protected. Covered entities and business associates are permitted
+to require more of their business associates and even include more stringent cybersecurity requirements in a BAA. These
+requirements would need to be agreed upon by both the covered entity and the business associate. 
+5.4.2. Requirements for Group Health Plans (§ 164.314(b))
+HIPAA Standard: Except when the only electronic protected health information disclosed to a plan sponsor is disclosed pursuant to §
+164.504(f)(1)(ii) or (iii), or as authorized under § 164.508, a group health plan must ensure that its plan documents provide that the
+plan sponsor will reasonably and appropriately safeguard electronic protected health information created, received, maintained, or
+transmitted to or by the plan sponsor on behalf of the group health plan.
+5.5. Policies and Procedures and Documentation Requirements
+5.5.1. Policies and Procedures (§ 164.316(a))
+HIPAA Standard: Implement reasonable and appropriate policies and procedures to comply with the standards, implementation
+specifications, or other requirements of this subpart, taking into account those factors specified in § 164.306(b)(2)(i), (ii), (iii), and (iv).
+This standard is not to be construed to permit or excuse an action that violates any other standard, implementation specification, or
+other requirements of this subpart. A covered entity or business associate may change its policies and procedures at any time,
+provided that the changes are documented and are implemented in accordance with this subpart. 
+5.5.2. Documentation (§ 164.316(b))
+HIPAA Standard: (i) Maintain the policies and procedures implemented to comply with this subpart in written (which may be
+electronic) form; and (ii) if an action, activity or assessment is required by this subpart to be documented, maintain a written (which
+may be electronic) record of the action, activity, or assessment. 

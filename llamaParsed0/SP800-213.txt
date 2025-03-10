@@ -1,0 +1,712 @@
+# Abstract
+Organizations will increasingly use Internet of Things (IoT) devices for the mission benefits they can offer, but care must be taken in the acquisition and implementation of IoT devices. This publication contains background and recommendations to help organizations consider how an IoT device they plan to acquire can integrate into a system. IoT devices and their support for security controls are presented in the context of organizational and system risk management. This publication provides guidance on considering system security from the device perspective. This allows for the identification of device cybersecurity requirements—the abilities and actions an organization will expect from an IoT device and its manufacturer and/or third parties, respectively.
+
+# 1 Introduction
+As Internet of Things (IoT) technology evolves, it is inevitable that most organizations will integrate this equipment into systems. IoT technology creates many opportunities for organizations in support of mission objectives. IoT technology may also present security challenges throughout the lifecycle if proper considerations are not made during the acquisition and integration of an IoT device.
+
+Existing NIST risk management guidance helps organizations identify, communicate, and satisfy the security requirements to support mission and business functions and manage risk across the organization from the system level to the organizational level. However, the increasing scale, heterogeneity, and pace of IoT deployment motivates a focus on security requirement support below the information system level, at the system element level. IoT devices used by organizations will frequently be integrated as system elements, and this integration will often happen well after the information system has been initially deployed. It is important that organizations identify support for system and organizational security capabilities needed from individual system elements (e.g., IoT devices) to help manage risk to the system to which they connect.
+
+As an example, an organization may purchase voice-activated printers and integrate them into the existing enterprise network. Organizations must also grapple with the challenge that many IoT devices lack features and functions that are common in conventional information technology (IT) equipment. This lack of functionality in IoT devices can cause security concerns; for example, an IoT device may lack the capability to update software.
+
+To help organizations with these and other IoT-related challenges, this publication provides guidance on considering system security from the device perspective. This allows for more direct identification of device cybersecurity requirements—the abilities and actions an organization will expect from an IoT device and its manufacturer and/or third parties, respectively.
+
+## 1.1 Purpose and Applicability# Incorporating IoT Devices into Information Systems
+
+This publication is intended to help organizations incorporate IoT devices into an existing information system as system elements. IoT devices in-scope for this publication have at least one transducer (sensor or actuator) for interacting directly with the physical world and at least one network interface (e.g., Ethernet, Wi-Fi, Bluetooth, Long-term Evolution (LTE), Zigbee, Ultra-Wideband (UWB)) for interfacing with the digital world. The IoT devices in-scope for this publication can function on their own, although they may be dependent on other specific devices (e.g., an IoT hub) or systems (e.g., a cloud) for some functionality.
+
+While this publication might be helpful for IoT deployments that fall outside this scope or for other situations (e.g., when IoT devices are being integrated as system elements from the conception of an information system), other NIST publications, such as the Risk Management Framework (RMF) and suite of security standards and guidance, address those situations more directly.
+
+## 1.2 Target Audience
+
+The target audience of this publication is information security professionals, system administrators, and others in organizations tasked with assessing, applying, and maintaining security on a system. Personnel within the following Workforce Categories and Specialty Areas from the National Initiative for Cybersecurity Education (NICE) Workforce Framework for Cybersecurity [NICE] are most likely to find this publication of interest as are their privacy counterparts:
+
+- **Securely Provision**: Risk Management, Systems Architecture, Systems Development
+- **Operate and Maintain**: Data Administration, Network Services, Systems Administration, Systems Analysis
+- **Oversee and Govern**: Cybersecurity Management, Executive Cyber Leadership, Program/Project Management and Acquisition
+- **Protect and Defend**: Cybersecurity Defense Analysis, Cybersecurity Defense Infrastructure Support, Incident Response, Vulnerability Assessment and Management
+
+## 1.3 Relationship to Other Publications
+
+This publication uses concepts from the NIST Risk Management Framework, specifically publications such as NIST SPs 800-18 Rev. 1 [800-18], 800-30 Rev. 1 [800-30], 800-37 Rev. 2 [800-37], 800-39 [800-39], 800-53 Rev. 5 [800-53], 800-60 Vol. 1 Rev. 1 [800-60], and 800-160 Vol. 1 [800-160v1] and Vol. 2 [800-160v2], as well as SP 800-82 Rev. 2 [800-82] and the NIST Cybersecurity Framework [CSF].
+
+It also follows from the foundational cybersecurity for IoT work from NIST documented in NISTIR 8228 [IR8228] and the NISTIR 8259 series [IR8259, IR8259A, IR8259B]. Details on the relationship to these other publications is in Section 2.
+
+This publication uses both the terms “security” and “cybersecurity.” For most purposes, these terms are interchangeable and relate to protecting confidentiality, integrity, and availability of data. As a convention, “security” is used when discussing the protection of the system while “cybersecurity” is used when discussing how system elements might support.# Security and Cybersecurity in IoT
+
+## 1. Introduction
+
+### 1.1 Terminology
+The terms "security" and "cybersecurity" are often used interchangeably, particularly in the context of the Risk Management Framework (RMF). However, "cybersecurity" is preferred in the context of IoT to avoid confusion with physical security and safety requirements.
+
+### 1.2 Document Conventions
+This publication provides guidance for federal organizations when acquiring and/or integrating an IoT device into an existing system. The following conventions are used:
+- **"Shall"** indicates a requirement.
+- **"Should"** indicates a recommendation.
+
+### 1.3 Publication Organization
+The structure of this publication is as follows:
+- **Section 2**: Provides background considerations and connects the challenges presented by IoT devices with risk management practices discussed in NIST publications.
+- **Section 3**: Details how the background considerations in Section 2 can be used with existing sources to identify device cybersecurity requirements.
+- **Section 4**: Describes how an organization can navigate security challenges that arise when IoT devices do not meet device cybersecurity requirements as anticipated.
+
+## 2. Background Considerations
+
+This section presents background information about IoT devices that organizations should consider in their device acquisition processes. The publication draws from other NIST guidance, including:
+- Risk Management Framework (RMF) [800-37]
+- Cybersecurity Framework (CSF) [CSF]
+- NIST SP 800-161, Cyber Supply Chain Risk Management Practices for Systems and Organizations [800-161]
+
+Organizations familiar with this guidance and the context of IoT devices within a system may skip this section. It is expected that organizations will follow the RMF steps to manage risk to the system and organization throughout the system development life cycle. As IoT devices are introduced to the system, often after it is in operation, it is critical to consider the security impact of such changes. This publication provides guidance for organizations in the context of the RMF.
+
+### 2.1 Systems and Elements
+As discussed in Section 1, federal cybersecurity risk management processes generally consider the security of organizations and systems, highlighting that systems are made up of elements. Increasingly, IoT devices may become elements of systems. The relationship between systems and elements is a foundational concept in this publication. For more information about this relationship, readers should refer to NIST Special Publication 800-37, Revision 2, Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy [800-37]. Some key concepts, particularly those covered in section 2.4 of SP 800-37 Rev. 2, will be discussed further.# Information Systems and Authorization Boundaries
+
+## Overview
+An information system “is a set of interacting elements that are organized to achieve one or more stated purposes.” [ISO15288] Information systems are defined by the authorization boundary, which encapsulates elements owned and operated by organizations.
+
+## Interaction with Other Systems
+The information system can also be supported by other enabling systems, which will fall outside the authorization boundary. Additionally, information systems can interact with other systems that might benefit from the capabilities offered by the information system.
+
+## Environment of Operation
+The system, as defined by the authorization boundary, along with some enabling systems and other systems, will reside within the environment of operation. This environment is the physical space in which these systems operate.
+
+As explained in SP 800-37 Rev. 2, organizations define and determine the parts of the environment of operation that are within the authorization boundary of each federal system.
+
+### Multiple Authorization Boundaries
+Figure 1 illustrates how the environment of operation can contain multiple authorization boundaries, including other systems and enabling systems. Elements, including IoT devices, may interact and communicate across multiple systems/authorization boundaries. However, for accountability and risk management purposes, each IoT device is only included within one authorization boundary.
+
+Additional enabling systems may fall outside of the environment of operation (e.g., a system hosted by another organization or service provider). This concept of systems and elements can help clarify the ways IoT devices might be used by organizations and the subsequent identification of device cybersecurity requirements.
+
+## Characterization of IoT Devices
+Some IoT devices should be characterized as an enabling or other system if the device is managed in a different authorization boundary than the organization’s system. An example of this type of other system might be a building or campus monitoring system that is primarily autonomous. Such a system will mainly benefit from some of the federal system’s capabilities (e.g., an internet connection, access to data within the authorization boundary), while implementing its own security controls.
+
+## Cybersecurity Responsibility Related to Enabling and Other Systems
+Considering an IoT device as an enabling or other system does not alleviate all cybersecurity considerations on the part of an organization. The IoT device will still exist in another authorization boundary, which may or may not be managed by organizations that do not necessarily use the Risk Management Framework (RMF) (e.g., the manufacturer of the device, third-party service provider).
+
+The organization that manages the IoT device within their authorization boundary would be responsible for many aspects of risk management related to the IoT device. However, any organization that uses the IoT device directly, or the services it provides, must also consider their cybersecurity responsibilities.# Cybersecurity Responsibilities for IoT Devices
+
+## Introduction
+Data will have responsibilities related to cybersecurity of that IoT device and its data. Readers of this document should refer to NIST SP 800-161 Revision 1, *Cyber Supply Chain Risk Management Practices for Systems and Organizations* [800-161] to understand these responsibilities and supporting practices.
+
+## Characterization of IoT Devices
+Other IoT devices acquired by organizations will be best characterized as system elements that fall within the authorization boundary of an existing federal system. This is depicted in Figure 1 by the element in the bottom right corner of the authorization boundary. Since the device will be integrated as a system element, organizations may have significantly more expectations about how this IoT device must support the security controls of the information system and/or organization.
+
+### Technical and Non-Technical Capabilities
+Technical capabilities may be expected from system elements (e.g., IoT devices) to support information system controls; similarly, organizations may depend on non-technical capabilities provided by manufacturers and/or third parties to support information system controls.
+
+## Challenges in Risk Management
+If the IoT device lacks technical and/or non-technical capabilities to support the information system’s security controls, challenges can arise for the organization to manage risk. In this situation, technical and/or non-technical capabilities lacking in the IoT device might be provided by other system elements or systems (e.g., IoT hub, cloud service, mobile app), or the organization might choose to implement compensating controls (e.g., creating a segmented network for IoT) or reimplement existing controls (e.g., changing a policy or procedure for a control in response to IoT device limitations).
+
+If risk(s) introduced by the IoT device cannot be mitigated within the organization’s risk tolerance level, the organization could accept these new risks or decide to not incorporate the IoT device into the information system.
+
+## Scope of the Publication
+This publication can apply to IoT devices in both scenarios (i.e., as an enabling/other system, or as an element of an existing system) but is primarily aimed at IoT devices as system elements since the organization typically has greater responsibility and control over these IoT devices. Understanding the IoT device’s relationship to the system is important to properly define the device cybersecurity requirements needed to support organizational and system security requirements.
+
+## How IoT Devices Support Security
+The relationship of an IoT device to an information system provides the context to understand how an IoT device supports both system and organizational objectives. NIST SP 800-39, *Managing Information Security Risk: Organization, Mission, and Information System View* [800-39], discusses how higher-level mission and organizational objectives inform the architecture and control structure around information systems. In this publication, we extend the discussion.# Overview of IoT Device Cybersecurity
+
+## Introduction
+This document highlights the connection between systems and elements as discussed in SP 800-39, particularly in relation to SP 800-37 Rev. 2.
+
+## Connection Between Concepts
+Figure 2 illustrates the relationship between the concepts discussed in SP 800-39 and system elements.
+
+## Risk Management Strategy
+SP 800-39 describes how the organization’s risk management strategy informs the enterprise architecture, including the information security architecture.
+
+### Key Components
+- **Identification of Security Requirements**: Essential for establishing a robust information security architecture.
+- **Selection and Allocation of Security Controls**: Critical for the effective implementation of security measures.
+
+## Role of IoT Devices
+This publication focuses on IoT devices as system elements that must both support and be informed by the system and its security controls.
+
+### Support for Security Controls
+The primary way that IoT devices support security controls is through technical means, referred to as device cybersecurity capabilities.
+
+#### Non-Technical Supporting Capabilities
+Actions taken by manufacturers or third parties to support the initial and ongoing security of IoT devices are also crucial for supporting security controls.
+
+## NISTIR 8259 Series
+The NISTIR 8259 series discusses device cybersecurity capabilities extensively from the manufacturer’s perspective, helping manufacturers understand the capabilities that customers need in IoT devices.
+
+### Importance for Organizations
+The information in the NISTIR 8259 series is also beneficial for organizations as they acquire and integrate IoT devices.
+
+## Example Device Cybersecurity and Non-Technical Supporting Capabilities
+For an IoT device, such as a smart appliance:
+
+- **Device Cybersecurity Capability**: The ability to establish, manage, and enforce authentication and authorization for entities attempting to access the device or its data.
+- **Non-Technical Supporting Capability**: Manufacturer-provided instructions on how to establish and manage authentication and authorization policies for the device.
+
+## NISTIR 8259 Publications
+- **NISTIR 8259**: Foundational Cybersecurity Activities for IoT Device Manufacturers, which helps organizations consider their needs and goals related to IoT devices.
+- **NISTIR 8259A**: IoT Device Cybersecurity Capability Core Baseline, providing a starting point for device cybersecurity capabilities needed by many customers across various IoT use cases.
+- **NISTIR 8259B**: IoT Non-Technical Supporting Capability Core Baseline, serving as a starting point for non-technical capabilities provided by manufacturers and/or third parties to support customers’ cybersecurity risk mitigation goals.# Goals
+
+## Difference between the IoT Core Baselines and SP 800-53B Control Baselines
+
+Readers may be familiar with the low-, moderate-, and high-impact security control baselines in NIST SP 800-53B, Control Baselines for Information Systems and Organizations [800-53B]. The IoT core baselines are distinct from the SP 800-53B security control baselines.
+
+The IoT core baselines define high-level device cybersecurity capabilities and non-technical supporting capabilities, while SP 800-53B security control baselines provide a risk-based starting point for security control selection. The device cybersecurity capabilities and non-technical supporting capabilities presented in the IoT core baselines enable IoT devices to support the controls in a SP 800-53B control baseline.
+
+SP 800-213A, IoT Device Cybersecurity Guidance for the Federal Government: IoT Device Cybersecurity Requirement Catalog provides more specific capabilities than the IoT core baselines that are targeted at SP 800-53 security controls. Both device cybersecurity capabilities and non-technical supporting capabilities are vital to organizations’ ability to implement controls that the organization has allocated for their information systems.
+
+Figure 3 illustrates how device cybersecurity capabilities and non-technical supporting capabilities (grouped together as ‘Device Cybersecurity Requirements’) support system/organizational security capabilities, which in turn satisfy organizational security requirements.
+
+## Selecting, Allocating, and Implementing Security Controls
+
+Selecting, allocating, and implementing security controls to information systems are key tasks of the RMF Select and Implement Steps. Controls used by federal agencies are selected from NIST SP 800-53, Revision 5, Security and Privacy Controls for Information Systems and Organizations [800-53]. These controls are technology agnostic and can apply to IoT devices incorporated into systems as system elements.
+
+## IoT Devices in the Context of the Risk Management Framework
+
+Understanding that an IoT device is a system element facilitates an understanding of how the IoT device must be considered in the risk management process. The acquisition and integration of an IoT device into an information system may alter the system’s risk assessment based on new risks introduced by the device. An updated risk assessment may require additional or new controls to be selected and implemented in the system.
+
+The guidance in this publication focuses on establishing device cybersecurity requirements to support security controls. This publication provides general considerations of how IoT devices may impact an information system’s risk assessment and subsequent allocation of controls that may be necessary. Readers are encouraged to reference SP 800-30, Revision 1, Guide for Conducting Risk Assessments [800-30] and other publications in the RMF suite of publications for guidance on assessing risk due to the inclusion of an IoT device into an information system.
+
+### 2.3 How IoT Devices May Create Security Challenges# Integrating IoT Devices into Systems
+
+Integrating an IoT device into a system can present a number of challenges for organizations. Organizations should strive to understand these challenges before an IoT device is acquired and integrated into a system.
+
+## Cybersecurity Challenges
+
+For example, due to a number of market and technological factors, IoT devices often lack cybersecurity functionality commonly present in conventional IT equipment (e.g., laptops). Sometimes, a lack of cybersecurity functionality in an IoT device or support from the manufacturer or supporting entities could introduce unacceptable levels of risk to the system, such as when an IoT device lacks a key device cybersecurity requirement.
+
+### Key Device Cybersecurity Requirements
+
+Key device cybersecurity requirements are those the organization has determined the IoT device must possess and/or manufacturers and supporting entities must provide in order for the device to be integrated into the system. Key device cybersecurity requirements are important to consider because without them, an IoT device cannot be considered “securable” by the organizations and will not be able to be used as intended or possibly at all.
+
+Other device cybersecurity requirements (i.e., those not considered key), if lacking from the IoT device or manufacturers and supporting entities, could possibly be compensated for with other device cybersecurity and/or non-technical supporting capabilities or other security controls entirely, giving organizations options when encountering challenges integrating and using IoT devices. Thus, organizations should consider all device cybersecurity requirements needed to support security controls, but also carefully assess which requirements they consider key, ensuring they are limited to those that must be supported through the device or by the manufacturer and/or supporting entities.
+
+## NISTIR 8228 Overview
+
+NISTIR 8228, *Considerations for Managing Internet of Things (IoT) Cybersecurity and Privacy Risks* [IR8228] details some of these challenges that IoT devices can create for organizations. The challenges described in NISTIR 8228 represent generic, high-level use cases. For specific organizations or particular IoT devices, the challenges faced could diverge from those explored in NISTIR 8228. Organizations are encouraged to apply the concepts in NISTIR 8228 to identify challenges applicable to their use cases.
+
+### Concepts Explored in NISTIR 8228
+
+NISTIR 8228 explores a number of challenges, grouped around conventional risk mitigation areas such as:
+
+- Asset management
+- Data protection
+- Incident detection
+- Vulnerability management
+
+The publication further groups these areas into goals of protecting device security, data security, and/or individual privacy. Challenges can arise that hinder risk mitigations in various areas or could impact some or all of the goals.
+
+For example, to mitigate risks related to vulnerability management, software updates may need to be performed. However, not all IoT devices allow for software updates (Challenges 8, 10, and 11). Even mitigations as simple as hiding passwords might not be achievable on IoT devices (Challenge 17).# Integrating IoT Devices into Information Systems
+
+Organizations should not underestimate the challenges of integrating an IoT device into an information system. NIST SP 800-160, Volume 1, **Systems Security Engineering: Considerations for a Multidisciplinary Approach in the Engineering of Trustworthy Secure Systems** [800-160v1] demonstrates how an integrated process is best for engineering trustworthy systems.
+
+## Overview of NIST SP 800-160 Vol. 1
+
+SP 800-160 Vol. 1 presents concepts reflected in other NIST SPs from a system engineering perspective, giving a detailed look at how trustworthy systems can be engineered. The approach outlined in SP 800-160 Vol. 1 considers the acquisition of elements and other system components earlier in the system design process than the integration of these pieces.
+
+### Key Concepts
+
+Adequate acquisition and integration processes, among others, are important concepts from SP 800-160 Vol. 1 that can help organizations ensure the trustworthiness of their systems. Systems will be initially designed and implemented (i.e., prepared, categorized, etc.), but then modified as system elements are removed or other elements added.
+
+When IoT devices are added as system elements, organizations should consider how the integration of the IoT device could impact system and organizational security requirements. However, integrating an IoT device into an information system can also be aided by taking a device-centric perspective.
+
+## Device-Centric Perspective
+
+Through a device-centric perspective, an organization can identify and articulate the device cybersecurity requirements (i.e., the set of device cybersecurity capabilities and non-technical supporting capabilities) required from IoT devices and manufacturers/third parties to support security capabilities and satisfy security requirements.
+
+Organizations should be aware that even if the articulated device cybersecurity requirements are provided by a device and manufacturer/third party, the integration of the IoT device into an information system can still introduce risk.
+
+# Identifying Device Cybersecurity Requirements for IoT Devices
+
+This section provides guidance to organizations in determining the applicable device cybersecurity requirements (i.e., the set of device cybersecurity capabilities and non-technical supporting capabilities) for an IoT device.
+
+## Section 3.1: Overview of Important IoT Device Cybersecurity Considerations
+
+Section 3.1 provides an overview of important IoT device cybersecurity considerations. The questions in this section help organizations contemplate the IoT device’s use case, providing a foundational understanding of how the IoT device might impact risk to the system.
+
+## Section 3.2: Impact on Risk Assessment
+
+Section 3.2 discusses how an understanding of the IoT device and its use case can impact the system’s risk assessment and the subsequent allocation of security controls to the information system.
+
+## Section 3.3: Determining Applicable Device Cybersecurity Requirements
+
+Section 3.3 focuses on determining applicable device cybersecurity requirements based on the risk assessment and controls allocation from Section 3.2. The section presents sources of device cybersecurity requirements. Organizations may reference these sources when selecting applicable IoT device cybersecurity requirements.# IoT Device Cybersecurity Requirements
+
+Each organization should develop a process for identifying and articulating IoT device cybersecurity requirements that aligns with their existing policies and procedures (e.g., acquisitions, security, system administration). The guidance presented in this publication provides a starting point for organizations—as well as additional resources organizations can use—in identifying IoT device cybersecurity requirements. The steps described in this section happen before an IoT device is purchased and/or integrated. At this stage, the IoT device itself may not be in the organization’s possession, which may result in some considerations, particularly those related to how risks can be mitigated, not being entirely known. Information about additional IoT device and support limitations should be identified through further engagement with the available producers and vendors.
+
+## 3.1 IoT Device Cybersecurity Considerations
+
+The decision to integrate an IoT device into a system may occur for a variety of reasons (e.g., to achieve business objectives, further technical advancements, provide administrative support). The reason the IoT device is being acquired will influence its use case. For one organization, IoT sensors may be sought to help remotely monitor environmental conditions; another organization may acquire IoT office equipment to increase productivity; still other organizations may seek to leverage IoT technology in the delivery of services to citizens.
+
+Organizations should fully understand the specific use case for an IoT device since the use case could impact risk to the system and organization. The following questions can help organizations think through some of the common considerations for IoT devices, but this list is not exhaustive. The answers to these and other questions can ultimately help organizations assess risk and identify IoT device cybersecurity requirements for their use case(s). Accurately and completely answering these questions for many IoT devices will require consultation with IT personnel within the organization.
+
+### 1. What is the benefit of the IoT device and how will it be utilized?
+
+Organizations can help ensure that device cybersecurity requirements receive proper consideration by establishing an explicit benefit for integrating the IoT device and understanding how the IoT device will be used. For example, if the IoT device is replacing equipment that did not previously connect to the system, organizations should holistically consider the benefit of the connection to the system compared to the potential risks. It may be the case that a connected motion sensor can detect potential intruders but may also introduce security vulnerabilities that may outweigh the proposed benefits.
+
+### 2. What data is collected?
+
+IoT devices can collect many kinds of data, some innocuous, others of concern to organizations. Any data collected could be a risk to the organization. All data collected or reported by IoT devices should be understood, but three...# Main Types of Data of Concern
+
+## 1. Personal Data
+Many IoT devices can sense or collect data of, from, or about people, which can constitute personal data and represent privacy-sensitive data.
+
+## 2. Confidential Organizational/Federal Government Data
+The IoT device may collect restricted or confidential data, which could influence its risk level. For example, IoT devices may help create or have access to organization-restricted test results, analysis materials, or device prototypes that require special protection.
+
+## 3. Environmental Data
+Many IoT devices can sense and/or collect data of, from, or about the physical environment. Organizations should consider whether the collection of environmental data poses any risk to individuals or the organizational mission.
+
+# Considerations for Data Storage and Transmission
+
+## 1. Technologies for Data Storage and Transmission
+Many IoT devices maintain connections to cloud services and mobile/web applications that are central to the device’s functionality. IoT devices can also connect to additional external services, which may be provided and hosted by a number of third parties. Organizations should consider where the IoT device might store data — in the device, the manufacturer’s network, a manufacturer-contracted entity’s network (e.g., cloud service provider), etc. In addition, organizations should consider how the data will be secured in transit as connections to external services and third parties are made and used.
+
+## 2. Geographic Areas for Data Sharing and Storage
+The architecture that supports IoT devices is increasingly global. Organizations should consider where data from prospective IoT devices will be transmitted and stored to ensure applicable security requirements are met. An IoT device may connect to and transmit data to systems in many diverse areas, including other cities, states, and countries. These connections may change over time due to the dynamic nature of IoT systems.
+
+## 3. Third Parties for Data Sharing and Storage
+In some cases, an IoT device will only exchange data with the owner and manufacturer-owned and operated systems. In other instances, the IoT device will share data with third parties. For example, many manufacturers use cloud storage and services from other providers to support their IoT devices’ back-end infrastructure.
+
+# Interaction with the Organization and Information System
+
+## 1. Potential Interference with Operations or System Functionality
+Unlike conventional IT equipment, IoT devices are more likely to interact with the physical world through sensing and/or actuating. This interaction increases the possibility that an IoT device could affect operations and the environment (e.g., alarms, thermostats, environmental controls, heating elements) as well as the security posture of the organization.# IoT Device Risk Assessment
+
+## 1. Privacy and Safety Risks
+### a. Privacy Risks
+IoT devices could collect and share sensitive data about people, including, but not limited to, audio and video data.
+
+### b. Safety Risks
+An IoT device can also interact with the physical world (e.g., IoT vehicle) or might be intended to protect human safety (e.g., an IoT smoke alarm), potentially posing safety risks. Considering if an IoT device may introduce privacy or safety risks is critical to planning for risk mitigation.
+
+## 2. System Reliability and Resiliency
+### a. Interference with System Reliability
+The diversity of IoT device use cases creates the possibility that the IoT device’s expected operational environment may vary from where it is actually deployed. In such instances, the IoT device might negatively interact with other system elements or operational systems if not properly planned for.
+
+### b. Impact of Offline Devices
+For example, an IoT device may go offline to apply a software update. This behavior is acceptable in many circumstances but may impact system reliability if the offline device hurts operations in other parts of the system.
+
+### c. Resilience of IoT Devices
+IoT devices may not be as digitally and physically resilient as their IT or OT counterparts since they must sometimes attempt to deliver both IT and OT functionality. This can lead to inherent practicality and cost constraints that result in a focus or prioritization of some features or aspects of functionality over others (e.g., safety over cybersecurity) in the design of the IoT device.
+
+## 3. Organizational Risks and Compliance
+### a. Unacceptable Risks
+Would the IoT device introduce unacceptable risks to the organization or result in non-compliance with cybersecurity requirements? Some IoT devices might be unable to support the organization’s current security controls as they are implemented due to their design, requiring organizations to implement compensating controls (e.g., additional organizational controls or alternative technical controls) to manage risk.
+
+### b. Additional Points of Access
+Organizations should consider the proposed IoT device use case and whether the risk introduced is acceptable. In some use cases, the IoT device might provide an additional point of access to the system from which an attacker could pivot to other system elements or networks.
+
+## 4. Known Vulnerabilities
+### a. Security and Privacy Vulnerabilities
+Does the IoT device have known security and/or privacy vulnerabilities? Like all connected products, IoT devices attract attention from security professionals and researchers who identify security and/or privacy concerns.
+
+### b. Manufacturer Information
+Manufacturers also commonly publish similar information concerning their devices. Understanding known vulnerabilities can inform an organization’s acquisition, risk assessment, and possible integration of an IoT device.
+
+### c. Mitigation of Vulnerabilities
+For example, if known vulnerabilities exist that the manufacturer cannot mitigate, organizations would have to identify and address risks introduced by the IoT device through other means.
+
+## Conclusion
+As discussed extensively in NISTIR 8228, IoT devices can have significantly different feature sets compared to conventional IT devices. These differences in device capabilities and support for security controls can create challenges for organizations if not adequately planned for, especially if the capabilities diverge significantly from what is expected. Organizations should...# Security and Privacy Challenges of IoT Devices
+
+Refer to NISTIR 8228 and consider if the IoT device will create any security and privacy challenges for the information system and organization. One common way challenges arise is when an IoT device does not fully support key device cybersecurity requirements. Organizations may reduce these challenges by considering important aspects of how the IoT device should connect and function to ensure the device conforms with expectations, and, thus, may define, inform, or otherwise impact key device cybersecurity requirements.
+
+## Key Considerations for Organizations
+
+In particular, organizations should consider:
+
+### 1. Organization-Specific Information
+
+What organization-specific information is important to defining key device cybersecurity requirements? Organizations often invest in specific solutions or implementations that would be the preferred support for various security controls. Identifying this kind of organizational information can help guide a purchase and reduce conflicts in applying security controls if the IoT device is integrated into a system.
+
+Since IoT devices can interact with an organization in many ways (e.g., via the network, but also in a physical way), many different kinds of organization-specific information can impact what is acceptable to an organization, which mitigations are practical and appropriate, and the determination of device cybersecurity requirements. Some examples of organization-specific information include, but are not limited to:
+
+1. **Authentication Requirements**: Does the organization require Personal Identity Verification (PIV) card-based authentication or does it allow password-based authentication in limited circumstances? Support for critical cybersecurity technologies and operations that are used to implement security controls may be important for an organization in deciding which, if any, IoT device to use for a particular purpose. Organizations should note that some of this support, such as support for PIV, may be related to standards and guidelines like the Federal Information Processing Standards (FIPS).
+
+2. **Manufacturer Preferences**: Does the organization purchase products from particular manufacturers or 3rd parties? Such situations may limit the IoT devices readily available to the organization. This may, in turn, limit the availability of IoT devices that best support the needs and goals of the organization.
+
+3. **Environmental Considerations**: Are there any environmental considerations (e.g., exposure to the elements, human presence, sensitive data that could be collected) in the environment of operation? Environmental considerations can help guide device cybersecurity requirements, particularly around physical protections. For example, if an IoT device is meant to be placed outdoors, a durable housing may be needed to withstand excessive heat, cold, and moisture while still providing data availability and integrity.
+
+### 2. Key Device Cybersecurity Requirements
+
+Does the IoT device lack key device cybersecurity requirements? Key device cybersecurity requirements are those the organization has determined that the IoT device must possess in order for the device to be integrated into the system and make external connections to other systems or the Internet. Lack of key device cybersecurity requirements indicates that the IoT device cannot support existing information system.# IoT Device Cybersecurity Considerations
+
+## Introduction
+The implementation of information system security controls is crucial for organizations utilizing IoT devices. It is essential to evaluate whether other system elements (e.g., gateways, hubs, cloud services) can compensate for the capabilities that may be lacking in the IoT device. However, organizations must remain aware of key device cybersecurity requirements that cannot be overlooked or omitted without introducing unacceptable risk.
+
+## Key Questions to Consider
+
+### 1. Device Cybersecurity Capabilities
+- Will the implementation or maturity of device cybersecurity capabilities and/or non-technical supporting capabilities fail to satisfy key device cybersecurity requirements?
+- Some IoT devices may lack essential cybersecurity features, rendering them unusable for the organization.
+- Other devices may provide necessary requirements but not in a compatible format. For instance, a device may have a unique identifier that does not align with the organization's existing asset management processes.
+- If an IoT device's cybersecurity capabilities are immature, securing the device may become significantly more challenging. For example, a device might encrypt data using a deprecated encryption module due to resource constraints, necessitating additional compensating controls.
+
+### 2. Access and Network Requirements
+- What are the physical, logical access, network, and other requirements of the IoT device, and how do they relate to key device cybersecurity requirements?
+- Understanding the interaction of the IoT device with both digital and physical environments is vital for assessing its suitability for organizational use and identifying associated cybersecurity risks.
+- Knowing the endpoints (both internet domains and local devices) that the IoT device must connect to can help ensure that all connections comply with the organization’s security policy.
+- Physical access requirements, such as maintenance or diagnostics, may conflict with deployment strategies, especially if devices are placed in inaccessible locations.
+
+## Manufacturer Practices
+In addition to the specifics of the device, organizations should evaluate the manufacturer's practices regarding the development and ongoing support of the IoT device. Secure development, supply chain, and maintenance practices can mitigate vulnerabilities and reduce the likelihood and impact of adverse events.
+
+### Considerations for Manufacturers
+1. Does the manufacturer employ secure development and supply chain practices to support their operations?
+- While these practices will not eliminate all cybersecurity issues, they are a critical component of a comprehensive security strategy.# Reducing Cybersecurity Issues with IoT Devices
+
+## Introduction
+Organizations are increasingly concerned about the cybersecurity posture of manufacturers and their IoT devices. This document outlines key considerations for assessing the risks associated with IoT devices.
+
+## Key Considerations
+
+### 1. Manufacturer's Vulnerability Disclosure Practices
+- How robust and mature are the manufacturer’s vulnerability disclosure and remediation practices?
+- Organizations should consider whether the manufacturer has an established vulnerability disclosure program with a history of timely updates.
+- It is important to look at these disclosures to inform themselves of known vulnerabilities.
+
+### 2. Software Update Expectations
+- What are the expectations around the delivery of software updates in response to discovered vulnerabilities?
+- Understanding expectations around update delivery can help organizations maintain their risk posture.
+- This knowledge allows organizations to adequately plan for the delivery (or absence) of an update to apply.
+
+## Assessing Risk and Determining Required Security Controls
+Organizations should remember that incorporating an IoT device can alter the information system’s risk assessment. Any change in the risk assessment may require:
+
+- Allocation of additional security controls.
+- Introduction of compensating controls to reduce risk to acceptable levels.
+
+### Risk Assessment Approach
+- Organizations assess risk to IoT devices using an organization-defined approach based on guidance in NIST SP 800-30.
+- Supplement the risk model for IoT using the guidance in this section.
+
+### Updated Risk Model
+- An updated risk model specifically for an IoT device should be closely aligned and adapted from the risk model with key risk factors identified in SP 800-30 Rev. 1.
+- This updated risk model will be used with other information to assess risk to the system, including the IoT device as an element.
+
+## Impact of IoT Devices on Risk Assessment
+Ideally, the inclusion of an IoT device as a new system element will not significantly alter the information system’s risk assessment. However, organizations must assess the level of risk introduced by the IoT device.
+
+### Considerations for Risk Model
+The following factors should be considered as part of the risk model of an IoT device to be incorporated into a system:
+
+- **Threats**: What new threats does the IoT device introduce?
+- **Vulnerabilities**: Are there new vulnerabilities associated with the IoT device?
+- **Likelihood**: What is the likelihood of these threats being realized?
+- **Impact**: What would be the impact if these threats were to materialize?
+
+### 3.2.1 Effects on Threat Sources and Events
+- How does the IoT device affect the threat sources and events that must be considered as part of a risk assessment?
+- An IoT device may bring new features and functions to a system but may also attract new threat sources and present new threat events.
+
+## Conclusion
+The incorporation of IoT devices into existing systems requires careful consideration of the associated risks and the implementation of appropriate security controls. Organizations should continuously assess and update their risk models to ensure they are adequately protected against emerging threats.# System Risk Assessment and IoT Devices
+
+## Introduction
+The integration of Internet of Things (IoT) devices into existing systems introduces new safety and mission-critical considerations that must be evaluated as part of a system risk assessment.
+
+## New Threat Considerations
+IoT devices can make systems more attractive to attacks that were previously not applicable. For instance:
+- **Ransomware Targets**: The system may become a target for ransomware attacks.
+- **Physical Danger**: New events may arise that put individuals in physical danger.
+
+Conversely, IoT devices may not face the same threat sources and events as the rest of the system. For example:
+- **Short Lifespan**: IoT devices with a short lifespan may not be subject to long-term reconnaissance attacks.
+- **Limited Functionality**: Devices with limited functionality may not face certain threat sources or events that require extended network access.
+
+## Threat Sources and Events
+IoT devices often share many threat sources and events with existing information systems. However, there may also be unique threat sources and events specific to IoT devices.
+
+### Classes of Threat Sources and Events
+When comparing threat sources and events between IoT devices and information systems, there are two classes:
+1. **Same**: The sets are identical, meaning the IoT device introduces no new threat sources or events.
+2. **Different**: This can be categorized into several scenarios:
+- **Scenario 1**: No previously considered threat sources and events apply; only new threat sources and events may apply.
+- **Scenario 2**: Some, but not all, previously considered threat sources and events apply, along with new threat sources and events.
+- **Scenario 3**: Some, but not all, previously considered threat sources and events apply, but no new threat sources and events apply.
+- **Scenario 4**: All previously considered threat sources and events still apply, and new threat sources and events apply.
+
+## Effects on Vulnerabilities and Predisposing Conditions
+### Definition of Vulnerabilities
+According to CNSSI No. 4009, a vulnerability is defined as a weakness in an information system, system security procedures, internal controls, or implementation that could be exploited by a threat source.
+
+### Predisposing Conditions
+Predisposing conditions are characteristics of the environment, organization, or system that increase the likelihood that once initiated, threat events will lead to undesirable consequences or impacts.
+
+### Importance of Updated Threat Lists
+An updated list of threat sources and events can assist organizations in identifying vulnerabilities and predisposing conditions that were not previously considered in the risk assessment. These vulnerabilities may exist within the information system or the proposed IoT device.# Potential Vulnerabilities in IoT Devices
+
+## Introduction
+Potential vulnerabilities in an IoT device (e.g., default credentials that cannot be changed) may help the organization identify additional threat sources (e.g., credential stuffing authentication attack).
+
+## Threat Introduction
+For example, a minimal threat of system elements being compromised and assimilated into a DDoS-executing botnet may have existed before, but a proposed IoT device deployment within the system may introduce vulnerabilities (e.g., default credentials) and predisposing conditions for this threat to exploit.
+
+## Vulnerabilities Comparison
+IoT devices may have many of the same vulnerabilities as the existing information system. There may be a set of unique IoT device vulnerabilities as well as some information system vulnerabilities that do not apply to the IoT device.
+
+### Classes of Vulnerabilities
+In this sense, there are two classes when comparing vulnerabilities and predisposing conditions between the IoT device and information system: they can be the same or different.
+
+- **Same**: The sets are identical such that the IoT device brings no new vulnerabilities or predisposing conditions but has all the same vulnerabilities and predisposing conditions as previously considered in the system’s risk assessment.
+- **Different**: Different sets can be one of several categories:
+1. No previously identified vulnerabilities and predisposing conditions apply, only new vulnerabilities and predisposing conditions may apply.
+2. Some, but not all previously considered vulnerabilities and predisposing conditions apply, and new vulnerabilities and predisposing conditions apply.
+3. Some, but not all previously considered vulnerabilities and predisposing conditions apply, but no new vulnerabilities and predisposing conditions apply.
+4. All previously considered vulnerabilities and predisposing conditions still apply, and new vulnerabilities and predisposing conditions apply.
+
+## Effects on Likelihood(s) of Occurrence of Threats
+### Risk Assessment
+How does the IoT device affect likelihood(s) of occurrence determinations as part of a risk assessment? Risk impact is dependent on two components: likelihood of occurrence and magnitude of impact.
+
+As per CNSSI No. 4009, likelihood of occurrence “is a weighted risk factor based on an analysis of the probability that a given threat is capable of exploiting a given vulnerability (or set of vulnerabilities).” [CNSSI]
+
+### Determination of Likelihood
+Determination of likelihood as part of a risk assessment is therefore based on identified threat sources and events as well as vulnerabilities and predisposing conditions. Threat sources, events, and vulnerabilities identified for the IoT device must be used in the assessment of likelihood.
+
+Likelihood of occurrence can often be expressed in a relative way (e.g., low, medium, or high likelihood of occurrence).
+
+### Impact of IoT Devices
+As part of a risk assessment, the effect of an IoT device on likelihood of occurrence can be expressed as being greater, lower, or equal to the likelihood of occurrence without the IoT device.
+
+For example, an IoT device being connected to a system may create new possible connections (e.g., cellular data connections) that may increase the likelihood of a remote actor being able to exploit.# Vulnerability Assessment in IoT Systems
+
+## 3.2.4 Effects on Magnitude(s) of Impact of Threats
+
+How does the IoT device affect magnitude(s) of impact considered as part of a risk assessment? In addition to likelihood of occurrence, a risk assessment will consider the magnitude of impact. Magnitude of impact is defined in CNSSI No. 4009 as the level of harm that can be expected to result from the consequences of unauthorized disclosure of information, unauthorized modification of information, unauthorized destruction of information, or loss of information or information system availability.
+
+The introduction of IoT devices into an information system can expand the harm to include human safety, environmental, and other impacts. IoT devices may introduce greater, lower, or equal magnitude of impact compared to the rest of the system. For example, an IoT device that is safety- and/or mission-critical may create greater magnitude of impact if compromised. A constrained IoT device (e.g., with limited storage, memory, or processing power) may contribute lower magnitude of impact relative to other elements in the system.
+
+## 3.2.5 Determine Updated Risk Assessment
+
+With an understanding of the threat sources and vulnerabilities introduced by the IoT device, as well as the resulting likelihood of occurrence and magnitude of impact, organizations can perform an updated risk assessment of the information system using information available about the proposed IoT device.
+
+Figure 6 shows how information about an IoT device will flow into the updated risk assessment of the system in which the IoT device is integrated. The resulting updated risk assessment may require the organization to allocate new security controls to the information system to effectively manage the anticipated risk. The organization may identify certain security controls that apply to the IoT device, or that must be provided by the IoT device specifically.
+
+Ultimately, it is important for organizations to identify all security controls required to reduce information system risk to an acceptable level. Section 3.3 will focus on using the identified security controls to determine the technical and non-technical capabilities needed from the IoT device.# IoT Device Cybersecurity Requirements
+
+## 3.3 Identifying Device Cybersecurity Requirements
+
+Device cybersecurity requirements should be based on the security capabilities and security requirements of the system and organization while also accounting for considerations like those highlighted in Section 3.1 and updates to the system risk assessment that may be necessary as discussed in Section 3.2.
+
+Figure 7 below illustrates this process and how it will draw on the considerations and guidance from the prior sections to inform the device cybersecurity requirements.
+
+Determining IoT device cybersecurity requirements may be challenging for some use cases. To assist organizations in selecting IoT device cybersecurity requirements, this section presents several NIST publications and resources. When the full set of security controls for the system has been identified, organizations can translate those controls into device cybersecurity capabilities and non-technical supporting capabilities. Since IoT device cybersecurity requirements are in support of security controls allocated to information systems, organizations can identify the device cybersecurity requirements needed to support the security controls allocated to the information system(s) to which the IoT device will be connected. Information security and systems administration personnel should collaborate to identify security controls that require support from system elements (e.g., IoT devices).
+
+### Example of Device Cybersecurity Requirements Supporting Security Controls
+
+An organization might want to acquire an IoT device such as a smart speaker to use in the office environment. The smart speaker will need to connect to the system (e.g., internal network) so that organization management can access the speaker from other parts of the environment of operation and play audio over the speaker. These remote connections will require proper authentication and authorization.
+
+To support the authentication and authorization controls, the smart speaker may require device cybersecurity capabilities such as:
+- The ability to deny remote connections
+- The ability to authenticate and/or authorize entities attempting to make remote connections
+- The ability to terminate connections within organizational policy
+
+Other device cybersecurity capabilities may apply, but these are presented as example capabilities. Additionally, the allocated security controls may require the organization to configure the smart speaker to authenticate and authorize users within organizational policy, which could require non-technical supporting capabilities from manufacturers. These non-technical supporting capabilities could include obtaining documentation from the manufacturer about how the IoT device can be configured to support organizational authentication and authorization policy.
+
+### 3.3.1 Identifying Requirements using SP 800-213A
+
+Organizations may leverage SP 800-213A of this publication, The IoT Device Cybersecurity...# Requirement Catalog [800-213A]
+
+This catalog contains device cybersecurity requirements organized by technical (i.e., device cybersecurity capabilities) and non-technical (i.e., non-technical supporting capabilities). The device cybersecurity requirements in the catalog are derived from security controls in SP 800-53 Rev. 5 and therefore may be helpful in supporting security controls in low, moderate, and high impact information systems. SP 800-213A can be a valuable resource for organizations when identifying applicable IoT device cybersecurity requirements.
+
+## Using Mappings for Identifying Requirements
+
+Organizations can use the mappings (i.e., between SP 800-53 Rev. 5 security controls and device cybersecurity requirements) included in SP 800-213A to identify appropriate device cybersecurity requirements. The mappings show, for each identified SP 800-53 Rev. 5 security control, the corresponding device cybersecurity capabilities and non-technical supporting capabilities needed to support the security control.
+
+Using the mapping, the organization will be able to develop a comprehensive list of device cybersecurity capabilities and non-technical supporting capabilities. This list of device cybersecurity capabilities and non-technical supporting capabilities may need to be tailored—just like an organization tailors the SP 800-53 Rev. 5 security controls.
+
+### Applicability of Capabilities
+
+Some device cybersecurity capabilities and non-technical supporting capabilities identified through the mapping may not be applicable to the use case. For example, a required SP 800-53 Rev. 5 security control might map to the capability “Ability to create an organizationally-defined system use notification message or banner to be displayed on the IoT device.” For many IoT devices and/or use cases, this capability is not applicable; organizations might choose to scope this identified capability out of the needed capabilities.
+
+Other identified device cybersecurity capabilities and non-technical supporting capabilities might be best provided by a different system element (e.g., gateway, IoT Platform, cloud service provider) instead of by the IoT device. If an organization is planning to acquire a constrained IoT device (i.e., the device has limited internal memory, storage, and/or processing power), the organization may need to carefully consider those capabilities that can be provided by the IoT device and those capabilities that will need to be provided by other system elements.
+
+Organizations should also carefully consider the key device cybersecurity requirements for an IoT device that must be present on the device for it to be integrated into the system.
+
+## Identifying Requirements using Other Resources
+
+In addition to device cybersecurity capabilities and non-technical supporting capabilities identified using the mapping described in Section 3.3.1, organizations may determine that additional capabilities are needed from IoT devices and/or system elements in order to support security controls and reduce risk to acceptable levels. The NISTIR 8259 series of documents,# Device Cybersecurity Requirements for IoT Devices
+
+## Introduction
+CSF, RMF, and other activities and resources can help organizations identify additional needed capabilities. Guidance that identifies applicable starting points for device cybersecurity requirements may help some organizations overcome challenges they may encounter when determining appropriate device cybersecurity requirements for IoT devices.
+
+## Challenges in Identifying Device Cybersecurity Requirements
+Organizations must hit a moving target in identifying device cybersecurity requirements to support a set of controls that may change based on the IoT device selected and its use case. Further compounding this challenge is the need for thorough understanding and consideration of a number of areas, including:
+
+- Technical knowledge about cybersecurity
+- Knowledge of the operational side of the system/device
+- Insight into organizational security controls
+
+These areas of knowledge may be spread among multiple personnel within an organization or fall outside their cybersecurity work role and related expertise. Small organizations, those geographically further from headquarters, and those with significant proportions of personnel without technological or cybersecurity work roles may find these challenges are amplified.
+
+## NISTIR 8259A and 8259B
+NISTIR 8259A specifies the high-level device technical cybersecurity capabilities that generally achieve minimal securability for most customers. The IoT core baseline, as the IoT device cybersecurity capability core baseline from NISTIR 8259A is called, is meant to apply to all IoT use cases and customers, meaning it is phrased at a high level to meet many different needs.
+
+NISTIR 8259B presents a set of non-technical supporting capabilities—the IoT non-technical supporting capability core baseline—generally needed from manufacturers or entities to support common security controls. Like 8259A, the non-technical capabilities in 8259B are phrased at a high level to be broadly applicable to various use cases and customers.
+
+## Profiling the IoT Core Baselines
+The IoT core baselines presented in NISTIR 8259A and 8259B can be profiled for a specific customer, sector, or use case. The process of profiling tailors and/or extends the IoT core baselines and can be performed at any level of specificity, even to an individual customer (e.g., organization within the federal government).
+
+### Federal Profile
+One such profile of the IoT core baselines that is guided by the needs and goals of organizations is called the federal profile, which is included as Appendix A to SP 800-213A. The federal profile uses the SP 800-53 Rev. 5 controls catalog as an input source of federal government security needs and goals to identify device cybersecurity capabilities and non-technical supporting capabilities.
+
+Since the federal profile targets minimal securability for all federal government use cases, it focuses on device cybersecurity requirements that support the low-impact baseline set of SP 800-53 Rev. 5 controls, which would be a subset of the device cybersecurity requirements in Sections 2 and 3 of SP 800-213A. This focus for the federal profile is based on the assumption that the low-impact baseline set of controls will be...# IoT Device Cybersecurity Requirements
+
+## Introduction
+The federal profile is recommended as a starting point for organizations to identify IoT device cybersecurity requirements when incorporating an IoT device into a low-impact system. This profile, along with other similar lists of capabilities, can help organizations reduce challenges in determining device cybersecurity requirements for IoT devices.
+
+## Tailoring Cybersecurity Requirements
+While the federal profile and other lists of device cybersecurity requirements provide a useful framework, they may not perfectly fit every specific IoT device, organization, or system. The list of device cybersecurity capabilities and non-technical supporting capabilities in the federal profile may need to be tailored as described in Section 3.3.1.
+
+### Considerations for Tailoring
+- The use of the low-impact baseline may not be appropriate for all organizations and use cases, especially if the IoT device is to be integrated into a moderate- or high-impact information system.
+- Tailoring device cybersecurity requirements using organization-specific considerations can help alleviate costly issues when seeking approval for or integrating the IoT device.
+
+## Importance of IT Personnel Involvement
+Involving IT personnel is crucial to ensure an evaluation of features and functionality pertinent to securely configuring or integrating a device before a purchase is made.
+
+## Identifying Cybersecurity Requirements
+Using the guidance described in Section 3.3, organizations shall identify all applicable IoT device cybersecurity requirements, including key device cybersecurity requirements, ensuring that information system security controls are supported.
+
+### Risk Management Strategies
+If the IoT device and/or manufacturer do not provide all required device cybersecurity capabilities and non-technical supporting capabilities, organizations should follow established risk management strategies to plan for the IoT device’s incorporation into the system. Section 4 discusses these risk mitigation options.
+
+# Understanding Risk Management Options for IoT Devices
+When preparing to acquire an IoT device, organizations may find that available devices on the market do not provide some of the needed device cybersecurity requirements.
+
+## Post-Purchase Considerations
+Sometimes, organizations may discover that an IoT device lacks needed cybersecurity requirements after purchasing the equipment. These situations do not necessarily preclude the use of the IoT device but indicate that additional considerations are necessary to ensure appropriate use.
+
+### Impact of IoT Device Characteristics
+The characteristics of IoT devices may affect their integration and security, necessitating careful evaluation and planning.# Understanding IoT Device Risks and Mitigations
+
+## Introduction
+This section focuses on how organizations can understand, plan for, and document the ways in which IoT devices may affect appropriate risk mitigations.
+
+## Secure Use of IoT Devices
+An important point is that an IoT device might still be securely used by an organization even if it doesn’t provide all identified device cybersecurity requirements. In some use cases, the organization might determine that an identified device cybersecurity requirement is unnecessary for support of a control (e.g., if the IoT device does not function in a way that needs the protection addressed in the security control).
+
+### Supporting Security Controls
+The security control may still be supported by most elements of the system, but this IoT device justifiably (i.e., without introducing unacceptable risk) lacks the capabilities to support that security control. In another instance, the IoT device may provide a capability that supports a security control, but not in the same way as an organization is accustomed to (e.g., the IoT device provides a unique identifier, but not in the format used by the organization).
+
+### Gaining Mission Benefits
+Options may also exist for organizations to gain the mission benefits of using an IoT device without introducing unacceptable risk due to gaps between identified device cybersecurity requirements and the device cybersecurity capabilities provided by IoT devices on the market.
+
+## Key Device Cybersecurity Requirements
+An organization may still determine that certain device cybersecurity requirements cannot be missing from an IoT device (i.e., it is a key device cybersecurity requirement). Such a determination could preclude the use of an IoT device if no product is available that meets the requirements. Organizations can minimize this occurrence by considering all options at their disposal that may allow them to securely use an IoT device.
+
+## Challenges in Meeting Device Cybersecurity Requirements
+### Section 4.1: Potential Challenges
+Section 3 described how an organization can determine the necessary device cybersecurity requirements for an IoT device. When an organization attempts to acquire an IoT device, the identified device cybersecurity requirements can help guide the procurement process.
+
+### Procurement Process
+Organizations can look for available IoT devices (and manufacturers) on the market that provide as many device cybersecurity requirements as possible within the target price point. Acquiring IoT devices that provide more than just key device cybersecurity requirements can help minimize challenges in supporting security controls later in the system’s life, when support needed for security controls may change.
+
+In some circumstances, using an IoT device that goes...# IoT Device Cybersecurity Challenges
+
+## Introduction
+Beyond key device cybersecurity requirements may not be an option because locating IoT devices on the market that provide even those key requirements may be difficult. Many factors contribute to this, including, but not limited to:
+
+## Factors Contributing to Cybersecurity Challenges
+
+### Heterogeneity in IoT Use Cases
+- IoT devices may be intended for vastly different environments or uses, which can create variability in the existence and efficacy of device cybersecurity requirements.
+- In some cases, they may lack IoT device cybersecurity requirements because aspects of the use case interfere with the goal supported (e.g., for this device’s intended use case, cybersecurity is outweighed by another concern like safety) or the nature of the support provided (e.g., a certain requirement cannot be met due to technical or physical limitations).
+
+### Broad Customer Base
+- The intended customer base for an IoT device may be very broad, forcing a manufacturer to make choices about which capabilities to support in a device.
+- The capabilities provided by the device may favor one customer’s use case more than another customer’s. This issue can be accentuated when an IoT device is being used by an unintended customer, who may find capabilities missing from the IoT device.
+
+### Cost and Complexity
+- The cost and complexity of providing capabilities in the IoT device may cause manufacturers to build fewer capabilities into devices.
+- These decisions may reduce expectations for capabilities provided by the IoT device and shift the cybersecurity responsibilities to other system elements, possibly utilizing alternative approaches and capabilities for achieving security needs and goals.
+
+### Business Considerations
+- Business and other non-security considerations (e.g., monetary cost) for the customer and manufacturer may affect the device cybersecurity and non-technical supporting capabilities desired or delivered, which could sometimes be in conflict for a specific IoT device.
+
+## NISTIR 8228 Identifies IoT Device Cybersecurity Challenges
+Organizations can best assess and account for gaps in IoT device cybersecurity requirements in relation to a particular IoT device and use case. Having a general understanding of possible cybersecurity challenges that could be encountered by organizations when adopting an IoT device can help avoid common issues.
+
+Organizations can reference **NISTIR 8228** to learn about challenges they may face when integrating an IoT device and use this information to inform the device requirements identification process and the subsequent procurement and integration processes.
+
+## Gaps in Support for Device Cybersecurity Requirements
+Gaps in support for device cybersecurity requirements may manifest from technological, form, cost, and other factors of the device that do not easily support or allow such capabilities. However, gaps may exist even when there are not particular limitations on the device’s capacity to achieve those requirements.
+
+For example, some IoT device manufacturers may simply not provide adequate documentation for a product and may be unresponsive to additional requests.# IoT Device Cybersecurity Capabilities
+
+IoT devices may be technically able to support a device cybersecurity capability, but due to limited demand for such a capability, even from the federal government, the manufacturer may forgo or delay adding it. Legacy devices may also have gaps in device cybersecurity requirements that cannot be remedied through adding those capabilities for these reasons, but also for business reasons (e.g., original manufacturer is no longer operating or supporting the IoT device).
+
+## Scenarios for Device Cybersecurity Capabilities
+
+For each device cybersecurity capability or non-technical supporting capability desired in an IoT device, there are three possible scenarios:
+
+1. **Present Capability**: The device cybersecurity capability or non-technical supporting capability is present in the IoT device as the capability is stated.
+2. **Alternative Capability**: The device cybersecurity capability or non-technical supporting capability is not present as the capability is stated, but an alternative capability is provided that is intended to support the same goal (though not necessarily the same security control).
+3. **Absence of Capability**: The device cybersecurity capability or non-technical supporting capability is not present as the capability is stated, and no alternative capability to support the goal is provided.
+
+These three scenarios do not account for why a capability is not present in an IoT device, nor do they determine whether a missing or alternative capability is acceptable. The organization must make that determination for each specific capability based on contextual information (e.g., organization’s risk appetite, IoT device options, available solutions). These three device capability support scenarios can be valuable for communicating with a product vendor about where there may be gaps between the organization’s desired device cybersecurity requirements and the capabilities provided by the IoT device.
+
+## Managing Gaps in IoT Device Cybersecurity Requirements
+
+There may be reasons why an IoT device does not provide all the capabilities desired by a customer. Some amount of specialization in the design of IoT devices and their capabilities for organizations may be appropriate, but it is neither possible nor advisable for organizations to drive device cybersecurity capabilities into all IoT devices in all use cases.
+
+For example, organizations may require significantly more non-technical documentation than an average customer. Providing the additional documentation may be trivial or of acceptable cost for the manufacturer. In this situation, alteration of the non-technical supporting capability is acceptable.
+
+Under limited circumstances, some device cybersecurity capabilities may likewise be easily modified for organizations, such as the inclusion of additional configuration capabilities. Other modifications desired by an organization to the IoT device’s cybersecurity capabilities may not be possible to accommodate. Some device cybersecurity capabilities may require a level of computing resources that is not supported by the IoT device. Changing such fundamental aspects...# IoT Device Cybersecurity Planning
+
+Organizations should be strategic and deliberate in their planning for device cybersecurity requirements, including how to mitigate gaps between desired cybersecurity requirements and the capabilities provided by the IoT device. As organizations examine IoT devices available on the market, they shall determine which device cybersecurity requirements are provided by the IoT device (or manufacturer/third party in the case of non-technical supporting capabilities).
+
+## Determining Capability Support
+
+The organization can make the following determinations as to how any gaps in capability support impact the organization’s use of the IoT device:
+
+1. **Justifiable Missing Capability**
+Determine that the capability’s support for the security control is justifiably missing from the IoT device and document as such. Justifiable reasons include:
+- The goal of the security control does not apply to the proposed use case.
+- Another security control that does not require direct support from the IoT device/manufacturer may be selected.
+- The residual risk introduced by the lack of support for the security control is acceptable to the organization.
+
+2. **Acceptable Alternative Capability (No Change Required)**
+Determine that support for the security control provided by an alternative capability is acceptable and requires no change in security control.
+
+3. **Acceptable Alternative Capability (Change Required)**
+Determine that support provided by an alternative capability is acceptable but requires a change in security control.
+
+4. **Unacceptable Lack of Support**
+Determine that the IoT device’s lack of support or alternative support for the security control is unacceptable.
+
+## Integration Considerations
+
+As summarized in Figure 8, three of the four determinations mean an organization can likely integrate the device despite the gap in device cybersecurity capability. There are nuances to each determination that must be considered by organizations in deciding whether a specific device cybersecurity requirement gap means they can or cannot integrate the IoT device.
+
+### First Determination: Accepting Deficiency
+
+For the first determination, an organization acknowledges the lack of a device cybersecurity requirement but accepts the deficiency. In some instances, the goal of the security control and the security control itself may still apply to the system, but the IoT device will not directly support the security control as will other elements of the system. Alternatively, the organization may acknowledge that risk is introduced by the IoT device’s lack of a capability to support the security control but that the risk is minimal and acceptable. These decisions of acceptable deviation from anticipated support for system security controls from the IoT device should be documented by organizations.
+
+### Second and Third Determinations: Alternative Capabilities
+
+The second and third determinations involve the use of an alternative capability and/or security control than originally intended by the organization. The second determination is the simpler of the two since it does not require a change in security control but rather a different capability to support the security control. For example, the IoT device may use an authentication mechanism...# Verifying Identity and Security Controls for IoT Devices
+
+To verify a person’s identity that is of a different, but acceptable, modality than the mechanism the organization typically uses (e.g., the IoT device uses derived PIV credentials rather than PIV cards to authenticate a person’s identity). The organization may determine that the IoT device’s alternate modality will satisfy the security control even though it initially appeared as a gap in requirements.
+
+## Compensating Security Controls
+
+The third determination involves the organization selecting a compensating security control for the information system. This compensating security control better matches the capability(ies) provided by the IoT device while still addressing the same security goal to manage risk.
+
+However, selecting a compensating security control may not be possible for a variety of reasons:
+
+- The compensating security control may be too costly to implement in the system or may not reduce risk to acceptable levels to justify the cost.
+- Beyond financial considerations, some organizations may not be able to implement alternate security controls due to logistical, business, statutory, or other reasons.
+
+If the control or compensating control cannot be implemented for the system or IoT device, the device could only be used if the organization (i.e., authorizing official) accepts the residual risk. Ideally, the organization will be able to implement the security control, allowing use of the IoT device.
+
+## Lack of Capability
+
+For the fourth determination, the IoT device cannot be used by the organization as intended because of the lack of the capability. This would be the determination if an IoT device lacks a key device cybersecurity requirement, where the organization has identified those device cybersecurity requirements that must be met (i.e., not omitted or replaced with an alternative) by an IoT device and its manufacturer and supporting entities to be considered “securable” by the organization.
+
+The organization should consider other ways the IoT device could be used in their operations. For example, an organization may intend to deploy the IoT device directly to the system as a peer with other elements. If the IoT device does not provide adequate support for allocated security controls via device cybersecurity capabilities, the IoT device may not be securable by the organization in that intended use case.
+
+## Alternative Strategies
+
+Rather than forgoing the IoT device entirely (i.e., Determination 4), the organization may consider the use of techniques such as network segmentation to logically separate the IoT device from the rest of the system (i.e., Determination 2 or 3). This separation may allow the organization to still realize the benefits of the IoT device while reducing both the risk introduced by the IoT device and the device cybersecurity capabilities needed from the IoT device.
+
+It is recommended that organizations carefully consider strategies for how risk introduced by the IoT device can be reduced and how the IoT device can be securely introduced to the information system.

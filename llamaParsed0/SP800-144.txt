@@ -1,0 +1,1749 @@
+# Abstract
+Cloud computing can and does mean different things to different people. The common characteristics most interpretations share are on-demand scalability of highly available and reliable pooled computing resources, secure access to metered services from nearly anywhere, and displacement of data and services from inside to outside the organization. While aspects of these characteristics have been realized to a certain extent, cloud computing remains a work in progress. This publication provides an overview of the security and privacy challenges pertinent to public cloud computing and points out considerations organizations should take when outsourcing data, applications, and infrastructure to a public cloud environment.
+
+# Executive Summary
+Cloud computing has been defined by NIST as a model for enabling convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or cloud provider interaction [Mel11]. Cloud computing technologies can be implemented in a wide variety of architectures, under different service and deployment models, and can coexist with other technologies and software design approaches.
+
+The security challenges cloud computing presents are formidable, including those faced by public clouds whose infrastructure and computational resources are owned and operated by an outside party that delivers services to the general public via a multi-tenant platform.
+
+The emergence of cloud computing promises to have far-reaching effects on the systems and networks of federal agencies and other organizations. Many of the features that make cloud computing attractive, however, can also be at odds with traditional security models and controls.
+
+The primary purpose of this report is to provide an overview of public cloud computing and the security and privacy considerations involved. More specifically, this document describes the threats, technology risks, and safeguards surrounding public cloud environments, and their treatment. This document does not prescribe or recommend any specific cloud computing service, service arrangement, service agreement, service provider, or deployment model. Each organization is instead expected to apply the guidelines provided when performing its own analysis of its requirements, and to assess, select, engage, and oversee the public cloud services that can best fulfill those requirements.
+
+## Key Guidelines
+The key guidelines from the report are summarized and listed below and are recommended to federal departments and agencies:
+
+- Carefully plan the security and privacy aspects of cloud computing solutions before engaging them.
+- Public cloud computing represents a significant paradigm shift from the conventional norms of...# Cloud Computing Security and Privacy Considerations
+
+## Introduction
+Transitioning from an organizational data center to a deperimeterized infrastructure presents unique challenges, particularly regarding security and privacy. As cloud computing continues to evolve, it is essential to approach it with caution, especially concerning sensitive data.
+
+## Importance of Planning
+Planning is crucial to ensure that the computing environment is secure and compliant with organizational policies while maintaining privacy. Effective planning also enables organizations to maximize their return on information technology investments.
+
+## Security Objectives
+The security objectives of an organization significantly influence decisions about outsourcing IT services, especially when considering a public cloud environment. A risk-based approach should be adopted to analyze security and privacy options before transitioning organizational data and applications to the cloud.
+
+## Governance Practices
+Organizations should extend their IT governance practices—policies, procedures, and standards for application development and service provisioning—to include cloud computing environments. This extension ensures that security and privacy considerations are integrated throughout the system lifecycle.
+
+## Lifecycle Considerations
+Security and privacy must be prioritized from the initial planning stage through to implementation and deployment. Addressing these issues post-deployment is not only more challenging and costly but also increases the organization's exposure to risk.
+
+## Understanding Cloud Provider Responsibilities
+It is vital for organizations to understand the public cloud computing environment provided by their cloud service provider. Responsibilities for security and privacy vary based on the service model, and organizations must be aware of these delineations.
+
+## Verification of Security Claims
+Assurances provided by cloud providers regarding security and privacy should be independently verified whenever possible. Organizations should conduct assessments to validate these claims and ensure that they align with their security requirements.
+
+## Assessing Security and Privacy Risks
+Understanding the policies, procedures, and technical controls of a cloud provider is essential for assessing security and privacy risks. Organizations should analyze the system architecture of the cloud to gain insights into the protection offered by security and privacy controls.
+
+## Continuous Monitoring
+To effectively manage risk, organizations should employ appropriate techniques and procedures for the continuous monitoring of the security state of the cloud system. This proactive approach helps in mitigating risks and ensuring compliance with security and privacy standards.
+
+## Conclusion
+Ensuring that a cloud computing solution meets organizational security and privacy requirements is critical. By adopting a comprehensive approach that includes planning, governance, risk assessment, and continuous monitoring, organizations can leverage cloud computing while safeguarding their sensitive data.# Cloud Computing Security and Privacy Considerations
+
+## Overview
+Public cloud providers' default offerings generally do not reflect a specific organization’s security and privacy needs. From a risk perspective, determining the suitability of cloud services requires an understanding of the context in which the organization operates and the consequences from the plausible threats it faces. Adjustments to the cloud computing environment may be warranted to meet an organization’s requirements.
+
+## Configuration and Management
+Organizations should require that any selected public cloud computing solution is configured, deployed, and managed to meet their security, privacy, and other requirements.
+
+## Service Agreements
+Non-negotiable service agreements, in which the terms of service are prescribed completely by the cloud provider, are generally the norm in public cloud computing. However, negotiated service agreements are also possible.
+
+### Addressing Concerns
+Similar to traditional information technology outsourcing contracts used by agencies, negotiated agreements can address an organization’s concerns about security and privacy details, such as:
+- Vetting of employees
+- Data ownership and exit rights
+- Breach notification
+- Isolation of tenant applications
+- Data encryption and segregation
+- Tracking and reporting service effectiveness
+- Compliance with laws and regulations
+- Use of validated products meeting federal or national standards (e.g., Federal Information Processing Standard 140)
+
+A negotiated agreement can also document the assurances the cloud provider must furnish to corroborate that organizational requirements are being met.
+
+## Critical Data and Applications
+Critical data and applications may require an agency to undertake a negotiated service agreement in order to use a public cloud. Points of negotiation can negatively affect the economies of scale that a non-negotiable service agreement brings to public cloud computing, making a negotiated agreement less cost-effective.
+
+### Alternatives
+As an alternative, the organization may be able to employ compensating controls to work around identified shortcomings in the public cloud service. Other alternatives include cloud computing environments with a more suitable deployment model, such as an internal private cloud, which can potentially offer an organization greater oversight and authority over security and privacy, and better limit the types of tenants that share platform resources, reducing exposure in the event of a failure or configuration error in a control.
+
+## Due Diligence in Selection
+With the growing number of cloud providers and range of services from which to choose, organizations must exercise due diligence when selecting and moving functions to the cloud. Decision-making about services and service arrangements entails striking a balance between benefits in cost and productivity versus drawbacks in risk and liability.
+
+### Conclusion
+While the sensitivity of data handled by government organizations and the current state of the art make the likelihood of outsourcing all information technology services to a public cloud low, it should be possible for organizations to find suitable solutions that meet their specific needs.# Cloud Computing Security and Privacy
+
+## Introduction
+Most government organizations are deploying some of their information technology services to a public cloud, provided that all requisite risk mitigations are taken. It is essential to ensure that the client-side computing environment meets organizational security and privacy requirements for cloud computing.
+
+## Client-Side Considerations
+Cloud computing encompasses both a server and a client side. While emphasis is typically placed on the server side, the client side can be easily overlooked. Services from different cloud providers, as well as cloud-based applications developed by the organization, can impose more exacting demands on the client, which may have implications for security and privacy that need to be taken into consideration.
+
+### Importance of Web Browsers
+Web browsers are a key element for client-side access to cloud computing services. Clients may also entail small lightweight applications that run on desktop and mobile devices to access services. However, the various available plug-ins and extensions for web browsers are notorious for their security problems. Many browser add-ons do not provide automatic updates, increasing the persistence of any existing vulnerabilities. Similar problems exist for other types of clients.
+
+### Security Challenges
+Maintaining physical and logical security over clients can be troublesome, especially with embedded mobile devices such as smartphones. Their size and portability can result in the loss of physical control. Built-in security mechanisms often go unused or can be easily overcome or circumvented by knowledgeable parties to gain control over the device. Moreover, cloud applications are often delivered through custom-built native applications (i.e., apps) rather than a web browser.
+
+## Social Engineering Risks
+The growing availability and use of social media, personal webmail, and other publicly available sites are a concern, as they increasingly serve as avenues for social engineering attacks that can negatively impact the security of the client, its underlying platform, and the cloud services accessed. Having a backdoor Trojan, keystroke logger, or other types of malware running on a client device undermines the security and privacy of public cloud services as well as other Internet-facing public services accessed.
+
+## Security Architecture Recommendations
+As part of the overall cloud computing security architecture, organizations should review existing security and privacy measures and employ additional ones, if necessary, to secure the client side.
+
+### Accountability
+Maintain accountability over the privacy and security of data and applications implemented and deployed in public cloud computing environments. Organizations should employ appropriate security management practices and controls over cloud computing. Strong management practices are essential for operating and maintaining a secure cloud computing solution.
+
+### Monitoring and Assessment
+Security and privacy practices entail monitoring the organization’s information system assets and assessing the implementation of policies, standards, procedures, controls, and guidelines that are used to establish and preserve security and privacy in cloud computing environments.# Confidentiality, Integrity, and Availability of Information System Resources
+
+The organization should collect and analyze available data about the state of the system regularly and as often as needed to manage security and privacy risks, as appropriate for each level of the organization (i.e., governance level, mission or business process level, and information systems level) [Dem10].
+
+## Continuous Monitoring
+
+Continuous monitoring of information security requires maintaining ongoing awareness of privacy and security controls, vulnerabilities, and threats to support risk management decisions. The goal is to conduct ongoing monitoring of the security of an organization’s networks, information, and systems, and to respond by accepting, avoiding, or mitigating risk as situations change.
+
+## Risk Assessment in Cloud Computing
+
+Assessing and managing risk in cloud computing systems can be a challenge, since significant portions of the computing environment are under the control of the cloud provider and may likely be beyond the organization’s purview. Both qualitative and quantitative factors apply in a risk analysis. Risks must be carefully weighed against the available technical, management, and operational safeguards, and the necessary steps must be taken to reduce risk to an acceptable level.
+
+The organization must also ensure that security and privacy controls are implemented correctly, operate as intended, and meet organizational requirements.
+
+## Establishing Confidence in Cloud Services
+
+Establishing a level of confidence about a cloud service environment depends on the ability of the cloud provider to provision the security controls necessary to protect the organization’s data and applications, and also the evidence provided about the effectiveness of those controls [JTF10].
+
+Verifying the correct functioning of a subsystem and the effectiveness of security controls as extensively as with an internal organizational system may not be feasible in some cases, however, and other factors such as third-party audits may be used to establish a level of trust. Ultimately, if the level of confidence in the service falls below expectations and the organization is unable to employ compensating controls, it must either reject the service or accept a greater degree of risk.
+
+## Security of Cloud Computing Components
+
+Cloud computing depends on the security of many individual components. Besides components for general computing, there are also components that the management backplane comprises, such as those for self-service, resource metering, quota management, data replication and recovery, service level monitoring, and workload management.
+
+Many of the simplified interfaces and service abstractions afforded by cloud computing belie the inherent underlying complexity that affects security. Organizations should ensure to the maximum extent practicable that all cloud computing elements are secure and that security and privacy are maintained based on sound computing practices, including those outlined in Federal Information Processing Standards (FIPS) and NIST Special Publications (SP).
+
+The standards and guides...# Cloud Computing Security and Privacy Guidelines
+
+## 1. Introduction
+Interest in cloud computing has grown rapidly in recent years due to the advantages of greater flexibility and availability in obtaining computing resources at lower cost. Security and privacy, however, are a concern for agencies and organizations considering transitioning applications and data to public cloud computing environments, and form the impetus behind this document.
+
+### 1.1 Authority
+The National Institute of Standards and Technology (NIST) developed this document in furtherance of its statutory responsibilities under the Federal Information Security Management Act (FISMA) of 2002, Public Law 107-347. NIST is responsible for developing standards and guidelines, including minimum requirements, for providing adequate information security for all agency operations and assets; but such standards and guidelines shall not apply to national security systems.
+
+This guideline is consistent with the requirements of the Office of Management and Budget (OMB) Circular A-130, Section 8b(3), “Securing Agency Information Systems,” as analyzed in A-130, Appendix IV: Analysis of Key Sections. Supplemental information is provided in A-130, Appendix III.
+
+This guideline has been prepared for use by federal agencies. It may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright, though attribution is desired. Nothing in this document should be taken to contradict standards and guidelines made mandatory and binding on federal agencies by the Secretary of Commerce under statutory authority, nor should these guidelines be interpreted as altering or superseding the existing authorities of the Secretary of Commerce, Director of the OMB, or any other federal official.
+
+### 1.2 Purpose and Scope
+The purpose of this document is to provide an overview of public cloud computing and the security and privacy challenges involved. The document discusses the threats, technology risks, and safeguards for public cloud environments, and provides the insight needed to make informed information technology decisions on their treatment. The document does not prescribe or recommend any specific cloud computing service, service arrangement, service agreement, service provider, or deployment model. Each organization must perform its own analysis of its needs, and assess, select, engage, and oversee the public cloud services that can best fulfill those needs.
+
+### 1.3 Audience
+The intended audience for this document includes the following categories of individuals:
+- System managers
+- Executives
+- Information officers making decisions about cloud computing initiatives# Security and Privacy in Cloud Computing
+
+## Audience
+- Security professionals, including security officers, security administrators, auditors, and others with responsibility for information technology security.
+- Information technology program managers concerned with security and privacy measures for cloud computing.
+- System and network administrators.
+- Users of public cloud computing services.
+
+## Purpose
+This document, while technical in nature, provides background information to help readers understand the topics that are covered. The material presumes that readers possess fundamental operating system and networking expertise and have a basic understanding of cloud computing. Because of the evolving nature of security and privacy considerations in cloud computing, readers are expected to take advantage of other resources for more detailed and current information. These resources include the various publications listed or referenced in this document, the majority of which are available online.
+
+## Document Structure
+The remainder of this document is organized into the following chapters:
+- **Chapter 2**: Overview of public cloud computing.
+- **Chapter 3**: Benefits and drawbacks of public cloud services from a security and privacy perspective.
+- **Chapter 4**: Key security and privacy issues in public cloud computing and precautions that can be taken to mitigate them.
+- **Chapter 5**: Guidance on addressing security and privacy issues when outsourcing support for data and applications to a cloud provider.
+- **Chapter 6**: Conclusion.
+- **Chapter 7**: List of references.
+
+Sidebars containing auxiliary material related to the main discussion appear in gray text boxes throughout the main body of the document. At the end of the document, there are also appendices that contain supporting material:
+- **Appendix A**: List of acronyms.
+- **Appendix B**: List of online resources.
+
+## 2. Background
+Cloud computing has been defined by NIST as a model for enabling convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or cloud provider interaction [Mel11].
+
+Cloud computing can be considered a new computing paradigm insofar as it allows the utilization of a computing infrastructure at one or more levels of abstraction, as an on-demand service made available over the Internet or other computer network. Because of the implications for greater flexibility and availability at lower cost, cloud computing is a subject that has been receiving a good deal of attention.
+
+Cloud computing services benefit from economies of scale achieved through versatile use of resources, specialization, and other practicable efficiencies. However, cloud computing is an emerging form of distributed computing that is still undergoing evolution.# Standardization in Cloud Computing
+
+The term itself is often used today with a range of meanings and interpretations [Fow09]. Much of what has been written about cloud computing is definitional, aimed at identifying important paradigms of deployment and use, and providing a general taxonomy for conceptualizing important facets of service.
+
+## 2.1 Deployment Models
+
+Public cloud computing is one of several deployment models that have been defined [Mel11]. Deployment models broadly characterize the management and disposition of computational resources for delivery of services to consumers, as well as the differentiation between classes of consumers.
+
+### Public Cloud
+
+A public cloud is one in which the infrastructure and computational resources that it comprises are made available to the general public over the Internet. It is owned and operated by a cloud provider delivering cloud services to consumers and, by definition, is external to the consumers' organizations.
+
+### Private Cloud
+
+At the other end of the spectrum are private clouds. A private cloud is one in which the computing environment is operated exclusively for a single organization. It may be managed by the organization or by a third party, and may be hosted within the organization’s data center or outside of it. A private cloud has the potential to give the organization greater control over the infrastructure, computational resources, and cloud consumers than can a public cloud.
+
+### Community Cloud
+
+Two other deployment models exist: community and hybrid clouds. A community cloud falls between public and private clouds with respect to the target set of consumers. It is somewhat similar to a private cloud, but the infrastructure and computational resources are exclusive to two or more organizations that have common privacy, security, and regulatory considerations, rather than a single organization.
+
+### Hybrid Cloud
+
+Hybrid clouds are more complex than the other deployment models, since they involve a composition of two or more clouds (private, community, or public). Each member remains a unique entity, but is bound to the others through standardized or proprietary technology that enables application and data portability among them.
+
+While the choice of deployment model has implications for the security and privacy of a system, the deployment model itself does not dictate the level of security and privacy of specific cloud offerings. That level depends mainly on assurances, such as the soundness of the security and privacy policies, the robustness of the security and privacy controls, and the extent of visibility into performance and management details of the cloud environment, which are furnished by the cloud provider or independently attained by the organization (e.g., via independent vulnerability testing or auditing of operations).
+
+## 2.2 Service Models
+
+Just as deployment models play an important role in cloud computing, service models are also an important consideration. The service model to which a cloud conforms dictates an...# Cloud Service Models
+
+The organization’s scope and control over the computational environment characterizes a level of abstraction for its use. A service model can be actualized as a public cloud or as any of the other deployment models. Three well-known and often-used service models are the following:
+
+## Software-as-a-Service (SaaS)
+
+Software-as-a-Service (SaaS) is a model of service delivery whereby one or more applications and the computational resources to run them are provided for use on demand as a turnkey service. Its main purpose is to reduce the total cost of hardware and software development, maintenance, and operations.
+
+- **Security Provisions**: Carried out mainly by the cloud provider.
+- **Control**: The cloud consumer does not manage or control the underlying cloud infrastructure or individual applications, except for preference selections and limited administrative application settings.
+
+## Platform-as-a-Service (PaaS)
+
+Platform-as-a-Service (PaaS) is a model of service delivery whereby the computing platform is provided as an on-demand service upon which applications can be developed and deployed. Its main purpose is to reduce the cost and complexity of buying, housing, and managing the underlying hardware and software components of the platform, including any needed program and database development tools.
+
+- **Development Environment**: Typically special purpose, determined by the cloud provider and tailored to the design and architecture of its platform.
+- **Control**: The cloud consumer has control over applications and application environment settings of the platform.
+- **Security Provisions**: Split between the cloud provider and the cloud consumer.
+
+## Infrastructure-as-a-Service (IaaS)
+
+Infrastructure-as-a-Service (IaaS) is a model of service delivery whereby the basic computing infrastructure of servers, software, and network equipment is provided as an on-demand service upon which a platform to develop and execute applications can be established. Its main purpose is to avoid purchasing, housing, and managing the basic hardware and software infrastructure components, and instead obtain those resources as virtualized objects controllable via a service interface.
+
+- **Control**: The cloud consumer generally has broad freedom to choose the operating system and development environment to be hosted.
+- **Security Provisions**: Beyond the basic infrastructure are carried out mainly by the cloud consumer.
+
+## Visual Representation
+
+Figure 1 illustrates the differences in scope and control between the cloud consumer and cloud provider for each of the service models discussed above. Five conceptual layers of a generalized cloud environment are identified in the center diagram and apply to public clouds, as well as each of the other deployment models.
+
+The arrows at the left and right of the diagram denote the approximate range of the cloud provider’s and cloud consumer’s scope and control over the cloud environment for each service model. In general, the higher the level of support available from a cloud provider, the more narrow the scope and control the cloud consumer has over the environment.# Cloud Computing Layers and Outsourcing
+
+## Physical Elements of a Cloud Environment
+
+The two lowest layers denote the physical elements of a cloud environment, which are under the full control of the cloud provider, regardless of the service model.
+
+### Facility Layer
+- Heating, ventilation, air conditioning (HVAC)
+- Power
+- Communications
+- Other aspects of the physical plant
+
+### Hardware Layer
+- Computers
+- Network components
+- Storage components
+- Other physical computing infrastructure elements
+
+## Logical Elements of a Cloud Environment
+
+The remaining layers denote the logical elements of a cloud environment.
+
+### Virtualized Infrastructure Layer
+This layer entails software elements, such as:
+- Hypervisors
+- Virtual machines
+- Virtual data storage
+- Virtual network components
+
+These elements are used to realize the infrastructure upon which a computing platform can be established. While virtual machine technology is commonly used at this layer, other means of providing the necessary software abstractions are not precluded.
+
+### Platform Architecture Layer
+This layer includes:
+- Compilers
+- Libraries
+- Utilities
+- Middleware
+- Other software tools and development components needed to implement and deploy applications
+
+### Application Layer
+The application layer represents deployed software applications that are targeted towards end-user software clients or other programs, and made available via the cloud.
+
+## Service Models: IaaS vs PaaS
+Some have argued that the distinction between Infrastructure as a Service (IaaS) and Platform as a Service (PaaS) service models is fuzzy. In many commercial offerings, the two are more alike than different. Nevertheless, these terms do serve a purpose, distinguishing between very basic support environments and environments having greater levels of support, and accordingly different allocations of control and responsibility between the cloud consumer and the cloud provider.
+
+## Outsourcing and Accountability
+
+While cloud computing can be implemented exclusively for an organization as an internal private cloud, its main thrust has been to provide a vehicle for outsourcing parts of the organizational computing environment to an outside party via a public cloud.
+
+### Concerns with Outsourcing
+As with any outsourcing of information technology services, concerns exist about the implications for computer security and privacy. The main issue centers on the risks associated with moving important applications or data from within the confines of the organization’s computing center to that of another organization (i.e., a public cloud), which is readily available for use by the general public.
+
+### Classes of Public Clouds
+Three broad classes of public clouds exist:
+1. **Free Services**: Services that are provided at no cost to the consumer and are instead supported through advertisements. Search and electronic mail services are well-known examples. Such services may be limited to personal, non-commercial use.
+2. **Data Collection**: Information collected at registration and during use of the service may be combined with information obtained from other sources and used to deliver personalized experiences.# Public Cloud Services
+
+## Introduction
+The landscape of cloud computing services varies significantly among organizations due to inherent differences such as intended purpose, assets held, legal obligations, exposure to the public, threats faced, and tolerance to risk.
+
+## Classes of Public Cloud Services
+
+### First Class: Free Services with Advertisements
+- These services are typically free to the consumer.
+- Protection measures, such as encrypted communications, may be lacking.
+
+### Second Class: Fee-Based Services without Advertisements
+- Services in this class are fee-based but free of advertisements.
+- They can be similar to the first class but are offered at a low cost due to non-negotiable terms of service.
+- Protection mechanisms that are configurable by the consumer are typically provided.
+
+### Third Class: Negotiated Fee-Based Services
+- These services are fee-based with terms negotiated between the organization and the cloud provider.
+- Services can be tailored to the organization's needs, but costs depend on the degree of deviation from standard offerings.
+
+## Motivations for Moving to Public Cloud
+- Reducing costs and increasing efficiency are primary motivations.
+- Organizations must not relinquish responsibility for security; they remain accountable for the choice of public cloud and the security and privacy of the outsourced service.
+- Monitoring and addressing security issues, as well as oversight of performance and data privacy, remain the organization's responsibility.
+
+## Security Challenges in Cloud Computing
+- Cloud computing introduces new security challenges.
+- It is essential for organizations to manage how the cloud provider secures and maintains the computing environment and ensures data security.
+
+## Risk Perspective
+- The suitability of cloud services for an organization cannot be determined without understanding the context in which it operates and the consequences of plausible threats.
+- The set of security and privacy objectives of an organization is crucial for decisions about outsourcing IT services and transitioning resources to a public cloud.
+
+## Conclusion
+What works for one organization may not necessarily work for another. Practical considerations also apply, as most organizations cannot afford to overlook the unique security and privacy needs that come with cloud services.# Cloud Computing Security and Service Agreements
+
+## Introduction
+In the realm of cloud computing, it is essential to protect all computational resources and assets to the highest degree possible. Organizations must prioritize available options based on cost, criticality, and sensitivity. When considering the potential benefits of public cloud computing, it is crucial to keep organizational security and privacy objectives in mind and act accordingly. Ultimately, decisions regarding cloud computing should be based on a risk analysis of the trade-offs involved.
+
+## 3.1 Service Agreements
+Specifications for public cloud services and service arrangements are generally referred to as service agreements or service contracts. A service agreement defines the terms and conditions for access and use of the services offered by the cloud provider. It also establishes the period of service, conditions for termination, and the disposition of data (e.g., preservation period) upon termination.
+
+### Components of a Service Agreement
+The complete terms and conditions for a cloud service agreement are usually outlined in multiple documents, which can typically include:
+
+- **Service Level Agreement (SLA)**: Represents the understanding between the cloud consumer and cloud provider regarding the expected level of service to be delivered. It also specifies the compensation available to the cloud consumer in the event that the provider fails to deliver the service at the specified level.
+
+- **Privacy Policy**: Documents the information handling practices and the way consumer information is collected, used, and managed by the cloud provider.
+
+- **Acceptable Use Policy**: Identifies prohibited behaviors by cloud consumers.
+
+- **Terms of Use**: Covers other important details such as licensing of services, limitations on liability, and modifications to the terms of the agreement.
+
+### Importance of Service Agreements
+Privacy and security risks depend significantly on the terms established in the service agreement. There are two types of service agreements:
+
+1. **Predefined Non-Negotiable Agreements**: These agreements are the basis for the economies of scale enjoyed by public cloud computing. The terms of service are prescribed entirely by the cloud provider and are typically not tailored to federal privacy and security requirements. In some cases, the provider can unilaterally modify the terms of service (e.g., by posting an updated version online) without notifying the cloud consumer.
+
+2. **Negotiated Agreements**: These are more akin to traditional outsourcing contracts for information technology services. They can address an organization’s concerns about security and privacy policies, procedures, and technical controls, such as:
+- Vetting of employees
+- Data ownership and exit rights
+- Breach notification
+- Isolation of tenant applications
+- Data encryption and segregation
+- Tracking and reporting service effectiveness
+- Compliance with laws and regulations (e.g., Federal Information Security Management Act)
+
+In conclusion, understanding and negotiating service agreements is vital for organizations to ensure their security and privacy objectives are met when utilizing cloud computing services.# Current Page Overview
+
+## Validated Products
+- Products meeting national or international standards (e.g., Federal Information Processing Standard 140-2 for cryptographic modules).
+
+## Service Agreements
+- Critical data and applications may require an agency to undertake a negotiated service agreement.
+- Points of negotiation can significantly affect the economies of scale that a non-negotiable service agreement brings to public cloud computing.
+- A negotiated service agreement is normally less cost-effective.
+- The outcome of a negotiation is dependent on the size of the organization and the influence it can exert.
+- It is recommended to obtain adequate legal and technical advice to ensure that the terms of service meet the organization's needs.
+
+## 3.2 The Security and Privacy Upside
+- One of the biggest obstacles facing public cloud computing is security.
+- The cloud computing paradigm provides opportunities for innovation in provisioning security services, potentially improving overall security for some organizations.
+- Smaller organizations with limited IT resources can benefit from the economies of scale available in public cloud environments.
+
+### Opportunities for Improved Security and Privacy
+- Effective privacy relies on a sound foundation of information security.
+- Privacy has broad organizational, operational, and technical implications.
+- Some aspects of privacy are related to security objectives, while others involve important privacy-related principles addressed in law, regulations, and OMB guidance.
+
+#### Potential Areas of Improvement
+1. **Staff Specialization**
+- Cloud providers can allow staff to specialize in security, privacy, and other critical areas.
+- Increased scale of computing induces specialization, enabling security staff to focus exclusively on security and privacy issues.
+- This specialization allows for in-depth experience, training, and improvements to security and privacy.
+
+2. **Platform Strength**
+- Cloud computing platforms are typically more uniform than traditional computing centers.
+- Greater uniformity facilitates platform hardening and better automation of security measures.# Management Activities in Cloud Computing
+
+## Overview
+Management activities in cloud computing encompass various functions such as configuration control, vulnerability testing, security audits, and security patching of platform components. These activities benefit from a uniform, homogeneous cloud infrastructure, which also aids in system management tasks like fault management, load balancing, and system maintenance.
+
+## Benefits of Infrastructure Homogeneity
+- **Information Assurance and Security Response**: A consistent cloud infrastructure enhances information assurance and security response activities.
+- **Management Controls**: Infrastructure homogeneity supports management controls that protect privacy.
+
+## Risks of Homogeneity
+While homogeneity offers several advantages, it also poses risks:
+- A single flaw in the system can affect all tenants and services across the cloud.
+
+## Compliance and Certification
+Many cloud computing environments adhere to operational compliance and certification standards in various sectors, including:
+- **Healthcare**: Health Insurance Portability and Accountability Act (HIPAA)
+- **Finance**: Payment Card Industry Data Security Standard (PCI DSS)
+- **Security**: ISO 27001 (Information Security Management Systems - Requirements)
+- **Audit**: Standards for Attestation Engagements (SSAE) No. 16
+
+These certifications provide assurance regarding recognized and generally accepted criteria.
+
+## Resource Availability
+The scalability of cloud computing facilities enhances availability through:
+- **Redundancy and Disaster Recovery**: Built-in capabilities for resilience against increased service demands or distributed denial of service attacks.
+- **Incident Management**: Opportunities to contain attacks and capture event information with minimal impact on production.
+
+### Privacy Enhancement
+Availability improvements can also bolster privacy by facilitating easier access to records and ensuring they are ready for use when needed.
+
+### Downsides of Resiliency
+However, there are potential downsides:
+- An unsuccessful distributed denial of service attack can consume significant resources, leading to financial damage if increased usage charges apply.
+- Access to inexpensive storage may result in excessive data collection or prolonged data retention.
+
+## Backup and Recovery
+Cloud providers often have superior backup and recovery policies compared to traditional organizations. Benefits include:
+- **Data Availability**: Cloud-stored data can be more readily available and faster to restore.
+- **Compliance**: Cloud solutions can meet offsite backup storage and geographical compliance requirements.
+
+### Offsite Repository
+Cloud services can serve as an offsite repository for an organization’s data center, replacing traditional tape-based offsite storage.
+
+## Limitations
+Despite these advantages, network performance over the Internet and the volume of data involved can be limiting factors in backup and recovery processes.# Factors That Can Affect Restoration
+
+## Mobile Endpoints
+The architecture of a cloud solution extends to the client at the service endpoint that is used to access hosted applications. Cloud clients can be general-purpose web browsers or more special-purpose applications. Since the main computational resources needed by cloud-based applications are typically held by the cloud provider, clients can generally be lightweight computationally and easily supported on laptops, notebooks, and netbooks, as well as embedded devices such as smartphones and tablets, benefiting the productivity of an increasingly mobile workforce.
+
+One caveat to this point is that mobile devices, particularly embedded devices, require proper setup and protection to be of benefit overall, which includes restrictions on the type of data maintained on the device [Jan08].
+
+## Data Concentration
+Data maintained and processed in a public cloud may present less of a risk to an organization with a mobile workforce than having that data dispersed on portable computers, embedded devices, or removable media out in the field, where theft and loss routinely occur. That is not to say, however, that no risk exists when data is concentrated. Many organizations have made the transition to support access to organizational data from mobile devices to improve workflow management and gain other operational efficiencies and productivity benefits. Carefully constructed applications can restrict access and services to only the data and tasks that correspond strictly with the responsibilities a user needs to accomplish, limiting data exposure in the event of a device compromise.
+
+## The Security and Privacy Downside
+Besides its many potential benefits for security and privacy, public cloud computing also brings with it potential areas of concern when compared with computing environments found in traditional data centers. Some of the more fundamental concerns include the following:
+
+### System Complexity
+A public cloud computing environment is extremely complex compared with that of a traditional data center. Many components make up a public cloud, resulting in a large attack surface. Besides components for general computing, such as deployed applications, virtual machine monitors, guest virtual machines, data storage, and supporting middleware, there are also components that the management backplane comprises, such as those for self-service, resource metering, quota management, data replication and recovery, service level monitoring, workload management, and cloud bursting.
+
+Cloud services themselves may also be realized through nesting and layering with services from other cloud providers. Components change over time as upgrades and feature improvements occur, confounding matters further. Security depends not only on the correctness and effectiveness of many components but also on the interactions among them. Challenges exist in understanding and securing application programming interfaces that are often proprietary to a cloud provider.# Security and Privacy Risks in Cloud Computing
+
+## Complexity and Security
+The number of possible interactions between components increases as the square of the number of components, which pushes the level of complexity upward. Complexity typically relates inversely to security, with greater complexity giving rise to increased vulnerability [Avo00, Gee08, Sch00]. Decreases in security also heighten privacy risks related to the loss or unauthorized access, destruction, use, modification, or disclosure of personal data.
+
+## Shared Multi-tenant Environment
+Public cloud services offered by providers have a serious underlying complication—client organizations typically share components and resources with other consumers that are unknown to them. Rather than using physical separation of resources as a control, cloud computing places greater dependence on logical separation at multiple layers of the application stack [Owa10].
+
+While not unique to cloud computing, logical separation is a non-trivial problem that is exacerbated by the scale of cloud computing (e.g., [Bos11]). An attacker could pose as a consumer to exploit vulnerabilities from within the cloud environment, overcome the separation mechanisms, and gain unauthorized access. Access to organizational data and resources could also inadvertently be exposed to other consumers or be blocked from legitimate consumers through a configuration or software error [Opp03].
+
+Threats to network and computing infrastructures continue to increase each year and become more sophisticated. Having to share an infrastructure with unknown outside parties can be a major drawback for some applications and require a high level of assurance pertaining to the strength of the security mechanisms used for logical separation.
+
+## Internet-facing Services
+Public cloud services are delivered over the Internet, exposing the administrative interfaces used to self-service and manage an account, as well as non-administrative interfaces used to access deployed services. Applications and data that were previously accessed from the confines of an organization’s intranet, but moved to a public cloud, must now face increased risk from network threats that were previously defended against at the perimeter of the organization’s intranet and from new threats that target the exposed interfaces.
+
+The performance and quality of services delivered over the Internet may also be at issue. The effect is somewhat analogous to the inclusion of wireless access points into an organization’s intranet at the onset of that technology, necessitating additional safeguards for secure use.
+
+Relying on remote administrative access as the means for the organization to manage assets that are held within the cloud also increases risk, compared with a traditional data center, where administrative access to platforms can be restricted to direct or internal connections [Som11].# Cloud Computing Security and Privacy Concerns
+
+## Introduction
+Cloud infrastructure, if managed by the cloud provider, raises significant concerns. When combined with other factors, a highly complex, multi-tenanted computing environment, which is Internet-facing and publicly accessible, presents a potentially attractive attack surface that must be carefully safeguarded.
+
+## Loss of Control
+While security and privacy concerns in cloud computing services are similar to those of traditional non-cloud services, they are amplified by:
+
+- **External Control**: Transitioning to a public cloud necessitates transferring responsibility and control over organizational assets to the cloud provider. This includes information and system components that were previously under the organization’s direct control.
+
+- **Lack of Direct Contact**: The transition often results in a lack of direct communication with the management of operations and influence over decisions regarding the computing environment. This dependency on the cloud provider complicates activities that require cooperation from both parties, such as continuous monitoring and incident response.
+
+- **Compliance Challenges**: Compliance with data protection laws and regulations becomes a joint responsibility that requires coordination with the cloud provider.
+
+The loss of control over both the physical and logical aspects of the system and data diminishes the organization’s ability to maintain situational awareness, weigh alternatives, set priorities, and implement changes in security and privacy that are in the organization’s best interest. Legal protections for privacy may also be compromised when information is stored with a third-party service provider. Under these conditions, maintaining accountability can be more challenging, offsetting some of the potential benefits discussed earlier.
+
+## Detailed Discussion
+A more detailed discussion of the security and privacy issues stemming from these fundamental concerns is provided in the next chapter.
+
+## Other Kinds of Cloud Services
+In addition to providing a computing platform or serving as a substitute for in-house applications, public cloud services can also focus on enhancing security in other computing environments. Some examples include:
+
+### Data Center Oriented Services
+Cloud services can be utilized to improve the security of data centers. Information about online activities collected from various participants across different organizations can facilitate better threat monitoring. For instance, electronic mail can be redirected to a cloud provider via mail exchange (MX) records, allowing for collective examination and analysis of similar transactions from other data centers. This approach can help identify widespread spam, phishing, and malware campaigns, enabling more comprehensive remedial actions, such as quarantining suspect messages and content, than a single organization could achieve alone.# Cloud Computing Security and Illicit Activities
+
+## Cloud-Oriented Security Solutions
+
+Researchers have successfully demonstrated a system architecture for provisioning cloud-based antivirus services, as an alternative to host-based antivirus solutions [Obe08b]. Cloud services can also be used to improve the security of other cloud environments. For example, reverse proxy products are available that enable unfettered access to a SaaS environment while maintaining the data stored in that environment in encrypted form [Nav10]. Additionally, cloud-based identity management services exist, which can augment or replace an organization’s directory service for the identification and authentication of users to a cloud.
+
+## Illicit Uses of Cloud Computing
+
+With any technology area, the functionality afforded can be turned towards improper or illicit activities. Cloud computing is no exception. A couple of noteworthy instances have already occurred that give a sense of what might be expected in the future:
+
+### Botnets
+
+In many ways, botnets assembled and controlled by hackers are an early form of cloud computing [Mul10]. Cost reduction, dynamic provisioning, redundancy, security, and many other characteristics of cloud computing apply. Botnets have been used for sending spam, harvesting login credentials, and launching injection attacks against websites [Mul10, Pro09]. They could also be used to launch a denial of service attack against the infrastructure of a cloud provider. The possibility that a cloud service could become infiltrated by a botnet has already occurred; in 2009, a command-and-control node was discovered operating from within an IaaS cloud [Mcm09a, Whi09]. Spammers have also purchased cloud services directly to launch phishing campaigns, ensnaring recipients with malware via social engineering techniques [Cra08, Kre08].
+
+### Mechanism Cracking
+
+WiFi Protected Access (WPA) Cracker, a cloud service ostensibly for penetration testers, is an example of harnessing cloud resources on demand to break a cryptographic cipher and determine the encrypted password used to protect a wireless network. Through this service, a task that would take five days to run on a single computer can be accomplished in only 20 minutes on a cluster of 400 virtual machines [Rag09]. Because cryptography is widely used in authentication, data confidentiality and integrity, and other security mechanisms, these mechanisms become, in effect, less effective with the availability of cryptographic key cracking cloud services.
+
+Both cloud-based and traditional types of systems are possible targets. An IaaS cloud was reportedly used to attack an online gaming network and compromise the accounts of more than 100 million users [Alp11]. CAPTCHA cracking is another area where cloud services could be applied to bypass verification meant to thwart abusive use of Internet services by automated software.# 4. Key Security and Privacy Issues
+
+Although the emergence of cloud computing is a recent development, insights into critical aspects of security can be gleaned from reported experiences of early adopters and also from researchers analyzing and experimenting with available cloud provider platforms and associated technologies. The sections below highlight privacy and security-related issues that are believed to have long-term significance for public cloud computing and, in many cases, for other cloud computing service models. Where possible, examples of previously exhibited or identified problems are provided to illustrate an issue. The examples are not exhaustive and may cover only one aspect of a more general issue. For many of the issues, the specific problems discussed have been resolved. Nevertheless, the broader issue persists in most cases and has the potential to be expressed again in other ways among the various service models. Security and privacy considerations that stem from information technology outsourcing also exist; they are covered in the next chapter and complement the material below.
+
+Because cloud computing has grown out of an amalgamation of technologies, including service-oriented architecture, virtualization, Web 2.0, and utility computing, many of the privacy and security issues involved can be viewed as known problems cast in a new setting. The importance of their combined effect in this setting, however, should not be discounted. Public cloud computing does represent a thought-provoking paradigm shift from conventional norms to an open deperimeterized organizational infrastructure—at the extreme, displacing applications from one organization’s infrastructure to the infrastructure of another organization, where the applications of potential adversaries may also operate.
+
+## 4.1 Governance
+
+Governance implies control and oversight by the organization over policies, procedures, and standards for application development and information technology service acquisition, as well as the design, implementation, testing, use, and monitoring of deployed or engaged services. With the wide availability of cloud computing services, lack of organizational controls over employees engaging such services arbitrarily can be a source of problems. While cloud computing simplifies platform acquisition, it doesn't alleviate the need for governance; instead, it has the opposite effect, amplifying that need.
+
+The ability to reduce capital investment for computing resources, and instead, satisfy computational needs through operational expenses is an advantage of cloud computing. Cloud computing can lower the initial cost of deploying new services and shorten the time required to gain a tangible benefit from the investment (i.e., accelerate the time-to-value), thus better aligning expense with actual use. However, the normal processes and procedures an organization uses to acquire computational resources as capital expenditures may...# Cloud Computing Governance and Compliance
+
+## Introduction
+Cloud computing services can be easily bypassed by a department or an individual, leading to the potential obscuring of procuration under day-to-day operational expenses. If such actions are not governed by an organization, its policies and procedures for privacy, security, and oversight could be overlooked, putting the organization at risk.
+
+## Risks of Unmanaged Cloud Services
+- Vulnerable systems could be deployed.
+- Legal regulations could be ignored.
+- Charges could amass quickly to unacceptable levels.
+- Resources could be used for unsanctioned purposes.
+- Other untoward effects could occur.
+
+## Study Insights
+A study involving more than nine hundred information technology professionals in Europe and the United States indicates a strong concern among participants that cloud computing services may have been deployed without their knowledge in parts of their respective organizations. This issue is somewhat akin to the problem with individuals setting up rogue wireless access points tied into the organizational infrastructure. Without proper governance, the organizational computing infrastructure could become a sprawling, unmanageable mix of insecure services.
+
+## Organizational Practices
+Organizational practices pertaining to the policies, procedures, and standards used for application development and service acquisition should be extended to cover cloud computing environments.
+
+### Roles and Responsibilities
+Dealing with cloud services requires attention to the roles and responsibilities involved between the organization and the cloud provider, particularly regarding:
+- Managing risks
+- Ensuring organizational requirements are met
+
+### Security and Risk Management
+Ensuring systems are secure and managing risk is challenging in any environment and even more daunting with cloud computing.
+
+- **Audit Mechanisms**: Tools should be in place to determine how data is stored, protected, and used, to validate services, and to verify policy enforcement.
+- **Risk Management Program**: A flexible program should be in place to deal with the continuously evolving and shifting risk landscape.
+
+## Compliance
+Compliance refers to an organization’s responsibility to operate in agreement with established laws, regulations, standards, and specifications.
+
+### Complexity of Compliance
+Various types of security and privacy laws and regulations exist within different countries at the national, state, and local levels, making compliance a potentially complicated issue for cloud computing.
+
+- As of the end of 2010, the National Conference of State Legislatures reported that forty-six states have enacted legislation governing the disclosure of security breaches of personal information.
+- At least twenty-nine states have enacted laws governing the disposal of personal data held by businesses and/or government.
+
+## Conclusion
+For U.S. Federal agencies, the major security and privacy laws and regulations must be adhered to in order to ensure compliance and protect sensitive information in cloud computing environments.# Compliance Concerns in Federal Information Management
+
+## Key Legislation and Guidance
+
+Compliance concerns include the following key pieces of legislation and guidance:
+
+- **Clinger-Cohen Act of 1996**
+- **Office of Management and Budget (OMB) Circular No. A-130**
+- Particularly Appendix III
+- **Privacy Act of 1974**
+- **E-Government Act of 2002** and its accompanying OMB guidance
+- **Federal Information Security Management Act (FISMA) of 2002**
+- **National Archives and Records Administration (NARA) Statutes**
+- Federal Records Act (44 U.S.C. Chapters 21, 29, 31, 33)
+- NARA regulations (Title 36 of the Code of Federal Regulations, Chapter XII, Subchapter B)
+
+## Clinger-Cohen Act
+
+The Clinger-Cohen Act assigns responsibilities for the efficiency, security, and privacy of computer systems within the federal government. It establishes a comprehensive approach for executive agencies to improve the acquisition and management of their information resources.
+
+### OMB Circulars
+
+As part of OMB’s responsibilities under the Clinger-Cohen Act, various circulars have been issued. Circular A-130 establishes policy for the management of Federal information resources, including procedural and analytic guidelines for implementing specific aspects of these policies.
+
+#### Appendix III of A-130
+
+Appendix III of A-130 requires that adequate security is provided for all agency information that is collected, processed, transmitted, stored, or disseminated in general support systems and major applications.
+
+## Privacy Act
+
+The Privacy Act governs the collection, maintenance, use, and dissemination of information about individuals that is maintained in systems of records by federal agencies and can be retrieved by a personal identifier (e.g., name).
+
+### Agency Responsibilities
+
+It requires each agency to:
+- Publish notice of its systems of records (i.e., a system of records notice (SORN)) in the Federal Register.
+- Allow individuals to request access to and correction of their records and information.
+
+## E-Government Act of 2002
+
+Among other things, the E-Government Act of 2002 requires federal agencies to complete a Privacy Impact Assessment (PIA) on all new or substantially changed technology that collects, maintains, or disseminates Personally Identifiable Information (PII), and to make the results publicly available.
+
+### OMB Guidance
+
+M-03-22, OMB Guidance for Implementing the Privacy Provisions of the E-Government Act of 2002, provides direction to agencies on conducting PIAs. A PIA is a structured review of an information system to identify and mitigate privacy risks, including risks to confidentiality, at every stage of the system lifecycle.
+
+### Purpose of PIA
+
+It can also serve as a tool for individuals working on a program or accessing a system to understand how to best integrate privacy protections when working with PII.
+
+## Federal Information Security Management Act (FISMA)
+
+FISMA requires federal agencies to adequately protect their information and information systems against unauthorized access, use, disclosure, disruption, modification, or destruction.
+
+### Security Requirements
+
+This mandate includes protecting information systems used or operated by an agency or by a contractor of an agency or other organization on behalf of an agency. Any external provider handling federal information or operating information systems on behalf of the federal government must meet the same security requirements as the source federal agency. The security requirements also apply to all relevant parties involved.# Compliance and Management of Federal Records
+
+## Overview
+External subsystems that store, process, or transmit federal information must adhere to various regulations and standards. Agencies are responsible for managing federal records effectively throughout their lifecycle, including those in electronic information systems and contracted environments.
+
+## Responsibilities of Contractors
+If a contractor holds federal records, they must manage them in accordance with all applicable records management laws and regulations. This includes:
+
+- Secure storage
+- Retrievability
+- Proper disposition, including the transfer of permanently valuable records to the National Archives and Records Administration (NARA) in an acceptable format.
+
+## Relevant Regulations
+Other government and industry-association requirements may apply, such as:
+
+- **Health Insurance Portability and Accountability Act (HIPAA)**
+- **Payment Card Industry Data Security Standard (PCI DSS)**
+
+For instance, the Veterans Health Administration is subject to HIPAA regulations, which apply to both employees and contractors. HIPAA mandates both technical and physical safeguards for controlling access to protected health information, potentially creating compliance issues for some cloud providers.
+
+## Cloud Provider Considerations
+Cloud providers are increasingly sensitive to legal and regulatory concerns. They may be willing to:
+
+- Store and process data in specific jurisdictions
+- Apply required safeguards for security and privacy
+
+However, the extent to which they will accept liability in their service agreements for exposure of content under their control is still uncertain. Ultimately, organizations remain accountable for the security and privacy of data held by a cloud provider on their behalf.
+
+## Data Location Challenges
+One of the most common compliance issues organizations face is data location.
+
+### In-House vs. Cloud Computing
+- **In-House Computing Center**: Allows organizations to structure their computing environment and know precisely where data is stored and what safeguards are in place.
+- **Cloud Computing Services**: Often store data redundantly in multiple physical locations, making it difficult for organizations to ascertain whether sufficient safeguards are in place and whether legal and regulatory compliance requirements are being met.
+
+### Regulatory Compliance
+For example, NARA regulations (i.e., 36 CFR 1234) include facility requirements for the storage of federal records, stipulating minimum height above and distance from a flood plain. While external audits and security certifications can help alleviate some concerns, they are not a complete solution.
+
+## Conclusion
+When information crosses borders, the governing legal, privacy, and regulatory regimes become increasingly complex, necessitating careful consideration and management by organizations.# Transborder Data Flows and Compliance Concerns
+
+Transborder data flows can be ambiguous and raise a variety of concerns (e.g., [CBC04, Wei11]). Consequently, constraints on the transborder flow of sensitive data, as well as the requirements on the protection afforded the data, have become the subject of national and regional privacy and security laws and regulations [Eis05].
+
+## Compliance Concerns
+
+The main compliance concerns with transborder data flows include:
+
+- Whether the laws in the jurisdiction where the data was collected permit the flow.
+- Whether those laws continue to apply to the data post-transfer.
+- Whether the laws at the destination present additional risks or benefits [Eis05].
+
+Technical, physical, and administrative safeguards, such as access controls, often apply. For example, European data protection laws may impose additional obligations on the handling and processing of data transferred to the U.S. [DoC00]. These concerns can be alleviated if the cloud provider has some reliable means to ensure that an organization’s data is stored and processed only within specific jurisdictions.
+
+## Electronic Discovery
+
+Electronic discovery involves the identification, collection, processing, analysis, and production of Electronically Stored Information (ESI) in the discovery phase of litigation [Daw05]. Organizations also have other incentives and obligations to preserve and produce electronic documents, such as:
+
+- Complying with audit and regulatory information requests.
+- For government organizations, complying with Freedom of Information Act (FOIA) requests.
+
+ESI includes not only electronic mail, attachments, and other data objects stored on a computer system or storage media, but also any associated metadata, such as dates of object creation or modification, and non-rendered file content (i.e., data that is not explicitly displayed for consumers).
+
+The capabilities and processes of a cloud provider, such as the form in which data is maintained and the electronic discovery-related tools available, affect the ability of the organization to meet its obligations in a cost-effective, timely, and compliant manner [Mcd10]. For example, a cloud provider’s archival capabilities may not preserve the original metadata as expected, causing spoliation (i.e., the intentional, reckless, or negligent destruction, loss, material alteration, or obstruction of evidence that is relevant to litigation), which could negatively impact litigation. The cloud provider’s electronic discovery capabilities and processes must not compromise the privacy or security of the data and applications of the organization in satisfying the discovery obligations of other cloud consumers, and vice versa.
+
+## Trust
+
+Under the cloud computing paradigm, an organization relinquishes direct control over many aspects of security and privacy, and in doing so, confers a high level of trust.# Cloud Computing Security and Data Ownership
+
+## Introduction
+Federal agencies have a responsibility to protect information and information systems commensurate with the risk and magnitude of the harm resulting from unauthorized access, use, disclosure, disruption, modification, or destruction. This responsibility applies regardless of whether the information is collected or maintained by the agency or by a contractor or other organization on behalf of the agency [HR2458].
+
+## Insider Access
+Data processed or stored outside the physical confines of an organization, its firewall, and other security controls bring with it an inherent level of risk. The insider security threat is a well-known issue for most organizations and applies to outsourced cloud services as well [Ash10, Cap09, Kow08].
+
+### Types of Insider Threats
+Insider threats extend beyond current or former employees to include:
+- Contractors
+- Organizational affiliates
+- Other parties with access to an organization’s networks, systems, and data
+
+Incidents may involve various types of:
+- Fraud
+- Sabotage of information resources
+- Theft of sensitive information
+
+### Unintentional Incidents
+Incidents may also occur unintentionally. For instance, a bank employee reportedly sent sensitive customer information to the wrong Google mail account [Zet09b].
+
+## Risks of Cloud Computing
+Moving data and applications to a cloud computing environment operated by a cloud provider expands the circle of insiders. This includes not only the cloud provider’s staff and subcontractors but also potentially other customers using the service, thereby increasing risk.
+
+### Example of a Security Incident
+A denial of service attack launched by a malicious insider was demonstrated against a well-known IaaS cloud [Mee09, Sla09]. The attack involved:
+- A cloud consumer creating an initial 20 accounts
+- Launching virtual machine instances for each
+- Using those accounts to create an additional 20 accounts and machine instances iteratively, exponentially growing and consuming resources beyond set limits.
+
+## Data Ownership
+The organization’s ownership rights over the data must be firmly established in the service contract to enable a basis for trust and privacy of data. The ongoing controversy over privacy and data ownership rights for social networking users illustrates the impact that ambiguous terms can have on the parties involved (e.g., [Goo10, Rap09]).
+
+### Contractual Clarity
+Ideally, the contract should clearly state:
+- The organization retains exclusive ownership over all its data.
+- The cloud provider acquires no rights or licenses through the agreement, including intellectual property rights or licenses, to use the organization’s data for its own purposes.
+- The cloud provider does not acquire any rights to the data.# Cloud Services and Data Ownership
+
+## Data Ownership and Security
+Cloud providers must not unilaterally amend the terms of data ownership to ensure that provisions work as intended. Users may not claim any interest in the data due to security concerns.
+
+## Composite Services
+Cloud services can be composed through nesting and layering with other cloud services. For instance, a public Software as a Service (SaaS) provider may build its services on top of Platform as a Service (PaaS) or Infrastructure as a Service (IaaS) clouds. The availability of the SaaS cloud is contingent upon the availability of these underlying services. If the availability percentage of a support service decreases, the overall availability of the SaaS service will also suffer proportionally.
+
+### Concerns with Third-Party Providers
+Cloud services that outsource or subcontract to third-party providers raise several concerns, including:
+- Scope of control over the third party
+- Responsibilities involved (e.g., policy and licensing arrangements)
+- Remedies and recourse available in case of issues
+
+Public cloud providers that host applications or services from other parties may involve different domains of control. However, through transparent authentication mechanisms, these services may appear to be under the control of the cloud provider. Trust is often not transitive, necessitating that third-party arrangements be disclosed before entering into an agreement with the cloud provider. The terms of these arrangements should be maintained throughout the agreement or until sufficient notification of any anticipated changes can be provided.
+
+### Liability and Performance Guarantees
+Liability and performance guarantees can become significant issues with composite cloud services. For example, a consumer storage-based social networking service shut down after losing access to a substantial amount of data from 20,000 clients. This occurred because it relied on another cloud provider to host historical data and yet another to host its newly launched application and database. As a result, direct responsibility for the failure was unclear and never resolved.
+
+## Visibility and Continuous Monitoring
+Continuous monitoring of information security necessitates ongoing awareness of security controls, vulnerabilities, and threats to support risk management decisions. Organizations should regularly collect and analyze data about the state of their systems to manage security and privacy risks effectively.
+
+Transitioning to public cloud services involves transferring responsibility to the cloud provider for securing parts of the system where the organization's data and applications operate. To meet the obligations of continuous monitoring, organizations depend on the cooperation of the cloud provider, as certain aspects of the computing environment are under the provider's complete control. Knowledge of a cloud provider's security measures is essential for organizations to effectively manage their security posture.# Conducting Risk Management in Cloud Computing
+
+## Identifying Vulnerabilities
+
+The process of identifying vulnerabilities should include an analysis of the system security features and the security controls used to protect the cloud environment [Sto02].
+
+## Challenges with Cloud Provider Transparency
+
+Cloud providers can be reluctant to provide details of their security and privacy measures and status, as such information is often considered proprietary and might be used to devise an avenue of attack. Moreover, detailed network and system-level monitoring by a cloud consumer is generally not part of most service arrangements, limiting visibility and the means to audit operations directly (e.g., [Bro09, Dig08, Met09]).
+
+While notification tools and web-based dashboards are typically made available to consumers to monitor status, they can lack sufficient detail and may themselves suffer disruption during a system outage [Goo09a, Ker11, Per11].
+
+## Importance of Transparency
+
+Transparency in the way the cloud provider operates, including the provisioning of composite services, is vital for effective oversight over system security and privacy by an organization. To ensure that policy and procedures are being enforced throughout the system lifecycle, service arrangements should include some means for the organization to gain visibility into the security controls and processes employed by the cloud provider and their performance over time.
+
+### Service Agreement Considerations
+
+For example, the service agreement could include the right to audit controls via a third party, as a way to validate control aspects that are not otherwise accessible or assessable by the consumer. Ideally, the consumer would have control over aspects of the means of visibility to accommodate its needs, such as:
+
+- The threshold for alerts and notifications
+- The level of detail and schedule of reports
+
+## Ancillary Data
+
+While the focus of attention in cloud computing is mainly on protecting application data, cloud providers also hold significant details about the accounts of cloud consumers that could be compromised and used in subsequent attacks.
+
+### Examples of Sensitive Information
+
+Payment information is one example; other, more subtle types of information can also be involved. For instance, a database of contact information stolen from a SaaS cloud provider, via a targeted phishing attack against one of its employees, was used to launch successful targeted electronic mail attacks against consumers of the cloud service [Kre07, Mcm07].
+
+This incident illustrates the need for cloud providers to protect and promptly report security breaches occurring not only in the data the cloud provider holds for its consumers but also in the data it holds about its consumers, regardless of whether the data is held within or separately from the cloud infrastructure.
+
+### Types of Ancillary Data
+
+Other types of ancillary data that exist involve information the cloud provider collects or produces about customer-related activity in the cloud. They include data collected to...# Cloud Metadata and Risk Management
+
+## Metadata Ownership and Privacy Concerns
+
+Cloud providers may claim ownership over operational and other types of metadata they collect, which can include:
+
+- Metering and charging for resource consumption
+- Logs and audit trails
+- Other metadata generated within the cloud environment
+
+This metadata, if sold, released, or leaked to a third party, poses a potential threat to an organization’s privacy. It could be used to infer the status and outlook of an organization’s initiatives, such as the activity level or projected growth of a startup company.
+
+### Key Considerations for Service Contracts
+
+When entering into a service contract with a cloud provider, organizations should clarify the following points regarding metadata:
+
+- Types of metadata collected by the cloud provider
+- Protection afforded to the metadata
+- Organization’s rights over metadata, including:
+- Ownership
+- Opting out of collection or distribution
+- Fair use
+
+## Risk Management in Cloud Services
+
+With cloud-based services, certain subsystems or components may fall outside the direct control of a client organization. Many organizations prefer to have greater control over processes and equipment, as this allows them to:
+
+- Weigh alternatives
+- Set priorities
+- Act decisively in the best interest of the organization during incidents
+
+### Understanding Risk Management
+
+Risk management involves:
+
+1. Identifying and assessing risks to:
+- Organizational operations
+- Organizational assets
+- Individuals resulting from the operation of an information system
+2. Taking necessary steps to reduce risks to an acceptable level
+
+The risk management process includes:
+
+- Conducting a risk assessment
+- Implementing a risk mitigation strategy
+- Employing techniques and procedures for continuous monitoring of the security state of the information system
+
+Public cloud-based systems, like traditional information systems, require that risks are managed throughout the system lifecycle.
+
+### Challenges in Assessing and Managing Risk
+
+Assessing and managing risk in systems that utilize cloud services can be challenging. According to FISMA and OMB policy, external providers handling federal information or operating information systems on behalf of the federal government must meet the same security requirements as federal agencies.
+
+Organizations should ensure that:
+
+- Privacy and security controls are implemented correctly
+- Controls operate as intended and meet requirements
+
+### Establishing Trust in Cloud Services
+
+Establishing a level of trust in a cloud service depends on the degree of control an organization can exert over the provider to provision necessary security controls. Additionally, organizations should seek evidence regarding the effectiveness of those controls.
+
+Organizations should:
+
+- Understand the privacy and security controls of the cloud service
+- Establish adequate arrangements in the service agreement
+- Monitor compliance of the service controls with the terms of the agreement# Cloud Services Security and Architecture
+
+## Trust and Security Controls
+The effectiveness of security controls in a subsystem may not be feasible to assess as extensively as with an organizational system. In some cases, alternative means, such as third-party audits, may be employed to establish a level of trust. Ultimately, if the level of trust in the service falls below expectations and the organization cannot implement compensating controls, it must either reject the service or accept a greater degree of risk.
+
+## Architecture
+
+### Variability Among Providers
+The architecture of the software and hardware used to deliver cloud services can vary significantly among public cloud providers for any specific service model. The physical location of the infrastructure is determined by the cloud provider, as is the design and implementation of reliability, resource pooling, scalability, and other logic needed in the support framework.
+
+### Application Components
+Applications are built on the programming interfaces of Internet-accessible services, which typically involve multiple cloud components communicating with each other over application programming interfaces. Virtual machines typically serve as the abstract unit of deployment for Infrastructure as a Service (IaaS) clouds and are loosely coupled with the cloud storage architecture. Cloud providers may also use other computing abstractions instead of virtual machine technology to provision services for other service models.
+
+### Client-Side Requirements
+To complement the server side, cloud-based applications require a client side to initiate and obtain services. While web browsers often serve as clients, other possibilities exist. Additionally, an adequate and secure network communications infrastructure must be in place.
+
+### Complexity and Security Implications
+Many of the simplified interfaces and service abstractions on the client, server, and network obscure the inherent underlying complexity that affects security and privacy. Therefore, it is crucial to understand the technologies the cloud provider uses to provision services and the implications of the technical controls involved on the security and privacy of the system throughout its lifecycle. With such information, the underlying system architecture of a cloud can be decomposed and mapped to a framework of security and privacy controls that can be used to assess and manage risk.
+
+## Attack Surface
+The hypervisor or virtual machine monitor is an additional layer of software between an operating system and hardware platform that is used to operate multi-tenant virtual machines and is common to IaaS clouds. Besides virtualized resources, the hypervisor typically supports other application programming interfaces to conduct administrative operations, such as launching, migrating, and terminating virtual machine instances. Compared with a traditional, non-virtualized implementation, the addition of a hypervisor increases the attack surface. This means there are additional methods (e.g., application programming interfaces), channels (e.g., sockets), and data items (e.g., input strings) that an attacker can exploit to cause damage to the system.# Security Challenges in Virtual Machine Environments
+
+The complexity in virtual machine environments can also be more challenging than in their traditional counterparts, giving rise to conditions that undermine security [Gar05].
+
+## Risks Associated with Virtual Machines
+
+For example, paging, checkpointing, and migration of virtual machines can leak sensitive data to persistent storage, subverting protection mechanisms in the hosted operating system intended to prevent such occurrences. Moreover, the hypervisor itself can potentially be compromised. A compromise of the hypervisor could result in the compromise of all systems that it hosts [Sca11].
+
+### Vulnerabilities in Hypervisors
+
+For instance, a vulnerability that allowed specially crafted File Transfer Protocol (FTP) requests to corrupt a heap buffer in the hypervisor, which in turn could induce the execution of arbitrary code at the host, was discovered in the Network Address Translation (NAT) routine of a widely used virtualization software product [Sec05, She05].
+
+## Securing Virtual Servers and Applications
+
+Virtual servers and applications, much like their non-virtual counterparts, need to be secured, both physically and logically. Following organizational policies and procedures, the operating system and applications should be hardened when producing virtual machine images for deployment. Care must also be taken to provision security for the virtualized environments in which the images run [You07].
+
+### Use of Virtual Firewalls
+
+For example, virtual firewalls can be used to isolate groups of virtual machines from other hosted groups, such as production systems from development systems or development systems from other cloud-resident systems. Carefully managing virtual machine images is also important to avoid accidentally deploying images under development or containing vulnerabilities.
+
+## Virtual Network Protection
+
+Most virtualization platforms have the ability to create software-based switches and network configurations as part of the virtual environment to allow virtual machines on the same host to communicate more directly and efficiently.
+
+### Intra-Host Networking
+
+For example, for virtual machines requiring no external network access, the virtual networking architectures of most virtualization software products support same-host networking, in which a private subnet is created for intra-host communications. Traffic over virtual networks may not be visible to security protection devices on the physical network, such as network-based intrusion detection and prevention systems [Sca11, Vie09].
+
+### Monitoring and Protection
+
+To avoid a loss of visibility and protection against intra-host attacks, duplication of the physical network protection capabilities may be required on the virtual network [Ref10, Vmw10]. While some hypervisors allow network monitoring, their capabilities are generally not as robust as those in tools used to monitor physical networks. Organizations should consider the risk and performance tradeoffs between having traffic hidden within the hypervisor versus exposing that traffic to the physical network for monitoring [Sca11].
+
+## Separation of Duties
+
+A side effect of virtualized environments is the potential loss of separation of duties between existing administration roles in an organization. For example, in...# Traditional Computing Environments
+
+In traditional computing environments, computer administrators typically do not configure network security components, such as intrusion detection and prevention systems and firewalls.
+
+## Roles in Network Security
+
+Network security administrators, on the other hand, can configure such devices, but typically do not have administrative rights on hosts to grant system access. In virtual environments, the distinct roles of computer and network security administrators can collapse into a single role of a virtual infrastructure administrator. Other distinct roles, such as that of storage administrators, can be similarly affected. Management and operational controls may be needed to compensate for a lack of technical controls in virtual environments for maintaining separation of duty.
+
+# Virtual Machine Images
+
+IaaS cloud providers and manufacturers of virtual machine products maintain repositories of virtual machine images. A virtual machine image entails the software stack, including installed and configured applications, used to boot the virtual machine into an initial state or the state of some previous checkpoint.
+
+## Sharing Virtual Machine Images
+
+Sharing virtual machine images is a common practice in some cloud computing environments as a quick way to get started. Virtual machine images created by the organization must be carefully managed and controlled to avoid problems. For instance, images need to be kept up-to-date with the latest security patches. Caution must be taken to avoid using images that have not been vetted or releasing images in a haphazard fashion.
+
+## Risks Associated with Virtual Machine Images
+
+The provider of an image faces risks, since an image can contain proprietary code and data and embody vulnerabilities. An attacker may attempt to examine images to determine whether they leak information or provide an avenue for attack. This is especially true of development images that are accidentally released. The reverse may also occur—an attacker may attempt to supply a virtual machine image containing malware to consumers of a cloud computing system.
+
+For example, researchers demonstrated that by manipulating the registration process to gain a first-page listing, they could readily entice cloud consumers to run virtual machine images they contributed to the image repository of a popular cloud provider. The risks for consumers running tainted images include theft and corruption of data. Organizations should consider implementing a formal image management process to govern the creation, storage, and use of virtual machine images.
+
+# Client-Side Protection
+
+A successful defense against attacks requires securing both the client and server side of cloud computing. With emphasis typically placed on the latter, the former can be easily overlooked. Services from different cloud providers, as well as cloud-based applications developed by the organization, can impose more exacting demands on the client, which may have implications for security and privacy that need to be taken into consideration. Web browsers, a key element for many cloud computing applications, play a crucial role in this context.# Security Concerns in Client-Side Computing
+
+## Introduction
+Services, and the various plug-ins and extensions available for them, are notorious for their security problems [Jen09, Ker10, Pro07, Pro09]. Moreover, many browser add-ons do not provide automatic updates, increasing the persistence of any existing vulnerabilities.
+
+## Challenges in Maintaining Security
+Maintaining physical and logical security over clients can be troublesome, especially with embedded mobile devices such as smartphones. Their size and portability can result in the loss of physical control. Built-in security mechanisms often go unused or can be overcome or circumvented without difficulty by a knowledgeable party to gain control over the device [Jan08].
+
+### Smartphone Security
+Smartphones are often treated more as fixed appliances with a limited set of functions than as general-purpose systems. Moreover, cloud applications are often delivered to them through custom-built native applications (i.e., apps) rather than a web browser. No single operating system dominates smartphones, and security patches and updates for system components are not as frequent as for desktop computers, making vulnerabilities more persistent and widening the window of opportunity for exploitation.
+
+### Mitigation Strategies
+As a safeguard, organizations can prohibit or strictly limit access to Personally Identifiable Information (PII) and other sensitive data from portable and mobile devices to reduce risk [Mcc10].
+
+## Risks Associated with Social Media and Public Sites
+The growing availability and use of social media, personal webmail, and other publicly available sites also have associated risks that are a concern, as they increasingly serve as avenues for social engineering attacks that can negatively impact the security of the browser, its underlying platform, and cloud services accessed.
+
+### Case Study
+For example, spyware was reportedly installed in a hospital system via an employee’s personal webmail account and sent the attacker more than 1,000 screen captures, containing financial and other confidential information, before being discovered [Mcm09b]. Having a backdoor Trojan, keystroke logger, or other types of malware present on a client runs counter to protecting the security and privacy of public cloud services, as well as other Internet-facing public services being accessed [Fre08, MRG10].
+
+## Security Architecture for Cloud Computing
+As part of the overall security architecture for cloud computing, organizations need to review existing measures and employ additional ones, if necessary, to secure the client side. Banks are beginning to take the lead in deploying hardened browser environments that encrypt network exchanges and protect against keystroke logging [Dun10a, Dun10b].
+
+### Importance of Security Awareness Training
+Security awareness training is also an important measure for an organization to apply, as the proper behavior of individuals is an essential safeguard against many types of attacks.
+
+## Identity and Access Management
+Data sensitivity and privacy of information have become increasingly an area of concern for organizations.# Identity Management in Cloud Computing
+
+## Introduction
+The identity proofing and authentication aspects of identity management entail the use, maintenance, and protection of Personally Identifiable Information (PII) collected from users. Preventing unauthorized access to information resources in the cloud is also a major consideration.
+
+## Challenges in Identity Management
+One recurring issue is that the organizational identification and authentication framework may not naturally extend into a public cloud. Extending or changing the existing framework to support cloud services may prove difficult. The alternative of employing two different authentication systems—one for internal organizational systems and another for external cloud-based systems—can become unworkable over time.
+
+## Identity Federation
+Identity federation, popularized with the introduction of service-oriented architectures, is one solution. It allows the organization and cloud provider to trust and share digital identities and attributes across both domains, providing a means for single sign-on.
+
+### Requirements for Successful Federation
+For federation to succeed, identity and access management transactions must be interpreted carefully and unambiguously and protected against attacks. Clear separation of the managed identities of the cloud consumer from those of the cloud provider must also be ensured to protect the consumer's resources from provider-authenticated entities and vice versa.
+
+### Methods of Identity Federation
+Identity federation can be accomplished in a number of ways, such as with the Security Assertion Markup Language (SAML) standard or the OpenID standard.
+
+## Authentication
+Authentication is the process of establishing confidence in user identities. Authentication assurance levels should be appropriate for the sensitivity of the application and information assets accessed and the risk involved.
+
+### SAML in Cloud Authentication
+A growing number of cloud providers support the SAML standard and use it to administer users and authenticate them before providing access to applications and data. SAML provides a means to exchange information between cooperating domains.
+
+#### SAML Transactions
+For example, a SAML transaction can convey assertions that a user has been authenticated by an identity provider and also include information about the user’s privileges. Upon receipt of the transaction, the service provider uses the information to grant the user an appropriate level of access, once the identity and credentials supplied for the user are successfully verified.
+
+### SOAP and SAML
+SAML request and response messages are typically mapped over SOAP, which relies on the eXtensible Markup Language (XML) for its format. SOAP messages are digitally signed. In a public cloud, for instance, once a user has established a public key certificate with the service, the private key can be used to sign SOAP requests.
+
+### Security Considerations
+SOAP message security validation is complicated and must be carried out carefully to prevent attacks. XML wrapping attacks have been successfully demonstrated against a public Infrastructure as a Service (IaaS) cloud. XML wrapping involves manipulation of SOAP messages, where a new element (i.e., the wrapper) is introduced into the SOAP Security header.# Cloud Security Considerations
+
+## Original Message Body Manipulation
+The original message body is then moved under the wrapper and replaced by a bogus body containing an operation defined by the attacker [Gaj09, Gru09]. The original body can still be referenced and its signature verified, but the operation in the replacement body is executed instead.
+
+## Access Control
+SAML alone is not sufficient to provide cloud-based identity and access management services. The capability to adapt cloud consumer privileges and maintain control over access to resources is also needed. As part of identity management, standards like the eXtensible Access Control Markup Language (XACML) can be used by a cloud provider to control access to cloud resources, in lieu of some proprietary means.
+
+### XACML Overview
+The XACML standard defines an XML-based language for stating policy and forming access control decisions. XACML focuses on the mechanism for arriving at authorization decisions, which complements SAML’s focus on the means for transferring authentication and authorization decisions between cooperating entities.
+
+### XACML Usage Model
+XACML is capable of controlling the proprietary service interfaces of most providers, and some cloud providers already have it in place. The basic XACML usage model assumes that when a resource access is attempted, a Policy Enforcement Point (PEP), responsible for protecting access to resources, sends a request containing a description of the attempted access to a Policy Decision Point (PDP) for evaluation against available policies and attributes. The PDP evaluates this request and returns an authorization decision for the PEP to enforce.
+
+### Security Considerations
+XACML does not define protocols or transport mechanisms or specify how user credentials are validated. Messages transmitted between XACML entities are susceptible to attack by malicious third parties, including unauthorized disclosure, replay, deletion, and modification attacks, unless sufficient safeguards are in place to protect transactions [Kel05].
+
+## Software Isolation
+High degrees of multi-tenancy over large numbers of platforms are needed for cloud computing to achieve the envisioned flexibility of on-demand provisioning of reliable services and the cost benefits and efficiencies due to economies of scale. To reach the high scales of consumption desired, cloud providers have to ensure dynamic, flexible delivery of service and isolation of consumer resources.
+
+### Multi-Tenancy in IaaS
+Multi-tenancy in IaaS cloud computing environments is typically done by multiplexing the execution of virtual machines from potentially different consumers on the same physical server [Ris09]. Applications deployed on guest virtual machines remain susceptible to attack and compromise, much the same as their non-virtualized counterparts. This was dramatically exemplified by a botnet found operating out of an IaaS cloud computing environment [Mcm09a, Whi09].
+
+### Multi-Tenancy in PaaS and SaaS
+Multi-tenancy in PaaS and SaaS cloud computing environments can be handled differently. For example, many SaaS providers rely on an infrastructure free of virtual machines, using instead a...# Multi-Tenancy and Security in Cloud Computing
+
+## Introduction
+A multi-tenant architecture refers to a single logical instance of an application (i.e., a software technology stack) that can handle extremely large numbers of tenants, scaling upwards or outwards as needed. Regardless of the service model and multi-tenant software architecture used, the computations of different consumers must be able to be carried out in isolation from one another, mainly through the use of logical separation mechanisms.
+
+## Hypervisor Complexity
+The security of a computer system depends on the quality of the underlying software kernel that controls the confinement and execution of processes. A virtual machine monitor or hypervisor is designed to run multiple virtual machines, each hosting an operating system and applications, concurrently on a single host computer, and to provide isolation between the different guest virtual machines.
+
+### Characteristics of Hypervisors
+A virtual machine monitor can, in theory, be smaller and less complex than an operating system. These characteristics generally make it easier to analyze and improve the quality of security, giving a virtual machine monitor the potential to be better suited for maintaining strong isolation between guest virtual machines than an operating system is for isolating processes.
+
+In practice, however, modern hypervisors can be large and complex, comparable to an operating system, which negates this advantage. For example, Xen, an open-source x86 virtual machine monitor, incorporates a modified Linux kernel to implement a privileged partition for input/output operations, and KVM, another open-source effort, transforms a Linux kernel into a virtual machine monitor. Understanding the use of virtualization by a cloud provider is a prerequisite to understanding the security risk involved.
+
+## Attack Vectors
+Multi-tenancy in virtual machine-based cloud infrastructures, together with the subtleties in the way physical resources are shared between guest virtual machines, can give rise to new sources of threat. The most serious threat is that malicious code can escape the confines of its virtual machine and interfere with the hypervisor or other guest virtual machines.
+
+### Live Migration and Complexity
+Live migration, the ability to transition a virtual machine between hypervisors on different host computers without halting the guest operating system, and other features provided by virtual machine monitor environments to facilitate systems management, also increase software size and complexity and potentially add other areas to target in an attack.
+
+### Examples of Attack Vectors
+Several examples illustrate the types of attack vectors possible. The first is mapping the cloud infrastructure. While seemingly a daunting task to perform, researchers have demonstrated an approach with a popular IaaS cloud. By launching multiple virtual machine instances from multiple cloud consumer accounts and using network probes, assigned IP addresses and domain names were analyzed to identify service location patterns. Building on that information and general technique, the plausible attack vectors can be further explored.# Virtual Machine Security and Vulnerabilities
+
+## Targeting Virtual Machines
+The location of a specific target virtual machine could be identified, and new virtual machines instantiated to be eventually co-resident with the target. Once a suitable target location is found, the next step for the guest virtual machine is to bypass or overcome containment by the hypervisor or to take down the hypervisor and system entirely.
+
+### Common Vulnerabilities
+Weaknesses in the provided programming interfaces and the processing of instructions are common targets for uncovering vulnerabilities to exploit [Fer07]. For example, a serious flaw that allowed an attacker to write to an arbitrary out-of-bounds memory location was discovered in the power management code of a hypervisor by fuzzing emulated I/O ports [Orm07]. A denial of service vulnerability, which could allow a guest virtual machine to crash the host computer along with the other virtual machines being hosted, was also uncovered in a virtual device driver of a popular virtualization software product [Vmw09].
+
+## Indirect Attack Avenues
+More indirect attack avenues may also be possible. For example, researchers developed a way for an attacker to gain administrative control of guest virtual machines during a live migration by employing a man-in-the-middle attack to modify the code used for authentication [Obe08a]. Memory modification during migration presents other possibilities, such as the potential to insert a virtual machine-based rootkit layer below the operating system [Kin06].
+
+### Notable Incidents
+A zero-day exploit in HyperVM, an open-source application for managing virtual private servers, purportedly led to the destruction of approximately 100,000 virtual server-based websites hosted by a service provider [Goo09b]. Another example of an indirect attack involves monitoring resource utilization on a shared server to gain information and perhaps perform a side-channel attack, similar to attacks used against implementations of cryptographic mechanisms in other computing environments [Ris09]. For example, an attacker could determine periods of high activity, estimate high-traffic rates, and possibly launch keystroke timing attacks to gather passwords and other data from a target server.
+
+## Data Protection
+Data stored in a public cloud typically resides in a shared environment collocated with data from other customers. Organizations placing sensitive and regulated data into a public cloud, therefore, must account for the means by which access to the data is controlled and the data is kept secure. Similar concerns exist for data migrated within or between clouds.
+
+### Value Concentration
+A response to the question "Why do you rob banks?" is often attributed to Willie Sutton, a historic and prolific bank robber [Coc97]—his purported answer: "because that is where the money is." In many ways, data records are the currency of the 21st century, and cloud-based data stores are the bank vault, making them an increasingly preferred target due to the collective value concentrated there [Row07]. Just as economies of scale exist in robbing banks instead of individuals, a high payoff ratio also exists for successfully compromising a cloud. Successful exploits against highly regarded security firms illustrate that no one is beyond the reach of a cyber attack.# Cloud Computing Security Concerns
+
+## Introduction
+In the realm of cloud computing, security remains a paramount concern. This document discusses various vulnerabilities and security measures associated with cloud environments.
+
+## Exploits and Vulnerabilities
+### Targeting Personal Accounts
+A recent exploit involved targeting a personal electronic mail account of a social networking service administrator. This was reportedly achieved by answering a set of security questions to gain access to the account. The attacker then used the information found there to access company files stored in a Platform as a Service (PaaS) cloud.
+
+### Password Reset Weaknesses
+A similar weakness in password resets was identified in an Infrastructure as a Service (IaaS) public cloud. An attacker only needed a registered electronic mail address and a valid password to download authentication credentials from the cloud provider’s management dashboard, granting access to all of the account’s resources. If an attacker controlled the mail system associated with an account or passively eavesdropped on the network, they could effectively take control of the account.
+
+## Denial of Service Risks
+Having data collocated with that of an organization with a high threat profile could lead to a denial of service as an unintended casualty from an attack targeted against that organization. Similarly, side effects from a physical attack against a high-profile organization’s cloud-based resources are also a possibility. For example, facilities of the Internal Revenue Service have attracted attention from would-be attackers over the years.
+
+## Data Isolation
+### Forms of Data
+Data can take many forms in cloud-based application development, including application programs, scripts, configuration settings, and development tools. For deployed applications, it includes records and other content created or used by the applications, including deallocated objects, as well as account information about the users of the applications.
+
+### Security Measures
+Access controls are one means to keep data away from unauthorized users; encryption is another. Access controls are typically identity-based, making the authentication of the user’s identity an important issue in cloud computing. Lacking physical control over the storage of information, encryption is the only way to ensure that it is truly protected.
+
+## Database Environments
+Database environments used in cloud computing can vary significantly. Some environments support a multi-instance model, while others support a multi-tenant model. The former provides a unique database management system running on a virtual machine, while the latter allows multiple tenants to share the same database resources.
+
+## Conclusion
+As cloud computing continues to evolve, understanding and addressing security vulnerabilities is crucial for protecting sensitive data and maintaining the integrity of cloud services.# Cloud Security and Data Management
+
+## Introduction
+Cloud computing offers various models for data management, including dedicated machine instances for each cloud consumer. This setup allows consumers to have complete control over role definitions, user authorization, and other administrative tasks related to security.
+
+## Multi-Tenant Arrangements
+Cloud environments often utilize multi-tenant arrangements, where resources are pooled differently, providing varying degrees of isolation and resource efficiency.
+
+### Resource Pooling
+- **Shared Environment**: A predefined environment shared with other tenants, typically through tagging data with a consumer identifier.
+- **Exclusive Use**: Tagging gives the appearance of exclusive use of the instance but relies on the cloud provider to maintain a secure database environment.
+
+## Considerations for Database Management
+Different types of multi-tenant arrangements exist for databases, each with its own trade-offs.
+
+### Data Encryption
+- Certain features, like data encryption, are more viable with separate databases rather than shared ones.
+- Trade-offs must be carefully evaluated based on the suitability of the data management solution for the data involved.
+
+### Industry Requirements
+- Requirements in specific fields, such as healthcare, can significantly influence the choice of database and data organization.
+- Privacy-sensitive information is a serious concern that must be addressed.
+
+## Data Security
+Data must be secured in three states: at rest, in transit, and in use. Access to data must be controlled.
+
+### Standards and Protocols
+- Standards for communication protocols and public key certificates allow for protected data transfers using cryptography.
+- These standards can typically be implemented with equal effort across SaaS, PaaS, and IaaS environments.
+
+### Challenges in Data Protection
+- Procedures for protecting data at rest are not well standardized, leading to interoperability issues due to proprietary systems.
+- Capabilities vary greatly across service models, and cryptographic protection may not be feasible in some environments, particularly PaaS and SaaS.
+
+## Interoperability and Portability
+The lack of interoperability affects data availability and complicates the portability of applications and data between cloud providers.
+
+### Protecting Data in Use
+Protecting data in use is an emerging area of cryptography with limited practical results, leaving trust mechanisms as the primary safeguard.
+
+## Cryptographic Key Management
+The security of systems employing cryptography relies on proper control of central keys and key management components.
+
+### Current Responsibilities
+- The responsibility for cryptographic key management primarily falls on the cloud consumer.
+- Key generation and storage are usually performed outside the cloud using hardware security modules, which do not scale well to the cloud paradigm.
+
+### Future Directions
+NIST’s Cryptographic Key Management Project is working on identifying scalable and usable cryptographic key management and exchange strategies for government use, which could help alleviate current challenges.
+
+## Conclusion
+A guiding principle is for employees of the organization to maintain control over central keys and key management components to ensure the security of cloud-based data management systems.# Key Management in Cloud Environments
+
+## Keying Material and Key Management Components
+Keying material and the configuration of key management components for cloud-based applications are critical aspects of security. Organizations must fully understand and weigh the risks involved in the processes defined by the cloud provider for the key management lifecycle. Cryptographic operations performed in the cloud become part of the key management process and should be managed and audited by the organization.
+
+## Data Sanitization
+Data sanitization practices implemented by a cloud provider have significant implications for security. Sanitization involves the expunging of data from storage media through methods such as overwriting, degaussing, or destruction of the media itself to prevent unauthorized disclosure of information. This applies in various situations, including:
+
+- Equipment refresh or maintenance when a storage device is removed from service or repurposed.
+- Backup copies made for recovery and restoration of service.
+- Residual data remaining upon termination of service.
+
+In a public cloud computing environment, data from one consumer may be physically collocated or commingled with data from other consumers, complicating matters. There are numerous examples of researchers obtaining used drives from online auctions and recovering sensitive information from them. With the proper skills and equipment, it is also possible to recover data from failed drives if they are not disposed of properly. Service agreements should stipulate sufficient measures to ensure data sanitization is performed appropriately throughout the system lifecycle.
+
+## Availability
+Availability refers to the extent to which an organization’s full set of computational resources is accessible and usable. It can be affected temporarily or permanently, with losses being partial or complete. Threats to availability include denial of service attacks, equipment outages, and natural disasters. Most downtime is unplanned and can significantly impact the mission of the organization.
+
+### Temporary Outages
+Despite employing architectures designed for high service reliability and availability, cloud computing services can experience outages and performance slowdowns. Several examples illustrate this point:
+
+- In February 2008, a popular storage cloud service suffered a three-hour outage affecting consumers, including Twitter and other startup companies.
+- In June 2009, a lightning storm caused a partial outage of an IaaS cloud that affected some users for four hours.
+- In April 2011, a network upgrade attempt caused a serious outage lasting more than twenty-four hours.
+
+These incidents highlight the importance of planning for availability in cloud services.# Cloud Service Availability and Outages
+
+## Introduction
+Several hours of downtime can occur in cloud services, as evidenced by incidents in January 2009 and March 2009, where outages were caused by network device failures and severe degradation due to networking issues, respectively.
+
+## Expected Downtime
+At a level of 99.95% availability, approximately 4.38 hours of downtime are expected in a year.
+
+### Scheduled Maintenance
+Periods of scheduled maintenance are usually excluded as a source of downtime in Service Level Agreements (SLAs) and may be scheduled with short notice from the cloud provider.
+
+## Contingency and Continuity Planning
+The level of availability of a cloud service, along with its capabilities for data backup and disaster recovery, must be addressed in an organization’s contingency and continuity planning. This ensures the recovery and restoration of disrupted cloud services and operations, potentially using alternate services, equipment, and locations if required.
+
+### Single Point of Failure
+Cloud storage services may represent a single point of failure for the applications hosted there. In such cases, the services of a second cloud provider could be utilized to back up data processed by the primary provider. This ensures that during a prolonged disruption or serious disaster at the primary provider's facilities, the data remains available for immediate resumption of critical operations.
+
+## Prolonged and Permanent Outages
+The possibility exists for a cloud provider to experience serious problems, such as bankruptcy or facility loss, which can affect service for extended periods or cause a complete shutdown.
+
+### Case Studies
+- In April 2009, the Federal Bureau of Investigation raided computing centers in Texas, seizing hundreds of servers while investigating fraud allegations against certain companies. This seizure disrupted service to numerous other businesses that were unrelated to the investigation but had their operations collocated at the targeted centers.
+- A similar raid occurred more recently, resulting in comparable disruptions.
+- Other notable outages include a major data loss experienced in 2009 by a bookmark repository service and the abrupt failure of an online storage-as-a-service provider, which closed without warning to its users in 2008.
+
+### Business Conditions
+Changing business conditions may also lead a cloud provider to disband its services, as seen with a recent online cloud storage service.
+
+## Preparedness for Outages
+If an organization relies on a cloud service for data storage and processing, it must be prepared to continue mission-critical operations without the use of the service during serious outages.
+
+### Contingency Plans
+The organization’s contingency plan should address prolonged and permanent system disruptions and support continuity of operations that affect the restoration of essential functions elsewhere. Having policies, plans, and standard operating procedures in place helps avoid creating an undue reliance on cloud services without sufficient recourse.# Denial of Service
+
+A denial of service attack involves saturating the target with bogus requests to prevent it from responding to legitimate requests in a timely manner. An attacker typically uses multiple computers or a botnet to launch an assault. Even an unsuccessful distributed denial of service attack can quickly consume large amounts of resources to defend against and cause charges to soar. The dynamic provisioning of a cloud in some ways simplifies the work of an attacker to cause harm. While the resources of a cloud are significant, with enough attacking computers they can become saturated [Jen09].
+
+For example, a denial of service attack against a code hosting site operating over an IaaS cloud resulted in more than 19 hours of downtime [Bro09, Met09]. In addition to attacks against publicly available services accessible via the Internet, denial of service attacks can occur against internally accessible services, such as those used in cloud management [Mee09, Sla09]. Internally assigned non-routable addresses, used to manage resources within a cloud provider’s network, may also be used as an attack vector. A worst-case possibility that exists is for elements of one cloud to attack those of another or to attack some of its own elements [Jen09].
+
+## Incident Response
+
+As the name implies, incident response involves an organized method for dealing with the consequences of an attack against the security of a computer system. The cloud provider’s role is vital in performing incident response activities, including incident verification, attack analysis, containment, data collection and preservation, problem remediation, and service restoration.
+
+Each layer in a cloud application stack, including the application, operating system, network, and database, generates event logs, as do other cloud components, such as load balancers and intrusion detection systems; many such event sources and the means of accessing them are under the control of the cloud provider.
+
+The complexity of a cloud service can obscure recognition and analysis of incidents. For example, it reportedly took one IaaS provider approximately eight hours to recognize and begin taking action on an apparent denial of service attack against its cloud infrastructure, after the issue was reported by a consumer of the service [Bro09, Met09]. Revising an organization’s incident response plan to address differences between the organizational computing environment and a cloud computing environment is an important, but easy-to-overlook prerequisite to transitioning applications and data.
+
+## Data Availability
+
+The availability of relevant data from event monitoring is essential for timely detection of security incidents. Cloud consumers are often confronted with extremely limited capabilities for detection of incidents in public cloud environments [Gro10]. Prominent issues include insufficient access to event sources and...# Vulnerability Information
+
+## Overview
+Vulnerability information is often under the control of the cloud provider, which can lead to several challenges, including inadequate interfaces for accessing and processing event data automatically, the inability to add detection points within the cloud infrastructure, and difficulties in directing third-party reported abuses and incidents back to the correct consumer or cloud provider for handling. The situation varies among cloud service models and cloud providers.
+
+## Cloud Service Models
+- **PaaS (Platform as a Service)**: Providers typically do not make event logs available to consumers, who are left mainly with event data from self-deployed applications (e.g., via application logging).
+- **SaaS (Software as a Service)**: Consumers are completely dependent upon the cloud provider to provide event data such as activity logging.
+- **IaaS (Infrastructure as a Service)**: Consumers control more of the information stack and have access to associated event sources.
+
+## Incident Analysis and Resolution
+An analysis to confirm the occurrence of an incident or determine the method of exploit needs to be performed quickly and with sufficient detail of documentation and care to ensure that traceability and integrity are maintained for subsequent use, if needed (e.g., a forensic copy of incident data for legal proceedings).
+
+### Key Steps in Incident Analysis
+1. **Determine the Scope**: Identify affected networks, systems, and applications.
+2. **Uncover the Intrusion Vector**: Understand how the incident occurred.
+3. **Reconstruct Activities**: Document the activities carried out during the incident.
+
+### Challenges Faced by Cloud Consumers
+- Lack of detailed information about the architecture of the cloud relevant to an incident.
+- Lack of information about relevant event and data sources held by the cloud provider.
+- Ill-defined or vague incident handling responsibilities stipulated for the cloud provider.
+- Limited capabilities for gathering and preserving pertinent data sources as evidence.
+
+## Containment and Resolution
+Once the scope of the incident and the affected assets are determined, measures can be taken to contain and resolve the incident, bringing systems back to a secure operational state. The roles and responsibilities between the cloud provider and cloud consumer for containing an attack vary based on the service model and cloud architecture.
+
+### Containment Strategies
+- **SaaS and PaaS Environments**: Containment may involve reducing or removing functionality (e.g., filtering out certain users or features with a web application firewall) or taking the entire application offline.
+- **IaaS Environments**: The cloud consumer has a more prominent role, but the cloud provider’s assistance is essential to resolve vulnerabilities exploited in the underlying cloud infrastructure.
+
+## Incident Response
+Response to an incident should be handled in a way that limits damage and minimizes recovery time and costs. Collaboration between the cloud consumer and provider is crucial in effectively managing incidents.# Recognizing and Responding to Incidents in Cloud Computing
+
+Recognizing and responding to an incident is vital to security and privacy in cloud computing. Federal agencies have an obligation to report certain categories of incidents to the U.S. Computer Emergency Readiness Team (US-CERT) within one or two hours of discovery or detection.
+
+## Understanding Reportable Incidents
+
+A clear understanding is needed of the type of incidents that are reportable by the cloud provider (e.g., data breaches) versus those that are not reportable (e.g., intrusion detection alarms). Remedies may involve only a single party or require the participation of both parties.
+
+## Importance of a Mixed Response Team
+
+Being able to convene a mixed team of representatives from the cloud provider and cloud consumer quickly is an important facet of an efficient and cost-effective response. For an incident response team to perform effectively, it must be able to act autonomously and decisively.
+
+## Impact on Cloud Consumers
+
+The resolution of a problem may impact many consumers of the cloud service. It is important that cloud providers have a transparent response process and mechanisms to share information with their consumers during and after the incident.
+
+## Pre-Contract Negotiations
+
+Understanding and negotiating the provisions and procedures for incident response should be done before entering into a service contract, rather than as an afterthought. For example, incident response plans should address breaches involving Personally Identifiable Information (PII) and ways to minimize the amount of PII involved when reporting and responding to a breach.
+
+## Geographic Location of Data
+
+The geographic location of data is a related issue that can impede an investigation and is a relevant subject for contract discussions.
+
+# 4.10 Summary of Recommendations
+
+A number of significant security and privacy issues were covered in the previous subsections. Table 1 summarizes those issues and related recommendations for organizations to follow when planning, reviewing, negotiating, or initiating a public cloud service outsourcing arrangement.
+
+# 5. Public Cloud Outsourcing
+
+Although cloud computing is a new computing paradigm, outsourcing information technology services is not. The steps that organizations take remain basically the same for public clouds as with other, more traditional, information technology services, and existing guidelines for outsourcing generally apply as well.
+
+## Increased Complexity in Public Cloud Computing
+
+What does change with public cloud computing, however, is the potential for increased complexity and difficulty in providing adequate oversight to maintain accountability and control over deployed applications and systems throughout their lifecycle.
+
+## Service Agreement Considerations
+
+This can be especially daunting if the terms of the service agreement do not fully meet the needs of the organization, since responsibilities normally held by the organization are given over to the cloud provider. Without sufficient provisions, the organization would have little recourse to address problems and resolve issues that may arise.
+
+## Enforcing Control and Accountability
+
+The service agreement is the primary means for an organization to enforce control and maintain accountability over the computing environment. If any needed requirements or provisions are lacking, it can lead to significant challenges in managing the cloud service effectively.# Security and Privacy in Cloud Computing
+
+## Introduction
+Sureties are missing, accountability is threatened accordingly. The record for traditional information technology outsourcing is mixed with respect to security and privacy, and not consistently done well by federal agencies (e.g., [GAO06, GAO10]).
+
+## Transitioning to Public Cloud
+As discussed in the previous chapter, transitioning organizational data and functions into a public cloud is accompanied by a host of security and privacy issues to be addressed, many of which concern the adequacy of the cloud provider’s technical controls for an organization’s needs.
+
+### Service Arrangements
+Service arrangements defined in the terms of service must also meet the privacy policy of the organization and the prevailing laws and regulations for information protection, dissemination, and disclosure to which the organization must comply. Each cloud provider and service arrangement has distinct costs and risks associated with it. A decision based on any one issue can have major implications for the organization in other areas [Gra03].
+
+## Due Diligence in Selection
+Considering the growing number of public cloud providers and the broad range of services offered by them, organizations must exercise due diligence when selecting and moving functions to a public cloud. Decision making about services and service arrangements entails striking a balance between benefits in cost and productivity versus drawbacks in risk and liability.
+
+### Sensitivity of Data
+While the sensitivity of data handled by government organizations and the current state of the art make the likelihood of outsourcing all information technology services to a public cloud low, it should be possible for most government organizations to deploy some of their information technology services to a public cloud, provided that all requisite risk mitigations are taken.
+
+## Cloud Transition Case Study: The City of Los Angeles
+The City of Los Angeles’ initiative to move to cloud computing provides insight into the planning involved and the issues that can arise [CSC10]. The effort involves switching the city’s electronic mail and calendaring system from an on-site solution to a public SaaS cloud that provides those services, and adding capabilities to improve productivity and collaboration [CSC10, DPW10, SECS09]. User training and electronic mail migration are also part of the contracted effort, which the City entered into on November 20, 2009.
+
+### Analysis of Proposed Contract
+In its analysis of the proposed contract [CAO09], the Office of the City Administrative Officer gave a qualified recommendation to proceed, noting that “If the City decides to utilize these services… it may be cost prohibitive to return to the current City-owned and operated structure.” The analysis also cautioned that “Several findings in this report, including the fact that the proposed system costs more than the current system, the potential operational impact from stopping the use of Microsoft Office, the shift in control over the City's e-mail and office applications to an outside vendor, and uncertainty surrounding security issues, illustrate the potential risks of approving this contract.”
+
+## Conclusion
+The City of Los Angeles was able to negotiate a number of security and privacy measures to address these concerns.# SaaS E-mail and Collaboration Solution (SECS) Contract Overview
+
+## Introduction
+The SaaS E-mail and Collaboration Solution (SECS) contract includes several features that are particularly relevant to government agencies.
+
+## Concerns from Law Enforcement
+- Police and fire departments raised concerns regarding the vulnerability of sensitive criminal data when stored on external servers.
+- Requirements established to protect the City’s data include:
+- Mandatory encryption
+- Segregation from other data maintained by the cloud provider
+- Constraints on data storage location
+
+## Security Measures
+- Employees of the cloud provider with access to the City’s data must pass background checks by the California Department of Justice.
+
+## Key Negotiated Features
+- On-site audit rights of the contractor’s security program
+- Service level requirements with monetary penalties
+- Electronic discovery functionality
+- Well-defined data ownership and exit rights
+- Mandatory subcontractor flow-down
+- Broad indemnification obligation with unlimited liability for certain breaches
+
+## Data Ownership
+- Data remains the sole and exclusive property of the City.
+- The cloud provider requires written approval from the City to access any files in the clear.
+- All accesses are logged, and the City has a means to self-audit accesses.
+
+## Implementation Challenges
+- Software changeovers often involve challenges such as training, integration, and data migration, which can impact productivity.
+- Notable differences between L.A.’s legacy electronic mail services and the new SaaS include:
+- Lack of support for classifying outgoing emails by priority
+- Absence of features to track replies from recipients
+- Reliance on labels instead of folders for email organization
+
+## Migration-Related Tasks
+City employees were tasked with several important migration-related activities:
+- Cleaning up existing mail accounts by deleting unimportant emails and canceled appointments
+- Archiving all mail by year
+- Individually saving any mail attachments larger than 25 megabytes, as these would not be automatically migrated to the new system.
+
+## Delays in Implementation
+- The security of sensitive data from the police department and other city agencies proved to be a challenging requirement, causing delays in implementation.
+- As a result, the legacy system operated in parallel with the new system longer than planned, incurring additional costs until a solution was implemented.
+- Hundreds of police department accounts that transitioned to the new system had to be restored due to these delays.# Cloud Migration and Security Concerns
+
+## Overview
+The Director of Operations for the cloud provider noted: “LA’s move to the cloud is the first of its kind, and it’s not surprising that it’s taken a little longer than anticipated to identify and address all of the City’s unique requirements” [Din10].
+
+## Notice of Deficiencies
+In December 2010, the City of LA issued a Notice of Deficiencies to the contractor, raising concerns about the failure of the system to meet all security requirements and its impact on City departments [CWD10, Vij11].
+
+### Potential Termination
+In April 2011, it was reported that if the security issues were not resolved by June 2011, the end of the fiscal year, City officials would consider terminating the agreement and possibly look into whether a breach of contract occurred [Sar11a, Vij11].
+
+## Migration Status
+As of August 22, 2011, the majority of users had been successfully migrated to the replacement system. However, the LA police department remained on the legacy system due to security concerns. Expectations were that all outstanding issues would be resolved by the first quarter of 2012, allowing the department to complete its migration [Cra11]. This timeline would give the City about eight months to decide whether to continue the service into the first option year of the contract (i.e., the fourth year) or to seek an alternative solution.
+
+## City Council Decision
+On December 14, 2011, the Los Angeles City Council voted to scale back the SECS contract, concluding that the security needs of crucial departments were not able to be met by the cloud provider [CLA11a, CLA11b, Gou11, Sar11b]. The police department, fire department, and city attorney's office were among the departments excepted. The cloud provider also agreed to pay the costs of the legacy system during the term of the contract and any extensions of the contract.
+
+## General Concerns
+
+### Security and Privacy Issues
+The terms of traditional information technology outsourcing contracts, particularly those involving sensitive data, can serve as guidelines for cloud computing initiatives. Three main security and privacy issues in service contracts have been identified previously and are relevant to outsourcing public cloud computing services [All88, Len03]:
+
+1. **Inadequate Policies and Practices**: The security policies and practices of the cloud provider might not be adequate or compatible with those of the organization. The same issue applies to privacy as well. This can result in complications such as:
+- Undetected intrusions or violations due to insufficient auditing and monitoring policies by the cloud provider.
+- Lack of sufficient data and configuration integrity due to a mismatch between the organization’s and the cloud provider’s policies for separation of duty (i.e., clear assignment of roles and responsibilities) or redundancy (i.e., having sufficient checks and balances to ensure an operation is done consistently).# Security and Privacy Concerns in Cloud Computing
+
+## Loss of Privacy
+- Loss of privacy due to the cloud provider handling sensitive information less rigorously than the organization’s policy dictates.
+
+## Weak Confidentiality and Integrity Sureties
+- Insufficient security controls in the cloud provider’s platform could negatively affect the confidentiality, privacy, or integrity of the system.
+- For example, the use of an insecure method of remote access could allow intruders to:
+- Gain unauthorized access
+- Modify or destroy the organization’s information systems and resources
+- Deliberately introduce security vulnerabilities or malware into the system
+- Launch attacks on other systems from the organization’s network, potentially making the organization liable for the damages incurred [All88].
+
+## Weak Availability Sureties
+- Insufficient safeguards in the cloud provider’s platform could negatively affect the availability of the system.
+- Besides the applications directly affected, a loss of system availability may cause a conflict for key resources required for critical organizational operations.
+- For example, if disruptive processing operations (e.g., load rebalancing due to site failure or emergency maintenance) are performed by the cloud provider at the same time as peak organizational processing occurs, a denial of service condition could arise [All88].
+- A denial of service attack targeted at the cloud provider could also affect the organization’s applications and systems operating in the cloud or at the organization’s data center.
+
+## Verification of Security Claims
+- Assurances furnished to the organization by the cloud provider to support security claims, or by a certification and compliance review entity paid by the cloud provider, should be verified whenever possible through independent assessment by the organization.
+- Moreover, a third-party certification or other assurances from the cloud provider do not necessarily grant a tenant application or system that same level of certification or compliance; those elements would likely require a separate certification assessment for that specific cloud environment.
+
+## Other Noteworthy Concerns
+- Other noteworthy concerns, which are indirectly related to security and privacy, also exist with outsourcing to public clouds.
+- One of the most prevalent and challenging concerns is called the **principal-agent problem**.
+- Another concern is the attenuation of an organization’s technical expertise.
+
+### Principal-Agent Problem
+- The principal-agent problem occurs when the incentives of the agent (i.e., the cloud provider) are not aligned with the interests of the principal (i.e., the organization) [Row07].
+- Because it can be difficult to determine the level of effort a cloud provider is exerting towards security and privacy administration and remediation, the concern is that the organization might not recognize if the service level is dropping or has dropped below the extent required.
+- One confounding issue is that increased security efforts are not guaranteed to result in noticeable improvements (e.g., fewer incidents).# Outsourcing and Cloud Computing Security
+
+## Introduction
+The growing amounts of malware and new types of attacks have raised concerns regarding the security of outsourced computing services.
+
+## Attenuation of Expertise
+Outsourced computing services can, over time, diminish the level of technical knowledge and expertise within an organization. This occurs because management and staff no longer need to deal regularly with technical issues at a detailed level. As advancements and improvements are made to the cloud computing environment, the knowledge and expertise gained benefit the cloud provider rather than the organization.
+
+### Risks of Outsourcing
+Unless precautions are taken, an organization may lose its ability to keep up with technological advances and related security and privacy considerations. This can affect its ability to plan and oversee new information technology projects effectively and maintain accountability over existing cloud-based systems.
+
+## Compensating Security and Privacy Controls
+An organization may employ compensating security and privacy controls to address identified shortcomings in a public cloud service.
+
+### Service Agreements
+- **Non-negotiable service agreements** generally limit the range of risk-mitigation activities available to an organization.
+- **Negotiated service agreements** provide greater range and flexibility but require careful scrutiny and prioritization of requirements to be cost-effective.
+
+In either case, however, available risk mitigation techniques are unlikely to be sufficient for deploying high-value or highly sensitive data or mission-critical applications to a public cloud.
+
+### Alternative Deployment Models
+For sensitive situations, organizations could consider employing a cloud computing environment with a more suitable deployment model, such as an internal private cloud. This model can offer greater oversight and authority over security and privacy, and better limit the type of tenants that share platform resources, thereby reducing exposure in the event of a failure or configuration error in a control.
+
+## Stages of Outsourcing
+There are several distinct stages of outsourcing at which an organization can carry out prescribed activities to remain accountable and mitigate security and privacy issues:
+1. **Planning the Initiative** (Preliminary Activities)
+2. **Initiating the Service Contract and Overseeing It** (Initiating and Coincident Activities)
+3. **Closing Down the Services and Contract** (Concluding Activities)
+
+The subsequent sections of this chapter will discuss these stages in detail.
+
+## Federal Information Processing Standards (FIPS)
+Federal Information Processing Standards (FIPS) are pertinent to all stages of outsourcing, particularly FIPS 199 and FIPS 200, which apply to planning at the early stages.
+
+### FIPS 199
+FIPS 199, entitled "Standards for Security Categorization of Federal Information and Information Systems," provides a common framework and method for categorizing information and information systems. This ensures that adequate levels of information security are provided, commensurate with the level of risk. The resulting security categorization feeds into other activities such as security control selection, privacy impact analysis, and critical infrastructure analysis.# FIPS 200
+
+This standard, entitled **Minimum Security Requirements for Federal Information and Information Systems**, directs agencies to meet the identified minimum security requirements for federal information and information systems by selecting the appropriate security controls and assurance requirements described in NIST Special Publication (SP) 800-53 Revision 3.
+
+In addition to SP 800-53 mentioned above, other NIST guidelines provide information and guidance on planning, implementing, and managing information system security and protecting information that apply to outsourcing initiatives. They include the NIST SPs listed below in Table 2, whose principles have the utmost relevance to cloud computing environments overall and should be used in conjunction with this publication.
+
+In accordance with OMB policy, federal agencies are required to follow certain specific NIST Special Publications. However, there is flexibility in how agencies apply the guidance. Federal agencies should apply the security concepts and principles articulated in the NIST Special Publications in accordance with and in the context of the agency’s missions, business functions, and environment of operation. Consequently, the application of NIST guidance by federal agencies can result in different security solutions that are equally acceptable, compliant with the guidance, and meet the OMB definition of adequate security for federal information systems.
+
+## 5.2 Preliminary Activities
+
+In the first stage of outsourcing, the organization must perform various planning activities in preparation for issuing a contract for public cloud services. Planning helps to ensure that an organization derives full benefit from information technology spending. It also helps to ensure that the computing environment is as secure as possible and in compliance with all relevant organizational policies and that data privacy is maintained. Planning activities include the following items:
+
+### Specify Requirements
+
+The organization must identify its security, privacy, and other requirements for cloud services, as a criterion for the selection of a cloud provider. Common security requirements include coverage for the following areas:
+
+- Personnel requirements, including clearances, roles, and responsibilities
+- Regulatory requirements
+- Service availability
+- Problem reporting, review, and resolution
+- Information handling and disclosure agreements and procedures
+- Physical and logical access controls
+- Network access control, connectivity, and filtering
+- Data protection
+- System configuration and patch management
+- Backup and recovery
+- Data retention and sanitization
+- Security and vulnerability scanning
+- Risk management
+- Incident reporting, handling, and response
+- Continuity of operations# Resource Management in Cloud Computing
+
+## Key Areas of Focus
+- Resource management
+- Certification and accreditation
+- Assurance levels
+- Independent auditing of services
+
+## Service Model Selection
+Part of the requirements analysis should narrow the choice among IaaS, PaaS, and SaaS service models to a single selection that is appropriate for the agency’s specific needs and objectives. The responsibilities of both the organization and the cloud provider vary depending on the service model.
+
+### Responsibilities in IaaS
+For example, in IaaS, the cloud provider’s responsibility typically stops at the hypervisor. Organizations consuming cloud services must understand the delineation of responsibilities and how they must tie into the cloud provider’s processes to ensure that organizational governance practices are extended over this environment. Mechanisms and tools should be provided for managing those aspects that fall under the organization’s responsibility.
+
+## Exit Strategy
+Establishing an exit strategy is an important part of the planning process and should be factored into the requirements analysis. It also relates to the organization’s contingency and continuity planning activities.
+
+### Components of an Exit Strategy
+The exit strategy should cover:
+- Normal termination, such as that at expiration of the service agreement
+- Unexpected termination, such as that due to service provider bankruptcy or poor performance
+
+The ability to export all of the organization’s data in a usable format through a secure, reliable, and efficient means, and in a timely manner, is a vital aspect of an exit strategy. Other aspects include addressing application dependencies on proprietary programming interfaces, system calls, and database technologies, as well as the recovery of useful metadata that may have accumulated within the cloud environment.
+
+## Compliance Requirements
+Compliance with various federal standards, OMB guidance, and public law imposes requirements that need to be addressed in the requirement analysis. The implications of some key laws and regulations were discussed in the previous chapter, but others abound.
+
+### Relevant Compliance Guidance
+For example, if a public-facing aspect to the cloud implementation exists, OMB Memoranda M-10-22, Guidance for Online Use of Web Measurement and Customization Technologies, and M-10-23, Guidance for Agency Use of Third-Party Websites and Applications, provide compliance guidance in terms of branding, PIA, policy, and other issues to be considered during planning.
+
+Compliance-related requirements, such as the protection of PII, may also be specific to an agency. Other requirements relevant to outsourcing exist, such as records management controls, accessibility, and user training.
+
+### Accessibility Requirements
+For example, Section 508 of the Rehabilitation Act of 1973 (29 U.S.C. 794d) establishes electronic and information technology requirements for accessibility to people with disabilities, including employees and members of the public.
+
+## Reviewing Existing Contracts
+Reviewing common outsourcing provisions in existing cloud computing contracts that cover areas such as:
+- Privacy and security standards
+- Regulatory and compliance issues
+- Service level criteria and penalties
+- Change management processes
+- Continuity of services
+
+This review is essential to ensure that all necessary provisions are in place for effective cloud service management.# Service Provisions and Termination Rights
+
+Service provisions and termination rights can be helpful in formulating requirements [Ove10]. Existing information technology outsourcing contracts in use by the organization can also be beneficial.
+
+## Fair Information Practice Principles
+
+Fair Information Practices, also known as Privacy Principles, are the framework for most modern privacy laws around the world [Mcc10]. The Organization for Economic Co-operation and Development (OECD), of which the U.S. is a member, adopted Guidelines on the Protection of Privacy and Transborder Flows of Personal Data in 1980 [OECD80]. The guidelines provide a framework for privacy that has been referenced in U.S. Federal guidance and also internationally, and can be used by federal agencies to formulate their requirements and address privacy concerns during planning.
+
+### The Eight Privacy Principles
+
+The guidelines specify the following eight privacy principles:
+
+1. **Collection Limitation**: There should be limits to the collection of personal data, and any such data should be obtained by lawful and fair means and, where appropriate, with the knowledge or consent of the data subject.
+
+2. **Data Quality**: Personal data should be relevant to the purposes for which they are to be used and, to the extent necessary for those purposes, should be accurate, complete, and kept up-to-date.
+
+3. **Purpose Specification**: The purposes for which personal data are collected should be specified not later than at the time of data collection, and the subsequent use limited to the fulfillment of those purposes or such others as are not incompatible with those purposes and as are specified on each occasion of change of purpose.
+
+4. **Use Limitation**: Personal data should not be disclosed, made available, or otherwise used for purposes other than those specified in accordance with the preceding principle except with the consent of the data subject or by the authority of law.
+
+5. **Security Safeguards**: Personal data should be protected by reasonable security safeguards against such risks as loss or unauthorized access, destruction, use, modification, or disclosure of data.
+
+6. **Openness**: There should be a general policy of openness about developments, practices, and policies with respect to personal data. Means should be readily available for establishing the existence and nature of personal data, and the main purposes of their use, as well as the identity and usual residence of the data controller.
+
+7. **Individual Participation**: An individual should have the right:
+- a) to obtain from a data controller, or otherwise, confirmation of whether or not the data controller has data relating to him;
+- b) to have communicated to him, data relating to him within a reasonable time; at a charge, if any, that is not excessive; in a reasonable manner; and in a form that is readily intelligible to him;
+- c) to be given reasons if a request made under subparagraphs (a) and (b) is denied, and to be able to challenge such denial; and
+- d) to challenge data relating to him and, if the challenge is successful, to have...# Privacy Protection Principles
+
+## Accountability
+A data controller should be accountable for complying with measures that give effect to the principles stated above.
+
+## Core Principles of Privacy Protection
+Five core principles of privacy protection are also embodied in the Fair Information Practice Codes (FTC07). They are similar to those in the OECD guidelines but targeted toward commercial entities. Nevertheless, these principles provide a useful, supplemental perspective on privacy protection.
+
+### 1. Notice/Awareness
+Consumers should be given notice of an entity's information practices before any personal information is collected to allow an informed decision to be made about the extent, if any, to disclose personal information. Notice of some or all of the following items are considered essential for ensuring that consumers are properly informed:
+- Identification of the entity collecting the data
+- Identification of the uses to which the data will be put
+- Identification of any potential recipients of the data
+- The nature of the data collected and the means by which it is collected if not obvious (e.g., passively, by means of electronic monitoring, or actively, by asking the consumer to supply the information)
+- Indication of whether the provision of the requested data is voluntary or required, and the consequences of a refusal to provide the requested information
+- The steps taken to ensure the confidentiality, integrity, and quality of the collected data
+
+### 2. Choice/Consent
+Choice means giving consumers options about the use of personal information that is collected. Choice relates specifically to secondary uses of information that go beyond those needed to carry out the contemplated transaction. Opt-in or opt-out are the two main types of choice/consent regimes:
+- **Opt-in**: Requires affirmation by the consumer to allow collection
+- **Opt-out**: Requires affirmation to prevent it
+
+Choice can also involve more than a binary option and allow consumers to tailor the type of information they reveal and the acceptable uses for it.
+
+### 3. Access/Participation
+Access refers to an individual's ability to review data held about him or herself and to contest that data's accuracy and completeness. The process should be simple, timely, and inexpensive to the consumer, and allow consumer objections to be incorporated and sent to data recipients.
+
+### 4. Integrity/Security
+Integrity requires that data be accurate and secure. To ensure integrity, reasonable measures should be in force, such as cross-referencing data against multiple sources for accuracy. Security involves measures to protect against loss and the unauthorized access, destruction, use, modification, and disclosure of data.
+
+### 5. Enforcement/Redress
+Privacy protection can only be effective if there is a mechanism in place to enforce the core principles and remedy any undesirable or unfair situations.# Data Processing and Accountability
+
+## Accountability of Data Controllers
+The data controller, for whose benefit the processing of data is carried out, should be accountable for meeting the core principles. Enforcement can occur through various means, including:
+
+- Industry self-regulation
+- Legislation enabling private remedies for consumers
+- Regulatory schemes enforceable through civil and criminal sanctions
+
+## Assessing Security and Privacy Risks
+While outsourcing can relieve operational commitments for organizations, engaging public cloud services introduces risks that must be managed.
+
+### Importance of Risk Management
+The previous chapter emphasized the need for a flexible and adaptable risk management program throughout the system's lifecycle. The risk analysis at this stage should consider:
+
+- The service model involved
+- The purpose and scope of the service
+- The types and levels of access needed by the provider
+- Proposed interactions between the organizational computing environment and provider services
+- Service duration and dependencies
+- The strength of protection offered by the cloud provider's security controls
+
+### Service Agreements and Risks
+Another consideration is whether a non-negotiable service agreement allows for unilateral amendments by the cloud provider, which could increase security and privacy risks.
+
+### Privacy Controls and Operational Risks
+Privacy controls should be assessed as part of the risk analysis, along with operational risks related to the locations of the cloud provider's facilities.
+
+## Privacy Threshold Analysis (PTA)
+An organization may require a Privacy Threshold Analysis (PTA) to be completed before developing or acquiring a new information system, or when making substantial changes to an existing system. PTAs help determine:
+
+- If a system contains Personally Identifiable Information (PII)
+- Whether a Privacy Impact Assessment (PIA) or a System of Records Notice (SORN) is required
+- Other applicable privacy requirements for the information system
+
+### Conducting a Privacy Impact Assessment (PIA)
+A PIA is typically conducted for all new or significantly changed technology that collects, maintains, or disseminates PII, making it publicly available.
+
+## Evaluating PII and Confidentiality Impact
+Organizations should evaluate PII to determine the potential harm that could result from inappropriate access, use, or disclosure. This evaluation includes assessing the confidentiality impact level of the PII.
+
+### Determining Confidentiality Impact Levels
+Organizations decide on the factors used to determine PII confidentiality impact levels and then create and implement appropriate policies, procedures, and controls to protect the information.
+
+### Legal Obligations and Sensitivity of Data
+Some federal agencies have legal obligations to protect certain types of PII and should consider these obligations when determining confidentiality impact levels and appropriate safeguards. Additionally, the sensitivity of other types of data held by an organization is a crucial factor in risk analysis.# Understanding Sensitive Data in Cloud Services
+
+While data repositories containing Personally Identifiable Information (PII) or classified information are more easily recognized and taken into account, pockets of other types of sensitive data with different rules for handling may also exist. They include data items such as the following:
+
+## Types of Sensitive Data
+
+- Law enforcement and investigative unit data
+- System security information, such as network schematics, configuration settings, and vulnerability reports
+- Licensed source code and libraries, used in application development
+- Digital documents and materials obtained under a non-disclosure agreement or memorandum of agreement
+- Laboratory and research data whose collection, storage, and sharing are regulated
+- Culturally sensitive data related to resource protection and management of Indian tribal land
+
+## Importance of Understanding Cloud Technologies
+
+An understanding of the underlying technologies the cloud provider uses to provision services is essential for conducting an accurate risk analysis. The security and privacy issues identified in the previous chapter highlight important technology areas to review:
+
+- Logical isolation techniques employed in the multi-tenant software architecture of the cloud
+- Facilities for backup and recovery of data, and for sanitization of data
+- Capabilities and processes for electronic discovery
+- Mechanisms used to control access to data, to protect data while at rest, in transit, and in use, and to expunge data when no longer needed
+- Facilities available for cryptography and cryptographic key management
+- Mechanisms for secure authentication, authorization, and other identity and access management functions
+- Facilities for incident response and disaster recovery
+
+## Risk Analysis and Compensating Controls
+
+As mentioned previously, if the results of a risk analysis show that the level is too high, the organization may be able to apply compensating controls to reduce risk to an acceptable level. Otherwise, it must either reject the use of the service or accept a greater degree of risk.
+
+As an alternative to rejecting the service and not going forward, it might be possible to reduce the scope of the outsourcing effort to deal exclusively with less sensitive data. During a risk assessment, it may also become clear that some other model of deployment would be more suitable than a public cloud for the service model and application under analysis.
+
+## Assessing the Competency of the Cloud Provider
+
+Before awarding a contract for outsourced services, the organization should evaluate the cloud provider’s ability and commitment to deliver the services over the target timeframe and meet the security and privacy levels stipulated.
+
+The cloud provider can be asked to demonstrate its capabilities and approach to security and privacy enforcement or to undergo an independent evaluation of its installation and systems. Contacting current clients of the cloud provider’s services, either identified independently (e.g., other government agencies) or provided as references by the cloud provider, and assessing their level of satisfaction in areas of security and privacy that are of concern to the organization can also provide insight into the competency of the cloud provider.# Privacy and Security Considerations
+
+When evaluating the privacy and security levels of the services to be provided, consideration should be given to the following items:
+
+- Experience and technical expertise of personnel
+- The vetting process personnel undergo
+- Quality and frequency of security and privacy awareness training provided to personnel
+- Account management practices and accountability
+- The type and effectiveness of the security services provided and underlying mechanisms used
+- The adoption rate of new technologies
+- Change management procedures and processes
+- The cloud provider’s track record
+- The ability of the cloud provider to meet the organization’s security and privacy policy, procedures, and regulatory compliance needs.
+
+## 5.3 Initiating and Coincident Activities
+
+The organization has a number of activities to carry out in the second stage of outsourcing, when awarding a contract to a cloud provider and overseeing the terms of the contract throughout its duration.
+
+### Establish Contractual Obligations
+
+The organization should ensure that all contractual requirements are explicitly stated in the service agreement, including privacy and security provisions. The agreement should include definitions of both the organization’s and the cloud provider’s roles and responsibilities. The organization should also make certain that any compensating controls it needs to reduce risk to an acceptable level can be carried out within the terms of the agreement. The terms of the agreement should also include the following items:
+
+- A detailed description of the service environment, including facility locations and applicable security requirements
+- Policies, procedures, and standards, including vetting and management of staff
+- Predefined service levels and associated costs
+- The process for assessing the cloud provider’s compliance with the service level agreement, including independent audits and testing
+- Specific remedies for harm caused or noncompliance by the cloud provider
+- The period of performance and due dates for any deliverable
+- The cloud provider’s points of interface with the organization
+- The organization’s responsibilities for providing relevant information and resources to the cloud provider
+- Procedures, protections, and restrictions for collocating or commingling organizational data and for handling sensitive data
+- The cloud provider’s obligations upon contract termination, such as the return and expunging of organizational data.
+
+The previous chapter pointed out additional areas where the organization is especially dependent on the service provider and where the terms of the service agreement should have extreme clarity to avoid potential problems. They include the following items:
+
+- Ownership rights over data
+- Locus of organizational data within the cloud environment
+- Security and privacy performance visibility
+- Service availability and contingency options
+- Data backup and recovery
+- Incident response coordination and information sharing
+- Disaster recovery.# Privacy Regulations and Cloud Provider Agreements
+
+Privacy regulations may be interpreted differently by an organization’s legal and privacy officers than by a cloud provider. The organization must take due care when reviewing the controls provided or negotiated in the cloud provider’s service agreement to identify and resolve inconsistencies between the organization’s and the cloud provider’s privacy policies.
+
+## Ensuring Adequate Controls
+
+Organizations must ensure the controls provided are adequate to protect the types of information being planned for deployment to the cloud environment. OMB guidance M-07-16, *Safeguarding Against and Responding to the Breach of Personally Identifiable Information*, examines the requirements established in the Privacy Act and provides additional guidance regarding an agency’s obligations to protect PII.
+
+### Legal Review Before Contracting
+
+Before entering into the contract, it is advisable to have an experienced legal advisor review the terms in detail. Non-negotiable service agreements are typically drafted in favor of the cloud provider and may prove to be impracticable for an organization. Reaching agreement on the terms of service of a negotiated service agreement for public cloud services can be a complicated process fraught with technical and legal issues. If a negotiated service agreement is used, a legal advisor should be involved from the onset to address complicated legal issues that are likely to arise during negotiations.
+
+## Assessing Performance
+
+Continual assessment of the performance of the cloud provider and quality of the services provisioned is needed to ensure all contract obligations and organizational requirements are being met, and is an essential part of the risk management process. The organization should analyze the state of the system regularly and as frequently as necessary to manage security and privacy risks adequately.
+
+### Importance of Continual Assessment
+
+Continual assessment allows the organization to take immediate corrective or punitive action for noted deficiencies and also provides a reference point or benchmark for improving the terms of the service agreement.
+
+## Concluding Activities
+
+At the end of a project, when transitioning to another cloud provider, or for other reasons, the organization can decide to enter the final stage of outsourcing and terminate use of the public cloud services and close out the contract. Organizations should perform the following activities preceding the termination of an outsourcing contract:
+
+### Reaffirm Contractual Obligations
+
+The organization should alert the cloud provider about any relevant contractual requirements that must be observed upon termination, such as non-disclosure of certain terms of the agreement and sanitization of organizational data from storage media.
+
+### Eliminate Access Rights
+
+If any accounts and access rights to an organization’s computational resources were assigned to the cloud provider as part of the service agreement, they should be revoked in a timely manner by the organization. Similarly, physical access rights of security tokens and badges should also be eliminated.# Cloud Provider Security and Data Recovery
+
+## Revocation of Access
+The cloud provider's access must be revoked, and any personal tokens and badges used for access need to be recovered.
+
+## Recovering Organizational Resources and Data
+The organization should ensure that any resources made available to the cloud provider under the terms of the service agreement, such as software, equipment, and documentation, are returned or recovered in a usable form. This includes any data, programs, scripts, etc., owned by the organization and held by the cloud provider.
+
+If the terms of service require the cloud provider to purge data, programs, backup copies, and other cloud consumer content from its environment, evidence such as system reports or logs should be obtained and verified to ensure that the information has been properly expunged. These activities should be carried out in compliance with an agency’s records management policy.
+
+Having an exit strategy established early in the planning stage, and periodically reviewing and updating its contents, can minimize the problems encountered with the termination of a service agreement and the effort required to transition applications to another service provider or return them to the organization’s data center.
+
+## Summary of Recommendations
+Table 3 below summarizes the issues and recommendations that apply at the various stages of outsourcing. They are complementary to those given earlier in Table 1, which stem from specific security and privacy issues.
+
+## Conclusion
+Cloud computing promises to have far-reaching effects on the systems and networks of federal agencies and other organizations. Emphasis on the cost and performance benefits of public cloud computing should be balanced with the fundamental security and privacy concerns federal agencies and organizations have with these computing environments.
+
+Many of the features that make cloud computing attractive can also be at odds with traditional security models and controls. Several critical pieces of technology, such as a solution for federated trust, are not yet fully realized, impinging on successful cloud computing deployments.
+
+Determining the security of complex computer systems composed together is also a long-standing security issue that plagues large-scale computing in general, and cloud computing in particular. Attaining high-assurance qualities in system implementations has been an elusive goal of computer security researchers and practitioners and, as demonstrated in the examples given in this report, is also a work in progress for cloud computing.
+
+Nevertheless, public cloud computing is a compelling computing paradigm that agencies should consider for their information technology solution set. Accountability for security and privacy in public cloud deployments cannot be delegated to a cloud provider and remains an obligation for the organization to fulfill. Federal agencies must ensure that any selected public cloud computing solution is configured appropriately.# Cloud Computing Security and Privacy
+
+## Introduction
+Cloud computing is a new computing paradigm that is still emerging. It requires organizations to manage security, privacy, and other requirements effectively.
+
+## Organizational Data Protection
+Organizational data must be protected in a manner consistent with policies, whether in the organization’s computing center or the cloud. The organization must ensure that security and privacy controls are implemented correctly and operate as intended throughout the system lifecycle.
+
+## Risk Management in Cloud Computing
+The transition to an outsourced, public cloud computing environment is primarily an exercise in risk management.
+
+### Identifying and Assessing Risk
+Risk management entails identifying and assessing risk, and taking steps to reduce it to an acceptable level. Assessing and managing risk in cloud computing systems requires continuous monitoring of the security state of the system.
+
+### Challenges in Risk Management
+This can prove challenging, as significant portions of the computing environment are under the control of the cloud provider and likely beyond the organization’s purview. Throughout the system lifecycle, risks that are identified must be carefully balanced against the security and privacy controls available and the expected benefits from their utilization.
+
+### Balancing Controls and Risks
+Too many controls can be inefficient and ineffective. Federal agencies and other organizations must work diligently to maintain an appropriate balance between the number and strength of controls and the risks associated with cloud computing solutions.
+
+## Future Considerations
+Technology advances are expected to improve performance and other qualities of services from public clouds, including privacy and security. Many agency systems are long-lived and, if transitioned to a public cloud, will likely experience technology and other changes over the course of their lifetime.
+
+### Potential Changes in Cloud Services
+Cloud providers may decide to sell or merge their offerings with other companies; service offerings may be eclipsed by those of another cloud provider or fall into disfavor. Organizations may be required to re-compete an existing contract for cloud services when all option years have been exhausted.
+
+### The Possibility of Transitioning to Another Cloud
+Eventually, having to displace some systems to another public cloud is a distinct possibility that federal agencies and other organizations must not overlook.

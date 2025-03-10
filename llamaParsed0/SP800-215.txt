@@ -1,0 +1,707 @@
+# Abstract
+Access to multiple cloud services, the geographic spread of enterprise Information Technology (IT) resources (including multiple data centers), and the emergence of microservices-based applications (as opposed to monolithic ones) have significantly altered the enterprise network landscape. This document is meant to provide guidance to this new enterprise network landscape from a secure operations perspective. Hence, it starts by examining the security limitations of current network access solutions to the enterprise network. It then considers security feature enhancements to traditional network appliances in the form of point security solutions, network configurations for various security functions (e.g., application/services security, cloud services access security, device or endpoint security), security frameworks that integrate these individual network configurations (e.g., zero trust network access [ZTNA]), and the evolving wide area network (WAN) infrastructure to provide a comprehensive set of security services for the modern enterprise network landscape (e.g., secure access service edge [SASE]).
+
+# Executive Summary
+The enterprise network landscape has undergone tremendous changes in the last decade due to the following three drivers:
+- Enterprise access to multiple cloud services,
+- The geographical spread of enterprise-based (on-premises) IT resources (e.g., multiple data centers, headquarters, and branch offices), and
+- Changes to application architecture from being monolithic to a set of loosely coupled microservices.
+
+The impacts of these drivers on the security of the enterprise network landscape include:
+- Disappearance of the concept of a network perimeter that can be protected and the necessity to protect each endpoint (device or service) that treats it as a perimeter.
+- Increase in attack surface due to sheer multiplicity of IT resources (computing, networking, storage) and components.
+- Escalation of attacks across several network boundaries leveraging the connectivity features.
+
+This document is meant to provide guidance to this new enterprise network landscape from a secure operations perspective. The adopted methodology first considers the security challenges that the new network landscape poses and examines the limitations of current network access technologies. It then shows how solutions for meeting the challenges have evolved from being security function-specific to a security framework to a comprehensive security infrastructure that provides a holistic set of security services. Specific areas addressed include:
+- Feature enhancements to traditional network security appliances.
+- Secure enterprise networking configurations for specific security functions.
+- Security frameworks that integrate individual network configurations.
+- Evolving wide area network (WAN) infrastructure that provides a comprehensive set of security services.# Enterprise Network Overview
+
+Based on the drivers outlined above, an enterprise network in the context of this document encompasses the following:
+
+- The private virtual networks that the enterprise (cloud services subscriber) configures in the cloud service provider’s native network within which its compute resources will be provisioned (e.g., virtual network [VNet], virtual private cloud [VPC])
+- Various local networks on enterprise premises (e.g., enterprise data centers, headquarters, and branch offices)
+- The portion of a wide area network that is used by the enterprise to connect its various geographically dispersed locations and cloud service access points
+
+## 1. Introduction
+
+The enterprise network landscape has undergone a significant transformation in the last decade. The drivers for this transformation are:
+
+1. Enterprise access to multiple cloud services
+2. The geographic spread of enterprise-owned (on-premises) IT resources (e.g., in headquarters, multiple branch offices, and data centers)
+3. Changes to application architecture from being monolithic to a set of loosely coupled microservices – often with a dedicated infrastructure (called the service mesh) that provides all application services, including security.
+
+The high-level impacts of these drivers on the security of the current enterprise network landscape are:
+
+- The disappearance of the concept of a perimeter associated with the enterprise network
+- An increase in attack surface due to the sheer multiplicity of IT resource components associated with computing, storage, and network appliances
+- The escalation of attacks across several network boundaries leveraging connectivity features
+
+Before providing guidance for secure operations in this new network landscape, this document will consider the structural and security implications of the drivers to enhance understanding of its components and data flows.
+
+### 1.1. Structural Implications of Drivers on the Enterprise Network Landscape
+
+In order to have a good structural view of the current enterprise network landscape, it is necessary to look at the current enterprise IT environment in general. The IT environment now consists of:
+
+- Subscription to multiple cloud services, such as Infrastructure as a Service (IaaS) for computing, Software as a Service (SaaS) for applications, Platform as a Service (PaaS) for an application development platform, and other cloud services (e.g., identity as a service [IDaaS] for authentication)
+- Enterprise IT applications (on-premises) that are located at corporate headquarters and geographically distributed branch offices and data centers
+- IT applications that range from being monolithic to being made up of loosely coupled microservices, each hosted on heterogeneous platforms
+- Presence of edge computing devices, including the Internet of Things (IoT), in some environments
+
+The above scenarios call for widespread connectivity between IT systems that now...# Current Enterprise Network Landscape
+
+## Connectivity Overview
+Connectivity defines the current enterprise network landscape. It involves:
+
+- **Connectivity between IT resources** (e.g., servers for computing and storage) in data centers (network fabric).
+- **Connectivity between IT resources** within a corporate office or branch office (e.g., Wireless Fidelity (Wi-Fi), Local Area Network - LAN, and Virtual Local Area Network - VLAN).
+- **Remote user connectivity** to access IT resources from home, travel locations, branch offices, and corporate offices using wide area networks (WANs), which utilize multiple networks such as the internet, Multiprotocol Label Switching (MPLS), and, in some instances, cellular networks (e.g., 4G/LTE, 5G).
+- **Connectivity to cloud services** provided by a cloud service provider (CSP) through a virtual private network (VPN) or subscription to WAN services (premises-based equipment licenses or cloud-based).
+
+## 1.2 Security Implications of Drivers on the Enterprise Network Landscape
+
+### Subscription to Multiple Cloud Services
+Accessing cloud services from multiple cloud providers has become the norm for many enterprises. This trend is motivated not only by the need to avoid a cloud-vendor locked-in situation but also by different CSPs offering various value-added functions for different services (e.g., IaaS, SaaS). The consequence of this trend is that, from an enterprise point of view, the following networks have become extensions of the enterprise network and thus come under the scope of enterprise network management, with responsibilities for ensuring that security protections become a critical function:
+
+- **Network used for accessing cloud services** (e.g., VPNs or subscribed WANs).
+- **Intercloud network** (since communication between one CSP and another may be inevitable).
+- **The network inside the cloud provider** that needs to be navigated to access the subscribed services (e.g., VPC, VNET).
+
+### Geographic Spread of IT Resources and Users
+IT resources are now widely distributed not only due to the geographic spread of enterprise premises (e.g., headquarters and branch offices) but also for reliability and disaster recovery (DR) considerations. Additionally, the applications hosted in those resources are now accessed by users from various enterprise premises (through the enterprise network) as well as from home and public locations (e.g., hotels and cafes) through multiple devices, such as desktops, laptops, and mobile phones. Ensuring secure access from these varied locations and devices becomes the responsibility of the enterprise.
+
+### Changes in Application Architecture
+Application architectures—especially those of cloud-native applications—have changed from being monolithic to being microservices-based in order to meet deployment agility and modular scalability requirements. This, combined with DevSecOps (a paradigm covering Development, Security, and Operations) primitives, has further influenced the enterprise network landscape.# Continuous Integration/Continuous Deployment (CI/CD) Security Guide
+
+## 1. Introduction
+
+Continuous integration/continuous deployment (CI/CD) pipelines for the development and deployment of software have improved the security profile of applications but have also introduced new threat vectors related to the CI/CD workflows themselves.
+
+### 1.3. The Need for a Security Guide
+
+Based on the security implications discussed in the previous subsection, there is a new security scenario in the current enterprise network landscape that needs to be addressed through security guidance. Some of the salient aspects of this scenario are:
+
+- Ubiquitous access locations, ubiquitous hosting locations of the application components, and multiple WAN transport protocols have caused shifts in security focuses, goals, and principles.
+- The security focus has enlarged from being network-centric (i.e., internal/corporate network versus external/public internet) to centering on the user, device, endpoint, and service.
+- The new trust relationship has to not only be based on identity or the location of the access but enhanced to include validation of each access request (not just at the beginning of an access session), as well as the applicable set of contextual information associated with the user, device, or service.
+
+### 1.4. Scope
+
+The scope of this document includes:
+
+- A structural view of the enterprise network landscape based on the distribution of IT resources and the consequent security challenges it poses.
+- Emerging and state-of-practice solutions in terms of feature sets and requirements to address the security challenges; solutions discussed will focus on the functional and operational levels.
+
+### 1.5. Target Audience
+
+This guidance is intended for network design architects and network security solution architects in organizations with a hybrid IT environment (consisting of both on-premises and cloud-based applications) with a combination of legacy and microservices-based (i.e., cloud-native) applications.
+
+### 1.6. Organization of This Document
+
+The organization of this document is as follows:
+
+- **Section 2** considers traditional network access principles, technologies, and limitations in the context of the current enterprise network landscape.
+- **Section 3** provides a brief functional description of network security appliances – some new, some traditional (e.g., firewall) – that have enhanced capabilities to meet the security needs of the current network landscape.
+- **Section 4** outlines various network configurations that have evolved specifically for realizing security functions (e.g., device authentication).
+- **Section 5** considers a framework (i.e., ZTNA) that integrates two or more of these standalone network configurations to realize an abstract enterprise architecture (zero trust architecture [ZTA]) and looks at two candidate enterprise network security solutions.# Techniques for Secure Enterprise Network Access
+
+## Overview
+This document discusses various techniques for enhancing secure access to applications within enterprise networks, focusing on microsegmentation and software-defined perimeter (SDP).
+
+### Sections
+- **Section 6**: Evolution of the WAN portion of the enterprise network landscape and enhanced offerings of WAN services with built-in security service infrastructure.
+- **Section 7**: Summary and conclusions.
+
+## 2. Traditional Enterprise Network Access Approaches and Their Limitations
+Section 1 outlined the structural and security implications of the drivers for the current enterprise network landscape, impacting the mechanics of secure access to applications through the network. This section analyzes the security limitations of traditional network access approaches.
+
+### Key Limitations
+- Limitation of network perimeter-based protections
+- Limitations of VPN-based access
+- Limitations of MPLS technology as enterprise WANs
+- Limitations of authentication infrastructure
+
+### 2.1. Limitations of Network Perimeter-based Protections
+Early solutions for secure enterprise network access were designed for environments with well-defined network perimeters. All enterprise IT resources were endpoints of enterprise LANs, typically defined as a floor in a large enterprise, a building, or a small campus. Multiple LANs connected together inside a defined building or campus constituted the internal corporate network. Entry points into this corporate network were protected using devices called firewalls.
+
+In this environment, all devices and users within firewalled LANs were considered totally trusted and safe for accessing application resources. However, several factors have annulled the concept of that perimeter and greatly expanded the attack surface:
+
+- **Distributed Nature of Applications**: Applications are now located within corporate data centers, remote branch offices, and multiple cloud locations.
+
+- **Perimeter Approach Limitations**: The traditional perimeter approach is based on the premise that threats originate outside of the network. Most perimeter security solutions (e.g., intrusion prevention systems - IPS, intrusion detection systems - IDS, firewalls) focus only on north-south traffic (ingress). However, over 75% of network traffic is now east-west (within the local network) or server-to-server, largely invisible to security teams. Some visibility is sought through endpoint detection and response (EDR) solutions that collect security telemetry data on endpoints. Any threat already inside a network can move laterally and remain undetected for days or even months.
+
+- **Edge Computing**: Much of the computing now takes place close to the location of multiple IoT devices that may be geographically dispersed.
+
+- **User Locations**: Users are located both within and outside of the corporate network, such as in homes, remote branch offices, and public locations (e.g., hotels, pubs). Some enterprises must adapt to this new reality.# Limitations of VPN-based Access
+
+The increase in teleworking employees due to the pandemic has necessitated a means for secure access to IT resources inside an enterprise network in the form of VPNs. A VPN allows organizations to extend perimeter-based security across a public network. Security is enabled by setting up a secure tunnel in the public network using protocols such as Internet Protocol Security (IPSEC) and Transport Layer Security (TLS).
+
+## 2.2 Limitations of VPN-based Access
+
+However, there are some limitations and security risks associated with VPNs:
+
+- An increasing trend involves the movement of corporate resources to the cloud and the use of mobile devices. The VPN connections that remote users establish terminate at the VPN concentrators located at the edge of the corporate network. Hence, even traffic generated during those users’ cloud service access lands at the corporate internet edge and has to be validated and routed back to the internet to access the cloud resources. This phenomenon is called “hair-pinning,” which results in extra distance, increases network latency, and has the potential to cause traffic bottlenecks.
+
+- Periodic disclosure of vulnerabilities. Two recent examples are “session hijacking” and “account ID extraction.”
+
+- When VPNs are deployed as hardware appliances, it puts a limit on the number of users who can connect through the network gateway and limits scalability.
+
+- VPNs often require agents, which makes providing access in scenarios with a high volume of third-party users (contractors and partners) difficult.
+
+## 2.3 Limitation of MPLS Technology as Enterprise WANs
+
+Multi-protocol label switching (MPLS) technology is used for enterprise WANs, but the wide geographic span of an enterprise network with multiple data centers and cloud services has imposed some limitations on its use (in addition to cost).
+
+- The geographic span of enterprise IT resources and subsequent networking connections have made traversal through the internet inevitable for many portions of the enterprise’s access network. Since MPLS is a different network, it provides access to the internet only through designated and limited access points (similar to the hair pinning phenomenon). This increases latency for time-sensitive corporate applications.
+
+- Given the different networking technology, the appliances and subsequent configuration procedures are different, making network management a complex task.
+
+## 2.4 Limitation of Authentication Infrastructure
+
+In the current network landscape, which consists of access to on-premises and cloud-based applications, there exist authentication infrastructures (both enterprise and cloud-based) to authenticate end users using various token-based approaches (e.g., JSON Web Tokens [JWT] or Security Assertion Markup Language (SAML) 2.0 tokens). This infrastructure by itself is not sufficient to meet the authentication needs of the environment that contains microservices-based applications.# Current Page Raw OCR Text
+
+## Introduction
+Applications are becoming ubiquitous in both enterprise and cloud environments. This class of application consists of loosely coupled microservices that require the generation of multiple interservice requests to complete a business process or transaction. This scenario, in turn, needs an infrastructure for also authenticating services (in addition to users) with special requirements as follows:
+
+- A portable and interoperable cryptographic identity is required for workloads or services, as well as a standardized way to retrieve, validate, and interact with those identities. An example of such a specification is Secure Production Identity Framework for Everyone (SPIFFE).
+- The location of the service may change due to the virtualized nature of the application hosting environment (e.g., migration to different Virtual Machines (VMs), migration to a different pod in containerized applications). Hence, the identity should abstract the environment hosting the service.
+- The validation of identity (authentication) and authorization need to be done continuously (and not just at the beginning of a service request) as the risk profile associated with the request may change if there are multiple entities involved or if there are changes in behavioral patterns that need to be included as a validation parameter and monitored.
+
+## 3. Network Security Appliances in the Enterprise Network Landscape
+This section considers some new network security appliances and enhanced features in established appliances for meeting the security needs of the current network landscape. These can simply be viewed as point security solutions, but evaluating their functions and features will provide an understanding of the effectiveness of network configurations and technologies that form part of the integrated solutions that will be discussed in Sections 4 and 5, respectively.
+
+### 3.1. Cloud Access Security Broker (CASB)
+Given the increasing subscription to multiple clouds in many enterprises, one of the most important pieces of software is the cloud access security broker (CASB). It sits on the network between the cloud service customers (CSC) and the cloud service providers (CSP). The evolution of CASB functionality can be traced as follows:
+
+- The primary function of the first generation of CASBs was the discovery of resources. They provided visibility into all of the cloud resources that the enterprise users accessed, thus preventing or minimizing the chances of shadow IT. Shadow IT is the practice of some users using cloud applications that are not authorized by the enterprise IT management from home or the office using enterprise desktops. An example of this is the use of unapproved software as-a-service (SaaS) applications for file sharing, social media, collaboration, and web conferencing. This generation of CASBs also provides some statistics, such as software-as-a-service (SaaS) utilization.# Current Generation of CASBs
+
+The current generation of Cloud Access Security Brokers (CASBs) enforces security and governance policies for cloud applications, enabling enterprises to extend their on-premises policies to the cloud.
+
+## Specific Security Services Provided by CASBs
+
+- **Protection of Enterprise Data**: CASBs protect enterprise data that resides in cloud service providers’ servers (due to SaaS or IaaS subscriptions), as well as manage data inflow and outflow (i.e., Data Loss Prevention [DLP] capabilities) from those servers.
+
+- **Threat Tracking**: CASBs track threats such as account hijacking and other malicious activities. They can detect anomalies in users’ cloud access behavior through robust User and Entity Behavior Analytics (UEBA) functionality, helping to stop insider threats and advanced cyberattacks.
+
+- **Misconfiguration Detection**: CASBs detect misconfigurations in the enterprise’s subscribed IaaS and cloud servers. These misconfigurations pose serious security risks, such as data breaches. Alerts generated by CASBs due to misconfigurations guide enterprises to follow guidelines, such as the Center for Internet Security’s (CIS) benchmarks for public cloud services, thus improving the overall security profile of the enterprise for cloud access.
+
+# Enhanced Firewall Capabilities
+
+The security functions in firewalls have expanded alongside the changing network landscape. Firewalls began as hardware appliances that prevented network packets from a device with a particular network location (e.g., a combination of Internet Protocol (IP) address and port) in one subnet (e.g., external network or internet) from accessing a device on another network location or subnet (e.g., intranet or Demilitarized Zone (DMZ) or corporate network). In that setup, they primarily secured a network perimeter. The evolution of firewall functions can be traced based on the following feature sets:
+
+## Feature Sets of Firewalls
+
+- **Packet Filters and Network Address Translation**: Packet filtering and Network Address Translation (NAT) are used to monitor and control packets moving across a network interface, apply predetermined security rules, and obscure the internal network from the public internet.
+
+- **Stateful Inspection**: Stateful firewalling, also known as dynamic packet filtering, monitors the state of connections and determines what types of data packets belong to a known active connection and can be allowed to pass through the firewall.
+
+- **Deep Packet Inspection (DPI)**: This feature, also known as packet sniffing, examines the content of packets (both the header and the payload, unlike stateful inspection that inspects only the packet header). In addition to the capabilities provided by stateful inspection, DPI can find hidden threats within the data stream, such as attempts at data exfiltration, violations of content policies, malware, and more.
+
+- **Threat Detection and Response**: Modern firewalls can gather and analyze enough data across multiple packets and sessions to detect threats and security incidents targeted at a particular system or a family of systems. Data from multiple firewalls can also be directed toward security information and event management (SIEM) systems for correlation and analysis.# Security Tools and IT Systems
+
+## Overview
+Integrating data from various security tools and IT systems is essential for detecting enterprise-wide attacks that span multiple systems and network layers. This data can also help in understanding evolving threats and defining new access rules, attack patterns, and defensive strategies.
+
+## Key Features
+
+### Logging and Auditing Capabilities
+- Logging and auditing capabilities lead to the construction of network events that can be used to identify patterns of performance and security issues.
+
+### Access Control Functions
+- Access control functions enforce granular and sophisticated access control policies.
+
+### Multiple Locations and Functions
+- Firewalls are deployed at different locations to perform various functions:
+- **Network Edge Firewalls**: Perform network perimeter protection by filtering disallowed sources and destinations and blocking packets of potential threats.
+- **Data Center Firewalls**: Segment the internal network to prevent lateral movement of traffic and isolate sensitive resources (e.g., services and data stores).
+- **Device-based Firewalls**: Prevent malicious traffic in and out of endpoints.
+
+### Open Application Programming Interfaces (APIs)
+- APIs enable integration with various networking products that provide additional security capabilities.
+
+### Policy Composition Capabilities
+- Some firewalls can merge policies at enforcement time to ensure consistent policies are applied to different classes of users (e.g., those on-premises and on private and public clouds).
+
+### Web Application Firewalls (WAF)
+- WAFs have been utilized since web applications accessed through web protocols, such as Hypertext Transfer Protocol (HTTP), became prevalent. Key features include:
+- Advanced Uniform Resource Locator (URL) filtering to detect traffic from malicious URLs and prevent web-based threats.
+- Real-time data analysis using machine learning algorithms.
+- Inspection of threat vectors for SQL Injection, OS command injections, and cross-site scripting attacks.
+- Prevention of inbound attacks and use in content delivery networks (CDN) to mitigate distributed denial-of-service (DDoS) attacks.
+
+#### Additional Features of WAFs
+- Ability to specify an allowable list of services (control at the application level).
+- Traffic matches the intent of allowed ports.
+- Filtering of unwanted protocols.
+
+## Appliance-set with Integrated Functions
+
+### Unified Threat Management (UTM)
+- UTM devices combine many critical security functions into a single device, typically with a unified management console. Functions include:
+- Firewall
+- Intrusion Prevention System (IPS)
+- VPN concentrator
+- Gateway antivirus
+- Content filtering
+- WAN load balancing# Network Security Overview
+
+## Next-generation Firewall (NGFW)
+The distinguishing feature of NGFW is application data awareness. It can look at data not only at layers 3 and 4 of an Open Systems Interconnection (OSI) stack but also at layer 7 – the application level. Its capabilities extend beyond packet filtering and stateful inspection. There are multiple deployment options available for NGFWs, such as an appliance in the data center, as software running in a VM in a cloud, or as a cloud service (FWaaS). Some capabilities of NGFW include:
+
+- **Deep Packet Inspection (DPI)**
+- **TLS decryption and inspection of packet payload**
+- **Intrusion prevention system (IPS) feature**
+
+## Web Application and API Protection (WAAP)
+WAAP is a comprehensive security approach and an enhancement over WAF. WAF is an integral component for API security, BOT (abbreviation for Robot) defense, and DDoS protection.
+
+- These can be offered as a product suite or as a cloud-based service.
+
+### Secure Web Gateway (SWG)
+SWGs are appliances utilized for policy-based access to and control of cloud-based applications as well as governance of access to the open web for enterprise users in ubiquitous locations (e.g., headquarters, branch offices, home, remote locations). An SWG is fundamentally a web filter that protects outbound user traffic through HTTP or Hypertext Transfer Protocol Secure (HTTPS) inspection. It also protects user endpoints from web-based threats that can occur when users click on links to malicious websites or to websites infected with malware. They centralize control, visibility, and reporting across many locations and types of users. They are not a replacement for WAFs, which protect websites housed in enterprise data centers and large headquarter sites from inbound attacks.
+
+## Network Security Automation Tools
+Network security automation tools automate the life cycle processes involved in deployment, observability/monitoring, threat intelligence gathering/reporting (e.g., generating alerts of security violations for security personnel to take timely action), and – in some instances – automatic remediation. These automated tools are an indispensable part of the current enterprise network landscape, especially those that consist of highly distributed on-premises and cloud-based IT resources.
+
+The security capabilities of network tools fall under the category of policy enforcement point (PEP) security capabilities that are extensively discussed in CISA’s TIC 3.0 Cloud Use Case. Guidance for the deployment of these capabilities is also covered in that document. The intent of the material in this section is to highlight some higher-level metrics that this category of tools should satisfy in order to perform their intended functions effectively; it is not meant to be used as deployment guidance. Each higher-level metric is tagged with the abbreviation NSATHLM-x, where NSAT stands for network security automation tool, HLM stands for high-level metric, and x stands for the numerical sequence.
+
+### Higher-Level Metrics
+- **NSAT-HLM-1**: The tools should scale to meet the volume, velocity, and variety of today’s application development, deployment, and maintenance paradigms.# Network Security Automation Tools
+
+## Introduction
+The requirement for network security automation is critical in environments where DevSecOps is used to deploy not only applications but also infrastructures, the latter using infrastructure-as-code (IaC) tools. These tools are an integral part of the smart automated workflows called CI/CD pipelines, which invoke them to deploy servers (computing), networking, and storage infrastructure. Hence, this class of network automation tools should have the capability to be seamlessly integrated into the corresponding CI/CD pipelines.
+
+## Key Requirements for Network Automation Tools
+
+### NSAT-HLM-2: Minimizing Human Intervention
+The tools should have the capability to minimize human intervention for security remediation, which is slow and prone to error. In other words, the more automated remediation features built into the tool, the better.
+
+### NSAT-HLM-3: Enhanced Threat Intelligence and Protection
+The tools should have advanced threat intelligence, real-time threat prevention capabilities for known and zero-day vulnerabilities, and sandboxing features for isolating malicious traffic.
+
+### NSAT-HLM-4: Leveraging Knowledge of Previous Events
+The tools should have features for matching current events to past ones and for leveraging the remediation measures performed for those instances in the current solution. This brings about a reduction in the average outage time.
+
+## Classes of Network Security Automation Tools
+
+### Network Monitoring and Observability Tools
+This class of tools gathers data for obtaining visibility into the entire network. These data are then used to generate a dashboard that presents the topography of the enterprise network by showing all connections and presenting key operating parameters (e.g., latency, network traffic level). Some of the data generated by this class of tool and their uses are:
+
+- **Identification of Interfaces**: Monitoring tools identify the interfaces (called tracepoints) for defining the parameters for network resource provisioning and help the IaC generate the relevant code for invoking those interfaces.
+
+- **Measurement of Drift**: Despite using IaC to deploy the network infrastructure, unauthorized or ad hoc changes in network configuration can alter the performance and security parameters for application execution (called the drift). Monitoring tools should have the ability to monitor these drift parameters (e.g., bandwidth availability, unwanted traffic) and alert for corrective action.
+
+- **Secure Overlay Designs for Cloud Service Access**: Monitoring tools can generate data to enable centralized network management tools to perform security functions, such as building a virtual network segmentation on top of the native network segmentation features offered by CSP, provided that suitable APIs are available.
+
+- **Support for Incident Response Processes**: Sophisticated network monitoring tools generate network security alerts and threat intelligence feeds. Handling these alerts and feeds is part of the incident response (IR) process in an enterprise.# Security Operations Center (SOC) and SOAR
+
+A security strategy that has evolved in recent years to automate the Incident Response (IR) process is called **Security Orchestration, Automation, and Response (SOAR)**. Some of the state of practice applications of SOAR include:
+
+- Threat detection and response
+- Vulnerability prioritization
+- Compliance checks
+- Security audits
+
+Potential applications extend to many emerging areas, such as **IoT management**.
+
+## 3.4.2. Automated Network Provisioning Tools
+
+Automated network resource provisioning is enabled by **Infrastructure-as-Code (IaC)** tools. The code that describes the networking infrastructure (in addition to the computing and storage infrastructure) is stored in a code repository. The initial deployment of the networking infrastructure and subsequent upgrades are automated by defining a workflow that invokes the IaC (e.g., GitOps workflow) as part of a CI/CD pipeline definition.
+
+### Advantages of Automated Network Provisioning
+
+The advantages of this approach for managing the enterprise networking infrastructure for multicloud deployment are:
+
+- **Tight Version Control**: Enables the enterprise to track changes, ensuring that unauthorized networking devices and changes in associated configurations do not open up security vulnerabilities.
+
+- **Uniform Infrastructure**: Provides a consistent infrastructure across all environments – development, testing, staging, and production.
+
+- **Monitoring Drift**: Monitoring the drift (unintended changes) between the defined infrastructure (as found in IaC) and the operational infrastructure (as measured by monitoring tools) helps maintain the necessary security posture for the enterprise networking environment.
+
+- **DevSecOps Paradigm**: The CI/CD pipelines invoke the network provisioning tool (IaC code generator) to automate the initial deployment and subsequent reconfiguration of the networking infrastructure. The built-in audit process captures changes in network configuration automatically, enabling the enterprise to demonstrate compliance with corporate security policies and regulatory policies for their networks where applicable.
+
+- **Testing Security Policies**: Testing the code (IaC code) generated by IaC tools ensures that security policies are consistently and uniformly applied across the entire enterprise networking infrastructure (i.e., multiple cloud services).
+
+- **Customizable Observability Tools**: The advantage of having plug-ins for defining network provisioning for different public cloud provider environments is that they can be used to customize the observability tools for network monitoring for each of those cloud services that the enterprise has subscribed to.# 3.5. Networking Appliances as Services
+
+Another trend in the enterprise network landscape is that a portion of network infrastructure can be obtained from third-party providers as a leased service called a network as a service (NaaS). This service is offered using technologies such as enterprise 5G and edge computing.
+
+## Advantages of NaaS
+
+- Just like subscriptions to SaaS and IaaS, it reduces capex costs for the enterprise.
+- It is flexible and scalable since it is software-defined and virtualized.
+- As a consequence of the previous advantage, quality of service (QoS) requirements of diverse applications can be met by creating customized traffic flow for each application type.
+- New applications that require an increased network footprint can be quickly introduced to the enterprise, thus facilitating agile business diversification.
+
+However, they are limited point security solutions rather than comprehensive solutions that address all aspects of enterprise security.
+
+# 4. Network Configurations for Basic Security Functions
+
+Any enterprise-wide secure network that consists of on-premises and cloud-hosted applications should be based on an established security framework. In turn, security frameworks consist of many basic security functions. The purpose of this section is to describe the network configurations or designs (and network communication exchanges based on them) that have emerged as the state of practice for implementing these security functions.
+
+The state of practice network configuration features (NCF) found in enterprises with hybrid application environments can be classified under the following areas:
+
+- Network configuration for Device Management
+- Network configuration for User Authentication
+- Network configuration for Device Authentication and Health Monitoring
+- Network configuration for Authorizing Application/Service Access
+- Network configurations for Preventing Attack Escalation
+
+Each of the network configuration features is enumerated using the identifier of the form HAENCF-x, where HAE denotes a hybrid application environment, NCF denotes the network configuration feature, and x stands for the sequence number of the feature.
+
+## 4.1. Conceptual Underpinning – Contextual Information
+
+Section 2.4 discussed the limitation of using user identity alone to authorize application requests. However, this does not mean that identity verification can be relegated to a secondary requirement. It has been widely recognized that identity validation is the entry point (may be a highly-vulnerable point of entry into the system) to an application request since all requests – whether coming from a service (or microservice), user, or device – come with a claimed identity. This identity must be verified using robust, phishing-resistant multi-factor authentication.
+
+However, other attributes associated with the user and the information...# Contextual Information in Application Access Requests
+
+In current enterprise IT environments, contextual information associated with entities involved in an application access request—such as devices and services—is essential. This contextual information set may vary from one enterprise to another and is based on the level of trust that the organization requires for a particular access request. Since the role of contextual information in potential attacks may not be known, the set to be included in the access decision is a risk-based decision.
+
+## Key Areas of Contextual Information
+
+Contextual information may broadly belong to the following five key areas:
+
+1. **Information about the user requesting access**
+Apart from user identity, attributes associated with the user, such as their role in the organization, current assignments, and status (cross verification of identity in the enterprise identity management (IDM) system vs enterprise directory).
+
+2. **Information about the device from which access is being requested**
+Establishing trust in the device through a combination of health and risk profiles of the device. For example, the risk profile of the device can be obtained through an out-of-the-box posture check (risk of the device) with or without integrating with an endpoint protection tool for the device. Other crucial information (provided by telemetry data) needed to assess the security status of the endpoint devices includes:
+- Device support label (the device is managed or corporate-owned)
+- Device posture information (whether it has been compromised)
+All of these factors go into a policy evaluation for determining the level of trust and must be channeled into authentication and monitoring decisions.
+
+3. **Information about real-time contextual data**
+Date, time, and geolocation at which the access request occurs.
+
+4. **Information about IT services (e.g., app, data) being accessed.**
+
+5. **Information about the security of the environment hosting the IT services being accessed.**
+
+## Requirements for Contextual Information
+
+The requirements for contextual information include:
+
+- Should include not only that which is collected by the native platform (the platform on which the application is hosted) but also that which can be obtained from third-party platforms and can provide more detailed information.
+- Should be available in real time so that user experience with access is not affected.
+- Should be prioritized based on the value each provides.
+- Should be consistent with the level of risk associated with each access request.
+
+No application and/or data access in the modern enterprise network context can be deemed secure by ignoring relevant contextual information when the access scenario involves allowing a user, device, or service from any network channel (e.g., corporate network, home network, public network, or branch office) to access a resource located anywhere (on-premises or cloud).# 4.2 Network Configuration for Device Management
+
+With the disappearance of the network perimeter (Section 2.1) and the distribution of the application targets (being a hybrid application environment), enterprises should adopt an “endpoint is the perimeter” paradigm and have a device management system in place.
+
+## HAE-NCF-1: Unified Endpoint Management (UEM)
+
+There should be a unified endpoint management (UEM) solution in place to manage and secure all endpoints that will access on-premises and cloud-based applications. The minimal managed tasks and capabilities of UEM should include:
+
+- Ability to support endpoint devices with different operating systems
+- Installation and maintenance of device and service authentication certificates
+- Installation and maintenance of device health applications
+- Updates of patches on the devices
+- Enables admins to track, audit, and report endpoints for content and applications
+
+# 4.3 Network Configuration for User Authentication
+
+## HAE-NCF-2: User Access Requests
+
+Consistent with OMB memorandum M-22-09, which outlines the federal zero trust architecture strategy:
+
+- The network should be configured to route all user access requests to all applications (on-premises and cloud-based, such as SaaS), to an enterprise managed IdP.
+- A minimum of two authenticator factors must be used to authenticate users. The multifactor authentication (MFA) process employed should use phishing-resistant authenticators. Also termed as “verifier impersonation-resistant”, these authenticators should meet the requirements at level AAL3 in NIST guidance SP 800-63-3.
+
+# 4.4 Network Configuration for Device Authentication and Health Monitoring
+
+## HAE-NCF-3: Device Authentication
+
+Device authentication can be performed through certificate validation using appropriate protocols. A device health check may involve both its security posture (e.g., the version of an operating system it is running, the patches that have been applied, the security software that is installed) and environmental information, such as geolocation.
+
+# 4.5 Network Configuration for Authorizing Application/Service Access
+
+## HAE-NCF-4: Access Tokens
+
+Standardized protocols, such as OAuth 2.0, should be used to issue access tokens to the validated user, device, or service to enable access to cloud-based applications.
+
+## HAE-NCF-5: Microservices-Based Applications
+
+Network configuration for microservices-based applications (on-premises or in cloud) should include capabilities such as service discovery, encryption, service authentication, load balancing, observability (visibility of network traffic at layers 3-7), and canary rollouts. Further, visibility into microservices runtime behavior (and the ability to provide more dynamic security controls) can be enabled by attaching eBPF programs to tracepoint events (the entry to or exit from any function in kernel or user space).
+
+# 4.6 Network Configurations for Preventing Attack Escalation
+
+The network configurations for attack escalation prevention are techniques used to realize ZTNA and are discussed in the next section. Two established configurations are:
+
+1. Microsegmentation
+2. Software-defined perimeter (SDP)
+
+# 5. Enterprise-Wide Network Security Framework – Zero Trust Network Access (ZTNA)# Network Configurations and Zero Trust Architecture
+
+Each of the network configurations described in the previous section is for specific security functions (e.g., user authentication, device authentication). In many enterprise environments, these network configurations are not isolated implementations but rather an integral part of an enterprise-wide network that is governed by a security framework or strategy.
+
+## Zero Trust Strategy
+
+A predominant strategy that has been endorsed by both government and industry for hybrid enterprises is **Zero Trust (ZT)**. The blueprint for achieving the goals of ZT is the **Zero Trust Architecture (ZTA)**, and the consequent paradigm for network communication flows is **Zero Trust Network Access (ZTNA)**.
+
+Working with many stakeholders, NIST has defined zero trust and zero trust principles as follows:
+
+- **Zero Trust (ZT)**: The term for an evolving set of cybersecurity paradigms that move defenses from static, network-based perimeters to focus on users, assets, and resources. It is a set of security primitives rather than a particular set of technologies. Zero trust assumes that there is no implicit trust granted to assets or user accounts based solely on their physical or network location (i.e., local area networks versus the internet) or on asset ownership (e.g., enterprise or personally owned). Zero trust focuses on protecting resources (e.g., assets, services, workflows, network accounts) rather than network segments, as the network location is no longer seen as the prime component to the security posture of the resource.
+
+- **Zero Trust Architecture (ZTA)**: Uses zero trust principles to plan industrial and enterprise infrastructure and workflows.
+
+NIST’s guidance on zero trust also contains an abstract definition of zero trust architecture (ZTA) and gives general deployment models and use cases where zero trust could improve an enterprise’s overall information technology security posture. From the NIST vision of ZTA and state of practice implementations, the following have emerged as the three building blocks of ZTA:
+
+1. **Client or Browser**: The point of entry for all users to access any resources hosted in multi-cloud and on-premises environments.
+2. **The Controller**: The policy decision point (PDP), which evaluates access requests based on the policies, conditions, and entitlements that grant access for all users, devices, and workloads from a single dashboard or via API.
+3. **The Gateway**: The policy enforcement point (PEP), a gateway that controls the flow of access to protected resources and dynamically builds micro-segmentation rules based on granted entitlements.
+
+As already stated, the two established network configuration techniques for enabling ZTNA are **microsegmentation** and **Software-Defined Perimeter (SDP)**, which are both discussed in the following subsections.
+
+## 5.1 Microsegmentation
+
+(Additional content on microsegmentation would follow here.)# Microsegmentation
+
+Microsegmentation is a security design practice where an internal network (e.g., in the data center, cloud provider region) is divided into isolated segments so that the traffic in and out of each segment can be monitored and controlled. The primary purpose of microsegmentation is to provide a degree of isolation to prevent attack escalation.
+
+## Capabilities Enabled by Microsegmentation
+
+- **Isolation and Monitoring**: Segments being isolated and relatively small enables close monitoring of the traffic because of better visibility.
+- **Granular Access Control**: The consequence of the above capability is that granular access control is possible by defining associated policies.
+
+The above capabilities restrict the unauthorized lateral movement of a user or application that has either:
+1. Breached the perimeter to enter the internal network.
+2. Been initiated by users within the internal network itself.
+
+## 5.1.1 Prerequisites for Implementing Microsegmentation
+
+- **Creation of Application Identity**: The fundamental requirement to enable this is the assignment of a unique identity to each application or service, just like how each user carries a unique identity (e.g., userid). Prior to the era of cloud-based applications, the application requests were validated based on the IP subnet or IP address from which they originated. Ubiquitous access and multi-clouds have eliminated the concept of network perimeters. Hence, authentication and authorization based on those parameters are neither feasible nor scalable. Further, the presence of proxies, network address translation, dynamic infrastructure (e.g., migration of applications between VMs), and load balancers make it impossible for the called application to know the IP address of the calling application in order to make authentication or authorization decisions. A unique application identity is inevitable.
+
+- **Establishment of Trust in Application Identity**: The created application (workload or service) identity should not be subject to spoofing and should be continuously verifiable. An example of workload identity is a SPIFFE ID. A SPIFFE ID is a string that uniquely and specifically identifies a workload and is encoded as a Uniform Resource Identifier (URI), which takes the following format: `spiffe://trust_domain/workload_identifier` where the workload identifier uniquely identifies a specific workload within a trust domain. The SPIFFE ID is carried in a cryptographically-verifiable document called a SVID (SPIFFE Verifiable Identity Document). The two formats supported for SVID in SPIFFE specification are a short-lived X.509 certificate or a Java Web Token (JWT) token.
+
+- **Discovery of Application Resources**: There should be a robust secure method for discovering all application resources (e.g., services, networks), called service discovery capability.
+
+- **Segmentation of Workloads**: Security requirements for all applications and services should be defined and implemented.# Microsegmentation – Implementation Approaches
+
+## Introduction
+Services must be identified and groupings established based on identical security requirements.
+
+## Mapping of Logical Application Groupings
+Application-centric groupings must be mapped to physical or virtual infrastructures that constitute the data center topology to facilitate actual applications and services deployment.
+
+## 5.1.2 Microsegmentation – Implementation Approaches
+Before discussing microsegmentation, it is important to address traditional network segmentation, known as a segment-based approach, to highlight its limitations and difficulties.
+
+### Segment-Based Approach
+In this approach, applications and service resources with similar security requirements are grouped into a unique segment. Firewall rules are created to block or allow communication with each group or segment. The segments are created using network layer abstractions, such as VLAN IDs or other tagging approaches, while policies are defined using network address constructs (e.g., IP addresses and ports). Policies apply to subnets (e.g., VLANs) and not to individual hosts.
+
+Each segment is protected by gateway devices, such as intelligent switches, routers, or next-generation firewalls (NGFWs), which should have the capacity to react and adapt in response to threats and changes in application workflows. Segmentation gateways monitor traffic, stop threats, and enforce granular access across east-west traffic (rarely for north-south traffic) within on-premises data centers or cloud regions.
+
+### Challenges of the Segment-Based Approach
+The main difficulty with this approach is mapping the applications’ security requirements-based segments to corresponding network segments. Another challenge is change management. The mapping between applications and network identities that are being statically maintained must continuously be kept in sync with the operational scenario, where the application’s network locations are continuously changing due to performance and security reasons.
+
+### Schematic Diagram
+A schematic diagram of the segment-based microsegmentation is shown in Figure 1. Each numbered microsegment in the figure is a unique VLAN identified by a VLAN ID. The group of applications that will run in that particular VLAN segment can be defined using different criteria, one of which is “all applications with similar security requirements.” Another criterion is that “all tiers (web front-end, application logic servers, and database servers) associated with a particular application” should run in a single microsegment, as shown in Figure 1.
+
+## Approaches to Implement Microsegmentation
+The following are some approaches that are employed to implement microsegmentation:
+
+### a. Virtualized Server-Based Approach
+This approach is only applicable to networks that contain virtualized servers since it is implemented in the hypervisor. There are two possible mechanisms:
+1. Using virtual firewalls inside a hypervisor to isolate traffic destined for different VMs.# Inside the Hypervisor
+
+## 1. Encapsulation Techniques
+Using encapsulation techniques to create overlays (e.g., Virtual Extensible LAN (VXLAN)) that run on top of an underlying network that consists of IP addresses. Access control policies are enforced on the hypervisor itself outside of the workload (application or microservice).
+
+## 2. Host-based Microsegmentation
+Alternatively (or additionally), host-based microsegmentation can be implemented using software agents on the endpoint artifacts (e.g., servers). It leverages native firewall functionality built into the host. Software agents can overlay a software-defined segmented network across data centers, cloud, bare metal, and hybrid environments. The agent provides context awareness and visibility for each workload and enables the definition and enforcement of fine-grained policies.
+
+## 3. Identity-based Microsegmentation
+Identity-based microsegmentation policies use contextual, application-driven identifiers (e.g., order processing front-end service can communicate with inventory back-end service) instead of network parameters (permit calls from 192.168.10.x subnet to 10.0.0.31). The identifiers assigned to services are cryptographic identities, which they use for mutual authentication and authorization during each service request and response.
+
+### Advantages of Identity-based Microsegmentation
+- **Environment-agnostic Policies**: Policies based on service/application identities do not use any infrastructure-related variables (e.g., IP addresses, subnets), allowing for migration to different environments while maintaining the same policies.
+- **Independent Testing**: Policies being independent of infrastructure enables them to be tested by merely exercising the application and observing the outcomes (e.g., trace of the sequence of service calls and requests/responses instead of configuring the infrastructure correctly for test runs).
+- **Declarative Specification**: With the availability of tools for the declarative specification of policies through “policy as code” tools (PaC), microsegmentation policies can be defined and implemented by incorporating the code into automated workflows, such as CI/CD pipelines.
+- **Granular Access Control**: Microsegmentation enables granular (fine-grained) access control by providing visibility into application call sequences/interdependencies and data flows through host-level tracking, thus enabling the enforcement of security policies for application traffic that is both north-south and east-west, irrespective of the environment (e.g., corporate data center or cloud infrastructure).
+
+### Conclusion
+The reason that identity-based microsegmentation is to be included under the enterprise network landscape is that it enables only valid network traffic between the various component services of the application due to the mutual authentication and authorization of the service identities, thus enabling the goals of Zero Trust Network Access (ZTNA) to be met.
+
+## 4. Software-defined Perimeter (SDP)# Secure Network Access and Software-Defined Perimeter
+
+One conceptual underpinning for secure network access to IT resources is the **software-defined perimeter (SDP)**. In SDP, the separation between networks is not defined by network address group or VLANs, making it network-agnostic. It is logically and dynamically defined for each user and each particular request. In other words, for each user request, the subset of IT resources to which the user has access is dynamically allocated irrespective of the location of the resource (e.g., corporate data center, branch office, private or public cloud).
+
+## Salient Principles of SDP
+
+The salient principles of SDP include:
+
+- **Visibility and Access Control**: The SDP concept involves making all IT resources invisible (e.g., ports, workloads, and applications) and making them known and accessible only after the user is authenticated and authorized. Only a network connection between the user and the allowed IT resources is established, thus following the least privilege principle.
+
+- **Continuous Reevaluation of Access Levels**: The access level determined by the previous process is continuously reevaluated during the user session and recalibrated if required. As the context surrounding the identity changes in real time, so can the user’s entitlements.
+
+- **Reduction of Attack Surface**: The attack surface is reduced by preventing lateral movement through techniques like microsegmentation. With the increasing deployment of microservices, the inter-services resource requests (generator of east-west traffic) dominate external application requests (north-south traffic). Application of this principle thus secures east-west traffic.
+
+In all security frameworks for current enterprise network environments, the common principles that underlie application-specific requirements – such as low latency, high data transfer rates, and high reliability – that were applicable in previous network landscapes remain the same.
+
+# Secure Wide Area Network Infrastructure for an Enterprise Network
+
+The wide area network (WAN) became an integral part of the enterprise network when organizations needed to connect their local area networks (LANs) across multiple geographically distributed locations (within the country and, in some cases, globally) starting in the 1980s. The initial WAN technology involved point-to-point (P2P) leased lines followed by frame relay. The first IP-based network was multiprotocol label switching (MPLS), which enabled multiple types of traffic – such as voice, video, and data – to travel on the same line.
+
+With the advent of technologies such as virtualization and increasing enterprise access to cloud services, enterprises have begun to adopt a new WAN technology called the **software-defined wide area network (SD-WAN)**. SD-WAN technology removes the tight coupling between the control plane and data plane functions of the network and enables the centralized specification of various policies, such as access control, routing, and application traffic prioritization.
+
+Another development integrates all of the point security solutions provided by various network security appliances into a network security services infrastructure.# Secure Access Service Edge (SASE)
+
+Industry and industry consortiums use the term **Secure Access Service Edge (SASE)** to refer to a comprehensive framework that offers wide area networking and various security services. SASE can be looked upon as the networking counterpart of the application’s service mesh, which provides a comprehensive set of application services, including security for cloud-native applications.
+
+## Topics of Focus
+Based on the above discussion, this section will focus on the following topics:
+- Requirements for a secure SD-WAN
+- Specific requirements for SD-WANs for cloud access
+- Requirements for an integrated security services architecture for SD-WAN
+
+### 6.1. Common Requirements for a Secure SD-WAN
+In addition to CSP-provided VPNs, a networking technology that provides network connectivity for accessing cloud-based services for enterprises is **Software-Defined Wide Area Networking (SD-WAN)**. The design goals and common features in all SD-WAN offerings include:
+
+- **Extensive Connectivity**: To securely connect users located anywhere (e.g., home, public location, branch office, corporate office) to applications and resources hosted anywhere (e.g., data center, single or multiple cloud services) using any WAN transport (e.g., MPLS, Broadband Internet, 4G/LTE, 5G wireless).
+
+- **Application Awareness**: To monitor the network traffic and dynamically choose the best path available based on:
+- (a) the type of network traffic,
+- (b) network load conditions, and
+- (c) the application’s business priority.
+
+This capability is enabled using techniques such as bandwidth utilization, load balancing, and the optimization of speed by reducing jitters, latency, and packet loss. Addressing an application’s business priority is only possible if the SD-WAN solution has the ability to identify different types of applications (e.g., messaging/email application, social media application, general storage-related applications, supply chain applications) and allocate routing priorities and WAN resources accordingly.
+
+- **Integration of Security and Networking Functions**: Use of appliances that contain a combination of networking and security functions (e.g., the presence of a firewall and secure web gateway [SWG] functions in a WAN router).
+
+- **Centralized Visibility and Management Capabilities**: Includes the ability to recognize and authenticate newly connected appliances and bring them under the defined management workflows as nodes so as to configure a uniform set of policies that cover all components.
+
+- **Integration with Remote LAN Locations**: An additional preferred but non-essential feature is the integration of WAN and LAN functions in a single appliance (the latter going by the name SD-Branch), which can be managed using a single management console, thus providing better visibility into both components. This feature enables the connectivity of SD-WAN into the local LAN at the remote branch offices.
+
+### 6.2. Specific Requirements for SD-WANs for Cloud Access
+Enterprises can gain cloud access in two ways:
+1. Through the VPN services.# Cloud Networking and SD-WAN Integration
+
+## Introduction
+Enterprises can enhance their networking and security policies by either utilizing features provided by cloud service providers (CSPs) or by integrating their own Software-Defined Wide Area Network (SD-WAN) with the private networks of cloud providers, often referred to as the cloud WAN. This allows for the enforcement of enterprise networking and security policies even when endpoint resources are situated within a cloud provider’s private network.
+
+## Scenarios for Cloud Access
+
+### Scenario 1: Private Subnets
+In the first scenario, cloud access is facilitated by features offered by many CSPs, allowing each subscriber to establish their own private subnets and create networking connections between these subnets (e.g., VPC peering). This setup enables resources (e.g., VM instances) in either private subnet to communicate as if they are within the same network.
+
+### Scenario 2: Connectivity through SD-WAN
+In the second scenario, connectivity through SD-WAN allows for similar features once inside the CSP network. Additionally, enterprises can achieve further orchestration of the cloud provider’s private network by designing a customized overlay network on top of the cloud provider’s network, using the latter as the underlay network. This capability depends on CSPs providing API integrations for various SD-WAN offerings.
+
+## Advantages of Orchestrating CSP Private Networks
+The ability to orchestrate the CSP private network offers several advantages for subscriber enterprises:
+
+- **Complete End-to-End Visibility**: Enterprises can maintain visibility between the “access endpoint” and the IT resource (application or data) endpoint, even if the latter is located within a cloud provider’s network.
+- **Network Segmentation Logic**: The same network segmentation logic used for accessing on-premises resources can be applied to cloud-based resources.
+
+## Multi-Cloud Networking Architecture
+An architecture has emerged for managing enterprise networks connected to multiple CSPs, often referred to as a cloud network platform. The requirements for this multi-cloud networking platform include:
+
+- **Operational Visibility and Control**: The platform should provide common operational visibility and control across native network access from multiple cloud providers. The primary challenge lies in the fact that public cloud providers utilize different proprietary architectures with their own constructs. To create a networking architecture that can “cross clouds,” it is essential to leverage cloud-native functionality (especially native cloud networking constructs) of each cloud, abstract that functionality with APIs, and add advanced data plane features for high availability, security, and operational visibility/control. Tools for dynamic or automatic management of these features should also be provided.
+
+- **Common Security Policy**: The platform should deliver a common ingress and egress security policy for application environments (e.g., VPCs, VNETs, VCNs) across clouds.
+
+- **End-to-End Encryption**: It should enable end-to-end encryption within the cloud, as well as high-performance encryption from the data center to the cloud.
+
+- **Support for Automation**: The platform should support automation for deployment and configuration.
+
+## Conclusion
+Based on the outlined requirements, various multi-cloud networking platform offerings have emerged, providing enterprises with the tools necessary to manage their cloud networking effectively.# Architectural Elements
+
+The following architectural elements are essential for managing enterprise networks:
+
+## Abstraction Layer
+
+- An abstraction layer sits on top of the native network access offered by individual Cloud Service Providers (CSPs) to their services.
+- This layer enables the enterprise to manage the entire enterprise network, which consists of:
+- Connectivity to multiple clouds
+- Intra-cloud connections
+- On-premises data center network fabrics
+- To enable this, complete visibility into the entire enterprise network landscape is needed. Hence, this layer requires input from sophisticated observability and monitoring tools to carry out its functions.
+
+## Virtual Network Configuration
+
+- A virtual network configuration sits on top of the network provided by each CSP for hosting Cloud Service Center (CSC) applications.
+- The capability to define this virtual network configuration can be automated by a class of tools called Infrastructure as Code (IaC) tools, which have features with network configuration definitions of major CSPs built in as plug-ins.
+- These tools facilitate:
+- Initial network resource provisioning and configuration
+- Subsequent re-provisioning and reconfiguration as application access requirements change.
+
+# Industry Trends with Security Implications for SD-WAN
+
+There are four industry trends that may have security implications regarding SD-WAN:
+
+1. **Cloud-Based Service Acquisition**: SD-WAN access is acquired as a cloud-based service under the umbrella of Network as a Service (NaaS), similar to Infrastructure as a Service (IaaS) and Software as a Service (SaaS).
+2. **AI-Based Monitoring**: Artificial Intelligence (AI)-based algorithms are used for monitoring networks for security-related conditions, resiliency-improving measures (such as throttling for certain destinations), and dynamic routing decisions to maintain Quality of Service (QoS) parameters (such as latency and bandwidth).
+3. **5G Wireless Networks**: Wireless networks are utilized for last-mile connectivity using a 5G radio access network (RAN).
+4. **Secure Remote Access**: Secure remote access functionalities provided by technologies such as VPN are combined into SD-WAN.
+
+# Requirements for an Integrated Security Services Architecture for SD-WAN
+
+An integrated security services architecture for SD-WAN incorporates both networking and security functions. The capabilities of network access and security functions are offered as a cloud service that enterprises can access through strategic network locations spread over a wide area, known as points of presence (PoP).
+
+In 2019, Gartner coined the term **Secure Access Service Edge (SASE)** to denote an architecture that converges networking and security functions and delivers them at a global scale as a cloud service. The networking and security services delivered by an SASE are not new but are provided together as a single package rather than through point security solutions.
+
+## Enterprise Edges
+
+The various points of connectivity from the enterprise to SASE PoPs are called enterprise edges. The enterprise edges can be either:
+
+- **Clients**: Users accessing through desktops, laptops, and mobile devices from either branch offices or remote locations, such as their homes or IoT devices.
+- **IT Resources**: Internal applications hosted in data centers, branch offices, or the cloud.# SASE Network Infrastructure
+
+The SASE network infrastructure thus becomes an integral part of the enterprise network whenever one or more of the enterprise edges are connected to various PoPs of SASE cloud services.
+
+## Primary Functions of SASE
+
+The four primary functions delivered by SASE are:
+
+1. **Optimization of network traffic for different types of traffic** – Reduce latency and improve availability.
+2. **Access control for different types of IT resources** – Applications or databases under different administrative domains (e.g., subscribed SaaS, open web).
+3. **Threat prevention** – Monitoring, gathering threat and attack information, and performing remedial action.
+4. **Uniform security policy application** – Enables the application of uniform security policy across all users, regardless of location; centralizes visibility across virtually all users and devices into a single dashboard; scales security as the organization expands; and reduces the number of physical security appliances that they manage.
+
+## Structural Features of SASE Offerings
+
+Some of the structural features of SASE offerings are:
+
+- **Globally distributed point of presence (PoP)** – A global SD-WAN service with its own private backbone network consisting of worldwide points of presence (PoPs) intended to minimize latency problems. In some instances, major cloud vendors’ PoPs may also be leveraged.
+- **Security agent on devices** – The security agent on the end user’s device undertakes networking decisions and directs traffic from different applications. Specific capabilities include dynamically allowing or denying connections to services and applications based on an organization’s defined business rules.
+
+## Minimal Security Services in SASE Offerings
+
+The following are the minimal security services found in most commercial SASE offerings:
+
+- Firewall services
+- Secure web gateway services
+- Anti-malware services
+- IPS services
+- CASB services
+- DLP services
+
+## Advanced Security Features in SASE Offerings
+
+Some of the advanced security features found in SASE offerings include:
+
+- **Browser isolation technology**: This is often combined with secure web gateway solutions and provides improved web activity security to tackle threats in real time.
+- **Continuous adaptive risk and trust assessment (CARTA) strategy**: This strategy involves constantly monitoring sessions and performs adaptive behavior analysis on monitoring parameters to dynamically change security levels and permissions if the trust profile (e.g., trust deficit) of a device changes.
+
+## Summary and Conclusions
+
+The purpose of this document is to provide insights into the current enterprise network landscape in terms of topology, traffic flows, and security threats. It posits that changes in application architecture and technologies (e.g., monolithic to microservices-based, bare metal to...)# Current State of Enterprise Networks
+
+## Introduction
+Virtualization, containers, and increased subscriptions to various types of cloud services (e.g., IaaS, SaaS) are drivers of the current state of enterprise networks. This document outlines the limitations of existing network access security assumptions and technologies due to changes in network topologies in modern enterprise networks.
+
+## Network Security Solutions
+The emergence of new network appliances (e.g., CASB), enhanced features in existing appliances (e.g., firewalls), network automation tools for gathering data for visibility/monitoring, threat detection and remedial actions, and tools for automated network provisioning for different public CSP environments (enabled by IaC tools invoked as part of the smart workflows called CI/CD pipelines defined under the DevSecOps paradigm) are all discussed under point security solutions.
+
+## Networking Configurations
+A discussion of various networking configurations that each implement a specific security function (e.g., user authentication, device authentication) follows.
+
+## Evolving Security Framework
+A separate section is devoted to discussing the salient features of an evolving security framework for an enterprise-wide network called ZTNA, as well as the two predominant network configurations (i.e., microsegmentation and SDP) for preventing attack escalation to meet one of the goals of ZTNA.
+
+## Latest WAN Technologies
+Finally, this document discusses the latest WAN technologies that form part of the current enterprise network landscape, as well as the features of WAN offerings with global PoP and integrated security services called SASE.

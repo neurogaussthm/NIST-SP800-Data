@@ -1,0 +1,930 @@
+# Executive Summary
+
+In today’s computing environment, there are many threats to the confidentiality of information stored on end user devices, such as personal computers, consumer devices (e.g., personal digital assistant, smartphone), and removable storage media (e.g., universal serial bus [USB] flash drive, memory card, external hard drive, writable CD or DVD).
+
+## Types of Threats
+
+Some threats are unintentional, such as human error, while others are intentional. Intentional threats are posed by people with many different motivations, including causing mischief and disruption and committing identity theft and other fraud.
+
+### Common Threats
+
+- **Device Loss or Theft**: A common threat against end user devices is device loss or theft. Someone with physical access to a device has many options for attempting to view or copy the information stored on the device.
+- **Insider Attacks**: Another concern is insider attacks, such as an employee attempting to access sensitive information stored on another employee’s device.
+- **Malware**: Malware, another common threat, can give attackers unauthorized access to a device, transfer information from the device to an attacker’s system, and perform other actions that jeopardize the confidentiality of the information on a device.
+
+## Importance of Securing Information
+
+Many threats against end user devices could cause information stored on the devices to be accessed by unauthorized parties. To prevent such disclosures of information, particularly of personally identifiable information (PII) and other sensitive data, the information needs to be secured.
+
+Securing other components of end user devices, such as operating systems, is also necessary, but in many cases additional measures are needed to secure the stored information.
+
+## Storage Security Basics
+
+This publication explains the basics of storage security, which is the process of allowing only authorized parties to access and use stored information. The primary security controls for restricting access to sensitive information stored on end user devices are encryption and authentication.
+
+### Encryption
+
+Encryption can be applied granularly, such as to an individual file containing sensitive information, or broadly, such as encrypting all stored data. The appropriate encryption solution for a particular situation depends primarily upon:
+
+- The type of storage
+- The amount of information that needs to be protected
+- The environments where the storage will be located
+- The threats that need to be mitigated
+
+## Types of Encryption Solutions
+
+This publication describes three types of solutions:
+
+1. **Full Disk Encryption**
+2. **Volume and Virtual Disk Encryption**
+3. **File/Folder Encryption**
+
+It also makes recommendations for implementing and using each type.
+
+### Use Case Examples
+
+This publication includes several use case examples, which illustrate that there are multiple ways to meet most storage encryption needs. When selecting a solution type, organizations should consider the range of solutions that meet the organization’s security requirements, and not just the solution type that is most commonly used.
+
+## Recommendations for Implementation
+
+Implementing the following recommendations should facilitate more efficient and effective storage encryption solution design, implementation, and management for Federal departments and agencies:
+
+- When selecting a storage encryption technology, organizations should consider solutions that use existing system features (such as operating system features) and infrastructure.# Storage Encryption Solutions: Considerations for Organizations
+
+There are many factors for organizations to consider when selecting storage encryption solutions, such as the platforms they support, the data they protect, and the threats they mitigate.
+
+## Types of Solutions
+
+Some solutions involve deploying various servers and installing software on the devices to be protected, while other solutions can use existing servers, as well as software built into the devices to be protected, such as Federal Information Processing Standard (FIPS) approved encryption features built into the devices’ operating systems.
+
+Generally, the more extensive the changes are to the infrastructure and devices, the more likely it is that the storage encryption solution will cause a loss of functionality or other problems with the devices.
+
+## Evaluating Solutions
+
+When evaluating solutions, organizations should compare the loss of functionality with the gain in security capabilities and decide if the tradeoff is acceptable. Solutions that require extensive changes to the infrastructure and end user devices should generally be used only when other solutions cannot meet the organization’s needs.
+
+## Centralized Management
+
+Organizations should use centralized management for all deployments of storage encryption except for standalone deployments and very small-scale deployments. Centralized management is recommended for most storage encryption deployments because of its effectiveness and efficiency for:
+
+- Policy verification and enforcement
+- Key management
+- Authenticator management
+- Data recovery
+- Other management tasks
+
+Centralized management can also automate deployment and configuration of storage encryption software to end user devices, distribution and installation of updates, collection and review of logs, and recovery of information from local failures.
+
+## Key Management
+
+Organizations should ensure that all cryptographic keys used in a storage encryption solution are secured and managed properly to support the security of the solution. Storage encryption technologies use one or more cryptographic keys to encrypt and decrypt the data that they protect. If a key is lost or damaged, it may not be possible to recover the encrypted data from the computer.
+
+Therefore, organizations should perform extensive planning of key management processes, procedures, and technologies before implementing storage encryption technologies. This planning should include all aspects of key management, including:
+
+- Key generation
+- Key use
+- Key storage
+- Key recovery
+- Key destruction
+
+Organizations should carefully consider how key management practices can support the recovery of encrypted data if a key is inadvertently destroyed or otherwise becomes unavailable. Organizations planning on encrypting removable media also need to consider how changing keys will affect access to encrypted storage on removable media and develop feasible solutions, such as retaining the previous keys in case they are needed.
+
+## User Authenticators
+
+Organizations should select appropriate user authenticators for storage encryption solutions. Storage encryption solutions require users to authenticate successfully before accessing the information that has been encrypted. Common authentication mechanisms include:
+
+- Passwords
+- Personal identification numbers (PINs)
+- Cryptographic tokens
+- Biometrics
+- Smart cards
+
+Organizations should consider leveraging these mechanisms to enhance security.# Existing Enterprise Authentication Solutions
+
+Existing enterprise authentication solutions (e.g., Active Directory, public key infrastructure [PKI]) should be utilized instead of adding another authenticator for users. Generally, this is acceptable if two-factor authentication is being used.
+
+Using the same single-factor authenticator for multiple purposes, such as operating system (OS) authentication and storage encryption authentication, significantly weakens the protection that authentication provides. For example, an attacker who learns a single password could gain full access to the device’s information. Organizations should carefully consider the security implications of using the same single-factor authenticator for multiple purposes. In particular, organizations should not use email passwords and other passwords sometimes transmitted in plaintext as single-factor authenticators for storage encryption.
+
+Organizations should implement measures that support and complement storage encryption implementations for end user devices. Storage encryption by itself cannot provide adequate security for stored information; additional security controls are needed. Organizations should select and deploy the necessary controls based on FIPS 199’s categories for the potential impact of a security breach involving a particular system and NIST Special Publication 800-53’s recommendations for minimum management, operational, and technical security controls.
+
+## Supporting Controls
+
+Examples of supporting controls are as follows:
+
+- Revising organizational policies as needed to incorporate appropriate usage of the storage encryption solution.
+- Securing and maintaining end user devices properly, which should reduce the risk of compromise or misuse. This includes securing device operating systems, applications, and communications, and physically securing devices.
+- Making users aware of their responsibilities for storage encryption, such as encrypting sensitive files, physically protecting mobile devices and removable media, and promptly reporting loss or theft of devices and media.
+
+# 1. Introduction
+
+## 1.1 Authority
+
+The National Institute of Standards and Technology (NIST) developed this document in furtherance of its statutory responsibilities under the Federal Information Security Management Act (FISMA) of 2002, Public Law 107-347.
+
+NIST is responsible for developing standards and guidelines, including minimum requirements, for providing adequate information security for all agency operations and assets; but such standards and guidelines shall not apply to national security systems. This guideline is consistent with the requirements of the Office of Management and Budget (OMB) Circular A-130, Section 8b(3), “Securing Agency Information Systems,” as analyzed in A-130, Appendix IV: Analysis of Key Sections. Supplemental information is provided in A-130, Appendix III.
+
+This guideline has been prepared for use by Federal agencies. It may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright, though attribution is desired.# Storage Encryption Guidelines
+
+Nothing in this document should be taken to contradict standards and guidelines made mandatory and binding on Federal agencies by the Secretary of Commerce under statutory authority, nor should these guidelines be interpreted as altering or superseding the existing authorities of the Secretary of Commerce, Director of the OMB, or any other Federal official.
+
+## 1. Purpose and Scope
+
+The purpose of this document is to assist organizations in understanding storage encryption technologies for end user devices and in planning, implementing, and maintaining storage encryption solutions. The types of end user devices addressed in this document are:
+
+- Personal computers (desktops and laptops)
+- Consumer devices (e.g., personal digital assistants, smart phones)
+- Removable storage media (e.g., USB flash drives, memory cards, external hard drives, writable CDs and DVDs)
+
+This document provides practical, real-world guidance for three classes of storage encryption techniques:
+
+- Full disk encryption
+- Volume and virtual disk encryption
+- File/folder encryption
+
+It also discusses important security elements of a storage encryption deployment, including cryptographic key management and authentication. It only discusses the encryption of data at rest (storage) and does not address the encryption of data in motion (transmission).
+
+## 1.3 Audience
+
+This document has been created for information security program managers and staff, system administrators, and others who are responsible for selecting, deploying, managing, and maintaining storage encryption technologies for end user devices. This document does not assume that the reader has previous experience with any storage encryption technologies, but it does assume that the reader has experience with information security.
+
+## 1.4 Document Structure
+
+The remainder of this document is organized into three major sections:
+
+- **Section 2** provides an overview of the basic concepts of storage encryption for end user devices.
+- **Section 3** describes the most commonly used categories of storage encryption technologies for end user devices and explains the types of protection they provide.
+- **Section 4** discusses the process of planning and implementing storage encryption technologies for end user devices. It includes a detailed discussion of the importance of cryptography and authentication to a storage encryption solution.
+
+The document also contains several appendices with supporting material:
+
+- **Appendix A** describes alternatives to encrypting storage on end user devices.
+- **Appendices B and C** contain a glossary and acronym list, respectively.
+- **Appendix D** lists online tools and resources that may be useful references for gaining a better understanding of storage encryption for end user devices.
+
+## 2. Storage Security Overview
+
+An end user device is a personal computer (desktop or laptop), consumer device (e.g., personal digital assistant [PDA], smart phone), or removable storage media (e.g., USB flash drive, memory card, external hard drive, writable CD or DVD) that can store information. Storage security is the process of allowing only authorized parties to access and use stored information. This section introduces the basic concepts.# Storage Security for End User Devices
+
+## 2.1 File Storage Basics
+
+A file is a collection of information logically grouped into a single entity and referenced by a unique name, such as a filename. On end user devices, there are typically two types of files: data files, such as text documents, spreadsheets, images, and videos, and system files, such as operating system and application binaries and libraries.
+
+A filesystem defines the way that files are named, stored, organized, and accessed. Directories, also known as folders, are organizational structures used by filesystems to group files. Another feature of a filesystem is metadata, which is data about data—in the context of a filesystem, information regarding the files and folders themselves, such as file and folder names, creation dates and times, and sizes.
+
+Filesystems are designed to store folders, system and data files, and metadata on storage media. However, storage media may also hold residual data, which is data from deleted files (including earlier versions of existing files and temporary files). Residual data can often be recovered from an end user device through forensic analysis. The following items describe common forms of residual data:
+
+- **Unused File Allocation Units**: Filesystems store files in chunks known as file allocation units. Unused file allocation units are the units within a partition that are not currently being used by the filesystem. When a file is deleted, it is typically not erased from the media; instead, the information in the directory’s data structure that points to the location of the file is marked as deleted. This means that the file is still stored on the media but is no longer enumerated by the operating system (OS). The OS considers this to be unused space and can overwrite any portion of or the entire deleted file at any time.
+
+- **Slack Space**: Even if a file requires less space than the file allocation unit size, an entire file allocation unit is still reserved for the file. For example, if the file allocation unit size is 32 kilobytes (KB) and a file is only 7 KB, the entire 32 KB is still allocated to the file, but only 7 KB is used, resulting in 25 KB of unused space. This unused space is referred to as file slack space, and it may hold residual data such as portions of deleted files.
+
+- **Free Space**: Free space is the area on media that is not currently allocated to a partition. This often includes space on the media where files may have resided at one point but have since been deleted. The free space may still contain pieces of data.
+
+Before media can be used to store files, the media must usually be partitioned and formatted into logical volumes. Partitioning is the act of logically dividing a media into portions that function as separate units. A logical volume is a partition or a collection of partitions acting as a single entity that has been formatted with a filesystem. Some media types can contain only one partition (and consequently, one logical volume), while others can contain multiple partitions.
+
+## 2.2 The Need for Storage Security
+
+In today’s computing environment, there are many threats to the confidentiality of information stored on...# Threats to End User Devices
+
+## Types of Threats
+
+End user devices face various threats, which can be categorized into two main types:
+
+### Unintentional Threats
+- Human error
+
+### Intentional Threats
+- Caused by individuals with various motivations, including:
+- Mischief and disruption
+- Identity theft and fraud
+
+## Common Threats
+
+### Malware
+Malware, or malicious code, is one of the most prevalent threats. It refers to programs inserted into a system covertly, aiming to compromise the confidentiality, integrity, or availability of the victim’s data, applications, or operating system (OS). Types of malware threats include:
+- Viruses
+- Worms
+- Malicious mobile code
+- Trojan horses
+- Rootkits
+- Spyware
+
+Malware can:
+- Provide attackers unauthorized access to a device
+- Transfer information from the device to an attacker’s system
+- Perform actions that jeopardize the confidentiality of the information on a device
+
+### Device Loss or Theft
+Physical access to a device allows individuals to attempt to view the information stored on it. This concern extends to insider attacks, such as:
+- An employee accessing sensitive information on another employee’s device
+- A user attempting to access another user’s files on a shared device
+
+## Securing Information
+
+Many threats against end user devices can lead to unauthorized access to stored information. To prevent such disclosures, especially of personally identifiable information (PII) and other sensitive data, it is crucial to secure the information.
+
+While securing components of end user devices, such as operating systems, is necessary, additional measures are often required to protect stored information. For instance, if an attacker steals a device, they could use forensic tools to recover information directly from the storage media, bypassing the protections of the device’s OS.
+
+## Regulations and Standards
+
+Several laws and regulations compel organizations to ensure the protection of sensitive information. Key regulations, standards, and guidelines that define organizations’ needs for storage security include:
+
+### Federal Information Security Management Act of 2002 (FISMA)
+- Emphasizes the need for each Federal agency to develop, document, and implement an organization-wide program for information security.
+- NIST Special Publication (SP) 800-53 provides recommended security controls for Federal information systems, including:
+- Controlling access through encryption of stored information
+- Restricting access to mobile computing devices and information system media
+- Storing media in physically secure locations
+
+### OMB Memorandum M-06-16
+- Addresses the protection of agency information that is accessed remotely or stored on devices.# Security Regulations and Controls
+
+## 1. Overview of Relevant Regulations
+
+### 1.1 Encryption Requirements
+Agencies are required to encrypt all data stored on mobile computing devices, such as laptops and PDAs, unless the data is deemed non-sensitive by a designated agency official. This requirement is also reflected in OMB Memorandum M-07-16.
+
+### 1.2 Privacy Act of 1974
+The Privacy Act regulates the collection, use, maintenance, and dissemination of personal information about U.S. citizens or aliens lawfully admitted for permanent residence. It applies to records maintained by agencies in the executive branch of the government.
+
+### 1.3 Gramm-Leach-Bliley Act (GLBA)
+GLBA mandates that financial institutions protect their customers' information against security threats. This includes ensuring the security and confidentiality of customer records and protecting against unauthorized access to or use of such records.
+
+### 1.4 Health Insurance Portability and Accountability Act of 1996 (HIPAA)
+HIPAA includes security standards for certain health information. NIST SP 800-66, An Introductory Resource Guide for Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule, outlines HIPAA-related storage security needs. For instance, Section 4.14 of NIST SP 800-66 emphasizes the need to encrypt and decrypt electronic protected health information (EPHI).
+
+## 2. Security Controls for Storage
+
+### 2.1 Encryption and Authentication
+The primary security controls for restricting access to sensitive information stored on end-user devices are encryption and authentication. Encryption can be applied granularly (to individual files) or broadly (to all stored data). The choice of encryption solution depends on the type of storage, the amount of information to protect, the storage environment, and the threats to mitigate.
+
+### 2.2 Authentication Mechanisms
+Storage encryption solutions require users to authenticate successfully before accessing encrypted information. Common authentication mechanisms include:
+- Passwords
+- Personal Identification Numbers (PIN)
+- Cryptographic tokens
+- Biometrics
+- Smart cards
+
+The combination of encryption and authentication helps control access to stored information.
+
+### 2.3 Backup Security Considerations
+Organizations must also consider the security of backups of stored information. Some allow users to back up local files to a centralized system, while others recommend local backups (e.g., burning CDs, using external USB storage). In the latter case, organizations should ensure that backups are secured at least as well as the original source, which can be achieved through similar controls (e.g., encrypting backups) or different controls (e.g., storing backup tapes in a physically secured room).
+
+### 2.4 Complementary Security Measures
+Organizations should implement additional measures that support and complement the security of stored information.# Storage Encryption
+
+Storage encryption implementations are crucial for ensuring that data is protected in an environment with the necessary management, operational, and technical controls. Below are examples of supporting measures for effective storage encryption.
+
+## Supporting Measures
+
+- **Revise Organizational Policies**: Update policies to incorporate appropriate usage of the storage encryption solution. These policies should lay the groundwork for planning and implementing storage encryption.
+
+- **Secure End User Devices**: Ensure that end user devices are properly secured and maintained to reduce the risk of compromise or misuse. This includes:
+- Securing device operating systems (OSs), applications, and communications (e.g., encrypting wired and wireless network traffic).
+- Physically securing devices, such as using cable locks for laptops in hotels, conferences, and other locations where unauthorized access is possible.
+- Implementing physical security measures in home environments, such as keeping organization-issued devices in locked desks or rooms to prevent unauthorized use.
+
+- **User Awareness**: Educate users about their responsibilities regarding storage encryption, including:
+- Encrypting sensitive files.
+- Physically protecting mobile devices and removable media.
+- Promptly reporting loss or theft of devices and media.
+
+Organizations should select and deploy necessary security controls based on existing guidelines.
+
+## Security Guidelines
+
+Federal Information Processing Standards (FIPS) 199 establishes three security categories—low, moderate, and high—based on the potential impact of a security breach involving a particular system.
+
+NIST SP 800-53 provides recommendations for minimum management, operational, and technical security controls for information systems based on the FIPS 199 impact categories. These recommendations can help organizations identify the controls needed to protect end user devices, in addition to the specific recommendations for storage encryption outlined in this document.
+
+# Storage Encryption Technologies
+
+There are various technologies available for encrypting data stored on end user devices. This section describes the most commonly used technologies, discusses the protections provided by each type, and explains how these technologies are typically managed.
+
+## Common Types of Storage Encryption Technologies
+
+This section provides a high-level overview of the most commonly used options for encrypting stored information:
+
+### Full Disk Encryption
+
+Full disk encryption (FDE), also known as whole disk encryption, is the process of encrypting all the data on the hard drive used to boot a computer, including the computer’s OS. Access to the data is permitted only after successful authentication to the FDE product. Most FDE products are software-based.# Full Disk Encryption (FDE) Solutions
+
+## Overview
+This section focuses on explaining the capabilities and characteristics of software-based FDE solutions. Hardware-based solutions are discussed briefly at the end of this section.
+
+## How FDE Software Works
+FDE software works by redirecting a computer’s master boot record (MBR), which is a reserved sector on bootable media that determines which software (e.g., OS, utility) will be executed when the computer boots from the media.
+
+### Master Boot Record (MBR) Redirection
+Before FDE software is installed onto a computer, the MBR usually points to the computer’s primary OS. When FDE software is being used, the computer’s MBR is redirected to a special pre-boot environment (PBE) that controls access to the computer.
+
+#### Pre-Boot Environment (PBE)
+The PBE prompts the user to authenticate successfully, such as entering a user ID and password, before decrypting and booting the OS. This process is known as pre-boot authentication (PBA).
+
+### Authentication Methods
+Most FDE products support the use of both network-based authentication (e.g., Active Directory, PKI) and local authentication sources (e.g., locally stored, locally cached from network source) for PBA.
+
+## Boot Process
+Once successful PBA occurs, the FDE software decrypts the boot sector for the OS, allowing the boot loader in the boot sector to start loading the OS. As it loads, the FDE software decrypts the OS files (which are stored in the system volume) as needed.
+
+### User Authentication
+Once the OS has finished booting, the user provides OS authentication and uses the computer normally. When the user needs to open encrypted files, save new files, or perform other operations involving the hard drive, the FDE software transparently decrypts and encrypts the necessary sectors of the hard drive as needed.
+
+## Performance Considerations
+This may marginally increase the time needed to open or save files, but the delay generally should only be noticeable for particularly large files. On an FDE-protected computer, users will typically notice a delay of at least a few seconds when booting the computer or shutting it down.
+
+### Hibernation Features
+Delays may also occur when using hibernation features, because the FDE software has to encrypt and decrypt the large hibernation file (which includes a copy of the computer’s memory) that is stored on the hard drive. The length of delays is dependent on the size of memory, the hard drive’s size and speed, and other factors.
+
+## Operational Challenges
+Because FDE alters how a computer boots, it can cause operational problems. For example, modifying the MBR can prevent computers with dual-boot configurations from functioning properly, and storing the PBE in the space between the MBR and the boot sector can cause conflicts with other software, such as disk-level software tools, that also store code in that space.
+
+### Asset Management Issues
+FDE-protected devices may also have problems with asset management tools and the use of wake-on-LAN.
+
+## Common Use Cases
+FDE software is most commonly used on desktop and laptop computers. The requirement for pre-boot authentication means that users have to be able to authenticate using the most fundamental components of a device, such as a standard keyboard—because the OS is not loaded, OS-level drivers are unavailable.
+
+### Limitations on Other Devices
+For example, a PDA or smartphone could not display a keyboard on the screen for entering a password because that is an OS-level capability.
+
+## Conclusion
+As mentioned at the beginning of the section, FDE can also be built into a hard drive.# Drive Disk Controller
+
+## Hardware and Software-Based Full Disk Encryption (FDE)
+
+Hardware and software-based FDE offer similar capabilities through different mechanisms. When a user tries to boot a device protected with hardware-based FDE, the hard drive prompts the user to authenticate before it allows an OS to load. The FDE capability is built into the hardware in such a way that it cannot be disabled or removed from the drive. The encryption code and authenticators, such as passwords and cryptographic keys, are stored securely on the hard drive. Because the decryption and encryption is performed by the hard drive itself, with no OS participation, typically there is very little performance impact.
+
+### Key Differences Between Software and Hardware-Based FDE
+
+1. **Management**: A major difference between software and hardware-based FDE is that software-based FDE can be centrally managed, but hardware-based FDE can usually only be managed locally. This makes key management and recovery actions considerably more resource-intensive and cumbersome for hardware-based FDE than software-based.
+
+2. **Cryptographic Key Storage**: Another major difference is that because hardware-based FDE does all cryptographic processing within the hard drive’s hardware, it does not need to place its cryptographic keys into the computer’s memory, which could potentially expose the keys to malware and other threats.
+
+3. **MBR Alteration**: A third significant difference is that hardware-based FDE typically does not alter the Master Boot Record (MBR), so hardware-based FDE does not cause conflicts with software that modifies the MBR (e.g., dual-boot configurations).
+
+## 3.1.2 Virtual Disk Encryption and Volume Encryption
+
+Virtual disk encryption is the process of encrypting a file called a container, which can hold many files and folders, and permitting access to the data within the container only after proper authentication is provided, at which point the container is typically mounted as a virtual disk. Virtual disk encryption is used on all types of end-user device storage. The container is a single file that resides within a logical volume. Examples of volumes are boot, system, and data volumes on a personal computer, and a USB flash drive formatted with a single filesystem.
+
+### Volume Encryption
+
+Volume encryption is the process of encrypting an entire logical volume and permitting access to the data on the volume only after proper authentication is provided. Volume encryption is most often performed on hard drive data volumes and volume-based removable media, such as USB flash drives and external hard drives. Volume encryption of boot and system volumes is essentially a special form of FDE, and it is not discussed in this section; see the FDE material in Section 3.1.1 for additional information.
+
+### Similarities in Volume and Virtual Disk Encryption
+
+At a high level, volume and virtual disk encryption are performed similarly. Software running on the OS used to access the volume or container handles all attempts to read to or write from the protected volume or container. Once the OS has been loaded, if the user needs to use the encrypted volume or container, it will be mounted after the user has provided the required authentication. The software will then automatically decrypt and encrypt the appropriate sectors as needed. This increases the time needed to open or save files, but the delay generally should be noticeable for only particularly large files. There may also be slight delays associated with mounting and unmounting an encrypted volume or container.# Differences Between Volume and Virtual Disk Encryption
+
+The key difference between volume and virtual disk encryption is that containers are portable while volumes are not. A container can be copied from one medium to another, with encryption intact. This allows containers to be burned to CDs and DVDs and to be used on other media that are not volume-based.
+
+## Advantages of Virtual Disk Encryption
+
+Virtual disk encryption also makes it trivial to back up sensitive data; the container is simply copied to the backup server or media. Another advantage of virtual disk encryption over volume encryption is that it can be used in situations where volume-based removable media needs to have both protected and unprotected storage. The volume can be left unprotected, and a container can be placed onto the volume for the sensitive information.
+
+## Mobility Features
+
+Some virtual disk encryption products further support mobility by offering features that can place executables on the medium holding a container. The medium can then be moved to another computer, and the executables can run through methods such as installing drivers onto the computer or running an authentication and decryption utility. The protected contents of the medium can then be accessed by a user after providing the requested authentication.
+
+## User Responsibilities
+
+The responsibilities of the users of virtual disk and volume encryption solutions vary, primarily depending on the devices’ access control. For example, if a laptop’s OS is configured so that a user can only write files to an encrypted container or volume, then the user does not need to take steps to ensure that files are saved to the appropriate location.
+
+However, if the OS is not configured this way, permitting users to save files to various locations, or if the encrypted device is removable media that is not protected through OS access control features, then users will be responsible for ensuring that they save files in the appropriate location. In this case, if users fail to follow the necessary procedures, then some files that should be protected may not be.
+
+# File/Folder Encryption
+
+## Overview
+
+File encryption is the process of encrypting individual files on a storage medium and permitting access to the encrypted data only after proper authentication is provided. Folder encryption is very similar to file encryption, only it addresses individual folders instead of files. Some operating systems (OSs) offer built-in file and/or folder encryption capabilities, and many third-party programs are also available.
+
+## Differences Between Folder and Virtual Disk Encryption
+
+Although folder encryption and virtual disk encryption sound similar—both a folder and a container are intended to contain and protect multiple files—there is a difference. A container is a single opaque file, meaning that no one can see what files or folders are inside the container until the container is decrypted.
+
+File/folder encryption is transparent, meaning that anyone with access to the filesystem can view the names and possibly other metadata for the encrypted files and folders, including files and folders within encrypted folders, if they are not protected through OS access control features. File/folder encryption is used on all types of storage for end-user devices.
+
+## Implementation
+
+File/folder encryption can be implemented in many ways, including through drivers, services, and applications. When a user attempts to open an encrypted file (either encrypted by itself or located in an encrypted folder), the appropriate authentication must be provided to access the data.# File/Folder Encryption Overview
+
+## Authentication and Decryption
+The software requires the user to first authenticate successfully. Once that has been done, the software will automatically decrypt the chosen file. Because it decrypts a single file at a time, the performance impact of file/folder encryption should be minimal.
+
+## Common Use Cases
+File/folder encryption is most commonly used on user data files, such as word processing documents and spreadsheets. File/folder encryption solutions can sometimes encrypt swap files, but typically not OS executables and hibernation files.
+
+## Options for File/Folder Encryption
+Many file/folder encryption products offer several options for selecting which files and folders should be encrypted and defining the user’s role in using the solution. These options include:
+
+- Relying on the user to specifically designate the files and folders
+- Automatically encrypting the contents of administrator-designated folders
+- Automatically encrypting certain types of files, such as those with a particular file extension
+- Automatically encrypting all files written to by particular applications
+- Automatically encrypting all data files for particular users
+
+## Limitations of Applications
+There are also various applications, such as file compression utilities and office productivity suites, that offer limited file/folder encryption capabilities. Such applications are usually completely dependent on the user to ensure that the necessary files are encrypted, and these applications are often not centrally managed, which can complicate key management and other aspects of managing the use of the applications’ file/folder encryption features.
+
+### Additional Resources
+Appendix A presents additional examples of applications that can encrypt the information that they store.
+
+# Protection Provided by Storage Encryption Technologies
+
+## Full Disk Encryption (FDE)
+For a computer that is not booted, all the information encrypted by FDE is protected, assuming that pre-boot authentication is required. When the device is booted, then FDE provides no protection; once the OS is loaded, the OS becomes fully responsible for protecting the unencrypted information. The exception to this is when the device is in hibernation mode; most FDE products can encrypt the hibernation file.
+
+## Virtual Disk and Volume Encryption
+When virtual disk encryption is employed, the contents of containers are protected until the user is authenticated for the containers. If single sign-on is being used for authentication to the solution, this usually means that the containers are protected until the user logs onto the device. If single sign-on is not being used, then protection is typically provided until the user explicitly authenticates to a container.
+
+### Limitations of Virtual Disk Encryption
+Virtual disk encryption does not provide any protection for data outside the container, including swap and hibernation files that could contain the contents of unencrypted files that were being held in memory. Volume encryption provides the same protection as virtual disk encryption, but for a volume instead of a container.# File/Folder Encryption
+
+## Overview
+File/folder encryption protects the contents of encrypted files (including files in encrypted folders) until the user is authenticated for the files or folders.
+
+## Authentication Scenarios
+- **Single Sign-On (SSO)**: If SSO is being used, the files are typically protected until the user logs onto the device.
+- **Without SSO**: Protection is usually provided until the user explicitly authenticates to a file or folder.
+
+## Limitations
+- **Data Outside Protected Files**: File/folder encryption does not protect data outside the protected files or folders, including swap and hibernation files that may contain unencrypted data held in memory.
+- **File Metadata**: Encryption software cannot protect the confidentiality of filenames and other file metadata, which could provide valuable information to attackers (e.g., files named by Social Security number).
+
+## File Movement and Copying
+- In many cases, especially for Full Disk Encryption (FDE) and volume encryption, these products do not protect files copied or moved from the encrypted storage to another location (either local or on the network) because they automatically decrypt the files during the copy or move process.
+- The target location is responsible for protecting the files, and no protection is provided in transit from the source to the target.
+
+## Retaining Protection
+- Some storage encryption technologies allow protection to be retained if desired.
+- Most virtual disk encryption products allow an entire container to be transferred, including the container’s protection, but individual files or folders copied or moved from a container will not be protected.
+- Some file/folder encryption products allow files or folders to retain their protection when copied or moved, sometimes only within a single filesystem, and in other cases across different filesystems.
+
+## Threat Mitigation
+The main threat that these types of technology mitigate is unauthorized access to information on a lost or stolen device.
+
+### Additional Threats
+- Virtual disk/volume encryption and file/folder encryption technologies can also mitigate some OS and application layer threats to protected information involving:
+- Malware
+- Remote access to protected information
+- Other methods that depend on the OS being booted
+
+## Authentication and Exposure
+Once the user successfully authenticates to the encryption solution, any process running on the device (such as malware) with access to the user’s files can access the decrypted information.
+
+### Recommendations
+- It may be beneficial to use a solution configured to encrypt only the necessary files (e.g., using file/folder encryption to encrypt 10 sensitive files instead of using volume encryption for 10 sensitive files and 1000 non-sensitive files).
+- The more files that are protected, the sooner the user is likely to authenticate to the storage encryption solution, which increases the window of exposure for the decrypted files.
+
+## User Access
+Some products also permit storage to be encrypted either for a single user or for multiple users of a device. If encrypted for a single user, the confidentiality of that user’s encrypted storage is protected from other users of the device.# Storage Encryption Technologies
+
+## Overview
+Encrypting for multiple users allows sensitive data to be shared by those users while still protecting it from other users of the device. This provides some protection against insider threats.
+
+## Technology Utilization
+In some cases, multiple types of technology can be used concurrently to protect against different classes of threats. For example:
+- **Full Disk Encryption (FDE)** could be used to protect all data on a device from loss or theft.
+- **Volume, virtual disk, or file/folder encryption** could be used to provide additional protection for a subset of data that is more sensitive than the rest.
+
+## Residual Data Threats
+Organizations should be aware that after storage encryption technology has been implemented, there may be residual data on the device that remains unprotected. For example:
+- When a file is encrypted using file/folder encryption and the original file is deleted, remnants of the original plaintext file might still be present on the storage media.
+- FDE and volume encryption products may only encrypt disk sectors that contain current files, not those that contain deleted files or other remnants of data. These remnants may be recoverable using forensic tools by an attacker who gains physical access to the computer, without needing to provide any authentication.
+
+## Compromised Devices
+Organizations should consider threats against both the files and remnants of the files. If an end-user device is compromised at any time, any storage encryption technologies on it may become partially or wholly ineffective. For example:
+- When the device is in use and the user has been authenticated to the storage encryption solution, malware could access decrypted files and transfer copies of them to external hosts or extract sensitive information from them.
+- An attacker could disable or reconfigure storage encryption, install malware that captures passwords used for storage encryption authentication, or acquire a copy of a storage encryption key from the device’s memory (for software-based storage encryption solutions).
+
+## Maintenance of Encryption Solutions
+Organizations should not rely on storage encryption technologies to protect data without regularly maintaining the encryption solution. For example:
+- If an attacker acquires a lost, stolen, or retired device protected by storage encryption technology, and a vulnerability in the storage encryption technology is discovered in the future, the attacker may be able to exploit it to access the protected data.
+
+## Comparison of Storage Encryption Technologies
+Table 3-1 lists several characteristics of storage encryption technologies as a means for comparing the types of technologies described in this publication.
+
+### Considerations for Selection
+When selecting storage encryption technologies, an organization should take into consideration the extent to which each technology will require changes to the infrastructure and end-user devices. For example:
+- Some technologies require deploying additional servers and installing software on the devices to be protected.
+- Other technologies can utilize existing servers and software built into the devices to be protected, such as FIPS approved encryption features.# Storage Encryption Technologies
+
+## Overview
+When integrating storage encryption technologies into devices’ operating systems, organizations must consider the potential loss of functionality that may arise from extensive changes to infrastructure and devices. It is crucial to weigh the tradeoff between the loss of functionality and the gain in security capabilities to determine if the implementation is acceptable. Technologies that necessitate significant alterations should only be employed when other solutions are inadequate.
+
+## Use Cases for Storage Encryption Technologies
+The following use cases illustrate various scenarios where specific storage encryption technologies may be appropriate. Each case outlines the threats to be mitigated and suggests possible solutions, including both storage encryption technologies and alternative options. Note that these use cases provide high-level solutions and do not imply that other solutions are not viable or preferable.
+
+### General Considerations
+Each use case omits universal security controls such as:
+- User awareness
+- General endpoint security (e.g., patching, antivirus software, access control, physical security of endpoint devices)
+- Key management (e.g., generating keys and securely deploying them to devices)
+
+### Use Case 1: Sharing a Laptop
+**Scenario:** Three users share a laptop, with one user accessing data that the other two are not authorized to view. The primary threats include insider threats from the other users and unauthorized data disclosure due to loss or theft of the laptop.
+
+**Possible Solutions:**
+- **Volume, Virtual Disk, or File/Folder Encryption:** Implement storage encryption software to protect the first user’s data, ensuring that only they can access it. Configure access control to save the first user’s data in a specific location protected by encryption.
+- **External Media Storage:** Use a flash drive or external hard drive with volume, virtual disk, or file/folder encryption. The user must secure physical access to the media and remember to save data to it.
+- **Remote System Storage:** Store data on a remote system and provide access through secured means (e.g., VPN), ensuring that data is not saved locally on the laptop.
+
+### Use Case 2: Transferring Files Between Computers
+**Scenario:** A user edits documents on both a desktop PC at the organization’s office and a personal computer at home, transferring documents daily via a USB flash drive. The two computers operate on different operating systems.
+
+**Possible Solutions:**
+- **Cross-Platform Encryption:** Utilize encryption solutions that are compatible with both operating systems to secure the documents during transfer.
+- **Secure Cloud Storage:** Use a cloud service with strong encryption to store documents, allowing the user to access and edit them from either computer without the need for physical transfer.
+- **Encrypted USB Drive:** Employ a USB flash drive that has built-in encryption capabilities to protect the documents during transfer between the two computers.
+
+## Conclusion
+When selecting storage encryption technologies, organizations must carefully evaluate the specific use cases and associated threats. By considering the potential impacts on functionality and the security benefits, organizations can make informed decisions that align with their security needs.# Data Security Mitigation Strategies
+
+## 1. Unauthorized Disclosure of Data from Loss or Theft of User’s Flash Drive
+
+The major threat that the organization needs to mitigate is unauthorized disclosure of data from loss or theft of the user’s flash drive. Possible solutions include the following:
+
+- Acquire and use a flash drive with self-contained storage encryption capabilities, such as encryption software and secure key storage.
+- Acquire a volume, virtual disk, or file/folder encryption solution that will work on both PCs, and deploy it. Encrypt the documents using the solution and store the encrypted data on a flash drive.
+
+## 2. Use Case 3: Sharing Data with Contractor
+
+A user wants to provide a contractor with copies of large data sets on a daily basis because the contractor has no direct access to the system containing the data. The user will copy the data onto removable media for the contractor. For this data, the major threat that the organization needs to mitigate is unauthorized disclosure of data from loss or theft of the removable media. Possible solutions include the following:
+
+- Deploy virtual disk or file/folder encryption software to the user and contractor’s computers. Encrypt the data using the software and burn the encrypted data onto CDs or DVDs.
+- Acquire USB flash drives or external hard drives that have built-in storage encryption capabilities. Store the copies of the data on the encrypted drives.
+- Acquire USB flash drives or external hard drives. Deploy virtual disk, volume, or file/folder encryption software to the user and contractor’s computers. Encrypt the data using the software and store it on the drives.
+
+## 3. Use Case 4: Traveling with a Laptop
+
+A user occasionally travels on behalf of the organization and carries a laptop that contains sensitive data. For this data, the major threat that the organization needs to mitigate is unauthorized disclosure of data from the loss or theft of the laptop. Possible solutions include the following:
+
+- Use the laptop’s OS access control features to strictly limit where the user can save files. Implement volume, virtual disk, or file/folder encryption on the laptop to protect the user’s files.
+- Implement Full Disk Encryption (FDE) on the laptop, and require pre-boot authentication.
+- Provide the user with a loaner laptop when needed for travel. Protect the user’s sensitive data on the laptop using either of the methods described above. When the user returns from travel, wipe and rebuild the loaner laptop to remove any traces of sensitive data from it. Using a loaner laptop in this way is particularly helpful if the laptop is being used in hostile environments, where the laptop is at greater risk of being compromised.
+
+## 4. Use Case 5: Traveling with a Dual-Boot Laptop
+
+A user frequently travels on behalf of the organization and carries a laptop that contains sensitive data. The laptop is dual-boot, using two operating systems (OSs). For the user’s data, the major threat that the organization needs to mitigate is unauthorized disclosure of data from the loss or theft of the laptop. Possible solutions include the following:
+
+- Use the OS access control features of each OS to strictly limit where the user can save files. Implement volume, virtual disk, or file/folder encryption on both of the laptop’s OSs to protect the user’s files.# Storage Encryption Technology Management
+
+## Dual-Boot Configurations
+- Implement an FDE solution that supports dual-boot configurations.
+- Convert the laptop to be single-boot, and access the second (removed) OS through a virtual machine run by the primary OS. See use case 4 for further information on protecting the laptop.
+
+## Centralized Management of Storage Encryption
+Most storage encryption deployments are managed centrally. Centralized management is most often performed through special management utilities provided by the storage encryption vendor. If the storage encryption solution is built into the devices’ OSs, then it could be managed through the mechanisms already in place to manage OS configurations. The capabilities of centralized management utilities for storage encryption technologies vary considerably. Examples of commonly implemented capabilities are as follows:
+
+- Deploying storage encryption software to additional devices
+- Updating storage encryption software (e.g., patching, upgrading)
+- Configuring storage encryption software, such as specifying encryption algorithms and setting authentication policies (in some cases, the policies are specific for types of devices, groups of users, and/or individual users)
+- Managing storage encryption authenticators and cryptographic keys
+- Collecting and reviewing storage encryption-related logs
+- Recovering stored information from device failures
+- Performing routine system maintenance
+- Enabling the encryption of data and managing encrypted storage
+- For FDE, this involves encrypting the computer’s hard drive. Some products allow the initial encryption to be done while the computer is in use, but it can cause a substantial performance impact if not configured properly, and additional hard drive space may be needed. Other products require that the computer not be in use while the drive is initially encrypted.
+- For volume encryption, this could involve either encrypting an existing volume, or creating a new volume, encrypting it, and then having the user add files to the volume as needed.
+- For virtual disk encryption, this simply involves creating a container. Files can then be added to the container by the user as needed.
+- For file/folder encryption, this could involve encrypting existing files, setting up an encrypted folder for future files, or establishing policies to automatically encrypt certain types of files.
+
+## Local Management of Storage Encryption
+Some storage encryption products, particularly ones intended for standalone deployment, can be managed locally. Local management is typically performed by a system administrator (for managed devices) or a user (for unmanaged devices) who has physical access to the device running the storage encryption technology. A common local management task is recovering data; many products allow users to recover their own data by running a recovery utility. For example, a device using FDE might experience a failure that prevents it from booting the OS; a user could run a recovery utility from the pre-boot environment or a CD to extract the data from the device.
+
+Organizations may choose to deploy storage encryption without a centralized management capability and perform all management locally. This is generally acceptable for standalone devices.# Storage Encryption Technology Planning and Implementation
+
+This section discusses considerations for planning and implementing storage encryption technologies for end user devices. As with any new technology deployment, storage encryption technology planning and implementation should be addressed in a phased approach. A successful deployment can be achieved by following a clear, step-by-step planning and implementation process. The use of a phased approach for deployment can minimize unforeseen issues and identify potential pitfalls early in the process. This model also allows for incorporating advances in new technology and adapting the technology to the ever-changing enterprise.
+
+## Planning and Implementation Phases
+
+The following is an example of planning and implementation phases:
+
+### 1. Identify Needs
+
+The first phase involves identifying the needs to encrypt storage on end user devices, determining which devices and data need protection, and identifying related requirements (e.g., minimum performance). This phase also involves determining how that need can best be met (e.g., FDE, virtual disk encryption) and deciding where and how the security should be implemented.
+
+### 2. Design the Solution
+
+The second phase involves all facets of designing the solution. Examples include architectural considerations, authentication methods, cryptography policy, and supporting security controls.
+
+### 3. Implement and Test a Prototype
+
+The next phase involves implementing and testing a prototype of the designed solution in a lab or test environment. The primary goals of the testing are to evaluate the functionality, performance, scalability, and security of the solution, and to identify any issues with the components, such as interoperability issues.
+
+### 4. Deploy the Solution
+
+Once the testing is completed and all issues are resolved, the next phase includes the gradual deployment of the storage encryption technology throughout the enterprise.
+
+### 5. Manage the Solution
+
+After the solution has been deployed, it is managed throughout its lifecycle. Management includes maintenance of the storage encryption components and support for operational issues. The lifecycle process is repeated when enhancements or significant changes need to be incorporated into the solution.
+
+This document does not describe the planning and implementation process in depth because the same basic steps are performed for any security technology. For example, the document assumes that the organization has already determined what information needs to be protected and assigned an impact level from FIPS 199 to the information. This section only highlights those considerations that are particular to storage encryption for end user devices.
+
+## 4.1 Identify Needs
+
+(Additional content may follow here.)# Storage Encryption Needs Assessment
+
+The purpose of this phase is to identify the needs to protect information stored on end-user devices and determine how those needs can best be met. Requirements specific to storage encryption that should be considered include the following:
+
+## External Requirements
+The organization may be subject to oversight or review by another organization that requires storage encryption. An example is a legal requirement to protect stored Personally Identifiable Information (PII).
+
+## System and Network Environments
+It is important to understand the characteristics of the organization’s system and network environments so that storage encryption solutions can be selected that will be compatible with them and able to provide the necessary protection. Aspects to consider include the following:
+
+- The characteristics of the devices that need protection, especially the operating systems (OSs), applications, and filesystems they use, and their hardware capabilities and characteristics.
+- The technical attributes of the interfaces of other systems with which the storage encryption solution might be integrated, such as:
+- Authentication services
+- Centralized logging servers
+- Security Information and Event Management (SIEM) software
+- Patch management software
+
+## Support Limitations
+The organization should identify any negative impacts that storage encryption technologies could have on existing vendor support mechanisms. For example, installing a storage encryption technology onto an end-user device could violate the terms of a support contract for existing software on the end-user device or void a warranty for another product used on or with the end-user device.
+
+## Analysis Outcomes
+The outcome of the organization’s analysis should be a determination of which files or types of files need to be encrypted and which types of threats the storage encryption software should protect against, stating the concerns as specifically as possible. For example, the organization may decide to encrypt sensitive information on all devices used outside the organization’s facilities and to encrypt certain types of sensitive information on devices used from any location.
+
+The analysis should also lead to the identification of the type or types of storage encryption technologies that can meet the organization’s security needs. Another outcome of the analysis is the documentation of the requirements for the storage encryption technologies themselves, including:
+
+- Security capabilities (e.g., authentication, cryptography, key management)
+- Performance requirements
+- Management requirements (including reliability, interoperability, scalability)
+- The security of the technology itself
+- Usability (by both administrators and users)
+- Maintenance requirements (such as applying updates)
+
+## Multiple Product Considerations
+In most cases, a single storage encryption product cannot meet all of the organization’s identified needs. For example, the organization may need to protect information on devices running several different OSs, yet no appropriate product can work on all those platforms. Some devices might also not meet the minimum hardware requirements for storage encryption products. Organizations can solve this problem in several ways, such as acquiring multiple products or using multiple types of solutions.# Storage Encryption
+
+## Overview
+Storage encryption technologies are essential for protecting stored information on end-user devices. Organizations must consider replacing older devices or identifying compensating controls that provide the same level of protection. Appendix A discusses potential alternatives to storage encryption. It is crucial for organizations to ensure effective solutions are identified for all types of end-user devices that require protection for stored information. Additionally, a waiver process should be established for unusual cases that cannot be addressed by the identified solutions.
+
+## 4.2 Design the Solution
+Once the needs have been identified and the appropriate types of storage encryption technology have been chosen, the next phase is to design a solution that meets these needs. Incorrect design decisions can make the storage encryption implementation more susceptible to compromise. Major aspects of solution design that are particularly important for storage encryption include:
+
+### Cryptography
+- **Encryption and Integrity Protection Algorithms**: Selection of appropriate algorithms and key strength for those that support multiple key lengths.
+- **Key Management and Protection**: An important component of solution design. Additional cryptography information can be found in Section 4.2.1.
+
+### Authentication
+- **Authentication Methods**: Choosing methods for users and administrators.
+- **Protection of Authenticators**: Decisions regarding how to protect the authenticators themselves. More detailed discussions on authentication can be found in Section 4.2.2.
+
+### Solution Architecture
+- **Architecture of Storage Encryption Implementation**: Refers to the selection of devices and software to provide storage encryption services and the placement of centralized elements within the existing network infrastructure, such as:
+- Authentication credential servers
+- Web servers for self-service recovery
+- Management servers
+- **End User Device Protection**: Each end-user device must have hardware and/or software that provides protection for stored information. Designing the architecture includes considerations for:
+- Component placement
+- Redundancy
+- Reliability
+- Interoperability
+
+### Other Security Controls
+- **Support and Complement Storage Encryption**: Organizations should have policies regarding the acceptable usage of storage encryption technologies.
+- **Minimum Security Standards**: Setting minimum security standards for end-user devices, such as:
+- Mandatory host hardening measures
+- Patch levels
+- Security controls like host-based personal firewalls, antivirus software, and antispyware software.
+
+### Minimum Requirements for End User Devices
+- **Definition of Minimum Requirements**: The minimum requirements for hardware, OS, and supporting software should be defined based on:
+- Requirements supplied by the product vendor
+- The organization’s performance requirements.
+
+### Logistics of Solution Deployment
+Another aspect of solution design is planning the logistics of the solution’s deployment. For example, the organization may need to replace devices that do not meet minimum requirements or run on a platform that the organization will not support for storage encryption. This could lead to out-of-cycle upgrades or replacements of hardware, OSs, and supporting software.# Considerations for Deployment
+
+When deploying solutions to end user devices, organizations must consider how updates will be managed. This includes actions such as upgrading the operating system, replacing hard drives, backing up user files, or installing storage encryption software. Organizations need to plan who will perform these actions, as well as when and where the work will be done.
+
+Some organizations may need to establish staging areas and recruit additional personnel to carry out this work.
+
+## 4.2.1 Cryptography
+
+Storage encryption technologies utilize one or more cryptographic keys to encrypt and decrypt the data they protect. The number and types of keys used depend on the product and its implementation.
+
+For instance:
+- **Public Key Cryptography**: Uses a pair of keys.
+- **Symmetric Cryptography**: Uses a single key.
+
+Some products support the use of a recovery key, which can be employed to recover encrypted data if the regular key is lost. Additionally, certain technologies allow encrypted storage to be shared among multiple users, which can be facilitated by assigning different keys for each user. Often, users’ keys are not directly used to decrypt their stored data; instead, these keys are used to decrypt another key, which is then used to decrypt the stored data.
+
+### Key Management
+
+If a key is lost or damaged, recovering the encrypted data may become impossible. Therefore, organizations must ensure that all keys used in a storage encryption solution are secured and managed properly to maintain the security of the solution.
+
+Organizations should conduct extensive planning regarding key management processes, procedures, and technologies before implementing storage encryption technologies. This planning should encompass all aspects of key management, including:
+- Key generation
+- Key use
+- Key storage
+- Key recovery
+- Key destruction
+
+Organizations should carefully consider how key management practices can facilitate the recovery of encrypted data if a key is inadvertently destroyed or becomes unavailable (for example, if a user unexpectedly leaves the organization or loses a cryptographic token containing a key).
+
+An example of recovery preparation is storing duplicates of keys in a centralized, secured key repository or on physically secured removable media. Organizations planning to encrypt removable media must also consider how changing keys will affect access to the encrypted storage on the media and develop feasible solutions, such as retaining previous keys in case they are needed.
+
+### Key Storage Options
+
+Another decision that may need to be made is where to store the local keys. For some encryption technologies, such as Full Disk Encryption (FDE) and many file/folder encryption products, there are several options for key location, including:
+- Local hard drive
+- USB flash drive
+- Cryptographic token
+- Trusted Platform Module (TPM) chip
+
+Some products also allow keys to be stored on a centralized server and retrieved automatically after the user successfully authenticates. For volume and virtual disk encryption, the main encryption key is often stored encrypted within the volume or container itself.
+
+Certain storage encryption products do not store a key; instead, they perform a cryptographic hash function on the password entered by the user and use that hash as the key.# Key Management and Storage Encryption
+
+Organizations need to ensure that access to keys (other than those intended to be available to others, such as public keys) is properly restricted. Storage encryption solutions should require the use of one or more authentication mechanisms, such as passwords, smart cards, and cryptographic tokens, to decrypt or otherwise gain access to a storage encryption key. The keys themselves should be logically secured (e.g., encrypted) or physically secured (e.g., stored in a tamper-resistant cryptographic token). The authenticators used to retrieve keys should also be secured properly.
+
+## Cryptography Policy
+
+In addition to key management, there are several other aspects of cryptography that need to be considered when planning a storage encryption solution. Setting the cryptography policy involves choosing encryption and integrity protection algorithms and key lengths. Federal agencies must use FIPS-approved algorithms contained in validated cryptographic modules. Whenever possible, AES should be used for the encryption algorithm because of its strength and speed. Several FIPS-approved algorithms are available for integrity checking, including:
+
+- HMAC-SHA
+- Cipher-Based Message Authentication Code (CMAC)
+- Counter with Cipher Block Chaining-Message Authentication Code (CCM)
+
+Organizations should consider how easily the solution can be updated when stronger algorithms and key sizes become available in the future.
+
+## Authentication
+
+There are two types of authentication important to storage encryption:
+
+1. **Administrator Authentication**: Administrators authenticate so that they can perform storage encryption management functions, including reconfiguring and updating encryption software, managing user accounts, and recovering encrypted data.
+
+2. **User Authentication**: Users authenticate so that they can access encrypted information. If a single authenticator is used (often a user ID and password, sometimes a token), that authenticator typically grants the storage encryption software access to the key used to encrypt and decrypt the stored information.
+
+If two-factor authentication is used, typically one of the factors grants access to information secured in another factor, which is then used to gain access to the storage encryption key. For example, a PIN or password could be used to retrieve a key from a smart card or cryptographic token; that key could then be used to decrypt the storage encryption key.
+
+Some storage encryption products allow the use of multiple user IDs on a single device. If the IDs are tied to a single storage encryption key, then each user can access the same protected information. If each ID is linked to a separate key, then the access is dependent on how the keys are used—for example, a container could be encrypted using a single key so that only one user can access it, or encrypted using several keys so that users can share the contents of the container.
+
+For storage encryption authentication, organizations often want to leverage existing enterprise authentication solutions (e.g., Active Directory, RADIUS, PKI, Personal Identity Verification [PIV] cards) instead of adding another authenticator for users. Generally, using an existing authentication solution is acceptable only if it provides multi-factor authentication. Using a single-factor authenticator for multiple purposes significantly weakens the protection that authentication provides.# Security Implications of Authentication in Storage Encryption
+
+## Introduction
+Authentication plays a critical role in securing access to storage encryption keys. This document discusses the risks associated with using single-factor authenticators for multiple purposes and the importance of protecting these authenticators.
+
+## Risks of Reusing Authenticators
+For example, reusing a user’s OS password for pre-boot authentication in a Full Disk Encryption (FDE) deployment could allow an attacker to gain full access to the device’s information by learning just a single password.
+
+### Methods of Password Acquisition
+The password could potentially be acquired through:
+- **Technical methods**: Such as infecting the device with malware.
+- **Physical means**: Such as observing a user typing in a password in a public location.
+
+## Single Sign-On (SSO) and Security Implications
+Another example is using the OS’s authentication for single sign-on (SSO) with a volume, virtual disk, or file/folder encryption product. Once a user authenticates to the OS at login, they can access the encrypted files without further authentication. This makes the security of the solution heavily dependent on the strength of the OS authenticator.
+
+### Considerations for Organizations
+Organizations should carefully consider the security implications of using the same single-factor authenticator for multiple purposes. In particular:
+- **Avoid using email passwords** and other passwords that are sometimes transmitted in plaintext as single-factor authenticators for storage encryption.
+- Organizations concerned about targeted attacks (e.g., someone stealing a specific laptop to access a user’s data) should not rely solely on passwords for storage encryption authentication due to the ease of capturing a user’s password.
+
+## Protecting Storage Encryption Authenticators
+Organizations need to ensure that storage encryption authenticators are properly protected. This includes:
+
+### Technical Mechanisms
+- Encrypting passwords.
+- Storing cryptographic hashes of passwords.
+
+### Operational and Management Mechanisms
+- Policies should state that authenticators should not be stored in proximity to the end-user device (e.g., a password should not be written on a piece of paper in a laptop case).
+- For two-factor authentication, multiple authenticators should not be stored together (e.g., a password or PIN should not be written on the back of a hardware token).
+
+## Handling Loss of Authenticators
+Since authentication controls access to storage encryption keys, the loss of authenticators can prevent access to encrypted data. Organizations should determine how the loss of authenticators (both user and administrator-level) will be handled before implementing storage encryption.
+
+### Recovery Mechanisms
+Most products offer recovery mechanisms for password-based user authentication. For example:
+1. A user that has forgotten a password chooses a recovery option on the protected computer.
+2. The computer provides a special code to the user.
+3. The user uses another computer to access the organization’s storage encryption recovery website.
+4. The user provides the code to the website and proves their identity (e.g., by answering questions about personal preferences).
+5. The website then provides the user’s password or a one-time recovery code to regain access.
+
+A similar process can also be performed by having users call a help desk instead of accessing a particular website.
+
+## Challenges with Non-Password-Based Authentication
+For user authentication methods other than password-based, recovery is often more difficult, especially if the specific recovery mechanisms are not well-defined or implemented.
+
+## Conclusion
+Organizations must be vigilant in their approach to authentication, especially when it comes to storage encryption. By understanding the risks and implementing robust security measures, they can better protect sensitive data from unauthorized access.# Storage Encryption and Recovery Mechanisms
+
+## Overview
+The user is not at the organization’s facilities. Some storage encryption products allow the password-based authentication recovery mechanisms to be used and permit the user to temporarily use password-based authentication. However, because this is generally a reduction in the strength of authentication, many organizations do not permit its use.
+
+This means that a loss of authenticator could cause an extended loss of availability to the data, until the user can receive a new authenticator (e.g., smart card, cryptographic token) and an administrator can configure the device to use the new authenticator.
+
+## Trade-offs in Recovery Mechanisms
+Recovery mechanisms increase the availability of the storage encryption solution for individual users, but they can also increase the likelihood that an attacker can gain unauthorized access to encrypted storage by abusing the recovery mechanisms. Organizations should consider the trade-off between availability and security when selecting and planning recovery mechanisms.
+
+## Protection Against Authentication Guessing
+Some storage encryption products also offer protection against authentication-guessing attempts. For example, if there are too many consecutive failed authentication attempts, some products can either lock the computer for a period of time or increase the delay between attempts.
+
+In particularly high-security situations, some products can be configured so that too many failed attempts causes the product to wipe all the protected data from the device. This approach strongly favors security over functionality.
+
+## 4.3 Implement and Test Prototype
+After the solution has been designed, the next step is to implement and test a prototype of the design. Ideally, implementation and testing should first be performed on lab or test devices. Only implementations in final testing should be conducted on production devices.
+
+### Aspects of the Solution to Evaluate
+- **Protection**: Each type of information that needs protection should be protected in accordance with the information gathered during the Identify Needs phase. This should be verified by using forensic tools to confirm that the information is encrypted. For devices that use Full Disk Encryption (FDE) and offer hibernation, standby, or other “suspend” modes, encryption should be verified in each mode; if the mode does not write the contents of memory out to disk and encrypt it, then the information may be readily available unencrypted.
+
+- **Authentication**: Performing robust testing of authentication is important, especially for more complex authentication solutions that depend on centralized authentication services; a loss of those services could cause a loss of storage encryption services as well.
+
+- **OS and Application Compatibility**: The solution should not break or interfere with the use of existing OS configurations and software applications. Examples of applications that may be particularly problematic are, for FDE, disk-level software tools, asset management software, and dual-boot configurations, and for all storage encryption technologies, backup utilities, forensic tools, and other storage encryption programs.
+
+- **Management**: Administrators should be able to configure and manage all components of the solution effectively and securely. It is particularly important to evaluate the ease of deployment and management.# Storage Encryption Considerations
+
+## Configuration Management
+- The solution should be manageable as it scales to larger deployments.
+- Administrators must have the ability to disable configuration options to prevent users from circumventing security.
+- Management concerns include:
+- Effects of patching/upgrading software.
+- Changing software settings (e.g., cryptographic algorithms or key sizes).
+- Uninstalling or disabling encryption software.
+- Changing encryption/decryption keys.
+- Changing user or administrator passwords.
+
+## Logging
+- Logging and data management functions should operate in accordance with the organization’s policies and strategies.
+
+## Performance
+- The solution must provide adequate performance during both normal and peak usage.
+- Testing should include a variety of devices, operating systems, and applications, particularly those that may experience performance issues (e.g., those manipulating large files).
+
+## Security of the Implementation
+- The storage encryption implementation may have vulnerabilities that attackers could exploit.
+- Organizations with high security needs should conduct extensive vulnerability assessments on the storage encryption components.
+- Security concerns also include the protection of authenticators and cryptographic keys.
+
+## Recovery
+- The solution should be tested for its ability to recover from failures, such as:
+- Lost or forgotten authenticators.
+- Lost keys.
+- Device hardware or software failure/damage.
+- Power loss.
+
+## Interoperability
+- For solutions protecting removable media used on multiple devices, it is essential that information encrypted on one device can be decrypted by another after successful authentication.
+
+## Operational Impacts
+- Organizations should assess how the solution might impact operations, including:
+- Technical support.
+- Incident response actions involving end-user devices.
+- It is advisable to implement components in a test environment before deploying them in production to minimize disruption.
+- Initial deployment should involve encryption on a small number of hosts to avoid overwhelming management servers and to identify potential bottlenecks.
+- Identifying problems during testing or initial deployment can help address issues before widespread implementation.
+- A phased deployment approach can assist in recognizing scalability problems.
+
+## Pre-Installation Actions
+- Before installing storage encryption software on end-user devices, consider the following actions:
+- Ensure that any files to be encrypted can be restored (e.g., backing up user files).# Planning and Implementation Model for Storage Encryption
+
+## 4.4 Deploy the Solution
+
+Once testing is complete and any issues have been resolved, the next phase of the planning and implementation model involves deploying the solution. A prudent strategy is to gradually migrate devices and users to the new solution. The phased deployment provides administrators an opportunity to evaluate the impact of the solution and resolve issues prior to enterprise-wide deployment. It also provides time for the IT staff (e.g., system administrators, help desk) and users to be trained.
+
+Most of the issues that can occur during deployment are the same types of issues that occur during any large IT deployment. In addition to potential problems described earlier in this publication, another typical issue is that storage encryption technologies might not work properly on some devices because of incompatibilities with particular hardware configurations.
+
+## 4.5 Manage the Solution
+
+The last phase of the planning and implementation model is the longest lasting. Managing the solution involves operating the deployed solution and maintaining the security storage architecture, policies, software, and other solution components. Examples of typical actions are as follows:
+
+- Testing and applying patches to storage encryption software. It is beneficial to have at least one host (one for each type of platform) that is used strictly for testing updates. This can help to identify possible conflicts between an update and the normal functions of devices. Software updates should be tested and deployed using the same practices that would be used for updating any other major security controls, such as antivirus software.
+
+- Deploying storage encryption technologies to additional types of devices.
+
+- Configuring additional devices to use the technologies.
+
+- Performing key management duties (e.g., issuing new credentials, revoking credentials for compromised systems or departing users).
+
+- Performing recovery actions (e.g., regaining access to encrypted data when the authenticator has been lost or the storage media has been damaged).
+
+- Adapting the policies as requirements change. An example is switching to a stronger encryption algorithm or increasing the key size.
+
+- Monitoring the storage encryption components for operational and security issues.
+
+- Periodically performing testing to verify that storage encryption is functioning properly.
+
+- Performing regular vulnerability assessments.
+
+- Receiving notifications from vendors of security problems with storage.# Encryption Components and Device Management
+
+## Responding to Notifications
+- Responding appropriately to notifications related to encryption components.
+
+## Preparing Devices for Retirement or Disposal
+- Devices and media that use storage encryption technologies should be sanitized or destroyed, even for devices using Full Disk Encryption (FDE).
+- Relying on storage encryption to protect data without regularly maintaining the encryption solution is not recommended.
+
+### Challenges with Storage Encryption
+- One significant issue with relying on storage encryption for retired or disposed devices is the need to destroy all copies of all keys used for storage encryption, which can be very difficult.
+
+## Backup Procedures
+- User files on the device should be backed up before major maintenance actions are performed, such as:
+- Installing or upgrading storage encryption software.
+- Changing encryption algorithms or key sizes.

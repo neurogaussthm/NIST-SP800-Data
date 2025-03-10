@@ -1,0 +1,1690 @@
+# Abstract
+Organizations are concerned about the risks associated with products and services that may potentially contain malicious functionality, are counterfeit, or are vulnerable due to poor manufacturing and development practices within the supply chain. These risks are associated with an enterprise’s decreased visibility into and understanding of how the technology they acquire is developed, integrated, and deployed or the processes, procedures, standards, and practices used to ensure the security, resilience, reliability, safety, integrity, and quality of the products and services.
+
+This publication provides guidance to organizations on identifying, assessing, and mitigating cybersecurity risks throughout the supply chain at all levels of their organizations. The publication integrates cybersecurity supply chain risk management (C-SCRM) into risk management activities by applying a multilevel, C-SCRM-specific approach, including guidance on the development of C-SCRM strategy implementation plans, C-SCRM policies, C-SCRM plans, and risk assessments for products and services.
+
+# 1. Introduction
+Information and communications technology (ICT) and operational technology (OT) rely on a complex, globally distributed, extensive, and interconnected supply chain ecosystem that is comprised of geographically diverse routes and consists of multiple levels of outsourcing. This ecosystem is composed of public and private sector entities (e.g., acquirers, suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers) that interact to research, develop, design, manufacture, acquire, deliver, integrate, operate, maintain, dispose of, and otherwise utilize or manage ICT/OT products and services. These interactions are shaped and influenced by a set of technologies, laws, policies, procedures, and practices.
+
+This ecosystem has evolved to provide a set of highly refined, cost-effective, and reusable solutions. Public and private sector entities have rapidly adopted this ecosystem of solutions and increased their reliance on commercially available products, system integrator support for custom-built systems, and external service providers. This, in turn, has increased the complexity, diversity, and scale of these entities, and often their interdependent supply chains.
+
+In this document, the term supply chain refers to the linked set of resources and processes between and among multiple levels of an enterprise, each of which is an acquirer that begins with the sourcing of products and services and extends through the product and service life cycle.
+
+Given the definition of supply chain, cybersecurity risks throughout the supply chain refers to the potential for harm or compromise that may arise from suppliers, their supply chains, their products, or their services. Cybersecurity risks throughout the supply chain are the results of threats that exploit vulnerabilities or exposures within products and services that traverse the supply chain or threats that exploit.# Cybersecurity Risks in the Supply Chain
+
+## Examples of Cybersecurity Risks
+1. A widget manufacturer whose design material is stolen in another country, resulting in the loss of intellectual property and market share.
+2. A widget manufacturer that experiences a supply disruption for critical manufacturing components due to a ransomware attack at a supplier three tiers down in the supply chain.
+3. A store chain that experiences a massive data breach tied to an HVAC vendor with access to the store chain’s data-sharing portal.
+
+## Understanding C-SCRM
+Note that SCRM and C-SCRM refer to the same concept for the purposes of NIST publications. In general practice, C-SCRM is at the nexus of traditional Supply Chain Risk Management (SCRM) and traditional Information Security. Organizations may employ different terms and definitions for SCRM outside of the scope of this publication. This publication does not address many of the non-cybersecurity aspects of SCRM.
+
+## Benefits and Risks of Technology Solutions
+Technology solutions provided through a supply chain of competing vendors offer significant benefits, including:
+- Low cost
+- Interoperability
+- Rapid innovation
+- Product feature variety
+
+Whether proprietary, government-developed, or open source, these solutions can meet the needs of a global base of public and private sector customers. However, the same factors that create such benefits also increase the potential for cybersecurity risks that arise directly or indirectly from the supply chain.
+
+## Undetected Cybersecurity Risks
+Cybersecurity risks throughout the supply chain are often undetected and impact the acquirer and the end-user. For example, deployed software is typically a commercial off-the-shelf (COTS) product, which includes smaller COTS or open source software components developed or sourced at multiple tiers. Updates to software deployed across enterprises often fail to update the smaller COTS components with known vulnerabilities, including cases in which the component vulnerabilities are exploitable in the larger enterprise software.
+
+Software users may be unable to detect the smaller known vulnerable components in larger COTS software (e.g., lack of transparency, insufficient vulnerability management). The non-standardized nature of C-SCRM practices adds an additional layer of complexity, making the consistent measurement and management of cybersecurity risks throughout the supply chain difficult for both the organization and members of its supply chain (e.g., suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers).
+
+## Scope of C-SCRM Practices
+In this document, the practices and controls described for Cybersecurity Supply Chain Risk Management (C-SCRM) apply to both information technology (IT) and operational technology (OT) environments and are inclusive of IoT. Similar to IT environments that rely on ICT products and services, OT environments rely on OT and ICT products and services, with cybersecurity risks arising from ICT/OT products, services, suppliers, and their supply chains.
+
+Enterprises should include OT-related suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers within the scope of their C-SCRM activities.# Cybersecurity Supply Chain Risk Management (C-SCRM)
+
+## Overview
+Service providers, and other ICT/OT-related service providers, agencies should carefully consider the breadth of the Federal Government’s footprint and the high likelihood that individual agencies may enforce varying and conflicting C-SCRM requirements. Overcoming this complexity requires interagency coordination and partnerships.
+
+The passage of the Federal Acquisition Supply Chain Security Act (FASCSA) of 2018 aimed to address this concern by creating a government-wide approach to the problem of supply chain security in federal acquisitions by establishing the Federal Acquisition Security Council (FASC). The FASC serves as a focal point of coordination and information sharing and a harmonized approach to acquisition security that addresses C-SCRM in acquisition processes and procurements across the federal enterprise.
+
+In addition, the law incorporated SCRM into FISMA by requiring reports on the progress and effectiveness of the agency’s supply chain risk management, consistent with guidance issued by the Office of Management and Budget (OMB) and the Council.
+
+## Definition of Enterprise
+Note that this publication uses the term “enterprise” to describe Level 1 of the risk management hierarchy. In practice, an organization is defined as an entity of any size, complexity, or positioning within a larger enterprise structure (e.g., a federal agency or company). By this definition, an enterprise is an organization, but it exists at the top level of the hierarchy where individual senior leaders have unique risk management responsibilities [IR8286].
+
+Several organizations may comprise an enterprise. In these cases, an enterprise may have multiple Level 1s with stakeholders and activities defined at both the enterprise and the organization levels. Level 1 activities conducted at the enterprise level should inform those activities completed within the subordinate organizations.
+
+Enterprises and organizations tailor the C-SCRM practices described in this publication as applicable and appropriate based on their own unique enterprise structure. There are cases in this publication in which the term “organization” is inherited from a referenced source (e.g., other NIST publication, regulatory language). Refer to NIST IR 8286, Integrating Cybersecurity and Enterprise Risk Management (ERM), for further guidance on this topic.
+
+## 1.1 Purpose
+Cybersecurity Supply Chain Risk Management (C-SCRM) is a systematic process for managing exposure to cybersecurity risks throughout the supply chain and developing appropriate response strategies, policies, processes, and procedures.
+
+The purpose of this publication is to provide guidance to enterprises on how to identify, assess, select, and implement risk management processes and mitigating controls across the enterprise to help manage cybersecurity risks throughout the supply chain. The content in this guidance is the shared...# C-SCRM Guidance Document
+
+## Overview
+The C-SCRM guidance provided in this document is not one-size-fits-all. Instead, the guidance throughout this publication should be adopted and tailored to the unique size, resources, and risk circumstances of each enterprise. Enterprises adopting this guidance may vary in how they implement C-SCRM practices internally.
+
+This publication describes C-SCRM practices observed in enterprises and offers a general prioritization of C-SCRM practices (i.e., Foundational, Sustaining, Enabling) for enterprises to consider as they implement and mature C-SCRM. However, this publication does not offer a specific roadmap for enterprises to follow to reach various states of capability and maturity.
+
+The processes and controls identified in this document can be modified or augmented with enterprise-specific requirements from policies, guidelines, response strategies, and other sources. This publication empowers enterprises to develop C-SCRM strategies tailored to their specific mission and business needs, threats, and operational environments.
+
+## 1.2 Target Audience
+C-SCRM is an enterprise-wide activity that should be directed as such from a governance perspective, regardless of the specific enterprise structure.
+
+This publication is intended to serve a diverse audience involved in C-SCRM, including:
+
+- Individuals with system, information security, privacy, or risk management and oversight responsibilities, including authorizing officials (AOs), chief information officers, chief information security officers, and senior officials for privacy.
+- Individuals with system development responsibilities, including mission or business owners, program managers, system engineers, system security engineers, privacy engineers, hardware and software developers, system integrators, and acquisition or procurement officials.
+- Individuals with project management-related responsibilities, including certified project managers and/or integrated project team (IPT) members.
+- Individuals with acquisition and procurement-related responsibilities, including acquisition officials and contracting officers.
+- Individuals with logistical or disposition-related responsibilities, including program managers, procurement officials, system integrators, and property managers.
+- Individuals with security and privacy implementation and operations responsibilities, including mission or business owners, system owners, information owners or stewards, system administrators, continuity planners, and system security or privacy officers.
+- Individuals with security and privacy assessment and monitoring responsibilities, including auditors, Inspectors General, system evaluators, control assessors, independent verifiers and validators, and analysts.
+- Commercial entities, including industry partners, that produce component products and systems, create security and privacy technologies, or provide services or capabilities.# Support Information Security or Privacy
+
+## 1.3. Guidance for Cloud Service Providers
+The external system service providers discussed in this publication include cloud service providers. This publication does not replace the guidance provided with respect to federal agency assessments of cloud service providers’ security. When applying this publication to cloud service providers, federal agencies should first use Federal Risk and Authorization Program (FedRAMP) cloud services security guidelines and then apply this document for those processes and controls that are not addressed by FedRAMP.
+
+## 1.4. Audience Profiles and Document Use Guidance
+Given the wide audience of this publication, several reader profiles have been defined to point readers to the sections of the document that most closely pertain to their use case. Some readers will belong to multiple profiles and should consider reading all applicable sections. Any reader accountable for the implementation of a C-SCRM capability or function within their enterprise, regardless of role, should consider the entire document applicable to their use case.
+
+### 1.4.1. Enterprise Risk Management and C-SCRM Owners and Operators
+These readers are those responsible for enterprise risk management and cybersecurity supply chain risk management. These readers may help develop C-SCRM policies and standards, perform assessments of cybersecurity risks throughout the supply chain, and serve as subject matter experts for the rest of the enterprise. The entire document is relevant to and recommended for readers fitting this profile.
+
+### 1.4.2. Enterprise, Agency, and Mission and Business Process Owners and Operators
+These readers are the personnel responsible for the activities that create and/or manage risk within the enterprise. They may also own the risk as part of their duties within the mission or business process. They may have responsibilities for managing cybersecurity risks throughout the supply chain for the enterprise. Readers in this group may seek general knowledge and guidance on Cybersecurity Supply Chain Risk Management. Recommended reading includes:
+- Section 1: Introduction
+- Section 2: Integration of C-SCRM into Enterprise-wide Risk Management
+- Section 3.3: C-SCRM Awareness and Training
+- Section 3.4: C-SCRM Key Practices
+- Section 3.6: Dedicated Resources
+- Appendix A: C-SCRM Security Controls
+- Appendix B: C-SCRM Control Summary
+- Appendix E: FASCSA
+
+### 1.4.3. Acquisition and Procurement Owners and Operators
+These readers are those with C-SCRM responsibilities as part of their role in the procurement or acquisition function of an enterprise. Acquisition personnel may execute C-SCRM activities as a part of their general responsibilities in the acquisition and procurement life cycle. These personnel will collaborate closely with the enterprise’s C-SCRM personnel to execute C-SCRM activities with acquisition and procurement. Recommended reading includes:
+- Section 1: Introduction# C-SCRM Documentation
+
+## Section 2: C-SCRM Overview
+### 2.1 The Business Case for C-SCRM
+### 2.2 Cybersecurity Risks Throughout the Supply Chain
+
+## Section 3: C-SCRM Implementation
+### 3.1 C-SCRM in Acquisition
+### 3.2 Supply Chain Information Sharing
+### 3.3 C-SCRM Awareness and Training
+### 3.4 C-SCRM Key Practices
+
+## Appendices
+### Appendix A: C-SCRM Security Controls
+- These readers should pay special attention to requisite controls for supplier contracts and include them in agreements with both primary and sub-tier contractor parties.
+
+### Appendix B: C-SCRM Control Summary
+
+### Appendix C: Risk Exposure Framework
+
+### Appendix E: FASCSA
+
+### Appendix F: Software Supply Chain Security Guidelines
+
+### Appendix G: C-SCRM Activities in the Risk Management Process
+
+## 1.4 Target Audience
+### 1.4.4 Information Security, Privacy, or Cybersecurity Operators
+These readers are those with operational responsibility for protecting the confidentiality, integrity, and availability of the enterprise’s critical processes and information systems. As part of those responsibilities, these readers may find themselves directly or indirectly involved with conducting Cybersecurity Supply Chain Risk Assessments and/or the selection and implementation of C-SCRM controls. In smaller enterprises, these personnel may bear the responsibility for implementing C-SCRM and should refer to Sec. 1.4.1 for guidance.
+
+**Recommended reading includes:**
+- Section 1: Introduction
+- Section 2.1: The Business Case for C-SCRM
+- Section 2.2: Cybersecurity Risks Throughout the Supply Chain
+- Section 3.2: Supply Chain Information Sharing
+- Section 3.4: C-SCRM Key Practices
+- Appendix A: C-SCRM Security Controls
+- Appendix B: C-SCRM Control Summary
+- Appendix C: Risk Exposure Framework
+- Appendix E: FASCSA
+- Appendix F: Software Supply Chain Security Guidelines
+- Appendix G: C-SCRM Activities in the Risk Management Process
+
+### 1.4.5 System Development, System Engineering, and System Implementation Personnel
+These readers are those with responsibilities for executing activities within an information system’s system development life cycle (SDLC). As part of their SDLC responsibilities, these readers will be responsible for the execution of operational-level C-SCRM activities. Specifically, these personnel may be concerned with implementing C-SCRM controls to manage cybersecurity risks that arise from products and services provided through the supply chain within the scope of their information system(s).
+
+**Recommended reading includes:**
+- Section 1: Introduction
+- Section 2.1: The Business Case for C-SCRM
+- Section 2.2: Cybersecurity Risks Throughout the Supply Chain
+- Section 2.3.4: Level 3 — Operational
+- Appendix B: C-SCRM Control Summary
+- Appendix C: Risk Exposure Framework
+- Appendix F: Software Supply Chain Security Guidelines
+- Appendix G: C-SCRM Activities in the Risk Management Process
+
+## 1.5 Background
+C-SCRM encompasses activities that span the entire SDLC, including research and development, design, manufacturing, acquisition, delivery, integration, operations and maintenance, disposal, and the overall management of an enterprise’s products and services. Enterprises should integrate C-SCRM within the SDLC as this is a critical area for addressing cybersecurity risks throughout the supply chain. C-SCRM is the organized and purposeful management of...# Cybersecurity Risks Throughout the Supply Chain
+
+C-SCRM requires enterprise recognition and awareness, and it lies at the intersections of security, suitability, safety, reliability, usability, quality, integrity, efficiency, maintainability, scalability, and resilience, as depicted in Fig. 1. These dimensions are layers of consideration for enterprises as they approach C-SCRM and should be positively impacted by C-SCRM.
+
+## Key Dimensions of C-SCRM
+
+### Culture and Awareness
+Culture and Awareness is the set of shared values, practices, goals, and attitudes of the organization that set the stage for successful C-SCRM. It includes a learning process that influences individual and enterprise attitudes and understanding to realize the importance of C-SCRM and the adverse consequences of its failure.
+
+### Security
+Security provides the confidentiality, integrity, and availability of:
+- (a) Information that describes the supply chain (e.g., information about the paths of products and services, both logical and physical).
+- (b) Information, products, and services that traverse the supply chain (e.g., intellectual property contained in products and services).
+- (c) Information about the parties participating in the supply chain (anyone who touches a product or service throughout its life cycle).
+
+### Suitability
+Suitability is focused on the supply chain and the provided products and services being right and appropriate for the enterprise and its purpose.
+
+### Safety
+Safety is focused on ensuring that the product or service is free from conditions that can cause:
+- Death
+- Injury
+- Occupational illness
+- Damage to or loss of equipment or property
+- Damage to the environment
+
+### Reliability
+Reliability is focused on the ability of a product or service to function as defined for a specified period of time in a predictable manner.
+
+### Usability
+Usability is focused on the extent to which a product or service can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use.
+
+### Quality
+Quality is focused on meeting or exceeding performance, technical, and functional specifications while mitigating vulnerabilities and weaknesses that may limit the intended function of a component or delivery of a service, lead to component or service failure, or provide opportunities for exploitation.
+
+### Efficiency
+Efficiency is focused on the timeliness of the intended result delivered by a product or service.
+
+### Maintainability
+Maintainability is focused on the ease of a product or service to accommodate change and improvements based on past experience in support of expanding future derived benefits.
+
+### Integrity
+Integrity is focused on guarding products and the components of products against improper modification or tampering and ensuring authenticity and pedigree.
+
+### Scalability
+Scalability is the capacity of a product or service to handle increased growth and demand.
+
+### Resilience
+Resilience is focused on ensuring that a product, service, or the supply chain supports...# Resilience in Enterprises
+
+The enterprise’s ability to prepare for and adapt to changing conditions and withstand and recover rapidly from disruptions. Resilience includes the ability to withstand and recover from deliberate attacks, accidents, or naturally occurring threats or incidents.
+
+## 1.5.1. Enterprise’s Supply Chain
+
+Contemporary enterprises run complex information systems and networks to support their missions. These information systems and networks are composed of ICT/OT products and components made available by suppliers, developers, and system integrators. Enterprises also acquire and deploy an array of products and services, including:
+
+- **Custom software** for information systems built to be deployed within the enterprise, made available by developers.
+- **Operations, maintenance, and disposal support** for information systems and networks within and outside of the enterprise’s boundaries, made available by system integrators or other ICT/OT-related service providers.
+- **External services** to support the enterprise’s operations that are positioned both inside and outside of the authorization boundaries, made available by external system service providers.
+
+These services may span the entire SDLC for an information system or service and may be:
+
+- Performed by the staff employed by the enterprise, developer, system integrator, or external system service provider.
+- Physically hosted by the enterprise, developer, system integrator, or external system service provider.
+- Supported or comprised of development environments, logistics/delivery environments that transport information systems and components, or applicable system and communications interfaces.
+- Proprietary, open source, or commercial off-the-shelf (COTS) hardware and software.
+
+The responsibility and accountability for the services and associated activities performed by different parties within this ecosystem are usually defined by agreement documents between the enterprise and suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers.
+
+## 1.5.2. Supplier Relationships Within Enterprises
+
+Enterprises depend on the supply chain to provide a variety of products and services to enable the enterprise to achieve its strategic and operational objectives. Identifying cybersecurity risks throughout the supply chain is complicated by the information asymmetry that exists between acquiring enterprises and their suppliers and service providers.
+
+Acquirers often lack visibility and understanding of how acquired technology is developed, integrated, and deployed and how the services that they acquire are delivered. Additionally, acquirers with inadequate or absent C-SCRM processes, procedures, and practices may experience increased exposure to cybersecurity risks throughout the supply chain. The level of exposure to cybersecurity risks...# Supply Chain Relationships and Their Impact
+
+Throughout the supply chain, the effectiveness largely depends on the relationship between the products and services provided and the criticality of the missions, business processes, and systems that they support. Enterprises maintain a variety of relationships with their suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers.
+
+## Visibility and Control
+
+Figure 2 depicts how these diverse relationships affect an enterprise’s visibility and control of the supply chain.
+
+### Intermingled Relationships
+
+Some supply chain relationships are tightly intermingled, such as:
+- A system integrator’s development of a complex information system operating within the federal agency’s authorization boundary.
+- The management of federal agency information systems and resources by an external service provider.
+
+These relationships are usually guided by an agreement (e.g., contract) that establishes detailed functional, technical, and security requirements. They may also provide for the custom development or significant customization of products and services.
+
+### Implementation of Processes and Controls
+
+For these relationships, system integrators and external service providers are likely able to work with the enterprise to implement processes and controls (listed within this document) that are deemed appropriate based on:
+- The results of a criticality and risk assessment.
+- Cost/benefit analysis.
+
+This may include floating requirements upstream in the supply chain to ensure higher confidence in the satisfaction of necessary assurance objectives. The decision to extend such requirements must be balanced with an appreciation of what is feasible and cost-effective.
+
+### Weighing Risks
+
+The degree to which system integrators and external service providers are expected to implement C-SCRM processes and controls should be weighed against the risks to the enterprise posed by not adhering to those additional requirements.
+
+Often, working directly with the system integrators and external service providers to proactively identify appropriate mitigation processes and controls will help create a more cost-effective strategy.
+
+## Direct Relationships with Suppliers
+
+Procuring ICT/OT products from suppliers establishes a direct relationship between those suppliers and the acquirers. This relationship is also usually guided by an agreement between the acquirer and the supplier.
+
+### General Purpose Products
+
+However, commercial ICT/OT developed by suppliers are typically designed for general purposes for a global market and are not tailored to an individual customer’s specific operational or threat environments.
+
+### Due Diligence
+
+Enterprises should perform due diligence and research regarding their specific C-SCRM requirements to determine if an IT solution is fit for purpose, includes requisite security features and capabilities, will meet quality and resiliency expectations, and requires support by the supplier for the product or product components over its life cycle.
+
+### Assessment of Findings
+
+An assessment of the findings of an acquirer’s research about a product may include...# Engaging with Suppliers for C-SCRM
+
+Engaging in direct dialogue with suppliers whenever possible will help acquirers understand the characteristics and capabilities of existing ICT/OT products and services, set expectations and requirements for suppliers, and identify C-SCRM needs not yet satisfied by the market. It can also help identify emerging solutions that may at least partially support the acquirer’s needs. Overall, such research and engagement with a supplier will allow the acquirer to better articulate their requirements to align with and drive market offerings and to make risk-based decisions about product purchases, configurations, and usages within their environment.
+
+## Managing Cost and Resources
+
+Balancing exposure to cybersecurity risks throughout the supply chain with the costs and benefits of implementing C-SCRM practices and controls should be a key component of the acquirer’s overall approach to C-SCRM.
+
+Enterprises should be aware that implementing C-SCRM practices and controls necessitates additional financial and human resources. Requiring a greater level of testing, documentation, or security features from suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers may increase the price of a product or service, which may result in increased cost to the acquirer. This is especially true for those products and services developed for general-purpose applications and not tailored to the specific enterprise security or C-SCRM requirements.
+
+When deciding whether to require and implement C-SCRM practices and controls, acquirers should consider both the costs of implementing these controls and the risks of not implementing them.
+
+When possible and appropriate, acquirers should allow suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers the opportunity to reuse applicable existing data and documentation that may provide evidence to support C-SCRM (e.g., certification of a vendor to a relevant standard, such as ISO 27001). Doing this results in cost savings to the acquirer and supplier. However, in some cases, documentation reuse may not be appropriate as additional or different information may be needed, and a reassessment may be required (e.g., previously audited supplier developing a new, not yet produced product). Regardless, acquirers should identify and include security considerations early in the acquisition process.
+
+## Methodology for Building C-SCRM Guidance
+
+### Using NIST SP 800-39; NIST SP 800-37, Rev 2; and NIST SP 800-53, Rev 5
+
+This publication applies the multilevel risk management approach by providing C-SCRM guidance at the enterprise, mission, and operational levels. It also introduces a navigational system for allowing users to focus on relevant sections of this publication more easily. Finally, it contains an enhanced overlay of specific C-SCRM controls, building on existing multidisciplinary practices.
+
+The guidance/controls contained in this publication are built on existing multidisciplinary practices and are intended to increase the ability of enterprises to manage the associated cybersecurity risks throughout the supply chain over the entire life cycle of systems, products, and services. It should be noted that this publication gives enterprises the flexibility to either develop stand-alone documentation (e.g., policies, assessment and authorization [A&A] plan, and C-SCRM plan) for C-SCRM or to integrate it into existing agency documentation.# Documentation
+
+For individual systems, this guidance is recommended for use with information systems at all impact categories. The agencies may choose to prioritize applying this guidance to systems at a higher impact level or to specific system components.
+
+Finally, this document describes the development and implementation of C-SCRM Strategies and Implementation Plans for development at the enterprise and mission and business level of an enterprise and a C-SCRM system plan at the operational level of an enterprise. A C-SCRM plan at the operational level is informed by the cybersecurity supply chain risk assessments and should contain C-SCRM controls tailored to specific agency mission and business needs, operational environments, and/or implementing technologies.
+
+## Integration into the Risk Management Process
+
+The processes in this publication should be integrated into the enterprise’s existing SDLCs and enterprise environments at all levels of risk management processes and hierarchy (e.g., enterprise, mission, system), as described in Section 2. This section provides an overview of the risk management hierarchy and approach and identifies C-SCRM activities in the risk management process. Appendix C builds on Section 2 by providing descriptions and explanations of ICT/OT SCRM activities. The structure of Appendix C mirrors the implementation of C-SCRM in the context of SP 800-37, Revision 2.
+
+C-SCRM activities described in this publication are closely related to the Risk Management Framework. Specifically, C-SCRM processes conducted at the operational level should closely mirror and/or serve as inputs to those steps completed as part of C-SCRM activities. Activities completed at Levels 1 and 2 should provide inputs (e.g., risk assessment results) to the operational level and RMF-type processes, where possible and applicable. Section 2 and Appendix C describe the linkages between C-SCRM in further detail.
+
+## 1.7 Relationship to Other Publications and Publication Summary
+
+This publication builds on the concepts promoted within other NIST publications and tailors those concepts for use within Cybersecurity Supply Chain Risk Management. As a result of this relationship, this publication inherits many of its concepts and looks to other NIST publications to continue advancing base frameworks, concepts, and methodologies. Those NIST publications include:
+
+- **The NIST Cybersecurity Framework (CSF) 2.0**: Voluntary guidance based on existing standards, guidelines, and practices for organizations to better manage and reduce cybersecurity risk. It was also designed to foster risk and cybersecurity management communications among both internal and external organizational stakeholders.
+
+- **FIPS 199, Standards for Security Categorization of Federal Information and Information Systems**: A standard for categorizing federal information and information systems according to an agency’s level of concern for confidentiality, integrity, and availability and the potential impact on agency assets and operations should their information be compromised.# Information Security Guidelines
+
+## Overview
+Information and information systems can be compromised through unauthorized access, use, disclosure, disruption, modification, or destruction.
+
+## Key Publications
+
+### SP 800-30, Revision 1
+**Guide for Conducting Risk Assessments**
+This document provides guidance for conducting risk assessments of federal information systems and organizations, amplifying the guidance in SP 800-39. Risk assessments carried out at all three tiers in the risk management hierarchy are part of an overall risk management process that provides senior leaders/executives with the information needed to determine appropriate courses of action in response to identified risks.
+
+### SP 800-37, Revision 2
+**Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy**
+This publication describes the Risk Management Framework (RMF) and provides guidelines for applying the RMF to information systems and organizations. The RMF offers a disciplined, structured, and flexible process for managing security and privacy risk, which includes:
+- Information security categorization
+- Control selection, implementation, and assessment
+- System and common control authorizations
+- Continuous monitoring
+
+### SP 800-39
+**Managing Information Security Risk: Organization, Mission, and Information System View**
+This document provides guidance for an integrated, organization-wide program for managing information security risk to organizational operations (i.e., mission, functions, image, and reputation), organizational assets, individuals, other organizations, and the Nation resulting from the operation and use of federal information systems.
+
+### SP 800-53, Revision 5
+**Security and Privacy Controls for Information Systems and Organizations**
+This publication provides a catalog of security and privacy controls for information systems and organizations to protect:
+- Organizational operations and assets
+- Individuals
+- Other organizations
+- The Nation from a diverse set of threats and risks, including hostile attacks, human errors, natural disasters, structural failures, foreign intelligence entities, and privacy risks.
+
+### SP 800-53B
+**Control Baselines for Information Systems and Organizations**
+This document provides security and privacy control baselines for the Federal Government. There are three security control baselines – one for each system impact level (i.e., low-impact, moderate-impact, and high-impact) – and a privacy baseline that is applied to systems irrespective of impact level.
+
+### SP 800-160 Vol. 1, Revision 1
+**Systems Security Engineering**
+This publication addresses the engineering-driven perspective and actions necessary to develop more defensible and survivable systems, inclusive of the machine, physical, and human components comprising the systems, capabilities, and services delivered by those systems.
+
+### SP 800-160 Vol. 2, Revision 1
+**Developing Cyber Resilient Systems: A Systems Security Engineering Approach**
+This handbook is designed for achieving identified cyber resiliency outcomes based on a systems engineering perspective on system life cycle processes in conjunction with risk management processes, allowing the experience and expertise of the organization to help determine what is correct for its purpose.
+
+### SP 800-181, Revision 1
+**National Initiative for Cybersecurity Education (NICE)**
+This document outlines the National Initiative for Cybersecurity Education and its objectives.# Cybersecurity Workforce Framework
+
+A fundamental reference for describing and sharing information about cybersecurity work. It expresses that work as Task statements and describes Knowledge and Skill statements that provide a foundation for learners, including students, job seekers, and employees.
+
+## NIST Publications
+
+### NIST IR 7622: Notional Supply Chain Risk Management Practices for Federal Information Systems
+
+Provides a wide array of practices that help mitigate supply chain risk to federal information systems. It seeks to equip federal departments and agencies with a notional set of repeatable and commercially reasonable supply chain assurance methods and practices that offer a means to obtain an understanding of and visibility throughout the supply chain.
+
+### NIST IR 8179: Criticality Analysis Process Model: Prioritizing Systems and Components
+
+Helps organizations identify those systems and components that are most vital and may need additional security or other protections.
+
+### NIST IR 8276: Key Practices in Cyber Supply Chain Risk Management: Observations from Industry
+
+Provides a set of Key Practices that any organization can use to manage the cybersecurity risks associated with their supply chains. The Key Practices presented in this document can be used to implement a robust Cyber Supply Chain Risk Management (C-SCRM) function at an organization of any size, scope, and complexity. These practices combine the information contained in existing C-SCRM government and industry resources with the information gathered during the 2015 and 2019 NIST research initiatives.
+
+### NIST IR 8286: Identifying and Estimating Cybersecurity Risk for Enterprise Risk Management (ERM)
+
+Helps individual organizations within an enterprise improve their cybersecurity risk information, which they provide as inputs to their enterprise’s ERM processes through communication and risk information sharing.
+
+### NIST IR 8286A: Identifying and Estimating Cybersecurity Risk for Enterprise Risk Management
+
+Offers examples and information to illustrate risk tolerance, risk appetite, and methods for determining risks in that context. To support the development of an Enterprise Risk Register, this report describes the documentation of various scenarios based on the potential impact of threats and vulnerabilities on enterprise assets. Documenting the likelihood and impact of various threat events through cybersecurity risk registers integrated into an enterprise risk profile helps to later prioritize and communicate enterprise cybersecurity risk response and monitoring.
+
+### NIST IR 8286B: Prioritizing Cybersecurity Risk for Enterprise Risk Management
+
+Provides detail regarding stakeholder risk guidance and risk identification and analysis. This second publication describes the need for determining the priorities of each of those risks in light of their potential impact on enterprise objectives, as well as options for properly treating that risk. This report describes how risk priorities and risk response are managed.# Cybersecurity Risk Management Overview
+
+## Introduction
+Information is added to the cybersecurity risk register (CSRR) in support of an overall enterprise risk register. Information about the selection of and projected cost of risk response will be used to maintain a composite view of cybersecurity risks throughout the enterprise, which may be used to confirm and adjust risk strategy to ensure mission success. This publication also draws upon concepts and work from other regulations, government reports, standards, guidelines, and best practices. A full list of those resources can be found in Appendix H.
+
+## Key Takeaways
+
+### The Supply Chain
+ICT/OT relies on a globally distributed, interconnected supply chain ecosystem that consists of public and private sector entities (e.g., acquirers, suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers).
+
+### Supply Chain Products and Services
+Products and services that enterprises rely on the supply chain for include:
+- The provision of systems and system components
+- Open source and custom software
+- Operational support services
+- Hosting systems and services
+- Performing system support roles
+
+### Supply Chain Benefits and Risk
+This ecosystem offers benefits such as:
+- Cost savings
+- Interoperability
+- Rapid innovation
+- Product feature variety
+- The ability to choose between competing vendors
+
+However, the same mechanisms that provide those benefits might also introduce a variety of cybersecurity risks throughout the supply chain (e.g., a supplier disruption that causes a reduction in service levels and leads to dissatisfaction from the enterprise’s customer base).
+
+### Cybersecurity Supply Chain Risk Management (C-SCRM)
+C-SCRM, as described in this document, is a systematic process that aims to help enterprises manage cybersecurity risks throughout the supply chain. Enterprises should identify, adopt, and tailor the practices described in this document to best suit their unique strategic, operational, and risk context.
+
+### Scope of C-SCRM
+C-SCRM encompasses a wide array of stakeholder groups that include:
+- Information security and privacy
+- System developers and implementers
+- Acquisition
+- Procurement
+- Legal
+- HR
+
+C-SCRM covers activities that span the entire system development life cycle (SDLC), from initiation to disposal. In addition, identified cybersecurity risks throughout the supply chain should be aggregated and contextualized as part of enterprise risk management processes to ensure that the enterprise understands the total risk exposure of its critical operations to different risk types (e.g., financial risk, strategic risk).
+
+## Integration of C-SCRM Into Enterprise-Wide Risk Management
+C-SCRM should be integrated into the enterprise-wide risk management process described in [SP80039] and depicted in Fig. 3. This process includes the following continuous and iterative steps:
+
+1. **Frame risk**: Establish the context for risk-based decisions and the current state of the enterprise’s information and communications technology and services and the associated supply chain.
+2. **Assess risk**: Review and interpret criticality, threat, vulnerability, likelihood, impact, and related information.
+3. **Respond to risk**: Select, tailor, and implement mitigation controls based on risk assessment findings.# Cybersecurity Supply Chain Risk Management (C-SCRM)
+
+## Monitor Risk
+- Monitor risk exposure and the effectiveness of mitigating risk on an ongoing basis.
+- Track changes to an information system or supply chain using effective enterprise communications and a feedback loop for continuous improvement.
+
+## Managing Cybersecurity Risks
+Managing cybersecurity risks throughout the supply chain is a complex undertaking that requires:
+- Cultural transformation
+- A coordinated, multidisciplinary approach across an enterprise.
+
+### Engagement from Stakeholders
+Effective cybersecurity supply chain risk management (C-SCRM) requires engagement from:
+- Stakeholders inside the enterprise (e.g., departments, processes)
+- Stakeholders outside of the enterprise (e.g., suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers)
+
+### Collaboration and Communication
+Stakeholders must actively collaborate, communicate, and take actions to secure favorable C-SCRM outcomes. Successful C-SCRM requires:
+- An enterprise-wide cultural shift to a state of heightened awareness and preparedness regarding potential cybersecurity risks throughout the supply chain.
+
+## Infusing Perspectives
+Enterprises should aim to infuse perspectives from multiple disciplines and processes into their approaches to managing cybersecurity risks throughout the supply chain, including:
+- Information security
+- Procurement
+- Enterprise risk management
+- Engineering
+- Software development
+- IT
+- Legal
+- HR
+
+### Defining Roles
+Enterprises may define explicit roles to bridge and integrate these processes as part of the broader risk management activities. This orchestrated approach is integral to:
+- Identifying C-SCRM priorities
+- Developing solutions
+- Incorporating C-SCRM into overall risk management decisions
+
+## C-SCRM Activities
+Enterprises should perform C-SCRM activities as part of:
+- Acquisition
+- Software Development Life Cycle (SDLC)
+- Broader enterprise risk management processes
+
+### Embedded C-SCRM Activities
+Embedded C-SCRM activities involve:
+- Determining the criticality of functions and their dependency on supplied products and services
+- Identifying and assessing applicable risks
+- Determining appropriate mitigating actions
+- Documenting selected risk response actions
+- Monitoring performance of C-SCRM activities
+
+### Tailored C-SCRM Plans
+Organizations should ensure that tailored C-SCRM plans are designed to:
+- Manage rather than eliminate risk, as risk is integral to the pursuit of value
+- Ensure that operations can adapt to constantly emerging or evolving threats
+- Be responsive to changes within their own organization, programs, and the supporting information systems
+- Adjust to the rapidly evolving practices of the private sector’s global ICT supply chain
+
+## 2.1 The Business Case for C-SCRM
+Today, every enterprise heavily relies on digital technology to fulfill its business and mission. Digital technology is comprised of ICT/OT products and is delivered through and supported by...# Cyber Supply Chain Risk Management (C-SCRM)
+
+C-SCRM is a critical capability that every enterprise needs to have to address cybersecurity risks throughout the supply chain that arise from the use of digital technology. The depth, extent, and maturity of a C-SCRM capability for each enterprise should be based on the uniqueness of its business or mission, enterprise-specific compliance requirements, operational environment, risk appetite, and risk tolerance.
+
+## Benefits of Establishing a C-SCRM Capability
+
+Establishing and sustaining a C-SCRM capability creates a number of significant benefits:
+
+- **Understanding Critical Assets**: An established C-SCRM program will enable enterprises to understand which critical assets are most susceptible to supply chain weaknesses and vulnerabilities.
+
+- **Reducing Compromise Likelihood**: C-SCRM reduces the likelihood of supply chain compromise by a cybersecurity threat by enhancing an enterprise’s ability to effectively detect, respond, and recover from events that result in significant business disruptions should a C-SCRM compromise occur.
+
+- **Achieving Operational Efficiencies**: Operational and enterprise efficiencies are achieved through clear structure, purpose, and alignment with C-SCRM capabilities and the prioritization, consolidation, and streamlining of existing C-SCRM processes.
+
+- **Assurance of Product Quality**: There is greater assurance that acquired products are of high quality, authentic, reliable, resilient, maintainable, secure, and safe.
+
+- **Trustworthy Suppliers**: There is greater assurance that suppliers, service providers, and the technology products and services that they provide are trustworthy and can be relied upon to meet performance requirements.
+
+## Importance of C-SCRM
+
+C-SCRM is fundamental to any effort to manage risk exposure arising from enterprise operations. Implementing C-SCRM processes and controls requires human, tooling, and infrastructure investments by acquirers and their developers, system integrators, external system service providers, and other ICT/OT-related service providers. However, enterprises have finite resources to commit to establishing and deploying C-SCRM processes and controls.
+
+As such, enterprises should carefully weigh the potential costs and benefits when making C-SCRM resource commitment decisions and make decisions based on a clear understanding of any risk exposure implications that could arise from a failure to commit the necessary resources to C-SCRM.
+
+While there are cost-benefit trade-offs that must be acknowledged, the need to better secure supply chains is an imperative for both government and the private sector. The passage of the 2018 SECURE Technology Act, the formation of the FASC, and the observations from the 2015 and 2019 Case Studies in Cyber Supply Chain Risk Management captured in NIST Interagency or Internal Report (NIST IR) 8276, Key Practices in Cyber Supply Chain Risk Management, point to a broad public and private sector consensus: C-SCRM capabilities are a critical and foundational component of any enterprise’s risk posture.
+
+## Cybersecurity Risks Throughout Supply Chains
+
+Cybersecurity risks throughout the supply chain refer to the potential for harm...# Cybersecurity Risks in Supply Chains
+
+## Overview
+Cybersecurity risks can arise from suppliers, their supply chains, and the products or services they provide. These risks can lead to significant compromises, including the loss of sensitive data and competitive advantages.
+
+## Examples of Cybersecurity Risks
+- **Insider Threats**: Insiders working on behalf of a system integrator may steal sensitive intellectual property, resulting in the loss of a major competitive advantage.
+
+- **Compromised Hardware**: A company designing safety-critical connected devices may use a chipset that has a backdoor or malware implanted by the designer/supplier, leading to potential future attacks and compromise of sensitive data with national security implications.
+
+- **Malicious Software Insertion**: A proxy working on behalf of a nation-state may insert malicious software into supplier-provided product components, resulting in a breach and loss of several government contracts.
+
+- **Vulnerable Code Reuse**: A system integrator may reuse vulnerable code, leading to a breach of mission-critical data with national security implications.
+
+- **Counterfeit Products**: An organized criminal enterprise may introduce counterfeit products into the market, resulting in a loss of customer trust and confidence.
+
+- **Unvetted Suppliers**: A company under contract to produce a critical component may relabel products from an unvetted supplier, leading to the deployment of untrustworthy components into operational systems.
+
+## Impacts of Supply Chain Vulnerabilities
+Supply chain cybersecurity vulnerabilities can lead to persistent negative impacts on an enterprise’s missions, including:
+- Reduction in service levels leading to customer dissatisfaction.
+- Theft of intellectual property.
+- Degradation of critical mission and business processes.
+
+It may take years for such vulnerabilities to be exploited or discovered, and it can be challenging to determine if an event was directly caused by a supply chain vulnerability. Additionally, vulnerabilities in the supply chain are often interconnected, exposing enterprises to cascading cybersecurity risks. For instance, a large-scale service outage at a major cloud services provider may disrupt services for multiple entities within an enterprise’s supply chain, leading to negative effects across various mission and business processes.
+
+## Multilevel Risk Management
+To effectively integrate risk management throughout an enterprise, three levels are described:
+1. **Enterprise Level**
+2. **[Additional levels to be defined]**
+
+*Note: Figure references (e.g., Figure 4 and Figure 5) are mentioned in the original text but are not included here.*# C-SCRM Overview
+
+C-SCRM (Cyber Supply Chain Risk Management) requires the involvement of three levels:
+
+1. **Enterprise Level**
+2. **Mission and Business Process Level**
+3. **Operational Level**
+
+In multilevel risk management, the C-SCRM process is seamlessly carried out across these three tiers with the overall objective of continuous improvement in the enterprise’s risk-related activities and effective inter- and intra-level communication among stakeholders with a vested interest in C-SCRM.
+
+## C-SCRM Activities
+
+C-SCRM activities can be performed by a variety of individuals or groups within an enterprise, ranging from a single individual to committees, divisions, centralized program offices, or any other enterprise structure. These activities are distinct for different enterprises depending on their structure, culture, mission, and many other factors. C-SCRM activities at each of the three levels include the production of different high-level C-SCRM deliverables:
+
+### Level 1: Enterprise
+
+- The overall C-SCRM strategy, policy, and implementation plan set the tone, governance structure, and boundaries for how C-SCRM is managed across the enterprise.
+- These deliverables guide C-SCRM activities performed at the mission and business process levels.
+
+### Level 2: Mission and Business Process
+
+- The mid-level C-SCRM strategies, policies, and implementation plans assume the context and direction set forth at the enterprise level.
+- They tailor the overarching strategy to the specific mission and business process.
+
+### Level 3: Operational
+
+- The C-SCRM plans provide the basis for determining whether an information system meets business, functional, and technical requirements.
+- These plans include appropriately tailored controls and are heavily influenced by the context and direction provided by Level 2.
+
+> **Note:** Figure 6 provides an overview of the multilevel risk management structure and the associated strategies, policies, and plans developed at each level. Refer to Sections 2.3.1 through 2.3.5 for a more in-depth discussion of the specific activities at each level.
+
+## 2.3.1 Roles and Responsibilities Across the Three Levels
+
+Implementing C-SCRM requires enterprises to establish a coordinated team-based approach and a shared responsibility model to effectively manage cybersecurity risks throughout the supply chain.
+
+### Key Points:
+
+- Enterprises should establish and adhere to C-SCRM-related policies.
+- Develop and follow processes that are often cross-enterprise in nature.
+- Employ programmatic and technical mitigation techniques.
+
+The coordinated team approach, whether ad hoc or formal, enables enterprises to effectively conduct a comprehensive, multi-perspective analysis of their supply chain. This approach allows them to respond to risks, communicate with external partners/stakeholders, and gain broad consensus regarding appropriate resources for C-SCRM.
+
+The C-SCRM team should work together to make decisions and take actions based on the input and involvement of multiple perspectives and expertise. The team leverages but does not replace those C-SCRM activities.# C-SCRM Responsibilities and Processes
+
+## Overview
+Effective implementations of Cyber Supply Chain Risk Management (C-SCRM) often include the adoption of a shared responsibility model. This model distributes responsibilities and accountabilities for C-SCRM-related activities and risks across a diverse group of stakeholders.
+
+## Multidisciplinary Approach
+Examples of C-SCRM activities that benefit from a multidisciplinary approach include:
+- Developing a strategic sourcing strategy
+- Incorporating C-SCRM requirements into a solicitation
+- Determining options for mitigating identified supply chain risks, especially those assessed to be significant
+
+## C-SCRM Team Composition
+Members of the C-SCRM team should represent a diverse group of individuals involved in various aspects of the enterprise’s critical processes, including:
+- Information Security
+- Procurement
+- Enterprise Risk Management
+- Engineering
+- Software Development
+- IT
+- Legal
+- Human Resources (HR)
+
+These individuals should provide expertise in enterprise processes and practices specific to their discipline area, as well as an understanding of the technical aspects and inter-dependencies of systems or information flowing through systems.
+
+## Team Structure
+The C-SCRM team may:
+- Be an extension of the enterprise’s existing enterprise risk management function
+- Evolve as part of the enterprise’s cybersecurity risk management function
+- Operate out of a different department
+
+### Breaking Down Barriers
+The key to forming multidisciplinary C-SCRM teams is breaking down barriers between otherwise disparate functions within the enterprise. Many enterprises initiate this process from the top by establishing a working group or council of senior leaders with representation from necessary and appropriate functional areas.
+
+#### Establishing a Charter
+A charter should be established outlining:
+- Goals
+- Objectives
+- Authorities
+- Meeting cadences
+- Responsibilities of the working group
+
+## Operationalizing the Approach
+Once the council is formed, decisions can be made on how to operationalize the interdisciplinary approach at mission and business process and operational levels. This often takes the form of working groups consisting of mission and business process representatives who can meet regularly to address operational and tactically focused C-SCRM challenges.
+
+## Stakeholder Summary
+Table 1 shows a summary of C-SCRM stakeholders for each level, along with the specific C-SCRM activities performed within the corresponding level. These activities are either direct C-SCRM activities or have an impact on C-SCRM.
+
+## Continuous Improvement
+The C-SCRM process should be carried out across three risk management levels with the overall objective of continuous improvement of the enterprise’s risk-related activities. Effective inter- and intra-level communication is essential, integrating both strategic and tactical activities among all stakeholders with a shared interest in the mission and business success of the enterprise.
+
+### Engagement of Stakeholders
+Whether addressing a component, system, process, mission process, or policy, it is important to engage the relevant C-SCRM stakeholders at each level to ensure that risk is effectively managed.# C-SCRM Overview
+
+Management activities are as informed as possible. Figure 7 illustrates the relationship between key C-SCRM documents across the three levels. The next few sections provide example roles and activities at each level. Because every enterprise is different, however, activities may be performed at different levels than listed and as individual enterprise context requires.
+
+## Appendix A
+
+Appendix A provides a number of mission and business C-SCRM controls that organizations can utilize in a tailored capacity to help guide Level 1, Level 2, and Level 3 C-SCRM activities. Note that the tailoring should be scoped to the organization’s risk management needs, and organizations should analyze the cost of not implementing C-SCRM policies, capabilities, and controls when evaluating alternative risk response courses of action. These costs may include:
+
+- Poor quality or counterfeit products
+- Supplier misuse of intellectual property
+- Supplier tampering with or compromise of mission-critical information
+- Exposure to cyber attacks through vulnerable supplier information systems
+
+## 2.3.2 Level 1 — Enterprise
+
+Effective C-SCRM requires commitment, direct involvement, and ongoing support from senior leaders and executives. Enterprises should designate the responsibility for leading agency-wide SCRM activities to an executive-level individual, office (supported by an expert staff), or group (e.g., a risk board, executive steering committee, or executive leadership council) regardless of an agency’s specific organizational structure.
+
+Because cybersecurity risks throughout the supply chain can be present across every major business line, enterprises should ensure that C-SCRM roles and responsibilities are defined for senior leaders who participate in supply chain activities (e.g., acquisition and procurement, information security, information technology, legal, program management, and supply chain and logistics). Without establishing executive oversight of C-SCRM activities, enterprises are limited in their ability to make risk decisions across the organization about how to effectively secure their products and services.
+
+### Level 1 Activities
+
+Level 1 (Enterprise) sets the tone and direction for enterprise-wide C-SCRM activities by providing an overarching C-SCRM strategy, a C-SCRM policy, and a High-level Implementation Plan that shapes how C-SCRM is implemented across the enterprise. Within Level 1, governance structures are formed to enable senior leaders and executives to collaborate on C-SCRM with the risk executive (function), make C-SCRM decisions, delegate decisions to Level 2 and Level 3, and prioritize enterprise-wide resource allocation for C-SCRM.
+
+Level 1 activities help to ensure that C-SCRM mitigation strategies are consistent with the strategic goals and objectives of the enterprise. Level 1 activities culminate in the C-SCRM Strategy, Policy, and High-Level Implementation Plan that shape and constrain how C-SCRM is carried out at Level 2 and Level 3.
+
+Ownership and accountability for cybersecurity risks in the supply chain ultimately lie with the head of the organization.
+
+- Decision-makers are informed by an organization’s risk profile, risk appetite, and risk tolerance levels.
+- Processes should address when and how the escalation of risk decisions needs to occur.# C-SCRM Governance and Accountability
+
+## Ownership and Delegation
+- Ownership should be delegated to authorizing officials within the agency based on their executive authority over organizational missions, business operations, or information systems.
+- Authorizing officials may further delegate responsibilities to designated officials who are responsible for the day-to-day management of risk.
+
+## Importance of Senior Leadership
+C-SCRM requires accountability, commitment, oversight, direct involvement, and ongoing support from senior leaders and executives. Enterprises should ensure that C-SCRM roles and responsibilities are defined for senior leaders who participate in supply chain activities, including:
+- Acquisition and procurement
+- Information security
+- Information technology
+- Legal
+- Program management
+- Supply chain and logistics
+
+## Executive Board Responsibilities
+At Level 1, an executive board is typically responsible for evaluating and mitigating all risks across the enterprise. This is generally achieved through an Enterprise Risk Management (ERM) council. Effective C-SCRM gathers perspectives from leaders, generally within the ERM council, such as:
+- Chief Executive Officer (CEO)
+- Chief Risk Officer (CRO)
+- Chief Information Officer (CIO)
+- Chief Legal Officer (CLO)/General Counsel
+- Chief Information Security Officer (CISO)
+- Chief Acquisition Officer (CAO)
+
+These leaders inform advice and recommendations from the CIO and CISO to the executive board.
+
+## C-SCRM Council
+CIOs and/or CISOs may form a C-SCRM-oriented body to provide in-depth analysis to inform the executive board’s ERM council. The C-SCRM council serves as a forum for:
+- Setting priorities
+- Managing cybersecurity risk in the supply chain for the enterprise
+
+The C-SCRM council or other C-SCRM-oriented body is responsible for developing the C-SCRM enterprise-wide strategy. This strategy makes explicit the enterprise’s assumptions, constraints, risk tolerances, and priorities/trade-offs as established by the ERM council.
+
+## Integration with Enterprise Risk Management
+C-SCRM is integrated into the organization’s overall enterprise risk management through the CIO and/or CISO membership within the executive board’s ERM council. These leaders are also responsible and accountable for:
+- Developing and promulgating a holistic set of policies that span the enterprise’s mission and business processes
+- Guiding the establishment and maturation of a C-SCRM capability
+- Implementing a cohesive set of C-SCRM activities
+
+## Establishing a C-SCRM PMO
+Leaders should establish a C-SCRM Project Management Office (PMO) or other dedicated C-SCRM-related function to:
+- Drive C-SCRM activities
+- Serve as a fulcrum for coordinated, C-SCRM-oriented services and guidance to the enterprise
+
+Leaders should also clearly articulate the lead roles at the mission and business process level that are responsible and accountable for detailing action plans and executing C-SCRM activities.
+
+## Conclusion
+Enterprises should consider that without establishing executive oversight of C-SCRM activities, they are limited in their ability to make risk decisions across the organization about how to effectively secure their products and services.# C-SCRM Governance Structures and Operational Model
+
+## Overview
+The C-SCRM governance structures and operational model dictate the authority, responsibility, and decision-making power for C-SCRM and define how C-SCRM processes are accomplished within the enterprise. The best C-SCRM governance and operating model is one that meets the business and functional requirements of the enterprise.
+
+## Governance Models
+- **Centralized Model**:
+- Enterprises facing strict budgetary constraints or stiff C-SCRM requirements may consider governance and operational models that centralize the decision-making authority.
+- This model often relies on a C-SCRM PMO to consolidate responsibilities for resource-intensive tasks, such as vendor risk assessments.
+
+- **Decentralized Model**:
+- Enterprises that have mission and business processes governed with a high degree of autonomy or that possess highly differentiated C-SCRM requirements may opt for decentralized authority, responsibilities, and decision-making power.
+
+## C-SCRM Framing
+In addition to defining C-SCRM governance structures and operating models, Level 1 carries out the activities necessary to frame C-SCRM for the enterprise.
+
+### Definition
+C-SCRM framing is the process by which the enterprise makes explicit the assumptions about cybersecurity risks throughout the supply chain, including:
+- **Threats**
+- **Vulnerabilities**
+- **Risk Impact**
+- **Risk Likelihood**
+- **Constraints** (e.g., enterprise policies, regulations, resource limitations)
+- **Appetite and Tolerance**
+- **Priorities and Trade-offs**
+
+### Purpose
+The risk framing process provides the inputs necessary to establish the C-SCRM strategy that dictates how the enterprise plans to assess, respond to, and monitor cybersecurity risks throughout the supply chain. A high-level implementation plan should also be developed to guide the execution of the enterprise’s C-SCRM strategy. The risk framing process is discussed in further detail in Appendix C.
+
+## C-SCRM Policy
+Informed by the risk framing process and the C-SCRM strategy, Level 1 provides the enterprise’s C-SCRM policy.
+
+### Components
+The C-SCRM policy:
+- Establishes the C-SCRM program’s purpose
+- Outlines the enterprise’s C-SCRM responsibilities
+- Defines and grants authority to C-SCRM roles across the enterprise
+- Outlines applicable C-SCRM compliance and enforcement expectations and processes
+
+Appendix C provides example templates for the C-SCRM Strategy and C-SCRM Policy.
+
+## Risk Assessment Activities
+Risk assessment activities performed at Level 1 focus on assessing, responding to, and monitoring cybersecurity risks throughout the supply chain.
+
+### Assessment Basis
+Level 1 risk assessments may be based on:
+- The enterprise’s Level 1 Frame step (i.e., assumptions, constraints, appetite, tolerances, priorities, and trade-offs)
+- Aggregated enterprise-level assumptions based on risk assessments completed across multiple mission and business processes.
+
+### Example
+For example, a Level 1 risk assessment may assess the exposure to threats to enterprise objectives that arise through supply chain products or services. Level 1 risk assessments may also aim to aggregate and recontextualize risk assessments completed at Level 2 to describe risk scenarios.# Cybersecurity Supply Chain Risk Management (C-SCRM)
+
+## Reporting and Decision-Making
+
+Reporting plays an important role in equipping Level 1 decision-makers with the context necessary to make informed decisions on how to manage cybersecurity risks throughout the supply chain. Reporting should focus on enterprise-wide trends and include coverage of:
+
+- The extent to which C-SCRM has been implemented across the enterprise
+- The effectiveness of C-SCRM
+- The conditions related to cybersecurity risks throughout the supply chain
+
+C-SCRM reports should highlight any conditions that require urgent leadership attention and/or action and may benefit from highlighted C-SCRM risk and performance trends over a period of time.
+
+Those responsible and accountable for C-SCRM within the enterprise should work with leaders to identify reporting requirements, such as frequency, scope, and format. Reporting should include metrics discussed further in Section 3.5.1.
+
+## Level 1 Activities
+
+Level 1 activities ultimately provide the overarching context and boundaries within which the enterprise’s mission and business processes manage cybersecurity risks throughout the supply chain. Outputs from Level 1 (e.g., C-SCRM Strategy, C-SCRM Policy, Governance, and Operating Model) are further tailored and refined within Level 2 to fit the context of each mission and business process. Level 1 outputs should also be iteratively informed by and updated as a result of C-SCRM outputs at lower levels.
+
+Note that, in complex enterprises, Level 1 activities may be completed at an enterprise level and at an individual organization level. Enterprise Level 1 activities should shape and guide Organization Level 1 activities.
+
+Additional information can be found in Appendix A of this document and SR-1, SR-3, PM-2, PM-6, PM-7, PM-9, PM-28, PM-29, PM-30, and PM-31 of NIST SP 800-53, Rev. 5.
+
+## Level 2 — Mission and Business Process
+
+Level 2 addresses how the enterprise mission and business processes assess, respond to, and monitor cybersecurity risks throughout the supply chain. Level 2 activities are performed in accordance with the C-SCRM strategy and policies provided by Level 1.
+
+In this level, process-specific C-SCRM strategies, policies, and implementation plans dictate how the enterprise’s C-SCRM goals and requirements are met within each mission and business process. Here, specific C-SCRM program requirements are defined and managed and include:
+
+- Cost
+- Schedule
+- Performance
+- Security
+- A variety of critical non-functional requirements
+
+These non-functional requirements include concepts such as reliability, dependability, safety, security, and quality.
+
+### Level 2 Roles
+
+Level 2 roles include representatives of each mission and business process, such as:
+
+- Program managers
+- Research and development
+- Acquisitions/procurement
+
+Level 2 C-SCRM activities address C-SCRM within the context of the enterprise’s mission and business process. Specific strategies, policies, and procedures should be developed to tailor the C-SCRM implementation to fit the specific requirements of each mission and business process.
+
+In order to further develop the high-level Enterprise Strategy and Implementation Plan, different mission areas or...# C-SCRM Strategy and Implementation
+
+## Overview
+Business lines within the enterprise may need to generate their own tailored mission and business-level strategy and implementation plan. They should ensure that C-SCRM execution occurs within the constraints defined by higher-level C-SCRM strategies and in conformance with C-SCRM policies.
+
+## Development and Execution of Level 2 Strategy
+To facilitate the development and execution of Level 2 Strategy and Implementation plans, enterprises may benefit from forming a committee with representation from each mission and business process. Coordination and collaboration between the mission and business processes can help drive risk awareness, identify cybersecurity risks throughout the supply chain, and support the development of an enterprise and C-SCRM architecture. A C-SCRM PMO may also assist in the implementation of C-SCRM at Level 2 through the provision of services (e.g., policy templates, C-SCRM subject matter expert [SME] support).
+
+## Addressing Threats at Level 2
+Many threats to and through the supply chain are addressed at Level 2 in the management of third-party relationships with suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers. Because C-SCRM can both directly and indirectly impact mission processes, understanding, integrating, and coordinating C-SCRM activities at this level are critical.
+
+### Focus of Level 2 Activities
+Level 2 activities focus on tailoring and applying the enterprise’s C-SCRM frame to fit the specific mission and business process threats, vulnerabilities, impacts, and likelihoods. Informed by outputs from Level 1 (e.g., C-SCRM strategy), mission and business processes will adopt a C-SCRM strategy that tailors the enterprise’s overall strategy to a specific mission and business process. At Level 2, the enterprise may also issue mission and business process-specific policies that contextualize the enterprise’s policy for the process.
+
+## C-SCRM Implementation Plan
+In accordance with the C-SCRM strategy, enterprise leaders for specific mission and business processes should develop and execute a C-SCRM implementation plan. The C-SCRM implementation plan provides a more detailed roadmap for operationalizing the C-SCRM strategy within the mission and business process.
+
+### Components of the Implementation Plan
+Within the C-SCRM implementation plans, the mission and business process will specify:
+- C-SCRM roles
+- Responsibilities
+- Implementation milestones
+- Dates
+- Processes for monitoring and reporting
+
+Appendix D of this document provides example templates for the C-SCRM Strategy, Implementation Plan, and the C-SCRM Policy.
+
+## Risk Exposure Assessment
+C-SCRM activities performed at Level 2 focus on assessing, responding to, and monitoring risk exposure arising from the mission and business process dependencies on suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers. Risk exposures to the supply chain may occur as a result of primary dependencies on the supply chain or secondary dependencies on individual information systems.# Cybersecurity Risk Management (C-SCRM)
+
+## Overview
+Cybersecurity risks can arise from various sources, including suppliers providing critical system components or services to multiple information systems. These risks can impact critical processes and may also stem from vendor-sourced products and services that are not directly related to information systems.
+
+## Non-Traditional Cybersecurity Risks
+Enterprises should be aware of non-traditional sources of cybersecurity risks throughout the supply chain. These risks may bypass or escape C-SCRM processes, particularly those associated with the use of open-source software. It is essential for enterprises to establish policies and controls to manage these non-traditional cybersecurity risks effectively.
+
+## Reporting at Level 2
+Reporting at Level 2 is crucial for equipping mission and business process leaders with the necessary context to manage C-SCRM within their specific areas.
+
+### Key Aspects of Level 2 Reporting
+- Topics covered at Level 2 will mirror those at Level 1 but will be tailored to focus on specific mission and business processes.
+- Level 2 reporting should include metrics that demonstrate performance in relation to the enterprise-defined risk appetite and risk tolerance statements established at Levels 1 and 2.
+- Reporting requirements must be defined to meet the needs of leaders in mission and business processes.
+
+### Impact of Level 2 Outputs
+Outputs from Level 2 activities significantly influence how C-SCRM activities are executed at Level 3. For instance:
+- Risk tolerance and common control baseline decisions may be established at Level 2 and then tailored for individual information systems at Level 3.
+- Level 2 outputs should iteratively inform and refine Level 1 outputs.
+
+## Additional Information
+Further details can be found in Appendix A of this document and in the following sections of NIST SP 800-53, Rev. 5: SR-1, SR-3, SR-6, PM-2, PM-6, PM-7, PM-30, PM-31, and PM-32.
+
+## Level 3 — Operational
+Level 3 consists of personnel responsible for operational activities, including:
+- Conducting procurements
+- Executing system-related C-SCRM activities as part of the enterprise’s Software Development Life Cycle (SDLC)
+
+### Roles Involved
+Personnel at this level include:
+- System owners
+- Contracting officers
+- Contracting officer representatives
+- Architects
+- System engineers
+- Information security specialists
+- System integrators
+- Developers
+
+### Responsibilities
+These individuals are tasked with developing C-SCRM plans that encompass:
+- Management
+- Implementation assurance
+- Monitoring of C-SCRM controls (including those applicable to external parties, such as contractors)
+- Acquisition, development, and sustainment of systems and components throughout the SDLC# C-SCRM Overview
+
+## Support Mission and Business Processes
+
+In enterprises where a C-SCRM PMO has been established, activities such as product risk assessments may be provided as a centralized, shared service.
+
+## Level 3 C-SCRM Activities
+
+Within Level 3, outputs provided by C-SCRM activities completed at Level 1 and Level 2 prepare the enterprise to execute C-SCRM at the operational level in accordance with the RMF [SP80037]. C-SCRM is applied to information systems through the development and implementation of C-SCRM plans.
+
+### Influencing Factors
+
+These plans are heavily influenced by:
+- Assumptions
+- Constraints
+- Risk appetite and tolerance
+- Priorities
+- Trade-offs defined by Level 1 and Level 2
+
+### Integration into SDLC
+
+C-SCRM plans dictate how C-SCRM activities are integrated into all systems in the Software Development Life Cycle (SDLC):
+- Acquisition (both custom and off-the-shelf)
+- Requirements
+- Architectural design
+- Development
+- Delivery
+- Installation
+- Integration
+- Maintenance
+- Disposal/retirement
+
+In general, C-SCRM plans are implementation-specific and provide policy implementation, requirements, constraints, and implications for systems that support mission and business processes.
+
+## Managing Operational-Level Risk
+
+Level 3 activities focus on managing operational-level risk exposure resulting from any ICT/OT related products and services provided through the supply chain that are in use by the enterprise or fall within the scope of the systems authorization boundary.
+
+### Risk Analysis
+
+Level 3 C-SCRM activities begin with an analysis of the likelihood and impact of potential supply chain cybersecurity threats exploiting an operational-level vulnerability (e.g., in a system or system component). Where applicable, these risk assessments should be informed by risk assessments completed in Level 1 and Level 2.
+
+### Risk Response
+
+In response to determining risk, enterprises should evaluate alternative courses of action for reducing risk exposure (e.g., accept, avoid, mitigate, share, and/or transfer). Risk response is achieved by selecting, tailoring, implementing, and monitoring C-SCRM controls throughout the SDLC in accordance with the RMF [SP80037].
+
+### C-SCRM Controls
+
+Selected C-SCRM controls often consist of a combination of inherited common controls from Level 1 and Level 2 and information system-specific controls at Level 3.
+
+## Reporting at Level 3
+
+Reporting at Level 3 should focus on the C-SCRM’s implementation, efficiency, effectiveness, and the overall level of exposure to cybersecurity risks in the supply chain for the particular system.
+
+### System-Level Reporting
+
+System-level reporting should provide system owners with tactical-level insights that enable them to make rapid adjustments and respond to risk conditions. Level 3 reporting should include metrics that demonstrate performance against the enterprise risk appetite statements and risk tolerance statements defined at Levels 1, 2, and 3.
+
+## Development of the C-SCRM Plan
+
+A critical Level 3 activity is the development of the C-SCRM plan. Along with applicable security control information, the C-SCRM plan includes information on:
+- The system
+- Its categorization
+- Operational status
+- Related agreements
+- Architecture
+- Critical system personnel
+- Related laws, regulations, and policies
+- Contingency plan
+
+In C-SCRM, continuous hygiene is essential.# C-SCRM Plan Overview
+
+The C-SCRM plan is a living document that should be maintained and used as the reference for the continuous monitoring of implemented C-SCRM controls. C-SCRM plans are intended to be referenced regularly and should be reviewed and refreshed periodically. These plans are not merely documents developed to satisfy compliance requirements. Instead, enterprises should demonstrate how they have historically and continue to effectively employ their plans to shape, align, inform, and take C-SCRM actions and decisions across all three levels.
+
+## Information Gathering
+
+Information gathered as part of Level 3 C-SCRM activities should iteratively inform C-SCRM activities completed within Level 1 and Level 2 to further refine C-SCRM strategies and implementation plans. Additional information can be found in Appendix A of this document and in the following sections of NIST SP 800-53, Rev. 5: SR-1, SR-2, SR-6, PL-2, PM-31, and PM-32.
+
+## C-SCRM PMO
+
+A variety of operating models (e.g., centralized, decentralized, hybrid) facilitate C-SCRM activities across the enterprise and its mission and business processes. One such model involves concentrating and assigning responsibilities for certain C-SCRM activities to a central PMO (Project Management Office).
+
+### Role of the C-SCRM PMO
+
+In this model, the C-SCRM PMO acts as a service provider to other mission and business processes. Mission and business processes are then responsible for selecting and requesting services from the C-SCRM PMO as part of their responsibilities to meet the enterprise’s C-SCRM goals and objectives.
+
+### Beneficial Services Provided by a PMO
+
+A variety of beneficial services that a PMO may provide include:
+
+- Advisory services and subject matter expertise
+- Chair for internal C-SCRM working groups, councils, or other coordination bodies
+- Centralized hub for tools, job aids, awareness, and training templates
+- Supplier and product risk assessments
+- Liaison to external stakeholders
+- Information-sharing management (e.g., intra-department/agency and to/from FASC)
+- Management of C-SCRM risk register
+- Secretariat/staffing function for enterprise C-SCRM governance
+- C-SCRM project and performance management
+- C-SCRM briefings, presentations, and reporting
+
+### Composition of a C-SCRM PMO
+
+A C-SCRM PMO typically consists of C-SCRM SMEs (Subject Matter Experts) who help drive the C-SCRM strategy and implementation across the enterprise and its mission and business processes. A C-SCRM PMO may include or report to a dedicated executive-level official responsible and accountable for overseeing C-SCRM activities across the enterprise.
+
+A C-SCRM PMO should consist of dedicated personnel or include matrixed representatives with responsibilities for C-SCRM from several of the enterprise’s processes, including:
+
+- Information security
+- Procurement
+- Risk management
+- Engineering
+- Software development
+- IT
+- Legal
+- HR
+
+Regardless of whether a C-SCRM PMO sits at Level 1 or Level 2, it is critical that the C-SCRM PMO includes cross-disciplinary representation.# C-SCRM PMO Responsibilities
+
+## Overview
+The C-SCRM PMO (Cyber Supply Chain Risk Management Project Management Office) has several responsibilities that may include providing services to the enterprise’s leaders to set the tone for how C-SCRM is applied throughout the organization.
+
+## Level 1 Responsibilities
+- **SME Support**: The C-SCRM PMO may provide Subject Matter Expert (SME) support to guide Level 1 stakeholders through the risk framing process, which includes:
+- Establishing the enterprise appetite and tolerance for cybersecurity risks throughout the supply chain.
+- **Strategy and Policy Drafting**: Accountable risk executives may delegate the responsibility of drafting the enterprise’s C-SCRM strategy and policy to the PMO.
+- **Information Sharing**: The PMO may coordinate C-SCRM information-sharing internally or with external entities.
+- **Executive-Level Briefings**: The PMO may conduct C-SCRM-focused executive-level briefings (e.g., to the risk executive function, board of directors) to help Level 1 stakeholders develop an aggregated view of cybersecurity risks throughout the supply chain.
+
+## Level 2 Responsibilities
+At Level 2, the C-SCRM PMO may:
+- **Develop Starter Kits**: Create C-SCRM starter kits that contain a base strategy and a set of policies, procedures, and guidelines that can be further customized within specific mission and business processes.
+- **Consulting Support**: Provide SME consulting support to stakeholders within mission and business processes as they create process-specific C-SCRM strategies and develop C-SCRM implementation plans.
+- **Common Control Baselines**: Advise on or develop C-SCRM common control baselines within the enterprise mission and business processes.
+- **Risk Assessments**: Perform C-SCRM risk assessments focused on:
+- Suppliers
+- Developers
+- System integrators
+- External system service providers
+- Other ICT/OT-related service providers of both technology- and non-technology-related products and services.
+
+## Influence on Level 3 Activities
+The responsibilities of a C-SCRM PMO at Level 1 and Level 2 ultimately influence C-SCRM activities at the Level 3 operational level. A C-SCRM PMO may:
+- Advise teams throughout the Software Development Life Cycle (SDLC) on C-SCRM control selection, tailoring, and monitoring.
+- Be responsible for activities that produce C-SCRM outputs across the risk management levels.
+
+## Benefits of Centralizing C-SCRM Services
+Centralizing C-SCRM services offers enterprises an opportunity to:
+- Capitalize on specialized skill sets within a consolidated team that provides high-quality C-SCRM services to the rest of the enterprise.
+- Achieve a level of standardization not otherwise possible in a decentralized model.
+- Realize cost efficiencies when PMO resources are dedicated to C-SCRM activities, as opposed to resources in decentralized models that may perform multiple roles in addition to C-SCRM responsibilities.
+
+## Applicability of C-SCRM PMO Model
+A C-SCRM PMO model will typically favor larger, more complex enterprises that require the standardization of C-SCRM practices across a disparate set of mission and business processes. Ultimately, enterprises should select a C-SCRM operating model that is applicable and suitable for their specific needs.# Current Page Raw OCR Text
+
+## Key Takeaways
+
+### Business Case for C-SCRM
+C-SCRM provides enterprises with a number of benefits, such as an understanding of critical systems, the reduced likelihood of supply chain compromise, operational and enterprise efficiencies, fewer product quality and security issues, and more reliable and trustworthy supplied services.
+
+### Cybersecurity Risk in Supply Chains
+The potential for harm or compromise arising from a relationship with suppliers, their supply chains, and their supplied products or services materializes when a human or non-human threat successfully exploits a vulnerability tied to a system, product, service, or the supply chain ecosystem.
+
+### Multilevel, Multidisciplinary C-SCRM
+As described in [SP80039], multilevel risk management is the purposeful execution and continuous improvement of cybersecurity supply chain risk management activities at the enterprise (e.g., CEO, COO), mission and business process (e.g., business management, R&D), and operational (e.g., systems management) levels. Each level contains stakeholders from multiple disciplines (e.g., information security, procurement, enterprise risk management, engineering, software development, IT, legal, HR) that collectively execute and continuously improve C-SCRM.
+
+### C-SCRM PMO
+A dedicated office known as a C-SCRM PMO may support the enterprise’s C-SCRM activities by providing support products (e.g., policy templates) and services (e.g., vendor risk assessments) to the rest of the enterprise. A C-SCRM PMO may provide support across the three levels and sit at Level 1 or Level 2, depending on the enterprise.
+
+### C-SCRM is a Life Cycle Process
+C-SCRM activities should be integrated and executed throughout the applicable enterprise life cycle processes (e.g., SDLC). For example, cybersecurity supply chain risks in systems can and do materialize during operations and maintenance phases. Organizations should ensure that appropriate C-SCRM activities are in place to assess, respond to, and monitor cybersecurity supply chain risks on a continuous basis.
+
+## 3. Critical Success Factors
+To successfully address evolving cybersecurity risks throughout the supply chain, enterprises need to engage multiple internal processes and capabilities, communicate and collaborate across enterprise levels and mission areas, and ensure that all individuals within the enterprise understand their role in managing cybersecurity risks throughout the supply chain. Enterprises need strategies for communicating, determining how best to implement, and monitoring the effectiveness of their supply chain cybersecurity controls and practices.
+
+In addition to internally communicating cybersecurity supply chain risk management controls, enterprises should engage with peers to exchange C-SCRM insights. These insights will aid enterprises in continuously evaluating how well they are doing and identify where they need to improve and how to take steps to mature their C-SCRM program. This section addresses the requisite enterprise processes and capabilities in making C-SCRM successful. While this publication has chosen to highlight these critical success factors, this represents a non-exhaustive set of factors that contribute to an enterprise’s successful execution of C-SCRM. Critical success factors are fluid and will evolve over time as the environment and the enterprise’s own capability advances.
+
+### 3.1. C-SCRM in Acquisition# Integrating C-SCRM Considerations into Acquisition Activities
+
+Integrating C-SCRM (Cyber Supply Chain Risk Management) considerations into acquisition activities within every step of the procurement and contract management life cycle process is essential to improving management of cybersecurity risks throughout the supply chain.
+
+## Procurement and Contract Management Life Cycle
+
+This life cycle begins with a purchaser identifying a need and includes the processes to:
+
+1. Plan for and articulate requirements
+2. Conduct research to identify and assess viable sources of supply
+3. Solicit bids
+4. Evaluate offers to ensure conformance with C-SCRM requirements
+5. Assess C-SCRM risks associated with the bidder and the proposed product and/or service
+
+After contract award, it is crucial to ensure that the supplier satisfies the terms and conditions articulated in the contractual agreement and that the products and services conform as expected and required.
+
+## Monitoring Cybersecurity Risks
+
+Monitoring for changes that may affect cybersecurity risks in the supply chain should occur throughout the life cycle and may trigger reevaluation of the original assessment or require a mitigation response.
+
+## Importance of C-SCRM in Various Acquisition Processes
+
+Enterprises rely heavily on commercial products and outsourced services to perform operations and fulfill their mission and business objectives. However, it is important to highlight that products and services can also be obtained outside of the procurement process, such as:
+
+- Open source software
+- Relying on an in-house provider for shared services
+- Repurposing an existing product to satisfy a new need
+
+C-SCRM must also be addressed for these other “acquiring” processes.
+
+## Developing an Acquisition Strategy
+
+In addition to addressing cybersecurity risks throughout the supply chain and performing C-SCRM activities during each phase of the acquisition process, enterprises should develop and execute an acquisition strategy that drives reductions in their overall risk exposure.
+
+By applying such strategies, enterprises can reduce cybersecurity risks throughout the supply chain, within specific procurement processes, and for the overall enterprise. Enterprises will aid, direct, and inform efforts to realize targeted risk-reducing outcomes by adopting acquisition policies and processes that integrate C-SCRM into acquisition activities.
+
+## Adoption of C-SCRM Controls
+
+Additionally, by adopting C-SCRM controls aligned to an industry-recognized set of standards and guidelines (e.g., NIST 800-53, Rev.5; NIST CSF), the enterprise can ensure holistic coverage of cybersecurity risks throughout the supply chain and corresponding C-SCRM practices.
+
+C-SCRM controls may apply to different participants of the supply chain, including:
+
+- The enterprise itself
+- Prime contractors
+- Subcontractors
+
+Because enterprises heavily rely on prime contractors and their subcontractors to develop, implement, operate, and maintain ICT/OT products and services, those controls implemented within the Software Development Life Cycle (SDLC) are likely to flow down to subcontractors.
+
+Establishing C-SCRM controls applicable throughout the supply chain and the SDLC will aid the enterprise in establishing a common lexicon and set of expectations with suppliers and sub-suppliers to aid all participants in managing cybersecurity risks throughout the supply chain.# The Supply Chain
+
+## 3.1.1. Acquisition in the C-SCRM Strategy and Implementation Plan
+
+An enterprise’s C-SCRM Strategy and Implementation Plan guides the enterprise toward the achievement of long-term, sustainable reductions in exposure to cybersecurity risks throughout the supply chain. As a core part of the C-SCRM Strategy and Implementation Plan, enterprises should address how this risk is managed throughout the acquisition process.
+
+Cybersecurity risks in the supply chain include those arising from the supplier’s enterprise, products, services, and the supplier’s own suppliers and supply chains. The C-SCRM PMO may be helpful in developing specific strategies and implementation plans for integrating C-SCRM considerations into acquisitions.
+
+### Acquisition Activities Relevant to C-SCRM
+
+Acquisition activities relevant to C-SCRM include:
+
+- Promoting awareness and communicating C-SCRM expectations as part of supplier relationship management efforts.
+- Establishing a checklist of acquisition security requirements that must be completed as part of procurement requests to ensure that necessary provisions and protections are in place.
+- Leveraging an external shared service provider or utilizing the C-SCRM PMO to provide supplier, product, and/or service assessment activities as a shared service to other internal processes, including acquisition.
+- Conducting due diligence to inform determinations about a bidder’s responsibility and to identify and assess bidders’ risk posture or risk associated with a given product or service.
+- Obtaining open source software from vetted and approved libraries.
+- Including C-SCRM criteria in source selection evaluations.
+- Establishing and referencing a list of prohibited suppliers, if appropriate, per applicable regulatory and legal references.
+- Establishing and procuring from an approved products list or list of preferred or qualified suppliers who have demonstrated conformance with the enterprise’s security requirements through a rigorous process defined by the enterprise or another acceptable qualified list program activity.
+- Ensuring that products, including software or logic-bearing products (i.e., hardware), are supplied with a software bill of materials that complies with appropriate agency-approved protocols.
+
+### Foundational Elements for C-SCRM Program
+
+The C-SCRM Strategy and Implementation Plan should address the acquisition security-relevant foundational elements necessary to implement a C-SCRM program. To support the strategy, enterprise leaders should promote the value and importance of C-SCRM within acquisitions and ensure that sufficient, dedicated funding is in place for necessary activities.
+
+Doing so will help enterprises ensure responsibility for program or business processes and accountability for progress toward the attainment of results. Enterprises should build sufficient time into acquisition and project activities to ensure that C-SCRM activities can be completed. Enterprises should also assign roles and responsibilities, some of which will be cross-functional.# Enterprise Acquisition and Cybersecurity Risk Management
+
+## Overview
+The enterprise's capabilities, resources, operational constraints, and existing portfolio of supplier relationships, contracts, acquired services, and products provide the baseline context necessary to lay out a strategic path that is both realistic and achievable. This baseline starting point also serves as a marker by which performance progress and outcomes can be tracked and assessed.
+
+## Inventory of Supplier Relationships
+A critical first step is to ensure that there is a current and accurate inventory of the enterprise’s supplier relationships, contracts, and any products or services those suppliers provide. This information allows for a mapping of these suppliers into strategically relevant groupings as determined by the organization.
+
+### Supplier Groupings
+For example, an assessment of these suppliers might result in groupings of multiple categories:
+- **Strategic/Innovative**
+- **Mission-Critical**
+- **Sustaining**
+- **Standard/Non-Essential**
+
+This segmentation facilitates further analysis and understanding of the exposure to cybersecurity risks throughout the supply chain and helps to focus attention and assign priority to those critical suppliers of the most strategic or operational importance to the enterprise and its mission and business processes.
+
+### Risk Mitigation
+It is useful to identify which products and services require a higher level of confidence in risk mitigation and areas of risk, such as overreliance on a single source of supply. This inventory and mapping also facilitates the selection and tailoring of C-SCRM contract language and evaluation criteria. Additional information can be found in Appendix A of this document and SA-1, SA-2, SA-4, SR-5, SR-13 of NIST SP 800-53, Rev. 5.
+
+## The Role of C-SCRM in the Acquisition Process
+When conducting a procurement, enterprises should designate experts from different subject matter areas to participate in the acquisition process as members of the Acquisition Team and/or Integrated Project Team. This includes:
+- Program officials
+- Personnel with technical and security expertise
+- Representatives from supply and procurement communities
+
+### Contextual Factors
+While procurement requirements address and are tailored to a specific purpose and ensuring that compliance mandates are met, contextual factors such as mission criticality, the sensitivity of data, and the operational environment must also be considered to effectively address cybersecurity risk in supply chains.
+
+### Risk Tolerance and C-SCRM Controls
+This contextual basis sets the stage for the Acquisition Team to effectively gauge their tolerance for risk as it pertains to a specific procurement requirement and determine which of the C-SCRM controls described in this document and [SP80053r5] controls are relevant and necessary to consider for specific acquisitions. The program office or requiring official should consult with...# Information Security in Procurement
+
+## Introduction
+Information security personnel play a crucial role in the control selection process and must collaborate with procurement officials to integrate these controls into requirements documents and contracts.
+
+## Importance of Security in Procurement
+Security is a critical factor in procurement decisions. When purchasing ICT/OT-related products or services, enterprises should avoid using a “lowest price, technically acceptable” (LPTA) source selection process.
+
+## Incorporating C-SCRM in Procurement Policies
+Acquisition policies and processes must incorporate Cyber Supply Chain Risk Management (C-SCRM) considerations into each step of the procurement and contract management life cycle. This includes:
+
+1. **Plan Procurement**
+2. **Define and Develop Requirements**
+3. **Perform Market Analysis**
+4. **Complete Procurement**
+5. **Ensure Compliance**
+6. **Monitor Performance for Changes Affecting C-SCRM Risk Status**
+
+This approach ensures that cybersecurity risks throughout the supply chain are addressed, especially when making ICT/OT-related charge card purchases.
+
+## Planning Procurement
+During the planning phase, it is essential to identify the need for and the criticality of the goods or services to be procured. This involves:
+
+- Describing the factors driving the determination of need and criticality.
+- Assessing how much risk may be tolerated.
+- Identifying who should be involved in the planning process.
+- Developing specific requirements that need to be satisfied.
+
+This activity is typically led by the acquirer mission and business process owner or a designee, in collaboration with the procurement official or contracting officer representative.
+
+## Defining Requirements
+Enterprises should develop and define requirements that address cybersecurity risks throughout the supply chain, in addition to specifying performance, schedule, and cost objectives. This process is usually initiated by the acquirer mission and business process owner or a designee, in collaboration with the procurement official and other members of the C-SCRM team.
+
+## Market Analysis
+With requirements defined, enterprises typically conduct a market analysis for potential suppliers. This involves:
+
+- Exploring the availability of potential or prequalified sources of supply.
+- Conducting robust due diligence research on potential suppliers and/or products to generate a supplier risk profile.
+
+As part of due diligence, enterprises may consider market concentration for the sought-after product or service to identify interdependencies within the supply chain. Tools such as Requests for Information (RFIs), Sources Sought Notices (SSNs), and due diligence questionnaires can be used for initial screening and evidence collection from potential suppliers.
+
+## Conclusion
+Enterprises should not treat the initial C-SCRM due diligence risk assessment as exhaustive. The results of this research can help shape the sourcing approach and refine requirements. Finally, the procurement step is completed by releasing a Statement of Work (SOW), Performance Work Statement (PWS), or Statement of Objective (SOO).# Cybersecurity Supply Chain Risk Management (C-SCRM) in Procurement
+
+## Introduction
+The release of a request for proposal (RFP) or request for quotes (RFQ) is a critical step in the procurement process. Any bidders responding to the RFP or RFQ should be evaluated against relevant, critical C-SCRM criteria.
+
+## RFP Review Process
+The RFP review process should include:
+- Procurement-specific supplier risk assessment.
+- Assessment criteria informed by defined C-SCRM requirements, covering:
+- Information about the enterprise.
+- Security processes.
+- Security track record.
+
+## Response Review Process
+The response review process involves multiple C-SCRM stakeholders, including:
+- Procurement
+- Mission and business process owners
+- Appropriate information system owners
+- Technical experts
+
+## Pre-Purchase Assessment
+Prior to purchase, enterprises should:
+- Identify and assess the quality of product or system components.
+- Evaluate vulnerabilities, authenticity, and other relevant cybersecurity-supply chain risk factors.
+- Complete this risk assessment before deployment.
+
+## Post-Contract Execution
+Once the contract is executed, enterprises should:
+- Monitor for changes that alter exposure to cybersecurity risks throughout the supply chain. Changes may include:
+- Internal enterprise or system changes.
+- Supplier operational or structural changes.
+- Product updates.
+- Geopolitical or environmental changes.
+- Include contract provisions that allow for termination in cases where cybersecurity supply chain risks cannot be adequately mitigated to acceptable levels.
+
+## Continuous Improvement
+Enterprises should continuously apply lessons learned during the acquisition process to enhance their ability to assess, respond to, and monitor cybersecurity risks throughout the supply chain.
+
+## Acquisition Security-Enhancing Tools and Techniques
+There are many useful acquisition security-enhancing tools and techniques available, including:
+- Obscuring the system end use or system component.
+- Using blind or filtered buys.
+- Requiring tamper-evident packaging.
+- Using trusted or controlled distribution.
+
+## Risk Assessment Results
+The results of a supply chain cybersecurity risk assessment can guide and inform the strategies, tools, and methods that are most applicable to the situation. Tools, techniques, and practices may provide protections against:
+- Unauthorized production.
+- Theft.
+- Tampering.
+- Insertion of counterfeits.
+- Insertion of malicious software or backdoors.
+- Poor development practices throughout the system development life cycle.
+
+## Contractual Agreements and Management
+To ensure effective and continued management of cybersecurity risks across the supply chain and throughout the acquisition life cycle, contractual agreements and contract management should include:
+- Satisfaction of applicable security requirements in contracts as a qualifying condition for award.
+- Flow-down control requirements to subcontractors, if applicable, including C-SCRM performance objectives linked to the method of inspection in a Quality Assurance Surveillance Plan or equivalent method for monitoring performance.# Supply Chain Risk Management (C-SCRM)
+
+## Supplier Adherence to Security Requirements
+- The periodic revalidation of supplier adherence to security requirements to ensure continual compliance.
+- Processes and protocols for communication and the reporting of information about vulnerabilities, incidents, and other business disruptions, including:
+- Acceptable deviations if the business disruption is deemed serious.
+- Baseline criteria to determine whether a disruption qualifies as serious.
+- Terms and conditions that address the roles, responsibilities, and actions of the government, supplier, and other applicable third parties for responding to identified supply chain risks or risk incidents to:
+- Mitigate risk exposure.
+- Minimize harm.
+- Support timely corrective action or recovery from an incident.
+
+## Validation and Revalidation Methods
+There are a variety of acceptable validation and revalidation methods, such as:
+- Requisite certifications.
+- Site visits.
+- Third-party assessments.
+- Self-attestation.
+
+The type and rigor of the required methods should be commensurate with the criticality of the service or product being acquired and the corresponding assurance requirements.
+
+## Additional Guidance
+Additional guidance for integrating C-SCRM into the acquisition process is provided in **Appendix C**, which demonstrates the enhanced overlay of C-SCRM into the [SP80039] Risk Management Process. Enterprises should also refer to and follow the acquisition and procurement policies, regulations, and best practices that are specific to their domain (e.g., critical infrastructure sector, state government).
+
+Additional information can be found in **Appendix A** of this document and in the following sections of NIST SP 800-53, Rev. 5:
+- SA-1
+- SA-2
+- SA-3
+- SA-4
+- SA-9
+- SA-19
+- SA-20
+- SA-22
+- SR-5
+- SR-6
+- SR-10
+- SR-11
+
+## Supply Chain Information Sharing
+Enterprises are continuously exposed to risk originating from their supply chains. An effective information-sharing process helps to ensure that enterprises can:
+- Gain access to information that is critical to understanding and mitigating cybersecurity risks throughout the supply chain.
+- Share relevant information with others that may benefit from or require awareness of these risks.
+
+To aid in identifying, assessing, monitoring, and responding to cybersecurity risks throughout the supply chain, enterprises should build information-sharing processes and activities into their C-SCRM programs. This may include:
+- Establishing information-sharing agreements with peer enterprises, business partners, and suppliers.
+
+By exchanging Supply Chain Risk Information (SCRI) within a sharing community, enterprises can leverage the collective knowledge, experience, and capabilities of that community to gain a more complete understanding of the threats they may face. Additionally, the sharing of SCRI allows enterprises to better detect campaigns that target specific industry sectors and institutions.
+
+However, the enterprise should ensure that information sharing occurs through formal sharing structures, such as Information Sharing and Analysis Centers (ISACs). Informal or unmanaged information sharing should be avoided.# Information Sharing and C-SCRM
+
+Sharing can expose enterprises to potential legal risks. Federal enterprises should establish processes to effectively engage with the FASC’s information-sharing agency, which is responsible for facilitating information sharing among government agencies and acting as a central, government-wide facilitator for C-SCRM information-sharing activities.
+
+## Key Practices for Establishing SCRI-Sharing Relationships
+
+NIST SP 800-150 describes key practices for establishing and participating in SCRI-sharing relationships, including:
+
+- Establish information-sharing goals and objectives that support business processes and security policies.
+- Identify existing internal sources of SCRI.
+- Specify the scope of information-sharing activities.
+- Establish information-sharing rules.
+- Join and participate in information-sharing efforts.
+- Actively seek to enrich indicators by providing additional context, corrections, or suggested improvements.
+- Use secure, automated workflows to publish, consume, analyze, and act upon SCRI.
+- Proactively establish SCRI-sharing agreements.
+- Protect the security and privacy of sensitive information.
+- Provide ongoing support for information-sharing activities.
+
+## Understanding SCRI
+
+As shown in Table 2, below, SCRI describes or identifies the cybersecurity supply chain relevant characteristics and risk factors associated with a product, service, or source of supply. It may exist in various forms (e.g., raw data, a supply chain network map, risk assessment report) and should be accompanied by the metadata that will facilitate an assessment of a level of confidence in and credibility of the information. Enterprises should follow established processes and procedures that describe whether and when the sharing or reporting of certain information is mandated or voluntary and if there are any necessary requirements to adhere to regarding information handling, protection, and classification.
+
+## C-SCRM Training and Awareness
+
+Numerous individuals within the enterprise contribute to the success of C-SCRM. These may include information security, procurement, risk management, engineering, software development, IT, legal, HR, and program managers. Examples of these groups’ contributions include:
+
+- **System Owners** are responsible for multiple facets of C-SCRM at the operational level as part of their responsibility for the development, procurement, integration, modification, operation, maintenance, and/or final disposition of an information system.
+- **Human Resources** defines and implements background checks and training policies, which help ensure that individuals are trained in appropriate C-SCRM processes and procedures.
+- **Legal** helps draft or review C-SCRM-specific contractual language that is included by procurement in contracts with suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers.# Cybersecurity Supply Chain Risk Management (C-SCRM)
+
+## Overview
+- **Acquisition/Procurement**: Defines the process for implementing supplier assurance practices embedded in the acquisition process.
+- **Engineering**: Designs products and must understand existing requirements for the use of open source components.
+- **Software Development**: Ensures that software weaknesses and vulnerabilities are identified and addressed as early as possible, including testing and fixing code.
+- **Shipping and Receiving**: Ensures that boxes containing critical components have not been tampered with en route or at the warehouse.
+- **Project Management**: Ensures that project plans are developed and include C-SCRM considerations as part of the project plan and execution.
+
+## Shared Responsibility
+Everyone within an enterprise, including the end users of information systems, has a role and shared responsibility in managing cybersecurity risks throughout the supply chain. The enterprise should foster an overall culture of security that includes C-SCRM as an integral part.
+
+## Communication and Training
+The enterprise can use a variety of communication methods to foster the culture, of which traditional awareness and role-based training are only one component.
+
+### Training Requirements
+Every individual within an enterprise should receive appropriate training to enable them to understand the importance of C-SCRM to their enterprise, their specific roles and responsibilities, and as it relates to processes and procedures for reporting incidents. This training can be integrated into the overall cybersecurity awareness training.
+
+- **Baseline Training**: Enterprises should define baseline training requirements at a broad scope within Level 1, and those requirements should be tailored and refined based on the specific context within Level 2 and Level 3.
+- **Tailored Training**: Individuals with more significant roles in managing cybersecurity risks throughout the supply chain should receive tailored C-SCRM training that helps them understand the scope of their responsibilities, the specific processes and procedure implementations for which they are responsible, and the actions to take in the event of an incident, disruption, or another C-SCRM-related event.
+
+### Role-Based Training
+The enterprises should establish specific role-based training criteria and develop role-specific C-SCRM training to address C-SCRM roles and responsibilities. The enterprise may also consider adding C-SCRM content into preexisting role-based training for some specific roles. Refer to the Awareness and Training controls in Appendix A for more detail.
+
+## NIST NICE Framework
+Enterprises are encouraged to utilize the NIST National Initiative for Cybersecurity Education (NICE) Framework as a means of forming a common lexicon for C-SCRM workforce topics. This will aid enterprises in developing training linked to role-specific C-SCRM responsibilities and communicating cybersecurity workforce-related topics.
+
+The NICE Framework outlines:
+- Categories
+- Specialty Areas
+- Work Roles
+- Knowledge, Skills, and Abilities (KSAs)
+- Tasks that describe cybersecurity work.
+
+## C-SCRM Key Practices
+Cybersecurity supply chain risk management builds on existing standardized practices in...# C-SCRM Key Practices
+
+C-SCRM Key Practices are meant to specifically emphasize and draw attention to a subset of the C-SCRM practices described throughout this publication. Enterprises should prioritize achieving a base-level of maturity in these key practices prior to advancing on to additional C-SCRM capabilities.
+
+Enterprises should tailor their implementation of these practices to what is applicable and appropriate given their unique context (e.g., based on available resources and risk profile). C-SCRM Key Practices are described in NIST standards and guidelines, as well as other applicable national and international standards.
+
+## C-SCRM Practices
+
+C-SCRM Practices include:
+- Integrating C-SCRM across the enterprise
+- Establishing a formal program
+- Knowing and managing critical products, services, and suppliers
+- Understanding an enterprise’s supply chain
+- Closely collaborating with critical suppliers
+- Including critical suppliers in resilience and improvement activities
+- Assessing and monitoring throughout the supplier relationship
+- Planning for the full life cycle
+
+### 3.4.1. Foundational Practices
+
+Having foundational practices in place is critical to having an enduring capability to effectively manage cybersecurity supply chain risks. The following are specific examples of the recommended multidisciplinary foundational practices that can be incrementally implemented to improve an enterprise’s ability to develop and execute more advanced C-SCRM practices:
+
+- Establish a core, dedicated, multidisciplinary C-SCRM Program Management Office and/or C-SCRM team.
+- Obtain senior leadership support for establishing and/or enhancing C-SCRM.
+- Implement a risk management hierarchy and risk management process (in accordance with NIST SP 800-39, Managing Information Security Risk) including an enterprise-wide risk assessment process (in accordance with NIST SP 800-30, Rev. 1, Guide for Conducting Risk Assessments).
+- Establish an enterprise governance structure that integrates C-SCRM requirements and incorporates these requirements into the enterprise policies.
+- Develop a process for identifying and measuring the criticality of the enterprise’s suppliers, products, and services.
+- Raise awareness and foster understanding of what C-SCRM is and why it is critically important.
+- Develop and/or integrate C-SCRM into acquisition/procurement policies and procedures (including Federal Information Technology Acquisition Reform Act [FITARA] processes, applicable to federal agencies) and purchase card processes. Supervisors and managers should also ensure that their staff aims to build C-SCRM competencies.
+- Establish consistent, well-documented, repeatable processes for determining FIPS 199 impact levels.
+- Establish and begin using supplier risk-assessment processes on a prioritized basis (inclusive of criticality analysis, threat analysis, and vulnerability analysis).# Cybersecurity Supply Chain Risk Management
+
+## 1. Introduction
+After the [FIPS199] impact level has been defined, organizations should implement a comprehensive approach to cybersecurity supply chain risk management (C-SCRM).
+
+## 2. Key Practices
+
+### 2.1 Quality and Reliability Program
+- Implement a quality and reliability program that includes quality assurance and quality control processes and practices.
+
+### 2.2 Collaborative Roles and Structures
+- Establish explicit collaborative and discipline-specific roles, accountabilities, structures, and processes for:
+- Supply chain
+- Cybersecurity
+- Product security
+- Physical security
+- Other relevant processes (e.g., Legal, Risk Executive, HR, Finance, Enterprise IT, Program Management/System Engineering, Information Security, Acquisition/Procurement, Supply Chain Logistics).
+
+### 2.3 Resource Allocation
+- Ensure that adequate resources are dedicated and allocated to information security and C-SCRM to ensure proper implementation of policy, guidance, and controls.
+
+### 2.4 Personnel Clearance
+- Ensure sufficient cleared personnel with key C-SCRM roles and responsibilities to access and share C-SCRM-related classified information.
+
+### 2.5 Information Security Controls
+- Implement an appropriate and tailored set of baseline information security controls found in NIST SP 800-53, Revision 5, Security and Privacy Controls for Information Systems and Enterprises.
+
+### 2.6 Compliance Checks
+- Establish internal checks and balances to ensure compliance with security and quality requirements.
+
+### 2.7 Supplier Management Program
+- Establish a supplier management program that includes guidelines for purchasing from qualified original equipment manufacturers (OEMs) or their authorized distributors and resellers.
+
+### 2.8 Incident Management Program
+- Implement a robust incident management program to successfully identify, respond to, and mitigate security incidents. This program should be capable of identifying the root cause of security incidents, including those that originate from the cybersecurity supply chain.
+
+### 2.9 Supplier Vulnerability Disclosure
+- Establish internal processes to validate that suppliers and service providers actively identify and disclose vulnerabilities in their products.
+
+### 2.10 Governance Capability
+- Establish a governance capability for managing and monitoring components of embedded software to manage risk across the enterprise (e.g., SBOMs paired with criticality, vulnerability, threat, and exploitability to make this more automated).
+
+## 3. Sustaining Practices
+Sustaining practices should be used to enhance the efficacy of cybersecurity supply chain risk management. These practices build upon foundational practices and are the next steps for enterprises that have standardized and implemented them:
+
+### 3.1 Threat-Informed Security Program
+- Establish and collaborate with a threat-informed security program.
+
+### 3.2 Confidence-Building Mechanisms
+- Use confidence-building mechanisms, such as third-party assessment surveys, on-site visits, and formal certifications (e.g., ISO 27001, IEC 62443-4-1) to assess critical supplier security capabilities and practices.
+
+### 3.3 Continuous Monitoring
+- Establish formal processes and intervals for continuous monitoring and reassessment of suppliers, supplied products and services, and the supply chain itself.# Potential Changes to the Risk Profile
+
+## Risk Management Strategies
+- Use the enterprise’s understanding of its C-SCRM risk profile (or risk profiles specific to mission and business areas) to define a risk appetite and risk tolerances to empower leaders with delegated authority across the enterprise to make C-SCRM decisions in alignment with the enterprise’s mission imperatives and strategic goals and objectives.
+- Use a formalized information-sharing function to engage with ISACs, the FASC, and other government agencies to enhance the enterprise’s supply chain cybersecurity threat and risk insights and help ensure a coordinated and holistic approach to addressing cybersecurity risks throughout the supply chain that may affect a broader set of agencies, the private sector, or national security.
+- Coordinate with the enterprise’s cybersecurity program leadership to elevate top C-SCRM Risk Profile risks to the most senior enterprise risk committee.
+- Embed C-SCRM-specific training into the training curriculums of applicable roles across the enterprise processes involved with C-SCRM, including information security, procurement, risk management, engineering, software development, IT, legal, and HR.
+- Integrate C-SCRM considerations into every aspect of the system and product life cycle, and implement consistent, well-documented, repeatable processes for systems engineering, cybersecurity practices, and acquisition.
+- Integrate the enterprise’s defined C-SCRM requirements into the contractual language found in agreements with suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers.
+- Include critical suppliers in contingency planning, incident response, and disaster recovery planning and testing.
+- Engage with suppliers, developers, system integrators, external system service providers, and other ICT/OT-related service providers to improve their cybersecurity practices.
+- Define, collect, and report C-SCRM metrics to ensure risk-aware leadership, enable active management of the completeness of C-SCRM implementations, and drive the efficacy of the enterprise’s C-SCRM processes and practices.
+
+## Enhancing Practices
+Enhancing practices should be applied by the enterprise with the goal of advancing toward adaptive and predictive C-SCRM capabilities. Enterprises should pursue these practices once sustaining practices have been broadly implemented and standardized across the enterprise:
+- Automate C-SCRM processes where applicable and practical to drive execution consistency, efficiency, and make available the critical resources required for other critical C-SCRM activities.
+- Adopt quantitative risk analyses that apply probabilistic approaches (e.g., Bayesian analysis) to reduce uncertainty about the likelihood and impact of cybersecurity risks throughout the supply chain, optimize the allocation of resources to risk response, and measure return on investment (i.e., response effectiveness).
+- Apply insights gained from leading C-SCRM metrics (i.e., forward-looking indicators) to...# Shift from Reactive to Predictive C-SCRM Strategies
+
+## Introduction
+Enterprises are encouraged to shift from reactive to predictive Cyber Supply Chain Risk Management (C-SCRM) strategies and plans that adapt to risk profile changes before they occur.
+
+## Community of Practice
+- Establish or participate in a community of practice (e.g., Center of Excellence) as appropriate to enhance and improve C-SCRM practices.
+
+## Guidance and Controls
+The guidance and controls contained in this publication are built on existing multidisciplinary practices and are intended to increase the ability of enterprises to strategically manage cybersecurity risks throughout the supply chain over the entire life cycle of systems, products, and services.
+
+Refer to **Table 3** for a summary of C-SCRM key practices.
+
+## Capability Implementation Measurement and C-SCRM Measures
+Enterprises should actively manage the efficiency and effectiveness of their C-SCRM programs through ongoing measurement of the programs themselves. Enterprises can use several methods to measure and manage the effectiveness of their C-SCRM program:
+
+- Using a framework, such as NIST CSF, to assess their C-SCRM capabilities.
+- Measuring the progress of their C-SCRM initiatives toward completion.
+- Measuring the performance of their C-SCRM initiatives toward desired outcomes.
+
+All methods rely on a variety of data collection, analysis, contextualization, and reporting activities. Collectively, these methods should be used to track and report progress and results that ultimately indicate reductions in risk exposure and improvements in the enterprise’s security outcomes.
+
+## Benefits of C-SCRM Performance Management
+C-SCRM performance management provides multiple enterprise and financial benefits. Major benefits include:
+
+- Increasing stakeholder accountability for C-SCRM performance.
+- Improving the effectiveness of C-SCRM activities.
+- Demonstrating compliance with laws, rules, and regulations.
+- Providing quantifiable inputs for resource allocation decisions.
+- Cost-avoidance associated with reduced impact from or the likelihood of experiencing a cyber supply chain incident.
+
+## Framework for Baseline C-SCRM Capabilities
+Enterprises can use a framework to baseline their C-SCRM capabilities, such as NIST CSF Implementation Tiers, which provide a useful context for an enterprise to track and gauge the increasing rigor and sophistication of their C-SCRM practices.
+
+Progression against framework topics is measured using ordinal (i.e., 1-5) scales that illustrate the progression of capabilities across tiers.
+
+### Examples of C-SCRM Capability Gauging
+- **CSF Tier 1**: The enterprise does not understand its exposure to cybersecurity risks throughout the supply chain or its role in the larger ecosystem. The enterprise does not collaborate with other entities or have processes in place to identify, assess, and mitigate cybersecurity risks throughout the supply chain.
+
+- **CSF Tier 2**: The enterprise understands its cybersecurity risks throughout the supply chain and its role in the larger ecosystem. The enterprise has not internally formalized its capabilities to manage cybersecurity risks throughout the supply chain or its capability to engage and share information with entities in the broader ecosystem.# Cybersecurity Supply Chain Risk Management (CSCRM)
+
+## CSF Tiers Overview
+
+### CSF Tier 3
+The enterprise-wide approach to managing cybersecurity risks throughout the supply chain is enacted via enterprise risk management policies, processes, and procedures. This likely includes a governance structure (e.g., Risk Council) that balances the management of cybersecurity risks throughout the supply chain with other enterprise risks.
+
+- Policies, processes, and procedures are consistently implemented as intended and continuously monitored and reviewed.
+- Personnel possess the knowledge and skills to perform their appointed cybersecurity supply chain risk management responsibilities.
+- The enterprise has formal agreements in place to communicate baseline requirements to its suppliers and partners.
+- The enterprise understands its external dependencies and collaborates with partners to share information to enable risk-based management decisions within the enterprise in response to events.
+
+### CSF Tier 4
+The enterprise actively consumes and distributes information with partners and uses real-time or near real-time information to improve cybersecurity and supply chain security before an event occurs.
+
+- The enterprise leverages institutionalized knowledge of cybersecurity supply chain risk management with its external suppliers and partners, internally in related functional areas, and at all levels of the enterprise.
+- The enterprise communicates proactively using formal (e.g., agreements) and informal mechanisms to develop and maintain strong relationships with its suppliers, buyers, and other partners.
+
+## Building Capabilities
+Building capabilities begins by establishing a solid programmatic foundation that includes enabling strategies and plans, establishing policies and guidance, investment in training, and dedicating program resources.
+
+Once this foundational capability is in place, enterprises can use progression charts to orient the strategic direction of their programs to target states of CSCRM capabilities in different areas of the program.
+
+### Example C-SCRM Implementation Model
+Table 3 provides an example C-SCRM implementation model.
+
+## Information Security Measures
+Enterprises typically rely on information security measures to facilitate decision-making and improve performance and accountability in their information security programs.
+
+Enterprises can achieve similar benefits within their C-SCRM programs. Additionally, enterprises should report C-SCRM metrics to the board through the ERM process.
+
+### Developing Metrics
+Figure 8 illustrates the process for developing metrics, as outlined in [SP80055r1], and includes:
+
+1. **Stakeholder Interest Identification**: Identify the primary (e.g., CISO, CIO, CTO) and secondary C-SCRM stakeholders (e.g., CEO/Head of Agency, COO, CFO), and define/measure requirements based on the context required for each stakeholder or stakeholder group.
+
+2. **Goals and Objectives Definition**: Identify and document enterprise strategic and CSCRM-specific performance goals and objectives. These goals may be expressed in the form of enterprise strategic plans, C-SCRM policies, requirements, laws, etc.# C-SCRM Policies and Procedures
+
+## C-SCRM Policies, Guidelines, and Procedure Review
+- Identify the desired C-SCRM practices, controls, and expectations outlined within these documents and used to guide/implement C-SCRM across the enterprise.
+
+## C-SCRM Program Implementation Review
+- Collect any existing data, measures, and evidence that can provide insights used to derive new measures. These may be found in C-SCRM Plans, POA&Ms, supplier assessments, etc.
+
+## Level of Implementation
+- Develop and map measures to the identified C-SCRM standards, policies, and procedures to demonstrate the program’s implementation progress. These measures should be considered when rendering decisions to prioritize and invest in C-SCRM capabilities.
+
+## C-SCRM Program Results on Efficiency and Effectiveness
+- Develop and map measures of C-SCRM’s efficiency and effectiveness to the identified strategy and policy objectives to gauge whether desired C-SCRM outcomes are met. These measures should be considered part of policy refreshes.
+
+## Business and Mission Impact
+- Develop and map measures to the identified enterprise strategic and C-SCRM-specific objectives to offer insight into the impact of C-SCRM (e.g., contribution to business process cost savings; reduction in national security risk). These measures should be considered a component of goal and objective refreshes.
+
+## Measurement Levels
+- Similar to information security measures, C-SCRM-focused measures can be attained at different levels of an enterprise. Table 4 provides example measurement topics across the three Risk Management levels.
+
+## Stakeholder Validation
+- Enterprises should validate identified C-SCRM goals and objectives with their targeted stakeholder groups prior to beginning an effort to develop specific measures. When developing C-SCRM measures, enterprises should focus on the stakeholder’s highest priorities and target measures based on data that can be realistically sourced and gathered.
+
+## Performance Targets
+- Each established measure should have a specified performance target used to gauge whether goals and objectives in relation to that measure are being met. Enterprises should consider the use of measures templates to formalize each measure and serve as a source of reference for all information pertaining to that measure.
+
+## Feedback Loop
+- Finally, enterprises should develop a formal feedback loop with stakeholders to ensure that measures are continually providing the desired insights and remain aligned with the enterprise’s overall strategic objectives for C-SCRM.
+
+# Dedicated Resources
+- To appropriately manage cybersecurity risks throughout the supply chain, enterprises should dedicate funds toward this effort. Identifying resource needs and taking steps to secure adequate, recurring, and dedicated funding are essential and important activities that need to be built into the C-SCRM strategy and implementation planning effort and incorporated into an enterprise’s budgeting, investment review, and funds management processes. Access to adequate resources is a critical, key enabler for the establishment and management of C-SCRM initiatives.# Sustainment of a C-SCRM Program Capability
+
+Where feasible, enterprises should be encouraged to leverage existing fund sources to improve their C-SCRM posture. The continued availability of dedicated funds will allow enterprises to sustain, expand, and mature their capabilities over time.
+
+## Leadership Commitment
+
+Securing and assigning C-SCRM funding is representative of leadership’s commitment to the importance of C-SCRM, its relevance to national and economic security, and ensuring the protection, continuity, and resilience of mission and business processes and assets.
+
+## Funding and Strategic Planning
+
+Funding facilitates goal and action-oriented planning. Examining resource needs and allocating funding prompts a budgeting and strategic-planning process. Effective enterprises begin by defining a set of goals and objectives upon which to build a strategic roadmap, laying out the path to achieving them through the assignment and allocation of finite resources.
+
+The establishment of dedicated funding tied to C-SCRM objectives sets conditions for accountability of performance and compels responsible staff to be efficient, effective, and adopt a mindset of continuously seeking to improve C-SCRM capabilities and achieve security-enhancing outcomes.
+
+## Challenges in Securing Funding
+
+Obtaining new or increased funding can be a challenge as resources are often scarce and necessary for many competing purposes. The limited nature of funds forces prioritization. C-SCRM leaders need to first examine what can be accomplished within the constraints of existing resources and be able to articulate, prioritize, and defend their requests for additional resources.
+
+For new investment proposals, this requires a reconciliation of planned initiatives against the enterprise’s mission and business objectives. When well-executed, a systematic planning process can tighten the alignment of C-SCRM processes to these objectives.
+
+## Building C-SCRM Processes
+
+Many C-SCRM processes can and should be built into existing program and operational activities and may be adequately performed using available funds. However, there may be a need for an influx of one-time resources to establish an initial C-SCRM program capability.
+
+For example, this might include the need to hire new personnel with expertise in C-SCRM, acquire contractor support to aid in developing C-SCRM program guidance, or develop content for role-based C-SCRM training. There may also be insufficient resources in place to satisfy all recurring C-SCRM program needs. Existing funds may need to be reallocated toward C-SCRM efforts or new or additional funds requested.
+
+Enterprises should also seek out opportunities to leverage shared services whenever practical.
+
+## Leveraging Shared Services
+
+The use of shared services can optimize the use of scarce resources and concentrate capability into centers of excellence that provide cost-efficient access to services, systems, or tools. Enterprises can adopt cost-sharing mechanisms across their lower-level entities that allow cost-efficient access to C-SCRM resources and capabilities.
+
+Enterprises that pursue shared-services models for C-SCRM should also be aware of the challenges of such models. Shared services...# C-SCRM Program Management Office (PMO)
+
+## Overview
+C-SCRM PMOs are most effective when the enterprise relies on a fairly homogenous set of C-SCRM strategies, policies, and processes. In many instances, the centralized delivery of C-SCRM services requires a robust technology infrastructure. The enterprise’s systems should support process automation and centralized delivery to fully realize the benefits of a shared-services model.
+
+## Consultation with Budget/Finance Officials
+Consultation with budget and finance officials is critical to understanding what options may be available and viable in the near term and out-years. These officials can also advise on how best to justify needs, as well as the timeframes and processes for requesting new funds.
+
+### Funding Processes
+There are likely different processes to follow for securing recurring funds versus requesting one-time funding. For example, funding for a new information system to support a C-SCRM capability may involve the development of a formal business case presented to an enterprise’s investment review board for approval.
+
+### Resource Needs
+Organizations may find it helpful to break out resource needs into ongoing and one-time costs or into cost categories that align with budget formulation, resource decision-making, and the allocation and management of available funds.
+
+## Responsibilities of the C-SCRM PMO
+It is recommended that the C-SCRM PMO have the lead responsibility of coordinating with mission and business process and budget officials to build out and maintain a multi-year C-SCRM program budget that captures both recurring and non-recurring resource requirements and maps those requirements to available funding and fund sources.
+
+### Identifying Funding Requirements
+To understand the amount of funding required, when, and for what purpose, enterprises should identify and assess which type and level of resources (people or things) are required to implement a C-SCRM program capability and perform required C-SCRM processes on an ongoing basis.
+
+### Budgeting for Resource Needs
+The cost associated with each of these identified resource needs would then be captured, accumulated, and reflected in a budget that includes line items for relevant cost categories, such as:
+- Personnel costs
+- Contracts
+- Training
+- Travel
+- Tools
+- Systems
+
+This will provide the enterprise with a baseline understanding of what can be accomplished within existing resource levels and where there are gaps in need of being filled.
+
+## Fund Allocation
+The actual allocation of funds may be centralized in a single C-SCRM budget or dispersed across the enterprise and reflected in individual office or mission and business process-area budgets. Regardless of how funds are actually assigned, a centralized picture of the C-SCRM budget and funds status will provide a valuable source of information that justifies new requests, informs prioritization decisions, and adjusts expectations about certain activities and the duration in which they can be accomplished.
+
+## Accountability and Performance Measures
+Ensuring that C-SCRM program funding is distinctly articulated within the enterprise’s budget – with performance measures linked to the funding – will drive accountability for results.# C-SCRM Overview
+
+## Introduction
+The visible dedication of funds in budget requests, performance plans, and reports compels leadership attention on C-SCRM processes and the accomplishment of objectives. Budgets must be requested and justified on a periodic basis. This process allows leadership and oversight officials to trace and measure the effectiveness and efficiency of allocated resources. This, in turn, serves as a driving function for program and operational C-SCRM personnel to track and manage their performance.
+
+## Key Takeaways
+
+### C-SCRM in Acquisition
+The integration of C-SCRM into acquisition activities is critical to the success of any C-SCRM program. C-SCRM requirements should be embedded throughout the acquisition life cycle. The C-SCRM activities include:
+- Performing risk assessments of services, suppliers, and products
+- Identifying relevant C-SCRM controls
+- Conducting due diligence
+- Continuously monitoring suppliers
+
+### Supply Chain Information Sharing
+Enterprises will gain access to information critical to understanding and mitigating cybersecurity risks throughout the supply chain by building information-sharing processes and activities into C-SCRM programs. Enterprises should engage with:
+- Peers
+- Business partners
+- Suppliers
+- Information-sharing communities (e.g., ISACs)
+
+This engagement helps gain insight into cybersecurity risks throughout the supply chain and learn from the experiences of the community at large.
+
+### C-SCRM Awareness and Training
+Enterprises should adopt enterprise-wide and role-based training programs to educate users on the potential impact that cybersecurity risks throughout the supply chain can have on the business and how to adopt best practices for risk mitigation. Robust C-SCRM training is a key enabler for enterprises as they shift toward a C-SCRM-aware culture.
+
+### C-SCRM Key Practices
+This publication outlines several foundational, sustaining, and enabling C-SCRM practices that enterprises should adopt and tailor to their unique contexts. Enterprises should prioritize reaching a base level of maturity in key practices before focusing on advanced C-SCRM capabilities.
+
+### Capability Implementation Measurement and C-SCRM Measures
+Enterprises should actively manage the efficiency and effectiveness of their C-SCRM programs. First, enterprises should adopt a C-SCRM framework as the basis for measuring their progress toward C-SCRM objectives. Next, enterprises should create and implement quantitative performance measures and target tolerance that provide a periodic glimpse into the enterprise’s progress through the lens of specific operational objectives.
+
+### Dedicated Resources
+Where possible and applicable, enterprises should commit dedicated funds to C-SCRM. The benefits of doing so include:
+- Facilitating strategic and goal-oriented planning
+- Driving accountability of internal stakeholders to execute and mature the C-SCRM practices of the enterprise
+- Continuous monitoring of progress by enterprise leadership

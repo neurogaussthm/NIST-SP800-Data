@@ -1,0 +1,93 @@
+```markdown
+# Abstract
+This supplement to NIST Special Publication 800-63B, Digital Identity Guidelines: Authentication and Lifecycle Management, provides agencies with additional guidance on the use of authenticators that may be synced between devices.
+
+# 1. Introduction
+The NIST Digital Identity Guidelines [1] provide the process and technical requirements for digital identity, including identity proofing, authentication, and federation. NIST Special Publication (SP) 800-63B (Volume B associated with SP 800-63-3) specifically addresses the requirements for authentication and life cycle management to include specific requirements for each type of acceptable authenticator.[2] Revision 3 is the most recent major revision to the guidelines and was published in June of 2017. While an update to the entire series is ongoing and will culminate in Revision 4, the pace of technology is more rapid than NIST's typical document development and review processes, warranting this supplemental update.
+
+One such authenticator type addressed in SP 800-63B is a multi-factor cryptographic authenticator. Typically, this authentication type protects a cryptographic key in hardware or software that requires activation through a second authentication factor, either a memorized secret or a biometric characteristic. Protecting the private key from unauthorized exposure is fundamental to the security model of a multi-factor cryptographic authenticator. This traditionally includes ensuring that private keys are not exportable or cloneable. However, this paradigm is starting to change. Notably, a new series of authentication protocols and specifications has led to the rapid adoption of syncable authenticators (commonly referred to as "passkeys"), which allow users to synchronize (i.e., duplicate) a private key between different devices.
+
+When SP 800-63-3 was published in 2017, two key supporting specifications — Fast Identity Online (FIDO) Client to Authenticator Protocol (CTAP) [3] and W3C's Web Authentication [4] (known as FIDO2 when used together) — did not exist, nor did a robust, well-understood ecosystem of implementations. Based on the type of cryptographic authenticators available at the time, the 2017 guidelines restricted the ability of multi-factor cryptographic authenticators to "clone" a key to other devices. However, the ecosystem has accelerated rapidly in the last two years, and most major platform providers now implement scaled, syncable authentication capabilities. These authenticators offer many benefits, including support for phishing resistance, the ability to be bound to specific relying parties, elimination of the need to transmit passwords, simplified authenticator recovery, and the use of a wide variety of device-native biometrics and PINs as a second factor to accompany the stored private key. They also offer convenience that fits an increasingly multi-device and multi-platform world.
+```# CURRENT_PAGE_RAW_OCR_TEXT
+
+As with any new technology, the promise of innovation is accompanied by new threats and challenges that must be explored and understood. As such, this supplement provides an overview of the considerations that federal agencies should weigh, including contemporary threats, as they determine whether and how to implement syncable authenticators.
+
+## 2. Purpose
+
+The purpose of this document is to adapt current NIST guidelines to reflect the changing authentication and credential marketplace. This supplement describes how syncable authenticators mitigate threats in a manner consistent with the established Authentication Assurance Levels in SP 800-63-3 and provides federal agencies with an understanding of syncable authenticator capabilities that can be leveraged to achieve SP 800-63-3 Authentication Assurance Level 2 (AAL2). It also provides updates to the use of software cryptographic authenticators discussed in Sec. 5.1.8 of SP 800-63B [2], specifically the ability of said authenticators to support AAL2 authentication requirements even when a key has been duplicated (e.g., "cloned" or "synced") to another device. Finally, this document provides some considerations for implementation based on two use case types: public-facing applications (i.e., federal information systems that interact with public identities, as described in OMB Memorandum M-19-17) and federal enterprise applications (i.e., federal information systems that primarily interact with federal enterprise identities, as described in OMB Memorandum M-19-17). This document supplements existing guidance found in SP 800-63-3, and it will be superseded by the final version of SP 800-63B-4.
+
+## 3. Syncable Authenticators Achieve AAL2
+
+NIST's Authenticator Assurance Levels are primarily structured around an authenticator's ability to protect against certain threats to the authentication process. At AAL2, the intent is to provide a high degree of confidence that a user possesses two single-factor authenticators, or a multi-factor authenticator bound to the user's account. Table 1 illustrates the required threat mitigations from SP 800-63-3 [1] and how a properly configured syncable authenticator protects against these threats. Section 5 discusses additional considerations around the configuration of syncable authenticators.
+
+To meet AAL2 requirements, the syncable authenticator SHALL make use of a local authentication event to unlock the locally stored key or SHALL be used with another authenticator (e.g., a user-selected password) if no local authentication mechanism is available. In the FIDO2 Web Authentication (WebAuthn) context, this will be indicated by the value of the User Verification flag available in the authenticator data of the W3C Web Authentication specifications. See Sec. 5 for more details on FIDO2 WebAuthn Authenticator data flags.
+
+## 4. Updates on the Allowance of Cloning Authentication Keys
+
+SP 800-63B, Section 5.1.8.1, Multi-Factor Cryptographic Software Authenticators,# CURRENT_PAGE_RAW_OCR_TEXT
+
+Restricts the ability of an authenticator to "clone" a cryptographic authentication key from one device to another. Specifically, it states:
+
+## Multi-factor Cryptographic Software Authenticators
+
+Multi-factor cryptographic software authenticators SHOULD discourage and SHALL NOT facilitate the cloning of the secret key onto multiple devices. Syncable authenticators explicitly facilitate key cloning to provide the user with access to previously enrolled authenticators across devices and different platform providers. This is an experience that can be both secure and convenient if done correctly — a reality acknowledged by NIST's removal of this restriction from the initial public draft (ipd) of SP 800-63B-4.
+
+Effective at the time of the publication of this document, the above statement in section 5.1.8.1 is superseded by this supplement and syncable authenticators that are deployed under the requirements set forth in this supplement SHALL be considered sufficient to protect against threats contemplated under AAL2.
+
+## General Requirements for All Uses of Syncable Authenticators
+
+- All keys SHALL be generated using approved cryptography.
+- Private keys that are cloned or exported from a device SHALL only be stored in an encrypted form.
+- All authentication transactions SHALL perform private-key operations on the local device using cryptographic keys that were generated on-device or recovered from the sync fabric (e.g., in cloud storage).
+- Private keys stored in cloud-based accounts SHALL be protected by access control mechanisms such that only the authenticated user can access their private keys in the sync fabric.
+- User access to private keys in the sync fabric SHALL be protected by AAL2 equivalent MFA to preserve the integrity of the authentication protocols using the synced keys.
+- These general requirements and any other agency-specific requirements for the use of syncable authenticators SHALL be documented and communicated, including on public-facing websites and digital service policies, where applicable.
+
+## Additional Requirements for Federal Enterprise Use of Syncable Authenticators
+
+- Federal enterprise private keys (i.e., federal keys) SHALL be stored in sync fabrics that have achieved FISMA Moderate protections or comparable.
+- Devices (e.g., mobile phones, laptops, tablets) that generate, store, and sync authenticators containing federal enterprise private keys SHALL be protected by mobile device management software or other device configuration controls that prevent the syncing or sharing of keys to unauthorized devices or sync fabrics.
+- Access to the sync fabric SHALL be controlled by agency-managed accounts (e.g., a central identity and access management solution or platform-based managed account) to maintain enterprise control over the life cycle of the private key.
+- Authenticators that generate private keys SHOULD support attestation features that can be used to verify the capabilities and source of the authenticator (e.g., enterprise).# CURRENT_PAGE_RAW_OCR_TEXT
+
+## attestation
+
+These controls specifically support syncing and should be considered additive to the existing multi-factor software cryptographic authenticator requirements and AAL2 requirements, including FIPS 140 validation.
+
+## 5. Implementation Considerations and Requirements
+
+Syncable authenticators are built upon W3C's WebAuthn specification, which provides a common data structure, a challenge-response cryptographic protocol, and an API for leveraging public-key credentials. The specification is flexible and adaptive, meaning that not all deployments of WebAuthn credentials will meet the requirements of federal agencies for implementation.
+
+The specification has a series of "flags" that the relying party (RP) application can request from the authenticator to provide additional context for the authentication event and determine whether it meets the RP's access policies. This section describes certain flags in the WebAuthn specification that federal agencies acting as RPs should understand and interrogate when building their syncable authenticator implementations to align with NIST AAL2 threat mitigations.
+
+In addition to the flags indicated in Table 2, agencies may wish to gain greater information on the origins and capabilities of the syncable authenticators that they choose to implement and accept. Within the context of FIDO2 WebAuthn, some authenticators support attestation features that can be used to determine the capabilities and manufacturer of a specific authenticator. For enterprise use cases, agencies SHOULD implement attestation capabilities based on the functionality offered by their platform providers. Preferably, this would take the form of an enterprise attestation where the RP requests uniquely identifying information about the authenticator.
+
+Attestations SHOULD NOT be used for broad public-facing applications. Such a requirement (i.e., one that blocks some public users' syncable authenticators if they do not support attestation) may divert users to less secure authentication options that are vulnerable to phishing, such as Short Message Service (SMS) one-time password (OTP).
+
+Even if the RP requests flag and attestation data, the authenticator may not return all of the requested information, or it may return information that is inconsistent with the expected response mandated for access to a resource. Therefore, it is critically important that agencies evaluate the use cases for which they are using syncable authenticators and determine the appropriate access policy decisions they intend to make based on the returned information.
+
+## 6. Syncable Authenticator Threats and Challenges
+
+Syncable authenticators present some distinct threats and challenges that agencies should evaluate before implementation or deployment. Table 3 outlines these risks and suggested.# Mitigations
+
+## 7. Sharing
+
+Cybersecurity guidelines have historically cautioned against sharing authenticators between users, expecting that different users would maintain their own unique authenticators. Despite this guidance, authenticator and password sharing occurs within some user groups and applications to allow individuals to share access to a digital account.
+
+As indicated in Table 3, some syncable authenticator implementations have embraced this user behavior and have established methods for sharing authentication keys between different users. Further, some implementations actively encourage the sharing of syncable authenticators as a convenient and more secure alternative to password-sharing for common services.
+
+For enterprise use cases, concerns over sharing keys can be effectively mitigated using device management techniques that limit the ability for keys to be moved off approved devices or sync fabrics. However, similar mitigations are not currently available for public-facing use cases, leaving relying parties dependent on the sharing models adopted by syncable authenticator providers. Owners of public-facing applications should be aware of risks associated with shared authenticators. When interacting with the public, agencies have limited visibility into which specific authenticators are being employed by their users and should assume that all syncable authenticators may be subject to sharing. While many sharing models have substantial controls that minimize risks (e.g., requiring close proximity between devices to allow sharing), other implementations are less restrictive.
+
+The risk of sharing posed by this new class of authenticators is not unique. In fact, it applies to all AAL2 authenticator types, some of which are weaker than syncable authenticators. Any authenticator at AAL2 can be shared by a user who is determined to share it. Users can actively share passwords, OTPs, out-of-band authenticators, and even push authentication events or allow a designee (whether formal or not) to authenticate on behalf of an end user.
+
+Agencies determine which authenticators they will accept for their applications based on the specific risks, threats, and usability considerations they face. Syncable authenticators may be offered as a new option for applications seeking to implement up to AAL2, and, like any authenticator, the trade-offs of this technology should be well balanced based on their expected outcomes for security, privacy, equity, and usability.
+
+## 8. Conclusion
+
+Syncable authenticators represent a substantive technological shift in the authentication landscape, particularly in the use of multi-factor cryptographic authenticators. Their proliferation will result in an inevitable evaluation of the trade-offs associated with allowing cryptographic keys to be replicated and stored in cloud infrastructure. While this presents# Distinct Risks
+
+(e.g., loss of enterprise control over authentication keys), it also provides a pathway to convenient, phishing-resistant authenticators that eliminate a primary threat vector for the public and enterprises. Syncable authenticators will not be appropriate for all use cases.
+
+However, when deployed in a manner that is consistent with the guidelines contained in this supplement, they can achieve alignment with AAL2 risk mitigations and promote the adoption of phishing-resistant authentication more broadly.
+
+This document is a companion to the existing Digital Identity Guidelines [1], which provide agencies with information that will allow them to make informed risk-based decisions and — where appropriate — integrate the latest in industry innovation.

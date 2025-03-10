@@ -1,0 +1,978 @@
+# Preface
+
+On May 12, 2021, the President signed an Executive Order (EO) on Improving the Nation’s Cybersecurity. The Executive Order stated:
+
+> The United States faces persistent and increasingly sophisticated malicious cyber campaigns that threaten the public sector, the private sector, and ultimately the American people’s security and privacy. The Federal Government must improve its efforts to identify, deter, protect against, detect, and respond to these actions and actors.
+
+The Executive Order further described the holistic nature of the cybersecurity challenges confronting the Nation with computing technology embedded in every type of system, from general-purpose computing systems that support businesses to cyber-physical systems that control the operations in power plants and provide electricity to the American people. The Federal Government must bring the full scope of its authorities and resources to bear in order to protect and secure its computer systems, whether the systems are cloud-based, on-premises, or hybrid. The scope of protection and security must include systems that process data (i.e., information technology [IT]) and systems that run the machinery that ensure our safety (i.e., operational technology [OT]).
+
+## In response to the EO, there is a need to:
+
+- Identify stakeholder assets and protection needs
+- Provide protection commensurate with the significance of asset loss and correlated with threat and adversary capabilities
+- Develop scenarios and model the complexity of systems to provide a rigorous basis to reason about, manage, and address the uncertainty associated with that complexity
+- Adopt an engineering-based approach that addresses the principles of trustworthy secure design and apply those principles throughout the system life cycle
+
+Building trustworthy, secure systems cannot occur in a vacuum with stovepipes for software, hardware, information technology, and the human element (e.g., designers, operators, users, attackers of these systems). Rather, it requires a transdisciplinary approach to protection, a determination across all assets where loss could occur, and an understanding of adversity, including how adversaries attack and compromise systems.
+
+As such, this publication addresses considerations for the engineering-driven actions necessary to develop defensible and survivable systems, including the components that compose and the services that depend on those systems. The objective is to address security issues from the perspective of stakeholder requirements and protection needs and to use established engineering processes to ensure that such requirements and needs are addressed with appropriate fidelity and rigor across the entire life cycle of the system.
+
+Engineering trustworthy, secure systems is a significant undertaking that requires a substantial investment in the requirements, architecture, and design of systems, components, applications, and networks. A trustworthy system provides compelling evidence to support claims that it meets...# Security and Systems Engineering
+
+## Introduction
+Its requirements to deliver the protection and performance needed by stakeholders. Introducing a disciplined, structured, and standards-based set of systems security engineering activities and tasks provides an important starting point and forcing function to initiate needed change.
+
+## Key Quotes
+
+### The Ware Report
+> “Providing satisfactory security controls in a computer system is in itself a system design problem. A combination of hardware, software, communications, physical, personnel and administrative-procedural safeguards is required for comprehensive security. In particular, software safeguards alone are not sufficient.”
+> — *“Security Controls for Computer Systems,” (The Ware Report), Rand Corporation Defense Science Board Task Force on Computer Security, February 1970*
+
+### General Michael Hayden
+> “Mission assurance requires systems that behave with predictability and proportionality.”
+> — *General Michael Hayden, Former Director National Security Agency (NSA) and Central Intelligence Agency (CIA), Syracuse University, October 2009*
+
+### NASA System Safety Handbook
+> “In the past, it has been assumed that to show that a system is safe, it is sufficient to provide assurance that the process for identifying the hazards has been as comprehensive as possible, and that each identified hazard has one or more associated controls. While historically this approach has been used reasonably effectively to ensure that known risks are controlled, it has become increasingly apparent that evolution to a more holistic approach is needed as systems become more complex and the cost of designing, building, and operating them become more of an issue.”
+> — *Preface, National Aeronautics and Space Administration (NASA) System Safety Handbook, Volume 1, November 2011*
+
+### Carl Landwehr
+> “This whole economic boom in cybersecurity seems largely to be a consequence of poor engineering.”
+> — *Carl Landwehr, Communications of the Association for Computing Machinery (ACM), February 2015*
+
+### Executive Order on Cybersecurity
+> “Cybersecurity requires more than government action. Protecting our Nation from malicious cyber actors requires the Federal Government to partner with the private sector. The private sector must adapt to the continuously changing threat environment, ensure its products are built and operate securely, and partner with the Federal Government to foster a more secure cyberspace…Incremental improvements will not give us the security we need; instead, the Federal Government needs to make bold changes and significant investments in order to defend the vital institutions that underpin the American way of life.”
+> — *Executive Order (EO) on Improving the Nation’s Cybersecurity, May 2021*
+
+### INCOSE FuSE
+> “[Systems] security engineering must be fundamental to systems engineering, not just a specialty discipline. Security concepts must be fundamental to [an] engineering education, and security proficiency must be fundamental in development teams. Security fundamentals must be clearly understood by stakeholders and effectively evaluated in a way that considers broad goals with security functions and outcomes.”
+> — *Security in the Future of Systems Engineering (FuSE), a Roadmap of Foundational Concepts, INCOSE International Symposium, July 2021*# Viewing Security from the Proper Perspective
+
+“For the first few decades as a burgeoning discipline, cybersecurity has been dominated by the development of widgets to address some aspect of the problem. Systems have become increasingly complex and interconnected, creating even more attack opportunities, which in turn creates even more opportunities to create defensive widgets that will bring some value in detecting or preventing an aspect of the attack space. Eventually, this becomes a game of whack-a-mole in which a simulated mole pops up from one of many holes and the objective is to whack the mole before it pops back in its hole. The moles represent new attacks, and the holes represent a huge array of potential vulnerabilities – both known and as-yet-undiscovered.
+
+Underlying [the discipline of] engineering is science. Sometimes engineering gets ahead of science, such as in bridge building, where the fundamentals of material science were not well understood. Many bridges were built; many fell down; some stayed up; designs of the ones that stayed up were copied. Eventually, for engineering to advance beyond some point, science must catch up with engineering. The science underlying cybersecurity [and more generally, security] engineering is complex and difficult. On the other hand, there is no time like the present to start, because it is both urgent and important to the future.…”
+
+— O. Sami Saydjari, *Engineering Trustworthy Systems*, McGraw-Hill, August 2018
+
+## The Importance of Science and Engineering
+
+When crossing a bridge, we have a reasonable expectation that the bridge will not collapse and will get us to our destination without incident. For bridge builders, the focus is on equilibrium, static and dynamic loads, vibrations, and resonance. The science of physics combines with civil engineering principles and concepts to produce a product that we deem trustworthy, giving us a level of confidence that the bridge is fit-for-purpose.
+
+For system developers, there are also fundamental principles and concepts that can be found in mathematics, computer science, computer and electrical engineering, systems engineering, and software engineering that when properly employed, provide the necessary trustworthiness to engender that same level of confidence. Trustworthy secure systems are achieved by making a significant and substantial investment in strengthening the underlying systems and system components by employing transdisciplinary systems engineering efforts guided and informed by well-defined security requirements and secure architectures and designs. Such efforts have been proven over time to produce sound engineering-based solutions to complex and challenging systems security problems. Only under those circumstances can we build systems that are adequately secure and exhibit a level of trustworthiness that is sufficient for the purpose for which the system was built.
+
+“Scientists study the world as it is, engineers create the world that never has been.”# Theodore von Kármán
+## 1962 National Medal of Science Recipient
+
+### CRITICAL SYSTEM BEHAVIORS OF THE FUTURE
+
+“To deliver system behavior, the systems engineer must define a group of subsystems and precisely how those subsystems are to interact with each other. It is the subsystems and their interactions which produce the system-level behavior. Many of us recognize a vehicle that can take a 60-degree curve at 200 miles per hour as possessing a valuable system behavior. Would we as quickly recognize safe, private, trusted, and available as system behaviors? These behaviors require the same careful system-level design and trades to achieve optimal solutions as the performance system behavior I mentioned above. And there is a clear need—investors want the system to keep their data private, to be safe, and to be trustworthy so that their control is not compromised by a cyber threat, and to be highly available.
+
+If we systems engineers are willing to recognize these behaviors as system behaviors, then we are accountable for delivering them as part of our job. If we choose to view these behaviors as attributes of the parts of our system but not the system as a whole, then we are likely to consider them as jobs for the “specialty engineers.” I’ve looked back into past behaviors of our system engineering community. What I find are examples of systems engineers giving our ‘specialty engineering’ colleagues these challenges by way of the requirements-allocation process. I think we have been wrong to do this. Our “specialty” colleagues are likely to take these allocated requirements and focus on building safe, private, trusted, available parts of a system—rather than in delivering safe, private, trusted, and available system behaviors. It is true you can build a safer system by building safe parts. However, you can’t build a truly safe system without having safe parts interacting with each other in a safe manner. The same can be said for other system behaviors (private, trusted, available, and so on).”
+— John A. Thomas
+President, INCOSE
+INCOSE Insight, July 2013.
+
+## 1. Introduction
+
+Today’s systems are inherently complex. The growth in the size, number, and types of components and technologies that compose those systems as well as the system dependencies result in a range of consequences from inconvenience to catastrophic loss due to adversity within the operating environment. Managing the complexity of trustworthy secure systems requires achieving the appropriate level of confidence in the feasibility, correctness-in-concept, philosophy, and design of a system to produce only the intended behaviors and outcomes. This provides the foundation to address stakeholder protection needs and security concerns with...# Systems Security Engineering
+
+## Introduction
+Sufficient confidence that the system functions only as intended while subjected to different types of adversity and to realistically bound those expectations with respect to constraints and uncertainty. The failure to address complexity and security will leave the Nation susceptible to potentially serious, severe, or catastrophic consequences.
+
+## Definition of Security
+The term **security** is used in this publication to mean freedom from the conditions that can cause a loss of assets with unacceptable consequences. Stakeholders must define the scope of security in terms of the assets to which security applies and the consequences against which security is assessed.
+
+## Systems Engineering Foundation
+Systems engineering provides a foundation for a disciplined and structured approach to building assured, trustworthy secure systems. As a systems engineering subdiscipline, **systems security engineering** addresses security-relevant considerations intended to produce secure outcomes. The engineering efforts are conducted at the appropriate level of fidelity and rigor needed to achieve trustworthiness and assurance objectives.
+
+## Trustworthiness
+Peter Neumann described the concept of trustworthiness as follows:
+
+> “By trustworthiness, we mean simply worthy of being trusted to fulfill whatever critical requirements may be needed for a particular component, subsystem, system, network, application, mission, enterprise, or other entity. Trustworthiness requirements might typically involve (for example) attributes of security, reliability, performance, and survivability under a wide range of potential adversities. Measures of trustworthiness are meaningful only to the extent that (a) the requirements are sufficiently complete and well defined, and (b) can be accurately evaluated.”
+
+Systems security engineering provides complementary engineering capabilities that extend the concept of trustworthiness to deliver trustworthy secure systems. Trustworthiness is not only about demonstrably meeting a set of requirements. The requirements must also be complete, consistent, and correct. From a security perspective, a trustworthy system meets a set of well-defined requirements, including security requirements.
+
+## Addressing Modern Adversities
+Through evidence and expert judgment, trustworthy secure systems can limit and prevent the effects of modern adversities. Such adversities come in malicious and non-malicious forms and can emanate from a variety of sources, including physical and electronic. Adversities can include:
+
+- Attacks from determined and capable adversaries
+- Human errors of omission and commission
+- Accidents and incidents
+- Component faults and failures
+- Abuses and misuses
+- Natural and human-made disasters
+
+## Security in Systems Engineering
+“Security is embedded in systems. Rather than two engineering groups designing two systems, one intended to protect the other, systems engineering specifies and designs a single system with security embedded in the system and its components.”
+
+### Objective of Security in the Future of Systems Engineering
+
+## 1.1 Purpose and Applicability
+This publication is intended to:
+- Provide a basis for establishing a discipline for systems security engineering.# Systems Security Engineering
+
+## Introduction
+As part of systems engineering, the following principles, concepts, activities, and tasks are essential:
+
+- Foster a common mindset to deliver security for any system, regardless of its purpose, type, scope, size, complexity, or stage of the system life cycle.
+- Demonstrate how selected systems security engineering principles, concepts, activities, and tasks can be effectively applied to systems engineering activities.
+- Advance the field of systems security engineering as a discipline that can be applied and studied.
+- Serve as a basis for the development of educational and training programs, including individual certifications and other professional assessment criteria.
+
+## Applicability
+The considerations set forth in this publication are applicable to all federal systems other than those designated as national security systems as defined in 44 U.S.C., Section 3542. These considerations have been broadly developed from a technical and technical management perspective to complement similar considerations for national security systems and may be used for such systems with the approval of federal officials who exercise policy authority over such systems.
+
+State, local, and tribal governments, as well as private sector entities, are encouraged to consider using the material in this publication, as appropriate.
+
+## Security Design Principles
+The applicability statement is not meant to limit the technical and management application of these considerations. The security design principles, concepts, and techniques described in this publication are part of a trustworthy secure design approach as described in Appendix D and can be applied in any of the following cases:
+
+### Development of a New Capability or System
+The engineering effort includes activities such as:
+- Concept exploration
+- Preliminary or applied research to refine the concepts and/or feasibility of technologies employed in a new system
+- Assessment of alternative solutions
+
+This effort is initiated during the concept and development stages of the system life cycle.
+
+### Modification of an Existing Capability or System
+1. **Reactive Modifications to Fielded Systems**:
+- The engineering effort occurs in response to adversity that diminishes or prevents the system from achieving the design intent. This effort can occur during the production, utilization, or support stages of the system life cycle and may be performed concurrently with or independent of day-to-day system operations.
+
+2. **Planned Upgrades to Fielded Systems While Continuing to Sustain Day-to-Day Operations**:
+- Planned system upgrades may enhance an existing system capability, provide a new capability, or constitute a technology refresh of an existing capability. This effort occurs during the production, utilization, or support stages of the system life cycle.
+
+3. **Planned Upgrades to Fielded Systems That Result in New Systems**:
+- The engineering effort is conducted as if developing a new system with a system life cycle that is distinct from the life cycle of a fielded system. The upgrades are performed in a development environment that is independent of the fielded system.# Engineering Efforts Overview
+
+## 1. Evolution of an Existing Capability or System
+The engineering effort involves migrating or adapting a system or system implementation from one operational environment or set of operating conditions to another operational environment or set of operating conditions.
+
+## 2. Retirement of an Existing Capability or System
+The engineering effort removes system functions, services, elements, or the entire system from operation and may include the transition of system functions and services to another system. The effort occurs during the retirement stage of the system life cycle and may be conducted while sustaining day-to-day operations.
+
+## 3. Development of a Dedicated, Domain-Specific, or Special-Purpose Capability or System
+- **Security-Dedicated or Security-Purposed System**: The engineering effort delivers a system that satisfies a security-dedicated need or provides a security-oriented purpose and does so as a stand-alone system that may monitor or interact with other systems. Such systems can include surveillance systems, physical protection systems, monitoring systems, and security service provisioning systems.
+
+- **High-Confidence, Dedicated-Purpose System**: The engineering effort delivers a system that satisfies the need for real-time vehicular control, industrial or utility processes, weapons, nuclear power plants, and other special-purpose needs. Such systems may include multiple operational states or modes with varying forms of manual, semi-manual, automated, or autonomous modes. These systems have highly deterministic properties, strict timing constraints, functional interlocks, and severe or catastrophic consequences of failure.
+
+## 4. Development of a System of Systems
+The engineering effort occurs across a set of constituent systems, each with its own stakeholders, primary purpose, and planned evolution. The composition of the constituent systems into a system of systems produces a capability that would otherwise be difficult or impractical to achieve. This effort can occur across a variety of system of systems, from a relatively informal, unplanned system of systems concept and evolution that emerges over time via voluntary participation to a more formal execution with the most formal being a system of systems concept that is directed, structured, planned, and achieved via a centrally managed engineering effort. Any resulting emergent behavior often introduces opportunities and additional challenges for systems security engineering.
+
+## 1.2 Target Audience
+This publication is intended for systems engineers, security engineers, and other engineering professionals. The term systems security engineer is used to include systems engineers and security professionals who apply the concepts and principles and perform the activities and tasks described in this publication. This publication can also be used by professionals who perform other system life cycle activities or tasks, including:# Security Governance and Responsibilities
+
+## Key Individuals Involved
+- Individuals with security governance, risk management, and oversight responsibilities
+- Individuals with security verification, validation, testing, evaluation, auditing, assessment, inspection, and monitoring responsibilities
+- Individuals with acquisition, budgeting, and project management responsibilities
+- Individuals with operations, maintenance, sustainment, logistics, and support responsibilities
+- Providers of technology-related products, systems, or services
+- Educators in academic institutions that offer systems engineering, computer engineering, computer science, software engineering, and computer security programs
+
+## 1.3. How to Use this Publication
+This publication is intended to serve as a reference and educational resource for systems engineers, engineering specialties, architects, designers, and any individuals involved in the development of trustworthy secure systems and system components. It is meant to be flexible in its application to meet the diverse needs of organizations.
+
+There is no expectation that all of the technical content in this publication will be used as part of a systems engineering effort. Rather, the concepts and principles for trustworthy secure design in Appendices D through F, as well as the systems life cycle processes and security-relevant activities and tasks in Appendices G through K, can be selectively employed by organizations—relying on the experience and expertise of the engineering teams to determine what is correct for their purposes.
+
+Applying the content of this publication enables the achievement of security outcomes that are consistent with the systems engineering perspective on system life cycle processes.
+
+The system life cycle processes described in this publication can take advantage of any system or software development methodology. The processes are equally applicable to waterfall, spiral, DevOps, agile, and other approaches. The processes can be applied recursively, iteratively, concurrently, sequentially, or in parallel and to any system regardless of its size, complexity, purpose, scope, operational environment, or special nature. The full extent of the application of the content in this publication is guided by stakeholder capability needs, protection needs, and concerns with particular attention paid to considerations of cost, schedule, and performance.
+
+## 1.4. Organization of this Publication
+The remainder of this publication is organized as follows:
+- **Chapter 2** presents an overview of systems engineering and the fundamental concepts associated with engineering trustworthy secure systems. This includes basic concepts that address the structure and types of systems, systems engineering foundations, and the concepts of trust and trustworthiness of systems and system components.
+- **Chapter 3** describes foundational system security concepts and an engineering perspective to building trustworthy secure systems. This includes the concepts of security and system security, the nature and character of systems, the concepts of assets and asset loss, reasoning.# Engineering-Driven Solutions
+
+## Overview
+This document discusses various aspects of systems security engineering, including asset loss, protection needs, system security viewpoints, and an introduction to systems security engineering.
+
+## Chapter 4: Systems Security Engineering Framework
+Chapter 4 provides a systems security engineering framework that includes:
+- Problem context
+- Solution context
+- Trustworthiness context
+
+### Additional Information
+The following sections provide additional information to support the engineering of trustworthy secure systems:
+- References
+- Appendix A: Glossary
+- Appendix B: Acronyms
+- Appendix C: Security Policy and Requirements
+- Appendix D: Trustworthy Secure Design
+- Appendix E: Principles for Trustworthy Secure Design
+- Appendix F: Trustworthiness and Assurance
+- Appendix G: System Life Cycle Processes Overview
+- Appendix H: Technical Processes
+- Appendix I: Technical Management Processes
+- Appendix J: Organizational Project-Enabling Processes
+- Appendix K: Agreement Processes
+- Appendix L: Change Log
+
+## Engineering-Driven Solutions
+The effectiveness of any engineering discipline first requires a thorough understanding of the problem and consideration of all feasible solutions before acting to solve the identified problem. To maximize the effectiveness of systems security engineering, the security requirements for the protection against asset loss must be driven by business, mission, and all other stakeholder asset loss concerns.
+
+### Security Requirements
+The security requirements are defined and managed as a well-defined set of engineering requirements and cannot be addressed independently or after the fact. In the context of systems security engineering, the term protection has a broad scope and is primarily focused on the concept of assets and asset loss resulting in unacceptable consequences.
+
+### Protection Capability
+The protection capability provided by a system goes beyond prevention and aims to control the events, conditions, and consequences that constitute asset loss. It is achieved in the form of specific capability and constraints on:
+- System architecture
+- Design
+- Function
+- Implementation
+- Construction
+- Selection of technology, methods, and tools
+
+This must be “engineered in” as part of the system life cycle process.
+
+### Stakeholder Asset Protection Needs
+Understanding stakeholder asset protection needs (including assets that they own and assets that they do not own but must protect) and expressing those needs through a set of well-defined security requirements is an investment in the organization’s mission and business success in the modern age of global commerce, powerful computing systems, and network connectivity.
+
+## 2. Systems Engineering Overview
+This chapter presents system, systems engineering, trust, and trustworthiness concepts that provide the foundation for engineering trustworthy secure systems.
+
+### 2.1 System Concepts
+Many system concepts are important to inform engineering trustworthy secure systems. This includes:
+- What constitutes a system
+- The structure of a system
+- Categories of systems
+- The concept of a system of systems
+
+#### 2.1.1 Systems and System Structure
+A system is an arrangement of parts or elements that together exhibit a behavior or meaning that...# Understanding Systems
+
+## Introduction
+The individual constituents of a system do not define its properties. The properties of a system (i.e., attributes, qualities, or characteristics) emerge from the system’s parts or elements and their individual properties, as well as the relationships and interactions between and among the parts or elements, the system, and its environment. An engineered system is designed or adapted to interact with an anticipated operational environment to achieve one or more intended purposes while complying with applicable constraints.
+
+## System Structure
+Figure 1 shows the basic structure of a system, including its constituent system elements.
+
+## Purpose of a System
+The purpose of a system is to deliver one or more capabilities. The capabilities may directly or indirectly interact with, control, or monitor physical, mechanical, hydraulic, or pneumatic devices or other systems or capabilities. Alternatively, it may provide the ability to create, access, manipulate, transmit, store, or share resources, such as data and information.
+
+### Hierarchical Model
+Figure 2 is a general hierarchical model for the representation of a system. Not all systems, such as networks, are hierarchical in nature. Non-hierarchical systems have models that can more accurately reflect the relationships of their constituent elements. A system element may itself be considered a system (i.e., comprised of other system elements).
+
+Realizing a system of interest involves recursively resolving its structure to the point where understandable and manageable system elements can be implemented (i.e., developed, bought, or reused) and subsequently integrating those elements into the system.
+
+## System of Systems
+A system of systems is a system whose interacting system elements are themselves systems. It provides a unique capability that the constituent systems cannot provide on their own. A system of systems may include inter-system infrastructure, facilities, and processes necessary to enable the constituent systems to integrate or interoperate.
+
+## Interfacing, Enabling, and Interoperating Systems
+
+### Interfacing Systems
+Interfacing systems are systems that interact with the system of interest. Interfacing systems have an interface for exchanging data, energy, or other resources with the system of interest. An interfacing system exchanges resources with the system of interest during one or more system life cycle stages, such as a system that interfaces for maintenance purposes or a system used to develop the system of interest. The relationships with interfacing systems can be either bi-directional or one way.
+
+### Subsets of Interfacing Systems
+Interfacing systems have two specific subsets:
+
+- **Enabling Systems**: These provide the essential services required to create and sustain the system of interest. Examples of enabling systems include software development environments, production systems, training systems, and maintenance systems.
+
+- **Interoperating Systems**: These interact with the system of interest for the purpose of jointly performing a function.
+
+Figure 3 illustrates the relationship between the system of interest and its interfacing systems in both operational and non-operational (external) environments.# 2.2. Systems Engineering Foundations
+
+Systems engineering is a transdisciplinary and integrative approach to enabling the successful realization, use, and retirement of engineered systems. It employs systems principles and concepts, as well as scientific, technological, and management methods to achieve such systems. Systems engineering is system-holistic in nature, whereby the contributions across multiple engineering and specialty disciplines are evaluated and balanced to produce a coherent system capability.
+
+Systems engineering applies systems science and systems thinking to satisfy the often-conflicting needs and priorities of stakeholders within the constraints of cost, schedule, performance, and effectiveness. The objective is to limit uncertainty and thereby manage risk.
+
+Systems engineering is outcome-oriented and leverages engineering processes to realize a system while effectively managing complexity and serving as the principal integrating mechanism for the technical, management, and support activities related to the engineering effort. Finally, systems engineering is data- and analytics-driven to ensure that all decisions and trades are guided and informed by data produced by analyses conducted with an appropriate level of fidelity and rigor.
+
+Systems engineering efforts are complex, system-specific, and context-dependent, requiring close coordination between the engineering team and stakeholders throughout the system life cycle stages.
+
+While systems engineering is typically considered in terms of its developmental role as part of capability acquisition, systems engineering efforts and responsibilities do not end once a system completes development and is transitioned to the operational environment for day-to-day use. Stakeholders responsible for the system’s utilization, support, and retirement provide data to the systems engineering team on an ongoing basis. This data captures the experiences, problems, and issues associated with the operation, maintenance, and sustainment of the system. Stakeholders also advise the engineering team on system enhancements and improvements made or desired. In addition, field engineering provides on-site, full-system life cycle engineering support for operations, maintenance, and sustainment organizations.
+
+There are many additional resources available that provide more in-depth examinations of systems engineering. Such discussions are beyond the scope of this publication.
+
+# 2.3. Trust and Trustworthiness
+
+The concepts of trust and trustworthiness are foundational to engineering trustworthy secure systems, to the decisions made to grant trust, and to the extent that trust is granted based on demonstrated trustworthiness. Trust is a belief that an entity meets certain expectations and can be relied upon. The terms belief and can imply that trust may be granted to an entity whether the entity is trustworthy or not. A trustworthy entity is one for which sufficient evidence exists to support its claimed trustworthiness. Thus, trustworthiness is the demonstrated ability and,# Trust and Trustworthiness
+
+Therefore, the worthiness of an entity to be trusted to satisfy expectations, including satisfying expectations in the face of adversity. Since trustworthiness is something demonstrated, it is based on evidence that supports a claim or judgment of an entity being worthy of trust [2] [20] [21].
+
+Since trust is not necessarily based on a judgment of trustworthiness, the decision to trust an entity should consider the significance (i.e., consequences, effects, and impacts) of expectations not being fulfilled because of non-performance – whether due to incompetence, deficiency, or failure. Trust that is granted without establishing the required trustworthiness is a significant contributor to risk. The concepts of trust and trustworthiness are discussed in Appendix F.
+
+## Engineering for Trust
+
+In January 2022, INCOSE released the Systems Engineering Vision 2035 [16]. It is intended to inspire, guide, and inform the strategic direction for the global systems engineering community. A core element identified for the future state of systems engineering is increased confidence in systems to improve the practice of engineering trusted systems.
+
+As noted in [7], a key problem to address in realizing Vision 2035 is that “systems security has moved from its traditional focus on trust to a more singular focus on risk.” The need is to prove a level of system security through evidence-based assurance.
+
+### 3. System Security Concepts
+
+This chapter describes the aspects necessary for a systems engineering perspective on security. A systems engineering perspective on security requires an understanding of the concept of security (Section 3.1), the concept of an adequately secure system (Section 3.2), and the characteristics of systems (Section 3.3). It also requires an understanding of the concept of assets (Section 3.4), the concepts of loss and loss control (Section 3.5), how to reason about asset loss (Section 3.6), and how to determine protection needs (Section 3.7). In satisfying such needs, specific viewpoints (Section 3.8) and how security is demonstrated are considered, including what is adequate (Section 3.9). The systems engineering subdiscipline that encompasses these considerations is referred to as systems security engineering (Section 3.10).
+
+#### 3.1. The Concept of Security
+
+A system with freedom from those conditions that can cause a loss of assets with unacceptable consequences must provide the intended behaviors and outcomes and also avoid any unintended behaviors and outcomes that constitute a loss. The term intended is reflected in two cases, both of which must be satisfied:
+
+- **User intent:** The system behaviors and outcomes expected by the user.
+- **Design intent:** The system behaviors and outcomes to be achieved by the design.
+
+A system that delivers a capability per the design intent but inconsistent with the user intent constitutes a loss. For example, vehicle control loss might result from a failure in the vehicle’s steering control function (i.e., failure to meet the design intent) or through an attack that takes...# Security Control Objectives
+
+## Introduction
+The primary security objective is to ensure that only the intended behaviors and outcomes occur, both with the system and within the system. Every security need and concern derives from this objective, which is based on the concept of authorization for what is and is not allowed.
+
+## Mediated Access
+The primary security control objective is enforcing constraints in the form of rules for allowed and disallowed behaviors and outcomes. This control objective – and a foundational principle of trustworthy secure design – is **Mediated Access**. If access is not mediated (i.e., controlled through enforcing constraints) following a set of non-conflicting rules, then no basis exists upon which to claim that security is achieved.
+
+## Security Policies
+The rules for mediated access are stated in a set of security policies that reflect or are derived from laws, directives, regulations, life cycle concepts, requirements, or other specifically stated stakeholder objectives. A security policy includes a scope of control that establishes bounds within which the policy applies.
+
+### Components of Security Policies
+Security policy rules are stated in terms of:
+- **Subjects** (active entities)
+- **Objects** (passive entities)
+- **Operations** that the subject can perform or invoke on the object.
+
+The rules govern subject-to-object and subject-to-subject behaviors and outcomes. Each security policy rule must be accurate, consistent, compatible, and complete with respect to stakeholder objectives for the defined scope of control. Inconsistency, incompatibility, inaccuracy, or incompleteness in the security policy rules lead to protection gaps.
+
+It is equally important that the security protection capabilities of the system are aligned with and can achieve the expectations of the policy.
+
+## Privileges
+Privileges define the set of allowed and disallowed behavior and outcomes granted to a subject. They are the basis for making mediated access decisions. A restrictive default practice for security policy enforcement is to design the enforcement mechanism to allow only what the policy explicitly allows and to deny everything else.
+
+For a system to be deemed trustworthy secure, there must be sufficient confidence that the system is capable of enforcing the security policy on a continuous basis for the duration of the time that the policy is in effect (Appendix F).
+
+## The Concept of an Adequately Secure System
+Adequate security is a concept that enables meaningful judgments about the idealistic nature of security objectives. The definition of security expresses an ideal that encapsulates three essential characteristics of a secure system:
+
+1. It enables the delivery of the required system capability despite intentional and unintentional forms of adversity.
+2. It enforces constraints to ensure that only the desired behaviors and outcomes associated with the required system capability are realized while satisfying the first characteristic.
+3. It enforces constraints based on a set of rules to ensure that only authorized human-to-machine and machine-to-machine interactions and operations are allowed.# Security Performance and Adequate Security
+
+To achieve adequate security, certain characteristics must be satisfied, resulting in a gap between the ideal secure system and the security performance that can be dependably achieved. The judgment that a system is adequately secure requires an evidence-based determination that security performance is optimized against all other performance objectives and constraints.
+
+## Stakeholder Needs
+
+The scope of conditions relevant to security and the acceptable level of security are specific to stakeholder needs. To be adequately secure, the system must:
+
+- Meet minimum tolerable levels of security, as determined by experience, analysis, or a combination of both.
+- Be as secure as reasonably practicable (ASARP).
+
+### As Secure as Reasonably Practicable (ASARP)
+
+The term "as secure as reasonably practicable" means that an incremental improvement in security would require a disproportionate deterioration in meeting other system cost, schedule, or performance objectives. It may also violate system constraints or require unacceptable concessions, such as an unacceptable change in the way operations are performed.
+
+## Understanding Adequate Security
+
+An adequately secure system does not necessarily preclude all conditions that can lead to or result in undesirable consequences. The minimum tolerable levels of security performance and interpretations of ASARP may not be fixed for the life of a system.
+
+The information gathered while the system is in use and the lessons learned may guide and inform modifications that raise the bar on either or both tolerability and practicability. The concept of adequately secure is, therefore, inherently context-dependent and subjective in nature. It is based on assertions and expectations about the system security objectives and determining how well those objectives have been achieved.
+
+## System States and Security
+
+Judging the adequacy of system security requires an understanding of system states. All systems operate in and transition between a set of states. These states and transitions may correspond to or be defined by characteristics of the system, such as:
+
+- How the system functions (e.g., start, run, idle, recovery).
+- How the system is used (e.g., operational, training, maintenance, peacetime, wartime).
+- Environmental conditions (e.g., under fire or not, temperature ranges).
+
+### Security Characteristics
+
+There are security characteristics that determine whether each state or transition is secure, insecure, or indeterminate (i.e., unknown whether secure or insecure). Adequate security depends on being able to distinguish among secure, insecure, and indeterminate states and to keep the system operating in secure states by applying the principles of Protective Failure and Protective Recovery.
+
+## Conclusion
+
+System states may be classified as secure states (i.e., what states are desired and allowed) and insecure states (i.e., what states are not desired nor allowed). Ideally, a secure system is one that effectively manages these states to maintain security.# Secure System Execution
+
+## Introduction
+A secure system begins execution in a secure state and does not transition to an insecure state. Every state transition must result in the same or another secure state, ensuring that each transition is secure.
+
+## Protective Failure
+Protective failure requires the ability to:
+1. Detect that the system is in an insecure state.
+2. Detect a transition that will place the system into an insecure state.
+
+This is essential for responding to avoid the propagation of new failures. Protective failure calls for responsive and corrective actions, including transitioning to a secure halt state with a protected recovery. This allows for the continuation of operations in a reconstituted, reconfigured, or alternative secure operational mode. Other stakeholder objectives may necessitate the continuation of operations in a less-than-fully-secure state, which should be reflected in policies and requirements (see Section C.3).
+
+## Protective Recovery
+Protective recovery requires the ability to take reactive, responsive, or corrective action to securely transition from an insecure state to a secure state (or a less insecure state). The secure state achieved after completing protective recovery actions includes:
+- Actions that limit or prevent any further state transition.
+- Actions that constitute a type of degraded capability, mode, or operation.
+
+## Characteristics of Systems
+The characteristics of systems, their interrelationships with other systems, and their roles within a system of systems all impact security and determinations of adequate security and system trustworthiness. These system characteristics can include:
+- System type, function, and primary purpose.
+- System technological, mechanical, physical, and human element characteristics.
+- System states and modes of operation.
+- Criticality or importance of the system.
+- Ramifications of the system’s failure to meet its performance expectations, function correctly, produce only the intended behaviors and outcomes, and provide for its own protection (i.e., self-protection).
+- System concept for the delivery of a capability.
+- Approach to acquisition of the system.
+- Approach to managerial and operational governance.
+- Value, sensitivity, and criticality of assets entrusted to and used by the system.
+- The system’s interfaces and the interfacing systems that interact through those interfaces.
+- Role as a constituent system in one or more system of systems.
+
+## The Concept of Assets
+An asset is an item of value. There are many different types of assets, broadly categorized as either tangible or intangible:
+- **Tangible assets** include physical items, such as hardware, computing platforms, and other technology components, as well as humans.
+- **Intangible assets** include humans, firmware, software, capabilities, functions, services, trademarks, intellectual property, data, copyrights, patents, image, or reputation.# Asset Valuation and Loss Control
+
+## Asset Identification and Classification
+Assets can be further identified and described in terms of common asset classes as illustrated in Table 1. Assets may also be considered as individual items or as an aggregate or group of items that spans asset types or asset classes (e.g., personnel data, fire control function, environmental sensor capability). This publication uses the term **asset of interest** to emphasize and establish bounds on the scope of reasoning for a specific asset, asset type, or asset class.
+
+The valuation of an asset is a key input in decision-making about investments to protect an asset (Section 3.6). For those cases where an asset is associated with multiple stakeholders, there may be differing, contradictory, competing, or conflicting views about the valuation that must be resolved.
+
+## The Concepts of Loss and Loss Control
+Loss is the experience of having an asset taken away or destroyed or the failure to keep or to continue to have an asset in a desired state or form. A loss typically results from an adverse event or condition that causes unacceptable ramifications, consequences, or impacts. A specific loss is determined and assessed independent of the causal events and conditions necessary to produce the loss (i.e., the triggering event, such as an error of omission, or the exploitation event, such as an attack).
+
+### Examples of Loss
+Examples of resultant adverse events or conditions and their ramifications, impacts, or consequences include:
+
+- **Adverse event or condition**: Data is stolen or inadvertently disclosed on a public website and is no longer solely in the possession of the owner or entities authorized by the owner.
+- **Ramification, impact, or consequence**: Market share and competitive advantage is taken away because the data that was lost or stolen provided detailed instructions for a precision machining method that no other company possessed.
+
+- **Adverse event or condition**: A vehicle gets a flat tire, which no longer supports the vehicle weight.
+- **Ramification, impact, or consequence**: One cannot drive the vehicle and needs alternate transportation to get to work, the store, or go on vacation.
+
+- **Adverse event or condition**: Confidence in the system of interest operating correctly is lost or questioned.
+- **Ramification, impact, or consequence**: Trust in the system and its outputs is lost, whether the loss of confidence is justified or not.
+
+While the loss condition or event is negative relative to the intended norm, the effect of the loss can be either neutral/inconsequential or negative/consequential. For example, a flat tire on a vehicle that is used only for off-road excursions is neutral/inconsequential if no such excursion is planned or affected.
+
+Loss may occur because of a single or combination of intentional or unintentional causes, events, and conditions. These may include the authorized or unauthorized use of the system; intentional acts of disruption or subversion; human and machine faults, errors, and failures; human acts of...# Loss Control Objectives and Asset Protection
+
+## Introduction
+The discussion of loss control objectives is crucial in understanding how to effectively address the prevention and limitation of loss within a system. This includes recognizing the potential for misuse and abuse, as well as the by-products of emergence, side effects, and feature interaction.
+
+## Understanding Loss
+Losses may be inconsequential to the mission or business objectives that the system supports. It is possible for objectives to be achieved despite suffering an immediate or eventual loss that impacts other stakeholder objectives.
+
+### The Need for Loss Control Objectives
+The potential to experience loss necessitates the establishment of loss control objectives. These objectives serve as the foundation for judgments regarding the effectiveness of loss prevention and limitation strategies. They encompass:
+
+- Resultant adverse events and conditions
+- Their ramifications
+
+The loss control objectives also provide a basis for acquiring evidence of assurance that the system, as designed, built, used, and sustained, will adequately protect against loss while achieving its design intent.
+
+## Characteristics of Loss Control Objectives
+Loss control objectives aim to preserve the characteristics of assets (i.e., state, condition, form, utility) to the extent practicable, despite the potential for changes. These objectives acknowledge:
+
+- Uncertainty regarding what can be done (not all losses can be avoided)
+- Limits to the effectiveness of actions taken (each action has its scope of effectiveness and potential failure modes)
+
+### Emphasizing Protection Against Loss
+Due to uncertainty, it is impossible to guarantee that some form of loss will not occur. Therefore, it is essential to focus on protecting against the effects of loss, including cascading or ripple events. This holistic approach considers the full spectrum of possible loss across various types and effects associated with each asset class.
+
+## Focus on Effects Rather Than Causes
+It is prudent to concentrate on the effects to be controlled rather than the causes when protecting against loss. The loss control objectives address the possibilities of controlling potential loss and its effects, given the limits of certainty, feasibility, and practicality.
+
+### Trade-offs in Loss Control Objectives
+Collectively, the loss control objectives encompass concerns related to:
+
+- Security
+- System survivability
+- Safety
+- Resilience
+
+It is important to note that satisfying loss control objectives may require trade-offs. For instance, avoiding or limiting the loss of one asset may come at the expense of not avoiding or limiting the loss of another asset, as well as having trade-offs with other objectives (e.g., cost and schedule).
+
+## Reasoning About Asset Loss
+A structured approach to reasoning about asset loss includes the following elements:
+
+1. **Context of Loss**
+2. **Confidence in Addressing Loss**
+3. **Significance of Loss**
+4. **Addressing Loss**
+5. **Cause of Loss**
+
+These elements provide a basis for asset protection, helping to determine the objectives for a secure system, optimize system protection capabilities, and assess the overall suitability and effectiveness of the implemented protections.# Asset Protection Needs
+
+## Objectives
+
+The asset protection needs are grouped into two main objectives to facilitate reasoning about the asset of interest:
+
+### Objective 1: Determine Asset Protection Needs
+
+- **Context of Loss**: The scope and criteria that bounds reasoning about asset loss.
+- **Significance of Loss**: The effect of asset loss (or consequences) based on its valuation.
+- **Confidence in Addressing Loss**: The assurance to be achieved based on claims-driven and evidence-based arguments about the effectiveness of what is done to address potential and actual loss.
+
+### Objective 2: Satisfy Asset Protection Needs
+
+- **Cause of Loss**: The events, conditions, or circumstances that describe what has happened before and what can happen in the future that constitute the potential for loss to occur.
+- **Addressing Loss**: The various actions taken to exercise control over loss to the extent practicable. The control objectives are to prevent loss from occurring and to limit the extent and duration for those losses that do occur. Limiting loss includes recovery from loss to the extent practicable.
+
+## Asset of Interest
+
+The asset of interest refers to the asset class, asset type, or individual asset being addressed. Reasoning about loss is based on the asset of interest. Distinguishing the asset of interest from all other assets provides clarity in the interpretation of loss for the asset of interest and the associated judgments of the suitability and effectiveness of protections employed. A focus on a specific asset class, type, or discrete element also enables precise traceability to requirements that support the analysis needed to determine the protection-relevant impact of changes to requirements.
+
+## Context of Loss
+
+The context of loss establishes the boundary, scope, and time frame for the reasoning, analyses, assessments, and conclusions about the asset of interest. The context of loss also provides a basis to relate and trace asset dependencies and interactions and to group assets for protection. The context of loss time frame is particularly important because the asset of interest has a life cycle that is different from the system of interest.
+
+For example, the asset of interest may be created, configured, or modified outside of the scope of control of the system of interest yet be within the scope of the engineering effort. The asset of interest, once within the scope of control of the system of interest, may have differing protection needs associated with the state or mode of the system (e.g., the system operational mode protection may differ from the system training mode).
+
+Additionally, system life cycle assets may only exist within a development or production system and their associated supporting environments. The effect of the loss for these assets may transfer to a loss associated with the system of interest. Therefore, the context of loss includes the life cycle of the asset, the state and mode of the system, and other time-based periods or characteristics during which loss is addressed.
+
+## Time Frame of Loss – An Example
+
+A financial portfolio (i.e., an asset or collection of assets) with specific...# Investment Objectives and Risk Acceptance Considerations
+
+Investment objectives and risk acceptance considerations may be created by a financial advisor for a client, funded by the client, and subsequently managed using multiple systems across one or more institutional investment firms throughout the portfolio’s life cycle. Each asset of interest within the portfolio may have differing protection needs at different times depending on the type of asset, market conditions, regulatory jurisdiction, risk position, and other asset management factors that are imposed on the system.
+
+## Significance of Loss
+
+The significance of loss is the adverse effect (consequence) on the asset of interest or the resultant adverse effect associated with the asset. The significance of loss is best described as an experience that is to be avoided, thereby warranting an investment to protect against the loss occurring and to minimize the extent of the adverse effect should the loss occur. The significance of loss is determined and assessed as an effects-based judgment. That is, it is determined without any consideration of how or why the loss occurs, the probability or likelihood of the loss occurring, and any intent or the absence of intent related to the loss.
+
+### Key Questions Addressed by Significance of Loss
+
+The significance of loss answers the following questions:
+- What are the ramifications, effects, and problems that result from suffering a loss of the asset of interest?
+- What is the severity of those ramifications, effects, and problems?
+
+The significance of loss requires clarity in what loss means for the asset of interest. Examples of terms used to describe asset loss include:
+- Ability
+- Accessibility
+- Accuracy
+- Assurance
+- Advantage (technological, competitive, combatant)
+- Capability
+- Control
+- Correctness
+- Existence
+- Investment
+- Ownership
+- Performance
+- Possession
+- Precision
+- Quality
+- Satisfaction
+- Time
+
+## Significance of Loss – An Example
+
+The significance of loss due to a flat tire is determined and assessed without consideration for how or why the tire became flat (e.g., puncture, manufacturing defect, impact with curb or other object) and without any consideration of malicious intent (e.g., tire cut, valve stem loosened). Regardless of how or why the tire became flat, the significance of loss remains the same (e.g., loss of control if the vehicle is moving, inability to drive if the vehicle is stationary, time lost to replace or repair the tire to make the vehicle operable).
+
+The significance of loss due to a flat tire includes the inability to steer the vehicle, and the resultant adverse effect may be to impact some other object (i.e., a crash). The adverse effect of the loss of steering (loss of control) is specific, while the adverse effect of a crash is general (many other circumstances may result in a crash without any loss of the ability to steer the vehicle).
+
+## Confidence in Addressing Loss
+
+Confidence in addressing loss ensures that protections have a body of objective evidence that demonstrates the effectiveness, sufficiency, and suitability of protective measures to satisfy asset management needs.# Protection Needs and Confidence in Addressing Loss
+
+Confidence in addressing loss is cumulative. It begins with determining the loss concerns for the asset of interest and continuously builds as those concerns are better understood and addressed across the context of loss, the significance of loss, the causes of loss, and how loss is addressed. The evidence basis that provides confidence is informed by the verification and validation activities that occur throughout the life cycles of the assets and the system, including requirements elicitation and analysis. A key informing element to those activities is to ensure that the results contribute to the confidence sought.
+
+## Causes of Asset Loss
+
+The cause of loss is the individual or combination of events, conditions, and circumstances that result in some form of loss of an asset. The causes of asset loss constitute a continuum that includes:
+
+- Intentional
+- Unintentional
+- Accidental
+- Incidental
+- Misuse
+- Abuse
+- Error
+- Defect
+- Fault
+- Weakness
+- Failure events and conditions
+
+This continuum spans all human-based, machine-based, physical-based, and nature-based drivers of loss. The following considerations apply to reasoning about the causes of loss:
+
+- Single events and conditions that alone can produce the loss
+- Combinations, sequences, and aggregate events and conditions
+- Events and conditions that are desirable, intended, and even planned yet produce unanticipated, unforeseen, and unpredictable results
+- Cascading and ripple events and conditions
+
+### Key Questions Regarding Causes of Loss
+
+The causes of asset loss answer the following questions:
+
+- How can loss occur?
+- How has loss occurred in the past?
+
+However, determining how loss can occur does not require asking or answering the question, “What is likely or probable to happen?”
+
+## Addressing Loss
+
+Addressing loss occurs through the protective measures that enforce constraints to ensure that only authorized and intended behaviors and outcomes of the system occur. These include:
+
+- Protective measures that are provided by the machine portion of the system (i.e., the system architecture and design, the use of engineered features and devices within the architecture and design)
+- Protective measures that are provided by the human in the system (i.e., personnel, practices, procedures, the use of tools to support the human as a system element, and the human role in designing and building the machine part of the system)
+- Protective measures that are provided by the physical environment (i.e., controlled access areas, facility access points, physical monitoring, environmental controls, fire suppression)
+
+### Terminology in Protective Measures
+
+The terminology used to describe means and methods includes:
+
+- Mechanisms
+- Configurations
+- Controls
+- Safeguards
+- Countermeasures
+- Features
+- Techniques
+- Overrides
+- Practices
+- Procedures
+- Processes
+- Inhibits
+
+These may be applied in accordance with governing policies, regulations, laws, practices, standards, and techniques.
+
+## Asset-Based Protection – Engineering for Success
+
+Do not focus on what is likely to happen. Instead, focus on what can happen, and be prepared. That is what systems security engineering means by adopting a proactive approach.# Preemptive and Reactive Strategy
+
+## Concept of Secure Function
+The concept of secure function addresses the spectrum of asset loss and associated consequences. This involves:
+
+- Proactively planning and designing to prevent the loss of an asset that is not acceptable.
+- Minimizing the consequences should such a loss occur.
+- Being in an informed position to reactively recover from the loss when it happens.
+
+## 3.7. Determining Protection Needs
+Stakeholders must achieve their mission or business objectives securely, preserving assets and limiting asset loss. Continuous asset protection is essential for stakeholders to maintain a realistic expectation of success in their systems supporting their objectives.
+
+### Scope and Expectations
+The scope and expectations for asset protection are foundational for achieving the design intent of a trustworthy secure system. Protection needs typically correlate with the severity of consequences associated with asset loss. These needs are determined from various factors, including:
+
+- Needs
+- Concerns
+- Priorities
+- Constraints
+
+### Perspectives for Protection Needs
+There are three perspectives for determining protection needs:
+
+1. **Stakeholder Perspective**
+2. **System Perspective**
+3. **Trades Perspective**
+
+Figure 7 illustrates the key input sources used to define protection needs and the outputs derived from the specification of those needs.
+
+### Purpose of Establishing Protection Needs
+The purpose of establishing the need for protection is to decide which assets to protect and prioritize such protection. This can be accomplished without considering a specific cause or condition against which to protect.
+
+As shown in Figure 8, the need for protection is derived from the relationship among:
+
+- The asset of interest
+- Context of loss
+- Type of loss
+- Consequences of loss
+
+This approach establishes the need for protection that, once validated by stakeholders across all assets of interest, provides the basis for developing security objectives and requirements.
+
+## Summary of Considerations Impacting Protection Needs
+The following considerations impact the identification of protection needs:
+
+- **Asset Classes and Types**: Assets have different classes and types.
+- **Stakeholder and System Association**:
+- Some assets are associated with stakeholders (stakeholder assets) and have a purpose, use, and existence independent of the system being designed.
+- Other assets are associated with the system, dependent on system design and behavior, and are typically unknown to stakeholders.
+- **Dual-Faceted Loss Interpretation**:
+- The effect on the asset of interest.
+- The effect on those who value the asset of interest.
+- **Temporal and State-Based Loss Interpretation**:
+- Spans a continuum within and across asset types and classes.
+- May change across the asset's life cycle and the state in which the asset exists or is utilized.
+- **Subjective Asset-Based Judgments**: Asset-based judgments are subjective.# Asset Valuation and Protection
+
+## Overview
+- **Asset valuation**
+- **Asset loss ramifications**
+- **Asset protection suitability, effectiveness, and dependability**
+
+## Stakeholder Perspective
+The stakeholder perspective is based on the assets that belong to stakeholders. Therefore, those stakeholders determine the protection needs.
+
+## System Perspective
+The system perspective is based on the assets necessary for the system to function. These assets are determined by system design decisions and the criticality and priority of the asset in providing or supporting the functions of the system.
+
+### Awareness of System Assets
+Stakeholders are typically unaware of the existence of system assets and are not able to make decisions about the protection needs for system assets. The protection of system assets is an element of trustworthy secure system design.
+
+## Continuous Reassessment of Protection Needs
+Protection needs are continuously reassessed and adjusted as variances, changes, and trades occur throughout the system life cycle. These include:
+- The maturation of the system design and life cycle concepts
+- Improved understanding of the operational environment (e.g., a more thorough understanding of adversities)
+- Changes in understanding of the consequences of asset loss
+
+Revisiting protection needs is a necessary part of the iterative nature of systems engineering. Systems security engineering is necessary to ensure completeness in understanding the problem space, exploring all feasible solutions, and engineering a trustworthy secure system.
+
+# System Security Viewpoints
+
+## Predominant Viewpoints
+Three predominant viewpoints of system security include:
+1. **System function**
+2. **Security function**
+3. **Life cycle assets**
+
+These viewpoints shape the considerations that are used as trustworthy secure design considerations for any system type, intended use, and consequence of system failure.
+
+## System Function
+Every system is delivered to satisfy stakeholder capability needs. These needs constitute the system function – the system’s purpose or role as fulfilled by the totality of the capability it delivers combined with its intended use. The system function is the predominant viewpoint and establishes the context for the security function and the associated system life cycle assets.
+
+## Security Function
+The stakeholder capability needs include the protection capability needs. The protection needs parallel the concept of stakeholder capability needs and constitute the system’s security function – the totality of the system’s purpose or role to securely satisfy stakeholder capability needs.
+
+The security function enforces security-driven constraints as part of the overall system design. The purpose of the constraints is to avoid, reduce, and tolerate susceptibilities, defects, weaknesses, and flaws in the system that may constitute vulnerabilities that can be exploited or triggered.
+
+### Vulnerabilities
+These vulnerabilities can reside within the system’s structure or behaviors and can have the effect of countering, defeating, or minimizing the ability of the system to effectively satisfy its design intent to deliver the required capability. Thus, the constraints also enable the synthesis of the security function within the system function in a non-conflicting manner.# Security Function of the System
+
+The security function of the system has both passive and active aspects:
+
+## Passive Aspects
+
+- Passive aspects of the security function do not exhibit behavior (i.e., are non-functional in nature). They include the system architecture and design elements.
+- The passive aspects are part of the system structure and are, therefore, embodied in the architecture of the system.
+- For example, the functional architecture may segment system functions (including security functions) into different subsystems, reducing the possibility of interference among functions as well as limiting the propagation of erroneous behavior.
+- Passive aspects inherently reduce the susceptibility of the system to exposure, hazard, and vulnerability, thereby limiting if not eliminating the potential for loss scenarios.
+- The employment of passive aspects generally enables greater confidence in the protection capability of the system.
+
+## Active Aspects
+
+- Active aspects of the security function exhibit behavior (i.e., are functional in nature). They include engineered features and devices, referred to as controls, countermeasures, features, inhibits, mechanisms, overrides, safeguards, or services.
+- The active aspects are employed or allocated within the system architecture, have a specific design, and have capabilities and limitations that affect their suitability and effectiveness relative to their intended use.
+- Passive and active aspects of security function factor into trades, as discussed in Section D.4.4.
+- Active aspects may also require additional hardware or loads on existing hardware; increasing demands for size, weight, and power (SWaP); and making active aspects a challenge for SWaP-restricted systems (e.g., satellites).
+
+## Life Cycle Assets
+
+Life cycle assets are associated with the system but are not engineered into or delivered with the system. Their association with the system means that they can be the direct cause of loss or a conduit/means through which a loss can occur. Life cycle assets have several types:
+
+- Systems that interact with the system of interest, including conceptual systems
+- Intellectual property in various forms, including proprietary algorithms, technologies, and technology solutions
+- Data and information associated with the system
+- Developmental, manufacturing, fabrication, and production capabilities and systems used to utilize, operate, and sustain the system
+
+# Demonstrating System Security
+
+Demonstrating that a system is adequately secure assures stakeholders that their objectives, needs, concerns, and associated constraints have been addressed. Such demonstration must consider the system as an emergent whole that consists of:
+
+- The required capability it delivers
+- The protection capability
+- The limits of certainty
+
+In particular, the limits of certainty apply to requirements and accepting the potential errors, inconsistencies, or gaps in the completeness and coverage of those requirements. Therefore, the requirements and associated verification and validation methods, while a necessary aspect of...# Demonstrating Adequate Security
+
+Demonstrating adequate security is a complex process that requires more than just basic measures. The level of confidence provided must be commensurate with the asset loss consequences addressed.
+
+## Evidence Basis for Confidence
+
+The evidence basis for demonstrating confidence must be:
+
+- Recorded
+- Traced
+- Maintained
+- Evolved as variances relevant to demonstrating adequate security occur throughout the system life cycle.
+
+Additionally, this evidence must be meaningful to subject-matter experts, considering the subjective, competing, and often contradicting needs and beliefs of stakeholders.
+
+## Justified Confidence and Assurance
+
+Demonstrating justified confidence or assurance is achieved through:
+
+- An evidentiary basis provided by systems analyses and other evidence-producing activities.
+- The evidentiary basis is used within a structured reasoning approach, as demonstrated in assurance cases (see Section 4.3).
+
+### Reasoning Considerations
+
+The reasoning process considers:
+
+- System needs and capabilities
+- Contributing system quantitative and qualitative factors
+- How these capabilities and factors produce an evidentiary base for further analyses in the context of system security.
+
+These analyses support substantiated and reasoned conclusions that serve as the basis for consensus among stakeholders that the system is adequately secure (see Appendix F).
+
+## Limitations of Security
+
+It is important to note that no system can provide absolute security due to:
+
+- The limits of human certainty
+- The uncertainty that exists in the life cycle of every system
+- Constraints of cost, schedule, performance, feasibility, and practicality.
+
+Trade-offs are routinely made across contradictory, competing, and conflicting needs and constraints to optimize adequate security, reflecting decisions made by stakeholders.
+
+# Systems Security Engineering
+
+## Definition
+
+As a subdiscipline of systems engineering, systems security engineering is a transdisciplinary and integrative approach to enabling the successful realization, use, and retirement of engineered trustworthy secure systems.
+
+## Principles and Methods
+
+Systems security engineering employs:
+
+- Systems principles
+- Security principles
+- Other relevant concepts
+- Scientific, technological, and management methods.
+
+It ensures that these principles, concepts, methods, and practices are applied throughout the system life cycle to achieve stakeholder objectives for assured trustworthiness and asset protection despite adversity.
+
+## Vulnerability Reduction
+
+Systems security engineering also helps to:
+
+- Reduce and control the causes and conditions that can lead to vulnerability.
+- Mitigate the effects that adversity can have on the system.
+
+## Overlap with Other Disciplines
+
+Systems security engineering overlaps with other subdisciplines and leverages multiple specialties, including:
+
+- Computer security
+- Communications security
+- Transmission security
+- Electronic emissions security
+- Anti-tamper protection
+- Physical security
+- Information, software, hardware, and supply chain assurance
+- Technology specialties, such as biometrics and cryptography.# Systems Security Engineering
+
+Systems security engineering also leverages contributions from other enabling engineering disciplines and specialties to analyze and manage complexity, interconnectedness, dynamicity, and susceptibility associated with hardware, software, and firmware-based technologies. This includes the development, manufacturing, handling, and distribution of technologies throughout the system life cycle.
+
+!Figure 9 illustrates the relationships among systems engineering, systems security engineering, and contributing security and other specialty engineering areas.
+
+## Objectives of Systems Security Engineering
+
+As part of a transdisciplinary systems engineering effort to deliver a trustworthy secure system, systems security engineering:
+
+- Works with stakeholders to ensure that security objectives, protection needs and concerns, assurance needs, security requirements (including measures of effectiveness [MOEs] and measures of performance [MOPs]), and associated validation methods are defined.
+- Defines system security requirements and associated verification methods.
+- Develops security views and viewpoints of the system architecture and design.
+- Identifies and assesses susceptibilities and vulnerabilities to life cycle hazards and adversities.
+- Designs preemptive and reactive features and functions included within a balanced strategy to control asset loss and associated loss consequences.
+- Provides security considerations to inform systems engineering efforts with the objective to reduce errors, flaws, and weaknesses that may constitute a security vulnerability.
+- Performs system security analyses and interprets the results of other system analyses in support of decision-making for engineering trades and risk management.
+- Identifies, quantifies, and evaluates the costs and benefits of security features, functions, and considerations to inform assessments of alternative solutions, engineering trade-offs, and risk treatment decisions.
+- Demonstrates through evidence-based reasoning that security and trustworthiness claims for the system have been satisfied to the desired level of assurance.
+- Leverages security and other specialties to address all feasible solutions.
+
+## Security – An Emerging Property of an Engineering Process
+
+A system is engineered to achieve a capability driven by stakeholder mission and business needs. Security is an emergent property of a system that is achieved through a principled engineering process that reflects the stakeholder’s protection needs and concerns. The engineered security capability contributes to the overall system capability that satisfies stakeholder mission and business needs.
+
+No system can provide absolute security due to the limits of human certainty, the uncertainty that exists in the life cycle of every system, and the constraints of cost, schedule, performance, feasibility, and practicality. As such, trade-offs made routinely across contradictory, competing, and conflicting needs and constraints are optimized to provide adequate security.
+
+## Systems Security Engineering Framework
+
+The systems security engineering framework provides a conceptual view of the key contexts.# Systems Security Engineering Framework
+
+## Overview
+The systems security engineering framework defines, bounds, and focuses activities and tasks toward achieving stakeholder security objectives. It presents a coherent, well-formed, evidence-based case to support judgments about the achievement of these objectives.
+
+## Independence and Structure
+The framework is independent of system type and engineering or acquisition process model. It should not be interpreted as a sequence of flows or steps but rather as a set of interacting contexts, each with its own checks and balances.
+
+## Holistic Security Perspective
+The systems security engineering framework emphasizes an integrated, holistic security perspective across all system life cycle stages and is applied to satisfy the milestone objectives of each life cycle stage.
+
+## Contexts for Activities and Tasks
+The framework defines three contexts for conducting activities and tasks:
+
+1. **The Problem Context**
+2. **The Solution Context**
+3. **The Trustworthiness Context**
+
+These contexts help ensure that the engineering is driven by a sufficiently complete understanding of the problem, which in turn drives the effort to provide the solution and is supported by a set of activities to design and realize the solution.
+
+## Iterative and Recursive Implementation
+While the framework appears to follow a sequential execution across the three contexts, it is intended to be implemented in a closed loop iterative and recursive manner. This approach facilitates:
+
+- Refinement of the problem statement
+- Proposed solution
+- Trustworthiness objectives as the design evolves from concept to the realized solution
+
+The closed loop feedback facilitates interactions among the three framework contexts and the requisite system security analyses to continuously identify and address variances introduced into the engineering effort.
+
+## Continuous Process Improvement
+The feedback loop also helps achieve continuous process improvement for the system, including viewing the outputs of one life cycle phase (i.e., the solution to the phase) as the inputs to the next phase (i.e., the problem for the next phase).
+
+## Foundational Base of System Security Analyses
+The three framework contexts share a common foundational base of system security analyses, including system analyses with security interpretations of the analyses results.
+
+### Purpose of System Security Analyses
+System security analyses produce data to support engineering and stakeholder decision-making. Such analyses are differentiated for application within the problem, solution, and trustworthiness contexts and employ a variety of concepts, principles, techniques, means, methods, processes, practices, and tools.
+
+### Key Functions of System Security Analyses
+- Provide relevant data and technical interpretations of system issues from the system security perspective.
+- Are differentiated in their application to align with the scope and objectives of where they are applied within the systems security engineering framework.
+- Are performed with a level of fidelity, rigor, and formality to produce data with a level of confidence that matches the assurance required by the stakeholders and engineering team.# Appendix F
+
+## Figure 10
+Illustrates the systems security engineering framework and its key components.
+
+## 4.1 The Problem Context
+The problem context defines the basis for an adequately secure system. It focuses on stakeholders’ concerns about unacceptable losses given their mission, operational capability, and performance needs and concerns, as well as all associated cost, schedule, performance, and risk-driven constraints. The problem context enables the engineering team to focus on acquiring as complete an understanding of the stakeholder problem as practical, to explore all feasible solution class options, and to select the solution class option or options to be pursued. The problem context includes:
+
+- Defining security objectives
+- Defining security requirements
+- Determining measures of success
+- Determining life cycle security concepts
+
+The security objectives are foundational, establishing and scoping what it means to be adequately secure in terms of protection against asset loss and the significance of such loss. The security objectives have associated measures of success. These measures of success constitute specific and measurable criteria relative to operational performance measures and stakeholder concerns. Measures of success include both the strength of protection and the level of assurance in the protection capability that has been engineered. These measures influence developing security requirements and assurance claims.
+
+Protection needs are determined based on the security objectives, life cycle concepts, and stakeholder concerns. The protection needs are subsequently transformed into stakeholder security requirements and associated constraints, as well as the measures needed to validate that all requirements have been met. A well-defined and stakeholder-validated problem definition and context provide the foundation for all systems engineering and systems security engineering and supporting activities.
+
+The problem context may be interpreted within a life cycle phase as being informed by solutions from earlier life cycle stages, thereby providing a more accurate statement of the problem and its associated constraints. For example, the stakeholder requirements may be the solution of an early life cycle phase, which then constrains activities completed in later life cycle stages.
+
+## The Solution Context
+The solution context establishes the security aspects and constraints for the architecture and design of the system that (1) satisfies the requirements and objectives of the problem context, (2) realizes the design for the system, and (3) produces sufficient evidence to demonstrate that the requirements and objectives of the problem context have been satisfied. The solution context is based on a balanced preemptive and reactive system security protection strategy that exercises control over events, conditions, asset loss, and the significance of loss to the stakeholders.# Security and Trustworthiness Context
+
+## Solution Context
+
+The solution context includes:
+
+- Defining the security aspects of the solution
+- Realizing the security aspects of the solution
+- Producing evidence for the security aspects of the solution
+
+The security aspects of the solution include:
+
+- Development of a system protection strategy
+- Allocated, decomposed, and derived security requirements
+- Security architecture views and viewpoints
+- Security design
+- Security aspects, capabilities, and limitations in the system life cycle procedures
+- Security performance verification measures
+
+The security aspects of the solution are realized during the implementation of the system design in accordance with the system architecture and in satisfaction of the security requirements. The evidence associated with the security aspects of the solution is obtained with a fidelity and rigor influenced by the level of assurance targeted by the security objectives. Assurance evidence is obtained from standard systems engineering verification methods (e.g., analysis, demonstration, inspection, testing, and evaluation) and complementary validation methods applied against the stakeholder requirements.
+
+Application of the solution context may be interpreted to provide a part of the solution, constraining the next iteration of the problem context.
+
+## Trustworthiness Context
+
+The trustworthiness context is a decision-making context that provides an evidence-based demonstration – through reasoning – that the system of interest is deemed trustworthy (or not) based on a set of claims derived from security objectives. This context consists of:
+
+- Developing and maintaining the assurance case
+- Demonstrating that the assurance case is satisfied
+
+The trustworthiness context is grounded in the concept of an assurance case. An assurance case is a well-defined and structured set of arguments and a body of evidence showing that a system satisfies specific claims. Assurance cases provide reasoned, auditable artifacts that support the contention that a top-level claim or set of claims is satisfied, including systematic argumentation and underlying evidence and explicit assumptions that support the claims.
+
+The claims may build from subclaims. For a given system life cycle stage, an outcome may sufficiently satisfy a subclaim or set of subclaims, such as a subclaim that stakeholder requirements are sufficiently comprehensive to support a claim that the realized system is adequately secure.
+
+Assurance cases are used to demonstrate that a system exhibits some complex emergent property, such as safety, security, resilience, reliability, or survivability. An effective security assurance case contains foundational security claims derived from security objectives, credible and relevant evidence that substantiates the claims, and valid arguments that relate the various evidence to the supported security claims. The result provides a compelling statement that adequate security has been achieved and driven by stakeholder needs and expectations.# Assurance Cases in Security Engineering
+
+Assurance cases typically include supporting information, such as assumptions, constraints, and inferences that affect the reasoning process. As part of assurance case development, subject-matter expert analyses determine that all security claims are substantiated by the evidence and the arguments relating the evidence to the claims. Assurance cases must be maintained in response to variances throughout the engineering effort.
+
+## Trade Space Considerations
+
+The specific form of an assurance case and the level of rigor and formality in acquiring the evidence required is a trade space consideration. It involves:
+
+- The target (i.e., desired) level of assurance
+- The nature of the consequences for which assurance is sought
+- The size and complexity of the dimensions that factor into determining trustworthiness
+
+The assurance case is an engineering construct and must be managed to ensure that the expended effort is justified by the need for the evidence in determining trustworthiness. The assurance claims are the key trustworthiness factor and are developed from the security objectives and associated measures of success independent of the system realization and its supporting evidence. Trustworthiness and assurance are discussed further in Appendix F.
+
+# Systems Security Engineering Framework – Why It Matters
+
+Establishing the problem, solution, and trustworthiness contexts as key components of a systems security engineering framework helps ensure that the security of a system is based on achieving a sufficiently complete understanding of the problem as defined by:
+
+- A set of stakeholder security objectives
+- Security concerns
+- Protection needs
+- Security requirements
+
+This understanding is essential to developing effective security solutions – that is, a system that is sufficiently trustworthy and adequately secure to protect stakeholders’ assets in terms of loss and the associated consequences.

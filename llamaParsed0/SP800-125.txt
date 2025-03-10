@@ -1,0 +1,888 @@
+# Executive Summary
+
+Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a **virtual machine (VM)**. There are many forms of virtualization, distinguished primarily by computing architecture layer. This publication focuses on the form of virtualization known as **full virtualization**.
+
+In full virtualization, one or more operating systems (OSs) and the applications they contain are run on top of virtual hardware. Each instance of an OS and its applications runs in a separate VM called a **guest operating system**. The guest OSs on a host are managed by the **hypervisor**, which controls the flow of instructions between the guest OSs and the physical hardware, such as CPU, disk storage, memory, and network interface cards. The hypervisor can partition the system’s resources and isolate the guest OSs so that each has access to only its own resources, as well as possible access to shared resources such as files on the host OS. Additionally, each guest OS can be completely encapsulated, making it portable. Some hypervisors run on top of another OS, which is known as the **host operating system**.
+
+## Benefits of Full Virtualization
+
+The recent increase in the use of full virtualization products and services has been driven by many benefits. One of the most common reasons for adopting full virtualization is **operational efficiency**: organizations can use their existing hardware (and new hardware purchases) more efficiently by putting more load on each computer. In general, servers using full virtualization can use more of the computer’s processing and memory resources than servers running a single OS instance and a single set of services.
+
+A second common use of full virtualization is for **desktop virtualization**, where a single PC is running more than one OS instance. Desktop virtualization can provide support for applications that only run on a particular OS. It allows changes to be made to an OS and subsequently revert to the original if needed, such as to eliminate changes that negatively affect security. Desktop virtualization also supports better control of OSs to ensure that they meet the organization’s security requirements.
+
+## Security Implications of Full Virtualization
+
+Full virtualization has some negative security implications. Virtualization adds layers of technology, which can increase the security management burden by necessitating additional security controls. Also, combining many systems onto a single physical computer can cause a larger impact if a security compromise occurs. Furthermore, some virtualization systems make it easy to share information between the systems; this convenience can turn out to be an attack vector if it is not carefully controlled. In some cases, virtualized environments are quite dynamic, which makes creating and maintaining the necessary security boundaries more complex.
+
+This publication discusses the security concerns associated with full virtualization technologies for server and desktop virtualization, and provides recommendations for addressing these concerns. Most existing recommended security practices remain applicable in virtual environments. The practices described in this document aim to enhance the security posture of organizations utilizing full virtualization technologies.# Recommendations for Securing Full Virtualization Technologies
+
+To improve the security of server and desktop full virtualization technologies, organizations should implement the following recommendations:
+
+## Secure All Elements of a Full Virtualization Solution
+
+The security of a full virtualization solution is heavily dependent on the individual security of each of its components, from the hypervisor and host OS (if applicable) to guest OSs, applications, and storage. Organizations should secure all of these elements and maintain their security based on sound security practices, such as:
+
+- Keeping software up-to-date with security patches
+- Using secure configuration baselines
+- Utilizing host-based firewalls, antivirus software, or other appropriate mechanisms to detect and stop attacks
+
+In general, organizations should have the same security controls in place for virtualized operating systems as they have for the same operating systems running directly on hardware. The same is true for applications running on guest OSs: if the organization has a security policy for an application, it should apply the same regardless of whether the application is running on an OS within a hypervisor or on an OS running on hardware.
+
+## Restrict and Protect Administrator Access to the Virtualization Solution
+
+The security of the entire virtual infrastructure relies on the security of the virtualization management system that controls the hypervisor and allows the operator to start guest OSs, create new guest OS images, and perform other administrative actions. Because of the security implications of these actions, access to the virtualization management system should be restricted to authorized administrators only.
+
+Some virtualization products offer multiple ways to manage hypervisors, so organizations should secure each management interface, whether locally or remotely accessible. For remote administration, the confidentiality of communications should be protected, such as through the use of FIPS-approved cryptographic algorithms and modules.
+
+## Ensure That the Hypervisor Is Properly Secured
+
+Securing a hypervisor involves actions that are standard for any type of software, such as installing updates as they become available. Other recommended actions that are specific to hypervisors include:
+
+- Disabling unused virtual hardware
+- Disabling unneeded hypervisor services such as clipboard- or file-sharing
+- Considering using the hypervisor’s capabilities to monitor the security of each guest OS running within it, as well as the security of activity occurring between guest OSs
+
+The hypervisor itself also needs to be carefully monitored for signs of compromise. It is also important to provide physical access controls for the hardware on which the hypervisor runs. For example, hosted hypervisors are typically controlled by management software that can be used by anyone with access to the keyboard and mouse. Even bare metal hypervisors require physical security: someone who can reboot the host computer that the hypervisor is running on might be able to alter some of the security settings for the hypervisor.
+
+## Conclusion
+
+Carefully plan the security for a full virtualization solution before installing, configuring, and maintaining it.# Deploying Virtual Environments
+
+Planning helps ensure that the virtual environment is as secure as possible and in compliance with all relevant organizational policies. Security should be considered from the initial planning stage at the beginning of the systems development life cycle to maximize security and minimize costs. It is much more difficult and expensive to address security after deployment and implementation.
+
+## 1. Introduction
+
+### 1.1 Authority
+
+The National Institute of Standards and Technology (NIST) developed this document in furtherance of its statutory responsibilities under the Federal Information Security Management Act (FISMA) of 2002, Public Law 107-347. NIST is responsible for developing standards and guidelines, including minimum requirements, for providing adequate information security for all agency operations and assets; but such standards and guidelines shall not apply to national security systems. This guideline is consistent with the requirements of the Office of Management and Budget (OMB) Circular A-130, Section 8b(3), “Securing Agency Information Systems,” as analyzed in A-130, Appendix IV: Analysis of Key Sections. Supplemental information is provided in A-130, Appendix III.
+
+This guideline has been prepared for use by Federal agencies. It may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright, though attribution is desired. Nothing in this document should be taken to contradict standards and guidelines made mandatory and binding on Federal agencies by the Secretary of Commerce under statutory authority, nor should these guidelines be interpreted as altering or superseding the existing authorities of the Secretary of Commerce, Director of the OMB, or any other Federal official.
+
+### 1.2 Purpose and Scope
+
+The purpose of the guide is to discuss the security concerns associated with full virtualization technologies for server and desktop virtualization, and to provide recommendations for addressing these concerns. All forms of virtualization other than server and desktop full virtualization are outside the scope of this document.
+
+Most existing recommended security practices remain applicable in virtual environments. The practices described in this document build on and assume the implementation of practices described in other NIST publications.
+
+### 1.3 Audience
+
+The intended audience for this document is system and security administrators, security program managers, information system security officers, and others who have responsibilities for or are otherwise interested in the security of server or desktop full virtualization technologies.
+
+This document assumes that readers have some operating system, networking, and security expertise. Because of the constantly changing nature of full virtualization technologies, readers are encouraged to take advantage of other resources (including those listed in this document) for more current and detailed information.# Document Structure
+
+The remainder of this document is organized into the following major sections:
+
+## Section 2
+Presents an introduction to full virtualization technologies and describes server and desktop full virtualization.
+
+## Section 3
+Discusses the security characteristics of full virtualization technologies.
+
+## Section 4
+Provides security recommendations for virtualization components.
+
+## Section 5
+Highlights security considerations of particular interest throughout the lifecycle of full virtualization solutions.
+
+The document also contains appendices with supporting material:
+
+### Appendix A
+Defines terms used in this document.
+
+### Appendix B
+Contains a list of acronyms and abbreviations used in this document.
+
+# 2. Introduction to Full Virtualization
+
+Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a virtual machine (VM). There are many forms of virtualization, distinguished primarily by computing architecture layer.
+
+For example, application virtualization provides a virtual implementation of the application programming interface (API) that a running application expects to use, allowing applications developed for one platform to run on another without modifying the application itself. The Java Virtual Machine (JVM) is an example of application virtualization; it acts as an intermediary between the Java application code and the operating system (OS).
+
+Another form of virtualization, known as operating system virtualization, provides a virtual implementation of the OS interface that can be used to run applications written for the same OS as the host, with each application in a separate VM container. Application virtualization and operating system virtualization are outside the scope of this publication.
+
+This publication focuses on the form of virtualization known as full virtualization. In full virtualization, one or more OSs and the applications they contain are run on top of virtual hardware. Each instance of an OS and its applications runs in a separate VM called a guest operating system. The guest OSs on a host are managed by the hypervisor, also called the virtual machine monitor (VMM), which controls the flow of instructions between the guest OSs and the physical hardware, such as CPU, disk storage, memory, and network interface cards.
+
+The hypervisor can partition the system’s resources and isolate the guest OSs so that each has access to only its own resources, as well as possible access to shared resources such as files on the host OS. Also, each guest OS can be completely encapsulated, making it portable. Some hypervisors run on top of another OS, which is known as the host operating system.
+
+In full virtualization, the hypervisor provides most of the same hardware interfaces as those provided by the hardware’s physical platform. This means that the OSs and applications running within full virtualization do not need to be modified for virtualization to work if the OSs and applications are compatible with the underlying hardware. An interesting twist on full virtualization is paravirtualization.# Overview of Full Virtualization
+
+Full virtualization is a method for the hypervisor to offer interfaces to the guest OS that the guest OS can use instead of the normal hardware interfaces. If a guest OS can use paravirtualized interfaces, they offer significantly faster access for resources such as hard drives and networks. Different types of paravirtualization are offered by different hypervisor systems.
+
+## 2.1 Motivations for Full Virtualization
+
+The recent increase in the use of full virtualization products and services has been driven by many benefits. One of the most common reasons for adopting full virtualization is operational efficiency: organizations can use their existing hardware (and new hardware purchases) more efficiently by putting more load on each computer. In general, servers using full virtualization can use more of the computer’s processing and memory resources than servers running a single OS instance and a single set of services.
+
+Recent advances in CPU architectures have made full virtualization faster than it was just a few years ago, and similar advances are expected to continue to be made both by CPU vendors and virtualization software vendors. Also, CPU architecture changes have made full virtualization more secure by strengthening hypervisor restrictions on resources.
+
+### Common Use Cases for Full Virtualization
+
+#### Server Virtualization
+
+A common use of full virtualization is for server virtualization, where multiple virtual servers can run on a single physical server. This allows for better resource utilization and can lead to cost savings for organizations.
+
+#### Desktop Virtualization
+
+Another common use of full virtualization is for desktop virtualization, where a single PC is running more than one OS instance. There are several reasons for deploying desktop virtualization:
+
+- **Support for Specific Applications**: It can provide support for applications that only run on a particular OS.
+- **Reversion to Original OS**: It allows changes to be made to an OS and subsequently revert to the original if needed, such as to eliminate changes that negatively affect security.
+- **Security Control**: Desktop virtualization supports better control of OSs to ensure that they meet the organization’s security requirements. This control can be asserted by creating a high-assurance platform that constantly updates the guest OS to have the exact versions of the programs that it is authorized to have, and no other programs.
+
+A more recent use of desktop virtualization is to enable the use of applications that only run on an older version of an OS when the user’s desktop is running a newer version. In such a situation, desktop virtualization is useful for continuity of applications as the OSs advance faster than the applications that run on them.
+
+As more applications become web-based, desktop virtualization can become even more important: a web application that only runs on an older version of a particular browser can be run in a virtualized system that has the older version of that browser, while the user’s main environment is running the newer (usually more secure) version of the browser. For use cases such as this, many organizations use application virtualization instead of desktop virtualization.
+
+### Security Implications
+
+Full virtualization has some negative security implications. Virtualization adds layers of technology, which can increase the security management burden by necessitating additional security controls.# Virtualization Security and Types
+
+Combining many systems onto a single physical computer can cause a larger impact if a security compromise occurs. Further, some virtualization systems make it easy to share information between the systems; this convenience can turn out to be an attack vector if it is not carefully controlled. In some cases, virtualized environments are quite dynamic, which makes creating and maintaining the necessary security boundaries more complex.
+
+## 2.2 Types of Full Virtualization
+
+There are two forms of full virtualization. Figure 2-1 compares their high-level architectures.
+
+### Bare Metal Virtualization
+
+Also known as native virtualization, the hypervisor runs directly on the underlying hardware, without a host OS; the hypervisor can even be built into the computer’s firmware.
+
+### Hosted Virtualization
+
+In the other form of full virtualization, known as hosted virtualization, the hypervisor runs on top of the host OS. The host OS can be almost any common operating system such as Windows, Linux, or MacOS. Hosted virtualization architectures usually also have an additional layer of software (the virtualization application) running in the guest OS that provides utilities to control the virtualization while in the guest OS, such as the ability to share files with the host OS. Hosted virtualization architectures also allow users to run applications such as web browsers and email clients alongside the hosted virtualization application, unlike bare metal architectures, which can only run applications within virtualized systems.
+
+### Virtualization Use Cases
+
+- **Servers** are most often virtualized on computers using bare metal virtualization.
+- **Desktops** are most often virtualized on computers with hosted virtualization.
+
+In both bare metal and hosted virtualization, each guest OS appears to have its own hardware, like a regular computer. This includes:
+
+- CPU
+- Memory
+- Storage (hard disk, and possibly floppy and CD-ROM drives)
+- Storage controllers
+- Ethernet controllers
+- Display and sound devices
+- Keyboard and mouse
+
+Many virtualization environments offer additional virtual hardware, such as USB controllers, parallel ports for printing, and serial ports. Some hypervisors allow paravirtualization of some hardware interfaces, most commonly the storage controller and Ethernet controllers. Some hypervisors also provide direct memory access (DMA) to high-speed storage controllers and Ethernet controllers, if such features are supported in the hardware CPU on which the hypervisor is running. DMA access from guest OSs can significantly increase the speed of disk and network access, although this type of acceleration prevents some useful virtualization features such as snapshots and moving guest OSs while they are running.
+
+### Operational and Security Decisions
+
+Deciding between bare metal and hosted virtualization—whether or not to have a host OS—is an important operational and security decision. Adding a hypervisor on top of a host OS adds more complexity and more vulnerabilities to the host. However, a hypervisor is much simpler and smaller than a host OS, so it provides a smaller target. Choosing bare metal virtualization can mitigate some of these risks.# Virtualization and Security
+
+## Introduction
+By replacing a host OS with a hypervisor, security may improve, depending on the security of the hypervisor. However, adding a hypervisor on top of a host OS tends to increase risk. Organizations should balance security and functionality when deciding whether or not a host OS should be used under a server or desktop virtualization solution.
+
+## Considerations for Hypervisors
+Organizations should also take into account that bare metal hypervisors run on a much more limited range of hardware than hosted hypervisors. For example, bare metal hypervisors often work on only a limited number of Ethernet controllers and graphics cards.
+
+### Hardware Emulation
+Hardware emulation (sometimes called hardware translation) is a type of hosted virtualization. The primary difference is that in hardware emulation, the hypervisor provides different hardware interfaces from those provided by the physical hardware.
+
+#### Example of Hardware Emulation
+Because the hypervisor in hardware emulation can simulate all of the hardware required by the guest OS, it can run unmodified OSs designed for platforms different from the host platform. For example, early versions of VirtualPC allowed users to run the Microsoft Windows OS on the PowerPC processor supported by the Apple MacOS platform. Similarly, Apple supplies the Rosetta software with its Intel Mac OS X platform, allowing programs designed for the PowerPC version of Mac OS X to run on the Intel Mac platform.
+
+## Virtualizing Hardware
+For full virtualization to be effective, the virtualized hardware presented to the guest OS must resemble physical hardware extremely closely. In addition, virtualization systems must offer additional features for the virtualized hardware to help it integrate well with the physical hardware in an organization’s network. This section discusses virtualized networking and storage, as well as how a guest OS is encapsulated.
+
+### Virtualized Networking
+Full virtualization hypervisors can provide networking capabilities, allowing the individual guest OSs to communicate with one another while simultaneously limiting access to the external physical network. The network interfaces that the guest OSs see may be virtual, physical, or both. Typical hypervisors offer three primary forms of network access:
+
+- **Network Bridging**: The guest OS is given direct access to the host’s network interface cards (NIC) independent of the host OS.
+- **Network Address Translation (NAT)**: The guest OS is given a virtual NIC that is connected to a simulated NAT inside the hypervisor. As in a traditional NAT, all outbound network traffic is sent through the virtual NIC to the host OS for forwarding, usually to a physical NIC on the host system.
+- **Host Only Networking**: The guest OS is given a virtual NIC that does not directly route to a physical NIC. In this scenario, guest OSs can be configured to communicate with one another and, potentially, with the host OS.
+
+When a number of guest OSs exist on a single host, the hypervisor can provide a virtual network for these guest OSs. The hypervisor may implement virtual switches, hubs, and other network devices. Using a hypervisor’s networking for communications between guests on a single host has the advantage of greatly...# Networking and Storage in Hypervisors
+
+## Internal Host-Only Networking
+
+Internal host-only networking can be implemented in various ways by the hypervisor. In some systems, the internal network resembles a virtual switch, while others utilize virtual LAN (VLAN) standards to enhance control over guest system connections. Most hypervisors also offer internal network address and port translation (NAPT), functioning like a virtual router with NAT.
+
+### Operational Disadvantages
+
+Networks internal to a hypervisor’s networking structure can present operational disadvantages. Many networks depend on tools that monitor traffic as it traverses routers and switches; these tools are unable to observe traffic within a hypervisor’s network. Although some hypervisors permit network monitoring, this capability is typically not as comprehensive as the tools that organizations expect for thorough monitoring of physical networks. Certain hypervisors provide APIs that enable a privileged VM to access full visibility of network traffic. However, these APIs may also create additional avenues for attackers to monitor network communications.
+
+### Performance Concerns
+
+Another issue with network monitoring through a hypervisor is the potential for performance degradation or denial of service conditions due to high traffic volumes. The security implications of networks internal to a hypervisor should not be underestimated.
+
+#### Example Scenario
+
+For instance, consider an organization with two computers: one serving as a public-facing web server and the other as an internal database server. The organization monitors the switch connecting these two computers to detect traffic that may indicate an attack on the database. If both servers are consolidated onto a single hypervisor, utilizing the hypervisor’s virtual network for communication, the ability to monitor all traffic between the two systems would be compromised unless the hypervisor itself can perform monitoring that aligns with the organization’s security policies.
+
+### Mitigating Loss of Visibility
+
+To address this loss of visibility, some organizations intentionally expose network traffic between virtualized hosts to the existing physical network. This approach necessitates that the system running the hypervisor has multiple network interfaces, which may significantly reduce network communication speeds compared to a virtual-only network. However, the benefit is that the organization can maintain its security policies while reaping the cost advantages of virtualization.
+
+Organizations should weigh the trade-offs between hidden traffic within a hypervisor and the additional overhead and risks associated with exposing that traffic, which allows for control using existing network traffic management tools. For further information, see Section 3.5.
+
+## Virtualized Storage
+
+Hypervisor systems offer various methods for simulating disk storage for guest operating systems (OSs). All hypervisors, at a minimum, provide virtual hard drives, while some also offer more advanced virtual storage options. Additionally, certain hypervisors can utilize advanced storage interfaces on the host.# Virtual Storage Options for Guest Operating Systems
+
+## Overview
+This section describes the different storage options available to guest operating systems (OSs) in virtualization environments, including network-attached storage (NAS) and storage area networks (SAN).
+
+## Virtual Hard Drives
+All hypervisors in common use present guest OSs with virtual hard drives through the use of disk images. A disk image is a file on the host that appears to the guest OS as an entire disk drive. Whatever the guest OS writes onto the virtual hard drive is stored in the disk image.
+
+### Hosted Virtualization
+In hosted virtualization, the disk image appears in the host OS as a file or a folder, allowing it to be handled like other files and folders.
+
+## Direct Access to Physical Hard Drives
+Most virtualization systems also allow a guest OS to access physical hard drives as if they were directly connected to the guest OS. This differs from using disk images, as a disk image is a virtual representation of a real drive.
+
+### Common Use Cases
+Direct access is commonly used for floppy and CD-ROM drives attached to the host OS, enabling a guest OS to install new software from a CD-ROM inserted into the host computer. Some hypervisors also allow a guest OS to connect to an entire physical hard drive, with the main advantage being that accessing physical hard drives is much faster than accessing disk images.
+
+## NAS and SAN Systems
+Many computers can access NAS and SAN systems. Some hypervisors can present these systems to guest OSs as a NAS or SAN, while others can make those systems appear as virtual drives. This area is actively developing in the virtualization market, with new types of storage virtualization frequently being added to hypervisors.
+
+## Security Implications
+The security implications of using virtual storage are essentially the same as those of using real storage. Access to the various types of storage that a guest OS can access should be controlled as if the storage were being used by a full computer.
+
+### Backup Strategies
+Using disk backups as part of a security strategy is just as important with virtual computers as it is with non-virtual computers. Organizations should incorporate backups of virtualized storage into their backup policies. Access to virtual storage can be controlled at both the host and VM level, leveraging existing authentication and authorization mechanisms to restrict user access according to organizational policy.
+
+## Guest OS Images
+A full virtualization hypervisor encapsulates all components of a guest OS, including its applications and the virtual resources they use, into a single logical entity.
+
+### Image Storage
+An image is a file or directory that contains, at a minimum, this encapsulated information. Images are stored on hard drives and can be transferred to other systems like any file (note that images are often many gigabytes in size).
+
+### Open Virtualization Format (OVF)
+Some virtualization systems use a virtualization image metadata standard called the Open Virtualization Format (OVF), which supports interoperability for image metadata and components across virtualization solutions.
+
+## Snapshots
+A snapshot is a record of the state of a running image, generally captured as the differences between an image and the current state. For example, a snapshot would record changes within virtual storage, virtual memory, network connections, and other state-related data. Snapshots allow the management of the virtual environment effectively.# Guest OS Suspension and Resumption
+
+Guest OS can be suspended and subsequently resumed without having to shut down or reboot the guest OS. Many, but not all, virtualization systems can take snapshots. On some hypervisors, snapshots of the guest OS can even be resumed on a different host.
+
+## Live Migration Challenges
+
+While a number of issues may be introduced to handle real-time migration, including the transfer delay and any differences that may exist between the two physical servers (e.g., IP address, number of processors, or hard disk space), most live-migration solutions provide mechanisms to resolve these issues. Should the target system use the same virtualization product, many of these issues will not arise. However, live migration across heterogeneous hypervisors may introduce potential configuration errors that may affect the security of the guest OS.
+
+# Full Virtualization Use Cases
+
+Full virtualization solutions have two major use cases: server virtualization and desktop virtualization.
+
+## Server Virtualization
+
+Virtualizing a server can provide some security benefits. Running a server within a hypervisor provides a sandbox, which can limit the impact of a compromise, and the hypervisor might provide a smaller attack surface than a host operating system would, reducing the possibility of expanding a successful compromise outside the guest OS.
+
+However, server virtualization does not prevent attackers from compromising the server through vulnerabilities in the server application or the guest OS, nor does it prevent attackers from directly compromising the host OS (if present), such as attacking the host OS’s network services from another host on the same subnet. Most importantly, virtualizing multiple servers on the same host tends to negatively affect security because of the logical proximity of the servers and the potential impact of a single compromise affecting all the servers on a host.
+
+### Single Server Virtualization
+
+A common use case for single server virtualization is supporting a service that only runs on a legacy OS that cannot be properly secured on its own. For example, common security controls may not be available for the legacy OS. If the service and legacy OS are run as a guest OS, the hypervisor or host OS may be able to monitor the guest OS’s actions using various security controls that the legacy OS itself cannot.
+
+Also, an additional layer of authentication and auditing could be added, such as at the host OS level. Such monitoring can be built into the organization’s security policies.
+
+### Multiple Server Virtualization
+
+For many years, organizations have typically deployed each important service to its own dedicated host to better isolate each server from the others and prevent a compromise of one server or host from granting control to other servers. However, having many hosts is costly (space, power consumption, maintenance, hardware, etc.), so organizations have been adopting server virtualization so that they can host multiple services on a single host, with each service in a separate guest OS to enforce security.# Virtualization and Its Benefits
+
+## Resource Management
+When a service experiences higher-than-normal use, the hypervisor can coordinate requests among guest operating systems (OSs) and other hypervisors to ensure that resources are properly distributed. Services that are rarely used can be kept in a saved state by the guest OS and loaded on demand, freeing up resources for other guest OSs. Additionally, new servers can be deployed without the need to configure and deploy as much new dedicated hardware.
+
+## Resource Presentation
+A hypervisor can present resources to the guest OSs as a single entity, such as showing multiple hard drives as a single storage entity. This allows individual resources to be added or removed from the system transparently, without modifying individual guest OSs. A single read-only image can be shared among many servers.
+
+## Configuration Management
+There are benefits for configuration management, as each guest OS can be derived from a parent guest OS, providing a consistent security baseline and reducing the time and effort required to configure and patch individual servers.
+
+## Incident Handling
+Organizations taking advantage of virtualization may benefit from improved incident handling; servers can be reverted to an uninfected state quickly, while the complete state (including RAM) of the compromised guest OS can be saved in a snapshot for later examination.
+
+## Security Risks
+However, there can be substantial security risks in consolidating multiple services within a single hypervisor. A critical service is usually placed on its own dedicated host so that the host can be secured specifically for that service, and so that a compromise of any other service would not impact the critical service. By placing a critical service on a host with other services, both of those goals are impacted.
+
+It is particularly risky to place multiple services on a host if they have significantly different security needs. For example, if one service is considered critical and is secured very strongly, while another service on the same host is considered low-impact and is secured relatively weakly, an attacker could compromise the low-impact service and use its local access on the virtual network to attempt to access the critical service or compromise the hypervisor.
+
+Organizations that have policies relating to the allocation of computer resources should consider virtualization in such policies.
+
+## Cloud Computing
+When multiple server virtualization is used for running servers on many hosts and for moving servers from host to host based on changing resource needs, it can be called cloud computing. Cloud computing is defined as “a model for enabling convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.”
+
+Full virtualization is a core enabling technology for cloud infrastructure as a service architectures. The National Institute of Standards and Technology (NIST) describes cloud computing and related topics in detail at NIST Cloud Computing. Further discussion of cloud computing is outside the scope of this document.
+
+## Desktop Virtualization
+### (Further details to be provided)# Desktop Virtualization
+
+## Introduction
+One of the most common reasons for using desktop virtualization is to allow a user to run applications for different OSs on a single host. Without virtualization, this would be accomplished by using multiple devices, each with a different OS, or by configuring a single device to boot using multiple OSs and using one OS (and application) at a time. Desktop virtualization allows users to access both OSs simultaneously on one computer.
+
+## Benefits of Desktop Virtualization
+Another common use for desktop virtualization is allowing organizations to more tightly control the environment of its users. The organization stores a known-good image that contains the OS and all the applications needed for the user. The user loads this image using hosted virtualization and does all their work within this image, not on the host OS, then exits the guest OS. Later the user restarts the guest OS, causing any previous changes to the guest OS to be lost.
+
+### Quit-and-Restart Strategy
+The advantage of this quit-and-restart strategy is that malicious changes that have been introduced to the OS or applications are erased by quitting. With desktop virtualization, the user’s data is normally stored on the host or on the network; otherwise, it would be lost each time the user quits from the virtualization system.
+
+### Data Storage Challenges
+This aspect of desktop virtualization can be the most frustrating and complicated for users; it is quite easy to store new documents in what appears to be the correct place, only to discover later that the document was lost because it was stored in the wrong place. Some desktop virtualization systems have methods to deal with making sure that users’ data is correctly stored before quitting, but these programs are not foolproof.
+
+For example, many Windows programs store valuable information in the Windows Registry, and such data is often hard to find and back up correctly. Organizations should test the data backup facilities of any desktop virtualization system they use for all software that the desktop users are expected to use.
+
+## Virtualization Security Overview
+Migrating computing resources to a virtualized environment has little or no effect on most of the resources’ vulnerabilities and threats. For example, if a service has inherent vulnerabilities and that service is moved from a non-virtualized server to a virtualized server, the service is still just as vulnerable to exploitation.
+
+### Impact of Virtualization on Security
+However, the use of virtualization may help reduce the impact of such exploitation—but virtualization may also provide additional attack vectors, thus increasing the likelihood of successful attacks. Many of the features of virtualization offer both benefits and disadvantages to security.
+
+This section describes these security implications.
+
+#### 3.1 Guest OS Isolation
+The hypervisor is responsible for managing guest OS access to hardware (e.g., CPU, memory, storage). The hypervisor partitions these resources so that each guest OS can access its own resources but cannot encroach on the other guest OSs’ resources or any resources not allocated for it.
+
+#### 3.2 Guest OS Monitoring
+[Content for this section would follow here.]
+
+#### 3.3 Image and Snapshot Management
+[Content for this section would follow here.]# Virtualization Use
+
+Virtualization is a technology that prevents unauthorized access to resources and helps prevent one guest OS from injecting malware into another. This includes protecting a guest OS’s files and preventing malware code from being placed into another guest OS’s memory. Additionally, partitioning can reduce the threat of denial of service conditions caused by excess resource consumption in other guest OSs on the same hypervisor.
+
+## Resource Partitioning
+
+Resources may be partitioned in two ways: physically or logically.
+
+### Physical Partitioning
+
+In physical partitioning, the hypervisor assigns separate physical resources to each guest OS. This includes:
+
+- Disk partitions
+- Disk drives
+- Network interface cards
+
+Physical partitioning sets hard limits on resources for each guest OS, meaning that unused capacity from one resource cannot be accessed by any other guest OS. However, this method may provide stronger security and improved performance compared to logical partitioning.
+
+### Logical Partitioning
+
+Logical partitioning divides resources on a single host or across multiple hosts, allowing multiple guest OSs to share the same physical resources, such as processors and RAM. The hypervisor mediates access to these resources.
+
+Many virtualization systems can implement both physical and logical partitioning. Organizations often have policies regarding which application data can physically reside on drives with the data of other applications, and these policies should consider both types of partitioning in hypervisors.
+
+## Importance of Isolation
+
+Having separate partitions for resources is crucial for isolating guest OSs. Isolation also involves:
+
+- Limiting guest OS communications
+- Controlling access that each guest OS has to other guest OSs, the hypervisor, and the host OS (if present)
+
+Hypervisors can theoretically support a level of logical isolation nearly equivalent to physical isolation, mediating all communications from each guest OS to maintain full control over their actions. They can permit interactions between guest OSs as needed, such as allowing two desktop OSs to share a file system. Hypervisors can also dynamically alter isolation for each guest OS, enabling or disabling networking at specific times.
+
+### Security and Reliability Benefits
+
+Isolation has significant security benefits, but it also enhances the reliability of a host by preventing actions in one guest OS from directly affecting another. For instance, if one guest OS crashes due to an application fault or an attack, the other guest OSs on that host are unlikely to be impacted. This practice of isolating each guest OS and restricting their resource access and privileges is also known as sandboxing.
+
+## Mitigating Side-Channel Attacks
+
+Another motivation for isolating guest OSs from each other and the underlying hypervisor and host OS is to mitigate side-channel attacks. These attacks exploit the physical properties of hardware to reveal information about usage patterns for memory access, CPU use, and other resources. A common goal of these attacks is to uncover cryptographic keys. Such attacks are considered difficult, often requiring direct physical access to the host.
+
+Attackers may attempt to break out of a guest OS to access the hypervisor or other guest OSs.# Virtualization Security
+
+## 1. Introduction
+Virtualization technology allows multiple guest operating systems (OSs) to run on a single host OS. However, this setup introduces security risks, particularly concerning the hypervisor.
+
+## 2. Hypervisor Security Risks
+### 2.1 Escape Vulnerabilities
+Breaking out of a guest OS is known as escape. If an attacker successfully escapes a guest OS and gains access to the hypervisor, they may compromise the hypervisor and control all guest OSs. This creates a single point of security failure, putting all guest OSs at high risk.
+
+### 2.2 Isolation Limitations
+Guest OSs are often not completely isolated from each other or the host OS, as this would hinder necessary functionality. Many virtualization solutions provide mechanisms called guest tools, allowing a guest OS to access files, directories, the copy/paste buffer, and other resources on the host OS or another guest OS. These communication mechanisms can inadvertently serve as attack vectors, such as transmitting malware or granting unauthorized access to resources. In contrast, bare metal virtualization software does not offer such sharing capabilities.
+
+## 3. Guest OS Monitoring
+### 3.1 Introspection
+The hypervisor is fully aware of the current state of each guest OS it controls. This capability, known as introspection, allows the hypervisor to monitor each guest OS as it runs. Introspection can provide full auditing capabilities that may otherwise be unavailable, including monitoring network traffic, memory, processes, and other elements of a guest OS.
+
+### 3.2 Security Controls
+Many virtualization products allow the hypervisor to incorporate additional security controls or interface with external security controls, providing information gathered through introspection. Examples of these controls include firewalling, intrusion detection, and access control. Additionally, the security policy enforced through hypervisor-based security controls can be moved as a guest OS migrates from one physical host to another.
+
+### 3.3 Network Traffic Monitoring
+Network traffic monitoring is particularly important when networking occurs between two guest OSs on the host or between a guest OS and the host OS. Under typical network configurations, this traffic does not pass through network-based security controls, making host-based security controls essential for monitoring the traffic.
+
+## 4. Image and Snapshot Management
+Creating guest machine images and snapshots does not eliminate vulnerabilities within them, such as those in the guest OSs, services, and applications. However, images and snapshots can affect security in several ways, both positively and negatively, and they also impact IT operations.
+
+### 4.1 Sensitive Data Risks
+One of the biggest security issues with images and snapshots is that they contain sensitive data (such as passwords and personal information), similar to a physical hard drive. Since it is easier to move an image or snapshot than a hard drive, it is crucial to consider the security of the data within that image or snapshot.
+
+### 4.2 Snapshot Risks
+Snapshots can be riskier than images because they contain the contents of RAM memory at the time the snapshot was taken. This may include sensitive information that was not stored on the drive itself.# Image Management in Virtualization
+
+An operating system and applications can be installed, configured, secured, and tested in a single image, which can then be distributed to many hosts. This approach can save considerable time, providing additional time for the contents of the image to be secured more effectively, and also improve the consistency and strength of security across hosts.
+
+## Security Considerations
+
+However, because images can be distributed and stored easily, they need to be carefully protected against unauthorized access, modification, and replacement. Some organizations need to have a small number of known-good images of guest OSs that differ, for example, based on the application software that is installed.
+
+## Challenges in Image Management
+
+As the use of server and desktop virtualization grows within an organization, the management of images can become a significant challenge. Some virtualization products offer management solutions that can examine stored images and update them as needed, such as applying patches and making security configuration changes. However, other products offer no way of applying updates other than loading each image.
+
+### Vulnerability Risks
+
+For these products, the longer an image is stored without running it, the more vulnerabilities it is likely to contain when it is loaded again. It may be necessary to track all images and ensure that each non-archival image is periodically updated. Tracking images may also be a significant problem, particularly if users and administrators are able to create their own images. These images may also not be secured properly, especially if they are not based on a security baseline (e.g., the one provided by a different pre-secured image). This could increase the risk of compromise.
+
+## Image Sprawl
+
+Another potential problem with increasing the use of virtualization is the proliferation of images, also known as sprawl. It is easy to create a new image—it can often be done in just a few minutes, albeit without any consideration of security—so unnecessary images may be created and run. Each additional image running is another potential point of compromise for an attacker. Also, each additional image is another image that has to have its security maintained.
+
+### Recommendations for Organizations
+
+Therefore, organizations should minimize the creation, storage, and use of unnecessary images. Organizations should consider implementing formal image management processes that govern image creation, security, distribution, storage, use, retirement, and destruction, particularly for server virtualization. Similar consideration should be given to snapshot management. In some cases, organizations have policies to not allow storage of snapshots because of the risk of malware from infected systems being stored in snapshots and later reloaded.
+
+## Benefits of Image Management
+
+Image management can provide significant security and operational benefits to an organization. For example, if the contents of an image become compromised, corrupted, or otherwise damaged, the image can quickly be replaced with a known good image. Also, snapshots can serve as backups, permitting the rapid recovery of information added to the guest OS since the original image was deployed.
+
+### Backup Considerations
+
+One of the drawbacks associated with this type of backup is that incremental or differential backups of the system may not be feasible unless those backups are supported by the hypervisor. If a modification is made to the image...# Snapshot Management in Virtualization
+
+## Overview
+When a guest OS has a snapshot captured, the original snapshot will not include any modifications made after the snapshot. Therefore, a new snapshot must be applied. This necessitates that snapshot management be considered as part of image management.
+
+## Forensic Preservation
+If an image has been compromised, its encapsulated nature allows it to be preserved easily for forensic purposes. A guest OS can be suspended quickly, which results in a snapshot that captures the entire state of a compromised guest OS, including the complete contents of RAM. This action stops the guest OS to prevent the compromise from spreading to other guest OSs or hosts. In traditional environments, capturing the complete contents of RAM during or after an attack is more challenging, often requiring multiple steps that could lead to the loss of important information.
+
+## Monitoring Image Files
+Image files can be monitored to detect unauthorized changes. This can be achieved by calculating cryptographic checksums for each file as it is stored, then recalculating these checksums periodically and investigating any discrepancies. Additionally, image files can be scanned to detect rootkits and other malware that may conceal themselves from security software within the guest OS.
+
+## Guest OS Migration
+In some virtualization systems, guest OSs can be moved from one host computer to another when necessary. This may occur during host reboots, maintenance work, partial host failures, or when an attack against the hypervisor or OS is detected. This capability reduces the urgency for quick upgrades and replacements, allowing more time for testing changes.
+
+### Automatic Migration
+For server virtualization, the hypervisor may automatically move guest OSs to other host computers, sometimes while the virtual machines are still running, without requiring a shutdown or suspension of the guest operating system. In desktop virtualization, manual actions are generally required. A dedicated storage network or a fully authenticated and encrypted transport channel is used to preserve the integrity of the VMs and prevent information leakage.
+
+### Load Balancing
+Guest OS migration supports load balancing by allowing dynamic control over which host each virtualized server runs on at any given time. For instance, if a particular host is heavily utilized, guest OSs can be transferred to hosts with lower utilization, preventing denial of service conditions and improving performance.
+
+## Risks of Migration
+A potential drawback of guest OS migration is that if a guest OS has been compromised or contains malicious code that has not been detected, it could be migrated to another host, thereby compromising that host as well. This issue also arises when converting a compromised physical system to a virtual machine.# The Use of Images in Software Testing
+
+The use of images can improve software testing practices. An organization can test an application on multiple operating systems (OSs) without needing separate hardware for each OS. Additional physical test machines may still be necessary to test hardware compatibility. Organizations should not depend solely on the results of tests provided in a virtual environment. The virtualization environment may provide some functionality or protections that do not exist on the target environment, potentially resulting in inaccurate results.
+
+## Load Testing Considerations
+
+In particular, due to the overhead required for virtualization, load testing in a virtual environment may not provide the same results as load testing in a physical environment. In addition to ensuring that the test guest OS image is configured the same as the target environment, organizations should ensure that additional tests will be performed on physical hardware.
+
+## Maintaining Known-Good Copies
+
+Organizations can maintain known-good copies of each guest OS in a single place, allowing testers to take advantage of a “fresh” copy of the guest OS for each test that restores the system to the desired baseline. This allows testers to ensure that the test environment’s configuration matches that of the production environment and that the effects of performing one test do not inadvertently affect the results of a subsequent test.
+
+## Benefits of Virtualization
+
+Through virtualization, testers can have access to multiple configurations and platforms to test applications, software updates, or patches in a secure, confined environment. By properly configuring the guest OS, any configuration available on a production system can be replicated. In some situations, testing can be performed on an exact copy of the production guest OS. In all these cases, images can be used to good effect. Images holding an entire guest OS can be replicated for each fresh copy, and many organizations keep their images on shared storage so that many departments can access them easily.
+
+# Security Recommendations for Virtualization Components
+
+The security of a full virtualization solution is heavily dependent on the individual security of each of its components, including the hypervisor, host computer, and host OS (if applicable), guest OSs, applications, and storage. Organizations should secure all of these elements and maintain their security based on sound security practices, such as:
+
+- Restricting access to administrative interfaces
+- Keeping software up-to-date with security patches
+- Using secure configuration baselines
+- Performing monitoring and analysis of logs at all layers of the solution
+- Using host-based firewalls, antivirus software, or other appropriate mechanisms to detect and stop attacks
+
+## Importance of Comprehensive Security
+
+Following these recommendations alone is not sufficient to secure a virtualization solution. Virtualization can be used in many ways, so the appropriate security controls for each situation vary. This section discusses common threats against virtualization solutions and provides recommendations for countering these threats.
+
+With this information, organizations will be able to apply the risk management framework outlined in NIST SP 800-37 Revision 1, Guide for Applying the Risk Management Framework to Federal Information Systems: A Security Life Cycle Approach to more accurately assess the risks associated with virtualization.# Virtualization Security
+
+In general, organizations should have the same security controls in place for the virtualized operating systems as they have for the same operating systems running directly on hardware. The same is true for applications running on guest OSs: if the organization has a security policy for an application, it should apply the same regardless of whether the application is running on an OS within a hypervisor or on an OS running on hardware.
+
+## 4.1 Hypervisor Security
+
+The programs that control the hypervisor should be secured using methods similar to those used to protect other software running on desktops and servers. The security of the entire virtual infrastructure relies on the security of the virtualization management system that controls the hypervisor and allows the operator to start guest OSs, create new guest OS images, and perform other actions.
+
+Because of the security implications of these actions, access to the virtualization management system should be restricted to authorized administrators only. Some virtualization management systems allow different levels of access to different users, such as giving some users read-only access to the administrative interface of a guest OS, other users control over particular guest OSs, and yet other users complete administrative control.
+
+Most hypervisor software currently only uses passwords for access control; this may be too weak for some organizations’ security policies and may require the use of compensating controls, such as a separate authentication system used for restricting access to the host on which the virtualization management system is installed.
+
+Hypervisors can be managed in different ways, with some hypervisors allowing management through multiple methods. It is important to secure each hypervisor management interface, both locally and remotely accessible. The capability for remote administration can usually be enabled or disabled in the virtualization management system. If remote administration is enabled in a hypervisor, access to all remote administration interfaces should be restricted by a firewall.
+
+Also, hypervisor management communications should be protected. One option is to have a dedicated management network that is separate from all other networks and that can only be accessed by authorized administrators. Management communications carried on untrusted networks must be encrypted using FIPS-approved methods, provided by either the virtualization solution or a third-party solution, such as a virtual private network (VPN) that encapsulates the management traffic.
+
+Because of the hypervisor’s level of access to and control over the guest OSs, limiting access to the hypervisor is critical to the security of the entire system. The access options vary based on hypervisor type. Most bare metal hypervisors have access controls to the system. Typically, the access method is just username and password, but some bare metal hypervisors offer additional controls such as hardware token-based authentication to grant access to the hypervisor’s management interface. On some systems, there are different levels of authorization, such as allowing some users to view.# Security Recommendations for Hypervisors
+
+## Overview
+Logs but not be able to change any settings or interact directly with the guest OSs. These view-only user accounts allow auditors and others to have sufficient access to meet their needs without reducing overall security.
+
+In contrast to bare metal solutions, hosted virtualization products rarely have hypervisor access controls: anyone who can launch an application on the host OS can run the hypervisor. The only access control is whether or not someone can log into the host OS. Because of this wide disparity in security, organizations should have security policies about which guest OSs can be run from bare metal hypervisors and which can be run from hosted virtualization hypervisors. Further, organizations running bare metal hypervisors should have policies specifying who can and cannot access various features of the hypervisor.
+
+## Security Recommendations
+The following are security recommendations for the hypervisor itself:
+
+### 1. Install Updates
+- Install all updates to the hypervisor as they are released by the vendor. Most hypervisors have features that will check for updates automatically and install the updates when found. Centralized patch management solutions can also be used to administer updates.
+
+### 2. Restrict Administrative Access
+- Restrict administrative access to the management interfaces of the hypervisor. Protect all management communication channels using a dedicated management network or ensure that management network communications are authenticated and encrypted using FIPS 140-2 validated cryptographic modules.
+
+### 3. Time Synchronization
+- Synchronize the virtualized infrastructure to a trusted authoritative time server.
+
+### 4. Disconnect Unused Hardware
+- Disconnect unused physical hardware from the host system. For example, a removable disk drive might be occasionally used for backups, but it should be disconnected when not actively being used for backup or restores. Disconnect unused NICs from any network.
+
+### 5. Disable Unnecessary Services
+- Disable all hypervisor services such as clipboard- or file-sharing between the guest OS and the host OS unless they are needed. Each of these services can provide a possible attack vector. File sharing can also be an attack vector on systems where more than one guest OS shares the same folder with the host OS.
+
+### 6. Use Introspection Capabilities
+- Consider using introspection capabilities to monitor the security of each guest OS. If a guest OS is compromised, its security controls may be disabled or reconfigured to suppress any signs of compromise. Having security services in the hypervisor permits security monitoring even when the guest OS is compromised.
+
+### 7. Monitor Inter-Guest Activity
+- Consider using introspection capabilities to monitor the security of activity occurring between guest OSs. This is particularly important for communications that in a non-virtualized environment were carried over networks and monitored by network security controls (such as network firewalls, security appliances, and network IDPS sensors).
+
+### 8. Monitor Hypervisor for Compromise
+- Carefully monitor the hypervisor itself for signs of compromise. This includes using self-integrity monitoring capabilities that hypervisors may provide, as well as monitoring and analyzing hypervisor logs on an ongoing basis.
+
+## Physical Access Controls
+Of course, it is also important to provide physical access controls for the hypervisor.# Virtualization Security
+
+## Overview
+Virtualization systems operate on hardware that requires careful security measures. Both hosted and bare metal hypervisors have specific security needs to protect against unauthorized access and potential threats.
+
+## Hypervisor Security
+
+### Hosted Hypervisors
+- **Management Software**: Hosted hypervisors are typically controlled by management software accessible to anyone with physical access to the machine.
+- **Physical Security**: Even bare metal hypervisors need physical security. An individual who can reboot the host computer can alter security settings.
+- **External Resources**: It is crucial to secure external resources, especially data on hard drives and storage devices.
+
+### Recommendations for Hosted Virtualization
+- **Minimize Applications**: Reduce the number of applications running on the host OS to enhance security. Remove all unneeded applications.
+- **Restrict Remaining Applications**: Limit the functionality of remaining applications to prevent malware installation. For instance, if a web browser is necessary for updates, configure it to the highest security settings.
+
+### Guest OS Security Dependency
+- The security of guest OSs is contingent upon the security of the host OS. Therefore, tight access controls are essential to prevent unauthorized access to the virtualization system.
+
+## Hypervisor Detection Concerns
+- There is a concern in the security community regarding the design of hypervisors to be undetectable by attackers. The goal is to create an additional security layer that is invisible to potential threats.
+- **Detection Techniques**: Attackers can detect hypervisors through various methods, including:
+- Checking for hypervisor artifacts in processes, file systems, registries, or memory.
+- Looking for hypervisor-specific processor instructions or capabilities.
+- Identifying hypervisor-specific virtual hardware devices.
+
+- **Implementation Dependency**: Detection techniques vary based on hypervisor implementation. While vendors can modify hypervisors to obscure identifiable artifacts, complete invisibility is not achievable. Organizations should not assume that attackers cannot detect hypervisors or their versions.
+
+## Guest OS Security Considerations
+- A guest OS in a virtualized environment functions similarly to an OS on physical hardware. All security considerations applicable to physical OSs also apply to guest OSs, with additional considerations specific to virtualization environments.# Security Considerations for Virtualization Systems
+
+## Overview
+Virtualization systems allow guest operating systems (OSs) to share information with the host OS and other guest OSs. While this feature enhances usability, it also introduces security vulnerabilities.
+
+## Shared Disks and Folders
+- Guest OSs can share information through shared disks or folders, which are typically created by emulating networked disks.
+- If one guest OS is compromised by malware, it can spread the malware through shared disks or folders.
+- Organizations should apply their security policies regarding network shared storage to shared disks in virtualization systems.
+
+## Clipboard Sharing
+- Many virtualization systems allow clipboard sharing between the host OS and guest OSs.
+- Copying information to the clipboard in the host OS allows it to be pasted in the guest OS, and vice versa.
+- This feature can also be a vector for attacks between the guest OS and host OS.
+- Organizations should establish policies regarding the use of shared clipboards.
+
+## Security Recommendations for Guest OS
+1. **Follow Recommended Practices**: Manage the physical OS with best practices, including time synchronization, log management, authentication, and remote access.
+2. **Install Updates Promptly**: Ensure all updates to the guest OS are installed promptly. Modern OSs typically have features to check for and install updates automatically.
+3. **Regular Backups**: Back up the virtual drives used by the guest OS regularly, following the same backup policies as for non-virtualized computers.
+4. **Disconnect Unused Virtual Hardware**: Disconnect any unused virtual hardware in each guest OS, especially virtual drives and unnecessary network adapters.
+5. **Separate Authentication Solutions**: Use distinct authentication solutions for each guest OS unless there is a specific reason for sharing credentials.
+6. **Associate Virtual Devices Correctly**: Ensure that virtual devices for the guest OS are linked only to the appropriate physical devices on the host system.
+
+## Compromise of Guest OS
+If a guest OS on a hosted virtualization system is compromised, it can potentially infect other systems on the same hypervisor. The most common ways this can occur are through shared disks or clipboards.
+
+### Strategies for Addressing Compromise
+- **Assume Compromise**: Treat all guest OSs on the same hardware as compromised. Revert each guest OS to a known-good image saved before the compromise.
+- **Investigate Each Guest OS**: Conduct a thorough investigation of each guest OS for signs of compromise, similar to standard malware scanning procedures. If malware is detected, follow the organization’s established security policy.# Virtualization Security
+
+## 4.3 Virtualized Infrastructure Security
+
+Virtualization provides simulation of hardware such as storage and network interfaces. This infrastructure is as important to the security of a virtualized guest OS as real hardware infrastructure is to an operating system running on a physical computer. Many virtualization systems have features to provide access control to the virtual hardware, particularly storage and networking. Access to virtual hardware should be strictly limited to the guest OSs that will use it.
+
+For example, if a virtual hard drive will be shared between two guest OSs, only those two OSs should have access to the virtual hard drive. Some virtual hardware is meant to be widely shared. For example, a disk image that represents an installation CD may be shared among many guest OSs; still, access to that image should be read-only, and no guest image should have write access to it.
+
+Hypervisor systems that connect multiple guest OSs together on a virtual network present issues for organizations whose policies require that all networks be monitored in specified fashions. For example, an organization might have a network security policy that says that all network switches connecting multiple servers must be managed and that traffic between the servers be monitored for suspicious activity. However, network switches in most virtual systems do not have such a capability.
+
+Some virtual switches support virtual LAN (VLAN) and firewall capabilities to provide separation and isolation of the VM network traffic. In some environments, additional security appliances can be implemented to inspect, control, shape, and monitor the VM network communications in a centralized location.
+
+Hypervisors sometimes offer virtual storage networks and virtual interfaces to existing hardware storage networks. These features offer the same security problems as virtual networks, namely that organizations whose security policies require monitoring those connections cannot use the same methods for virtual storage as they do for physical storage. Using physical interfaces to existing networked storage can eliminate this problem, but also reduces some of the flexibility that hypervisors offer.
+
+## 4.4 Desktop Virtualization Security
+
+A major difference in security between server and desktop virtualization is the ability to control the images. In a server environment, the ability to create and manage images is usually limited to administrators. But in desktop environments, end users often have the ability to create, modify, duplicate, and delete images. The virtualization software itself may also be fully controlled by the user.
+
+It may not be possible for the organization to ensure that the guest OS images meet the organization’s security policy requirements, such as being patched regularly. Organizations considering the use of desktop virtualization should determine which scenarios require the enforcement of security by managed virtualization solutions and which scenarios.# Desktop Virtualization and Security Management
+
+## Introduction
+Desktop virtualization can enhance security by allowing organizations to manage desktop environments more effectively, especially when dealing with teleworkers and unmanaged systems.
+
+## Centralized Management
+- Teleworkers using desktop virtualization may not require centralized management if they are running programs allowed by the security policy from a lightly-protected home computer.
+- Systems accessing sensitive internal databases or websites must adhere to stricter security controls.
+
+## Managing Virtual Machines
+- Organizations can manage virtual machines as real computers or treat them as appliances that expire after a certain period, replaced by updated versions.
+
+## Security Benefits of Desktop Virtualization
+- Desktop virtualization can improve security by providing a well-secured guest OS image for the desktop environment.
+- Various virtualization vendors offer solutions for deploying managed desktop guest OS on unmanaged computers.
+
+### Examples of Implementation
+- Telecommuting employees can install a hypervisor on their home computer to access the organization’s intranet through a specific guest OS image.
+- Remote access servers may deliver a clean guest OS image each time a user initiates a remote access session.
+- Some solutions allow users to boot their home computers from removable media containing a hypervisor and guest OS image, providing a bare metal full virtualization solution.
+
+## Challenges with Guest OS Images
+- Guest OS images on read-only media are not a complete solution; they require regular updates, necessitating the destruction of old media and distribution of new media.
+- Organizations may consider using rewritable media, but this poses a risk of malware infection.
+
+## Reducing Security Concerns
+- Desktop virtualization solutions help mitigate security concerns related to connecting unmanaged systems to internal resources.
+- They also reduce the need for distributing managed computers and ensuring that unmanaged computers meet security requirements.
+
+## Privacy Considerations
+- Scans and checks on personally owned computers may affect user privacy.
+- The guest OS can provide some protection from threats in the host OS by establishing a VPN and encrypting stored data, but it cannot fully protect against host OS threats unless the host OS is bypassed.
+
+## Benefits of Managed Guest OS Images
+- Managed guest OS images can be updated by the organization without user intervention.
+- Image distribution can be challenging due to the large size of guest OS images, making downloads difficult.
+- Organizations may configure images to automatically patch and update their operating systems and applications to reduce the frequency of full image updates.
+
+## Conclusion
+Organizations that manage guest OSs for multiple users must ensure that changes made by one user do not adversely affect others, maintaining a secure and efficient desktop virtualization environment.# Secure Virtualization Planning and Deployment
+
+## Introduction
+Virtualization is a powerful technology that can enhance security and efficiency in various computing environments. However, careful planning and deployment are critical to ensure that these benefits are realized without introducing new vulnerabilities.
+
+## Common Uses of Desktop Virtualization
+One common use of desktop virtualization is to support applications that only run on legacy operating systems (OS) that cannot be properly secured on their own. In such cases, the hypervisor or host OS can monitor the guest OS’s actions using various compensating controls that the legacy OS cannot implement.
+
+### Vulnerabilities of Legacy Applications
+Legacy applications may have vulnerabilities that could be exposed if granted network access. Additionally, these applications and their operating systems may be more susceptible to insider attacks due to a lack of stringent auditing mechanisms. To mitigate these risks, an additional layer of authentication and auditing could be added at the host OS level.
+
+### Strengthening Network Communications
+Virtualization can also enhance network communications involving legacy applications. Options for accessing an application include:
+- Accessing a standalone guest OS via a console
+- Using a remote connection protocol to the guest OS
+
+In scenarios where the legacy application requires full network access, it is crucial to ensure that the data it receives is not malicious. When policy requires, the information should be encrypted and signed.
+
+## Secure Virtualization Planning and Deployment
+A critical aspect of deploying a secure virtualization solution is careful planning prior to installation, configuration, and deployment. This proactive approach helps ensure that the virtual environment is as secure as possible and complies with all relevant organizational policies.
+
+### Importance of Planning
+Many virtualization security and performance problems can be traced back to a lack of planning or management controls. Security considerations should be integrated from the initial planning stage at the beginning of the systems development life cycle to maximize security and minimize costs. Addressing security after deployment and implementation is often much more difficult and expensive.
+
+### Guidelines for Deployment
+The guidelines found in Section 4 and other general resources on security practices should assist organizations in making informed decisions for deploying virtualization solutions. This section consolidates the concepts presented in previous sections of the guide and explains how they should be incorporated throughout the entire life cycle of virtualization solutions, from policy to operations.
+
+## Five-Phase Life Cycle Model
+This section references a five-phase life cycle model to help organizations determine when a recommendation may be relevant during their virtualization deployments. This model is based on one introduced in NIST SP 800-64, Security Considerations in the Information System Development Life Cycle.
+
+### Phases of the Life Cycle
+Organizations may follow a project management methodology or life cycle model that does not directly map to the phases in the model presented here, but the types of tasks in the methodology and their sequencing are likely similar. The phases of the life cycle are as follows:
+
+1. **Phase 1: Initiation**
+- This phase includes tasks that an organization should perform before designing a virtualization solution. These tasks include:
+- Identifying needs for virtualization
+- Providing an overall vision for how virtualization solutions would support the mission of the organization
+- Creating a comprehensive plan for implementation and management.# High-Level Strategy for Implementing Virtualization Solutions
+
+## Phase 1: Initiation
+- Develop a high-level strategy for implementing virtualization solutions.
+- Create a virtualization policy.
+- Identify platforms and applications that can be virtualized.
+- Specify business and functional requirements for the solution.
+
+## Phase 2: Planning and Design
+- Specify the technical characteristics of the virtualization solution and related components.
+- Define authentication methods and cryptographic mechanisms to protect communications.
+- Procure solution components at the end of this phase.
+
+## Phase 3: Implementation
+- Configure equipment to meet operational and security requirements.
+- Install and test equipment as a prototype.
+- Activate the solution on a production network.
+- Alter the configuration of other security controls and technologies, such as:
+- Security event logging
+- Network management
+- Authentication server integration
+
+## Phase 4: Operations and Maintenance
+- Perform ongoing security-related tasks once the virtualization solution is operational, including:
+- Log review
+- Attack detection
+- Incident response
+
+## Phase 5: Disposition
+- Conduct tasks when retiring a virtualization solution, including:
+- Preserving information to meet legal requirements
+- Sanitizing media
+- Properly disposing of equipment
+
+## Security Considerations
+This section highlights security considerations of particular interest for virtualization solutions. These considerations are not intended to be comprehensive, nor is there any implication that security elements not listed here are unimportant or unnecessary. Organizations implementing full virtualization solutions should also follow the recommendations from NIST SP 800-53, which defines minimum recommended management, operational, and technical controls for information systems based on impact categories.
+
+### 5.1 Initiation
+- The initiation phase involves preparatory actions such as:
+- Identifying current and future needs.
+- Specifying requirements for performance, functionality, and security.
+- A critical part of this phase is the development of a virtualization security policy, which should include:
+- Definitions of permitted forms of virtualization.
+- Types of applications and data allowed with each form of virtualization.
+- Administration of the organization's virtualization solutions.
+- Procedures for updating policies.
+
+Note that some virtualization security policies may inherently prevent certain types of virtualization from being selected during the initiation process.# Security Policies and Virtualization
+
+Organizations should consider how other security policies may be affected by virtualization and adjust these policies as needed. It is essential for organizations to be aware of how their use of virtualization may impact the security categorization of the physical system.
+
+## Security Categorization
+
+The security categories associated with Federal information systems are based on three security objectives: confidentiality, integrity, and availability. These security categories are described in NIST FIPS 199, Standards for Security Categorization of Federal Information and Information Systems.
+
+The security categorization of a particular information system depends on the potential impact associated with a loss of confidentiality, integrity, or availability. If a system hosts guest operating systems (OSs) with different impact levels, the system should be secured in accordance with the highest of those levels.
+
+### Virtualization Security Policy
+
+The organization’s virtualization security policy should define how combining multiple guest OSs on a single system affects the system’s security requirements, both positively and negatively. It should also specify which combinations of guest OSs are permitted or prohibited. Organizations may choose to reduce risk by prohibiting combinations that include resources accessing particular types of information, such as highly sensitive personally identifiable information (PII).
+
+## Periodic Reassessment
+
+Every year, there are many changes in virtualization capabilities, the security controls available to organizations, and the types of threats against different types of virtualization. Therefore, organizations should periodically reassess their policies for virtualization. They should also be aware of the emergence of new types of virtualization solutions and major changes to existing virtualization technologies, ensuring that policies are updated accordingly as needed.
+
+# 5.2 Planning and Design
+
+Once the organization has established a virtualization security policy, identified virtualization needs, and completed other preparatory activities, the next step is to determine which types of virtualization technologies should be used and to design a solution for deployment. There are many considerations for designing a solution, most of which are generally applicable to any IT technology. This section focuses on the technical security considerations that are most important for designing virtualization solutions.
+
+## Major Considerations
+
+### Architecture
+
+Designing the architecture includes the placement of the virtualization solution and the selection of virtualization software. It also encompasses the placement and selection of storage, network topology, bandwidth availability, management systems, etc.
+
+### Authentication
+
+This involves determining which layers of the virtualization solution (e.g., application/server, guest OS, hypervisor, host OS) need separate authentication mechanisms and selecting, implementing, and maintaining those mechanisms.
+
+### Cryptography
+
+Decisions related to cryptography include selecting the algorithms for encryption and integrity protection of virtualization communications, and setting the key strength for algorithms that support multiple key lengths. These decisions affect many aspects of virtualized environments.# Virtualization Security Considerations
+
+## Overview
+This document discusses the security aspects of virtualization solutions, including authentication, protection of virtual machines, and the necessary testing and implementation steps.
+
+## Authentication and Protection
+- Different levels of management require various types of authentication.
+- Protection of virtual machines when stored on disk is crucial.
+
+## Testing Requirements
+- Testing should ensure that servers, storage, and network infrastructure can accommodate virtualization.
+- Considerations include:
+- The need for more powerful hardware platforms.
+- Potential network bandwidth issues when consolidating servers.
+- Benefits of application streaming in a networked environment.
+
+## Security Documentation
+- Security aspects of the virtualization solution design should be documented in the system security plan.
+- Organizations should have a plan for handling incidents involving virtualization solutions.
+
+## Incident Response
+- An incident response team can save a snapshot of the guest OS to capture:
+- Memory contents
+- Hard disk data
+- State information
+- Forensics tools can analyze the snapshot for a full forensic analysis.
+- Running a copy of the snapshot in a separate environment can help determine the effects of an attack.
+- Organizations should not assume incidents are contained within the virtualization; attackers may compromise the hypervisor and other guest OSs.
+- Quick action may be necessary to shut down or disconnect the host for containment.
+
+## Software Licensing Considerations
+- Running OSs and applications in virtualized environments can affect software licensing.
+- Issues may arise if licenses are tied to specific hardware characteristics (e.g., NIC address, CPU).
+- Organizations should verify compatibility with existing licensing agreements before virtualizing software.
+- Discussions with software vendors may be necessary to minimize potential data loss or access issues.
+
+## Implementation
+After designing the virtualization solution, the next step is to implement and test a prototype before production. Key aspects to evaluate include:
+
+### Physical to Virtual Conversion
+- Existing servers and desktops may need migration to guest OSs.
+- Most hypervisors offer tools for quick and automatic migration.
+- Verify compatibility of tools with the OSs on physical and virtual machines.
+- Be aware of potential issues such as boot device errors or communication problems with the hypervisor.
+
+### Introspection
+- Assess whether the virtualization solution provides the necessary introspection capabilities.# Virtualization Security Considerations
+
+## Security Monitoring
+- Monitor security events occurring within the guest OSs. If not, deploying additional security monitoring, such as with security devices, may need to be added and tested before the overall system is deployed.
+
+## Authentication
+- Authentication is required at each of the appropriate solution layers and cannot be readily compromised or circumvented. If token-based authentication is needed in virtualized systems, test whether or not the tokens work in the emulated hardware.
+
+## Connectivity
+- Users can connect to all of the resources that they are permitted to and cannot connect to any other resources. Each traffic flow is protected, if necessary, in accordance with the organization’s established requirements.
+
+## Applications
+- The virtualization solution does not interfere with the use of applications or servers within the guest OSs.
+
+## Networking
+- The internal networking offered by the virtualization solution can be configured to conform to the organization’s security policy. This includes the ability to monitor communications between guest OSs and to block particular types of traffic.
+
+## Management
+- Administrators can configure and manage the solution effectively and securely. This includes all components, including hypervisors and images.
+
+## Performance
+- The solution provides adequate performance during normal and peak usage. This is particularly important for server virtualization and may require the use of simulated traffic generators to mimic the actual characteristics of expected traffic as closely as possible. Test all appropriate load characteristics, such as CPU, network, and storage load.
+
+## Security of the Implementation
+- The virtualization implementation itself may contain vulnerabilities and weaknesses that attackers could exploit. Organizations with high security needs may choose to perform extensive vulnerability assessments against the virtualization components. At a minimum, all components should be updated with the latest patches and configured following sound security practices.
+
+# Operations and Maintenance
+
+Operational processes that are particularly important for maintaining virtualization security, and thus should be performed regularly, include the following:
+
+## Administration
+- Ensure that only authorized administrators have physical access to the hypervisor hardware and logical access to the hypervisor software and host OS.
+
+## Staying Current
+- Check for upgrades and patches to the hypervisor, each guest OS, the host OS (if relevant), and all application software running on each guest OS and the host OS. Acquire, test, and deploy the updates to all systems in the virtualized environment.
+
+## Time Synchronization
+- Ensure that each virtualization component has its clock synchronized to a common time source so that its timestamps will match those generated by other systems. In some virtualization systems, guest OSs can be synchronized with the host OS. At a minimum, use the guest OS’s built-in time synchronization to synchronize with a reliable time server.
+
+## Control
+- Reconfigure access control features as needed based on factors such as policy changes, technology changes, audit findings, and new security needs.# Logging and Anomaly Detection in Virtualized Environments
+
+## Overview
+Document anomalies detected within the virtualized environment. Such anomalies might indicate malicious activity or deviations from policy and procedures. Anomalies should be reported to other systems’ administrators as appropriate.
+
+## Assessments
+Organizations should periodically perform assessments to confirm that the organization’s virtualization policies, processes, and procedures are being followed properly. Assessment activities may be:
+
+- **Passive**: Such as reviewing logs.
+- **Active**: Such as performing vulnerability scans and penetration testing.
+
+Assessments need to be made at all levels of the virtualized infrastructure, including:
+
+- The host and guest operating systems (OSs)
+- The hypervisor
+- Shared storage media
+
+More information on technical assessments is available from **NIST SP 800-115**, *Technical Guide to Information Security Testing and Assessment*.
+
+## Disposition
+Before a device using virtualization permanently leaves an organization (such as when a leased server’s lease expires or when an obsolete PC is being recycled), the organization should remove any sensitive data from the host. Data may also need to be wiped if an organization provides “loaner” devices to teleworkers, particularly for travel.
+
+The task of scrubbing all sensitive data from storage devices is often surprisingly difficult because of all the places where such data resides. See **NIST SP 800-88**, *Guidelines for Media Sanitization*, for additional information and recommendations on removing data from devices.
+
+### Important Note
+Sensitive data may be found nearly anywhere on a device because of the nature of virtualization. An organization should strongly consider erasing all storage devices completely.

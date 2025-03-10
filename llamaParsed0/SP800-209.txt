@@ -1,0 +1,1999 @@
+# Abstract
+
+Storage technology, just like its computing and networking counterparts, has evolved from traditional storage service types, such as block, file, and object. Specifically, the evolution has taken two directions: one along the path of increasing storage media capacity (e.g., tape, Hard Disk Drives, solid-state drives (SSD)) and the other along the architectural front, starting from direct-attached storage (DAS) to the placement of storage resources in networks accessed through various interfaces and protocols to cloud-based storage resource access, which provides a software-based abstraction over all forms of background storage technologies.
+
+Accompanying the architectural evolution is the increase in management complexity, which subsequently increases the probability of configuration errors and associated security threats. This document provides an overview of the evolution of the storage technology landscape, current security threats, and the resultant risks. The main focus of this document is to provide a comprehensive set of security recommendations that will address the threats. The recommendations span not only security management areas that are common to an information technology (IT) infrastructure (e.g., physical security, authentication and authorization, change management, configuration control, and incident response and recovery) but also those specific to storage infrastructure (e.g., data protection, isolation, restoration assurance, and encryption).
+
+# Executive Summary
+
+Storage, computing, and networking form the three fundamental building blocks of an information technology infrastructure. Just like computing and network technologies, storage technology has also evolved over the years. Higher capacity storage media and storage system architecture are the two fronts on which storage technology has evolved. The developments on the second front have enabled storage services to support many new and evolving computing use cases but have also introduced storage management complexity and many security challenges.
+
+Just like computing and networking, the current landscape of storage infrastructure consists of a mixture of legacy and advanced systems. With this in mind, this document provides an overview of the storage technology landscape, including traditional storage services (e.g., block, file, and object storage), storage virtualization, storage architectures designed for virtualized server environments, and storage resources hosted in the cloud. Descriptions of various threats to the storage resources are also included, as well as an analysis of the risks to storage infrastructure and the impacts of these threats.
+
+The primary purpose of this document is to provide a comprehensive set of security recommendations for the current landscape of the storage infrastructure. The security focus areas span those that are common to the entire IT infrastructure, such as physical security,# Security Controls for Storage Technologies
+
+## Overview
+Authentication and authorization, change management, configuration control, incident response, and recovery are critical areas in the realm of security controls. This document covers security controls specific to storage technologies, such as network-attached storage (NAS) and storage area networks (SAN). Additionally, it provides security recommendations for the following areas of operation in the storage infrastructure:
+
+- Data protection
+- Isolation
+- Restoration assurance
+- Encryption
+
+## 1. Introduction
+Storage, computing, and networking form the three fundamental building blocks of any information technology (IT) infrastructure. The storage infrastructure has evolved over the years to become feature-rich in areas such as performance and efficiency due to developments in two main areas:
+
+1. **Storage Media**: The introduction of solid-state drives (SSD) with high capacity and storage efficiency features (e.g., deduplication, compression) compared to traditional Hard Disk Drives (HDD).
+2. **Storage System Architecture**: The use of concepts such as storage virtualization has increased performance but also introduced management complexity, including the task of providing security assurance.
+
+### Evolution of Storage System Architecture
+Tracing the history of storage system architecture reveals that the earliest form of digital storage infrastructure is direct-attached storage (DAS), where the storage device (e.g., tape, hard disk) is directly attached to the host server without any intervening network.
+
+The next evolution of storage infrastructure involves intelligently pooling storage resources across the network, accessed through networking protocols, and available to multiple hosts or servers. This evolution is essential for supporting the data access needs of distributed systems, where application components that need to share data reside in different nodes of a network.
+
+In this stage of evolution, the storage infrastructure has taken on two forms based on the type of networking protocol:
+
+- **Network-Attached Storage (NAS)**: Provides file-level access to heterogeneous clients across a network using higher-level protocols, such as Network File System (NFS) or Server Message Block/Common Internet File System (SMB/CIFS).
+
+- **Storage Area Network (SAN)**: Utilizes a specialized, high-speed network (e.g., Fibre-Channel) for communicating with all storage resources.
+
+## Conclusion
+The evolution of storage technologies has brought about significant advancements in performance and efficiency, but it has also introduced complexities in management and security. Understanding the different types of storage infrastructures and their security implications is crucial for ensuring data protection and integrity in modern IT environments.# Storage Infrastructure Overview
+
+## Block-Level Access and SAN
+
+Storage Area Networks (SAN) provide block-level access to storage. One implementation of a SAN utilizes the Internet Small Computer Systems Interface (iSCSI) protocol over a potentially shared LAN/WAN infrastructure.
+
+## Converged and Hyper-Converged Infrastructure
+
+### Converged Infrastructure
+
+A variation of the traditional enterprise storage infrastructure is the emergence of converged infrastructure. A converged system involves a preconfigured package of software and hardware in a single hardware chassis for simplified management. However, in a converged infrastructure, the compute, storage, and networking components are discrete and can be separated.
+
+### Hyper-Converged Infrastructure (HCI)
+
+Similar to a converged system, Hyper-Converged Infrastructure (HCI) combines storage, computing, and networking into a single hardware unit or chassis. HCI includes a layer of abstraction for managing all three components. Unlike a converged system, HCI does not require discrete storage.
+
+HCI features:
+- A common software console or management tool for managing all three components.
+- A hypervisor for virtualized computing.
+- Software-defined storage.
+- Virtualized networking bundled together to run on standard, off-the-shelf hardware.
+
+The integrated storage, compute, and networking components are designed to be managed as a single system across all instances of a hyper-converged infrastructure. Each hardware unit can be configured as a node of a cluster to create pools of shared storage resources, providing the advantage of a centralized enterprise storage infrastructure.
+
+## Cloud Storage Evolution
+
+The next wave of storage evolution involves the introduction of cloud storage, which offers a highly scalable and durable set of storage services that are completely software-defined. Cloud storage services often include:
+
+- **Block Storage Services**: Expose software-defined block devices that can be presented to virtual hosts running in the cloud.
+- **Object Storage Services**: Can be mapped to hosts, applications, or other cloud services, allowing addressing of discrete, unstructured data elements by ID or metadata.
+- **Scalable Shared Filesystems**: Allow a scalable set of hosts to access the same file system at high speed.
+- **Replication, Caching, Archiving, Mirroring, and Point-in-Time Copy Services**: Available for all of the above.
+
+Additional cloud services—such as managed database services, data lakes, memory caches, and message queues—are also offered, which can store stateful and transient data. However, experts are divided over whether to classify them as storage services in and of themselves.
+
+## Emerging Storage Infrastructure for Microservices
+
+Another type of storage infrastructure supports the data storage needs of emerging stateful applications designed using microservices-based architecture and deployed using containers organized into clusters with container orchestration platforms. These platforms feature a standard plug-in mechanism via a container storage interface.# Security Recommendations for Storage Technologies
+
+## 1.1 Scope
+
+This document provides security recommendations for the following storage technologies:
+
+- Traditional enterprise storage technologies classified by storage service interface type (e.g., block, file, and object).
+- Network-based storage (e.g., NFS, SAN).
+- Storage systems that have a layer of software abstraction (e.g., software-defined storage and storage virtualization).
+- Storage systems designed exclusively for virtualized server environments (e.g., storage for Virtual Machines (VMs) and containers, converged and hyperconverged storage systems).
+- Storage systems designed with Application Programming Interfaces (APIs) for cloud access.
+
+The security recommendations span the following operations:
+
+- Operations that are carried out for other infrastructures (e.g., computing and networking) where the specific tasks are applicable to storage infrastructure, such as physical security, authentication and authorization, audit logging, network configuration, isolation, configuration control, change management, and training.
+- Operations that are unique to storage infrastructure, such as data protection and restoration assurance.
+
+**Note:** Storage infrastructure for Mainframes is out of scope for this document.
+
+## 1.2 Target Audience
+
+The target audience for the security recommendations discussed in this document includes:
+
+- Chief Security Officer (CSO) or Chief Technology Officer (CTO) of an IT department in a private enterprise, government agency, or a cloud service provider who wishes to formulate enterprise- or data center-wide policies for the entire infrastructure, including storage infrastructure.
+- System or storage administrators who have to set up specific deployment configurations for storage, converged, or virtualized systems.
+
+## 1.3 Relationship to Other NIST Guidance Documents
+
+This guidance document focuses on a particular type of infrastructure that provides access to all data resources and services, similar to how the computing infrastructure provides access to computing services and the networking infrastructure provides access to communication services. Hence, some of the security guidance and recommendations related to computing and networking are relevant security strategies for the storage infrastructure discussed in this document.
+
+These common recommendations are either included here with a brief description or incorporated by reference. The relevant NIST documents containing recommendations that span all infrastructures (i.e., computing, networking, and storage) are:
+
+- SP 800-52 Rev. 2, Guidelines for the Selection, Configuration, and Use of Transport Layer Security (TLS) Implementations.# Security and Privacy Controls for Information Systems and Organizations
+
+## References
+- SP 800-53, Rev. 5, Security and Privacy Controls for Information Systems and Organizations (2020).
+- SP 800-57 Part 1, Recommendation for Key Management: Part 1 (2020).
+- 800-63A, Digital Identity Guidelines: Enrollment and Identity Proofing (2020).
+- 800-63B, Digital Identity Guidelines: Authentication and Lifecycle Management (2020).
+- SP 800-88 Rev. 1, Guidelines for Media Sanitization (2014).
+- SP 800-125A, Revision 1, Security Recommendations for Server-based Hypervisor Platforms (2018).
+- SP 800-125B, Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016).
+
+## 1.4 Organization of this Document
+The organization of this document is as follows:
+
+- **Section 2** provides an overview of traditional enterprise storage technologies, storage access technologies that provide a level of abstraction, storage architectures tailored for virtualized server environments, and APIs for accessing storage resources in the cloud. This section also provides an overview of certain general principles of storage administration.
+
+- **Section 3** explores the threats to storage infrastructure and the associated risks. Apart from generic threats (e.g., privilege escalation, credential theft or compromise, cracking encryption, malware and ransomware), storage infrastructure-specific threats such as unauthorized storage configuration changes, media theft, and insecure storage images are also discussed. The resulting risks to storage infrastructure (e.g., data breach or exposure, unauthorized data alteration and addition, data corruption, data obfuscation and encryption, tampering of storage-related log and audit data, and compromising backup and firmware) are also analyzed based on the possibility of the realization of these threats and their impacts.
+
+- **Section 4** provides the core material for the publication. It details security recommendations for all facets of storage infrastructure management.
+
+- **Appendix A** provides a list of acronyms used throughout this document.
+
+## 2 Data Storage Technologies: Background
+Data storage technology encompasses the devices, objects (e.g., storage elements, storage arrays, storage network switches, or storage media), and processes (e.g., protocols and interfaces) used to store computer data in non-volatile (durable) form. Hence, this technology can be viewed from the following two taxonomies:
+
+- **Based on location of storage resource**: The storage device is directly attached to the storage client or host computer, and is called direct-attached storage (DAS), or there is a network separating the host computer and the storage device (networked storage).
+
+- **Based on storage type (access type)**: This classification is based on the service interface offered by the storage system that is used by the client software. Examples include block-based storage (block storage service), file-based storage (file storage service), and object-based storage (object storage service).
+
+In DAS, the storage device can be either an integral part of the computer (attached to the bus) or external storage (attached to a computer port, such as serial or USB). Networked storage is broadly classified based on the type of access, such as network-attached storage (NAS), which provides file-level access across the network.# Overview of Storage Technology
+
+## Introduction
+This document presents an overview of storage technology in terms of services, which are synonymous with storage/access types. The choice of a storage service is dictated by the specific IT system use case, such as volume of data, control required over data, required performance, and nature of data representation.
+
+## Data Storage Media Landscape
+The data storage media landscape includes many technologies and is constantly evolving. Common technologies include:
+
+- **Magnetic**: e.g., spinning disk drives, tapes.
+- **Optical**: e.g., optical drives such as CD-R, DVD-R, Blu-ray, and magneto-optical.
+- **Semiconductor**: e.g., SSD, flash drives, persistent memory devices.
+
+Experimental and less prevalent technologies include:
+
+- Molecular memory (e.g., polymer-based)
+- Holographic (e.g., crystal-based)
+- DNA-like
+- Other emerging technologies
+
+## Storage Service Types
+
+### 2.1 Block Storage Service
+A block storage service offers an interface that reads and writes fixed-size blocks of data, typically providing high bandwidth and low latency access to storage devices at the block level through a Storage Area Network (SAN). Each storage device in a block-level storage system can be controlled as an individual hard drive, and the blocks are managed by the host operating system.
+
+#### 2.1.1 Storage Area Network (SAN)
+The building blocks of SAN-based systems typically include:
+
+1. Host computers (clients)
+2. Topology, which involves the distribution of switches
+3. Storage devices/arrays
+
+All three components are interconnected using various network stacks. Since SAN is a specialized, high-speed network for block-level network access to storage, a more detailed look at its variants is warranted. The variants are the results of different types of network stacks with different protocols in certain layers of the stack.
+
+#### SAN Protocols
+There are several SAN protocols, and some of the widely deployed ones are:
+
+- **Fibre-Channel SAN (FC SAN)**
+- **IP SAN**
+- **Fibre-Channel over Ethernet (FCoE)**
+- **Protocols of Non-Volatile Memory Express (NVMe) over Fabrics (NVMe-oF)**
+
+An FC SAN is a network stack that uses the Fibre-Channel protocol, which has five layers (i.e., FC0 through FC4), unlike the seven-layer Open Systems Interconnection (OSI) model. The logical storage resource addressed by Fibre-Channel SAN is called the logical unit number (LUN).# SAN and Networked Storage Overview
+
+## Introduction to SAN
+SAN (Storage Area Network) is a network stack that utilizes the IP protocol at the network layer. An example of an IP SAN is iSCSI. In FCoE (Fibre Channel over Ethernet), the Fibre Channel frame is encapsulated in Ethernet packets. Although this usage is technically inaccurate, a block device in an FC SAN or IP SAN is often referred to as a “LUN” (Logical Unit Number). The term has historical roots in SCSI logical unit numbers.
+
+## NVMe and NVMe-oF
+Before delving into the protocols of NVMe-oF (NVMe over Fabrics), it is essential to understand NVMe (Non-Volatile Memory Express). NVMe is the standard host controller interface for systems utilizing PCI Express (PCIe)-based SSDs. The NVMe-oF specification defines a protocol interface and related extensions that allow NVMe commands to be transmitted over the network. This extension enables NVMe deployment from a local host to a remote host, facilitating a scale-out NVMe storage system.
+
+### Protocols of NVMe-oF
+The protocols associated with NVMe-oF include:
+- **Remote Direct Memory Access (RDMA)**: A family of protocols that enables server-to-server data movement directly between application memory without CPU involvement. This allows a local application to read or write data on a remote computer's memory with minimal demands on memory bus bandwidth and CPU processing overhead, while preserving memory protection semantics.
+- **Fibre Channel**
+- **TCP**
+
+Infiniband is one of the industry-standard interconnects that supports RDMA for high-performance computing (HPC) environments.
+
+## SAN Fabric
+The topology of the nodes and various hardware elements in a SAN system is referred to as the SAN fabric. For instance, a Fibre Channel SAN fabric consists of a Name Server (NS) that registers and communicates with switches and endpoints (Host Bus Adapters – HBAs).
+
+### Topologies in FC SAN
+There are two types of topologies in FC SAN:
+1. **Point-to-Point**: Two devices are directly connected.
+2. **Switched Fabric**: A set of hardware switches acts as one large logical switch connecting the host computer and storage resources. Security recommendations in this document focus on this topology, as it is the most commonly deployed.
+
+## Other Forms of Networked Block Storage
+Other forms of block storage that can be presented to hosts over IP networks include:
+- **Hyper-Converged Storage Service**: Refer to section 2.9, “Converged and Hyper-Converged Storage (Server-based SAN)” below.
+- **Cloud Block Storage Service**: Offered in all cloud environments (See section 2.10, “Cloud-Based Storage System” below).
+
+## File Storage Service
+This type of service presents storage resources in a file system model, with files organized in directories within volumes. Behind the scenes, files can be replicated by creating redundant copies or can be encrypted. The different variations of this service and their associated protocols include:
+- **Network-Attached Storage (NAS)** with Network File System (NFS) protocol: A module that is part of the protocol implementation system, known as the NFS client.# Storage Services Overview
+
+## 1. Network-Attached Storage (NAS)
+
+### 1.1 NAS with SMB Protocol Connection
+This is provided by a LAN-attached file server, similar to those that offer NFS protocol connections, but utilizes the standard SMB protocol found in the network stack of operating systems used in personal computers and workstations. This underlies the CIFS file sharing service.
+
+### 1.2 NAS with Multi-Protocol Support
+There are file service storage offerings that support multi-protocol exports of a folder or filesystem (e.g., both NFS and CIFS concurrently). Each of these may have slightly different access control structures (i.e., Access Control List (ACL)/permissions specifications), and some conflicts in access control rights may have to be resolved during access requests.
+
+### 1.3 NAS with Parallel NFS Protocol (pNFS)
+This is provided through a clustered collection of storage servers (instead of a single NFS server) that slices and/or stripes data and metadata at the back end while providing dynamic, distributed client connections at the front end across the set of clustered hosts. The pNFS is implemented either by:
+- **Symmetric Clustering**: Partitioning filesystem namespace and assigning storage resources (i.e., files) that belong to different namespaces to different servers.
+- **Asymmetric Clustering**: Splitting functionality across servers by having a primary fileserver provide the directory information for the location of secondary storage servers, the data contained in them, and the method to access them.
+
+This service is used for large-scale content repositories (due to its scalability), media stores, and development environments.
+
+## 2. Object Storage Service
+An object storage service presents data as flexible-size discrete buckets or containers storing objects. Unlike the fixed-size blocks offered by a block storage service or the directories and subdirectories of a traditional file system or NAS service, each object can be of arbitrary size and is assigned a unique identifier (an object ID number or OID), which is compiled with other OIDs into a flat index used to access the data in each object.
+
+Dynamic metadata can also be attached to an object to facilitate flexible search and addressing. Technically, an object can be of almost any size and could contain multiple files or only fractional files. A common application for object storage is as an archive for unstructured data, especially large file data such as digital content. However, it can also be used for more active data, like that stored by an online application provider.
+
+### 2.1 Benefits of Object Storage
+The primary benefit of object storage is scalability, as its flat index is more efficiently searched than a traditional file system. With only an OID required to search for data, it simplifies the data retrieval process.# Current Page Content
+
+## 2.4 Content-Addressable Storage (CAS) Service
+
+Content-Addressable Storage (CAS) is a specialized form of object-based storage intended for storing the content digests of documents. This enables users to retrieve those documents without needing to know the location of the actual data or the number of copies. A CAS service exposes the digest generated by a cryptographic hash function (e.g., SHA-256), which serves as the identifier of the document it refers to and is used to retrieve the document.
+
+CAS is primarily used for retrieving documents with short- and medium-term retention requirements, although it is not widely adopted.
+
+## 2.5 Higher-Level Data Access Service
+
+Higher-level data access services provide data at a higher level of abstraction than basic storage types (i.e., files, blocks, or objects). These services can only be accessed through clients specifically built to access data at the same level of abstraction (e.g., Structured Query Language – or SQL – database clients). These services are available both in enterprise data centers and in the cloud. The following are some of these higher-level data access services:
+
+- **NoSQL Database Services**: These services enable the storage and retrieval of unstructured data, such as images, videos, documents, and large binary objects. Unstructured data has higher logical structures and representations than basic storage types to facilitate faster storage and retrieval. They include key-value stores, multi-modal databases, graph databases, and others.
+
+- **SQL Database Services**: These services enable the storage and retrieval of structured data, typically in a tabular format (also called relational tables). Access is enabled through the standardized interactive programming language SQL [International Organization for Standardization/International Electrotechnical Commission (ISO/IEC) 9075:2016 Database languages – SQL]. Current SQL databases can store data using relational tables and views, as well as other structures such as eXtensible Markup Language (XML), JavaScript Object Notation (JSON), and Binary Large Objects (BLOBs).
+
+- **Messaging Queue Storage Services**: These services are specialized for the storage and retrieval of data from messaging queue infrastructures. These infrastructures are used by distributed applications whose components communicate asynchronously through subscription to a message queueing system. In addition to providing access to persistent data, this service also facilitates specialized operations, such as integration with stream processing, where events related to multiple message storage and retrieval by distributed system components can be analyzed to discover patterns.# 2.6 Software-Defined Storage
+
+Software-defined storage (SDS) includes pools of storage with data service characteristics that may be applied to meet the requirements specified through the service management interface. Flavors of SDS can be found in private and public cloud environments, HCI, and various software solutions. It is a storage architecture that separates the storage hardware from the software that manages the storage infrastructure and automates its configuration. In other words, the storage capabilities and services are separated from the storage hardware.
+
+## Advantages of Software-Defined Storage
+
+The advantages of this separation include:
+
+- **Flexibility** to use heterogeneous storage hardware without the issues of interoperability.
+- Enabling of functions such as deduplication, replication, snapshots, and thin provisioning using industry-standard server hardware, though this feature is not unique to SDS.
+- **Automatic and efficient allocation** of pooled storage resources to match the application needs of the enterprise.
+- **Speed of deployment.**
+
+## Expected Service Capabilities
+
+The following service capabilities are expected of the software managing the hardware storage resources in a software-defined storage system:
+
+- Decouple storage policy management from the storage hardware.
+- Support heterogeneous storage environments.
+- Allow for the ability to add new storage capabilities across all platforms and not just to individual arrays.
+- Ensure that the storage software understands and leverages the capabilities of storage hardware.
+
+# 2.7 Storage Virtualization
+
+Storage Virtualization is the act of abstracting, hiding, or isolating the internal function of a storage (sub) system or service from applications, compute servers, or general network resources, for the purpose of enabling application and network independent management of storage or data. Storage virtualization allows the capacity of multiple storage devices or arrays to be pooled (abstracted) so that they can be managed as one entity. Virtualization can aggregate and manage storage resources as logical storage across a wide range of physical storage devices in large networks (e.g., SAN) or data centers. Virtualization also allows segregating a storage resource, or a resource pool, to multiple virtual representations of such resources. This technique provides the flexibility to change the logical to physical relationship over time and mask the details of physical storage resources.
+
+## Scenarios for Storage Virtualization Deployment
+
+The following are some scenarios where storage virtualization is deployed:
+
+- Portions of multiple physical disk drives can be presented as a single mirrored logical volume (using a logical volume manager in a host or storage array). Furthermore, the composition of physical disk drives in the mirrored volume can be changed, and devices can be written concurrently on both mirrors (“active-active”).
+- Sensing changes to access patterns, drives on which data is stored can be...# Storage Virtualization and Management
+
+## 2.8 Storage for Virtualized Servers and Containers
+
+A virtualized server is one where a single physical server runs multiple computing stacks (each consisting of an operating system (OS), storage, network, and applications) called virtual machines (VMs) with the use of software called the hypervisor. Storage infrastructure specifically designed for use with virtualized servers is often called virtualization-aware storage or VM-aware storage.
+
+In most environments, this infrastructure is managed together with the VMs by the hypervisor rather than as separately managed block devices. A key driver for building this VM-aware storage is to enable policy-based provisioning of storage resources at the VM-level through the hypervisor (which controls the allocation of all resources to VMs) so as to meet data access quality of service (QoS) requirements for the applications hosted on the VMs.
+
+For example, since the VM-aware storage system maps storage to VMs, management tasks like performance monitoring can gauge issues like storage latency to the VM level. To implement VM-aware storage, the storage management system should implement APIs callable from a hypervisor. In other words, a hypervisor integration software layer is placed atop a conventional storage array – where the array itself can use any storage media such as magnetic and/or flash disk.
+
+Since the management functions in a VM-aware storage infrastructure are enabled using software, they can be looked upon as Software-Defined Storage (SDS) tailored for virtualized server environments. The key factor in a VM-aware storage environment is that the storage components are managed together with the VMs, rather than as separately managed volumes or LUNs.
+
+Containers offer a lighter form of packaged compute, network, and storage units. Multiple containers can run on a server, a VM, or specialized clusters that provide orchestration services. Persistent Storage for containers is provided by creating volumes through a newly-created file directory local to the host where the container is running, or through mapping to an external SAN or NAS device using plugins.
+
+These volumes can be created ahead of time or at the time the container starts, and can be shared by multiple containers. Plugins are provided by the storage vendors to facilitate the process of volume creations while conforming to the specification of the container engine/orchestrator. Plugins automate the process of LUN/volume creation and mapping to the host and eventually to the container.
+
+## 2.9 Converged and Hyper-Converged Storage (Server-based SAN)# Converged and Hyperconverged Architectures
+
+In a converged architecture, the storage, memory, networking, and virtualization software are preconfigured and pre-installed for fast deployment in a single box (e.g., a server room rack containing one or more physical hosts, storage resources [DAS or storage arrays], and network components).
+
+## Hyperconverged Architecture
+
+A hyperconverged architecture takes the level of abstraction one step further, where the individual storage components associated with the physical hosts are virtualized to build up a common storage pool. This pool is shared among all of the VMs or containers through the software-defined storage (SDS) management software. Therefore, a VM or a container hosted on one physical host, say H(i), may use the storage associated with a different physical host, say H(j). These capabilities introduce a storage abstraction layer for remote disk access.
+
+## Hardware Coupling in HCI
+
+In Hyperconverged Infrastructure (HCI), the hardware required for compute, network, and storage are tightly coupled. All primary storage management functions—together with other functional capabilities such as backup, recovery, replication, deduplication, and compression—are delivered via the management software layer of the HCI vendor and/or hardware along with compute provisioning. Examples include:
+
+- Nutanix
+- Scale Computing
+- Dell (VxRail and PowerFlex Rack)
+- Cisco (HyperFlex)
+- SimpliVity
+
+The tight integration of the hardware comes about due to HCI vendors working with storage device manufacturers to create a storage solution that is tailored to their software stack as original equipment or as part of an industry-accepted reference architecture.
+
+## Resource Sharing and Management Software
+
+In this system, some of the CPU used for computing may need to be shared to perform storage access and management functions. The overall management software stack may include a compute node, a hypervisor, and SDS software, depending on the deployment environment (e.g., virtualized infrastructure, virtual desktops, unstructured data stores, high-performance computing).
+
+A common deployment scenario is one where the application environment consists of microservices-based applications implemented using VMs and/or containers.
+
+## Expected Features in HCI Solutions
+
+The expected features in an HCI solution include:
+
+- Optional data reduction features, such as deduplication and compression across primary storage and backup.
+- Management control through a single pane of glass or a central dashboard.
+- Ability to provide Quality of Service (QoS) storage requirements based on application needs.
+
+## Hyperconverged Storage Architecture Approaches
+
+Offering application processing capabilities in the storage controller of the storage device (e.g., NVMe SSD) using a system on a chip (SoC) is one approach for hyperconverged storage architecture. Another approach is to provide an add-in storage card (that can provide SSD or raw flash storage) with an embedded CPU for running applications, connected directly to the hosting server’s PCIe bus and running NVMe protocol. However, commercial implementations based on this architecture are not currently available.
+
+# Cloud-Based Storage System
+
+(Section to be continued...)# Cloud Storage Systems
+
+Storage systems in the cloud may be either standards-based or proprietary, and may include object-, block-, or file-based services. The technical reasons for enterprises using storage systems in the cloud are:
+
+- To accommodate new demand for storage resources without building an additional data center.
+- To respond to changes in demand for storage, such as peaks and valleys.
+- The need for immediate storage capacity.
+- Increasing management complexity of on-premises storage infrastructure.
+
+## Sophisticated Data Services
+
+Storage systems based in the cloud provide several sophisticated data services:
+
+- **Collaboration capability** – Includes features such as:
+- Notifications when files are changed by others.
+- File sharing with the ability to set editing and view-only permissions.
+- Simultaneous editing.
+- Change tracking and versioning.
+
+- **Data integration and analytics capability** – Ability to integrate data resident on several cloud sources, perform complex analytics, and either instantly serve the extracted information or store it in a persistent storage for later access by cloud service customers.
+
+- **Advanced data protection services**, including:
+- Replication
+- Mirroring
+- Archiving
+- Auditing
+- Encryption
+
+## Types of Cloud Storage Services
+
+Cloud storage services often include:
+
+- **Block storage services** that expose software-defined block devices that can be presented to virtual hosts running in the cloud.
+- **Object storage services** that can be mapped to hosts, applications, or even other cloud services.
+- **Scalable shared filesystems** that can allow a scalable set of hosts to access the same filesystem at a high speed.
+- A variety of replication, caching, archiving, mirroring, and point-in-time copy services to all of the above.
+
+Additional cloud services (e.g., managed database services, data lakes, memory caches, message queues) may also be offered, all of which can store stateful and transient data. However, experts are divided over whether to classify them as storage services in and of themselves.
+
+# Storage and Data Management
+
+Storage management refers to all activities geared toward ensuring reliability, resilience, performance, and the security of storage resources through the use of management tools and processes. Since storage security is the central focus of this document, this section will focus on all activities not related to security controls (and associated recommendations), which are deferred to Chapter 4. The non-security control-related activities that are followed as state of practice are:
+
+- Storage resource configuration and resource management
+- Data Classification or Categorization
+- Data Sanitization
+- Data Retention
+- Data Protection# Data Reduction
+
+## 2.11.1 Storage Resource Configuration and Resource Management
+
+Storage resource configuration and resource management involve the complete lifecycle management of storage infrastructure, and include:
+
+- Management and control of physical storage devices, such as storage arrays and SAN switches, including software updates, device configuration (including security aspects), and device onboarding and disposal.
+- Change orchestration across multiple assets.
+- Management of storage resources (e.g., block device, filesystems, pools), including assignment to hosts, replication, point-in-time copy management, data migration, and data tiering.
+- Performance management and optimization.
+- Capacity management and optimization.
+- Inventory management.
+- Event management.
+
+## 2.11.2 Data Classification or Categorization
+
+Enterprise data can be classified along several dimensions, such as:
+
+- **Sensitivity** (e.g., sensitive vs. non-sensitive)
+- **Frequency** (e.g., frequently accessed vs. non-frequently accessed)
+- **Environment** (e.g., Production vs. Development vs. Testing vs. Staging)
+
+Sensitivity classification is required to enable provisioning of appropriate security controls (e.g., authentication, authorization, encryption, key management, sanitization). Furthermore, the sensitivity category may require sub-categories based on regulations applicable to the data, such as personally identifiable information (PII), Health Insurance Portability and Accountability Act (HIPAA)-related, and Payment Card Industry Digital Security Standard (PCI-DSS).
+
+Frequency classification is required to provision the appropriate storage media (e.g., SSD vs. HDD). The environment classification may be required for both media selection and security controls. Other classification schemes based on project, application, etc. may exist but are not listed above due to them not necessarily having security control implications.
+
+## 2.11.3 Data Sanitization
+
+Sanitization is the process of rendering previously written data irretrievable, such that there is reasonable assurance that the data cannot be accessed or reconstructed. There are three methods for sanitization:
+
+- **Clear** (e.g., overwriting of the existing data)
+- **Purge** (e.g., using a strong magnetic field for magnetic media degaussing, cryptographic erase for encrypted data)
+- **Destruct** (e.g., physical destruction of the media, such as burning, pulverizing, etc.)
+
+Factors that determine the appropriate type of sanitization include the category of information on the media, the nature of the media (solid-state, magnetic, or optical), and the reuse plans for the media.
+
+Sanitization can be applied to individual storage media, or to logical data (e.g., in the cloud). To achieve its goals, sanitization must consider the type and characteristics of media data. For example, overwriting data is effective on magnetic disks but not on solid state.# Data Management Overview
+
+## 2.11.4 Data Retention
+There may be situations where preserving access to particular data is needed for a short, medium (i.e., less than 10 years), or long-term duration. Data retention is usually satisfied by keeping a copy of data on some backup medium. This may be due to operational, legal, regulatory, or statutory requirements.
+
+## 2.11.5 Data Protection
+Data protection is an umbrella term for all activities that ensure that data is accessible, usable, uncorrupted, and available for all authorized purposes with an acceptable level of performance. It is handled in accordance with compliance requirements, including privacy and all physical, administrative, and technical means to provide assurance against accidental or unauthorized disclosure, modification, or destruction.
+
+Data protection involves activities and mechanisms that span the entire storage lifecycle. These phases include:
+
+- **Data at rest/at the endpoint** – on a server or client device.
+- **Data in transit** – between storage devices, client to server, or server to server.
+- **Data in use** – during viewing, modifying, or synchronizing between devices.
+- **Data traveling outside of the security perimeter** – during downloads, physical media shipping, etc.
+
+The range of objectives and associated activities provides a taxonomy for classifying data protection activities under three facets: storage, privacy, and information assurance/security. The activities related to privacy are outside of the scope of this document since privacy-related laws and regulations differ by countries and communities of interest. The activities related to information assurance/security are predominantly technical controls, and each of them needs a dedicated section to discuss their details. Hence, in this section, only storage-related data protection activities and controls are discussed.
+
+### Storage-Related Data Protection Activities
+This category of controls includes:
+
+- Data backup and recovery
+- Archiving
+- Replication technologies
+- Immutability
+- Continuous data protection
+- Point-in-time copies and snapshots
+
+#### Data Backup
+Backup is an operation wherein data stored in storage devices is accessed by production systems and periodically copied to another set of storage devices (some of which may be offline). Because of the changing nature of data content, a backup taken at an earlier time is often made obsolete by a backup taken at a later time. Backups can either be “file backups,” which back up a select portion of the data in a storage device (often based on logical data structures, such as files, directories, data under a database schema, etc.), or “image backups,” which contain the entire content of a particular device (e.g., an individual LUN).
+
+#### Archiving
+Archiving involves the storage of data for long-term retention. While separate...# Techniques and Solutions for Backup and Archiving
+
+There is often a close relationship between backup and archiving, as the latter frequently involves capturing copies of the former for longer-term storage and additional classification. Archiving supports:
+
+## Information Lifecycle Management
+- Different types of records can be captured, retained, and disposed of based on organizational requirements.
+
+## Record Search and Data Discovery
+- Detection of records based on identifiable attributes, such as a person’s ID.
+
+## Meeting Regulatory Requirements
+- Ensures compliance with data protection, retention, and legal preservation regulations.
+
+# Data Replication
+
+Data replication is the process of writing the same data to at least two separate locations. Replication is often used as part of the data recovery process and involves copying data from one site to another. Generally, there are two types of replication:
+
+## Synchronous Replication
+- Involves the real-time copying of data from site A (e.g., a production platform) to site B (e.g., a specially designated disaster recovery (DR) site).
+
+## Asynchronous Replication
+- Involves a time delay and may be performed continuously or using a designated frequency for writing data from site A to site B. The time delay and frequency are dictated by the enterprise’s disaster recovery policy and are described in terms of specific recovery time objective (RTO) and recovery point objective (RPO) goals.
+
+# Immutability
+- Involves the ability to lock data after it has been created, thereby preventing it from alteration or deletion.
+
+# Continuous Data Protection (CDP)
+
+Continuous data protection (CDP) is a form of backup that supports fine-grained recovery and improved RPO. Unlike traditional backup, where copies of the data are performed periodically, changed blocks in CDP are continually transmitted to the target storage environment, which captures or journals the changes over time.
+
+## Comparison with Replication
+- CDP resembles replication; however, it typically allows “playback” of the copied data to previous points in time using a variety of techniques (e.g., byte-by-byte, pre-determined bookmarks, past versions, etc.).
+
+## Additional Technologies
+- Technologies such as file and object versioning or journaling (with or without replication of versioned data copies), database log-shipping, and others can also be considered forms of continuous data protection.
+
+# Point-in-Time Copies
+
+Point-in-time copies are usually created by the immediate element storing the source data (e.g., storage array, filesystem, database) and are designated for fast recovery and a wide variety of other uses, such as cloning production data for testing purposes.
+
+## Remote Point-in-Time Copies
+- These can also be taken from remote replicas.
+
+# Snapshots
+
+A snapshot is a storage-efficient form of point-in-time copy that stores only the individual portions of the data changed from a given point in time in reference to the source data. This often means that if the source data is unavailable, the snapshots will not be usable.# Data Reduction
+
+## Overview
+Data reduction is the process of reducing the amount of data stored and/or transmitted in an effort to reduce costs and improve efficiency. The two common approaches to data reduction are data deduplication and compression. These two approaches can be used together.
+
+## Data Compression
+Data compression (sometimes performed in hardware) seeks to reduce the amount of data by encoding it with a known algorithm to produce a representation of data that uses less storage than the unencoded representation. Data compression can be used in many places, but is most commonly used as part of tape backups and during remote data replication in network gateways to reduce the bandwidth requirements for disaster recovery (DR) and business continuity (BC) operations.
+
+Interoperability is a key requirement for data compression where the compression and subsequent decompression may be performed by different entities.
+
+## Data Deduplication
+Data deduplication attempts to replace multiple copies of data with references to a shared copy. It works by eliminating identical blocks of storage. For example, if a storage system has 500 identical blocks, the storage array will store just one copy, thereby eliminating the need to store the other 499 copies. This can take place at the storage device level, the transmission stage, or the filesystem level.
+
+# Threats, Risks, and Attack Surfaces
+
+This section provides background information regarding storage system security threats, risks, and attack surfaces (where risks are the possible outcomes or goals of threats, and attack surfaces are the possible means through which threats can manifest).
+
+## Threats
+A threat is the potential cause of an unwanted incident, which can result in harm to a system or organization. The following sections provide a brief overview of storage infrastructure-related threats.
+
+### Credential Theft or Compromise
+Credentials are used to verify the identity of users, authenticate them, and grant access to storage systems and tools. Different forms of credentials exist, including physical keys, tokens and cards, passwords, digital private keys, session cookies, digital certificates on websites, and more. However, all of them are vulnerable to hackers using the right tools or techniques.
+
+The most widely used and easily compromised are login-password credentials, which generate a significant amount of risk to any organization. Credential theft is a growing industry within the cybercriminal ecosystem. Password length and complexity alone are often insufficient protection against an attack. In fact, almost all effective methods of credential theft (other than password spray and brute force cracking) involve stealing the user’s exact password rather than randomly guessing it.
+
+Modern ransomware often scrapes passwords from the data sets it has captured. Along with phishing and list cleaning via ransomware, keystroke logging—in which malware...# Credential Theft and Security Vulnerabilities
+
+## 3.1.2 Cracking Encryption
+
+Encryption is used to secure data at rest and in transit, and to protect the sessions in which data at rest or in transit is managed and controlled. Encryption key-generation algorithms make use of randomness to create keys or other key components. Encryptions can have a range of weaknesses, from weak encryption algorithms and weak key generators to server-side vulnerabilities, leaked keys, fundamental design flaws or bugs, and backdoors.
+
+It is not only important to use strong encryption, but to also properly secure the encryption keys. Changing encryption keys proactively can be part of a strategy to protect against compromised or insufficiently strong keys. When it comes to key generation, key strength, quality, and entropy play important roles, and keys should not be reused. Some attacks are based on exploiting random number generator weaknesses, including predictability or limited entropy, and the ability to disrupt it, so that it issues the same random number for key generation twice.
+
+## 3.1.3 Infection of Malware and Ransomware
+
+Malware is the general term for any program that is designed to damage, disrupt, or provide means to compromise a device. Malware compromises a system, slowing down its basic functions and breaching its security. It can be used to steal data, control a device or system, and harvest the system’s resources for illegal activities.
+
+Malware can infect a system in several ways; it can be transmitted via file sharing, downloading free software, email attachments, using compromised portable storage devices, and visiting infected websites. Malware can be mistakenly installed on a storage management host and consequently cause harm such as credential theft, privilege escalation, data corruption, loss, or alteration, compromise of future backups, and more.
+
+In general, malware will use Operating System (OS) and other software vulnerabilities to install itself and perform various actions. The more common a software package, tool, or OS distribution is, the more likely it is that malware kits have already been published. For this reason, it would be easier to attack the storage management system than the storage device itself. This is not to say that storage devices are not a target – and indeed, the threat of using compromised images, firmware or microcode is of growing concern.
+
+Ransomware is a form of malware that encrypts the stored data, rendering it unusable. The attacker then demands a ransom to restore access to the data upon payment. In some cases, the attacker will publish confidential data that was collected from the storage system to create further leverage.# Security Threats and Vulnerabilities
+
+## 3.1.4 Backdoors and Unpatched Vulnerabilities
+
+Backdoors and unpatched vulnerabilities could be used either directly or indirectly to bypass other security controls.
+
+Backdoors are software mechanisms or capabilities that are intentionally created by vendors or individual contributors (and, in rare occasions, by nation states or malicious actors) for reasons often considered legitimate by the author (e.g., to improve support, debugging, national security, etc.). Given their potential for damage, backdoors are not officially documented and are meant to be known to a restricted set of individuals. However, over time, their existence could be intentionally or unintentionally leaked or discovered by the public.
+
+Unpatched vulnerabilities are unintended software side effects or dependencies not caught by software quality assurance (QA) or testing that, if exploited, present a security risk. Once vulnerabilities are known – and especially if they are discovered in software versions that are still publicly supported – vendors typically issue a software fix in the form of a patch or a new version to close the gap. The timely deployment of such fixes is of paramount importance. A large portion of successful attacks are based on vulnerabilities for which a fix has already been published.
+
+## 3.1.5 Privilege Escalation
+
+Privilege escalation is the act of exploiting a software vulnerability, design or deployment flaw, or configuration mistake to gain elevated access to resources that are normally protected from an application or user. It is highly linked to backdoors and vulnerabilities, and some might even consider it a sub-case.
+
+Privilege escalation occurs in two forms:
+1. **Vertical privilege escalation** (also known as privilege elevation), where a lower privilege user or application accesses functions or content reserved for higher privilege users or applications.
+2. **Horizontal privilege escalation**, where a normal user accesses functions or content reserved for other normal users.
+
+In storage systems, this type of threat can result in a wide variety of risks, including data corruption, data alteration, data loss, and more. For example, an attacker can use elevated privileges to gain access to a storage system, delete storage volumes, and modify access configuration. The attack can also compromise backup copies of the data (e.g., synchronous/asynchronous copies, snapshots) or the generation of future backups. The privilege escalation itself can occur on various levels, such as the storage components (e.g., storage array, host, or client), the networking devices, or management systems.
+
+## 3.1.6 Human Error and Deliberate Misconfiguration
+
+Even with the existence of security controls, users may end up performing technically supported storage configuration changes that still present an unacceptable exposure (e.g., mapping a restricted object storage pool to a public network, stopping replication or backup for maintenance without reenabling it afterwards). Such omissions could be unintentional.# Security Risks in Storage Infrastructure
+
+## Human Errors
+Human errors can take various forms, and some are significantly more difficult to identify or prevent than others. These include:
+
+- **Typos**
+- **Lack of knowledge** or an unfamiliarity with internal security baselines and vendor best practices.
+- **Miscommunication** between individuals or teams.
+- **Errors related to the orchestration or automation of storage infrastructure:**
+- Direct, such as flaws in scripts and manifests.
+- Indirect, such as unrealized software dependencies.
+
+## 3.1.7 Physical Theft of Storage Media
+All data is ultimately stored in one or more copies on physical media, which is susceptible to theft. Media, whether online or offline, can be removed from its designated (stationary) location or while being physically transported between locations (for example, backup media being transported for archiving, or storage equipment being shipped as part of a datacenter relocation project). Theft could be:
+
+- **Opportunistic**, where the content of the stolen media is not known in advance.
+- **Targeted**, where specific data is of interest to the perpetrators, and they have the means to determine which media to seize.
+
+## 3.1.8 Network Eavesdropping
+Data could be intercepted while being transmitted. Transmission can span many components:
+
+- Network cards (wired or wireless)
+- Cables (carrying electricity or light)
+- Repeaters
+- Switches
+- Routers
+
+Any of these components can be compromised, and many forms of compromise are difficult or impossible to detect with state-of-the-art tools and methodologies. While data encryption along the transmission path has an important role in limiting the usability of intercepted data, it might still be compromised (for example, by managing to intercept data at a point prior to its encryption or after its decryption, or by managing to gather enough data to break the encryption).
+
+Certain transmission compromises can extend beyond just interception of the data (also referred to as passive eavesdropping) and involve injection, removal, or alteration of transmitted data, metadata, or control traffic.
+
+## 3.1.9 Insecure Images, Software and Firmware
+Adversaries may attempt to interfere with a storage device’s software distribution, update, or installation process in order to introduce incorrect, outdated, or maliciously modified code (e.g., binaries, images, firmware, drivers, etc.). Affected storage components can include:
+
+- Disk drives
+- Tape drives and libraries
+- Network cards and controllers (e.g., HBAs, network interface cards - or NICs, FCoE adapters, etc.)
+- Switches and other network equipment
+- Storage enclosures and arrays
+- Storage OS
+- Client OS storage components
+
+Software update processes can rely on complex delivery chains: an issuer (e.g., vendor, third party, open source community), delivery methods (e.g., transmission or download, shipping of installation media, file copy by vendor).# Risks to Storage Infrastructure
+
+## 3.2 Risks to Storage Infrastructure
+
+Security risk is defined as:
+
+> “…the extent to which an entity is threatened by a potential circumstance or event. Risk typically is a function of: (i) the adverse impacts that would arise if the circumstance or event occurs; and (ii) the likelihood of occurrence. Information system-related security risks arise from the loss of confidentiality, integrity, or availability of information or information systems. These risks reflect the potential adverse impacts to organizational operations (including mission, functions, image, or reputation), organizational assets, individuals, other organizations, and the Nation.” [28]
+
+### 3.2.1 Data Breach and Data Exposure
+
+A data breach is an incident that involves sensitive, protected information being copied, transmitted, viewed, deliberately exposed to the public, or used by individuals or entities unauthorized to do so. Exposed information may include:
+
+- Banking and credit card numbers
+- Personal information (including health-related, home address, phone numbers, dates of birth)
+- Session tokens
+- Passwords
+- Customer data
+- Company trade secrets
+- Matters of national security
+- Any other proprietary or sensitive information
+
+Data breaches can be executed by an external source, such as a hacker or cybercriminal, or by an internal one, such as a malicious insider or disgruntled employee. They can occur covertly, with traces being concealed or entirely removed, or in a manner that can be easily identified—whether this was deliberate or due to a lack of sophistication.
+
+The impact of data breaches can span a wide range, from inconvenience to users to the devastating exposure of sensitive or confidential data, resulting in irreparable damage to the reputation and operational health of the organization.
+
+While certain data breaches involve a high degree of sophistication, many are made possible due to simple, inadvertent security settings of data assets. Among the many possible root causes are:
+
+- Weak (or lack of) encryption at rest or in transit
+- Software flaws
+- Loss of custody of removable media
+- Media theft
+- Incorrect or too relaxed access limitations
+- Improper or incomplete data sanitization implementation (including deleted objects, retired or repurposed media, etc.)
+- Sending or transmitting information to the wrong recipient
+- Data being uploaded to an incorrect location, or in an incorrect manner (e.g., uploading protected data to a public data store)
+
+### 3.2.2 Unauthorized Data Alteration and Addition
+
+Data alteration refers to the process of modifying data before or after it is...# Data Security Risks
+
+## 3.2.3 Data Alteration and Addition
+Data alteration and addition can originate from either an external or internal source in either a covert or easily identifiable manner. In certain cases, this type of risk is realized using the “salami attack” method, in which the attacker steals small bits of data or funds over a long period of time from a large number of transactions. The impacts of data alteration and addition can range from the loss of funds to permanent damage to reputation and trust.
+
+## 3.2.4 Data Corruption
+Data corruption refers to damage to, or errors in data that occur during writing, reading, storage, transmission, or processing and which introduce unintended changes to the original data. In general, when data corruption occurs, the object containing that data will produce unexpected results when accessed by the system or the related application. Results could range from a minor loss of data to a system crash. For example, if a document file is corrupted, a user may be unable to open it, or it might open with some or all of the data rendered unintelligible. Some types of malware may intentionally corrupt or destroy files as part of their payloads, usually by overwriting them with inoperative or garbage code, or otherwise securely erasing their content. While some forms of data corruption will result in storage device, OS, or software errors upon access, others may be designed to affect data without issuing errors.
+
+## 3.2.5 Compromising Backups
+The backup, or retention and archiving of copies (including replicas and snapshots) of data assets is important to enable the recovery of said assets when they are damaged or lost. Satisfactory recovery is possible only if the backup copies are generated correctly with an appropriate retention and currency, stored in a secure way, and accessible in a manner that supports timely restoration. Since these prerequisites closely depend on each other, backup is sensitive to multiple failures. For example, incorrect configuration could involve a live database backup performed without applying techniques to ensure consistency or write-order fidelity. Insufficient currency or retention could mean that at least some portion of the data, old or new, will be unrecoverable. An attacker, therefore, has a high motivation to target not only a “primary” data asset but also its backup and copies. When existing copies cannot be compromised, another viable attack strategy could be to interfere with the backup process itself, thereby gradually “poisoning” future copies. When enough time has passed, the attacker can return to the original goal of compromising the primary data assets, knowing that the only available copies for recovery are too old. Another type of “poisoning” strategy is to specifically infect backup copies of compute or...# Application Security Risks
+
+## 3.2.5 Malicious Data Obfuscation and Encryption
+The reversible obfuscation and/or encryption of data results in data becoming unavailable to the user or organization unless it is recovered using a key held only by an attacker. This type of risk is commonly used in ransomware attacks—a form of malware that encrypts the victim’s data and demands a ransom to restore access to the data.
+
+Although it originally targeted data or files on users’ computers or enterprise servers, ransomware has evolved to also include other storage components, such as NAS and backup appliances. Data obfuscation and encryption typically originate from an external source but could also potentially be inflicted by an internal one. These attacks are often meant to be identified and are commonly accompanied by a threat and ransom instructions. The impact of data obfuscation and encryption can range from the loss of funds to permanent damage to reputation and trust.
+
+## 3.2.6 Data Unavailability and Denial of Service
+In a data availability or denial-of-service incident, the data client cannot gain access to some or all of their data. A data availability disruption risk can occur due to purposeful or unintended damage to the communication path or access configuration. The damage can be physical, such as a disconnection along the communication path, or logical, such as the misconfiguration of an endpoint of network components.
+
+For example, an attacker can modify or remove the SAN masking settings of a block storage device or suspend the export setting in NFS so that clients will be unable to access their data. Although the damage may be reversible (e.g., by restoring the settings that were altered or deleted), it may cause lengthy disruptions and downtime for the system or service. A denial-of-service (DoS) attack will also achieve disruption to data availability by flooding the targeted storage devices, management interfaces, clients, or network with superfluous requests in an attempt to overload systems and prevent some or all legitimate requests from being fulfilled. DoS attacks could potentially impact not only individual data assets and clients but also an entire fabric.
+
+## 3.2.7 Tampering of Storage-Related Log and Audit Data
+The tampering of storage-related log and audit data is where an attacker deletes or modifies log data to prevent an effective audit trail in an effort to conceal the attack (in real-time or afterwards) or to mislead the people investigating attacks with false information. The logs can be partially modified, such as by modifying the timestamp. The impact of this risk is that the attacker or attack can remain unnoticed by security systems that rely on log data for monitoring and investigation.# Security Risks and Threats in Storage Infrastructure
+
+## 3.2.8 Compromising Storage OS or Binaries, Firmware and Images
+Compromise of storage software, including storage device OS, firmware, images, etc., could produce a wide range of undesirable outcomes: providing attackers with means for remote access, to read, copy, alter or destroy data and data copies, to change security settings, to expose data, to alter the behavior of the storage infrastructure and more. Storage behavior alteration is of particular concern as it can be used to introduce a variety of latent, hard to detect attack capabilities, including:
+
+- Presenting incorrect data to storage clients (even if stored data is intact)
+- Providing incorrect status (e.g., falsely reporting on existence or state of snapshots and security settings)
+- Bypassing environmental safeguards (e.g., thermal, power consumption, speed limits)
+- Stripping or altering encryption
+
+## 3.2.9 Mapping of Threats to Risks
+The following table provides a mapping of threats discussed in Section 3.1 to the risk outcomes discussed in Section 3.2.
+
+## 3.3 Attack Surfaces
+Attack surfaces are defined as “the sum of the different points (the “attack vectors”) where an unauthorized user (the “attacker”) can try to enter data into or extract data from an environment.” This section will list common digital and physical attack surfaces that are related to storage infrastructure.
+
+### 3.3.1 Physical Access
+Physical access to storage infrastructure involves physical intrusion into the data center, its perimeter, communication infrastructure (including cabling), or into vehicles transporting physical objects (e.g., hosts, storage arrays, hard drives, tapes). Such intrusion is performed to access, steal, damage, or impact availability of data.
+
+The physical intrusion can involve “overt access” in which the attacker will masquerade as someone who belongs in the situation (e.g., by playing the part of a cleaning employee, technician, or building maintenance personnel).
+
+“Tailgating” is another way to access restricted areas in the data center. For example, an intruder gains entry to a network operations center by carrying a tray of food. Although the data center is protected by biometrics, the staff may open the door for the intruder and the food. Other intruders may simply follow employees in. Physical access protection is essentially the last line of defense.
+
+An intruder who gains access to storage infrastructure can ultimately steal, duplicate, harm, or impact the data.# Security Vulnerabilities in Storage Infrastructure
+
+## 1. Introduction
+This document discusses various security vulnerabilities associated with storage infrastructure, focusing on physical access, operating system vulnerabilities, and management host access.
+
+## 2. Physical Access Vulnerabilities
+
+### 2.1 Media and Data Destruction
+An intruder can destroy media and data by modifying storage OS and access configurations. They may also install physical tapping or transmission devices to facilitate later remote access.
+
+### 2.2 Intrusion Methods
+An attacker can:
+- Attach or remove media
+- Connect to a storage system port
+- Access a management port
+- Use a peripheral port for firmware updates
+- Access a management terminal
+
+Even if central storage systems are well-protected, attackers can target less protected components of the storage infrastructure, such as:
+- Edge switches
+- Exposed network ports
+- Management workstations
+
+### 2.3 Communication Cable Vulnerabilities
+Communication cables present a vulnerability as sophisticated attackers can tap into storage communication by physically accessing these cables.
+
+### 2.4 Peripheral Component Replacement
+Another method of physical access involves replacing peripheral components (e.g., keyboard and mouse) with infected components, such as a keyboard with a keylogger that transmits sensitive data (usernames, passwords) or infects the system with malware.
+
+## 3. Access to Storage Operating System
+
+### 3.1 Overview
+This attack surface involves intrusion into a storage device by exploiting operating system vulnerabilities. The term “storage OS” encompasses all operating systems related to the storage infrastructure, including:
+- Storage arrays
+- Switches
+- Data protection appliances
+- Storage virtualization appliances
+
+### 3.2 Operating System Security
+Many of these operating systems are based on proprietary versions of Linux/Unix, which are generally more secure than general-purpose OS distributions. However, all operating systems have security vulnerabilities and should be regularly updated with security patches.
+
+### 3.3 Access Methods
+An attacker can gain access to the storage OS through various methods, including:
+- Local login processes (using protocols like Secure Shell (SSH), ‘rshell,’ ‘telnet,’ etc.)
+- Remote login using TCP/IP
+- Exploiting OS vulnerabilities
+
+In Hyper-Converged Infrastructure (HCI), the attack surface may be larger due to multiple host OS instances running arbitrary compute workloads.
+
+## 4. Access to Management Hosts
+
+### 4.1 Management Host Vulnerabilities
+Most storage components are managed or configured through management hosts, which typically run on commercial operating systems.
+
+### 4.2 Attack Methods
+By infiltrating the management host with malware or exploiting OS vulnerabilities, an attacker can:
+- Hack executables
+- Read cached data
+- Install memory taps to read data from memory
+- Install malware
+- Gain access to the related storage array and its configuration
+
+### 4.3 Potential Risks
+Access to management hosts allows attackers to cause significant damage, including:
+- Data corruption
+- Data loss
+- Data alteration
+- Compromising future backups
+- Tampering with log and audit data
+
+## 5. Conclusion
+The vulnerabilities associated with physical access, storage operating systems, and management hosts present significant risks to storage infrastructure. Regular updates, security patches, and monitoring are essential to mitigate these risks.# Management and Security of Storage Infrastructure
+
+## 3.3.4 Management APIs, Management Software, and In-Band Management
+
+Storage infrastructure components expose management software User Interfaces (UI), APIs, and other in-band or out-of-band management protocols for administering the devices and managing data storage. In some cases, the device has a management interface (e.g., Simple Object Access Protocol (SOAP) or Representational State Transfer (REST) API) and, in parallel, management software that is installed on a management host.
+
+Finally, storage systems often interact with external network services for key management, authentication, and authorization, etc. All of these interfaces create a variety of attack surfaces. For example, an attacker can access a storage device by impersonating the management host or software through the management API. In this case, the attacker does not need to infiltrate the management software in order to gain access to the management capabilities.
+
+Some equipment allows in-band access via the data links (e.g., Fibre-Channel paths) - the same connection plane used to provide the storage service (see 4.2, “Data Protection” below for additional discussion of planes). By doing so, it opens yet another attack surface, which can be exploited by impersonating a storage client while sending management commands.
+
+## 3.3.5 Storage Clients
+
+Storage clients are compute components, or applications installed on compute components, that use the storage protocol to read/write data from a storage object or network. If a storage client is compromised, the attacker can potentially read the data that is consumed by the storage client, write data to the storage device or object, and encrypt data.
+
+Additionally, if in-band access to the storage is enabled, the attacker impersonating the storage client can send management commands. Archiving systems may sometimes use a storage client to gain access to data in order to create backups. If the storage client is compromised, the attacker can also harm future backups. In this scenario, the attacker can then wait for a while, harming the ability of the organization to defend itself because it will not be able to use its compromised backups.
+
+## 3.3.6 Storage Network (Tap Into, Alter to Gain Access)
+
+When storage clients consume data from the storage systems, the data is transferred through a variety of storage network components (i.e., data in transit), such as host adapters, switches, cables, and extenders. If such components are compromised, the attacker can tap into the data path and copy, view, reroute, or steal data.
+
+In addition, the attacker can read configuration data, management traffic, or other metadata (e.g., if the data in transit may include user credentials, encryption keys, and more). By compromising a network component, an attacker can also potentially perform data corruption, alteration, or addition by modifying the payload.# Security Considerations in Storage Infrastructure
+
+## 3.3.7 Compute Environment of Key Individuals
+Certain key users are granted the privileges and means to perform remote storage infrastructure management. For example, the storage admin may use one or more workstations to remotely connect to the storage’s management host. The compute environment of such key individuals (e.g., laptop, desktops, home network, home computers) can be exploited to gain access to and compromise the storage infrastructure.
+
+An attacker can install malware on such a compute environment that will, in turn, install a key logger that allows for the interception of login credentials. This compute environment is therefore a potential attack surface.
+
+## 3.3.8 Electrical Network and Other Utilities
+Since storage infrastructure is connected to the electricity grid, the electrical network may potentially become an attack surface. A huge spike in electrical current, such as the kind caused by lightning, can potentially damage and even erase data that is stored on electromagnetic discs.
+
+Voltage fluctuations that correspond to keystrokes create noise in the ground line. The ground line noise can be intercepted by a hacker connected to a nearby power socket. Another method is through a malware dubbed **PowerHammer**, which can stealthily exfiltrate data from air-gapped computers using power lines.
+
+This malware exfiltrates data from a compromised machine by regulating its power consumption, which can be controlled through the workload of the device’s CPU. Sensitive pieces of information, such as passwords and encryption keys, can be stolen one bit at a time by modulating changes in the current flow.
+
+### Types of Power-Based Attacks
+- **Line Level Variant**: The attacker intercepts the bits of data exfiltrated by the malware by tapping the compromised computer’s power cable.
+- **Phase Level Attack**: The attacker collects the data from the main electrical service panel. The data can be harvested using a non-invasive tap that measures the emissions on power cables and then converts them to a binary form via demodulation and decoding.
+
+Other utilities, security, and environmental control systems (e.g., heating, ventilation and air conditioning – HVAC, fire extinguishing systems, uninterruptible power supply – UPS, sensor systems, surveillance systems, etc.) can also be used to impact data storage. This ranges from risks to systems (e.g., overheating, flooding, explosion) to risks of data leaks (e.g., tapping into the video surveillance system to intercept password entry, or content of screens, panels, indicator lights, recording auditory signals) to hijacking internal transmission capabilities of environmental systems (e.g., WiFi, Bluetooth) in attempts to circumvent air-gaps.# 4 Security Guidelines for Storage Deployments
+
+The following sections 4.1 through 4.12 provide security recommendations and guidelines for storage infrastructure. Each section is dedicated to a specific aspect of storage security and contains a set of recommendations and guidelines, whose naming convention and numbering scheme is designed to allow uniquely identifying each one.
+
+Primary unique identifiers take the form ‘xx-SS-Ry’, where ‘xx’ is a two-letter combination that relates to the section’s heading, ‘SS’ stands for “Storage Security”, and ‘y’ is a sequential numerical identifier. For example, in section 4.1, “Physical Storage Security”, primary identifiers are labeled PS-SS-R1, PS-SS-R2, etc. Secondary alphabetical identifiers (‘(a)’, ‘(b)’, …) are sometimes used within an individual guideline. This allows addressing an entire compound guideline by its primary identifier, for example ‘PS-SS-R1’ (that addresses media security), and to also address specific portions thereof, for example ‘PS-SS-R1.a’ (adherence to NIST SP 800-53, section 3.10), ‘PS-SS-R1.b’ (supply chain protection), etc.
+
+Finally, bulleted lists are sometimes used as part of a specific guideline when there is no need to address each list item individually.
+
+## 4.1 Physical Storage Security
+
+Physical security is fundamental to the overall safeguarding of any IT infrastructure. Most software-based security controls can be compromised if an attacker gains access to the physical facility and equipment.
+
+In many regards, physical security requirements for storage infrastructure are identical to those of other infrastructure elements like computers and network equipment (e.g., facility security, surveillance, transportation, etc.). These are well covered by multiple publications, including NIST SP 800-53 [28], Rev5 [NIST SP 800-171 [34]. Additional valuable discussion regarding media disposal and destruction is available in ISO 27040 ([10]), and NIST SP 800-88 Rev. 1 [29].
+
+This section provides focused guidance on physical security aspects that are unique to storage infrastructure or on aspects that are less emphasized in other publications.
+
+### PS-SS-R1 – Media Security Measures:
+
+- (a) Follow general recommendations, NIST SP 800-53, Rev5, Section 3.10 (including policies, access, marking, storage, transport, sanitization, cryptography, removable media, confidentiality, and disposal)
+- (b) Lifecycle management should include purchasing media with an adequate supply chain protection.
+- (c) For sensitive data, physical media for backup should be stored in a location sufficiently distant from that in which the primary data is stored.
+- (d) For sensitive data, a comprehensive inventory of storage media (cataloging) should be kept, to track its location, ownership, capacity, and other relevant configuration.# Data Protection Guidelines
+
+## Attributes of Media Tracking
+Particular attention should be paid to tracking the actual content of media, including:
+
+- **Sensitivity level**
+- **Classification** (what type of data it stores, what applications and business services it relates to)
+- **Encryption level**
+- **Potential impact if compromised or stolen** (e.g., compromise of financial or medical information; leakage of passwords, certificates, or encryption keys)
+- **Mitigation/contingency steps or procedures to employ** (e.g., changing passwords, re-issuing keys, re-encrypting data, and notifying relevant stakeholders)
+- **Dependencies between the data and other applications**
+
+## Advanced Tracking Controls
+Consider using advanced tracking controls on sensitive removable media, such as:
+
+- **Radio-Frequency Identification (RFID) tags**
+- **Global Positioning System (GPS) tracking devices**
+- **Tamper protection**
+
+For extremely sensitive information, consider the use of self-activated and/or remotely controlled self-destruction mechanisms. When implemented, carefully consider how to protect such capabilities as they present an attack vector an adversary could use to trigger destruction of the devices, or to harm nearby equipment, data, and personnel.
+
+## Protecting Sensitive Administrative Equipment
+### PS-SS-R2
+Protect all sensitive administrative equipment: Sensitive workstations, which can be used to obtain administrative access to storage infrastructure, should be managed using organization-approved security controls for access, surveillance, and auditing, including physical security. The security measures taken to protect the management workstations should be at least as strict as those used to protect the data it manages, and the systems that use that data. This includes workstations located outside of the facility storing the data as well as work-from-home environments, when used.
+
+## Data Sanitization Approach
+### PS-SS-R3
+The data sanitization approach should cover storage infrastructure in detail, including non-obvious storage components: Certain elements capable of storing sensitive information, beyond the media itself, are sometimes overlooked when disposing of storage equipment, including:
+
+- Non-volatile memory and cache objects (often found in storage arrays, SAN switches, routers, etc.)
+- Firmware/BIOS settings
+- HBA-level settings (which can contain organizationally identifiable addresses, such as IP and SAN Fabric World Wide Names [WWNs], masking configuration, passwords)
+
+Validate that all those elements are considered as part of the organization data sanitization policy, including policy definition, operations, and audit.
+
+## Data Protection
+Section 2.11.4 discusses the objectives and associated activities of data protection, the three facets based on the range of objectives, and primary controls from the point of view of the storage facet. To reiterate, these controls are:
+
+- **Data backup and recovery**
+- **Archiving**# Replication Technologies and Data Protection
+
+## Overview
+- Replication technologies
+- Continuous data protection
+- Point-in-time copies and snapshots
+
+The security recommendations in this section provide the due diligence aspects associated with implementing each of the controls above. Additional adjacent requirements are included in sections 4.7, “Isolation”, and 4.8, “Restoration Assurance”.
+
+## Data Planes in Storage Management
+In discussing various aspects of storage management, access, usage, and protection, it is useful to identify and differentiate between different data planes. A data plane is a loosely grouped set of access methods, protocols, communication, access control and authorization, and operations that are applicable to a data object (or a set of related data objects).
+
+Note that the provided list is by no means binding; some of the mentioned aspects could be omitted, and others – such as network filtering rules, the roles and authorization mechanisms used to allow I/O, etc. – can be added.
+
+### Types of Data Planes
+For example, a block-device could be associated with one or more of the following planes:
+
+- **Data Consumption Plane**: Defined in this example as the set of access protocols used to perform I/O operations, the I/O operations themselves, and the physical and logical network connections used to perform such operations.
+
+- **Data Management Plane**: Includes protocols, operations, and network access used to create and destroy the device, to configure its attributes, to map it to hosts, etc.
+
+- **Data Protection Plane**: Includes protocols, operations, and network access used to replicate, snapshot, backup, and archive the content of the device.
+
+## Separation of Data Planes
+The chosen design and implementation can greatly influence the degree of separation between different planes. Separation is a function of multiple variables, including – but not limited to:
+
+- **Network Layer 2 Separation**: Using different Virtual Local Area Networks (VLANs) will increase separation between planes, while using the same ones will reduce it.
+
+- **Network Logical Separation**: Using separate IP subnets will increase separation, while using the same subnet will reduce it.
+
+- **Filtering and ACLs**: Adding ACLs to prevent management operations on data consumption planes will increase its separation from the data management plane.
+
+- **Authorization**: Using different users and roles for each plane and restricting each role's permissions only to rights associated with that plane.
+
+## Conclusion
+As a general rule, increasing granularity and separation of data planes can positively impact the security of data assets at a potential cost of increased management and administration overhead, and of additional network-related requirements (additional switch ports, I/O controllers, etc.).
+
+In the above example, poor separation between data consumption and data protection planes might allow an adversary that gains control over a host that is mapped to the block device not only to corrupt the content of the device but also to damage copies and backups. Poor separation between data consumption and data management planes might also lead to similar vulnerabilities.# Data Protection Plan and Policy
+
+## 4.2.1 Data Backup and Recovery, and Archiving
+
+### DP-SS-R1: Data Protection Plan Requirements
+A data protection plan or policy should be established prior to deployment and should include, at a minimum, the following:
+
+1. **Tiering, Frequency, and Number of Copies Specification**
+- To meet organization recovery goals.
+- Specification may include more than one tier (e.g., continuous, hourly, daily, weekly, etc.), and should include for each tier:
+- **Frequency and Retention**: e.g., 48 hourly snapshots, 30 daily backups.
+- **Type**: e.g., full, incremental, continuous (such as file versioning, journal or log shipping and archiving), replication, point-in-time copies, etc.
+
+2. **Types of Media to be Used.**
+
+3. **Encryption Requirements**
+- For data at rest (in particular, encryption methods applied to backup data should be at least as secure as encryption of the protected data), and for data in transit.
+- Encryption key retention and key rotation should also be considered.
+
+4. **Other Protection Requirements**
+- Such as digital signing, archiving, location, facility security (including fire, explosion, and magnetic interference protection), immutability and locking, minimum number of copies per backup set, and the geographic distribution of such copies.
+
+5. **Reference to Applicable Regulatory Frameworks**
+- With appropriate controls.
+
+6. **Comprehensive Lifecycle Management**
+- That includes tracking of data copies and backups against protection and retention policies, including affirmative deletion of no longer needed ones.
+
+7. **Restore Procedures.**
+
+### DP-SS-R2: Comprehensive Coverage
+The data protection plan or policy should be comprehensive enough to:
+
+1. **Cover All Data Assets of the Enterprise**
+- Irrespective of where they reside (i.e., on-premises or in the cloud).
+- It is acceptable to refrain from protecting data assets with no significance to the organization, or that can be re-created from other protected data sources within the required RTO, but such omissions should be documented.
+
+2. **Organize by Type of Data Involved**
+- e.g., Tier 1, Tier 2, etc.
+
+3. **Consider Data Integrity**
+- At the application and business process levels (e.g., if two components should be recovered to the same point in time to function properly, then federated consistency mechanisms or equivalent should be planned and implemented).
+
+4. **Consider Required Restoration Speed**
+- To meet business or regulatory requirements - so that implementation would be based on technology stacks with appropriate characteristics (e.g., disk-based, point-in-time copies such as snapshots or clones, vs. tape or over-WAN recovery).
+
+### DP-SS-R3: Standard Operating Procedures
+In addition to a backup plan or policy, standard operating procedures relating to the backup should:
+
+1. **Monitor the Execution of Backups**
+- Based on policy and associated notification mechanisms.
+
+2. **Periodically Test Backups**
+- (At least monthly for critical data) to verify their integrity and their ability to be restored.
+- For applications with strict restoration speed requirements, an end-to-end test restore should be performed (e.g., a complete recovery of the dataset to a sandbox).# Data Protection and Recovery Guidelines
+
+## 1. Recovery Environment
+- Simulating real-life restoration scenarios.
+
+## 2. Recovery Catalog
+- An up-to-date recovery catalog should be maintained to track each copy (including backup, replication, Point-in-Time copies, etc.) that records:
+- Which anti-malware tools it has been scanned with.
+- The results of the scans.
+- For sensitive data, it is further recommended to periodically scan at least a subset of past copies with current anti-malware tools to identify “poisoned” copies.
+- See additional cataloging requirements in CM-SS-R2.
+
+## 3. Backup Plan Review
+- Periodically review (at least annually) the backup plan and operations procedures.
+
+## 4. Audit Trail
+- Maintain an audit trail that provides the information necessary to ensure conformance of the backup operations consistent with the policy.
+
+## 5. Special Controls
+- Employ special controls when necessary (e.g., refreshing old, at risk, or no longer supported media by copying to new ones, etc.).
+
+## 6. Data Protection Configuration Management
+- The data protection configuration management (including backup, point-in-time copies, and replication) should be centrally managed and separated from the data consumption plane.
+- Servers and clients should not be allowed to change their own data protection configuration.
+- This should not be interpreted as excluding redundancy mechanisms that protect against a single-point-of-failure.
+
+## 7. Replication and Mirroring
+
+### 7.1 Data Protection in Replication
+- In both synchronous and asynchronous replication, the same level of data protection (e.g., encryption of data at rest, access restrictions) that is used in the primary storage should be carried over to the secondary storage.
+
+### 7.2 Eliminate Unnecessary Replication Trust
+- Eliminate unnecessary replication trust between storage devices:
+- When arrays do not have shared replicated volumes, disable the replication trust relationship between them.
+- When arrays do have shared replicated volumes, their privileges with respect to one another should be limited to the volumes they share.
+
+### 7.3 Data Protection in Transit
+- The confidentiality and integrity of data in transit during replication and mirroring should be protected using encryption.
+- This recommendation can be relaxed when appropriate mitigating controls exist (e.g., mirroring over short distances within the same enclosure or server room).
+
+### 7.4 Automated I/O Suspension
+- Automated I/O suspension should be enabled for synchronous replication in all circumstances where the replica cannot be allowed to fall behind the primary data.
+- Enabling this feature implies that the primary storage device will disallow any write operations on the data it stores if its synchronization with the secondary storage server is lost, and it can only resume processing when synchronization is restored.
+- This feature comes at a cost of opening an additional attack vector; an adversary that is aware of or suspects that it is in use could trigger primary storage denial of service by attacking the replication network paths. This tradeoff should be carefully weighed.
+
+### 7.5 Removal of Obsolete Replicas
+- Obsolete replicas should be removed to reduce the attack surface.# 4.2.3 Point-in-Time Copies
+
+The term “Point-in-time copies” should be expansively interpreted to cover a variety of storage-technology internal data copy mechanisms that can be used to create a copy of original data as it appeared at a past point-in-time. This includes storage-arrays built-in copy-generation tools (often referred to by vendors as “Snapshots”, “Clones”, etc.), filesystem-level copies, database-level copies, cloud storage pool copies, etc.
+
+## DP-SS-R10
+
+When point-in-time copies, such as snapshots, are used as part of the backup scheme, they should be configured accordingly:
+
+1. To meet the recovery point objective (RPO) requirements of the target data sets in the snapshot. For example, if the business or compliance standards require that no more than five minutes of committed data could be lost in recovery, then the snapshot interval should be five minutes or less.
+2. To meet retention requirements. For example, if hourly copies are required for at least 48 hours, ensure that a sufficient number of hourly snapshots is preserved.
+
+## DP-SS-R11
+
+Obsolete snapshots and clones should be removed to reduce the attack surface.
+
+# 4.2.4 Continuous Data Protection
+
+## DP-SS-R12
+
+### Security considerations for using continuous data protection:
+
+Other than the functional benefits (e.g., improved RPO, finer-grained retention), the use of continuous data protection techniques (e.g., CDP, versioning of source data or of replicas in cloud file- and object-storage, and transaction log shipping) can also assist in improving forensics for sensitive data. While potentially extremely time-consuming, replaying to previous versions of data can help learn more about the attack profile, its timing, etc.
+
+# 4.3 Authentication and Data Access Control
+
+Storage infrastructure systems are administered by designated users who use various accounts to access these systems. The administrative users and their management hosts constitute an important attack surface that can be exploited by attackers. Since the individuals who manage the storage systems and infrastructure are generally privileged users, the allocation and use of privileged access rights should be restricted and controlled. Inappropriate use of system administration privileges can be a major contributing factor to the failures or breaches of storage systems.
+
+A "least privilege model" that leverages specific roles should be implemented. According to ISO Standard ISO/IEC 27040, the following roles should be implemented and used within storage technologies:
+
+- **Security Administrator** – This role has "view” and “modify" rights to establish and manage accounts, create and associate roles and permissions for all user and administrative operations, creation of policies regarding all authenticators (e.g., shared secrets), manage certificate and key stores, manage encryption and key management, manage auditing and logging, and set access controls.
+- **Storage Administrator** – This role has "view” and “modify" rights for all...# Storage System Security Roles and Recommendations
+
+## Security Roles
+
+- **Security Auditor**
+This role has "view" rights that allow for entitlement reviews, verification of security parameters and configurations, and inspections of audit logs. No access is granted to the storage, configuration, or data.
+
+- **Storage Auditor**
+This operator-like role has "view" rights that allow for the verification of storage parameters and configurations as well as inspections of health or fault logs. No access is granted to security-related elements or data.
+
+## Authentication Recommendations
+
+### AC-SS-R1 – Unique Identifier for all users
+All users (including administrators) should have a unique identifier for their personal use only. Identifiers assigned to administrators should, at the minimum, meet the identity assurance level 3 (IAL 3) specified in sections 4.2 and 4.5 of NIST document SP800-63A. The only exception is emergency-use accounts, whose secure usage is outlined in AC-SS-R16. This principle is important for accountability and audit purposes as well as for the ability to control access on the individual user level.
+
+### AC-SS-R2 – A centralized authentication solution
+In a large scale environment, a centralized authentication solution (such as Active Directory, Lightweight Directory Access Protocol [LDAP], single sign-on [SSO], organization approved cloud authentication services) should be deployed to enable the close monitoring and control of user access to storage resources and to ensure uniform enforcement of the organization’s authentication policies. The use of built-in authentication and permissions management capabilities should be avoided and preferably disabled.
+
+### AC-SS-R3 – Configuration of authentication servers
+- **(a)** The designation of servers to perform authentication services should be strictly controlled, and their validity should be periodically checked to detect and prevent the introduction of any rogue or unauthorized authentication servers.
+- **(b)** There should be multiple authentication servers to ensure availability and avoid single points of failure.
+
+### AC-SS-R4 – Secure connection to centralized authentication server
+All communication between the centralized authentication server and the authenticating clients should be secured through state of the art protocols such as Transport Layer Security (TLS) 1.2 or higher.
+
+### AC-SS-R5 – Use of multi-factor authentication
+Access configuration to storage infrastructure components that store mission-critical data should be protected using a minimum of two-factor authentication with authenticators, at the minimum, meeting the requirements specified in section 5.1.9 of NIST document SP800-63B. This requirement should be made mandatory for access by users assigned to Security Administrator and Storage Administrator roles.
+
+## Password Recommendations
+
+### AC-SS-R6 – Secure password policies should cover service accounts
+The secure password policies should be established to cover service accounts.# Password and Account Management Policies
+
+Policies should be applied not only to individual accounts but also to service accounts (e.g., Simple Network Management Protocol (SNMP), Network Data Management Protocol (NDMP)) and accounts used by automation tools. The passwords should at the minimum meet the requirements for memorized secrets as outlined in section 5.1.1 of NIST document SP800-63B. In addition, the following requirements should be met:
+
+## Password Requirements
+
+### AC-SS-R7 – Password Length
+A good password should have at least 15, preferably 20, characters.
+
+### AC-SS-R8 – Password Complexity
+A good password should combine uppercase and lowercase letters, digits, and special characters. It should not be similar to usernames and should not include repeated character sequences.
+
+### AC-SS-R9 – Password Expiration
+Expiry times should be set for all passwords. Expiration for administrative accounts should be set shorter than for user accounts.
+
+### AC-SS-R10 – Password Reuse
+Users should be prohibited from reusing at least the four previous passwords (or more) based on organizational risk factors.
+
+### AC-SS-R11 – Password Caching
+1. Passwords should not be cached on the server, desktop, or any other system.
+2. Sufficiently short Time to Live (TTL) or an equivalent control mechanism should be employed so that changes are propagated quickly throughout the network.
+
+### AC-SS-R12 – Saving Passwords
+Passwords should not be saved anywhere in cleartext (e.g., not in files) or in scripts. Furthermore, enabling storage management applications to locally remember users and passwords for automatic login should never be used, even if passwords are stored encrypted, unless managed through an authorized central authentication service, such as LDAP SSO.
+
+### AC-SS-R13 – Eliminate or Change Default Passwords
+The default passwords that come with system installation or deployment should be immediately changed.
+
+## Account Management Recommendations
+
+### AC-SS-R14 – Use of Accounts Not Associated with System Users
+Accounts not associated with any system user (e.g., not in Active Directory, such as “guest,” “anonymous,” “nobody”) should be disabled. In situations where they need to be used, they should not be mapped to any system user, and all of their default configurations (e.g., password, privileges) should be changed to conform to organization-wide policies.
+
+### AC-SS-R15 – Account Lockout
+Users should be locked out after a certain number of unsuccessful login attempts. Certain implementations of account locking include automatic reset (account unlock) after a certain period of time or a power cycle. Automatic reset should not be allowed on sensitive storage systems.
+
+### AC-SS-R16 – A Local User Account for Emergency Purposes
+A single local user account should be maintained for access to storage resources in order to provide emergency-only access if the centralized authentication system is down. This account should conform to all organizational policies (e.g., password length). In addition, its usage should be monitored.# Storage Security Recommendations
+
+## Access Control Recommendations
+
+### AC-SS-R17 – Eliminate or Disable Default User Accounts
+The default user accounts that come with the storage system installations should be eliminated or disabled immediately, if the feature exists. When the feature to disable or eliminate does not exist or there is a justified reason to keep any of those accounts, the privileges assigned to this account should be kept to the minimum necessary.
+
+### AC-SS-R18 – Limit Local and Default User Accounts
+As much as possible, eliminate the use of local and default accounts. In situations where this is not possible:
+- (a) Limit the use of such accounts and the privileges they have.
+- (b) Password policies should apply to all user, local, and default accounts, including those with administrative rights.
+
+## Privilege and Session Management Recommendations
+
+### AC-SS-R19 – Roles and Responsibilities Configuration
+At a minimum, the four roles in the ISO Standard ISO/IEC 27040 should be implemented for all access to storage resources (i.e., Security Administrator, Storage Administrator, Security Auditor, and Storage Auditor). Storage products that offer only one or two levels of privileges should not be used for storing sensitive information, unless compensating controls are available to provide equivalent functionality of granular roles. For example, all management traffic could be routed through a management proxy host, or “command gateway” with privilege management tools installed to restrict commands available to each role.
+
+### AC-SS-R20 – Adherence to the Principle of “Separation of Duty”
+A critical aspect of storage security is to separate administrative control planes. For example, if attackers gain control over a host or compromise a host admin role, they should not be able to trivially compromise its data assets, backups, and replicas. At a minimum, this includes:
+- (a) The privileges required for data management (e.g., create and map a volume or share) and data protection (e.g., configure, stop, and delete backup) should be assigned to different roles and these two roles should not be assigned to the same user.
+- (b) The privileges required for data management and host administration (e.g., tasks such as creating/deleting objects in the storage controller) should be assigned to different roles and these two roles should not be assigned to the same user.
+
+### AC-SS-R21 – Principle of “Least Privilege”
+The privileges assigned to any role should adhere to the principle of “least privilege.” The permissions assigned to a role should be no more than what is required to perform the functions designated for that role. In the context of storage, these permissions should be carefully managed to ensure security.# Access Control Recommendations for Storage Infrastructure
+
+## Secure Session Management
+### AC-SS-R22
+All sessions between the client and a storage infrastructure system should be managed based on the required authentication assurance level conforming to the requirements in section 7 of [63B] – including termination and automated logout.
+
+### AC-SS-R23
+Implement a “message of the day” and “login banner” notice: The “message of the day” or “login banner” notice should appear before every login to any storage infrastructure component or system via UI, Command Line Interface (CLI), or API (if applicable). The message should include a legal notice and a warning that the user is accessing a restricted system with sensitive data, as well as any additional warnings and meaningful messages according to the organization’s security and privacy policies.
+
+## SAN-Specific Recommendations
+The topic of SAN-related access control involves multiple aspects. Some overlap with Network Configuration and Administrative Access, which are covered in other sections. To eliminate repetition:
+
+- Access control recommendations closely related to the network infrastructure (e.g., switch, port, HBAs, and NICs configuration; additional zoning guidelines) and protocols are discussed in Section 4.6.
+- Encryption of data in transit (one of the mechanisms for access control) is covered in Section 4.9.
+- Administrative access is discussed in Section 4.10.
+- Data-related access control is discussed in this section and covers block device-related access control, implementation of zoning, and access control specification for joining the fabric.
+
+For a complete appreciation of all access control aspects, please refer to all three sections.
+
+### AC-SS-R24
+Block-device access control: The set of hosts that can access a set of SAN storage devices should be restricted through zoning (software or hardware) and masking to the minimum required access.
+
+### AC-SS-R25
+Block-device copy and replica access control: The set of hosts that can access a set of SAN-replicated block-devices, snapshots, and other types of point-in-time copies of such block-devices should be restricted through zoning and masking to the minimum required access. In many cases, a host granted access to a device should not be allowed to access a copy.
+
+### AC-SS-R26
+The permission for the default zone (which may be product-specific) should always be configured as “deny all.”
+
+### AC-SS-R27
+The zoning should be implemented in a switched SAN fabric based on sound logic particularly as it relates to the separation of environments and traffic type, which should be separated to the maximum possible extent, by:
+- **Environment:** development vs. test vs. production, etc.
+- **Type of traffic:** data access vs. management vs. replication vs. backup
+- **Type of hosts:** virtualized vs. physical# Storage Device Type: Tape vs. Disk
+
+## Access Control Recommendations
+
+### AC-SS-R28
+When software zoning is implemented, hosts should only be allowed to connect to storage devices provided by the simple name server (SNS) – by looking it up at the software zoning table – and not directly using device discovery.
+
+### AC-SS-R29
+**Controlling devices that can join fabric:** The policy specification feature in SAN that enables the creation of an allowable list of switches, arrays, and hosts that can join the fabric should be leveraged where applicable.
+
+## File and Object Access Recommendations
+
+### AC-SS-R30
+**Restricting access to object storage data of all types (e.g., Files, Objects) to the minimum possible:** Follow the "least privilege" principle, including:
+
+1. Access to object storage data through any protocol (e.g., CIFS, SMB, NFS, and public cloud object storage protocols) should be restricted based on client IPs and/or relevant subnets, and the ports/protocols should be required.
+2. If supported, finer-grained access control mechanisms (e.g., by role, ID, labels, accounts, Virtual Private Cloud (VPC), VPC endpoints, etc.) should also be used.
+3. Access should only be granted to centrally managed users and roles, such as those found in enterprise directories or approved commercial services, and not to local users of the specific system.
+4. The default access to any share should be set to “deny all” or equivalent.
+5. The default shares should be disabled or removed. If there is a specific purpose for using them, the access rights should be restricted to the minimum required.
+6. The access rights (e.g., read, write, execute, modify, delete, view ACLs, change ACLs) should be individually assigned based on “Need to Know” requirements.
+7. If the feature to define object storage ACLs is available, it should be leveraged in addition to the use of native OS user, group, or admin permission models.
+8. If a policy definition feature to define file level access patterns is available, it should be leveraged and the feature to detect violations to the pattern, which sends notifications, should also be implemented.
+
+### AC-SS-R31
+Users that do need to authenticate should be disabled (e.g., Anonymous, null, guest, or “public access”). An exception may be provided to allow organization-critical functions such as network discovery, but in such cases, these classes of users should be mapped to the “nobody” user group and not to "ID 0".
+
+### AC-SS-R32
+Regular audits of all the security settings mentioned above for storage data of all types (e.g., Files, Objects) should be performed to ensure that there are no drifts. Audit results should be documented.
+
+### AC-SS-R33
+**Scan files containing sensitive information with anti-malware tools on-access:** Every time a file with sensitive information is accessed, it should first be scanned with organization-approved anti-malware tools to ensure that it has not been compromised.
+
+### AC-SS-R34
+**Granular permission assignment:** For file and object sharing systems (e.g., NFS, CIFS, cloud object stores), permissions should be granted at a finer level.# Security Guidelines for NFS and CIFS
+
+## Access Control Recommendations
+
+### AC-SS-R35 – Secure NFS by Restricting Root Access
+- Utilize the “nosuid” option.
+- Avoid using “no_root_squash” to prevent programs from being executed as a root user on the client.
+- Prevent modification of shared files by remote root users.
+- NFS clients should not be allowed to run “suid” and “sgid” programs on exported file systems.
+
+### AC-SS-R36 – Read-Only NFS Shares
+- For files intended for “read only” mode, ensure the mount configuration for corresponding NFS shares includes the “noexec” option.
+
+### AC-SS-R37 – Export Restrictions
+- Do not allow the export of administrative file systems, including the ‘/’ filesystems and restricted OS or storage array system folders.
+
+### AC-SS-R38 – CIFS Permissions
+- Avoid granting “Full Control” permissions to any user, as this can lead to unauthorized modification of permissions and privilege leakage.
+
+### AC-SS-R39 – Object Protection
+- Implement object protection measures to prevent unauthorized deletion of sensitive information.
+- Use advanced controls such as requiring Multifactor Authentication for object deletion or locking objects against deletion.
+
+## Audit Logging
+
+### Importance of Audit Logging
+- Storage infrastructure components generate event log entries for various transactions or events.
+- It is crucial to capture event log entries necessary for:
+- Proof of operations (e.g., encryption and retention).
+- Enforcement of accountability and traceability.
+- Meeting evidentiary requirements.
+- Adequate monitoring of systems.
+
+### Relevant Audit Logging Events
+1. **Management Events**
+- Examples: resetting user passwords, account creation/deletion, modification of privileges, role changes, group membership changes, privileged actions, creation of/changes to configuration.
+- These events are always of interest.
+
+2. **Security-Related Events**
+- Examples: changes to user profiles and security configuration, failed/blocked attempts to storage, blocked logins.
+- These events are often of interest and may overlap with management events.
+
+3. **Data Access Events**
+- Access information is critical for incident response and monitoring sensitive information (e.g., determining what an adversary may have accessed).
+
+### Risks of Inadequate Logging
+- Deficiencies in security logging and analysis can allow attackers to conceal their location, malicious software, and activities on victims' machines.
+- Without protected and complete logging records, victims may be unaware of the details of the attack and subsequent actions taken by the attackers.# Audit Logging and Security Recommendations
+
+Audit logs are crucial for detecting attacks and conducting forensic investigations. Without proper logging, an attack may go unnoticed indefinitely, leading to potentially irreversible damages. Often, logging records serve as the only evidence of a successful attack. Many organizations maintain audit records for compliance, but attackers exploit the fact that these logs are rarely reviewed, allowing them to control victim machines for extended periods without detection.
+
+## Security Recommendations for Implementing Audit Logging Capabilities
+
+### AL-SS-R1: Enable Audit Logging
+- Audit logging should be enabled on all storage infrastructure components using reliable delivery and secure protocols.
+
+### AL-SS-R2: Reliable, External Time Synchronization
+- A Network Time Protocol (NTP) service is essential for accurate time synchronization. If the NTP service is disabled, systems may experience:
+- Inaccurate timestamps on messages, events, and alerts.
+- Inconsistent time across different devices.
+- Failure to perform log analysis, correlation, anomaly detection, or forensics.
+
+#### Recommendations for NTP Deployment and Integration
+1. Enable the NTP service on all devices, including log servers and storage infrastructure.
+2. Configure all devices to synchronize time with a time source server, such as an NTP server.
+3. Monitor time synchronization validity on all devices:
+- Ensure the service remains activated.
+- Verify that organization-approved time servers are configured on each device.
+- Handle alerts for detected anomalies with high priority.
+4. Provide redundancy for time source servers by deploying at least three geographically distributed synchronized time sources.
+5. Use certificate-based authentication to authenticate the time source server.
+6. Leverage access control options, such as “ntpd” access restrictions, to limit access to the time source servers.
+
+### AL-SS-R3: Centralized Log Collection
+- Collect logs in a centralized manner to reduce the risk of loss or alteration. Writing logs to central log servers (e.g., syslog server, cloud logging services) enhances security within the internal network.
+
+#### Recommendations for Central Logging Deployment and Integration
+- Define organizational logging standards for storage devices to specify the required logging level, including Management Events and Security-Related Events.# Data Logging and Security Standards
+
+## Data Access Events
+- All types of data should be logged.
+- Extremely sensitive data should have Data Access Events logged as defined in AL-SS-R4.
+
+## Logging Configuration
+1. All devices should be configured to transmit log event data to organization-approved central log servers, according to the applicable organizational logging standard.
+2. Central logging configuration validity should be monitored on all devices:
+- Ensure that the logging service remains activated.
+- Verify that logging level configuration matches the organization standards.
+- Confirm that organization-approved log servers are configured on each device.
+- Handle alerts for detected anomalies at a high priority.
+3. Multiple syslog servers should be deployed to enable continuous logging and prevent a single point of failure.
+4. At least one off-site copy for each log should be maintained.
+5. To prevent the loss of entries if the logging process is stopped and restarted before all entries are written:
+- Logging should be configured to write to disk in real time with no buffers in place.
+- Logs should be sent over reliable protocols.
+
+## AL-SS-R4 – Logging Level
+The following events related to storage protection of all storage-related objects, sites, and accounts should be included in the storage audit logging:
+- Read-only API calls in sensitive environments.
+- All denied access attempts to services, ports, files, objects, or devices.
+- Cryptographic key management operations spanning the entire key lifecycle, particularly for encryption keys (e.g., key generation, key deletion, certificate management), especially for events such as key shredding.
+
+## AL-SS-R5 – Audit Log Retention and Protection
+The following measures should be adopted for audit log retention and protection:
+1. Retain log data for a sufficiently long period of time, as it often takes a while to notice that a compromise has occurred or is occurring.
+2. Allocate sufficient storage space and proactively monitor free space and unusual growth rates of log data to prevent log destinations from filling up.
+- A known attack pattern involves filling up logs first to disrupt forensics, and appropriate monitoring can help identify such attacks in real time.
+3. Archived log data should be protected from tampering (e.g., using WORM or immutable storage, object locking, Multi-Factor Authentication (MFA) approval for delete).
+- If supported, the central log servers should also use such storage options.
+4. Restrict access to log data and servers using designated roles and accounts.
+5. Enable encryption since access to log data can provide attackers with valuable insight into assets and possible attack vectors.
+
+## AL-SS-R6 – SIEM Integration
+- If supported, storage infrastructure logs should be integrated with Security Information and Event Management (SIEM) software for potential threat detection.
+
+## Preparation for Data Incident Response and Cyber Recovery
+- Incident response planning is an important part of Cybersecurity. Comprehensive measures should be in place to ensure effective response to data incidents.# Discussion of Incident Response in Cybersecurity Program Management
+
+The role of Incident Response in Cybersecurity program management and guidance for building a framework for cybersecurity improvement can be found in the NIST Framework for Improving Critical Infrastructure Cybersecurity. Storage-related incidents should be handled as an integral part of the organization's incident response process, including aspects such as isolation, root-cause analysis, defining and managing a response plan, testing, and periodical process review and refresh.
+
+## Recommendations for Storage Infrastructure and Data Assets
+
+### IR-SS-R1 – Develop a Response Plan for Storage Component Compromise
+
+Consider the following elements in organizational risk analysis, isolation, remediation, restoration, and testing procedures:
+
+- (a) Compromise of an entire storage array or an entire cloud-based storage asset (e.g., SAN, NAS, object store, elastic file system)
+- (b) Compromise of a backup system
+- (c) Compromise of an individual storage element (e.g., share, block device)
+- (d) Compromise of an FC SAN fabric (including individual switches and SAN services)
+
+### IR-SS-R2 – Recovery Assets Immutability During Incident Management
+
+In conjunction with the recommendations provided in Section 4.7 regarding the protection of cyber recovery copies, those copies should remain isolated during incident management.
+
+### IR-SS-R3 – Validate the Hygiene of Recovered Compute Components
+
+Ensure that recovered executables, applications, containers, and OS images are free from infection prior to deploying them in production.
+
+## Guidelines for Network Configuration
+
+As previously mentioned, the topic of storage-related networking involves multiple aspects, some of which overlap with Data Access Control, Administrative Access, and Encryption, which have been covered in other sections. To eliminate repetition, this document discusses:
+
+- Certain network recommendations closely related to data access control in Section 4.3
+- Network- and protocol-related encryption recommendations in Section 4.9
+- Certain network recommendations closely related to administrative access in Section 4.10
+- Network infrastructure (e.g., switch, port, HBA, and NICs configuration, zoning guidelines, etc.) and protocols in this section.
+
+For a complete appreciation of all network configuration aspects, please refer to all sections.
+
+### 4.6.1 FC SAN and NVMEoF
+
+#### NC-SS-R1 – Host and Switch Authentication
+
+Every host and storage switch should have a unique identity and should be authenticated before joining the network (e.g., FC-SP-2 AUTH-A).
+
+#### NC-SS-R2 – The Use of an Approved PKI Mechanism
+
+Use an organization-approved and certified centralized PKI system for the management of switch certificates (e.g., Fibre-Channel Certificate Authentication Protocol or FCAP) rather than the devices’ self-signed certificates.# NC-SS-R3 – A Blended Approach to Zoning
+
+Implement a zoning approach that blends different types of zoning mechanisms. This is preferable to simply zoning using a single type (i.e., host, switch, and storage device):
+
+## (a) Host-Based Zoning Mechanisms
+Host-based zoning mechanisms control what storage resources or devices are visible to an application on a host as well as the devices that it can access. At the lowest level, the masking capability in a host bus adapter’s (HBA) firmware or driver can be used to control whether the host may interact with any storage device. At the next level, OS capabilities can be used to control which devices the host tries to mount as a storage volume. Finally, the host centralized management software for volume management (e.g., Logical Volume Manager or LVM), clustering tools, and the file system can be utilized to control device access by applications.
+
+## (b) Switch-Based Zoning
+In switch-based zoning, the switches (especially the FC switches) have the capability to specify which devices on which ports can access other devices or ports. Port-based zoning uses hardware to enforce zoning and is therefore also called “hard zoning.” In other words, switches should support zone control at the port WWN's level rather than at the switch (node) WWN level.
+
+## (c) Storage Device-Based Zoning
+In storage device-based zoning, the storage array is configured with a list that shows which hosts (even more specifically, which HBA ports) can access which block devices and on which ports. Access requests from unlisted hosts or HBA ports are ignored or rejected.
+
+## (d) Zone Set Feature
+If the zone set feature is available, it should be leveraged. This will help create multiple zones dedicated to a particular purpose, such as testing, dynamic reconfiguration, backup, and maintenance.
+
+# NC-SS-R4 – Masking Recommendation
+Masking refers to making a block device visible or invisible to hosts. Prefer masking as close to the data as possible and as far from the data consumer or client as possible (e.g., favor array over switch masking, core switch over edge switch, and switch over HBA).
+
+# NC-SS-R5 – A Backup of Switch Configuration Data
+Create a backup of the switches' configuration data, including the zone configuration file. The backup should be kept outside of the SAN switches to enable redeployment upon erroneous or malicious corruption or deletion.
+
+# NC-SS-R6 – Limit Switch Management Capabilities to the Minimum Necessary
+## (a) Well-Defined Policies
+When implementing the SAN fabric, there should be well-defined policies that specify and minimize the set of switches that are authorized to distribute configuration data (while providing acceptable redundancy).
+
+## (b) Unnecessary Configuration Management Permissions
+Unnecessary configuration management permissions and services, such as password distribution, should not be enabled.
+
+# NC-SS-R7 – Considerations for Using Soft vs. Hard Zoning
+- **Soft Zoning**: Soft zoning uses filtering implemented in Fibre-Channel switches.# Security Zoning in Storage Area Networks (SAN)
+
+## Soft Zoning
+Soft zoning is a method used to prevent ports from being seen from outside of their assigned zones. However, it has a security vulnerability: ports may still be accessible if a user in another zone correctly guesses the Fibre-Channel address. In this scenario, the FC switch will place a host WWN in a zone without evaluating the port numbers used for connection.
+
+### Advantages of Soft Zoning
+- **Port World-Wide Name (PWWN) Identification**: This method is considered more secure than port number identification (used in hard zoning) because any device physically connected to a port could grant storage access to an unauthorized host.
+- **Physical Security Considerations**: If the SAN spans across facilities with different physical security controls, and there is a risk that physical ports could be accessed by unauthorized individuals, soft zoning may be preferable.
+
+## Hard Zoning
+Hard zoning uses physical port numbers on SAN switches, thereby physically blocking access to a zone from any device outside of the zone.
+
+### Advantages of Hard Zoning
+- **Protection Against WWN Spoofing**: This method protects from WWN spoofing attacks as it does not rely on host identity.
+- **Physical Access Control**: If the organization’s physical access is thoroughly protected (i.e., it is improbable that an intruder will access a physical port), this method may be preferable.
+
+## Security Controls
+### NC-SS-R8
+Limit which SAN Fibre-Channel physical and logical ports can be used for management on all SAN switches and storage arrays.
+
+### NC-SS-R9
+Limit communication between switches: Limit communication between SAN switches based on security policies, ensuring that switches can only communicate with those that are necessary.
+
+### NC-SS-R10
+Persistently disable unused SAN ports to prevent the accidental or deliberate connection of unauthorized equipment.
+
+## IP Storage Networking
+### NC-SS-R11
+**IP Storage Network Separation**: When it comes to storage-related communication over IP networks, sound logic should be applied to the separation of environments and traffic types (at both layer 2 and layer 3 of the network stack). Sensitive environments should be separated to the maximum possible extent, based on:
+- **Type of Traffic**: Data access protocols vs. management vs. replication vs. backup vs. host and application networking.
+- **Management Traffic Separation**: In sensitive environments, further separate the management traffic of different solutions, vendors, and technologies. For example, if two or more storage solutions are in use (e.g., different array technologies, Server-Based SAN products, switch technologies, storage virtualization, or any combination thereof), management traffic for each environment should be separated from the others.
+- **Data Access Protocols**: Differentiate between protocols such as iSCSI vs. NFS vs. proprietary vendor protocols (e.g., Server-based SAN).
+- **Type of Servers or Hosts**: Separate virtualized hosts from physical hosts accessing data.
+
+### NC-SS-R12
+IP or Ethernet management ports of SAN switches should reside in an isolated subnet, including separation from subnets used for data access between hosts.# Storage Security Guidelines
+
+## Host-to-Host Communication
+
+### NC-SS-R13 – Enable Device IP Access Control
+With respect to IP network accessibility, storage device security features that regulate IPs, ports, and protocols should be turned on and configured on all storage devices, where applicable. This includes but is not limited to built-in firewall rules, IP filtering, and access lists in order to:
+- (a) Control and limit data access between only required hosts or applications and the storage objects they use.
+- (b) Separately control management IP traffic between management hosts and management applications, and the relevant storage management interfaces they use.
+
+### NC-SS-R14 – Enable Network IP Access Control
+Restrictions should be applied at the network level (e.g., routing, firewall, access lists, Virtual Private Cloud (VPC) security groups, server-based SAN clients) to restrict all traffic types (e.g., data-access and management traffic) to allowed IP addresses and TCP/UDP ports and protocols only:
+- (a) Between hosts or applications and the storage objects they use.
+- (b) Between management hosts and applications and the relevant storage management interfaces of storage objects they manage.
+
+### NC-SS-R15 – Block Public Access to Non-Public Storage Objects
+Block any public access to non-public storage objects, particularly from the internet.
+
+### NC-SS-R16 – Public Access Controls
+For storage objects that require public access, sufficient controls should be implemented, including:
+- (a) Minimizing access.
+- (b) Using physically and logically separate storage subnets and, preferably, separate storage devices and pools from those used for non-public storage objects.
+- (c) Considering protection from denial-of-service attacks.
+- (d) Cached copies (e.g., using content delivery network (CDN), replicas, and proxies) retaining at least the same security characteristics as the source data.
+- (e) Considering regulatory requirements (e.g., confidentiality, storage location restrictions).
+- (f) Any additional applicable security controls (e.g., encryption, authentication).
+
+### NC-SS-R17 – Control of IP Addresses Used for SNMP
+When configuring SNMP, all traffic should be directed to valid organization-internal IP addresses as destinations. The validity of the configuration should be periodically reviewed.
+
+### NC-SS-R18 – Use of Isolated Non-Routable VLAN for Server-Based SAN
+To protect the data storage environment and mitigate security concerns, non-routable VLAN for server-based SAN should be used.
+
+## Protocols
+
+### NC-SS-R19 – Disable Insecure Versions of File Access Protocols
+Outdated, unrecommended, or unsecured protocol versions, such as SMB v1 or NFS 1 and 2, should be blocked. If possible, these protocols should be disabled on both the client side and the server side.
+
+### NC-SS-R20 – SNMP Security
+- (a) If SNMP is not in use, it should be disabled.
+- (b) Change the default, known community strings, even if SNMP is not enabled.# Security Guidelines for Network Management
+
+## SNMP Configuration
+1. Configured strings should meet the organizational password policy.
+2. Use different community strings for devices that differ in levels of confidentiality.
+3. Use at least SNMP version 3.
+4. SNMP authentication and encryption (privacy) features should be enforced.
+5. Do not configure SNMP with read-write access unless it is absolutely needed. In this case, limit and control the use of read-write SNMP.
+6. Use access control lists to control access to devices through SNMP.
+7. Validation that SNMP traps are sent to authorized, intended managers should be periodically performed.
+8. Refer to Department of Homeland Security Cybersecurity & Infrastructure Security (DHS CISA) TA17-156A for additional guidance.
+
+## Directory and Domain Services Authenticity
+### NC-SS-R21
+- The authenticity of directory, domain, and similar services (e.g., AD, Domain Name System (DNS), LDAP) should be actively and periodically reviewed to ensure that approved configurations are used and to remediate any discrepancies.
+
+## TCP/IP and UDP Port Considerations
+### NC-SS-R22
+- Considerations for using standard and non-standard TCP/IP or UDP ports:
+- Most applications and services have a default TCP/IP or UDP port that is used to connect to the application or service. However, since it is usually possible to configure which logical ports will be used by the various applications and services, the pros and cons of using non-standard ports should be considered.
+- **Pros**: Using non-standard ports helps obfuscate the application or service as hackers will not know which port to use.
+- **Cons**: Using non-standard ports can make it difficult for security scanning tools to identify suspicious activities since they are designed to expect specific behaviors on standard ports.
+
+## FCoE Initialization Protocol Security
+### NC-SS-R23
+- FCoE Initialization Protocol (FIP) snooping filters should be enabled on FCoE VLANs to prevent unauthorized access to data. FIP snooping is a security mechanism designed to prevent unauthorized access and data transmission to an FC network. It works by filtering traffic to permit only servers that have logged in to the FC network to access the network. FCoE transit switches connect FC initiators (servers) on the Ethernet network to FCoE forwarders (FCFs) at the FC SAN edge, enabling FIP spoofing on relevant VLANs.
+
+## iSCSI Network Security
+### NC-SS-R24
+- Limit iSCSI ports: Hosts on the iSCSI network should be prevented from accessing any TCP ports other than those designated for iSCSI on that network.
+
+### NC-SS-R25
+- Use iSCSI authentication: Use one of the supported methods to authenticate iSCSI initiators upon opening a session (e.g., Challenge-Handshake Authentication Protocol (CHAP), Server Routing Protocol (SRP), Kerberos, Simple Public-Key GSS-API Mechanism (SPKM)1/2). When using CHAP, prefer using two-way authentication over one-way authentication. Note that the use of authentication does not provide encryption.# Data Protection Guidelines
+
+## NC-SS-R26 – Use of Network Data Management Protocol (NDMP) Security Features
+NDMP provides means for direct transport between storage arrays and backup devices. When used, the following security features should be configured, including:
+
+1. Access control over which hosts can initiate NDMP sessions.
+2. The challenge-response authentication (do not use the plaintext authentication option).
+3. Log NDMP connection attempts.
+4. An NDMP password that meets the organizational password policy (e.g., length, complexity, etc.).
+5. Restricted NDMP-related rights that require user only.
+6. Encrypted NDMP control connections.
+7. NDMP throttling per session or per server.
+
+## NC-SS-R27 – Use TLS in LDAP
+Use TLS to secure LDAP connections when setting up Active Directory options for storage systems.
+
+## NC-SS-R28 – Additional Protocols
+When additional protocols such as SymAPI, Storage Management Initiative Specification (SMI-S), Global Name Server (GNS), and others are used, consider adapting the recommendations in Sections 4.6.2 and 4.6.3 for their use. In particular:
+
+1. Isolate traffic for data access and management from other environments.
+2. Limit TCP and UDP ports.
+3. Enable encryption.
+
+## 4.7 Isolation
+When production data is damaged or lost, organizations should be able to recover it using replicated or backed up data copies. If the damage is the result of a malicious attack, and the attackers were also able to compromise the backup data copies, the attack on the production environment can have a devastating effect since the organization will not have the ability to recover. To improve the resilience of backup copies, sufficient isolation should be guaranteed between data assets and their recovery copies.
+
+In this context, organizations should distinguish between at least two separate data protection scenarios:
+
+### Non-malicious Recovery
+This scenario requires data copies that can be used in the event of a natural disaster, hardware failure, human error, etc. These can include local copies (e.g., snapshots taken before performing maintenance), DR copies, backups, and long-term archives. The “closer” the copy is to the production environment, the more likely it is to be mapped to compute systems for the purpose of testing and DR.
+
+### Cyber-attack Recovery
+This scenario requires data copies that are hardened, locked, and kept in isolation. The design should strive to achieve a state where these copies could not be impacted by anything, including scenarios wherein production volumes or other types of copies they are linked to have been compromised.
+
+Keeping copies for Cyber-attack recovery that are completely separate from those used for non-malicious recovery, while recommended for critical and sensitive systems, is not mandatory. It is important, however, to make sure that the data protection scheme in use is suitable to fully support the two scenarios. If existing copy retention mechanisms (e.g., DR or BC) are in place, they should be evaluated for their effectiveness in both recovery scenarios.# Cyber-Attack Recovery Recommendations
+
+## Overview
+Copies and offsite archives are intended to support cyber-attack recovery. Their configuration should be reviewed and adjusted if necessary to facilitate data isolation. This includes verification that at least a subset of those recovery copies and systems are inaccessible and independent from the production environment, ensuring that a compromise of production would not allow adversaries to impact those copies.
+
+## Security Recommendations
+
+### IS-SS-R1 – Separation of Storage Systems
+1. Cyber-attack recovery copies should be created on designated separated storage environments.
+- In private clouds, this implies physically separated storage systems.
+- In public clouds, this implies separate accounts (or equivalent).
+2. Long-term archive and backup systems should be separated from production data storage systems.
+
+### IS-SS-R2 – Separation of Management Systems
+Storage systems that store cyber-attack recovery copies should be managed from designated management systems, which are separated from the production environment and any other system connected to production (including data protection mechanisms).
+- It should not be possible to access such management systems with regular credentials (including production and regular backup).
+- The system should be hosted on a dedicated environment that is only connected to an isolated network.
+
+### IS-SS-R3 – Access Restriction to Cyber-Attack Recovery System, Long-Term Archives, and Backups
+1. For sensitive information, cyber-attack recovery copies and their systems should not be accessible to regular IT staff but only to a single person (e.g., CISO) or a very narrow group of executives or security managers who use credentials separate from those used for other day-to-day duties.
+- This ensures that if the credentials of an IT admin are compromised, the attacker cannot use those credentials to access the cyber-attack recovery copies.
+- This restricted team can have access to the cyber-attack recovery copies, but an even smaller subset should have administrative rights that include granting permissions to other users.
+2. Access rights to long-term archives and backups should be separate from those used to perform other storage administration duties (e.g., SAN management, storage allocation) and should include the use of separate user IDs, accounts, and credentials.
+
+### IS-SS-R4 – Off-Site Storage
+Cyber-attack recovery copies should be stored off-site rather than where the production data is stored. This ensures that if attackers have physical access to the production site or manage to compromise the physical site, they would not be able to access or compromise the cyber-attack recovery copies.
+
+### IS-SS-R5 – Use of an Independent, Full Baseline Copy
+Backup systems often make... (text incomplete)# Incremental Backups and Recovery
+
+## Overview
+The use of incremental backups captures changes to the data relative to a baseline copy. These incremental copies cannot be used during recovery without the baseline copy. For certain types of backup schemes, such as snapshots, only incremental copies are used (i.e., the baseline copy is the production data itself).
+
+## Recovery Scenarios
+To handle a recovery scenario properly, dependencies between copies should be accounted for, and sufficient isolation between different types of copies should be maintained. In particular:
+
+### Dependencies
+1. **Replicated Disaster Recovery Copies**
+- Should have no dependency on production baseline data.
+
+2. **Cyber-Attack Recovery Copies**
+- Should have no dependency on production baseline data.
+- Dependency on disaster recovery baseline data is allowed only if those copies are properly isolated from production baseline data and meet the recommendations in IS-SS-R1, IS-SS-R2, and IS-SS-R3.
+
+3. **Long-Term Archived Data**
+- Should have no dependency on production and disaster recovery baseline data.
+
+## Recommendations
+
+### IS-SS-R6 – Disable Unnecessary Services and Protocols
+- Unnecessary services and protocols should be disabled on cyber-attack recovery storage systems.
+- In environments where Application Programming Interface (API) or Command Line Interface (CLI) are sufficient for management, it is recommended to also disable any interactive web interfaces.
+
+### IS-SS-R7 – Independence from Hosts and Applications
+1. **Cyber-Attack Recovery Copies**
+- Should not be mounted, exported, or mapped to a host or application.
+- Should be restored (pushed) onto an isolated staging (or air-gapped) environment rather than directly onto the target hosts or applications.
+- A less secure option is to allow the target hosts or applications limited read-only access (e.g., mapping or mounting) during restore only, and remove such access as soon as restore is complete.
+
+2. **Long-Term Archived or Backed Up Copies**
+- Should not be mounted, exported, or mapped directly to a host or application.
+
+### IS-SS-R8 – Consider Setting Up an Air Gap
+- Organizations should consider setting up an air gap around the cyber-attack recovery copies of sensitive data.
+- Strict implementations of air-gapping should provide full physical and network-level separation.
+- Certain storage technologies also introduce less strict isolation technologies, referred to as “air-gapping,” that enable shutting down data ports and opening them during a limited time for periodic sync with the production system.
+- It is important to weigh the effectiveness of each of those techniques based on the value of the data and the capabilities of the adversary.
+
+#### Attention to Vulnerabilities
+When strict implementations are chosen, attention should be paid to circumventing known vulnerabilities of air-gapped systems, which include:
+- Preventing visual, audible, and thermal signal transmission between air-gapped systems and other equipment (e.g., by maintaining sufficient distance, or using appropriate shielding).# Cyber-Attack Recovery and Restoration Assurance
+
+## Isolation Recommendations
+
+1. **Dampening and/or Sufficient Physical Distance**
+2. **Preventing Wireless Transmission**
+- Prevent any potential wireless transmission capabilities in air-gapped equipment.
+3. **Disabling Exposed Data Ports**
+- Disable exposed data ports (e.g., USB, network).
+4. **Using Power Conditioning**
+- Utilize power conditioning or separated power circuits.
+
+## Periodic Isolation Reviews (IS-SS-R9)
+
+- Perform periodic isolation reviews at least once per year as part of an audit to ensure there are no configuration gaps or drifts that may compromise the isolation of the cyber-attack recovery copy.
+- Sensitive and high-value storage systems may require at least a quarterly audit and after every major change, whichever comes first.
+- Document audit results.
+
+## Immutable Storage (IS-SS-R10)
+
+- Consider the use of immutable storage to further isolate and protect recovery data (e.g., retention locking, vault locking, immutability policies).
+
+## Restoration Assurance
+
+To ensure successful recovery from Business Continuity (BC) or Disaster Recovery (DR) events, and cyber-attacks, organizations should verify that all components of critical data assets are protected and can be restored faithfully, consistently, and completely. The speed and currency of restoration should align with business and regulatory requirements.
+
+### Common Issues
+
+- Organizations may have backups of critical systems but do not regularly check whether these backups can actually be used to restore the system.
+- Configuration drifts, changes in the environment, or malicious attacks may compromise backups, leading to an inability to recover.
+
+### Security Recommendations for Restoration Assurance
+
+1. **Completeness of Recovery Copies (RA-SS-R1)**
+- Ensure all storage elements containing components of critical data assets are protected and backed up to support both DR and cyber-attack recovery. This includes:
+- Storage volumes
+- Critical file systems
+- Databases
+- Software images
+- Certificates
+- Encryption keys
+- Startup files
+- Catalog info
+- Access Control Lists (ACLs)
+- Virtualization settings
+- Configuration files
+
+2. **Protection of Dependent Components (RA-SS-R2)**
+- Protect dependent components such as Active Directory, DNS, and external key management systems to enable full recovery.
+- If automated build processes are used, protect source-code repositories, build environments, and build procedures.
+
+3. **Availability of Software and Hardware Components (RA-SS-R3)**
+- Ensure all relevant software and hardware components (e.g., drivers, firmware) used to run the system are backed up, protected, and available for restore operations.
+
+4. **Matching Backup Technologies to RTO Requirements (RA-SS-R4)**
+- The elected backup and data copy technologies and media should match organizational Recovery Time Objective (RTO) requirements. RTO is a Key Performance Indicator (KPI) used to define the expected recovery speed.# Disaster Recovery Recommendations
+
+## Holistic Examination
+- Examine the recovery process holistically, including all dependent and related components (e.g., restoration of data, configuration files, encryption keys).
+- Balance the actual recovery speed required with the cost to align all dependent components for expected recovery speed.
+
+## Recommendations
+
+### RA-SS-R5 – Test Restore to Ensure Required RTO
+- Perform a periodic test restore to ensure it is completed successfully and meets the required timeframe.
+
+### RA-SS-R6 – Meeting RPO Requirements
+- Set a recovery point objective (RPO) for each data asset, indicating the amount of data that can be lost following a failure, expressed in time.
+- Design and implement backup and data copy technologies to support data recovery while meeting this objective.
+
+### RA-SS-R7 – Meeting Organizational Frequency and Retention Requirements
+- Establish data retention and copy frequency requirements for each data asset (refer to DP-SS-R1 for more details).
+- Ensure that the design and implementation of backup and data copy technologies support these requirements.
+
+### RA-SS-R8 – Ensure Remote Replicas Backup and Data Copies are in Good Health
+- Periodically validate that backup copies are in good health, checking for relevant logged errors and the healthy state of backup and data copy media.
+- The frequency of validation should match the sensitivity and value of protected data, but no less than once per year. A sample ratio of 1 – 1.5 orders of magnitude lower than the frequency of backup is recommended (e.g., hourly copies validated daily, daily copies bi-weekly to monthly).
+
+### RA-SS-R9 – Enable Separate Restoration of Data and Application
+- Separate data from the application to allow for data restoration without restoring infected code or software.
+
+### RA-SS-R10 – Document the DR Plan
+- Write a disaster recovery plan for storage infrastructure, including all resources, mapping to production, flows, and test procedures.
+- Ensure these documents are backed up as well.
+
+### RA-SS-R11 – Cyber Hygiene of Data Copies
+- For mission-critical information, scan cyber-attack recovery copies with various anti-malware tools for known vulnerabilities and anomalies.
+- Ideally, scan all copies; if not possible, scan a subset and keep a record of those scanned and secured.
+- Cyber hygiene tools include antivirus, anti-malware, vulnerability scanning, and security analytics.
+
+### RA-SS-R12 – Perform Periodic Audits
+- Review the above recommendations as part of a periodic audit to check the completeness of copies, re-evaluate dependencies, software and hardware requirements, and the suitability of technology to support recovery speed, RPO, retention, health-checking, DR plan, and cyber hygiene.
+- Identify and track any gaps.# Data Protection Guidelines
+
+## 4.9 Encryption
+
+Encryption is the conversion of data from a readable form (i.e., plaintext) into an unreadable form (i.e., ciphertext) that cannot be easily understood by unauthorized people. In storage systems, the encryption of sensitive information should be implemented end to end, including:
+
+### Data at Rest
+- Data that is physically or logically stored in the storage infrastructure (e.g., tapes, disks, optical media) should be encrypted.
+- A comprehensive approach should be taken that incorporates not only the data itself but also metadata, which can include access permissions, labels, paths, and journaling information.
+
+### Data in Transit
+- When the data is transferred between storage elements (e.g., read or written by a client, replicated between storage devices or pools, transmitted in server-based SAN, Storage vMotion) and in transit throughout the network, it should be encrypted unless the entire communication media is within a protected environment such as a data center.
+
+### Administrative Access
+- This includes connections through standard and proprietary protocols and APIs to configure or control storage elements, storage networking, and data.
+
+Encryption relies on the availability and management of cryptographic keys. All communication parties should have access to the required keys, which need to be generated, distributed, and disposed of. Key management provides the necessary functionality and is a fundamental requirement in most environments. Detailed recommendations for key management are provided in NIST SP 800-57 Part 1.
+
+## Encryption Guidance for Storage Infrastructure
+
+### EN-SS-R1 – TLS, Hashing, and Encryption
+- To support encrypted communication between storage clients and servers, the Transport Layer Security (TLS) protocol should be used.
+- To prevent the use of insecure or outdated configurations, the selection and configuration of TLS protocol implementations, including the selection of TLS version and the choice of hashing and encryption algorithms, should be based on the following guidelines (or more current versions when published):
+- Guidelines for the Selection, Configuration, and Use of Transport Layer Security (TLS) Implementations (NIST SP800-52 Rev2)
+- SNIA TLS Specification for Storage Systems Version 1.1
+
+### EN-SS-R2 – Avoid Cleartext Protocols
+- Cleartext protocols (e.g., HyperText Transfer Protocol (HTTP), Telnet, File Transfer Protocol (FTP), or Remote Shell (RSH)) should not be used. Cleartext protocols are...# Security Recommendations for Storage Management
+
+## Vulnerability to Sniffing and Interception
+Traffic and logon details are vulnerable to sniffing, interception, and other attacks as they do not encrypt this information. Eavesdroppers can easily intercept this data. In some implementations, HTTP is only supported for redirection to HTTPS, particularly in cases of mistyped URLs. This practice should not be allowed in sensitive storage environments.
+
+## Encryption Recommendations
+
+### EN-SS-R3 – Encryption for Storage Management API Sessions
+Storage management APIs and CLIs are used for administrative access to storage systems. All API and CLI client sessions should be encrypted by leveraging features such as vendor configuration options within the management software or the API/CLI software component.
+
+### EN-SS-R4 – Encryption for Administrative Access Sessions
+Administrative sessions over HTTP should use TLS (HTTPS). CLI access should be encrypted using SSH rather than Telnet. Authentication during API access should not use cleartext, and the session itself should be encrypted.
+
+### EN-SS-R5 – Enable FIPS Mode for FIPS-Based Environments
+FIPS 140-3 specifies that a cryptographic module should be a set of hardware, software, firmware, or a combination of these that implements cryptographic functions or processes, including cryptographic algorithms and, optionally, key generation, contained within a defined cryptographic boundary. FIPS specifies certain cryptographic algorithms as secure and identifies which algorithms should be used for a cryptographic module to be considered FIPS-compliant. Organizations that are FIPS-compliant should ensure that FIPS mode is enabled in their FIPS-compliant storage infrastructure components.
+
+### EN-SS-R6 – At-Rest Encryption of Sensitive Data
+At-rest encryption protects against various data-related risks, including unauthorized access and compromise in case of media loss or theft. It should be enabled for sensitive data. Certain considerations should be applied:
+
+- **Use of Infrastructure Encryption**: Built-in encryption capabilities provided by a drive, storage array, or cloud storage can protect against device loss, misplacement, or theft. However, it is not considered an effective control against:
+- **In-band Attacks**: When an attacker compromises a host already mapped to the storage or when the storage can be mapped using legitimate means to an unauthorized host.
+- **Privilege Escalation Attacks**: Administrators or attackers gaining elevated rights can either disable encryption or decrypt the data.
+
+- **Use of End-to-End Encryption**: Data is encrypted at its source (e.g., an application, database, volume), presenting only ciphertext to the storage infrastructure and administrators. While this significantly increases security, application-level encryption comes at a cost, which can sometimes be considerable:
+- **Impact on Data-Reduction Mechanisms**: For example, compression and deduplication can become drastically less effective.
+- **Increased Management Complexity**: Management becomes more complex with end-to-end encryption.# Data Encryption Guidelines
+
+## Use of Dual Independent Layers of Encryption
+- Should be considered for sensitive data storage where possible.
+- This configuration improves resilience to key compromise, especially if diverse crypto services are used.
+
+## Data Retention Requirements
+- If encrypted data is backed up or archived, relevant keys should be protected for a similar duration.
+- Alternatively, the backed-up data should be re-keyed.
+- In either case, data and encryption keys should not be kept together.
+
+## EN-SS-R7 – Data in Transit Encryption
+
+### (a) Block over Fibre-Channel
+- Link encryption for FC, while defined in ANSI/INCITS 545-2019, is currently not supported by most HBAs and storage vendors.
+- For sensitive information, use of end-to-end (host to storage) encryption is recommended.
+
+### (b) Block over IP
+- IP storage traffic is subject to the same security risks as regular IP networks.
+- By default, block-over IP protocols do not provide data confidentiality, integrity, or authentication per packet.
+- While specifications for IP storage traffic encryptions exist, current technology does not natively support it.
+- When using block-over IP protocols (e.g., iSCSI, FCIP, proprietary protocols), consider using IPsec tunneling for exposed network segments.
+- For sensitive information, use of end-to-end (host to storage) encryption is recommended.
+
+### (c) File and Object Storage Access
+- Data encryption in-flight options should be enabled for backup systems and for remote replication whenever supported.
+- For file access, sensitive data should be transmitted and encrypted using mechanisms such as SMB encryption, and available NFS encryption options such as those offered by cloud vendors, or NFS over TLS using tunneling (e.g., ‘stunnel’).
+- Ensure that objects are accessed through HTTPS with TLS.
+
+### (d) Extended Network Communication
+- Particular attention should be paid to enable encryption on all connectivity segments that extend network communication beyond the boundaries of a physically protected domain (e.g., an ISL link between two physically separated datacenters, IP traffic over WAN or the internet).
+
+## EN-SS-R8 – Communication Between Storage System Components
+- Storage system component interaction should be reviewed, and available encryption options should be utilized.
+- Encryption should be used to protect communication between storage nodes and managers, active-active storage nodes with witness devices, communication with policy servers, and antivirus servers.
+
+## EN-SS-R9 – Requirements for Encryption Key Management
+- Follow general recommendations in NIST SP 800-57 Parts 1-3 for key management, in particular:
+- Lifetime
+- Maximum amount of data that can be protected by a key
+- Key management infrastructure
+- Re-keying
+- Auditing
+- Key backup and recovery
+
+## Administrative Access
+- Administrative access is required to control and manage almost all types of IT systems.# Administrative Access Recommendations for Storage Elements
+
+This section focuses on the administrative access recommendations for storage elements, including arrays, network and fabric, management tools, backup, replication, and cloud storage.
+
+## Importance of Securing Administrative Access
+
+Administrative access can be based on a direct connection to the storage component and through management software. Both connection types can involve various interfaces, including a management UI, CLI, and API. Securing administrative access is critical, as most storage risks discussed in Section 3.2 above, including the most devastating, could materialize if not well-controlled.
+
+Certain other sections in this chapter include aspects that overlap with administrative access. To eliminate repetition, additional relevant recommendations can be found in:
+- **Section 4.9** above, regarding encryption.
+- **Section 4.3** above, regarding data-related access controls, part of which may also apply to administration.
+
+## Security Guidelines for Administrative Access Configuration
+
+The following security guidelines are recommended for the configuration of administrative access:
+
+### AA-SS-R1 – Limit Network Access to Management Ports of SAN Switches
+Network access to management ports of SAN switches should be limited to devices and administrators specifically assigned to manage the switches through a mechanism such as an access control list (ACL).
+
+### AA-SS-R2 – Control and Limit Administrative Capabilities
+Control and limit the devices and components that have administrative capabilities to the minimum required. This includes CLI servers, management consoles, API gateways, witness hosts, and storage devices with control permissions. In particular:
+- (a) Actively discover components that have storage administration capabilities to ensure that only authorized components have them. Remove unnecessary ones, if found, and debrief.
+- (b) Remove unnecessary rights and capabilities from authorized devices.
+
+### AA-SS-R3 – Implement the Principle of Least-Privilege
+Limit the rights of users with administrative rights to the minimum required. This includes the minimum actions that the user can carry out and limiting the scope of these permissions to include only the relevant systems or regions. Full administrative rights should only be granted to users who require these rights.
+
+### AA-SS-R4 – Limit Access Rights of Service Accounts
+Service accounts, such as those used by monitoring tools, should be limited to read-only and metadata-only access.
+
+### AA-SS-R5 – Authenticate and Authorize All CLI/API Access
+CLI/API usage should be subject to authentication and authorization processes. In cases where it is not possible to perform authentication or authorization, secure the unauthorized access with additional security measures, such as using privilege management tools to restrict control to the minimum required commands and objects.
+
+### AA-SS-R6 – Favor API Access Control Over CLI/Shell Access
+API access, if available, should be used instead of CLI/shell access because of the latter’s ability to access the OS and file system.# Security Guidelines for Management Consoles and Storage Control
+
+## AA-SS-R7 – Restrict Management Consoles OS Privileges
+Access to management consoles should only be provided through designated storage accounts, and not as an OS administrative account (see also AC-SS-R20).
+
+## AA-SS-R8 – Management Web User Interface
+The web service providing access to management consoles should be hardened to meet or exceed the minimum standards of other web-application servers in the organization.
+
+## AA-SS-R9 – Restrict Host Storage Control Privileges
+In certain shared data compute cluster configurations (e.g., clusters, geo-clusters, scale-sets, or storage virtualization infrastructure), hosts are granted administrative access to storage in order to control shared cluster data resource allocation and behavior. When such administrative access is necessary, restrict the scope and privileges granted to hosts to:
+- (a) Only the particular elements (e.g., LUNs, shares, files, objects) that the hosts need to control.
+- (b) Only the specific actions that the hosts need to perform.
+
+## AA-SS-R10 – Command Device or Gatekeeper Configuration
+Certain storage arrays allow in-band administrative control to hosts that have access to special block devices (e.g., devices referred to by certain vendors as “command device” and “gatekeeper”). Commands are transferred using I/O operations on those special devices. When used, the following security guidelines are recommended:
+- (a) Limit the use of control devices to the minimum possible: If feasible, eliminate the use of such devices completely (e.g., using API access instead). If not, ensure that they are mapped to required hosts only (e.g., management hosts).
+- (b) Scan for control devices: Perform network scanning to discover control devices, and ensure that they are mapped to the required and authorized hosts only.
+
+## AA-SS-R11 – Disable or Limit Call Home or Remote Access
+Storage infrastructure systems may have the ability to send certain telemetry and diagnostic data back to the manufacturer, such as logs. In some cases, they even enable remote connection to the system by the manufacturer with administrative rights. These mechanisms are in place to allow the manufacturer to investigate and resolve technical issues, and to perform automated software updates. These capabilities could potentially be exploited by hackers and should be disabled if they are not required. However, if they are required, they should be limited and controlled by implementing the following settings:
+- (a) Change the default credentials: Modify the default credentials used for the remote connection.
+- (b) Limit permissions: Limit access permissions to only the minimal level required.
+- (c) Enforce encryption: Secure protocols such as TLS/SSH/IPSEC using FIPS approved encryption algorithms should be used.# Security Guidelines for Remote Access and Storage Management
+
+## Limit Access
+1. **Limit access with an “allow list”**
+Utilize an allow list that limits access by specific IPs and specific users.
+
+2. **Ensure remote access is fully logged**
+All remote access should be fully logged for auditing purposes.
+
+3. **Enable built-in data obfuscation features**
+This is applicable for those storage devices that allow the obfuscation of sensitive data, such as IP addresses, WWNs, device names, and usernames.
+
+4. **Limit the scope of data sent to the minimum required.**
+
+5. **Review and approve**
+Periodically evaluate the data that is occasionally or automatically being sent to the vendor, to ensure that it does not contain sensitive information, such as IP addresses, usernames, or the actual content of storage devices. Review that the connection is performed to valid vendor IP addresses.
+
+6. **Authorize each connection**
+If possible, implement a mechanism that will ask permission before allowing each connection.
+
+7. **Restrict access to gateway system**
+When remote access by the vendor is performed through a gateway device, server, or appliance, take particular care to secure and restrict access to the gateway system.
+
+8. **Disable software updates over vendor remote access links**
+In sensitive environments, download and deployment of software components and updates (manual or automated) should not be allowed through remote vendor connection links.
+
+## Limit Network Access for Management
+### AA-SS-R12
+In addition to separating management from other traffic (see Sections 4.6 and 4.7) in sensitive environments, further access control to management networks is recommended, by using mechanisms such as:
+1. **Virtual Private Network (VPN), IPsec, or one or more “jump servers”**
+Using VPN, IPsec, or one or more “jump servers” or “login proxies,” which are dedicated servers in the management network that are the only ones accessible from outside of the network and can serve to connect to other servers after proper authentication and authorization.
+
+2. **Enhanced logging and tracing**
+Such as session recording.
+
+## Secure and Protect Core Storage Management Files and Binaries
+### AA-SS-R13
+Storage management software often includes configuration files that present various options to control how the storage system would operate, including undocumented options. Such sensitive directories and files should be kept with appropriate limited permission and with correct ownership and group membership. This includes:
+- **Configuration files**
+Outlining users and roles, network settings, consistency groups, device groups, and other storage options. The configuration files that define consistency and device groups are often automatically propagated from central management hosts to other hosts that are attached to the managed storage system. Thus, if compromised, it can affect multiple systems.
+
+- **Scripts**
+To control starting, monitoring, and stopping storage management services and daemons as well as the binaries themselves should be kept in a secure way.
+
+The following controls should be applied to configuration files, scripts, and binaries.# Management-Related Files
+
+## Important Management-Related Files
+1. **Access and Permissions**
+- Restrict access and permissions, and control ownership of key folders and files.
+
+2. **Monitoring Changes**
+- For sensitive environments, consider monitoring for content changes in such files to prevent unauthorized ones.
+
+## PKI Mechanism for Management Access
+- **AA-SS-R14**: The use of an approved PKI mechanism for management access.
+- Use an organization-approved and certified centralized PKI system for the management of storage device management and for storage management consoles rather than device or software self-signed certificates.
+
+# Configuration Management
+
+## Purpose of Configuration Management
+The purpose of configuration management is to provide visibility and control over settings, behavior, and the physical and logical attributes of storage assets throughout their life cycle. In the context of storage security, this involves:
+- Maintaining comprehensive and current inventory.
+- Managing change.
+- Ensuring that the configuration continually meets the organization’s security baselines and current industry best practices and that it is free of known risks.
+
+To this end, appropriate controls, policies, processes, and tools are required. Comprehensive guidance for IT configuration management is provided in NIST Special Publication (SP) 800-53.
+
+## Recommendations for Storage Infrastructure
+
+### CM-SS-R1 – Create a Comprehensive Inventory of All Storage Devices
+This includes identifying the name, address, location, and software, firmware, or driver versions for all storage components, including:
+- Arrays
+- Storage virtualization systems
+- Management consoles
+- Hosts used to monitor storage remote network connectivity status (e.g., Witness hosts)
+- Hosts installed with storage management software or plugins
+- Data protection appliances
+- Backup clients and servers
+- Storage network switches
+- Storage adapters or “Host-Bus Adapters (HBA)”
+- I/O multipathing software
+- Pairing of primary and (replication) destination storage systems
+- Designated backup servers for hosts or off-site backup
+- Tape libraries and drives
+- Disk drives and removable media
+
+### CM-SS-R2 – Create a Comprehensive Inventory of All Data and Configuration Assets
+This includes identifying logical data components and data access configurations through the following assets:
+- Storage pools, LUNs, masking, and zoning
+- Initiators and initiator groups
+- File shares and ACLs
+- Object storage pools, buckets, etc.
+- Replicas and snapshots
+- Backup catalog and access rights
+- Backup sets (on-premises, archived, virtualized in the cloud, on tapes, archive appliances, etc.)
+- Users, groups, roles, and rights# Storage Security Policy Guidelines
+
+## Host Access Configuration
+- Host access configuration to storage assets (e.g., LUNs, file shares, global file systems, object storage).
+- Images of storage software, virtual appliances, etc.
+
+## Policy Creation
+### CM-SS-R3
+- Create a comprehensive storage security policy, either as a dedicated policy or as part of the organization’s security policy. It should include configuration baselines for storage systems and could be based on:
+- Recommendations from this publication and cited sources
+- Storage-related security standards internal to the organization
+- Relevant vendor security-best practices
+
+## Policy Maintenance
+### CM-SS-R4
+- Keep the storage security policy current: The storage security policy should be reviewed and updated periodically (at least annually). The security baseline should be updated with the latest vendor and industry recommendations available for storage systems and/or specific storage devices (preferably on a quarterly basis, at least).
+
+## Compliance Assessment
+### CM-SS-R5
+- Periodically and proactively assess configuration compliance to storage security policy:
+1. Ensure that the actual configuration meets the storage security baselines, and identify gaps.
+2. Track the remediation of gaps in a timely manner.
+3. Consider developing KPIs to track compliance to storage security baselines based on types of data, their organizational function, and their sensitivity.
+
+## Change Management
+### CM-SS-R6
+- Create a storage change management process as a dedicated process or as part of the organization’s general change management process. It should cover:
+1. Planning, reviewing, and approving storage configuration changes.
+2. Updating environment documentation and inventory (e.g., infrastructure, data, configuration).
+3. Assessing compliance to relevant security baselines following any change to the sensitive storage environment.
+
+## Unauthorized Change Detection
+### CM-SS-R7
+- Detect unauthorized storage security changes: There should be a process for detecting unauthorized changes to storage configuration using logging, comparison of configuration storage assets to past states, or comparison to organization-approved baselines.
+
+## Software Updates and Patches
+### CM-SS-R8
+- Software updates and patches:
+1. Ensure storage software release is updated: There should be a process for periodically updating storage software to the latest stable and secure storage release available. This includes management software, API and CLI packages, array and HBA firmware versions, and OS drivers.
+2. Ensure important security updates and patches are installed: There should be a process to proactively and frequently install important and urgent storage security fixes and patches.
+3. Mitigation plan for missing patches – storage components with a critical vulnerability, for which the vendor has not issued an update or patch, should be suspended from use, unless an appropriate mitigation plan can be defined.
+
+## Network Topology Documentation
+### CM-SS-R9
+- Maintain current storage-related network topology documentation.# Storage Security Documentation
+
+## 1. Introduction
+This document provides an overview of the storage technology landscape, discussing the threats and resulting risks to the safe utilization of storage resources. It also offers detailed security recommendations for the secure deployment, configuration, and operation of storage resources across various security focus areas.
+
+## 2. Security Recommendations
+
+### 2.1 FC SAN Security Configuration
+**CM-SS-R10** – Audit FC SAN security configuration:
+Over time, some security changes might not be reliably propagated across all switches in the fabric. FC SANs should be periodically reviewed (just like IP and Ethernet-based networking) to assess their security, identify and prioritize gaps, and define a remediation plan. Security reviews should be performed at least annually, and in sensitive environments, at least quarterly, or after any major change – whichever comes first. Audit results should be documented.
+
+### 2.2 Storage Security Training
+**ST-SS-R1** – Storage security training:
+A storage security training program should be defined and incorporated into existing organizational training activities and schedules to accommodate the following audiences:
+- **Information Security Professionals** – to provide them the fundamental background of storage security.
+- **Storage Administrators** – to familiarize them with storage security principles, organization policies, and security baselines.
+- **Managers** – to understand the fundamentals of data protection.
+
+## 3. Summary and Conclusions
+This document has discussed the threats and risks associated with storage resources and provided security recommendations for their secure deployment and operation. The focus areas include:
+
+- Areas common to all IT infrastructures, such as:
+- Physical security
+- Authentication and authorization
+- Audit logging
+- Network configuration
+- Change management
+- Incident response and recovery
+- Administrative access
+- Configuration management
+
+- Areas specific to storage infrastructures, such as:
+- Data protection
+- Confidentiality protection using encryption
+- Isolation
+- Restoration assurance
+
+Storage infrastructure, along with compute and network infrastructures, is one of the three fundamental pillars of IT. However, it has received relatively limited attention regarding security, despite the significant negative impact that data compromise can have on an enterprise.
+
+The security recommendations provided in this document serve as a basis for securing an important element of IT infrastructure. Building an effective risk management program for storage infrastructure based on these security controls and integrating it with existing cybersecurity frameworks could significantly enhance an organization’s resilience to various attacks on data resources.

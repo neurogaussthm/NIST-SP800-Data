@@ -1,0 +1,1264 @@
+# EXECUTIVE SUMMARY
+
+In today’s environment where many, if not all, of an organization’s mission-critical functions are dependent upon information technology, the ability to manage this technology and to assure confidentiality, integrity, and availability of information is now also mission-critical. In designing the enterprise architecture and corresponding security architecture, an organization seeks to securely meet the IT infrastructure needs of its governance structure, missions, and core business processes.
+
+Information security is a dynamic process that must be effectively and proactively managed for an organization to identify and respond to new vulnerabilities, evolving threats, and an organization’s constantly changing enterprise architecture and operational environment.
+
+## Risk Management Framework (RMF)
+
+The Risk Management Framework (RMF) developed by NIST describes a disciplined and structured process that integrates information security and risk management activities into the system development life cycle. Ongoing monitoring is a critical part of that risk management process. In addition, an organization’s overall security architecture and accompanying security program are monitored to ensure that organization-wide operations remain within an acceptable level of risk, despite any changes that occur. Timely, relevant, and accurate information is vital, particularly when resources are limited and agencies must prioritize their efforts.
+
+## Information Security Continuous Monitoring (ISCM)
+
+Information security continuous monitoring (ISCM) is defined as maintaining ongoing awareness of information security, vulnerabilities, and threats to support organizational risk management decisions.
+
+Any effort or process intended to support ongoing monitoring of information security across an organization begins with leadership defining a comprehensive ISCM strategy encompassing technology, processes, procedures, operating environments, and people. This strategy:
+
+- Is grounded in a clear understanding of organizational risk tolerance and helps officials set priorities and manage risk consistently throughout the organization;
+- Includes metrics that provide meaningful indications of security status at all organizational tiers;
+- Ensures continued effectiveness of all security controls;
+- Verifies compliance with information security requirements derived from organizational missions/business functions, federal legislation, directives, regulations, policies, and standards/guidelines;
+- Is informed by all organizational IT assets and helps to maintain visibility into the security of the assets;
+- Ensures knowledge and control of changes to organizational systems and environments of operation; and
+- Maintains awareness of threats and vulnerabilities.
+
+An ISCM program is established to collect information in accordance with preestablished...# Information Security Continuous Monitoring (ISCM)
+
+## Overview
+Metrics are utilized to manage risk through information readily available via implemented security controls. Organizational officials regularly collect and analyze data to manage risk appropriately for each organizational tier. This process involves the entire organization, from senior leaders providing governance and strategic vision to individuals developing, implementing, and operating individual systems in support of the organization’s core missions and business processes.
+
+## Risk Management
+Determinations are made from an organizational perspective on whether to conduct mitigation activities or to reject, transfer, or accept risk. Organizations’ security architectures, operational security capabilities, and monitoring processes will improve and mature over time to better respond to the dynamic threat and vulnerability landscape.
+
+## ISCM Strategy and Program
+An organization’s ISCM strategy and program are routinely reviewed for relevance and revised as needed to increase visibility into assets and awareness of vulnerabilities. This further enables data-driven control of the security of an organization’s information infrastructure and increases organizational resilience.
+
+## Monitoring Processes
+Organization-wide monitoring cannot be efficiently achieved through manual processes alone or through automated processes alone. Where manual processes are used, they must be repeatable and verifiable to enable consistent implementation. Automated processes, including the use of automated support tools (e.g., vulnerability scanning tools, network scanning devices), can make continuous monitoring more cost-effective, consistent, and efficient.
+
+## Technical Security Controls
+Many of the technical security controls defined in NIST Special Publication (SP) 800-53, Recommended Security Controls for Federal Information Systems and Organizations, as amended, are good candidates for monitoring using automated tools and techniques. Real-time monitoring of implemented technical controls using automated tools can provide an organization with a much more dynamic view of the effectiveness of those controls and the security posture of the organization.
+
+## Comprehensive Security Program
+It is important to recognize that with any comprehensive information security program, all implemented security controls, including management and operational controls, must be regularly assessed for effectiveness, even if the monitoring of such controls cannot be automated or is not easily automated.
+
+## Steps to Establish ISCM
+Organizations take the following steps to establish, implement, and maintain ISCM:
+1. Define an ISCM strategy
+2. Establish an ISCM program
+3. Implement an ISCM program
+4. Analyze data and report findings
+5. Respond to findings
+6. Review and update the ISCM strategy and program
+
+## Conclusion
+A robust ISCM program thus enables organizations to move from compliance-driven risk management to data-driven risk management, providing organizations with the necessary information to enhance their security posture.# Chapter One: Introduction
+
+Information security continuous monitoring (ISCM) is defined as maintaining ongoing awareness of information security, vulnerabilities, and threats to support organizational risk management decisions. This publication specifically addresses assessment and analysis of security control effectiveness and of organizational security status in accordance with organizational risk tolerance.
+
+## Security Control Effectiveness
+
+Security control effectiveness is measured by the correctness of implementation and by how adequately the implemented controls meet organizational needs in accordance with current risk tolerance. This includes:
+
+- Is the control implemented in accordance with the security plan to address threats?
+- Is the security plan adequate?
+
+## Organizational Security Status
+
+Organizational security status is determined using metrics established by the organization to best convey the security posture of an organization’s information and information systems, along with organizational resilience given known threat information. This necessitates:
+
+- Maintaining situational awareness of all systems across the organization.
+- Maintaining an understanding of threats and threat activities.
+- Assessing all security controls.
+- Collecting, correlating, and analyzing security-related information.
+- Providing actionable communication of security status across all tiers of the organization.
+- Active management of risk by organizational officials.
+
+## Communication and Strategy Development
+
+Communication with all stakeholders is key in developing the strategy and implementing the program. This document builds on the monitoring concepts introduced in NIST SP 800-37 Rev. 1, Guide for Applying the Risk Management Framework to Federal Information Systems: A Security Life Cycle Approach.
+
+An ISCM program helps to ensure that deployed security controls continue to be effective and that operations remain within stated organizational risk tolerances in light of the inevitable changes that occur over time. In cases where security controls are determined to be inadequate, ISCM programs facilitate prioritized security response actions based on risk.
+
+## Context of ISCM Strategy
+
+An ISCM strategy is meaningful only within the context of broader organizational needs, objectives, or strategies, and as part of a broader risk management strategy, enabling timely management, assessment, and response to emerging security issues. Information collected through the ISCM program supports ongoing authorization decisions.
+
+ISCM, a critical step in an organization’s Risk Management Framework (RMF), gives organizational officials access to security-related information on demand, enabling timely risk management decisions, including authorization decisions. Frequent updates to security plans, security assessment reports, plans of action and milestones, hardware and software inventories, are essential for maintaining an effective ISCM program.# Information System Continuous Monitoring (ISCM)
+
+and other system information are also supported. ISCM is most effective when automated mechanisms are employed where possible for data collection and reporting. Effectiveness is further enhanced when the output is formatted to provide information that is specific, measurable, actionable, relevant, and timely. While this document encourages the use of automation, it is recognized that many aspects of ISCM programs are not easily automated.
+
+## 1.1 Background
+
+The concept of monitoring information system security has long been recognized as sound management practice. In 1997, Office of Management and Budget (OMB) Circular A-130, Appendix III required agencies to review their information systems’ security controls and to ensure that system changes do not have a significant impact on security, that security plans remain effective, and that security controls continue to perform as intended.
+
+The Federal Information Security Management Act (FISMA) of 2002 further emphasized the importance of continuously monitoring information system security by requiring agencies to conduct assessments of security controls at a frequency appropriate to risk, but no less than annually.
+
+Most recently, OMB issued memorandum M-11-33, FY 2011 Reporting Instructions for the Federal Information Security Management Act and Agency Privacy Management. The memorandum provides instructions for annual FISMA reporting and emphasizes monitoring the security state of information systems on an ongoing basis with a frequency sufficient to make ongoing, risk-based decisions.
+
+Tools supporting automated monitoring of some aspects of information systems have become an effective means for both data capture and data analysis. Ease of use, accessibility, and broad applicability across products and across vendors help to ensure that monitoring tools can be readily deployed in support of near real-time, risk-based decision making.
+
+## 1.2 Relationship to Other Special Publications
+
+NIST SP 800-39, Managing Information Security Risk: Organization, Mission, and Information System View, describes three key organization-wide ISCM activities: monitoring for effectiveness, monitoring for changes to systems and environments of operation, and monitoring for compliance. NIST SP 800-37 describes monitoring security controls at the system level (RMF Step 6) and also includes an organization-wide perspective, integration with the system development life cycle (SDLC), and support for ongoing authorizations.
+
+The concepts presented in NIST SP 800-39 and NIST SP 800-37 are expanded upon in order to provide guidelines sufficient for developing an ISCM strategy and implementing an ISCM program. The tiered approach herein mirrors that described in NIST SP 800-37 and NIST SP 800-39 where Tier 1 is organization, Tier 2 is mission/business processes, and Tier 3 is information systems. In NIST SP 800-39, these tiers are used to address risk management from varying organizational perspectives. In this document, the tiers are used to address perspectives for...# ISCM Guidelines
+
+## 1.3 Purpose
+The purpose of this guideline is to assist organizations in the development of an ISCM strategy and the implementation of an ISCM program that provides awareness of threats and vulnerabilities, visibility into organizational assets, and the effectiveness of deployed security controls. The ISCM strategy and program support ongoing assurance that planned and implemented security controls are aligned with organizational risk tolerance, as well as the ability to provide the information needed to respond to risk in a timely manner.
+
+## 1.4 Target Audience
+This publication serves individuals associated with the design, development, implementation, operation, maintenance, and disposal of federal information systems, including:
+
+- Individuals with mission/business ownership responsibilities or fiduciary responsibilities (e.g., heads of federal agencies, chief executive officers, chief financial officers);
+- Individuals with information system development and integration responsibilities (e.g., program managers, information technology product developers, information system developers, information systems integrators, enterprise architects, information security architects);
+- Individuals with information system and/or security management/oversight responsibilities (e.g., senior leaders, risk executives, authorizing officials, chief information officers, senior information security officers);
+- Individuals with information system and security control assessment and monitoring responsibilities (e.g., system evaluators, assessors/assessment teams, independent verification and validation assessors, auditors, or information system owners);
+- Individuals with information security implementation and operational responsibilities (e.g., information system owners, common control providers, information owners/stewards, mission/business owners, information security architects, information system security engineers/officers).
+
+## 1.5 Organization of This Special Publication
+The remainder of this special publication is organized as follows:
+
+- Chapter 2 describes the fundamentals of ongoing monitoring of information systems.# Security in Support of Risk Management
+
+## Chapter 3
+Describes the process of ISCM, including implementation guidelines.
+
+### Supporting Appendices
+Provide additional information regarding ISCM including:
+- (A) General references
+- (B) Definitions and terms
+- (C) Acronyms
+- (D) Descriptions of technologies for enabling ISCM
+
+# Chapter Two: The Fundamentals
+
+## Ongoing Monitoring in Support of Risk Management
+This chapter describes the fundamental concepts associated with organization-wide continuous monitoring of information security and the application of ISCM in support of organizational risk management decisions (e.g., risk response decisions, ongoing system authorization decisions, Plans of Action and Milestones (POA&M) resource and prioritization decisions, etc.).
+
+In order to effectively address ever-increasing security challenges, a well-designed ISCM strategy addresses monitoring and assessment of security controls for effectiveness, and security status monitoring. It also incorporates processes to assure that response actions are taken in accordance with findings and organizational risk tolerances and to assure that said responses have the intended effects.
+
+### The Process of Implementing ISCM
+As described in Chapter Three, the process of implementing ISCM includes:
+1. Define the ISCM strategy
+2. Establish an ISCM program
+3. Implement the ISCM program
+4. Analyze and report findings
+5. Respond to findings
+6. Review and update ISCM strategy and program
+
+ISCM strategies evolve in accordance with drivers for risk-based decision making and requirements for information. These requirements may come from any tier in the organization.
+
+Organizations implement ISCM based on requirements of those accountable and responsible for maintaining ongoing control of organizational security posture to within organizational risk tolerances. The implementation is standardized across the organization to the greatest extent possible so as to minimize use of resources (e.g., funding for purchase of tools/applications, data calls, organization-wide policies/procedures/templates, etc.) and to maximize leverage of security-related information.
+
+Upon analysis, the resulting information informs the discrete processes used to manage the organization’s security posture and overall risk. ISCM helps to provide situational awareness of the security status of the organization’s systems based on information collected from resources (e.g., people, processes, technology, environment) and the capabilities in place to react as the situation changes.
+
+ISCM is a tactic in a larger strategy of organization-wide risk management. Organizations increase situational awareness through enhanced monitoring capabilities and subsequently increase insight into and control of the processes used to manage organizational security. Increased insight into and control of security processes in turn enhances overall security management.# Situational Awareness
+
+Therefore, the process of implementing ISCM is recursive. ISCM informs and is informed by distinct organizational security processes and associated requirements for input and output of security-related information.
+
+## Example of ISCM Implementation
+
+Consider the following example: Security-related information pertaining to a system component inventory is used to determine compliance with CM-8 Information System Component Inventory. The information is assessed to determine whether or not the control is effective (i.e., if the inventory is accurate). If found to be inaccurate, an analysis to determine the root cause of the inaccuracy is initiated (e.g., perhaps a process for connecting components to the network has been ignored or is out of date, asset management tools are not operating as expected, or the organization is under attack).
+
+Based on the analysis, responses are initiated as appropriate (e.g., responsible parties update inventory, update relevant organizational processes, train employees, disconnect errant devices, etc.).
+
+Additionally, security-related information pertaining to a system component inventory may be used to support predefined metrics. More accurate system component inventories support improved effectiveness of other security domains such as patch management and vulnerability management.
+
+This example illustrates how data collected in assessing a security control is leveraged to calculate a metric and provide input into various organizational processes. It further illustrates that a problem, once detected, can trigger an assessment of one or more controls across an organization, updates to relevant security-related information, modifications to the organizational security program plan and security processes, and improved compliance to the security program and applicable system security plan. The end result is improved organization-wide risk management and continual improvement limited only by the speed with which the organization can collect information and respond to findings.
+
+## 2.1 Organization-Wide View of ISCM
+
+Maintaining an up-to-date view of information security risks across an organization is a complex, multifaceted undertaking. It requires the involvement of the entire organization, from senior leaders providing governance and strategic vision to individuals developing, implementing, and operating individual information systems in support of the organization’s core missions and business functions.
+
+Figure 2-1 illustrates a tiered approach to organization-wide ISCM in support of risk management. Tier 1 governance, risk management goals, and organizational risk tolerance drive the ISCM strategy. Organizational risk tolerance established by senior executives/leaders as part of the risk executive (function) influences ISCM policy, procedures, and implementation activities across all tiers. Data collection primarily occurs at the information systems tier. Metrics are designed to present information in a context that is meaningful for each.# Continuous Monitoring of Information Security
+
+## Overview
+ISCM data collected at Tier 3 may be aggregated to provide security status or risk scores for a single system, for a collection of systems, across a core business process, or for the entire organization. Policies, procedures, and tools may be established at any tier; however, when established at Tiers 1 or 2, they facilitate the consistent implementation of ISCM across the organization and better support data reuse and judicious use of resources.
+
+Data collection, analysis, and reporting are automated where possible. Through the use of automation, it is possible to monitor a greater number of security metrics with fewer resources, higher frequencies, larger sample sizes, and with greater consistency and reliability than is feasible using manual processes. Organizations regularly review the ISCM strategy to ensure that metrics continue to be relevant, meaningful, actionable, and supportive of risk management decisions made by organizational officials at all tiers.
+
+An organization-wide approach to continuous monitoring of information and information system security supports risk-related decision making at the organization level (Tier 1), the mission/business processes level (Tier 2), and the information systems level (Tier 3).
+
+## Tiers of Risk Management
+
+### 2.1.1 Tier 1 - Organization
+Tier 1 risk management activities address high-level information security governance policy as it relates to risk to the organization as a whole, to its core missions, and to its business functions. At this tier, the criteria for ISCM are defined by the organization’s risk management strategy, including how the organization plans to assess, respond to, and monitor risk, and the oversight required to ensure that the risk management strategy is effective.
+
+Security controls, security status, and other metrics defined and monitored by officials at this tier are designed to deliver information necessary to make risk management decisions in support of governance. Tier 1 metrics are developed for supporting governance decisions regarding the organization, its core missions, and its business functions. Tier 1 metrics may be calculated based on security-related information from common, hybrid, and system-specific security controls. The metrics and the frequency with which they are monitored and reported are determined by requirements to maintain operations within organizational risk tolerances. As part of the overall governance structure established by the organization, the Tier 1 risk management strategy and the associated monitoring requirements are communicated throughout Tiers 2 and 3.
+
+### 2.1.2 Tier 2 - Mission/Business Processes
+Organizational officials that are accountable for one or more missions or business processes are also responsible for overseeing the associated risk management activities for those processes. The Tier 2 criteria for continuous monitoring of information security are defined by how core mission/business processes are prioritized with respect to the overall goals and objectives of the organization.# Objectives of the Organization
+
+The objectives of the organization include the types of information needed to successfully execute the stated mission/business processes, and the organization-wide information security program strategy.
+
+## Tier 2 - Program Management (PM) Controls
+
+Controls in the Program Management (PM) family are an example of Tier 2 security controls. These controls address the establishment and management of the organization’s information security program.
+
+- Tier 2 controls are deployed organization-wide and support all information systems.
+- They may be tracked at Tier 2 or Tier 1.
+- The frequencies with which Tier 2 security controls are assessed and security status and other metrics are monitored are determined in part by the objectives and priorities of the mission or business process and measurement capabilities inherent in the infrastructure.
+
+Security-related information may come from common, hybrid, and system-specific controls. Metrics and dashboards can be useful at Tiers 1 and 2 in assessing, normalizing, communicating, and correlating monitoring activities below the mission/business processes tier in a meaningful manner.
+
+## Tier 3 - Information Systems
+
+ISCM activities at Tier 3 address risk management from an information system perspective. These activities include:
+
+- Ensuring that all system-level security controls (technical, operational, and management controls) are implemented correctly, operate as intended, and produce the desired outcome with respect to meeting the security requirements for the system.
+- Assessing and monitoring hybrid and common controls implemented at the system level.
+
+Security status reporting at this tier often includes but is not limited to security alerts, security incidents, and identified threat activities.
+
+The ISCM strategy for Tier 3 also ensures that security-related information supports the monitoring requirements of other organizational tiers. Data feeds/assessment results from system-level controls (system-specific, hybrid, or common), along with associated security status reporting, support risk-based decisions at the organization and mission/business processes tiers.
+
+Information is tailored for each tier and delivered in ways that inform risk-based decision making at all tiers. Those resulting decisions impact the ISCM strategy applied at the information systems tier. ISCM metrics originating at the information systems tier can be used to assess, respond, and monitor risk across the organization.
+
+The ongoing monitoring activities implemented at the information systems tier provide security-related information to authorizing officials (AOs) in support of ongoing system authorization decisions and to the risk executive (function) in support of ongoing organizational risk management.
+
+At Tier 3, RMF Step 6 Monitor activities and ISCM activities are closely aligned. The assessment methods relevant for implemented security controls are the same whether the assessments are being done solely in support of system authorization or in support of a broader context.# Comprehensive Continuous Monitoring Effort
+
+Information systems tier officials and staff conduct assessments and monitoring, and analyze results on an ongoing basis. The information is leveraged at the organization, mission/business processes, and information systems tiers to support risk management. Though frequency requirements differ, each tier receives the benefit of security-related information that is current and applicable to affected processes. RMF Step 6 activities performed within the context of an ISCM program support information system risk determination and acceptance, i.e., authorization (RMF Step 5) on an ongoing basis.
+
+## 2.2 Ongoing System Authorizations
+
+Initial authorization to operate is based on evidence available at one point in time, but systems and environments of operation change. Ongoing assessment of security control effectiveness supports a system’s security authorization over time in highly dynamic environments of operation with changing threats, vulnerabilities, technologies, and missions/business processes.
+
+Through ISCM, new threat or vulnerability information is evaluated as it becomes available, permitting organizations to make adjustments to security requirements or individual controls as needed to maintain authorization decisions. The process for obtaining system authorization, and more generally, for managing information security and information system-related risk, is the RMF.
+
+The RMF, illustrated in Figure 2-2, provides a disciplined and structured process that integrates information system security and risk management activities into the SDLC. The monitoring step (Step 6) of the RMF includes interactions between the three tiers as illustrated in the organizational view of ISCM in Figure 2-1.
+
+Interaction between the tiers includes data from system owners, common control providers, and authorizing officials on security control assessments and ongoing authorization of system and common controls provided to the risk executive (function). There is also dissemination of updated risk-related information such as vulnerability and threat data and organizational risk tolerance from Tiers 1 and 2 to authorizing officials and information system owners.
+
+When the RMF is applied within an organization that has also implemented a robust ISCM strategy, organizational officials are provided with a view of the organizational security posture and each system’s contribution to said posture on demand.
+
+The output of a strategically designed and well-managed organization-wide ISCM program can be used to maintain a system’s authorization to operate and keep required system information and data (i.e., System Security Plan together with Risk Assessment Report, Security Assessment Report, and POA&M) up to date on an ongoing basis. Security management and reporting tools may provide functionality to automate updates to key evidence needed for ongoing authorization.# ISCM and Ongoing Authorization
+
+## Introduction
+ISCM (Information Security Continuous Monitoring) facilitates risk-based decision-making regarding the ongoing authorization to operate information systems and security authorization for common controls by providing evolving threat activity or vulnerability information on demand.
+
+## Dynamic Risk Management
+A security control assessment and risk determination process, which is otherwise static between authorizations, is transformed into a dynamic process that supports timely risk response actions and cost-effective, ongoing authorizations. Continuous monitoring of threats, vulnerabilities, and security control effectiveness provides situational awareness for risk-based support of ongoing authorization decisions.
+
+## ISCM Strategy and Program
+An appropriately designed ISCM strategy and program supports ongoing authorization of type authorizations, as well as single, joint, and leveraged authorizations. However, ISCM in support of ongoing assessment and authorization has the potential to be resource-intensive and time-consuming.
+
+### Practical Approaches
+It is impractical to collect security-related information and assess every aspect of every security control deployed across an organization at all times. A more practical approach is to establish reasonable assessment frequencies for collecting security-related information. The frequency of assessments should be sufficient to assure adequate security commensurate with risk, as determined by system categorization and ISCM strategy requirements.
+
+### Sampling Methodology
+Sampling of information system security objects, rather than 100 percent inspection, can also be an efficient and effective means of monitoring, particularly in cases where monitoring is not automated. Important considerations in determining sample sizes and monitoring frequencies are discussed in Chapter Three.
+
+## Monitoring Frequencies
+Monitoring frequencies (e.g., annually, quarterly, monthly, daily) are not static, and they are not uniform across all metrics. Security control assessment and monitoring frequencies, for example, are adjusted to support changes in organizational information systems or their environments of operation, including emerging information on security threats and vulnerabilities.
+
+### Adjusting Priorities
+The priorities for ISCM vary and are adjusted in response to security incidents, to identify problems with security control implementations, or to evaluate changes to systems and system components that are determined to have a significant impact on security. An ISCM strategy can deliver dynamic updates of security-related data to support system authorizations conducted at any interval.
+
+## Automation in ISCM
+### Role of Automation
+When possible, organizations look for automated solutions to lower costs, enhance efficiency, and improve the reliability of monitoring security-related information. Security is implemented through a combination of people, processes, and technology. The automation of information security deals primarily with automating aspects of security that require little human interaction.
+
+### Benefits of Automated Tools
+Automated tools are often able to recognize patterns and relationships that may escape the notice of human analysts, thereby improving the overall effectiveness of security monitoring.# Automation in Information Security Continuous Monitoring (ISCM)
+
+## Introduction
+Automation plays a crucial role in enhancing the efficiency of human analysts, particularly when dealing with large volumes of data. This includes tasks such as:
+
+- Verifying technical settings on individual network endpoints
+- Ensuring that the software on a machine aligns with organizational policy
+
+Automation serves to augment the security processes conducted by security professionals within an organization. It may reduce the time spent on redundant tasks, allowing trained professionals to focus on activities that require human cognition.
+
+## ISCM Strategy
+The ISCM strategy does not solely concentrate on easily collectible or automatable security-related information. When an ISCM program is first implemented, several aspects of the organization’s security program may still be monitored manually.
+
+### Monitoring Capabilities
+Organizations’ monitoring capabilities will expand and mature over time. Metrics will evolve based on:
+
+- Lessons learned
+- Increased insight into organizational security status and risk tolerance
+
+The primary focus of an ISCM strategy is to provide adequate information regarding:
+
+- Security control effectiveness
+- Organizational security status
+
+This information enables organizational officials to make informed and timely security risk management decisions. Consequently, the implementation, effectiveness, and adequacy of all security controls are monitored alongside the organizational security status.
+
+## Automation Considerations
+When determining the extent of automation in ISCM, organizations consider:
+
+- Potential efficiencies gained through process standardization
+- The value (or lack thereof) of automated security-related information from a risk management perspective
+- Intangibles such as the potential value of personnel reassignment and enhanced situational awareness
+
+### Limitations of Automation
+While IT security automation can significantly reduce the time required for certain tasks, it is not feasible to fully automate all functions of an organization's information security program. For instance, the technologies discussed in Appendix D still necessitate:
+
+- Human analysis for implementation and maintenance
+- Appropriate interpretation of findings
+
+These tools operate within processes designed, run, and maintained by humans. If individuals do not carry out their responsibilities securely, the effectiveness of these technologies is compromised, jeopardizing the security of systems and the mission/business processes they support.
+
+## Conclusion
+Automation facilitates the availability of security-related information in an environment where ongoing monitoring needs are dynamic. Therefore, during the implementation of security controls (RMF Step 3), it is essential to consider the capabilities inherent in available technology to support ISCM as part of the criteria for determining the best approach to implement a given control.# Consideration of ISCM Tools
+
+Consideration is given to ISCM tools that:
+
+- Pull information from a variety of sources (i.e., assessment objects);
+- Use open specifications such as the Security Content Automation Protocol (SCAP);
+- Offer interoperability with other products such as help desk, inventory management, configuration management, and incident response solutions;
+- Support compliance with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines;
+- Provide reporting with the ability to tailor output and drill down from high-level, aggregate metrics to system-level metrics; and
+- Allow for data consolidation into Security Information and Event Management (SIEM) tools and dashboard products.
+
+Automation supports collecting more data more frequently and from a larger and more diverse pool of technologies, people, processes, and environments. It can therefore make comprehensive, ongoing control of information security practical and affordable. How effective the organization is in utilizing the monitoring results (obtained in a manual or automated fashion) still depends upon the organizational ISCM strategy, including validity and comprehensiveness of the metrics, as well as the processes in place to analyze monitoring results and respond to findings. Technologies for enabling automation of some ISCM tasks are discussed in greater detail in Appendix D.
+
+## 2.4 ISCM Roles and Responsibilities
+
+This section describes the roles and responsibilities of key participants involved in an organization’s ISCM program. Widely varying missions and organizational structures may lead to differences in naming conventions for ISCM-related roles and how specific responsibilities are allocated among organizational personnel (e.g., multiple individuals filling a single role or one individual filling multiple roles). Roles and responsibilities commonly associated with ISCM include:
+
+### Head of Agency
+
+The agency head is likely to participate in the organization’s ISCM program within the context of the risk executive (function).
+
+### Risk Executive (Function)
+
+The risk executive (function) oversees the organization’s ISCM strategy and program. The risk executive (function) reviews status reports from the ISCM process as input to information security risk posture and risk tolerance decisions and provides input to mission/business process and information systems tier entities on ISCM strategy and requirements; promotes collaboration and cooperation among organizational entities; facilitates sharing of security-related information; provides an organization-wide forum to consider all sources of risk; and ensures that risk information is considered for continuous monitoring decisions.
+
+### Chief Information Officer (CIO)
+
+The CIO leads the organization’s ISCM program. The CIO...# Information Security Continuous Monitoring (ISCM) Program
+
+## Overview
+An effective ISCM program is essential for the organization. This is achieved by:
+
+- Establishing expectations and requirements for the organization’s ISCM program.
+- Working closely with authorizing officials to provide funding, personnel, and other resources to support ISCM.
+- Maintaining high-level communications and working group relationships among organizational entities.
+
+## Roles and Responsibilities
+
+### Senior Information Security Officer (SISO)
+The SISO is responsible for:
+
+- Establishing, implementing, and maintaining the organization’s ISCM program.
+- Developing organizational program guidance (i.e., policies/procedures) for continuous monitoring of the security program and information systems.
+- Developing configuration management guidance for the organization.
+- Consolidating and analyzing Plans of Action and Milestones (POA&Ms) to determine organizational security weaknesses and deficiencies.
+- Acquiring or developing and maintaining automated tools to support ISCM and ongoing authorizations.
+- Providing training on the organization’s ISCM program and process.
+- Supporting information owners/information system owners and common control providers on how to implement ISCM for their information systems.
+
+### Authorizing Official (AO)
+The AO is responsible for:
+
+- Ensuring the organization’s ISCM program is applied with respect to a given information system.
+- Maintaining the security posture of the information system.
+- Reviewing security status reports and critical security documents.
+- Determining if the risk to the organization from the operation of the information system remains acceptable.
+- Deciding whether significant information system changes require reauthorization actions.
+- Reauthorizing the information system when required.
+
+### Information System Owner (ISO)/Information Owner/Steward
+The ISO is responsible for:
+
+- Establishing processes and procedures in support of system-level implementation of the organization’s ISCM program.
+- Developing and documenting an ISCM strategy for the information system.
+- Participating in the organization’s configuration management process.
+- Establishing and maintaining an inventory of components associated with the information system.
+- Conducting security impact analyses on changes to the information system.
+- Conducting, or ensuring the conduct of, assessments of security controls according to the ISCM strategy.
+- Preparing and submitting security status reports in accordance with organizational policy and procedures.
+- Conducting remediation activities as necessary to maintain system authorization.
+- Revising the system-level security control monitoring process as required.
+- Reviewing ISCM reports from common control providers to verify that the common controls continue to provide adequate protection for the information system.
+- Updating critical security documents based on the results of ISCM.
+
+### Common Control Provider
+The common control provider is responsible for:
+
+- Establishing processes and procedures in support of ongoing monitoring of common controls.# ISCM Strategy Development and Implementation
+
+## Overview
+This document outlines the responsibilities and processes involved in developing and implementing an Information Security Continuous Monitoring (ISCM) strategy for assigned common controls within an organization.
+
+## Roles and Responsibilities
+
+### ISCM Strategy Developer
+- Develops and documents an ISCM strategy for assigned common controls.
+- Participates in the organization’s configuration management process.
+- Establishes and maintains an inventory of components associated with the common controls.
+- Conducts security impact analyses on changes that affect the common controls.
+- Ensures security controls are assessed according to the ISCM strategy.
+- Prepares and submits security status reports in accordance with organizational policy/procedures.
+- Conducts remediation activities as necessary to maintain common control authorization.
+- Updates/revises the common security control monitoring process as required.
+- Updates critical security documents as changes occur.
+- Distributes critical security documents to individual information owners/information system owners, and other senior leaders in accordance with organizational policy/procedures.
+
+### Information System Security Officer (ISSO)
+- Supports the organization’s ISCM program by assisting the Information Security Officer (ISO) in completing ISCM responsibilities.
+- Participates in the configuration management process.
+
+### Security Control Assessor
+- Provides input into the types of security-related information gathered as part of ISCM.
+- Assesses information system or program management security controls for the organization’s ISCM program.
+- Develops a security assessment plan for each security control.
+- Submits the security assessment plan for approval prior to conducting assessments.
+- Conducts assessments of security controls as defined in the security assessment plan.
+- Updates the security assessment report as changes occur during ISCM.
+- Updates/revises the security assessment plan as needed.
+
+### Additional Roles
+Organizations may define other roles (e.g., information system administrator, ISCM program manager) as needed to support the ISCM process.
+
+## Chapter Three: The Process
+
+### Defining an ISCM Strategy and Implementing an ISCM Program
+This chapter describes the process for developing an ISCM strategy and implementing an ISCM program, including activities at the organization, mission/business process, and information systems tiers.
+
+A well-designed ISCM strategy encompasses:
+- Security control assessment
+- Security status monitoring
+- Security status reporting
+
+These elements support timely risk-based decision-making throughout the organization and incorporate processes to ensure that response actions are taken. An organization’s strategy for action based on the data collected is as important (if not more important) than collecting the data.
+
+### Process Steps
+1. **Define an ISCM strategy** based on risk tolerance that maintains clear visibility into assets, awareness of vulnerabilities, up-to-date threat information, and mission/business impacts.
+2. **Establish an ISCM program** determining metrics, status monitoring frequencies, control assessment frequencies, and an ISCM technical architecture.# Information Security Continuous Monitoring (ISCM) Program
+
+## Overview
+- Implement an ISCM program and collect the security-related information required for metrics, assessments, and reporting. Automate collection, analysis, and reporting of data where possible.
+- Analyze the data collected and report findings, determining the appropriate response. It may be necessary to collect additional information to clarify or supplement existing monitoring data.
+- Respond to findings with technical, management, and operational mitigating activities or acceptance, transference/sharing, or avoidance/rejection.
+- Review and update the monitoring program, adjusting the ISCM strategy and maturing measurement capabilities to increase visibility into assets and awareness of vulnerabilities, further enabling data-driven control of the security of an organization’s information infrastructure, and increasing organizational resilience.
+
+This process is depicted below in Figure 3-1.
+
+## Key Considerations
+Risk tolerance, enterprise architecture, security architecture, security configurations, plans for changes to the enterprise architecture, and available threat information provide data that is fundamental to the execution of these steps and to ongoing management of information security-related risks. Security-related information is analyzed for its relevance to organizational risk management at all three tiers.
+
+The balance of this chapter discusses the process of ISCM, providing detail on topics not covered by existing guidelines and referencing existing guidelines where appropriate. Primary roles, supporting roles, expected inputs, and expected outputs are given for each process step as a guide. Roles and responsibilities will vary across organizations as will implementation-level details of an ISCM program.
+
+## 3.1 Define ISCM Strategy
+Effective ISCM begins with the development of a strategy that addresses ISCM requirements and activities at each organizational tier (organization, mission/business processes, and information systems). Each tier monitors security metrics and assesses security control effectiveness with established monitoring and assessment frequencies and status reports customized to support tier-specific decision making.
+
+Policies, procedures, tools, and templates that are implemented from Tiers 1 and 2, or that are managed in accordance with guidance from Tiers 1 and 2, best support shared use of data within and across tiers. The lower tiers may require information in addition to that required at higher tiers and hence develop tier-specific strategies that are consistent with those at higher tiers and still sufficient to address local tier requirements for decision making.
+
+Depending on the organization, there may be overlap in the tasks and activities conducted at each tier. The guidelines below, though not prescriptive, help to ensure an organization-wide approach to ISCM that best promotes standardized methodologies and consistent practices and hence maximizes efficiencies and leverageability of security-related data. As changes...# ISCM Strategy Overview
+
+The ISCM strategy is reviewed for relevance, accuracy in reflecting organizational risk tolerances, correctness of measurements, and applicability of metrics. An inherent part of any ISCM strategy is the inclusion of criteria describing the conditions that trigger a review or update of the strategy, in addition to the pre-established frequency audit. Likewise, the organization defines criteria and procedures for updating the ISCM program based on the revised ISCM strategy.
+
+## 3.1.1 Organization (Tier 1) and Mission/Business Processes (Tier 2) ISCM Strategy
+
+The risk executive (function) determines the overall organizational risk tolerance and risk mitigation strategy at the organization tier. The ISCM strategy is developed and implemented to support risk management in accordance with organizational risk tolerance.
+
+While ISCM strategy, policy, and procedures may be developed at any tier, typically, the organization-wide ISCM strategy and associated policy are developed at the organization tier with general procedures for implementation developed at the mission/business processes tier. If the organization-wide strategy is developed at the mission/business processes tier, Tier 1 officials review and approve the strategy to ensure that organizational risk tolerance across all missions and business processes has been appropriately considered. This information is communicated to staff at the mission/business processes and information systems tiers and reflected in mission/business processes and information systems tier strategy, policy, and procedures.
+
+### Policies, Procedures, and Templates
+
+When developed at Tiers 1 and/or 2, the following policies, procedures, and templates facilitate organization-wide, standardized processes in support of the ISCM strategy:
+
+- **Policy that defines key metrics**
+- **Policy for modifications to and maintenance of the monitoring strategy**
+- **Policy and procedures for the assessment of security control effectiveness** (common, hybrid, and system-level controls)
+- **Policy and procedures for security status monitoring**
+- **Policy and procedures for security status reporting** (on control effectiveness and status monitoring)
+- **Policy and procedures for assessing risks and gaining threat information and insights**
+- **Policy and procedures for configuration management and security impact analysis**
+- **Policy and procedures for implementation and use of organization-wide tools**
+- **Policy and procedures for establishment of monitoring frequencies**
+- **Policy and procedures for determining sample sizes and populations and for managing object sampling**
+- **Procedures for determining security metrics and data sources**
+- **Templates for assessing risks**
+- **Templates for security status reporting** (on control effectiveness and status monitoring)
+
+Policy, procedures, and templates necessarily address manual and automated monitoring methodologies. Additionally, at these tiers, organizations establish policy and procedures for training of personnel with ISCM roles. This may include training on management and use of ISCM tools and processes.# Automated Tools and Training for ISCM
+
+Automated tools (e.g., establishing baselines and tuning of measurements to provide accurate monitoring of operational environments) may also include training for recognition of and appropriate response to triggers and alerts from metrics indicating risks beyond acceptable limits, as well as training on internal or external reporting requirements. This training may be included in existing role-based training requirements for those with significant security roles, or it may consist of training specifically focused on the implementation of the organization’s ISCM policy and procedures.
+
+## Implementation of Policies and Procedures
+
+When implementing policies, procedures, and templates developed at higher tiers, lower tiers fill in any gaps related to their tier-specific processes. Decisions and activities by Tier 1 and 2 officials may be constrained by things such as:
+
+- Mission/business needs
+- Limitations of the infrastructure (including the human components)
+- Immutable governance policies
+- External drivers
+
+### Primary Roles
+
+- Risk Executive (Function)
+- Chief Information Officer
+- Senior Information Security Officer
+- Authorizing Officials
+
+### Supporting Roles
+
+- Information System Owner/Common Control Provider
+
+### Expected Input
+
+- Organizational risk assessment and current risk tolerance
+- Current threat information
+- Organizational expectations and priorities
+- Available tools from OMB lines of business and/or third-party vendors
+
+### Expected Output
+
+- Updated information on organizational risk tolerance
+- Organization-wide ISCM strategy and associated policy, procedures, templates, tools
+
+## 3.1.2 Information System (Tier 3) ISCM Strategy
+
+The system-level ISCM strategy is developed and implemented to support risk management, not only at the information systems tier but at all three tiers in accordance with system and organizational risk tolerance. Although the strategy may be defined at Tiers 1 or 2, system-specific policy and procedures for implementation may also be developed at Tier 3.
+
+### System-Level Security-Related Information
+
+System-level security-related information includes:
+
+- Assessment data pertaining to system-level security controls
+- Metrics data obtained from system-level security controls
+
+System owners establish a system-level strategy for ISCM by considering factors such as:
+
+- The system’s architecture and operational environment
+- Organizational and mission-level requirements
+- Policy, procedures, and templates
+
+### Monitoring and Reporting
+
+System-level ISCM addresses:
+
+- Monitoring security controls for effectiveness (assessments)
+- Monitoring for security status
+- Reporting findings
+
+At a minimum, all security controls, including common and hybrid controls implemented at the system level, are assessed for effectiveness in accordance with the system security plan and the methods described in NIST SP 800-53A, as amended.
+
+System owners determine assessment frequencies of security controls based on drivers from all three tiers. A full discussion of factors to consider when determining assessment and monitoring frequencies can be found in Section 3.2.2. System-level security-related information is used to determine security status at all levels.# Information Security Continuous Monitoring (ISCM)
+
+## Overview
+The ISCM strategy at the information systems tier supports ongoing authorization. Ongoing authorization implies recurring updates to the authorization decision information in accordance with assessment and monitoring frequencies.
+
+Assessment results from monitoring common controls implemented and managed at the organization or mission/business process tier may be combined with information generated at the information systems tier to provide the authorizing official (AO) with a complete set of independently-generated evidence. Assessment evidence obtained from ISCM is, at a minimum, provided to AOs as often as required by organizational policy.
+
+## Primary Roles
+- **Information System Owner/Common Control Provider**
+- **Information System Security Officer**
+
+## Supporting Roles
+- **Senior Information Security Officer**
+- **Authorizing Official**
+- **Security Control Assessor**
+
+## Expected Input
+- Organizational risk tolerance information
+- Organizational ISCM strategy
+- Policy, procedures, templates
+- System-specific threat information
+- System information (e.g., System Security Plan, Security Assessment Report, Plan of Action and Milestones, Security Assessment Plan, System Risk Assessment, etc.)
+
+## Expected Output
+- System-level ISCM strategy that complements the Tier 1 and 2 strategies and the organizational security program
+- Security status information for all tiers
+- Real-time updates for ongoing system authorization decisions as directed by the organizational ISCM strategy
+
+## 3.1.3 Process Roles and Responsibilities
+Tiers 1 and 2 officials have responsibilities throughout the ISCM process, including, but not limited to, the following:
+
+- Provide input to the development of the organizational ISCM strategy including establishment of metrics, policy, and procedures, compiling and correlating Tier 3 data into security-related information of use at Tiers 1 and 2, policies on assessment and monitoring frequencies, and provisions for ensuring sufficient depth and coverage when sampling methodologies are utilized (ISCM steps: Define, Establish, Implement).
+
+- Review monitoring results (security-related information) to determine security status in accordance with organizational policy and definitions (ISCM step: Analyze/Report).
+
+- Analyze potential security impact to organization and mission/business process functions resulting from changes to information systems and their environments of operation, along with the security impact to the enterprise architecture resulting from the addition or removal of information systems (ISCM step: Analyze/Report).
+
+- Make a determination as to whether or not current risk is within organizational risk tolerance.# ISCM Steps and Responsibilities
+
+## ISCM Steps
+- **Analyze/Report**
+- **Review/Update**
+- **Respond**
+
+## Key Actions
+- Take steps to respond to risk as needed (e.g., request new or revised metrics, additional or revised assessments, modifications to existing common or PM security controls, or additional controls) based on the results of ongoing monitoring activities and assessment of risk.
+- Update relevant security documentation.
+- Review new or modified legislation, directives, policies, etc., for any changes to security requirements.
+- Review monitoring results to determine if organizational plans and policies should be adjusted or updated.
+- Review monitoring results to identify new information on vulnerabilities.
+- Review information on new or emerging threats as evidenced by threat activities present in monitoring results, threat modeling (asset- and attack-based), classified and unclassified threat briefs, USCERT reports, and other information available through trusted sources, interagency sharing, and external government sources.
+
+## Responsibilities of Tier 3 Officials
+Tier 3 officials have responsibilities throughout the ISCM process including, but not limited to, the following:
+
+- Provide input to the development and implementation of the organization-wide ISCM strategy along with the development and implementation of the system-level ISCM strategy.
+- Support planning and implementation of security controls, the deployment of automation tools, and how those tools interface with one another in support of the ISCM strategy.
+- Determine the security impact of changes to the information system and its environment of operation, including changes associated with commissioning or decommissioning the system.
+- Assess ongoing security control effectiveness.
+- Take steps to respond to risk as needed (e.g., request additional or revised assessments, modify existing security controls, implement additional security controls, accept risk, etc.) based on the results of ongoing monitoring activities, assessment of risk, and outstanding items in the plan of action and milestones.
+- Provide ongoing input to the security plan, security assessment report, and plan of action and milestones based on the results of the ISCM process.
+- Report the security status of the information system including the data needed to inform Tiers 1 and 2 metrics.
+- Review the reported security status of the information system to determine whether the risk to the system and the organization remains within organizational risk tolerances.# Analyze/Report; RMF Steps: Authorize, Monitor
+
+## 3.1.4 Define Sample Populations
+
+Organizations may find that collecting data from every object of every system within an organization may be impractical or cost-prohibitive. Sampling is a methodology employable with both manual and automated monitoring that may make ISCM more cost-effective. A risk with sampling is that the sample population may fail to capture the variations in assessment outcomes that would be obtained from an assessment of the full population. This could result in an inaccurate view of security control effectiveness and organizational security status.
+
+NIST SP 800-53A, as amended, describes how to achieve satisfactory coverage when determining sample populations for the three named assessment methods: examine, interview, and test. The guidelines in NIST SP 800-53A for basic, focused, and comprehensive testing address the need for a “representative sample of assessment objects” or a “sufficiently large sample of assessment objects.” Statistical tools can be used to help quantify sample size.
+
+NIST 800-53A provides guidelines to help address the general issue of sampling and particularly that of coverage. In selecting a sample population, the coverage attribute is satisfied through consideration of three criteria:
+
+- **Types of objects**: Ensure sufficient diversity of types of assessment objects.
+- **Number of each type**: Choose “enough” objects of each type to provide confidence that assessment of additional objects will result in consistent findings.
+- **Specific objects per type assessed**: Given all of the objects of relevance throughout the organization that could be assessed, include “enough” objects per type in the sample population to sufficiently account for the known or anticipated variance in assessment outcomes.
+
+Sample measurements are summarized into a statistic (e.g., sample mean) and the observed value compared with the allowable value as represented by organizational risk tolerance. Statistics calculated using sampling can become less reliable predictors of the full population if the population is not randomly selected and if the sample size (i.e., objects to be tested) is small. As described in the NIST Engineering Statistics Handbook, when deciding how many objects to include in sample populations, the following are considered:
+
+- **Desired information**: What question will the measurements help answer?
+- **Cost and practicality**: Cost and practicality of making the assessment.
+- **Information already known**: Information already known about the objects, organization, or operating environments.
+- **Anticipated variability**: Anticipated variability across the total population.
+- **Desired confidence**: Desired confidence in resulting statistics and conclusions drawn about the total population.
+
+Ways to achieve “increased” or “further increased grounds for confidence that a control is implemented correctly and operating as intended” across the entire organization include asking more targeted questions, increasing the types of objects assessed, and increasing the number of each type of object assessed.# ISCM Program Overview
+
+Organizations may also target specific objects for assessment in addition to the random sample, using the above criteria. However, sampling methods other than random sampling are used with care to avoid introducing bias. Automated data collection and analysis can reduce the need for sampling.
+
+## Primary Roles
+- Information System Owner
+- Common Control Provider
+- Information System Security Officer
+- Security Control Assessor
+
+## Supporting Roles
+- Risk Executive (Function)
+- Authorizing Official
+- Chief Information Officer
+- Senior Information Security Officer
+
+## Expected Input
+- Organizational- and system-level policy and procedures on ISCM strategy, metrics, and the Security Assessment Plan updated with assessment and monitoring frequencies.
+
+## Expected Output
+- Security Assessment Plan documentation on acceptable sample sizes and security-related information.
+
+## 3.2 Establish an ISCM Program
+Organizations establish a program to implement the ISCM strategy. The program is sufficient to inform risk-based decisions and maintain operations within established risk tolerances. Goals include:
+- Detection of anomalies and changes in the organization’s environments of operation and information systems.
+- Visibility into assets.
+- Awareness of vulnerabilities.
+- Knowledge of threats.
+- Security control effectiveness.
+- Security status including compliance.
+
+Metrics are designed and frequencies determined to ensure that information needed to manage risk within organizational risk tolerances is available. Tools, technologies, and manual and/or automated methodologies are implemented within the context of an architecture designed to deliver the required information in the appropriate context and at the right frequencies.
+
+### 3.2.1 Determine Metrics
+Organizations determine metrics to be used to evaluate and control ongoing risk to the organization. Metrics, which include all the security-related information from assessments and monitoring produced by automated tools and manual procedures, are organized into meaningful information to support decision making and reporting requirements.
+
+Metrics should be derived from specific objectives that will maintain or improve security posture. Metrics are developed for system-level data to make it meaningful in the context of mission/business or organizational risk management.
+
+Metrics may use security-related information acquired at different frequencies and therefore with varying data latencies. Metrics may be calculated from a combination of security status monitoring, security control assessment data, and from data collected from one or more security controls. Metrics may be determined at any tier or across an organization.
+
+Some examples of metrics are:
+- The number and severity of vulnerabilities revealed and remediated.
+- Number of unauthorized access attempts.
+- Configuration baseline information.
+- Contingency plan testing dates.# Security Metrics and Monitoring
+
+## Overview
+This document discusses the importance of metrics in monitoring security status, including the number of employees who are current on awareness training requirements, risk tolerance thresholds for organizations, and the risk score associated with a given system configuration.
+
+## Example of Metrics
+An organization might use various metrics to monitor the status of authorized and unauthorized components on a network. These metrics could include:
+
+- Physical asset locations
+- Logical asset locations (subnets/Internet Protocol (IP) addresses)
+- Media Access Control (MAC) addresses
+- System association
+- Policies/procedures for network connectivity
+
+### Refresh Frequency
+The metrics would be refreshed at various frequencies in accordance with the Information Security Continuous Monitoring (ISCM) strategy. Possible refresh frequencies include:
+
+- Hourly
+- Daily
+- Weekly
+
+While logical asset information might change daily, policies and procedures for network connectivity are likely to be reviewed or revised no more than annually.
+
+## Importance of Custom Metrics
+The metrics provided are informative and not recommended metrics. Organizations are encouraged to define their own metrics and associated monitoring frequencies. To calculate metrics, associated controls and/or their objects must be assessed and monitored with frequencies consistent with the timing requirements expressed in the metric.
+
+## Assurance of Security Controls
+It is crucial to note that metrics are fundamentally flawed without assurance that all security controls are implemented correctly. Metrics are defined or calculated based on output from the security architecture. Collecting metrics from a security architecture with unassessed security controls is akin to using a broken or uncalibrated scale.
+
+### Interpretation of Metrics Data
+The interpretation of metrics data presumes that controls, both directly and indirectly used in the metric calculation, are implemented and functioning as expected. If a metric indicates a problem, the root cause could be multifaceted. Without assurance of the correct implementation and continued effectiveness of security controls not associated with the metric, root cause analysis may be hindered, potentially leading to an inappropriate narrowing of focus and overlooking the true problem.
+
+## Reference
+For detailed information on establishing metrics, refer to **NIST SP 800-55**, as amended.
+
+## Roles and Responsibilities
+### Primary Roles
+- Risk Executive (Function)
+- Chief Information Officer
+- Senior Information Security Officer
+
+### Supporting Roles
+- Authorizing Officials
+- Information System Owner/Common Control Provider
+
+## Inputs and Outputs
+### Expected Input
+- Organizational risk assessment
+- Organizational risk tolerance
+- Current threat information
+- Reporting requirements
+- Current vulnerability information
+
+### Expected Output
+- Established metrics to convey security status and security control effectiveness at all three tiers
+- Visibility into assets
+- Awareness of vulnerabilities
+- Knowledge of threats
+
+## Establishing Monitoring and Assessment Frequencies
+Determining frequencies for security status monitoring and for security control assessment is essential for effective security management.# Assessments in ISCM Programs
+
+Assessments are critical functions of the organization’s Information Security Continuous Monitoring (ISCM) program. For some organizations, dashboards and ongoing assessments represent a shift away from the traditional model of complete security control assessments conducted at a distinct point in time.
+
+## Importance of Ongoing Assessments
+
+For this shift to be constructive and effective from security, assurance, and resource use perspectives, organizations must determine the frequencies with which each security control or control element is assessed for effectiveness, as well as the frequencies with which each metric is monitored.
+
+### Security Control Effectiveness
+
+Security control effectiveness across a tier or throughout the organization can itself be taken as a security metric and may have an associated status monitoring frequency. Although monitoring and assessment frequencies are determined for each individual metric and control, organizations utilize this data of different latencies to create a holistic view of the security of each system, as well as a view of the security of the enterprise architecture.
+
+As the monitoring program matures, monitoring and assessment frequencies become important in the context of how the data is used. The question "When did the system receive authorization to operate?" will become less meaningful than "How resilient is the system?"
+
+## Considerations in Determining Assessment and Monitoring Frequencies
+
+Organizations take the following criteria into consideration when establishing monitoring frequencies for metrics or assessment frequencies for security controls:
+
+### 1. Security Control Volatility
+
+Volatile security controls are assessed more frequently, whether the objective is to establish security control effectiveness or to support the calculation of a metric. Controls in the NIST SP 800-53 Configuration Management (CM) family are a good example of volatile controls. Information system configurations typically experience high rates of change. Unauthorized or unanalyzed changes in the system configuration often render the system vulnerable to exploits.
+
+Therefore, corresponding controls such as:
+- **CM-6**: Configuration Settings
+- **CM-8**: Information System Component Inventory
+
+may require more frequent assessment and monitoring, preferably using automated, SCAP-validated tools that provide alerts and status on demand. Conversely, controls such as:
+- **PS-2**: Position Categorization
+- **PS-3**: Personnel Screening
+
+(from the NIST SP 800-53 Personnel Security family of controls) are not volatile in most organizational settings. They tend to remain static over long periods and would therefore typically require less frequent assessment.
+
+### 2. System Categorizations/Impact Levels
+
+In general, security controls implemented on systems that are categorized as high-impact are monitored more frequently than controls implemented on moderate-impact systems, which are in turn monitored more frequently than controls implemented on low-impact systems.
+
+### 3. Critical Functions of Security Controls
+
+Security controls or specific assessment objects providing critical functions must also be considered when determining assessment and monitoring frequencies.# Monitoring Frequency Considerations
+
+## Critical Security Functions
+- Controls or assessment objects that provide critical security functions (e.g., log management server, firewalls) are candidates for more frequent monitoring.
+- Individual assessment objects that support critical security functions and/or are deemed critical to the system (in accordance with the Business Impact Analysis) or to the organization may also be candidates for more frequent monitoring.
+
+## Security Controls with Identified Weaknesses
+- Existing risks documented in security assessment reports (SARs) are considered for more frequent monitoring to ensure that risks stay within tolerance.
+- Controls documented in the Plan of Action and Milestones (POA&M) as having weaknesses are monitored more frequently until remediation of the weakness is complete.
+- Note that not all weaknesses require the same level of monitoring:
+- Weaknesses deemed in the SAR to be of minor or low-impact risk to the system or organization are monitored less frequently than those with a higher-impact risk.
+
+## Organizational Risk Tolerance
+- Organizations with a low tolerance for risk (e.g., those processing, storing, or transmitting large amounts of proprietary and/or personally identifiable information (PII), those with numerous high-impact systems, or those facing specific persistent threats) monitor more frequently.
+- Conversely, organizations with a higher tolerance for risk (e.g., those with primarily low- and moderate-impact systems that process, store, or transmit very little PII and/or proprietary information) monitor less frequently.
+
+## Threat Information
+- Organizations consider current credible threat information, including known exploits and attack patterns, when establishing monitoring frequencies.
+- For instance, if a specific attack is developed that exploits a vulnerability of an implemented technology, temporary or permanent increases to the monitoring frequencies for related controls or metrics may help provide protection from the threat.
+
+## Vulnerability Information
+- Organizations consider current vulnerability information regarding information technology products when establishing monitoring frequencies.
+- For example, if a specific product manufacturer provides software patches monthly, an organization might consider conducting vulnerability scans on that product at least that often.
+
+## Risk Assessment Results
+- Results from organizational and/or system-specific assessments of risk (either formal or informal) are examined and taken into consideration when establishing monitoring frequencies.
+- For instance, if a system-specific risk assessment identifies potential threats and vulnerabilities related to nonlocal maintenance (NIST SP 800-53, MA-4), the organization considers more frequent monitoring of the records kept on nonlocal maintenance and diagnostic activities.
+- If a risk scoring scheme is in place at the organization, the risk scores may be used as justification to increase or decrease the monitoring frequency.# Monitoring Strategy and Reporting Requirements
+
+## Output of Monitoring Strategy Reviews
+Review and adjustment of the monitoring strategy is covered in detail in Section 3.6.
+
+## Reporting Requirements
+Reporting requirements do not drive the ISCM strategy but may play a role in the frequency of monitoring. For instance, if OMB policy requires quarterly reports on the number of unauthorized components detected and corrective actions taken, the organization would monitor the system for unauthorized components at least quarterly.
+
+Organizations focus on obtaining the data required at the determined frequencies and deploy their human and capital resources accordingly. As automation capability or resources are added, organizations may consider increasing affected monitoring frequencies. Similarly, if resource availability decreases, the organization considers adjusting affected monitoring frequencies to ensure that security-related information is appropriately analyzed while continuing to meet organizational risk management requirements.
+
+## Security Controls and Monitoring Frequencies
+Many security controls in the NIST SP 800-53 catalog have multiple implementation requirements along with control enhancements that may also have multiple implementation requirements. It may be necessary to assess or monitor individual control requirements and/or control enhancements within a given control with differing frequencies.
+
+For instance, the control AC-2, Account Management, has ten separate requirements (a. through j.) within the base control and four control enhancements [(1) through (4)]. The monitoring frequency may vary for each requirement in accordance with the considerations discussed.
+
+### Example of Control AC-2
+- **AC-2a** involves the identification of account types. For a typical information system, once the account types have been identified and documented, they are not likely to change very often. For this reason, AC-2a is a candidate for relatively infrequent assessment.
+- **AC-2h** involves the deactivation of temporary accounts and accounts of terminated or transferred users. Since personnel regularly come and go, a typical organization would most likely assess AC-2h on a more frequent basis than AC-2a.
+- **AC-2(3)** requires that the system automatically disable accounts after a specified time period of inactivity. As an automated control and one with typically high volatility, AC-2(3) is a candidate for relatively frequent monitoring and also may serve to automate some of the base control requirements so that they can be monitored more frequently in accordance with the organizational ISCM strategy.
+
+## Organization and Mission/Business Processes Tiers
+At the mission/business processes tier, the organization establishes the minimum frequency with which each security control or metric is to be assessed or monitored. Frequencies are established across all organizational systems and common controls based on the criteria described above in this section. Common, hybrid, and system-specific security controls are considered in this process.# Security Control Assessment Framework
+
+## Overview
+The assessment of security controls is a critical component of an organization's risk management strategy. This document outlines the roles, inputs, and outputs associated with the assessment of common controls and information systems.
+
+## Common Controls Assessment
+
+### Description
+Common controls are often inherited by a large number of organizational systems. The aggregate criticality of such controls may require more frequent assessments than would similar controls responsible for protecting a single system.
+
+### Assessment Frequency
+Determining the frequency for assessing common controls includes the organization’s determination of the trustworthiness of the common control provider. Common controls that are process-related (e.g., procedures/templates, PM controls) do not tend to be volatile and typically do not lend themselves well to automation. However, the organization considers the volatility of such controls as well as related threat information when establishing assessment frequencies.
+
+### Primary Roles
+- Chief Information Officer
+- Senior Information Security Officer
+
+### Supporting Roles
+- Risk Executive (Function)
+- Authorizing Officials
+- Common Control Provider
+- Information System Owner
+
+### Expected Input
+- Organizational risk assessment
+- Organizational risk tolerance
+- Current threat information
+- Reporting requirements
+- Current vulnerability information
+- Output from monitoring strategy reviews
+
+### Expected Output
+- Organization-wide policies and procedures
+- Recommended frequencies with which each security control and metric is assessed or monitored
+
+## Information Systems Tier
+
+### Description
+At the information systems tier, system owners review the minimum monitoring/assessment frequencies established by organization and/or mission/business processes tier policy and determine if the minimum frequencies are adequate for a given information system.
+
+### Assessment Frequency
+For some information systems, it may be necessary to assess specific controls or metrics with greater frequency than prescribed by the organization, based on the criteria described above. System owners also consider the identification of specific system components that may require more frequent monitoring than other system components (e.g., public-facing servers, boundary protection devices, components deemed critical in the Business Impact Analysis).
+
+### Primary Roles
+- Information System Owner
+- Information System Security Officer
+
+### Supporting Roles
+- Authorizing Official
+- Senior Information Security Officer
+- Information Owner/Steward
+
+### Expected Input
+- Organizational strategy and procedures with minimum frequencies
+- Current threat information
+- Reporting requirements
+- Current vulnerability information
+- Output from monitoring strategy reviews
+- Security assessment plans
+
+### Expected Output
+- Security assessment plans updated to reflect the frequency with which each system-specific security control is assessed and metrics are monitored
+
+## Event-Driven Assessments
+
+### Description
+Events may occur that trigger the immediate need to assess security controls or verify security status outside of requirements expressed in the ISCM strategy. This may require an assessment.# Information Security Continuous Monitoring (ISCM)
+
+## Event-Driven Assessments
+
+Event-driven assessments are unplanned evaluations that align with the ISCM strategy or are customized to address emerging needs, such as changes in planned assessments or monitoring frequency.
+
+### Example Scenario
+For instance, if a Web application is added to a system, an existing ISCM process that includes configuration management and control, Security Impact Analysis (SIA), and developmental vulnerability scans may suffice to assess the controls implemented for the new Web application.
+
+### Criteria for Event-Driven Assessments
+Organizations consider various events when defining criteria for event-driven assessments, including:
+- Incidents
+- New threat information
+- Significant changes to systems and operating environments
+- New or additional mission responsibilities
+- Results of a security impact analysis (SIA) or risk assessment
+
+Depending on the significance of the event, an event-driven assessment may trigger one or more system reauthorizations.
+
+### Primary Roles
+- Information System Owner/Common Control Provider
+- Authorizing Official
+- Information System Security Officer
+
+### Supporting Roles
+- Risk Executive (Function)
+- Senior Information Security Officer
+- Security Control Assessor
+
+### Expected Input
+- Organizational risk assessment
+- Organizational risk tolerance
+- Current threat information
+- Current vulnerability information
+- Organizational priorities and expectations
+
+### Expected Output
+- Documented criteria and thresholds for event-driven assessments/authorizations (e.g., significant change procedures, policy and procedures on event-driven authorizations)
+
+## Develop ISCM Architecture
+
+Organizations must determine how information will be collected and delivered within and between tiers, as well as externally. The core requirements of an architecture supporting ISCM include:
+
+- Data collection
+- Data storage
+- Data analysis capabilities
+- Retrieval and presentation (reporting) capabilities
+
+### Methodologies
+Methodologies are standardized to facilitate efficiencies, intra- and inter-tier information exchange, correlation, and other analyses. Organizations utilize automated tools, technologies, and methodologies to enhance efficiencies and insights gained from the collection, analysis, and dissemination of large volumes of data from diverse sources.
+
+### Design Considerations
+The architecture and associated policies and procedures are designed to minimize data calls and maximize data reuse. Data feeds originate from a heterogeneous mix of sources (e.g., authorization packages, training records, system logs) and accommodate different stakeholder views.
+
+### Interoperable Data Specifications
+Interoperable data specifications (e.g., SCAP, XML) enable data to be collected once and reused multiple times. Accountability for different facets of the security posture may reside with various roles or functions within an organization, necessitating the use of raw data in different metrics, contexts, and intervals (e.g., security assessment and authorization, user awareness and training, and access control).# Continuous Monitoring Program (ISCM)
+
+## 3.3 Implement an ISCM Program
+
+ISCM is implemented in accordance with the strategy. Security-related information (data) is collected as required for predefined metrics, security control assessments are conducted, and the security-related information generated is reported in accordance with organizational policies and procedures.
+
+### Security Control Classes and Types
+
+All security control classes (management, operational, and technical) and types (common, hybrid, and system-specific) are included in the organizational continuous monitoring program. Every control is monitored for effectiveness, and every control is subject to use in monitoring security status.
+
+### Data Sources
+
+Data sources include:
+- People
+- Processes
+- Technologies
+- The computing environment
+- Any existing relevant security control assessment reports
+
+### Data Collection and Reporting
+
+Collection, analysis, and reporting of data are automated where possible. Whether manual or automated, the data collected is assembled for analysis and reported to the organizational officials charged with correlating and analyzing it in ways that are relevant for risk management activities.
+
+As indicated in the examples above, this may mean taking data from a variety of sources, collected at various points in time, and combining it in ways that are meaningful for the official receiving it at the time that it is requested.
+
+### Implementation Stage
+
+Part of the implementation stage of the continuous monitoring process is effectively organizing and delivering ISCM data to stakeholders in accordance with decision-making requirements. Tools and methodologies are chosen for the organization-wide ISCM architecture, in order to help ensure that risk-based decisions are informed by accurate, current security-related information.
+
+### Discrete Security Processes
+
+Discrete security processes inform and are informed by ISCM data. Organizations also use ISCM data to inform processes that are not primarily used to control information security risk. Similarly, data from those processes can also be used to inform the ISCM program.
+
+Examples of processes that inform and are informed by ISCM include, but are not limited to:
+- Patch management
+- Asset management
+- License management
+- Configuration management
+- Vulnerability management
+- System authorization
+
+As described in Chapter Two, the ISCM data output from one process may serve as input to many others.
+
+### Roles and Responsibilities
+
+**Primary Roles:**
+- Information System Owner
+- Common Control Provider
+- Information System Security Officer
+- Security Control Assessor
+
+**Supporting Roles:**
+- Risk Executive (Function)
+- Authorizing Official
+- Chief Information Officer
+- Senior Information Security Officer
+
+**Expected Input:**
+- Organizational- and system-level policies and procedures on ISCM# Security Assessment and Monitoring
+
+## Strategy
+- Metrics
+- Security Assessment Plan updated with assessment and monitoring frequencies
+- Automation specifications
+
+### Expected Outputs
+- Security-related information
+
+## 3.4 Analyze Data and Report Findings
+Organizations develop procedures for analyzing and reporting assessment and monitoring results. This includes:
+
+- Specific staff/roles to receive ISCM reports
+- Content and format of the reports
+- Frequency of reports
+- Tools to be used
+
+Also included are requirements for analyzing and reporting results of controls that are not easily automated. It may be necessary to collect additional data to supplement or clarify security-related information under analysis or provided in initial reports. System- and mission/business-level staff receive and provide reports as required by organizational and mission/business-level policies and procedures.
+
+### 3.4.1 Analyze Data
+Organizations analyze the security-related information resulting from ISCM. It may be necessary to collect additional data to supplement or clarify security-related information under analysis. The information to be analyzed is provided to organizational officials in a variety of ways, such as:
+
+- Recurring reports
+- Automated reports
+- Ad hoc reports
+- Data feeds
+- Database views
+
+Security-related information resulting from ISCM is analyzed in the context of:
+
+- Stated risk tolerances
+- Potential impact that vulnerabilities may have on information systems
+- Mission/business processes
+- Organization as a whole
+- Potential impact of mitigation options
+
+Even with real-time or near real-time organization-specific and system-specific security-related information, evolving vulnerability and threat data is always considered during the analysis. Organizational officials review the analyzed reports to determine whether to conduct mitigation activities or to transfer, avoid/reject, or accept risk. In some cases, authorizing officials may determine that accepting some specific risk is preferable to implementing a mitigating response. The rationale for such determinations may include:
+
+- Organizational risk tolerance
+- Negative impact to mission/business processes
+- Cost-effectiveness/return on investment of the implementation
+
+Resolution of risk and the rationale for the decision is recorded in accordance with organizational policies and procedures.
+
+### Primary Roles
+- Risk Executive (Function)
+- Chief Information Officer
+- Senior Information Security Officer
+- Authorization Officials
+- Security Control Assessors
+
+### Supporting Roles
+- Information System Owners
+- Common Control Providers
+- System Security Officers
+
+### Expected Input
+- Security-related information
+- Organizational ISCM strategy
+- Organizational risk tolerance
+- Reporting requirements
+
+### Expected Output
+- Analysis of security status information for all tiers
+- Updated System Security Plan
+- Security Assessment Report
+- Plan of Action and Milestones
+- Revised organizational risk# Management Decisions
+
+## 3.4.2 Report on Security Control Assessments
+
+Organizations report on assessments of all implemented security controls for effectiveness in accordance with organizational requirements. Security-related information from assessments may be conveyed in templates or spreadsheets or collected and reported in an automated fashion. At the system level, security-related information from assessments directly supports ongoing authorization decisions and plans of action and milestones creation and tracking.
+
+Some security controls or elements of security controls, by definition, are security metrics (e.g., SI-4 Information System Monitoring). Hence, assessing the effectiveness of these controls results in monitoring the security status of the related metric.
+
+Staff report assessment results in accordance with organizational policies and procedures. Reporting on additional metrics and/or assessment results may be required by higher-level organizations such as OMB. Organizations define security status reporting requirements in the ISCM strategy. This includes the specific staff/roles to receive ISCM reports, the content and format of the reports, the frequency of reports, and any tools to be used.
+
+Tier 3 officials report on findings, document any system-level mitigations made, and/or provide recommendations to officials at Tiers 1 and 2. Organizational officials at Tiers 1 and 2 review Tier 3 findings to determine aggregate security status and the effectiveness and adequacy of all controls in meeting mission/business and organizational information security requirements.
+
+Information contained within a report will vary based on its recipient, frequency, purpose, supported tool sets, and metrics used. For example, the risk executive (function) may receive a general report on all systems annually and a detailed report on specific high-impact systems quarterly. The reports provided to the CIO and SISO may contain more granular technical data on all systems quarterly, and the AO may receive monthly comprehensive reports on the systems for which s/he is responsible. The computer incident response team (CIRT) lead may receive exception reports when alerts are generated, and network administrators may review dashboards showing network activity that is updated every minute, with summary metrics that are updated hourly or daily.
+
+Organizations may consider more frequent reports for specific controls with more volatility or on controls for which there have been weaknesses or lack of compliance. Organizations also define requirements for reporting results of controls, such as PM controls, that are not easily automated. Organizations develop procedures for collecting and reporting assessment and monitoring results, including results that are derived via manual methods, and for managing and collecting information from POA&Ms to be used for frequency determination, status reporting, and monitoring strategy revision.
+
+### Primary Roles
+- System Owner
+- Common Control Provider
+- System Security Officer# Security
+
+## Control Assessor
+
+### Supporting Roles
+- Risk Executive (Function)
+- Chief Information Officer
+- Chief Information Security Officer
+- Authorizing Official
+
+### Expected Input
+- Security-related information (assessment results)
+- Organizational ISCM policies and procedures
+- Reporting requirements from the Authorizing Official, Chief Information Officer, Chief Information Security Officer, and/or Risk Executive (Function)
+
+### Expected Output
+- Reports on assessment results as required by organizational ISCM policies and procedures and by the Authorizing Official in support of ongoing authorization (or reauthorization)
+
+## 3.4.3 Report on Security Status Monitoring
+
+Organizations develop procedures for reporting on security status monitoring. Security status data is derived from monitoring the predefined metrics across the organization using output generated by organization-wide tools (often implemented as common controls). The organization-wide tools may be part of a specific system or systems, but the security-related information generated may not be system-specific.
+
+### Primary Roles
+- System Owner
+- Common Control Provider
+- System Security Officer
+- Security Control Assessor
+
+### Supporting Roles
+- Risk Executive (Function)
+- Chief Information Officer
+- Chief Information Security Officer
+- Authorizing Official
+
+### Expected Input
+- Security-related information (security status data)
+- Organizational ISCM policies and procedures
+- Reporting requirements from the Authorizing Official, Chief Information Officer, Chief Information Security Officer, and/or Risk Executive (Function)
+
+### Expected Output
+- Reports on security status as required by organizational ISCM policies and procedures and by the Authorizing Official in support of ongoing authorization (or reauthorization)
+
+## 3.5 Respond to Findings
+
+Security-related information obtained from monitoring is analyzed and met with appropriate responses. Response to findings at all tiers may include risk mitigation, risk acceptance, risk avoidance/rejection, or risk sharing/transfer, in accordance with organizational risk tolerance. Responses are coordinated with appropriate security management activities such as the security-focused configuration management program.
+
+At Tier 1, response to findings may result in changes to security policies around organizational governance. Tier 1’s response may be constrained by the mission/business needs and the limitations of the enterprise architecture (including the human components), immutable governance policies, or other external drivers.
+
+At Tier 2, response to findings may include requests for additional security-related information, new or modified metrics, changes in mission/business processes, or Tier 3 reporting requirements, and/or additions or modifications to common control implementations. The Tier 2 response may be constrained by organizational governance policies and strategies as well as mission/business needs.# Goals and Objectives of Organizational Resources and Infrastructure
+
+At Tier 3, mitigation strategies have a direct and immediate impact on system-level risk. Responses to findings may include:
+
+- Implementation of additional controls
+- Modifications to previously implemented controls
+- Removal of systems’ authorization to operate
+- Changes to the frequency of monitoring
+- Additional or more detailed analysis of security-related information
+
+System-level mitigations are made within constraints set by Tier 1 and 2 policies, requirements, and strategies, to ensure that organizational processes are not negatively affected.
+
+## Response Strategies
+
+Response strategies may be implemented over a period of time, documenting implementation plans in the system’s Plan of Action and Milestones (POA&M). As weaknesses are found, response actions are evaluated, and any mitigation actions are conducted immediately or are added to the POA&M. Other key system documents are updated accordingly.
+
+Security controls that are modified, enhanced, or added as part of the response step of the continuous monitoring process are assessed to ensure that the new or revised controls are effective in their implementations. Going forward, new or revised controls are included in the overall continuous monitoring strategy.
+
+### Primary Roles
+
+- System Owner
+- Common Control Provider
+- System Security Officer
+
+### Supporting Roles
+
+- Authorizing Official
+- Senior Information Security Officer
+- Information Owner/Steward
+
+### Expected Input
+
+- Reports on security status
+- Reports on assessment results (e.g., Security Assessment Reports)
+- Organizational- and system-level risk assessments
+- Security Assessment Plans
+- System Security Plans
+- Organizational procedures and templates
+
+### Expected Output
+
+- Decisions on risk responses
+- Updated system security information (e.g., System Security Plans, POA&Ms, Security Assessment Reports)
+- Updated security status reports
+
+# Review and Update the Monitoring Program and Strategy
+
+ISCM strategies and programs are not static. Security control assessments, security status metrics, and monitoring and assessment frequencies change in accordance with the needs of the organization.
+
+The continuous monitoring strategy is reviewed to ensure that it sufficiently supports the organization in operating within acceptable risk tolerance levels, that metrics remain relevant, and that data is current and complete. The strategy review also identifies ways to improve organizational insight into security posture, effectively supports informed risk management decision making/ongoing authorizations, and improves the organization’s ability to respond to known and emerging threats.
+
+## Procedure for Reviewing and Modifying ISCM Strategy
+
+The organization establishes a procedure for reviewing and modifying all aspects of the ISCM strategy, including:
+
+- Relevance of the overall strategy
+- Accuracy in reflecting organizational risk tolerance
+- Accuracy/correctness of measurements
+- Applicability of metrics
+- Reporting requirements
+- Monitoring and assessment frequencies
+
+If any of the data collected is not required for reporting purposes or found to be not useful in maintaining or...# Improving the Organization’s Security Posture
+
+When an organization considers improving its security posture, it may also evaluate the potential to save resources by discontinuing certain collections. Factors that may lead to changes in the monitoring strategy include, but are not limited to:
+
+## Factors Influencing Changes in Monitoring Strategy
+
+- Changes to core missions or business processes
+- Significant changes in the enterprise architecture (including addition or removal of systems)
+- Changes in organizational risk tolerance
+- Changes in threat information
+- Changes in vulnerability information
+- Changes within information systems (including changes in categorization/impact level)
+- Increase/decrease in Plans of Action and Milestones (POA&Ms) related to specific controls
+- Trend analyses of status reporting output
+- New federal laws or regulations
+- Changes to reporting requirements
+
+## Examination of POA&M Information
+
+Officials examine consolidated POA&M information to identify common weaknesses or deficiencies among the organization’s information systems and propose or request solutions. The aggregate POA&M information is utilized to allocate risk mitigation resources organization-wide and to adjust the monitoring strategy accordingly.
+
+## Analysis of Status Reports and Metrics
+
+Status reports and metrics are analyzed to identify any security trends that may necessitate changes to the monitoring strategy. For example:
+
+- If weekly assessments of component inventories over a six-month period indicate minimal changes, the organization may consider reducing the frequency of monitoring component inventories to biweekly or monthly.
+- Conversely, if biweekly audit record analyses over a six-month period show an increase in anomalous events, the organization may opt to increase the frequency of audit record reviews to weekly.
+
+## Maturity of ISCM Strategy
+
+An organization’s Information Security Continuous Monitoring (ISCM) strategy evolves as its security programs and monitoring capabilities mature. In a fully mature program, security-related information collection and analysis are conducted using standardized methods across the organization, integrated into mission and business processes, and automated to the fullest extent possible.
+
+In this scenario, the security program is sufficiently mature to ensure that effective processes and procedures secure the enterprise architecture in accordance with organizational risk tolerances, while also collecting, correlating, analyzing, and reporting on relevant security metrics.
+
+## Recursive Nature of ISCM
+
+ISCM is a recursive process, meaning that the monitoring strategy is continually refined as the steps of the process repeat. The organization-wide application of ISCM is achieved through smaller or more narrowly focused instances of similar efforts at the mission/business processes and systems tiers. In other words, the output of ISCM at Tier 3 serves as input for the implementation of ISCM programs at Tiers 1 and 2.
+
+Working from the top of the pyramid...# Monitoring Strategies Overview
+
+## Overview of Monitoring Tiers
+Figure 2-1 illustrates the relationship between different tiers of monitoring strategies. Upper-tier monitoring strategies set the parameters for lower-tier monitoring programs. Observations made at the lower tiers may lead to changes in the upper-tier monitoring strategies.
+
+## Importance of ISCM Program Monitoring
+The Information Security Continuous Monitoring (ISCM) program itself must be monitored to ensure it evolves with changes in:
+- Organizational missions and objectives
+- Operational environments
+- Threats
+
+## Primary Roles
+- **Senior Information Security Officer**
+- **Authorizing Official**
+- **Information System Owner/Common Control Provider**
+
+## Supporting Roles
+- **Risk Executive (Function)**
+- **Chief Information Officer**
+- **Information System Security Officer**
+
+## Expected Input
+The following inputs are expected for effective monitoring:
+- Trend analyses from existing monitoring
+- Organizational risk tolerance information
+- Information on new laws, regulations, and reporting requirements
+- Current threat and vulnerability information
+- Other organizational information as required
+- Updates to automation specifications
+
+## Expected Output
+The expected output from the monitoring process includes:
+- A revised ISCM strategy
+- A brief documented report noting review details and confirming whether modifications to the strategy were necessary, in accordance with the established review process.
