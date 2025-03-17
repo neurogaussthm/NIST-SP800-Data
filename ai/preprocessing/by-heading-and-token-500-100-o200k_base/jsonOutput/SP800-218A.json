@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "This document augments the secure software development practices and tasks defined in Secure Software Development Framework (SSDF) version 1.1 by adding practices, tasks, recommendations, considerations, notes, and informative references that are specific to AI model development throughout the software development life cycle. These additions are documented in the form of an SSDF Community Profile to support Executive Order (EO) 14110, Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence, which tasked NIST with \"developing a companion resource to the [SSDF] to incorporate secure development practices for generative AI and for dual-use foundation models.\" This Community Profile is intended to be useful to the producers of AI models, the producers of AI systems that use those models, and the acquirers of those AI systems. This Profile should be used in conjunction with NIST Special Publication (SP) 800-218, Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities."
+      }
+    ]
+  },
+  {
+    "title": "1. Introduction",
+    "subsections": [
+      {
+        "content": "Section 4.1.a of Executive Order (EO) 14110, Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence [1], tasked NIST with \"developing a companion resource to the Secure Software Development Framework to incorporate secure development practices for generative AI and for dual-use foundation models.\" This document is that companion resource. The software development and use of AI models and AI systems inherit much of the same risk as any other digital system. A unique challenge for this community is the blurring of traditional boundaries between system code and system data, as well as the use of plain human language as the means of interaction with the systems. AI models and systems, their configuration parameters (e.g., model weights), and the data they interact with (e.g., training data, user queries, etc.) can form closed loops that can be manipulated for unintended functionality. AI model and system development is still much more of an art than an exact science, requiring developers to interact with model code, training data, and other parameters over multiple iterations. Training datasets may be acquired from unknown, untrusted sources. Model weights and other training parameters can be susceptible to malicious tampering. Some models may be complex to the point that they cannot easily be thoroughly inspected, potentially allowing for undetectable execution of arbitrary code. User queries can be crafted to produce undesirable or objectionable output and \u2014 if not sanitized properly \u2014 can be leveraged for injection-style attacks. The goal of this document is to identify the practices and tasks needed to address these novel risks."
+      }
+    ]
+  },
+  {
+    "title": "The SSDF provides a common language for describing secure software development practices",
+    "subsections": [
+      {
+        "content": "throughout the software development life cycle. This document augments the practices and tasks defined in SSDF version 1.1 by adding recommendations, considerations, notes, and informative references that are specific to generative AI and dual-use foundation model development. These additions are documented in the form of an SSDF Community Profile (\"Profile\"), which is a baseline of SSDF practices and tasks that have been enhanced to address a particular use case. An example of an addition is, \"Secure code storage should include AI models, model weights, pipelines, reward models, and any other AI model elements that need their confidentiality, integrity, and/or availability protected.\""
+      },
+      {
+        "content": "This Profile supplements what SSDF version 1.1 already includes. The Profile is intended to be used in conjunction with NIST Special Publication (SP) 800-218, Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities [6] and should not be used without SP 800-218. Readers should also utilize the implementation examples and informative references defined in SP 800-218 for additional information on how to perform each SSDF practice and task for all types of software development, as they are also generally applicable to AI model and AI system development."
+      },
+      {
+        "title": "1.2. Scope",
+        "content": [
+          {
+            "text": "This Profile's scope is AI model development, which includes data sourcing for, designing, training, fine-tuning, and evaluating AI models, as well as incorporating and integrating AI models into other software. Consistent with SSDF version 1.1 and EO 14110, practices for the deployment and operation of AI systems with AI models are out of scope. Similarly, while cybersecurity practices for training data and other forms of data being used for AI model development are in scope, the rest of the data governance and management life cycle is out of scope."
+          },
+          {
+            "text": "Practices and tasks in this Profile do not distinguish between human-written and AI-generated source code, because it is assumed that all source code should be evaluated for vulnerabilities and other issues before use."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "Language to help facilitate communications among stakeholders, including software producers and software acquirers. The SSDF has also been used in support of EO 14028, Improving the Nation's Cybersecurity [7], to enhance software supply chain security."
+      },
+      {
+        "content": "NIST general cybersecurity resources, including The NIST Cybersecurity Framework (CSF) 2.0 [8], Security and Privacy Controls for Information Systems and Organizations [9], and Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations [10].\nAI model developers, AI researchers, AI system developers, and secure software practitioners from industry and government with expertise in the unique security challenges of AI models and the practices for addressing those challenges. This expertise was primarily captured through NIST's January 2024 workshop, where speakers and attendees shared suggestions for adapting secure software development practices and tasks to accommodate the unique aspects of AI model development and the software leveraging them."
+      },
+      {
+        "title": "1.4. Document Structure",
+        "content": [
+          {
+            "text": "This document is structured as follows:"
+          },
+          {
+            "text": "Section 2 provides additional background on the SSDF and explains what an SSDF Community Profile is and how it can be used.\nSection 3 defines the SSDF Community Profile for AI Model Development.\nThe References section lists all references cited in this document.\nAppendix A provides a glossary of selected terms used within this document."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Practices and Tasks",
+    "subsections": [
+      {
+        "content": "Use and how much time and resources to devote to each one. Cost models may need to be updated to effectively consider the costs inherent to AI model development. A risk-based approach to secure software development may change over time as an organization responds to new or elevated capabilities and risks associated with an AI model or system."
+      },
+      {
+        "content": "Generative AI and dual-use foundation models present additional challenges in tracking model versioning and lineage. Source code for defining the model architecture and building model binaries is amenable to secure software engineering practices for versioning, lineage, and reproducibility. However, the final model weights are defined only after the model is trained and fine-tuned; this is where limitations in tracking all aspects of collection, processing, and training arise. Organizations should follow secure software development practices for the parts of a model that can be covered fully and strive to introduce secure practices to the extent possible for the stages and corresponding artifacts where obtaining such security guarantees is hard to achieve. Organizations should document the parts and artifacts that are not covered by the secure software development practices."
+      },
+      {
+        "title": "Integration into MLOps",
+        "content": [
+          {
+            "text": "The Profile's practices, tasks, recommendations, and considerations can be integrated into machine learning operations (MLOps) along with other software assets within a continuous integration/continuous delivery (CI/CD) pipeline."
+          }
+        ]
+      },
+      {
+        "title": "Shared Responsibility Model",
+        "content": [
+          {
+            "text": "The responsibility for implementing SSDF practices in the Profile may be shared among multiple organizations. For example, an AI model could be produced by one organization and executed within an AI system hosted by a second organization, which is then used by other organizations. In these situations, there is likely a shared responsibility model involving the AI model producer, AI system producer, and AI system acquirer. An AI system acquirer can establish an agreement with an AI system producer and/or AI model producer that specifies which party is responsible for each practice and task and how each party will attest to its conformance with the agreement."
+          }
+        ]
+      },
+      {
+        "title": "Limitations of SSDF",
+        "content": [
+          {
+            "text": "A limitation of the SSDF and this Profile is that they only address cybersecurity risk management. There are many other types of risks to AI systems (e.g., data privacy, intellectual property, and bias) that organizations should manage along with cybersecurity risk as part of a mature enterprise risk management program. NIST resources on identifying and managing other types of risk include:"
+          },
+          {
+            "text": "AI Risk Management Framework (AI RMF) [2] and the NIST AI RMF Playbook [11]\nAdversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations [3]\nArtificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile [12]\n\nTowards a Standard for Identifying and Managing Bias in Artificial\n```# Intelligence\n\n\nCybersecurity Supply Chain Risk Management Practices for Systems and Organizations\n\nNIST Privacy Framework: A Tool for Improving Privacy Through Enterprise Risk Management, Version 1.0\nIntegrating Cybersecurity and Enterprise Risk Management (ERM)"
+          },
+          {
+            "text": "Towards a Standard for Identifying and Managing Bias in Artificial\n```# Intelligence"
+          },
+          {
+            "text": "Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations"
+          }
+        ]
+      }
+    ]
+  }
+]

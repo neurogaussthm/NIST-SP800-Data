@@ -1,0 +1,1895 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "Guide for Security-Focused Configuration Management of Information Systems provides guidelines for organizations responsible for managing and administering the security of federal information systems and associated environments of operation. Configuration management concepts and principles described in this publication provide supporting information for NIST SP 800-53, Security and Privacy Controls for Federal Information Systems and Organizations. NIST SP 800-128 assumes that information security is an integral part of an organization's overall configuration management. The focus of this document is on implementation of the information system security aspects of configuration management, and as such the term security-focused configuration management (SecCM) is used to emphasize the concentration on information security. In addition to the fundamental concepts associated with SecCM, the process of applying SecCM practices to information systems is described. The goal of SecCM activities is to manage and monitor the configurations of information systems to achieve adequate security and minimize organizational risk while supporting the desired business functionality and services."
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER ONE",
+    "subsections": [
+      {
+        "title": "INTRODUCTION",
+        "content": [
+          {
+            "subsection": "THE NEED FOR CONFIGURATION MANAGEMENT TO PROTECT INFORMATION AND SYSTEMS",
+            "text": []
+          },
+          {
+            "text": "A system is composed of many components that can be interconnected in a multitude of arrangements to meet a variety of business, mission, and information security needs. How system components are networked, configured, and managed is critical in providing adequate information security and supporting an organization's risk management process. A system is typically in a constant state of change in response to new, enhanced, corrected, or updated hardware and software capabilities, patches for correcting software flaws and other errors to existing components, new security threats, changing business functions, etc. Implementing system changes almost always results in some adjustment to the system configuration. To ensure that the required adjustments to the system configuration do not adversely affect the security of the system or the organization from operation of the system, a well-defined configuration management process that integrates information security is needed."
+          },
+          {
+            "text": "Organizations apply configuration management (CM) for establishing baselines and for tracking, controlling, and managing many aspects of business development and operation (e.g., products, services, manufacturing, business processes, and information technology). Organizations with a robust and effective CM process need to consider information security implications with respect to the development and operation of systems including hardware, software, applications, and documentation. Effective CM of systems requires the integration of the management of secure configurations into the organizational CM process or processes. For this reason, this document assumes that information security is an integral part.\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "of an organization's overall CM process; however, the focus of this document is on implementation of the information security aspects of CM, and as such the term security-focused configuration management (SecCM) is used to emphasize the concentration on information security. Though both IT business application functions and security-focused practices are expected to be integrated as a single process, SecCM in this context is defined as the management and control of configurations for systems to enable security and facilitate the management of information security risk."
+          }
+        ]
+      },
+      {
+        "title": "1.1 PURPOSE AND APPLICABILITY",
+        "content": [
+          {
+            "text": "Federal agencies are responsible for \"including policies and procedures that ensure compliance with minimally acceptable system configuration requirements, as determined by the agency\" within their information security program. Managing system configurations is also a minimum security requirement identified in [FIPS 200], and NIST [SP 800-53] defines controls that support this requirement."
+          },
+          {
+            "text": "In addition to general guidelines for ensuring that security considerations are integrated into the CM process, this publication provides guidelines for implementation of the Configuration Management family of controls defined in NIST [SP 800-53] (CM-1 through CM-9). This publication also includes guidelines for NIST [SP 800-53] controls related to managing the configuration of the system architecture and associated components for secure processing, storing, and transmitting of information. Configuration management is an important process for establishing and maintaining secure system configurations, and provides important support for managing security risks in systems."
+          },
+          {
+            "text": "The guidelines in this publication are applicable to all federal information systems other than those systems designated as national security systems as defined in [44 USC 3542]. The guidelines have been broadly developed from a technical perspective to complement similar guidelines for national security systems and may be used for such systems with the approval of appropriate federal officials exercising policy authority over such systems. State, local, and tribal governments, as well as private sector organizations are encouraged to consider using these guidelines, as appropriate."
+          },
+          {
+            "text": "This publication is intended to provide guidelines for organizations responsible for managing and administrating the security of federal information systems and associated environments of operation. For organizations responsible for the security of information processed, stored, and transmitted by external or service-oriented environments (e.g., cloud service providers), the configuration management concepts and principles presented here can aid organizations in establishing assurance requirements for suppliers providing external information technology services."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "including:\n- Individuals with system and information security management and oversight responsibilities (e.g., chief information officers, senior agency information security officers, and authorizing officials);\n- Individuals with system development responsibilities (e.g., program and project managers, mission/application owners, system designers, system and application programmers);\n- Individuals with security implementation and operational responsibilities (e.g., system owners, information owners and stewards, system administrators, system security officers); and\n- Individuals with system and information security assessment and monitoring responsibilities (e.g., auditors, Inspectors General, assessors/assessment teams)."
+      },
+      {
+        "content": "Commercial companies producing information technology products and systems, creating information security-related technologies, and providing information security services can also benefit from the information in this publication."
+      },
+      {
+        "title": "1.3 RELATIONSHIP TO OTHER SECURITY PUBLICATIONS",
+        "content": [
+          {
+            "text": "Configuration management concepts and principles described in this publication provide supporting information for NIST [SP 800-53], Security and Privacy Controls for Federal Information Systems and Organizations, as amended. This publication also provides important supporting information for the Implement Step, Assess Step, and the Monitor Step of the Risk Management Framework (RMF) that is discussed in NIST [SP 800-37], Risk Management Framework for Information Systems and Organizations: A System Life Cycle Approach for Security and Privacy, as amended. More specific guidelines on the implementation of the Monitor step of the RMF is provided in NIST [SP 800-137], Information Security Continuous Monitoring for Federal Information Systems and Organizations."
+          },
+          {
+            "text": "The purpose of the Monitor step in the Risk Management Framework is to continuously monitor the effectiveness of all controls selected, implemented, and authorized for protecting organizational information and systems, which includes the Configuration Management controls identified in NIST [SP 800-53]. The monitoring phase identified in the security-focused configuration management (SecCM) process defined later in this document supports the RMF Monitoring phase by providing specific activities associated with the monitoring of the system structural architecture and the configuration settings of the software and hardware that operate in that system architecture."
+          },
+          {
+            "text": "Many of the SecCM concepts and principles described in this publication draw upon the underlying principles established for managing information security risk in NIST [SP 800-39], Managing Information Security Risk: Organization, Mission, and Information System View. This publication often refers to information from NIST [SP 800-70], National Checklist Program for IT Products--Guidelines for Checklist Users and Developers, as amended; and NIST [SP 800-126], The Technical Specification for the Security Content Automation Protocol.\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "(SCAP), Version 1.3",
+        "content": [
+          {
+            "text": "as a potential means of automated support in conducting many configuration management activities. Additionally, this publication refers to numerous NIST Special Publications that provide guidelines on use and configuration of specific technologies for securing systems. Many of these publications are identified in Appendix F, Best Practices for Establishing Secure Configurations."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER TWO",
+    "subsections": [
+      {
+        "title": "THE FUNDAMENTALS",
+        "content": [
+          {
+            "subsection": "BASIC CONCEPTS OF SECURITY CONFIGURATION MANAGEMENT",
+            "text": []
+          },
+          {
+            "text": "This chapter presents the fundamentals of security-focused configuration management (SecCM) including: (i) an overview of basic configuration management terms and concepts, and the role of SecCM; (ii) the primary phases of SecCM; (iii) SecCM concepts; and (iv) the roles and responsibilities relevant to SecCM."
+          }
+        ]
+      },
+      {
+        "title": "2.1 OVERVIEW",
+        "content": [
+          {
+            "text": "This section provides an overview of SecCM including its importance in managing organizational risks from systems, the basic terms associated with configuration management, and characterization of SecCM within the configuration management discipline."
+          },
+          {
+            "subsection": "2.1.1 BASIC CONFIGURATION MANAGEMENT",
+            "text": []
+          },
+          {
+            "text": "Configuration management has been applied to a broad range of products and systems in subject areas such as automobiles, pharmaceuticals, and information technology. Some basic terms associated with the configuration management discipline are briefly explained below.# Configuration Management (CM)"
+          },
+          {
+            "text": "Configuration Management (CM) comprises a collection of activities focused on establishing and maintaining the integrity of products and systems, through control of the processes for initializing, changing, and monitoring the configurations of those products and systems."
+          }
+        ]
+      },
+      {
+        "title": "Configuration Item (CI)",
+        "content": [
+          {
+            "text": "A Configuration Item (CI) is an identifiable part of a system (e.g., hardware, software, firmware, documentation, or a combination thereof) that is a discrete target of configuration control processes."
+          }
+        ]
+      },
+      {
+        "title": "Baseline Configuration",
+        "content": [
+          {
+            "text": "A Baseline Configuration is a set of specifications for a system, or CI within a system, that has been formally reviewed and agreed on at a given point in time, and which can be changed only through change control procedures. The baseline configuration is used as a basis for future builds, releases, and/or changes."
+          }
+        ]
+      },
+      {
+        "title": "Configuration Management Plan (CM Plan)",
+        "content": [
+          {
+            "text": "A Configuration Management Plan (CM Plan) is a comprehensive description of the roles, responsibilities, policies, and procedures that apply when managing the configuration of products and systems. The basic parts of a CM Plan include:"
+          },
+          {
+            "text": "\n\nConfiguration Control Board (CCB) \u2013 Establishment of and charter for a group of qualified people with responsibility for the process of controlling and approving changes throughout the development and operational lifecycle of products and systems; may also be referred to as a change control board;\n\n\nConfiguration Item Identification \u2013 Methodology for selecting and naming configuration items that need to be placed under CM;\n\n\nConfiguration Change Control \u2013 Process for managing updates to the baseline configurations for the configuration items; and\n\n\nConfiguration Monitoring \u2013 Process for assessing or testing the level of compliance with the established baseline configuration and mechanisms for reporting on the configuration status of items placed under CM.\n\n"
+          },
+          {
+            "text": "Configuration Control Board (CCB) \u2013 Establishment of and charter for a group of qualified people with responsibility for the process of controlling and approving changes throughout the development and operational lifecycle of products and systems; may also be referred to as a change control board;"
+          },
+          {
+            "text": "Configuration Item Identification \u2013 Methodology for selecting and naming configuration items that need to be placed under CM;"
+          },
+          {
+            "text": "Configuration Change Control \u2013 Process for managing updates to the baseline configurations for the configuration items; and"
+          },
+          {
+            "text": "Configuration Monitoring \u2013 Process for assessing or testing the level of compliance with the established baseline configuration and mechanisms for reporting on the configuration status of items placed under CM."
+          },
+          {
+            "text": "This guideline is associated with the application of security-focused configuration management practices as they apply to systems. The configuration of a system is a representation of the system's components, how each component is configured, and how the components are connected or arranged to implement the system. The possible conditions in which a system or system component can be arranged affect the security posture of the system. The activities involved in managing the configuration of a system include development of a configuration management plan, establishment of a configuration control board, development of a methodology for configuration item identification, establishment of the baseline configuration, development of a configuration change control process, and development of a process for configuration monitoring and reporting."
+          }
+        ]
+      },
+      {
+        "title": "2.1.2 The Challenge of Protecting Information and Managing Risk",
+        "content": [
+          {
+            "text": "As the ubiquity of information technology increases the dependence on systems, organizations are faced with an increase in the number and severity of threats that can have# Adverse Impacts on Operations, Assets, and Individuals"
+          },
+          {
+            "text": "Given the potential for harm that can arise from environmental disruptions, human errors, and purposeful attacks by hostile entities and other threats, an organization must place greater emphasis on the management of risk associated with systems as it attempts to carry out its mission and business processes. The cornerstone of any effort to manage organizational risk related to systems is an effective security program."
+          },
+          {
+            "text": "It is incumbent upon the organization to implement its directives in a manner that provides adequate security for protecting information and systems. As threats continue to evolve in an environment where organizations have finite resources with which to protect themselves, security has become a risk-based activity where the operational and economic costs of ensuring that a particular threat does not exploit a vulnerability are balanced against the needs of the organization's mission and business processes. In a world of limited resources, the practice of risk management is fundamental to an information security program."
+          }
+        ]
+      },
+      {
+        "title": "Risk-Based Mission Protection Strategies",
+        "content": [
+          {
+            "text": "In risk-based mission protection strategies, organizations explicitly identify and respond to risks associated with the use of systems in carrying out missions and business processes. Careful consideration is given to how a range of diverse threats can expose existing vulnerabilities and cause harm to the organization. In the management of risk, organizations often have very little control over threats. Organizations cannot control earthquakes, floods, disgruntled employees, hackers, and other threats; however, organizations can control vulnerabilities and reduce threats via implementation of a robust SecCM process that is part of the overall risk management process."
+          },
+          {
+            "text": "Vulnerabilities represent the various types of weaknesses that can be exploited by a threat. While an analysis of system vulnerabilities reveals a variety of potential causes, many vulnerabilities can be traced to software flaws and misconfigurations of system components. The management of configurations has traditionally been viewed as an IT management best practice. Using SecCM to gain greater control over and ensure the integrity of IT resources facilitates asset management, improves incident response, help desk, disaster recovery and problem solving, aids in software development and release management, enables greater automation of processes, and supports compliance with policies and preparation for audits."
+          },
+          {
+            "subsection": "Role of Security-Focused Configuration Management",
+            "text": []
+          },
+          {
+            "text": "The configuration of a system and its components has a direct impact on the security posture of the system. How the configurations are established and maintained requires a disciplined approach for providing adequate security. Changes to the configuration of a system are often needed to stay up to date with changing business functions and services, and information security needs. However, changes can adversely impact the previously established security posture.# Security-Focused Configuration Management"
+          },
+          {
+            "text": "Therefore, effective configuration management is vital to the establishment and maintenance of security of information and systems. The security-focused configuration management process is critical to maintaining a secure state under normal operations, contingency recovery operations, and reconstitution to normal operations."
+          }
+        ]
+      },
+      {
+        "title": "What is Security-Focused Configuration Management (SecCM)?",
+        "content": [
+          {
+            "text": "Security-Focused Configuration Management (SecCM) is the management and control of secure configurations for a system to enable security and facilitate the management of risk. SecCM builds on the general concepts, processes, and activities of configuration management by paying attention to the implementation and maintenance of the established security requirements of the organization and systems."
+          }
+        ]
+      },
+      {
+        "title": "Integration with Existing Processes",
+        "content": [
+          {
+            "text": "Information security configuration management requirements are integrated into (or complement) existing organizational configuration management processes (e.g., business functions, applications, products) and information systems. SecCM activities include:"
+          },
+          {
+            "text": "\nIdentification and recording of configurations that impact the security posture of the system and the organization;\nThe consideration of security risks in approving the initial configuration;\nThe analysis of security implications of changes to the system configuration; and\nDocumentation of the approved/implemented changes.\n"
+          }
+        ]
+      },
+      {
+        "title": "Implementation of SecCM",
+        "content": [
+          {
+            "text": "In cases where an organization has no existing CM process in place, security-focused configuration management practices as defined in this document are developed and implemented from process inception."
+          },
+          {
+            "text": "Initial implementation of a SecCM program may require considerable effort. If there is no existing SecCM process within the organization, there is an initial investment in developing and implementing a program that is comprehensive enough to span multiple technologies, the organizational structure, and disparate processes, and that can deliver consistent results while supporting the organization's missions and business processes. In addition, tools are procured and implemented, system components inventoried and recorded, and processes modified to account for new ways of managing technology in the context of SecCM."
+          }
+        ]
+      },
+      {
+        "title": "Ongoing Investment in SecCM",
+        "content": [
+          {
+            "text": "Once in place, SecCM requires an ongoing investment in time and resources. Product patches, fixes, and updates require time for security impact analysis even as threats and vulnerabilities continue to exist. As changes to systems are made, baseline configurations are updated, specific configuration settings confirmed, and configuration items tracked, verified, and reported. SecCM is a continuous activity that, once incorporated into IT management processes, touches all stages of the system development life cycle (SDLC). Organizations that implement SecCM throughout the SDLC and make its tenets a part of the IT management culture are most likely to reap benefits in terms of improvement of security and functionality, and more effective management of organizational risk."
+          }
+        ]
+      },
+      {
+        "title": "2.2 The Phases of Security-Focused Configuration Management# Security-focused Configuration Management",
+        "content": [
+          {
+            "text": "Security-focused configuration management of systems involves a set of activities that can be organized into four major phases: Planning; Identifying and Implementing Configurations; Controlling Configuration Changes; and Monitoring. It is through these phases that SecCM not only supports security for a system and its components, but also supports the management of organizational risk. Chapter 3 presents the detailed processes and considerations in implementing the necessary activities in each of these phases."
+          },
+          {
+            "text": "The four phases of SecCM are illustrated in Figure 2-1 and described below."
+          }
+        ]
+      },
+      {
+        "title": "2.2.1 PLANNING",
+        "content": [
+          {
+            "text": "As with many security activities, planning can greatly impact the success or failure of the effort. As a part of planning, the scope or applicability of SecCM processes are identified. Planning includes developing policy and procedures to incorporate SecCM into existing information technology and security programs, and then disseminating the policy throughout the organization. Policy addresses areas such as the implementation of SecCM plans, integration into existing security program plans, Configuration Control Boards (CCBs), configuration change control processes, tools and technology, the use of common secure configurations and baseline configurations, monitoring, and metrics for compliance with established SecCM policy and procedures. It is typically more cost-effective to develop and implement a SecCM plan, policies, procedures, and associated SecCM tools at the organizational or mission/business process risk management level."
+          }
+        ]
+      },
+      {
+        "title": "2.2.2 IDENTIFYING AND IMPLEMENTING CONFIGURATIONS",
+        "content": [
+          {
+            "text": "After the planning and preparation activities are completed, a secure baseline configuration for the system is developed, reviewed, approved, and implemented. The approved baseline configuration for a system and associated components represents the most secure state consistent with operational requirements and constraints. For a typical system, the secure baseline may address configuration settings, software loads, patch levels, how the information system is physically or logically arranged, how various security controls are implemented, and documentation. Where possible, automation is used to enable interoperability of tools and uniformity of baseline configurations across the system."
+          }
+        ]
+      },
+      {
+        "title": "2.2.3 CONTROLLING CONFIGURATION CHANGES",
+        "content": [
+          {
+            "text": "Given the continually evolving nature of a system and the mission it supports, the challenge for organizations is not only to establish an initial baseline configuration that represents a secure state (which is also cost-effective, functional, and supportive of mission and business processes), but also to maintain a secure configuration in the face of the significant waves of change that ripple through organizations."
+          },
+          {
+            "text": "In this phase of SecCM, the emphasis is put on the management of change to maintain the secure, approved baseline of the system. Through the use of SecCM practices, organizations ensure that# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Changes",
+        "content": [
+          {
+            "text": "Changes are formally identified, proposed, reviewed, analyzed for security impact, tested, and approved prior to implementation. As part of the configuration change control effort, organizations can employ a variety of access restrictions for change including access controls, process automation, abstract layers, change windows, and verification and audit activities to limit unauthorized and/or undocumented changes to the system."
+          }
+        ]
+      },
+      {
+        "title": "2.2.4 Monitoring",
+        "content": [
+          {
+            "text": "Monitoring activities are used as the mechanism within SecCM to validate that the system is adhering to organizational policies, procedures, and the approved secure baseline configuration. Planning and implementing secure configurations and then controlling configuration change is usually not sufficient to ensure that a system which was once secure will remain secure. Monitoring identifies undiscovered/undocumented system components, misconfigurations, vulnerabilities, and unauthorized changes, all of which, if not addressed, can expose organizations to increased risk. Using automated tools helps organizations to efficiently identify when the system is not consistent with the approved baseline configuration and when remediation actions are necessary. In addition, the use of automated tools often facilitates situational awareness and the documentation of deviations from the baseline configuration."
+          },
+          {
+            "text": "Processes and requirements within all four SecCM phases do not remain static thus all processes in all four phases are reviewed and revised as needed to support organizational risk management. SecCM monitoring activities may loop back to any of the previous phases (as noted in Figure 2-1) and precipitate changes."
+          },
+          {
+            "text": "SecCM monitoring is done through assessment and reporting activities. Reports address the secure state of individual system configurations and are used as input to Risk Management Framework information security continuous monitoring requirements. SecCM monitoring can also support gathering of information for metrics that can be used to provide quantitative evidence that the SecCM program is meeting its stated goals, and can be used to improve SecCM processes in general."
+          }
+        ]
+      },
+      {
+        "title": "2.3 Security-Focused Configuration Management Concepts",
+        "content": [
+          {
+            "text": "This section describes the fundamental concepts relevant to the practice of SecCM within an organization. Recognizing that organizations have widely varying missions and organizational structures, there may be differences in the way that SecCM is implemented and managed."
+          },
+          {
+            "subsection": "2.3.1 Configuration Management Policy and Procedures",
+            "text": []
+          },
+          {
+            "text": "The development of documented SecCM policy communicates senior management's expectations for SecCM to members of the organization through specific, measurable, and confirmable objectives. It is a top-down approach which defines what is required and what is not permitted with respect to using SecCM to manage and control information resources. While policy defines the objectives for what must be done, procedures describe how the policy.# Configuration Management"
+          }
+        ]
+      },
+      {
+        "title": "Objectives",
+        "content": [
+          {
+            "text": "Objectives are met through specific actions and results. SecCM procedures are developed to describe the methodology and tasks for each activity that supports implementation of the SecCM policy. Documenting configuration management policy and procedures is performed during the Planning phase and supports the implementation of NIST [SP 800-53] control CM-1 Configuration Management Policy and Procedures."
+          }
+        ]
+      },
+      {
+        "title": "2.3.2 Configuration Management Plan",
+        "content": [
+          {
+            "text": "The Configuration Management Plan serves to describe how SecCM policy is to be implemented. The SecCM Plan may be written to apply to an entire organization, or it may be localized and tailored to a system or a group of systems supporting a mission/business process within the organization. The SecCM Plan may take the form of an all-inclusive, stand-alone document that describes all aspects of SecCM or may be contained within more broadly defined CM procedures. A SecCM Plan may also take the form of a set of documents and appendices that taken together describe all aspects of SecCM. Finally, the SecCM Plan may take the form of a set of predefined data elements in a repository. The SecCM Plan is produced during the Planning phase and supports the implementation of NIST [SP 800-53] controls CM-1 Configuration Management Policy and Procedures and CM-9 Configuration Management Plan."
+          }
+        ]
+      },
+      {
+        "title": "2.3.3 Configuration Control Board",
+        "content": [
+          {
+            "text": "The Configuration Control Board (CCB) is a group typically consisting of two or more individuals that have the collective responsibility and authority to review and approve changes to an information system. The group, which represents various perspectives from within the organization, is chosen to evaluate and approve changes to the system. The CCB is a check and balance on configuration change activity, assuring that changes are held to organizationally defined criteria (e.g., scope, cost, impact on security) before being implemented. The CCB may be less formal for systems which have limited size, scope, and criticality in the context of the mission of the organization. The organization determines the size and formality of the CCB that is appropriate for a given system (or systems) within the organization. The CCB establishment is part of the Planning phase of SecCM and supports the implementation of NIST [SP 800-53] control CM-3 Configuration Change Control."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "For example, one organization may track a workstation (with all peripherals) as a single component while another may document each peripheral as a separate component in the inventory. Each component is associated with only one system and the authority over and responsibility for each component is with only one system owner (i.e., every item in the component inventory falls within the authorization boundary of a single system). Creating an inventory of system components is part of the Planning phase of SecCM and supports the implementation of the NIST [SP 800-53] control CM-8 System Component Inventory."
+      },
+      {
+        "title": "2.3.5 CONFIGURATION ITEMS",
+        "content": [
+          {
+            "text": "In the context of SecCM of systems, a configuration item (CI) is an aggregation of system components that is designated for configuration management and treated as a single entity throughout the SecCM process. The CI is identified, labeled, and tracked during its life cycle \u2013 the CI is the target of many of the activities within SecCM, such as configuration change control and monitoring activities. A CI may be a specific system component (e.g., server, workstation, router, application), a group of system components (e.g., group of servers with like operating systems, group of network components such as routers and switches, an application or suite of applications), a non-component object (e.g., firmware, documentation), or a system as a whole. CIs give organizations a way to decompose the system into manageable parts whose configurations can be actively managed. The purpose of breaking up a system into CIs is to allow more granularity and control in managing the secure configuration of the system. The level of granularity varies among organizations and systems and is balanced against the associated management overhead for each CI. In one organization, it may be appropriate to create a single CI to track all of the laptops within a system, while in another organization, each laptop may represent an individual CI. Identification of the configuration items that compose a system is part of the Planning phase of SecCM and supports the implementation of NIST [SP 800-53] control CM-3 Configuration Change Control."
+          }
+        ]
+      },
+      {
+        "title": "2.3.6 SECURE CONFIGURATIONS OF INFORMATION SYSTEMS",
+        "content": [
+          {
+            "text": "Configurations represent the possible states in which a system and its components can be arranged. Secure configurations are designed to reduce the organizational security risk from operation of a system, and may involve using trusted or approved software loads, maintaining up-to-date patch levels, applying secure configuration settings of the IT products used, and implementation of endpoint protection platforms. Secure configurations for a system are most often achieved through the application of secure configuration settings to the IT products (e.g., operating systems, databases, etc.) used to build the system. For example, a secure configuration for selected IT products used within the system or organization could incorporate the principle of\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Least Functionality",
+        "content": [
+          {
+            "text": "Least functionality helps to minimize the potential for introduction of security vulnerabilities and includes, but is not limited to, disabling or uninstalling unused/unnecessary operating system (OS) functionality, protocols, ports, and services, and limiting the software that can be installed and the functionality of that software. Implementing secure configurations is part of the Identifying and Implementing Configurations phase of SecCM and supports the implementation of NIST [SP 800-53] controls CM-6 Configuration Settings and CM-7 Least Functionality."
+          }
+        ]
+      },
+      {
+        "title": "2.3.7 Baseline Configuration",
+        "content": [
+          {
+            "text": "A baseline configuration is a set of specifications for a system, or Configuration Item (CI) within a system, that has been formally reviewed and agreed on at a given point in time, and which can be changed only through change control procedures. The baseline configuration is used as a basis for future builds, releases, and/or changes."
+          },
+          {
+            "text": "The baseline configuration of a system may evolve over time depending on the stage of the system development life cycle (SDLC). Early in the SDLC when a system is being initiated and acquired, the baseline may be a set of functional requirements. As the system is developed and implemented, the baseline may expand to include additional configuration items such as the technical design, the software load, the architecture, and configurations of the system and its individual components. A baseline configuration may also represent different information computing environments such as development, test, and production."
+          },
+          {
+            "text": "When a new baseline configuration is established, the implication is that all of the changes from the last baseline have been approved. Older versions of approved baseline configurations are maintained and made available for review or rollback as needed."
+          },
+          {
+            "text": "Developing and documenting the baseline configuration for a system is part of the Identifying and Implementing Configurations phase of SecCM and supports the implementation of NIST [SP 800-53] control CM-2 Baseline Configuration."
+          }
+        ]
+      },
+      {
+        "title": "2.3.8 Configuration Change Control",
+        "content": [
+          {
+            "text": "Configuration change control is the documented process for managing and controlling changes to the configuration of a system or its constituent CIs. Configuration change control for the system involves the systematic proposal, justification, implementation, test/evaluation, review, and disposition of changes to the system, including upgrades and modifications."
+          },
+          {
+            "text": "Configuration change control is applied to include changes to components of the system, changes to the configuration settings for information technology products, emergency/unscheduled changes, and changes to remediate flaws. Changes are controlled from the time the change is proposed to the implementation and testing of the change. Each step in the change process is clearly articulated along with the responsibilities and authorities of the roles involved."
+          },
+          {
+            "text": "Configuration change control falls under the Controlling Configuration Changes phase of SecCM and supports the implementation of NIST [SP 800-53] control CM-3 Configuration Change.# Control and CM-5 Access Restrictions for Change"
+          }
+        ]
+      },
+      {
+        "title": "2.3.9 SECURITY IMPACT ANALYSIS",
+        "content": [
+          {
+            "text": "Security impact analysis is the analysis conducted by qualified staff within an organization to determine the extent to which changes to the system affect the security posture of the system. Because systems are typically in a constant state of change, it is important to understand the impact of changes on the functionality of existing security controls and in the context of organizational risk tolerance. Security impact analysis is incorporated into the documented configuration change control process."
+          },
+          {
+            "text": "The analysis of the security impact of a change occurs when changes are analyzed and evaluated for adverse impact on security, preferably before they are approved and implemented, but also in the case of emergency/unscheduled changes. Once the changes are implemented and tested, a security impact analysis (and/or assessment) is performed to ensure that the changes have been implemented as approved, and to determine if there are any unanticipated effects of the change on existing security controls."
+          },
+          {
+            "text": "Security impact analysis is performed as a part of the Controlling Configuration Changes phase of SecCM and supports the implementation of NIST [SP 800-53] control CM-4 Security Impact Analysis."
+          }
+        ]
+      },
+      {
+        "title": "2.3.10 CONFIGURATION MONITORING",
+        "content": [
+          {
+            "text": "Configuration monitoring involves activities to determine whether systems are configured in accordance with the organization's agreed-upon baseline configurations, and whether the components identified within the system are consistent with the component inventory being maintained by the organization."
+          },
+          {
+            "text": "Configuration monitoring helps to ensure that SecCM controls are operating as intended and are providing effective security while supporting adherence to SecCM policies and procedures. Configuration monitoring may also help to motivate staff members to perform SecCM activities in accordance with policies and procedures. Additionally, configuration monitoring supports organizations in their efforts to conform to the Risk Management Framework."
+          },
+          {
+            "text": "Information gathered during configuration monitoring can be used to support overall continuous monitoring activities including ongoing assessments of specific controls and updates to documentation such as System Security Plans, Security Assessment Reports, and Security Status Reports. Automation capabilities, such as those defined by SCAP, can be used to automate assessment activities."
+          },
+          {
+            "text": "Configuration monitoring is part of the Monitoring phase of SecCM and supports the implementation of all NIST [SP 800-53] controls in the CM Family."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "SecCM Roles and Responsibilities",
+    "subsections": [
+      {
+        "content": "The roles may also have. Typically, SecCM roles and responsibilities include:"
+      },
+      {
+        "title": "Chief Information Officer (CIO)",
+        "content": [
+          {
+            "text": "The CIO designates and/or provides a SecCM Program Manager for the organization and approves the organizational SecCM plan and policies."
+          }
+        ]
+      },
+      {
+        "title": "Senior Agency Information Security Officer (SAISO)",
+        "content": [
+          {
+            "text": "The SAISO may act as the SecCM Program Manager for the organization. The SAISO may also provide staff with security expertise to serve on the CCB and/or to conduct security impact analyses. Organizations may also refer to this position as the Chief Information Security Officer (CISO)."
+          }
+        ]
+      },
+      {
+        "title": "Authorizing Official (AO)",
+        "content": [
+          {
+            "text": "The AO manages or participates in the CCB for systems s/he authorizes and may provide technical staff to conduct and/or review security impact analyses. The AO coordinates with the Risk Executive (Function) on SecCM issues and makes the final determination whether or not a given change or set of changes continues to be an acceptable security risk."
+          }
+        ]
+      },
+      {
+        "title": "System Owner",
+        "content": [
+          {
+            "text": "The system owner identifies, defines, and ensures implementation of the aspects of SecCM for the information system that have not been defined by the organization of which the system is a part. The system owner also ensures implementation of organizational-level SecCM requirements for the system."
+          }
+        ]
+      },
+      {
+        "title": "SecCM Program Manager",
+        "content": [
+          {
+            "text": "The SecCM Program Manager develops SecCM policies and procedures, provides direction, and oversees the implementation of the SecCM program for the organization and/or system level SecCM program. The SecCM Program Manager may be the SAISO (or someone designated by the SAISO or the CIO) at the organizational level or the system owner (or someone designated by the system owner) at the system level."
+          }
+        ]
+      },
+      {
+        "title": "System Security Officer (SSO)",
+        "content": [
+          {
+            "text": "The SSO assists the system owner with implementation of SecCM for the system, conducts configuration monitoring activities (reporting and analysis), and may serve on the CCB."
+          }
+        ]
+      },
+      {
+        "title": "System Administrator (SA)",
+        "content": [
+          {
+            "text": "The SA implements agreed-upon secure baseline configurations, incorporates secure configuration settings for IT products, and assists with security impact analyses and configuration monitoring activities as needed. In addition, the SA may be included in the process for determining the appropriate baseline configuration for each CI and may serve on the CCB. SAs are also responsible for complying with SecCM policies and implementing/following SecCM procedures."
+          }
+        ]
+      },
+      {
+        "title": "System/Software Developer",
+        "content": [
+          {
+            "text": "The developer ensures that secure configuration settings are built into applications in accordance with security requirements and assists with security impact analyses and configuration monitoring activities as needed. In addition, the developer may be included in the process for determining the\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "appropriate baseline configuration for relevant CIs and may serve on the CCB.",
+        "content": [
+          {
+            "text": "Developers are also responsible for complying with SecCM policies and implementing/following SecCM procedures."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER THREE",
+    "subsections": [
+      {
+        "title": "THE PROCESS",
+        "content": [
+          {
+            "subsection": "IMPLEMENTATION AND APPLICATION OF SECURITY-FOCUSED CONFIGURATION MANAGEMENT",
+            "text": []
+          },
+          {
+            "text": "This chapter describes the process of applying security-focused configuration management to systems within an organization. The goal of SecCM activities is to manage and monitor the configurations of systems to achieve adequate security and minimize organizational risk while supporting the desired business functionality and services."
+          },
+          {
+            "text": "The following sections discuss activities that occur within each of the four phases of SecCM. Some of the activities may be more efficiently performed at the organizational or mission/business process level (i.e., applying to more than one information system), while other activities may be more efficiently performed at the system level (i.e., applying to a single system). Each organization determines what activities are conducted at the organizational or mission/business process level and what activities are conducted at the system level in accordance with organizational management requirements. Appendix G provides flow charts of the SecCM activities described here. The flow charts are intended to serve as tools for organizations to draw upon for developing their own SecCM processes."
+          }
+        ]
+      },
+      {
+        "title": "3.1 PLANNING",
+        "content": [
+          {
+            "text": "This section describes various SecCM planning activities at the organizational and system level."
+          },
+          {
+            "subsection": "3.1.1 PLANNING AT THE ORGANIZATIONAL LEVEL",
+            "text": []
+          },
+          {
+            "text": "The following subsections describe the planning phase activities that are normally conducted at the organizational level (or the mission/business process level). The subsections are listed in the order in which the planning activities typically occur. As always, organizations have flexibility in determining which activities are performed at what level and in what order. Planning at the organizational level includes SecCM program documented policies and procedures that provide direction and support for managing configurations of individual systems within the organization."
+          },
+          {
+            "text": "The practice of SecCM for ensuring adequate security and facilitating the management of risk is most effectively realized if it is implemented in a consistent manner across the organization. Some SecCM activities are more effective when performed at the organizational level, with responsibility assigned to the organization-wide SecCM program."
+          },
+          {
+            "text": "For organizations with varied and complex enterprise architecture, implementing SecCM in a consistent and uniform manner across the organization requires organization-wide coordination of# SecCM Program Management"
+          }
+        ]
+      },
+      {
+        "title": "Overview",
+        "content": [
+          {
+            "text": "A senior management-level program manager designated to lead and oversee the organization-wide SecCM program can provide this type of coordination. For many large organizations, dedicated staff may be needed. For smaller organizations, or those with funding or resource constraints, the organization-wide SecCM program may be implemented by senior management-level staff that meet as a group to determine the SecCM-related activities for the organization."
+          },
+          {
+            "text": "The SecCM program manager provides knowledge and direction in the form of policies and procedures, communications, training, defined roles and responsibilities, support, oversight of program activities, and coordination with stakeholders. An organization-wide SecCM program also demonstrates management commitment for the effort. This commitment from the top of the organization is communicated throughout the organization down to the individual system owners."
+          },
+          {
+            "text": "The SecCM program manager facilitates communications regarding SecCM policies, procedures, issues, etc., within the organization. Consideration is given to implementation of a security information management console or \"dashboard\" to communicate basic project and operational information to stakeholders in language they understand. The SecCM program manager also considers other vehicles for communication such as Web site updates, emails, and newsletters to share milestones, measures of value, and other SecCM-related news with stakeholders."
+          },
+          {
+            "subsection": "Primary Roles",
+            "text": []
+          },
+          {
+            "text": "\nSecCM Program Manager\n"
+          },
+          {
+            "subsection": "Supporting Roles",
+            "text": []
+          },
+          {
+            "text": "\nSAISO (if s/he is not the SecCM Program Manager)\nCIO\nAO\n"
+          },
+          {
+            "subsection": "Expected Input",
+            "text": []
+          },
+          {
+            "text": "\nOrganizational risk tolerance\nOrganizational security requirements\nApplicable laws, regulations, policies, etc. from higher authorities\n"
+          },
+          {
+            "subsection": "Expected Output",
+            "text": []
+          },
+          {
+            "text": "\nFunctional organization-wide SecCM program\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "SecCM Training Requirements",
+    "subsections": [
+      {
+        "content": "\nSecCM training requirements;\nUse of SecCM templates;\nUse of automated tools;\nProhibited configuration settings; and\nRequirements for inventory of systems and components.\n"
+      },
+      {
+        "content": "The SecCM policy emphasizes management commitment, clarifies the required level of coordination among organizational entities, and defines the configuration monitoring approach."
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "SecCM Program Manager"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "\nSAISO (if s/he is not the SecCM Program Manager);\nCIO;\nAO\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nOrganizational risk tolerance;\nOrganizational security requirements;\nApplicable laws, regulations, policies, etc. from higher authorities\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Develop Organizational SecCM Procedures",
+    "subsections": [
+      {
+        "content": "The organization typically establishes and maintains common procedures for security-focused configuration management activities; however, some SecCM procedures may require development at the system level. Organizations may also provide hybrid procedures, i.e., the organization establishes procedures that contain parameters to be defined at the system level. In any case, the procedures are documented and disseminated to relevant staff, and in accordance with organizational policy. SecCM procedures address the following, as applicable:"
+      },
+      {
+        "title": "Templates",
+        "content": [
+          {
+            "text": "Establishes templates related to SecCM that integrate the organization-wide SecCM policy and procedures and allow individual system owners to fill in information specific to their system. Templates may be developed for a SecCM Plan, system-specific procedure(s), change requests, security impact analyses, reporting on SecCM, etc. Templates may also be developed to apply specifically to low, moderate, or high-impact systems. Sample templates are provided in Appendices D and E."
+          }
+        ]
+      },
+      {
+        "title": "Component Inventory",
+        "content": [
+          {
+            "text": "Describes how components are to be managed within the inventory (e.g., how new components are added to the inventory, what information about each component is tracked, and how updates are made including removal of retired components). If automated tools are to be used, factors such as how often they will run, who will administer them, who will have access, and how they will be audited are described."
+          }
+        ]
+      },
+      {
+        "title": "Baseline Configuration",
+        "content": [
+          {
+            "text": "Identifies the steps for creation of a baseline configuration, content of the baseline configuration, approval of the initial baseline configuration, maintenance of the baseline configuration (i.e., when it should be updated and by whom), and control of the baseline configuration. If applicable, requirements from higher regulatory bodies are considered and integrated when defining baseline configurations (e.g., requirements from OMB memos, laws such as Health Insurance Portability and Accountability Act (HIPAA), etc.)."
+          }
+        ]
+      },
+      {
+        "title": "Common Secure Configurations",
+        "content": [
+          {
+            "text": "Identifies commonly recognized and standardized secure configurations to be applied to configuration items. The common secure configurations specified in the procedure are derived from established federal, organizational, or industry specifications.\n```# CURRENT PAGE RAW OCR TEXT"
+          },
+          {
+            "text": "(the National Checklist Program contains references to common secure configurations such as the United States Government Configuration Baseline (USGCB), Defense Information System Agency (DISA) Security Technical Implementation Guides (STIGs), Center for Internet Security (CIS) Benchmarks, etc.). Where possible, common secure configurations use SCAP-expressed content. Deviations from the common secure configurations are also addressed (e.g., identification of acceptable methods for assessing, approving, documenting, and justifying deviations to common secure configurations, along with identification of controls implemented to mitigate risk from the deviations), in the event that the configuration for a given system must diverge from the defined configuration due to mission requirements or other constraints."
+          }
+        ]
+      },
+      {
+        "title": "Patch Management",
+        "content": [
+          {
+            "text": "Defines how an organization's patch management process is integrated into SecCM, how patches are prioritized and approved through the configuration change control process, and how patches are tested for their impact on existing secure configurations. Also defines how patches are integrated into updates to approved baseline configurations and how patch implementation is controlled (access controls, etc.)."
+          }
+        ]
+      },
+      {
+        "title": "Configuration Change Control",
+        "content": [
+          {
+            "text": "Identifies the steps to move a configuration change from its initial request to eventual release into the operational environment. The procedure includes, but is not limited to:"
+          },
+          {
+            "text": "\nChange request and approval procedures;\nCriteria to determine the types of changes that are preapproved or exempt from configuration control such as vendor-provided security patches, updated antivirus signatures, creation or deletion of users, replacement of defective peripherals, motherboard or hard drives, etc.;\nSecurity impact analysis procedures including how and with what level of rigor analysis results are to be documented and requirements for post-implementation review to confirm that the change was implemented as approved and that no additional security impact has resulted;\nCriteria to determine whether a change is significant enough to trigger consideration of system reauthorization activities;\nReview for consistency with organizational enterprise architecture;\nEstablishment of a group that approves changes (e.g., a Configuration Control Board);\nRequirements for testing of changes for submission to the CCB (i.e., the format and types of information to present to the CCB such as a test plan, schedule, and test results);\nIf change approvals at the system level are permitted, criteria for elevating a change request from system level approval to organizational approval (e.g., the change will affect other organizational systems, the change will require a system outage that could adversely impact the mission, etc.);\nRequirements for testing of changes prior to release into the operational environment;# Requirements for Access Restrictions for Change\nRequirements for access restrictions for change (i.e., who can make change to the information system and under what circumstances);\nRequirements for rollback of changes in the event that problems occur;\nRequirements for management of unscheduled changes (e.g., changes needed for critical flaw remediation) that are tailored to support expedited reviews and approvals;\nRequirements for retroactive analysis, testing, and approval of changes that are implemented outside of the change control process.\n"
+          }
+        ]
+      },
+      {
+        "title": "Help Desk Procedures",
+        "content": [
+          {
+            "text": "Describes how change requests originating through the help desk are recorded, submitted, tracked, and integrated into the configuration change control process."
+          }
+        ]
+      },
+      {
+        "title": "SDLC Procedures",
+        "content": [
+          {
+            "text": "Describes how SecCM is used to manage and control system configurations and changes within the organizationally defined SDLC process and throughout the life cycle of a system."
+          }
+        ]
+      },
+      {
+        "title": "Monitoring",
+        "content": [
+          {
+            "text": "Describes how monitoring activities and related reports are applied to assess the secure state of the system, and how to identify when the actual configuration becomes different in some way from the approved baseline configuration (i.e., unauthorized change) within a system through analysis of monitoring and reporting activities."
+          }
+        ]
+      },
+      {
+        "title": "Media Library Procedures",
+        "content": [
+          {
+            "text": "Describes management of the media library and includes naming conventions for media, labeling procedures (name/version, date created, retention period, owner, date for destruction, impact or classification level), tracking media, access controls, protections for media integrity (e.g., checksums), inventory checks, capacity planning, and archiving of media."
+          }
+        ]
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "\nSecCM Program Manager\nSystem Owners\n"
+          },
+          {
+            "text": "Note: SecCM Program Managers and System Owners both have responsibility in determining which procedures are needed at their respective levels and how they are documented (e.g., as several separate procedures, as a single procedure, as part of the SecCM plan)."
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "\nSAISO or equivalent (if s/he is not the SecCM Program Manager)\nSSO\nSA\nSystem User\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nOrganizational policies\nOrganizational risk tolerance\nOrganizational security requirements\nApplicable laws, regulations, policies, etc. from higher authorities\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Develop the SecCM Monitoring Strategy",
+    "subsections": [
+      {
+        "content": "SecCM monitoring verifies that the SecCM process is effective with respect to maintaining the security posture of the organization and adherence to baseline configurations and SecCM policy. The SecCM monitoring strategy is based on the risk tolerance of, and security requirements for, the organization. The SecCM monitoring strategy is consistent with, and provides input to, the organization's overall continuous monitoring strategy. The organization typically develops the SecCM monitoring strategy; however, organizations have the flexibility to develop some or all of...# SecCM Monitoring Strategy"
+      },
+      {
+        "content": "The SecCM monitoring strategy at the mission/business process or system level. A schedule for SecCM monitoring and associated reporting is established as part of the strategy. Scheduled and ad hoc assessments are included within the strategy. The monitoring schedule may coincide with scheduled releases such that assessments are performed before and after deployments. Ad hoc assessments may also be conducted so that staff does not become lax in between scheduled assessments. Additionally, the schedule includes provisions for reviewing and revising the SecCM monitoring strategy to ensure that the strategy continues to meet organizational security requirements."
+      },
+      {
+        "content": "See Section 3.4 for more information on SecCM monitoring."
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "\nSecCM Program Manager\n"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "\nSAISO or equivalent (if s/he is not the SecCM Program Manager)\nSystem Owner\nSSO\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nSecCM policy and procedures\nOverall organizational continuous monitoring policy and procedures\nOrganizational risk tolerance\nOrganizational security requirements\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Define the Types of Changes That Do Not Require Configuration Change Control",
+    "subsections": [
+      {
+        "content": "In the interest of resource management, the organization may wish to designate the types of changes that are preapproved (i.e., changes that are not sent to the CCB for approval) and changes that are typically not included under configuration control (i.e., changes that are completely exempt from SecCM). Vendor-provided security patches, updated antivirus signatures, and replacement of defective peripherals or internal hardware are examples of changes that may be preapproved. Database content updates, creating/removing/updating accounts, and creation or deletion of user files are examples of changes that are typically exempt from configuration change control."
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "\nSecCM Program Manager\nSystem Owner\n"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "\nSAISO (if s/he is not the SecCM Program Manager)\nAO\nSSO\nSA\nSystem/Software Developers\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nSecCM policies and procedures\nTypes of changes that typically occur within the organization and/or system\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Develop SecCM Training",
+    "subsections": [
+      {
+        "content": "SecCM is a fundamental part of an organizational security program, but often requires a change in organizational culture. Staff is provided training to ensure their understanding of SecCM policies and procedures. Training also provides a venue for management to communicate the reasons why SecCM is important. SecCM training material is developed covering organizational policies, procedures, tools, artifacts, and monitoring requirements. The training may be mandatory or optional as appropriate and is targeted to relevant staff (e.g., system administrators, system/software developers, system security officers, system owners, etc.) as# CURRENT_PAGE_RAW_OCR_TEXT"
+      },
+      {
+        "title": "necessary to ensure",
+        "content": [
+          {
+            "text": "that staff has the skills to manage the baseline configurations in accordance with organizational policy."
+          },
+          {
+            "subsection": "Primary Roles:",
+            "text": []
+          },
+          {
+            "text": "\nSecCM Program Manager\nSystem Owner\n"
+          },
+          {
+            "subsection": "Supporting Roles:",
+            "text": []
+          },
+          {
+            "text": "\nSAISO (if s/he is not the SecCM Program Manager)\nCIO\nAO\nSSO\n"
+          },
+          {
+            "subsection": "Expected Input:",
+            "text": []
+          },
+          {
+            "text": "\nSecCM policies and procedures\n"
+          },
+          {
+            "subsection": "Expected Output:",
+            "text": []
+          },
+          {
+            "text": "\nTraining materials and/or courses scheduled as necessary\n"
+          }
+        ]
+      },
+      {
+        "title": "Identify Approved IT Products",
+        "content": [
+          {
+            "text": "Many organizations establish a list of approved hardware and software products (e.g., a software whitelist) for use across the organization. System owners select and use products from the approved list without the need for explicit approval. Depending upon organizational policy, additional products required for a particular system may need to be approved by the CCB for that system; alternatively, a product used may need to be added to the organizationally controlled and approved IT products list. Some organizations may also provide a buying service or similar purchasing/contracting vehicle from which preapproved products may be purchased or are required to be purchased."
+          },
+          {
+            "subsection": "Primary Roles:",
+            "text": []
+          },
+          {
+            "text": "\nSecCM Program Manager and/or the Configuration Control Board\nSystem Owner\n"
+          },
+          {
+            "subsection": "Supporting Roles:",
+            "text": []
+          },
+          {
+            "text": "\nSAISO (if s/he is not the SecCM Program Manager)\nAO\nSSO\n"
+          },
+          {
+            "subsection": "Expected Input:",
+            "text": []
+          },
+          {
+            "text": "\nSecCM policies and procedures\norganizational security requirements\nacquisition/buying service information\n"
+          },
+          {
+            "subsection": "Expected Output:",
+            "text": []
+          },
+          {
+            "text": "\nList of approved IT Products for the organization\n"
+          }
+        ]
+      },
+      {
+        "title": "Identify Tools",
+        "content": [
+          {
+            "text": "Managing the myriad configurations found within system components has become an almost impossible task using manual methods like spreadsheets. When possible, organizations look for automated solutions which, in the long run, can lower costs, enhance efficiency, and improve the reliability of SecCM efforts."
+          },
+          {
+            "text": "In most cases, tools to support activities in SecCM phases two, three, and four are selected for use across the organization by SecCM program management, and system owners are responsible for applying the tools to the SecCM activities performed on each system. Similarly, tools and mechanisms for inventory reporting and management may be provided to system owners by the organization. In accordance with federal government and organizational policy, if automated tools are used, the tools are Security Content Automation Protocol (SCAP)-validated to the extent that such tools are available. SCAP is described in more detail in Section 3.5."
+          },
+          {
+            "text": "If not provided by the organization, tools are identified and deployed to support SecCM at the system level. When possible, existing SecCM tools from within the organization are leveraged to support consistent organization-wide SecCM practices, centralized reporting, and cost efficiency. Leveraging existing tools may require them to be installed and configured to function on individual systems. Tool installation and configuration usually requires that accounts be set up, administrators identified, schedules determined, the appropriate baseline.# Configurations Set Up"
+          },
+          {
+            "text": "and possibly installation of a client on each component to be configuration-controlled. If the tool has already been deployed within the organization, instructions for installation, configuration, and deployment are available or easy to produce if needed."
+          },
+          {
+            "text": "There are a wide variety of configuration management tools available to support an organization's SecCM program. At a minimum, the organization considers tools that can automatically assess configuration settings of system components. To the greatest extent possible, select automated tools that can scan different system components (e.g., Web server, database server, network devices, etc.) running different operating systems, identify the current configuration settings, and indicate where the current settings are noncompliant with policy."
+          },
+          {
+            "text": "Automated configuration management tools import settings from one or more common secure configurations and then allow for tailoring the configurations to the organization's security and mission/functional requirements."
+          }
+        ]
+      },
+      {
+        "title": "Tool Evaluation Criteria",
+        "content": [
+          {
+            "text": "Tools that implement and/or assess configuration settings are evaluated to determine whether they include requirements such as:"
+          },
+          {
+            "text": "\nAbility to pull information from a variety of sources (different type of components, different operating systems, different platforms, etc.);\nUse of standardized specifications such as Extensible Markup Language (XML) and SCAP;\nIntegration with other products such as help desk, inventory management, and incident response solutions;\nVendor-provided support (patches, updated vulnerability signatures, etc.);\nCompliance with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidelines and link vulnerabilities to NIST [SP 800-53] controls;\nStandardized reporting capability (e.g. SCAP, XML) including the ability to tailor output and drill down; and\nData consolidation into Security Information and Event Management (SIEM) tools and dashboard products.\n"
+          }
+        ]
+      },
+      {
+        "title": "All-in-One Solutions",
+        "content": [
+          {
+            "text": "Organizations may consider implementation of an all-in-one solution for configuration management. For example, various configuration management functions are included in products for managing servers, workstations, desktops, and services provided by applications. The products may include functions such as:"
+          },
+          {
+            "text": "\nInventory/discovery of system components;\nSoftware distribution;\nPatch management;\nOperating system deployment;\nPolicy management;\nMigration to new baseline configuration; and\nBackup/recovery.\n"
+          }
+        ]
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "\nSecCM Program Manager and/or the Configuration Control Board;\nSystem Owner# Supporting Roles\nSAISO (if s/he is not the SecCM Program Manager)\nCIO\nAO\nSSO\nSA\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nSecCM policies and procedures\nOrganizational and system security requirements\nAcquisition/buying service information\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Establish Configuration Test Environment and Program",
+    "subsections": [
+      {
+        "content": "Some organizations may wish to establish and maintain a configuration test environment and program for testing IT products, tools, and proposed changes to them in a centrally managed environment isolated from the production environment. The test environment is used for various types of testing to include:\n- IT products proposed for approval and use within the organization\n- Configuration settings for approved IT products\n- Patches issued by suppliers prior to their rollout through the organization\n- Validation of tools that detect unapproved configuration settings\n- Verification of testing processes to validate approved configuration settings\n- Security impact analyses\n- Other configuration-related changes"
+      },
+      {
+        "content": "NIST [SP 800-115], Technical Guide to Information Security Testing and Assessment, provides guidelines on how to establish and conduct an effective information security functional testing program. Specific guidelines are provided for system configuration review and vulnerability scanning which may be directly applied to the configuration test program."
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "\nSecCM Program Manager\nSystem Owner\n"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "\nSAISO (if s/he is not the SecCM Program Manager)\nCIO\nAO\nSSO\nSA\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nSecCM policies and procedures\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.1.2 PLANNING AT THE SYSTEM LEVEL",
+    "subsections": [
+      {
+        "content": "The following subsections describe the planning phase activities that are normally completed at the system level. The subsections are listed in the order in which the planning activities typically occur. As always, organizations have flexibility in determining which activities are performed at the organizational level and which activities are performed at the system level, and in what order. The system-level planning phase results in a completed SecCM Plan, an established Configuration Control Board, an accurate system component inventory, and defined configuration items for the system."
+      },
+      {
+        "title": "Develop SecCM Plan for Information System",
+        "content": [
+          {
+            "text": "The primary goal of the SecCM Plan is to document or provide references to system-specific SecCM-related information. The organization may define a master SecCM Plan and provide templates that require a subset of the SecCM Plan to be documented for each system, or the system owner may be required to define the system SecCM Plan in its entirety. Regardless of the format, a SecCM Plan is completed at the system level and typically covers the following topics:\n- Brief description of the subject system\n- System component inventory\n- System configuration items\n- Rigor to be applied to managing changes to configuration items (e.g., based on the impact)# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Level of the system",
+        "content": [
+          {
+            "text": "\nIdentification of the roles and responsibilities;\nIdentification and composition of the group or individual(s) that consider change requests;\nConfiguration change control procedures to be followed (including references to organization-wide procedures);\nIdentification on the location where SecCM artifacts (change requests, approvals, etc.) are maintained (e.g., media libraries);\nAccess controls employed to control changes to configurations;\nAccess controls to protect SecCM artifacts, records, reports, etc. (e.g., commensurate with system impact level);\nSecCM tools that are used;\nIdentification of common secure configurations (e.g., USGCB, DISA STIGs, National Checklist Program, etc.) to be used as a basis for establishing approved baseline configurations for the system;\nDeviations from common secure configurations for configuration items including justifications;\nCriteria for approving baseline configurations for the system; and\nHandling of exceptions to the SecCM plan (e.g., location of SecCM artifacts, configuration change control procedures, etc.).\n"
+          },
+          {
+            "text": "The SecCM Plan may have various representations; it could be an actual document, a collection of data stored within a SecCM tool, or a variety of other representations. SecCM procedures may be covered separately or the SecCM plan may incorporate SecCM procedures. The SecCM Plan may also be instantiated at the system level from organizational templates. The level of detail for the SecCM plan is commensurate with the impact level of the subject system."
+          }
+        ]
+      },
+      {
+        "title": "SDLC Phase",
+        "content": [
+          {
+            "text": "Begin in Initiation phase, fine tune in Development/Acquisition phase, finalize in Implementation/Assessment phase."
+          }
+        ]
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "System Owner"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "SSO; SA; System/Software Developer; System User"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "Organizational SecCM policies, procedures, and templates"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Create or Update System Component Inventory",
+    "subsections": [
+      {
+        "content": "A system component is a discrete identifiable IT asset that represents a building block of a system. An accurate component inventory is essential to record the components that compose the system. The component inventory helps to improve the security of the system by providing a comprehensive view of the components that need to be managed and secured. All system components are tracked from acquisition to retirement as part of the organization's SDLC process."
+      },
+      {
+        "content": "The system component inventory can be represented as:\nSystem Component Inventory = {SC1, SC2, \u2026 SCn},\nwhere n is greater than or equal to one, and SC represents a system component within the organization."
+      },
+      {
+        "content": "Every organizational component is included within the authorization boundary of one, and only one, system and is documented and tracked in an inventory which reflects the association with the# System Component Inventory Management"
+      },
+      {
+        "content": "A component associated with a system is included in that system component inventory. A component may support systems that are not within the same authorization boundary (i.e., such as a server that supports several Web applications or virtual machines); however, the owners of the supported systems have neither authority over, nor responsibility for, the supporting component, and thus the component would not be included in the component inventories of the supported systems."
+      },
+      {
+        "title": "Discovery Process",
+        "content": [
+          {
+            "text": "The component inventory is populated through a process of discovery. Discovery, which may be manual or automated, is the process of obtaining information on system components that compose the systems within the organization. The organization typically determines the types and granularity of the components (peripherals versus workstations, routers, etc.) that are to be identified within the inventory."
+          },
+          {
+            "text": "In most organizations, it is impractical to manually collect this information for inclusion in the inventory or for analysis against the authorized inventory. The use of automated tools for discovery, analysis, and management of component inventories is generally a more effective and efficient means of maintaining component inventories."
+          },
+          {
+            "text": "Still, it is important to note that even with automated inventory management tools, it may still be necessary to enter some component inventory data elements manually. Examples include, but are not limited to, organizational unique identifiers, system association (depending on network configuration, whether the inventory management tool installation is at the organizational level or system level, etc.), system/component owner, administrator, or user, configuration item association, or type of component."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Components",
+    "subsections": [
+      {
+        "content": "Throughout the entire SDLC (i.e., from acquisition to retirement). A system component inventory adds real value to SecCM when each item in the inventory is associated with information that can be leveraged for determination of approved configuration baselines, configuration change control/security impact analysis, and monitoring/reporting. Some data elements typically stored for each component in the system component inventory include:"
+      },
+      {
+        "content": "\nUnique Identifier and/or Serial Number;\nSystem of which the component is a part;\nType of component (e.g., server, desktop, application);\nManufacturer/Model information;\nOperating System Type and Version/Service Pack Level (preferably using the appropriate Common Platform Enumeration Name);\nPresence of virtual machines;\nApplication Software Version/License information (preferably using the appropriate Common Platform Enumeration Name);\nPhysical location (e.g., building/room number);\nLogical location (e.g., IP address);\nMedia Access Control (MAC) address;\nOwner;\nOperational status;\nPrimary and secondary administrators; and\nPrimary user (if applicable).\n"
+      },
+      {
+        "content": "Some additional data elements may also be recorded to facilitate SecCM, such as:"
+      },
+      {
+        "content": "\nStatus of the component (e.g., operational, spare, disposed, etc.);\nRelationships to other system components in the inventory;\nRelationships to/dependencies on other systems;\nOther systems supported by this component;\nIdentification of any Service-Level Agreements (SLA) that apply to the component;\nApplicable common secure configurations;\nConfiguration item (CI) of which it is a part;\nControls supported by this component; and\nIdentification of any incident logs that apply to the component.\n"
+      },
+      {
+        "title": "SDLC Phase",
+        "content": [
+          {
+            "text": "Begin in Development/Acquisition phase, finalize in Implementation/Assessment phase, ongoing updates during Operations and Maintenance phase."
+          }
+        ]
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "System Owner"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "SSO; SA; SU"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "Organizational and/or system-level tools, organizational and/or system-level policies and procedures."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Determine Configuration Items",
+    "subsections": [
+      {
+        "content": "When implementing configuration management, the system owner determines how to best decompose the system into one or more configuration items (CIs). CIs may be one or a group of system components, documents, network diagrams, scripts, custom code, and various other elements that compose the system and which require configuration management. A system can be represented as a set of one or more CIs as follows:"
+      },
+      {
+        "content": "System = {CI1, CI2, \u2026CIn} where n is greater than or equal to 1."
+      },
+      {
+        "content": "There is a one-to-many relationship between systems and CIs. Thus, each system is composed of one or more CIs and each CI is part of one, and only one, system. In cases where an organization establishes and maintains a common configuration baseline for a given platform (e.g., Windows).\n``````markdown"
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "version X, Linux version Y) or component type (e.g., workstation, server, router)",
+        "content": [
+          {
+            "text": "Each individual system inherits the common configuration baseline as a CI, or part of a CI, for that system. The CI is managed for use in that system to include any deviations as justified and recorded (See Section 3.2.2.iii). The point is that a CI is owned and managed as part of only one system regardless of the common configuration baseline source."
+          },
+          {
+            "text": "A CI may be composed of one or more system components (SCs) (e.g., server, workstation, router, application), one or more non-component (NC) system objects (e.g., documentation, diagrams, firmware), or some combination thereof as indicated in the following representations:"
+          },
+          {
+            "text": "i. CIA = {SC1, SC2, \u2026SCn} where n is greater than or equal to one;\nii. CIB = {NC1, NC2, \u2026NCn} where n is greater than or equal to one; and/or\niii. CIC = {SC1, SC2, \u2026SCn + NC1, NC2, \u2026NCn} where n is greater than or equal to one."
+          },
+          {
+            "text": "For example, a system with a number of servers using similar technology may be taken together as one CI (as in representation i). System applications (e.g., software applications) may be represented as one or more CIs (also as in representation i). All documentation for the system may be included in one CI or each document may be treated as a separate CI (as in representation ii). Conversely, the system owner may find that it is more expedient to include the servers, applications running on the servers, and supporting documentation in a single CI (as in representation iii). When applying representations i or ii, it is important to note that the rigor of the review and approval of change proposals for one CI (e.g., a CI composed of servers) may be higher than that applied to another CI (e.g., a CI composed of documentation). Furthermore, CIs within the same system may be tracked using different tools."
+          },
+          {
+            "text": "Every item within the system component inventory is associated with one and only one CI, and hence, is included within the authorization boundary of a single system. Each CI is assigned an unambiguous identifier so that it can be uniquely referenced within SecCM processes. Each CI could have a series of approved baseline configurations as it moves through its life cycle and is the object of configuration change control. As the CI moves through its life cycle, the organization manages version numbers for the CI."
+          },
+          {
+            "text": "A set of data elements is maintained for each CI to define and describe the CI to enable it to be rebuilt from scratch. The types of information that are associated with a CI may include:"
+          },
+          {
+            "text": "\nThe system of which the CI is a part;\nLogical and/or physical placement within the system;\nOwnership and management information;\nInventory of system components that makes up the CI;\nInventory of documentation that makes up the CI;\nVersion numbers for components and non-component objects;\nRelationship to/dependencies on other CIs within the system;\nInformation related to custom software used within the CI;\nIT products or components common secure configurations; and\nAny other information needed to rebuild or reconstitute the CI.\n"
+          },
+          {
+            "text": "While decomposing a system into a number of CIs may make it easier to manage changes within\n```# Configuration Management Overview"
+          },
+          {
+            "text": "The system, it is important to note that when one CI within a system changes, other CIs within the system may also be affected. Furthermore, approved changes to a CI may result in updates to the system component inventory."
+          },
+          {
+            "text": "Another potential type of configuration item that is considered, particularly with respect to establishment and maintenance of a configuration test program is a CI for SecCM tools and testing processes. Tools and testing processes used to validate deviations from approved system baseline configurations are under configuration control to reduce the potential for such testing to return false positive or false negative results (i.e., subject tools and processes are able to detect unauthorized configuration settings and are able to successfully recognize approved configuration settings)."
+          }
+        ]
+      },
+      {
+        "title": "SDLC Phase",
+        "content": [
+          {
+            "text": "\nBegin in: Development/Acquisition phase\nFinalize in: Implementation/Assessment phase\n"
+          }
+        ]
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "\nSystem Owner\n"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "\nSSO\nSA\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "\nOrganizational and/or system level policies and procedures\nSystem component inventory\nSystem documents\nSystem diagrams\nSystem scripts\nSystem custom code\nAny other system components that require configuration management\n"
+          }
+        ]
+      },
+      {
+        "title": "Expected Output",
+        "content": [
+          {
+            "text": "\nSystem components and non-component objects grouped into CIs\n"
+          }
+        ]
+      },
+      {
+        "title": "Relationship between an Information System and Its Configuration Items and Information System Components",
+        "content": [
+          {
+            "text": "Figure 3-1 depicts the relationship between the system as a whole, individual system components and non-component objects, and system configuration items (CIs). The system is composed of numerous individual components and non-component objects as described above. The system components and non-component objects that require configuration management are grouped into CIs whose configurations are managed as one. For instance, in Figure 3-1 at the component level we see numerous individual desktops. At the CI level we see that all the desktops running OS QRS version 8 have been grouped into one CI and all the desktops running OS XYZ version 5 have been grouped into another CI. In this way, the system components and non-component objects with related/similar/identical configuration requirements are configuration-managed as a group rather than as individual components."
+          }
+        ]
+      },
+      {
+        "title": "Establish Configuration Control Board (CCB) for the System",
+        "content": [
+          {
+            "text": "A CCB or equivalent group is identified for the review and approval of configuration changes for the system. The CCB is established through the creation of a charter which defines the authority and scope of the group and how it should operate. A charter may define the CCB's membership, the roles and responsibilities of its members, and whether it reports to an oversight body like an Executive Steering Committee or the Risk Executive (Function). A charter also describes the process by which the CCB operates, including how to handle changes and the range of...# Dispositions and Evaluation Criteria"
+          },
+          {
+            "text": "Dispositions (approved, not approved, on hold, etc.), evaluation criteria, and the quorum required to make configuration change control-related decisions."
+          }
+        ]
+      },
+      {
+        "title": "Role of the CCB",
+        "content": [
+          {
+            "text": "The CCB plays an important role of gatekeeper in deciding which changes may be acted upon and introduced into a system. The CCB deliberately considers the potential effect of a proposed change on the functionality and secure state of the system and risk to the mission should the change be implemented in the context of the risk tolerance established by the organization. By reviewing each proposed and implemented modification, the CCB ensures that there is a disciplined, systematic, and secure approach for introducing change."
+          },
+          {
+            "text": "Having a clearly defined process or framework for the evaluation and approval of change requests, including predefined evaluation criteria, helps to ensure that each proposed and implemented change is evaluated in a consistent and repeatable manner balancing security, business, and technical viewpoints."
+          }
+        ]
+      },
+      {
+        "title": "Organizational Policy and CCB Composition",
+        "content": [
+          {
+            "text": "Organizational policy may allow flexibility regarding the size and formality of the CCB. Low-impact and/or small, uncomplicated systems may require less formality such that the CCB may be composed of as few as two members (typically the system owner and the SSO). For high-impact systems and complex moderate-impact systems, the organization may require a CCB that is composed of at least three individuals, at least one of whom is a system owner or SSO."
+          },
+          {
+            "text": "Additionally, the organization may determine that it is necessary to formally submit proposed changes to the CCB and go through formalized reviews and security impact analysis prior to acceptance and approval."
+          }
+        ]
+      },
+      {
+        "title": "Best Practices for Configuration Change Control",
+        "content": [
+          {
+            "text": "Regardless of the size and formalism of the CCB for a system, best practices for configuration change control require that changes to the system be vetted by at least one authorized individual who is independent of the requestor\u2014in other words, in order to maintain adequate separation of duties, system administrators, developers, etc., are not given the authority to unilaterally propose and approve changes to the configuration of a system (excluding changes identified in procedures as being exempt from SecCM). The vetting activity is recorded in an artifact that can be archived (e.g., CCB minutes, actions to be taken, assigned responsibilities for actions, reports generated, approvals/disapprovals and rationale, etc.)."
+          }
+        ]
+      },
+      {
+        "title": "Selecting Members of the CCB",
+        "content": [
+          {
+            "text": "In selecting members of the CCB, an organization considers roles that represent a range of stakeholders. The viewpoints and expertise of individuals representing the organizational and/or system mission, information security (system security officers, security architects, etc.), information technology (e.g., system administrators, network engineers, enterprise architects, etc.), end users, customers, vendors, etc., are considered for inclusion in the CCB. It is not necessary that all participants have a voting role in the CCB, but their input may support improved decision making. For example, vendor participation may be valuable for insight into.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "product-specific functions, features, or configurations but the vendor is not given a vote on approval of the change.",
+        "content": [
+          {
+            "subsection": "SDLC Phase:",
+            "text": []
+          },
+          {
+            "text": "Begin in Development/Acquisition phase, finalize in Implementation/Assessment phase"
+          },
+          {
+            "subsection": "Primary Roles:",
+            "text": []
+          },
+          {
+            "text": "SecCM Program Manager (if established at the organizational level); system owner (if established at the system level). Note: If a single CCB serves a number of systems but is not at the organizational level, the set of system owners for all of the participating systems are responsible for implementing the CCB"
+          },
+          {
+            "subsection": "Supporting Roles:",
+            "text": []
+          },
+          {
+            "text": "SAISO (if s/he is not the SecCM Program Manager); SSO"
+          },
+          {
+            "subsection": "Expected Input:",
+            "text": []
+          },
+          {
+            "text": "Organizational and/or system-level policies and procedures"
+          },
+          {
+            "subsection": "Expected Output:",
+            "text": []
+          },
+          {
+            "text": "Established Configuration Control Board and charter"
+          }
+        ]
+      },
+      {
+        "title": "3.2 IDENTIFYING AND IMPLEMENTING CONFIGURATIONS",
+        "content": [
+          {
+            "text": "The following subsections describe the Identifying and Implementing Configurations phase activities. In this phase, the activities are typically completed at the system level following the applicable organizational and/or system-specific SecCM policy and procedures. The subsections are listed in the general chronological order in which the configuration activities occur. As always, organizations have flexibility in determining which activities are performed at what level and in what order. Completion of the Identifying and Implementing Configurations phase results in implementation of a secure configuration baseline for each system and constituent CIs, (i.e., each established CI is the object of a documented and approved secure configuration)."
+          },
+          {
+            "subsection": "3.2.1 ESTABLISH SECURE CONFIGURATIONS",
+            "text": []
+          },
+          {
+            "text": "In developing and deploying a system, secure configurations are established for the system and its constituent CIs. Secure configurations may include:"
+          },
+          {
+            "text": "\nSetting secure values (i.e., the parameters that describe how particular automated functions of IT products behave) including, but not limited to:\nOS and application features (enabling or disabling depending on the specific feature, setting specific parameters, etc.);\nServices (e.g., automatic updates) and ports (e.g., DNS over port 53);\nNetwork protocols (e.g., NetBIOS, IPv6) and network interfaces (e.g., Bluetooth, IEEE 802.11, infrared);\nMethods of remote access (e.g., SSL, VPN, SSH, IPSEC);\nAccess controls (e.g., controlling permissions to files, directories, registry keys, and restricting user activities such as modifying system logs or installing applications);\nManagement of identifiers/accounts (e.g., changing default account names, determining length of time until inactive accounts are disabled, using unique user names, establishing user groups);\nAuthentication controls (e.g., password length, use of special characters, minimum password age, multifactor authentication/use of tokens);\nAudit settings (e.g., capturing key events such as failures, logons, permission changes, unsuccessful file access, creation of users and objects, deletion and modification of system files, registry key and kernel changes);\nSystem settings (e.g., session timeouts, number of remote connections, session lock); and\n\nCryptography (e.g., using [FIPS 140-3]-validated cryptographic protocols and# Algorithms to Protect Data in Transit and in Storage\n\n\nApplying vendor-released patches in response to identified vulnerabilities, including software updates;\n\nUsing approved, signed software, if supported;\nImplementing safeguards through software to protect end-user machines against attack (e.g., antivirus, antispyware, anti-adware, personal firewalls, host-based intrusion detection systems);\nApplying network protections (e.g., TLS, IPSEC);\nEstablishing the location where a component physically and logically resides (e.g., behind a firewall, within a DMZ, on a specific subnet, etc.); and\nMaintaining and updating technical specification and design documentation, system security documentation, system procedures, etc.\n"
+          },
+          {
+            "text": "Cryptography (e.g., using [FIPS 140-3]-validated cryptographic protocols and# Algorithms to Protect Data in Transit and in Storage"
+          },
+          {
+            "text": "Applying vendor-released patches in response to identified vulnerabilities, including software updates;"
+          },
+          {
+            "text": "In many cases, organizational policies, in accordance with federal laws, standards, directives, and orders, establish generally accepted common secure configurations (e.g., National Checklist Program, DISA STIGs, CIS benchmarks). Configurations identified in the National Checklist Program Repository as well as SCAP-expressed checklists are a source for establishing common secure configurations. Commercial product developers are also a potential source for common secure configurations. Deviations from common secure configurations are justified and recorded (see Section 3.2.2.iii)."
+          },
+          {
+            "text": "In establishing and maintaining secure configurations, organizations consider potential interoperability conflicts with interconnected systems. Coordination of secure configuration baselines between system staff and/or the relevant CCB(s) helps ensure synchronization of secure configurations between interconnected systems to meet desired security and operational functionality."
+          },
+          {
+            "text": "If not identified in organizational policies and procedures, the system owner, in coordination with the SSO, has the responsibility of establishing secure configurations (based on appropriate common secure configurations, if available) for a system and its constituent CIs. Regardless of the responsible party, the secure configurations comply with all applicable federal requirements and are approved in accordance with organizational policy."
+          }
+        ]
+      },
+      {
+        "title": "SDLC Phase",
+        "content": [
+          {
+            "text": "Begin in Development/Acquisition phase, finalize in Implementation/Assessment phase"
+          }
+        ]
+      },
+      {
+        "title": "Primary Roles",
+        "content": [
+          {
+            "text": "System Owner; SSO"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Roles",
+        "content": [
+          {
+            "text": "SA; System/Software Developer"
+          }
+        ]
+      },
+      {
+        "title": "Expected Input",
+        "content": [
+          {
+            "text": "Organizational and/or system-level policies and procedures including mandated or suggested common secure configurations; System Security Plan/system security requirements; system/component technical documentation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.2.2 Implement Secure Configurations",
+    "subsections": [
+      {
+        "content": "Implementing secure configurations for IT products is no simple task. There are many IT products, and each has a myriad of possible parameters that can be configured.# CURRENT_PAGE_RAW_OCR_TEXT"
+      },
+      {
+        "content": "In addition, organizations have mission and business process needs which may require that IT products be configured in a particular manner. To further complicate matters, for some products, the configuration settings of the underlying platform may need to be modified to allow for the functionality required for mission accomplishment such that they deviate from the approved common secure configurations."
+      },
+      {
+        "content": "Using the secure configuration previously established (see Section 3.2.1) as a starting point, the following structured approach is recommended when implementing the secure configuration:"
+      },
+      {
+        "title": "i. Prioritize Configurations",
+        "content": [
+          {
+            "text": "In the ideal environment, all IT products within an organization would be configured to the most secure state that still provided the functionality required by the organization. However, due to limited resources and other constraints, many organizations may find it necessary to prioritize which systems, IT products, or CIs to target first for secure configuration as they implement SecCM."
+          },
+          {
+            "text": "In determining the priorities for implementing secure configurations in systems, IT products, or CIs, organizations consider the following criteria:"
+          },
+          {
+            "text": "\n\nSystem impact level\nImplementing secure configurations in systems with a high or moderate security impact level may have priority over systems with a low security impact level.\n\n\nRisk assessments\nRisk assessments can be used to target systems, IT products, or CIs having the most impact on security and organizational risk.\n\n\nVulnerability scanning\nVulnerability scans can be used to target systems, IT products, or CIs that are most vulnerable. For example, the Common Vulnerability Scoring System (CVSS) is a specification within SCAP that provides an open framework for communicating the characteristics of software flaw vulnerabilities and in calculating their relative severity. CVSS scores can be used to help prioritize configuration and patching activities.\n\n\nDegree of penetration\nThe degree of penetration represents the extent to which the same product is deployed within an information technology environment. For example, if an organization uses a specific operating system on 95 percent of its workstations, it may obtain the most immediate value by planning and deploying secure configurations for that operating system. Other IT products or CIs can be targeted afterwards.\n\n"
+          },
+          {
+            "text": "System impact level\nImplementing secure configurations in systems with a high or moderate security impact level may have priority over systems with a low security impact level."
+          },
+          {
+            "text": "Risk assessments\nRisk assessments can be used to target systems, IT products, or CIs having the most impact on security and organizational risk."
+          },
+          {
+            "text": "Vulnerability scanning\nVulnerability scans can be used to target systems, IT products, or CIs that are most vulnerable. For example, the Common Vulnerability Scoring System (CVSS) is a specification within SCAP that provides an open framework for communicating the characteristics of software flaw vulnerabilities and in calculating their relative severity. CVSS scores can be used to help prioritize configuration and patching activities."
+          },
+          {
+            "text": "Degree of penetration\nThe degree of penetration represents the extent to which the same product is deployed within an information technology environment. For example, if an organization uses a specific operating system on 95 percent of its workstations, it may obtain the most immediate value by planning and deploying secure configurations for that operating system. Other IT products or CIs can be targeted afterwards."
+          }
+        ]
+      },
+      {
+        "title": "ii. Test Configurations",
+        "content": [
+          {
+            "text": "Organizations fully test secure configurations prior to implementation in the production environment. There are a number of issues that may be encountered when implementing configurations including software compatibility and hardware device driver issues. For example, there may be legacy applications with special operating requirements that do not function correctly after a common secure configuration has been applied. Additionally, configuration errors could occur if Operating System (OS) and multiple application configurations are applied to the same component. For example, a setting for an application# Configuration Management"
+          }
+        ]
+      },
+      {
+        "title": "Configuration Parameter Conflicts",
+        "content": [
+          {
+            "text": "Configuration parameter may conflict with a similar setting for an OS configuration parameter. Virtual environments are recommended for testing secure configurations as they allow organizations to examine the functional impact on applications without having to configure actual machines."
+          }
+        ]
+      },
+      {
+        "title": "Resolve Issues and Document Deviations",
+        "content": [
+          {
+            "text": "Testing secure configuration implementations may introduce functional problems within the system or applications. For example, the new secure configuration may close a port or stop a service that is needed for OS or application functionality. These problems are examined individually and either resolved or documented as a deviation from, or exception to, the established common secure configurations."
+          },
+          {
+            "text": "In some cases, changing one configuration setting may require changes to another setting, another CI, or another system. For instance, a common secure configuration may specify strengthened password requirements which may require a change to existing single sign-on applications. Or there may be a requirement that the OS-provided firewall be enabled by default. To ensure that applications function as expected, the firewall policy may need to be revised to allow specific ports, services, IP addresses, etc. When conflicts between applications and secure configurations cannot be resolved, deviations are documented and approved through the configuration change control process as appropriate."
+          }
+        ]
+      },
+      {
+        "title": "Record and Approve the Baseline Configuration",
+        "content": [
+          {
+            "text": "The established and tested secure configuration, including any necessary deviations, represents the preliminary baseline configuration and is recorded in order to support configuration change control/security impact analysis, incident resolution, problem solving, and monitoring activities. Once recorded, the preliminary baseline configuration is approved in accordance with organizationally defined policy. Once approved, the preliminary baseline configuration becomes the initial baseline configuration for the system and its constituent CIs."
+          },
+          {
+            "text": "The baseline configuration of a system includes the sum total of the secure configurations of its constituent CIs and represents the system-specific configuration against which all changes are controlled."
+          },
+          {
+            "text": "The baseline configuration may include, as applicable, information regarding the system architecture, the interconnection of hardware components, secure configuration settings of software components, the software load, supporting documentation, and the elements in a release package. There could be a different baseline configuration for each life cycle stage (development, test, staging, production) of the system."
+          },
+          {
+            "text": "When possible, organizations employ automated tools to support the management of baseline configurations and to keep the configuration information as up to date and near real time as possible. There are a number of solutions which maintain baseline configurations.# Configurations for a Wide Variety of Hardware and Software Products"
+          },
+          {
+            "text": "Some comprehensive SecCM solutions integrate the maintenance of baseline configurations with component inventory and monitoring tools."
+          }
+        ]
+      },
+      {
+        "title": "v. Deploy the Baseline Configuration",
+        "content": [
+          {
+            "text": "Organizations are encouraged to implement baseline configurations in a centralized and automated manner using automated configuration management tools, automated scripts, vendor-provided mechanisms, etc."
+          },
+          {
+            "text": "Media libraries may be used to store, protect, and control the master copies of approved versions of baseline configurations. Media may be the means to store information (paper, tapes, CD/DVDs, USB drives, etc.) or the information itself (e.g., files, software code). The media library may also include commercially licensed software, custom-developed software, and other artifacts and documents generated throughout the SDLC."
+          },
+          {
+            "subsection": "SDLC Phase: Implementation/Assessment Phase",
+            "text": []
+          },
+          {
+            "text": "Primary Roles: System Owner; SSO\nSupporting Roles: SA; System/Software Developer\nExpected Input: Organizational and/or system-level policies and procedures including mandated or suggested common secure configurations; System Security Plan/system security requirements; system/component technical documentation\nExpected Output: Approved, recorded, and deployed secure baseline configuration(s) for system CI(s), including recorded deviations from common secure configurations"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "and results, etc."
+      },
+      {
+        "title": "To implement access restrictions for change:",
+        "content": [
+          {
+            "text": "i. Determine the possible types of configuration changes that can be made in the system including network, operating system, and application layers;\nii. Determine which individuals have privileged access and which of those privileged individuals are authorized to make what types of changes; and\niii. Implement technical mechanisms (e.g., role-based access, file/group permissions, etc.) to ensure that only authorized individuals are able to make the appropriate changes."
+          },
+          {
+            "text": "SDLC Phase: Implementation/Assessment phase\nPrimary Roles: System Owner; SSO\nSupporting Roles: SA\nExpected Input: System Security Plan/system security requirements; organizational and/or system-level policies and procedures\nExpected Output: Appropriate access restrictions for change implemented for the system"
+          }
+        ]
+      },
+      {
+        "title": "3.3.2 IMPLEMENT THE CONFIGURATION CHANGE CONTROL PROCESS",
+        "content": [
+          {
+            "text": "A well-defined configuration change control process is fundamental to any SecCM program. Configuration change control is the process for ensuring that configuration changes to a system are formally requested, evaluated for their security impact, tested for effectiveness, and approved before the changes are implemented. Although the process may have different steps and levels of rigor depending on organizational risk tolerance and/or system-impact level, configuration change control generally consists of the following steps:"
+          },
+          {
+            "text": "i. Request the change. A request for change may originate from any number of sources including the end user of the system, a help desk, or from management. Proposed changes may also originate from vendor-supplied patches, application updates, security alerts, system scans, etc. See Appendix E for a Sample Change Request Template.\nii. Record the request for the proposed change. A change request is formally entered into the configuration change control process when it is recorded in accordance with organizational procedures. Organizations may use paper-based requests, emails, a help desk, and/or automated tools to track change requests, route them based on workflow processes, and allow for electronic acknowledgements/approvals.\niii. Determine if the proposed change requires configuration control. Some types of changes may be exempt from configuration change control or pre-approved as defined in the SecCM plan and/or procedures. If the change is exempt or pre-approved, note this on the change request and allow the change to be made without further analysis or approval; however, system documentation may still require updating (e.g., the System Security Plan, the baseline configuration, system component inventory, etc.).\niv. Analyze the proposed change for its security impact on the system (see Section 3.3.3).\nv. Test the proposed change for security and functional impacts. Testing confirms the impacts identified during analysis and/or reveals additional impacts. The impacts of the change are presented to the CCB and to the AO.\n``````markdown"
+          }
+        ]
+      },
+      {
+        "title": "vi. Approve the change.",
+        "content": [
+          {
+            "text": "This step is usually performed by the CCB. The CCB may require the implementation of additional controls if the change is necessary for mission accomplishment but has a negative impact on the security of the system and organization. Implementation of additional controls is coordinated with the AO and System Owner."
+          }
+        ]
+      },
+      {
+        "title": "vii. Implement the approved change.",
+        "content": [
+          {
+            "text": "Once approved, authorized staff makes the change. Depending upon the scope of the change, it may be helpful to develop an implementation plan. Change implementation includes changes to applicable/related configuration parameters as well as updating system documentation to reflect the change(s). Stakeholders (e.g., users, management, help desk, etc.) are notified about the change, especially if the change implementation requires a service interruption or alters the functionality of the system. In the case of the latter situation, user and help desk training may be required."
+          }
+        ]
+      },
+      {
+        "title": "viii. Verify that the change was implemented correctly",
+        "content": [
+          {
+            "text": "(e.g., vulnerability scans, post-implementation security and functionality analysis, reassessment of affected security controls, etc.). Configuration change control is not complete and a change request not closed until it has been confirmed that the change was deployed without issues. Although the initial security impact analysis and testing may have found no impact from the change, an improperly implemented change can cause its own security issues."
+          }
+        ]
+      },
+      {
+        "title": "ix. Close out the change request.",
+        "content": [
+          {
+            "text": "With completion of the above steps, the change request is closed out in accordance with organizational procedures. Changes are also evaluated for consistency with organizational enterprise architecture. If configuration change control procedures have been defined by the organization, the system owner interprets the procedures in the context of the target system, and refines the process to make it practical to perform. Changes to the process may need to be approved by the organizational CCB in accordance with SecCM policy."
+          },
+          {
+            "text": "It is important that IT operations and maintenance staff who support the system are active participants in the configuration change control process and are aware of their responsibility for following it. If significant business process reengineering is needed, for example, updating help desk activities or a patch management process, training may be required."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "Established",
+        "content": [
+          {
+            "text": "Configuration change control process, unscheduled changes are still managed and controlled. Organizations include instructions for handling unscheduled changes within the configuration change control procedures as well as instructions for handling unauthorized changes that are subsequently discovered. Configuration change control procedures also address flaw remediation to allow rapid but controlled change to fix software errors. Unscheduled changes are reviewed/resolved by the CCB as soon as is practical after unscheduled changes are made."
+          },
+          {
+            "subsection": "SDLC Phase:",
+            "text": []
+          },
+          {
+            "text": "Implementation/Assessment phase, ongoing during the Operations and Maintenance phase"
+          },
+          {
+            "subsection": "Primary Roles:",
+            "text": []
+          },
+          {
+            "text": "System Owner; CCB; SSO"
+          },
+          {
+            "subsection": "Supporting Roles:",
+            "text": []
+          },
+          {
+            "text": "SA; System User"
+          },
+          {
+            "subsection": "Expected Input:",
+            "text": []
+          },
+          {
+            "text": "Organizational and/or system-level SecCM policies and procedures; System Security Plan/system security requirements"
+          },
+          {
+            "subsection": "Expected Output:",
+            "text": []
+          },
+          {
+            "text": "Documented and implemented configuration change control process"
+          }
+        ]
+      },
+      {
+        "title": "3.3.3 Conduct Security Impact Analysis",
+        "content": [
+          {
+            "text": "Security impact analysis is one of the most critical steps in the configuration change control process with respect to SecCM. Organizations spend significant resources developing and maintaining the secure state of systems; failing to properly analyze a change for its security impact can undo the system security effort and expose the organization to attack. The security impact analysis activity provides the linkage between configuration change control and improved security. The management of changes through a structured process has its own benefits \u2013 for instance, increased efficiency. However, it is only when those changes are evaluated for their security impact that the configuration change control process realizes benefits for the security posture of a system."
+          },
+          {
+            "text": "Very large organizations or system owners of large and complex systems may find it helpful to create a Configuration Review Board to manage and conduct security impact analyses and report the findings to the relevant CCB. Changes are examined for impact on security, and for mitigating controls that can be implemented to reduce any resulting vulnerability. Security impact analyses are conducted by individuals or teams with technical knowledge of the system throughout the SDLC such that the impact of changes on security is considered at every phase:"
+          },
+          {
+            "text": "\n\nInitiation Phase (Before a Change is Deployed)\nSecurity impact analysis before a change is deployed is critical in ascertaining whether the change will impact the secure state of the system. The initial security impact analysis is conducted before the change is approved by the CCB. If there are security concerns with a change, they can be addressed/mitigated before time and energy are spent in building, testing, and/or rolling out the change.\n\n\nDevelopment/Acquisition and Implementation/Assessment Phases\nSecurity impact analysis is not a one-time event conducted during the initiation phase to\n```# Support for CCB Decisions\n\n"
+          },
+          {
+            "text": "Initiation Phase (Before a Change is Deployed)\nSecurity impact analysis before a change is deployed is critical in ascertaining whether the change will impact the secure state of the system. The initial security impact analysis is conducted before the change is approved by the CCB. If there are security concerns with a change, they can be addressed/mitigated before time and energy are spent in building, testing, and/or rolling out the change."
+          },
+          {
+            "text": "Development/Acquisition and Implementation/Assessment Phases\nSecurity impact analysis is not a one-time event conducted during the initiation phase to\n```# Support for CCB Decisions"
+          },
+          {
+            "text": "Support the decisions of the CCB when approving changes. When the change is initially proposed and reviewed, the manner in which the change will be built and implemented may not be known, something which can greatly influence the security impact of the change. For instance, for a custom-built component during the design phase, security impact analysis is performed on technical design documents to ensure that the design considers security best practices, implements the appropriate controls, and would not need to be redeveloped at a later date due to introduced vulnerabilities. Developers ensure that security is taken into account as they build the component, and the design is tested during implementation to confirm that expected controls were implemented and that no new or unexpected vulnerabilities were introduced."
+          }
+        ]
+      },
+      {
+        "title": "Operations and Maintenance Phase (After a Change is Deployed)",
+        "content": [
+          {
+            "text": "Security impact analysis in the operations and maintenance phase confirms that the original security impact analysis was correct, and that unexpected vulnerabilities or impacts to security controls not identified in the testing environment have not been introduced in the operational environment. Additionally, the security impact of unscheduled and unauthorized changes is analyzed during the operations and maintenance phase."
+          },
+          {
+            "text": "The process for a security impact analysis consists of the following steps:"
+          },
+          {
+            "text": "\n\nUnderstand the Change - If the change is being proposed, develop a high-level architecture overview which shows how the change will be implemented. If the change has already occurred (unscheduled/unauthorized), request follow-up documentation/information and review it or use whatever information is available (e.g., audit records, interview staff who made the change, etc.) to gain insight into the change.\n\n\nIdentify Vulnerabilities - If the change involves a COTS hardware or software product, identifying vulnerabilities may include, but is not limited to, a search of the National Vulnerability Database (NVD) which enumerates vulnerabilities, user experience, etc. Organizations can leverage NVD information to address known issues and remove or mitigate them before they become a concern. Other public databases of vulnerabilities, weaknesses, and threats may also be searched (e.g., US-CERT). Some automated vulnerability scanning tools (SCAP-validated tools where possible) are able to search various public vulnerability databases that apply to IT products/CPE names of IT products. If the change involves custom development, a more in-depth analysis of the security impact is conducted. Although application security is beyond the scope of this publication, there are many best practices and useful sources of information for how to ensure the security of software code.\n\n\nAssess Risks - Once a vulnerability has been identified, a risk assessment is needed to identify the likelihood of a threat exercising the vulnerability and the impact of such an event. Although vulnerabilities may be identified in changes as they are proposed, built,# CURRENT_PAGE_RAW_OCR_TEXT\n\n"
+          },
+          {
+            "text": "Understand the Change - If the change is being proposed, develop a high-level architecture overview which shows how the change will be implemented. If the change has already occurred (unscheduled/unauthorized), request follow-up documentation/information and review it or use whatever information is available (e.g., audit records, interview staff who made the change, etc.) to gain insight into the change."
+          },
+          {
+            "text": "Identify Vulnerabilities - If the change involves a COTS hardware or software product, identifying vulnerabilities may include, but is not limited to, a search of the National Vulnerability Database (NVD) which enumerates vulnerabilities, user experience, etc. Organizations can leverage NVD information to address known issues and remove or mitigate them before they become a concern. Other public databases of vulnerabilities, weaknesses, and threats may also be searched (e.g., US-CERT). Some automated vulnerability scanning tools (SCAP-validated tools where possible) are able to search various public vulnerability databases that apply to IT products/CPE names of IT products. If the change involves custom development, a more in-depth analysis of the security impact is conducted. Although application security is beyond the scope of this publication, there are many best practices and useful sources of information for how to ensure the security of software code."
+          },
+          {
+            "text": "Assess Risks - Once a vulnerability has been identified, a risk assessment is needed to identify the likelihood of a threat exercising the vulnerability and the impact of such an event. Although vulnerabilities may be identified in changes as they are proposed, built,# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "and tested, the assessed risk may be low enough that the risk can be accepted without remediation (i.e., risk acceptance). In other cases, the risk may be high enough that the change is not approved (i.e., risk avoidance), or that safeguards and countermeasures are implemented to reduce the risk (i.e., risk mitigation)."
+          }
+        ]
+      },
+      {
+        "title": "iv. Assess Impact on Existing Security Controls",
+        "content": [
+          {
+            "text": "In addition to assessing the risk from the change, organizations analyze whether and how a change will impact existing security controls. For example, the change may involve installation of software that alters the existing baseline configuration, or the change itself may cause or require changes to the existing baseline configuration. The change may also affect other systems or system components that depend on the function or component being changed, either temporarily or permanently. For example, if a database that is used to support auditing controls is being upgraded to the latest version, auditing functionality within the system may be halted while the upgrade is being implemented."
+          }
+        ]
+      },
+      {
+        "title": "v. Plan Safeguards and Countermeasures",
+        "content": [
+          {
+            "text": "In cases where risks have been identified and are unacceptable, organizations use the security impact analysis to revise the change or to plan safeguards and countermeasures to reduce the risk. For instance, if the security impact analysis reveals that the proposed change causes a modification to a common secure configuration setting, plans to rework the change to function within the existing setting are initiated. If a change involves new elevated privileges for users, plans to mitigate the additional risk are made (e.g., submission of requests for higher clearance levels for those users or implementation of stronger access controls)."
+          },
+          {
+            "text": "See Appendix I for a sample Security Impact Analysis Template."
+          }
+        ]
+      },
+      {
+        "title": "SDLC Phase: Operations and Maintenance phase",
+        "content": [
+          {
+            "text": "Primary Roles: SSO\nSupporting Roles: AO; System Owner; SA; System/Software Developer\nExpected Input: Change request and/or any supporting documentation; System Security Plan including the current approved baseline configuration; system audit records; relevant COTS vulnerability information\nExpected Output: Identified vulnerabilities; risk assessment of identified vulnerabilities including any potential countermeasures; analysis of the security impact of the change"
+          }
+        ]
+      },
+      {
+        "title": "3.3.4 RECORD AND ARCHIVE",
+        "content": [
+          {
+            "text": "Once the change has been analyzed, approved, tested, implemented, and verified, the organization ensures that updates have been made to supporting documents such as technical designs and baseline configurations, in addition to security-related documentation such as System Security Plans, Risk Assessments, Assessment Reports, and Plans of Action & Milestones. In cases where there is high risk or where significant changes have been made, a system reauthorization may be required."
+          },
+          {
+            "text": "As changes are made to baseline configurations, the new baseline becomes the...# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Current Version",
+        "content": [
+          {
+            "text": "and the previous baseline is no longer valid but is retained for historical purposes. If there are issues with a production release, retention of previous versions allows for a rollback or restoration to a previous secure and functional version of the baseline configuration. Additionally, archiving previous baseline configurations is useful for incident response and traceability support during formal audits."
+          },
+          {
+            "subsection": "SDLC Phase:",
+            "text": []
+          },
+          {
+            "text": "Operations and Maintenance phase"
+          },
+          {
+            "subsection": "Primary Roles:",
+            "text": []
+          },
+          {
+            "text": "SSO"
+          },
+          {
+            "subsection": "Supporting Roles:",
+            "text": []
+          },
+          {
+            "text": "System Owner; SA; System/Software Developer"
+          },
+          {
+            "subsection": "Expected Input:",
+            "text": []
+          },
+          {
+            "text": "Identified vulnerabilities; risk assessment of identified vulnerabilities including any potential countermeasures; analysis of the security impact of the change"
+          },
+          {
+            "subsection": "Expected Output:",
+            "text": []
+          },
+          {
+            "text": "Updated technical and system security-related documentation; decision on whether or not a system reauthorization is required; new baseline configuration"
+          }
+        ]
+      },
+      {
+        "title": "3.4 SECCM MONITORING",
+        "content": [
+          {
+            "text": "If a system is inconsistent with approved configurations as defined by the organization's baseline configurations of system CIs, the System Security Plan, etc., or if an organization's component inventory is inaccurate, the organization may be unaware of potential vulnerabilities and not take actions that would otherwise limit those vulnerabilities and protect it from attacks (i.e., reduce risk). Monitoring activities offer the organization better visibility into the actual state of security for its systems and also support adherence to SecCM policies and procedures. SecCM monitoring also provides input to the organization's overall continuous monitoring strategy."
+          },
+          {
+            "text": "Organizations implement the configuration monitoring strategy developed during the SecCM planning phase. SecCM monitoring activities confirm that the existing configuration is identical to the current approved baseline configuration, that all items in the component inventory can be identified and are associated with the appropriate system, and, if possible, whether there are any unapproved (i.e., not recorded in the component inventory) components. Unapproved components often create a major security risk; unapproved components rarely have updated patches, are not configured using the approved baseline configurations, and are not assessed or included in the authorization to operate. For example, if a technician uses a router for testing and then forgets to remove it, or if an employee sets up a wireless access point in a remote office without management consent, the organization may be vulnerable without being aware of it."
+          },
+          {
+            "subsection": "3.4.1 ASSESSMENT AND REPORTING",
+            "text": []
+          },
+          {
+            "text": "SecCM monitoring is accomplished through assessment and reporting activities. For organizations with a large number of components, the only practical and effective solution for SecCM monitoring activities is the use of automated solutions that use standardized reporting methods such as SCAP. A system may have many components and many baseline configurations. To manually collect information on the configuration of all components and...# Assessing Security Configuration Management (SecCM)"
+          },
+          {
+            "text": "Assessing them against policy and approved baseline configurations is not practical, or even possible, in most cases. Automated tools can also facilitate reporting for Security Information and Event Management applications that can be accessed by management and/or formatted into other reports on baseline configuration status in support of overall continuous monitoring. Care is exercised in collecting and analyzing the results generated by automated tools to account for any false positives."
+          }
+        ]
+      },
+      {
+        "title": "SecCM Monitoring Methods",
+        "content": [
+          {
+            "text": "SecCM monitoring may be supported by numerous means, including, but not limited to:"
+          },
+          {
+            "text": "\n\nScanning to discover components not recorded in the inventory. For example, after testing of a new firewall, a technician forgets to remove it from the network. If it is not properly configured, it may provide access to the network for intruders. A scan would identify this network device as not a part of the inventory, enabling the organization to take action.\n\n\nScanning to identify disparities between the approved baseline configuration and the actual configuration for a system. For example, a technician rolls out a new patch but forgets to update the baseline configurations of the systems impacted by the new patch. A scan would identify a difference between the actual environment and the description in the baseline configuration enabling the organization to take action. In another example, a new tool is installed on the workstations of a few end users of the system. During installation, the tool changes a number of configuration settings in the browser on the users' workstations, exposing them to attack. A scan would identify the change in the workstation configuration, allowing the appropriate individuals to take action.\n\n\nImplementation of automated change monitoring tools (e.g., change/configuration management tools, application whitelisting tools). Unauthorized changes to systems may be an indication that the systems are under attack or that SecCM procedures are not being followed or need updating. Automated tools are available that monitor systems for changes and alert system staff if unauthorized changes occur or are attempted.\n\n\nQuerying audit records/log monitoring to identify unauthorized change events.\n\n\nRunning system integrity checks to verify that baseline configurations have not been changed.\n\n\nReviewing configuration change control records (including security impact analyses) to verify conformance with SecCM policy and procedures.\n\n"
+          },
+          {
+            "text": "Scanning to discover components not recorded in the inventory. For example, after testing of a new firewall, a technician forgets to remove it from the network. If it is not properly configured, it may provide access to the network for intruders. A scan would identify this network device as not a part of the inventory, enabling the organization to take action."
+          },
+          {
+            "text": "Scanning to identify disparities between the approved baseline configuration and the actual configuration for a system. For example, a technician rolls out a new patch but forgets to update the baseline configurations of the systems impacted by the new patch. A scan would identify a difference between the actual environment and the description in the baseline configuration enabling the organization to take action. In another example, a new tool is installed on the workstations of a few end users of the system. During installation, the tool changes a number of configuration settings in the browser on the users' workstations, exposing them to attack. A scan would identify the change in the workstation configuration, allowing the appropriate individuals to take action."
+          },
+          {
+            "text": "Implementation of automated change monitoring tools (e.g., change/configuration management tools, application whitelisting tools). Unauthorized changes to systems may be an indication that the systems are under attack or that SecCM procedures are not being followed or need updating. Automated tools are available that monitor systems for changes and alert system staff if unauthorized changes occur or are attempted."
+          },
+          {
+            "text": "Querying audit records/log monitoring to identify unauthorized change events."
+          },
+          {
+            "text": "Running system integrity checks to verify that baseline configurations have not been changed."
+          },
+          {
+            "text": "Reviewing configuration change control records (including security impact analyses) to verify conformance with SecCM policy and procedures."
+          },
+          {
+            "text": "When possible, organizations seek to normalize data to describe the system in order that the various outputs from monitoring can be combined, correlated, analyzed, and reported in a consistent manner. SCAP provides a common language for describing vulnerabilities, misconfigurations, and products and is an obvious starting point for organizations seeking a...# Consistent Communication Regarding Security Status"
+          },
+          {
+            "text": "Consistent way of communicating across the organization regarding the security status of the enterprise architecture (see Section 3.5)."
+          },
+          {
+            "text": "When inconsistencies are discovered as a result of monitoring activities, the organization may want to take remedial action. Action taken may be via manual methods or via use of automated tools. Automated tools are preferable since actions are not reliant upon human intervention and are taken immediately once an unauthorized change is identified. Examples of possible actions include:"
+          },
+          {
+            "text": "\nImplementing nondestructive remediation actions (e.g., quarantining of unregistered device(s), blocking insecure protocols, etc.);\nSending an alert with change details to appropriate staff using email;\nRolling back changes and restoring from backups;\nUpdating the inventory to include newly identified components; and\nUpdating baseline configurations to represent new configurations.\n"
+          },
+          {
+            "text": "Changes detected as a result of monitoring activities are reconciled with approved changes. Specifically, reconciliation attempts to answer the following:"
+          },
+          {
+            "text": "\nWho made the change;\nWhether the change occurred in a scheduled maintenance window;\nWhether the change matches a previously detected and approved change; and\nWhether the change corresponds with an approved change request, help desk ticket, or product release.\n"
+          },
+          {
+            "text": "Additionally, the results of monitoring activities are analyzed to determine the reason(s) that an unauthorized change occurred. There are many potential causes for unauthorized changes. They may stem from:"
+          },
+          {
+            "text": "\nAccidental or unintentional changes;\nMalicious intent/attacks;\nIndividuals who believe configuration change control processes don't apply to them;\nIndividuals who aren't aware of the configuration change control process;\nErrors made when changes are implemented; and\nA delay between introducing the change and updating the inventory and baseline configuration for the affected systems.\n"
+          },
+          {
+            "text": "Analyzing unauthorized changes identified through monitoring can not only identify vulnerabilities, but can also give organizations insight into any potential systemic problems with how the configuration change control process is managed. Once organizations are aware of any such problems, actions can be taken such as reengineering processes, implementing improved access restrictions for change, and providing training on SecCM processes."
+          },
+          {
+            "text": "Finally, monitoring may support the generation of metrics related to SecCM activities. Analysis and consolidation of monitoring reports can generate metrics such as the percentage of systems that are implemented in accordance with their approved baselines, the percentage of IT products that are configured in accordance with the organizationally defined common secure configurations, or percentage of system changes that have been subjected to security impact analyses. Thus, SecCM monitoring may also be a source of information that supports metrics requirements associated with the organization's overall continuous monitoring.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "process.",
+        "content": [
+          {
+            "text": "Results of SecCM monitoring are reported to management as defined by organizational policy and the SecCM strategy. Various types of reporting may be needed to support compliance with applicable federal laws, Executive Orders, directives, policies, regulations, standards and guidelines."
+          },
+          {
+            "text": "The SecCM monitoring strategy and procedures are reviewed and revised to ensure that organizational security requirements continue to be met."
+          },
+          {
+            "subsection": "SDLC Phase: Operations and Maintenance phase",
+            "text": []
+          },
+          {
+            "text": "Primary Roles: SAISO (for implementing organization-wide monitoring tools and overseeing monitoring activities potentially including engaging independent assessment teams); System Owner (for ensuring that configuration monitoring is implemented at the system level as defined in the strategy)"
+          },
+          {
+            "text": "Supporting Roles: SSO; SA; System/Software Developer"
+          },
+          {
+            "text": "Expected Input: SecCM monitoring strategy; automated tools; system component inventory; current baseline configuration(s); audit records; System Security Plan/system security requirements"
+          },
+          {
+            "text": "Expected Output: SecCM monitoring reports, including security assessment reports and output from automated tools, as defined in the strategy and schedule"
+          }
+        ]
+      },
+      {
+        "title": "3.4.2 IMPLEMENT AND MANAGE TOOLS FOR SECCM MONITORING",
+        "content": [
+          {
+            "text": "SecCM monitoring tools identified during the planning phase are implemented and managed during the monitoring phase. Some tools may support SecCM activities in multiple phases, i.e., tools may have already been implemented and supporting activities during the identifying and implementing configurations phase and/or the controlling configuration changes phase. The monitoring-related functionality of such tools is then leveraged and managed during the monitoring phase."
+          },
+          {
+            "text": "Before implementing automated monitoring tools, organizations conduct a security impact analysis to ensure that the tools do not have a negative effect on the existing enterprise architecture as a whole or on individual systems/components."
+          },
+          {
+            "text": "It is important to note that automated tools may not support or be able to function with all organizational systems or all components within a system. Organizations document the systems and/or components that are not monitored via automated tools and a manual process is developed and implemented for those systems/components."
+          },
+          {
+            "subsection": "SDLC Phase: Implementation phase",
+            "text": []
+          },
+          {
+            "text": "Primary Roles: SecCM Program Manager; System Owner"
+          },
+          {
+            "text": "Supporting Roles: SAISO (if s/he is not the SecCM Program Manager); CIO; AO; SSO; SA; System/Software Developer"
+          },
+          {
+            "text": "Expected Input: Configuration monitoring strategy; enterprise architecture information and/or system architecture information; tools identified during the planning phase, information about other IT products with which monitoring tools will interface"
+          },
+          {
+            "text": "Expected Output: Implemented configuration monitoring tools"
+          }
+        ]
+      },
+      {
+        "title": "3.5 USING SECURITY CONTENT AUTOMATION PROTOCOL# Security Content Automation Protocol (SCAP)",
+        "content": [
+          {
+            "text": "Security Content Automation Protocol (SCAP) is a suite of specifications that standardize the format and nomenclature by which information about software flaws and secure configurations can be communicated. SCAP-enabled tools can be used for maintaining the security of enterprise systems, such as automatically verifying the installation of patches, checking system security configuration settings against an expected baseline, and examining systems for signs of compromise."
+          }
+        ]
+      },
+      {
+        "title": "Automation of Configuration Management",
+        "content": [
+          {
+            "text": "To automate configuration management and produce assessment evidence for many NIST [SP 800-53] controls, federal agencies use SCAP-enabled tools along with SCAP-expressed checklists. SCAP-expressed checklists are customized as appropriate to meet specific organizational requirements. SCAP-expressed checklists can map individual system configuration settings to their corresponding security requirements. Mappings between settings and requirements can help demonstrate that the implemented settings adhere to these requirements."
+          }
+        ]
+      },
+      {
+        "title": "Benefits of SCAP-Expressed Checklists",
+        "content": [
+          {
+            "text": "The mappings are embedded in SCAP-expressed checklists which allow SCAP-enabled tools to automatically generate standardized assessment and compliance evidence. The embedded mappings in SCAP-enabled tools can provide a substantial savings in effort and cost."
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,1031 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "The purpose of this Special Publication is to provide appropriate and useful guidelines for assessing the reliability of issuers of Personal Identity Verification (PIV) Cards and Derived PIV Credentials. These issuers store personal information and issue credentials based on Office of Management and Budget (OMB) policies and on the standards published in response to Homeland Security Presidential Directive 12 (HSPD-12) and therefore are the primary target of the assessment and authorization under this guideline. The reliability of an issuer is of utmost importance when one organization (e.g., a federal agency) is required to trust the identity credentials of individuals that were created and issued by another federal agency. This trust will only exist if organizations relying on the credentials issued by a given organization have the necessary level of assurance that the reliability of the issuing organization has been established through a formal authorization process."
+      }
+    ]
+  },
+  {
+    "title": "EXECUTIVE SUMMARY",
+    "subsections": [
+      {
+        "content": "Homeland Security Presidential Directive 12 (HSPD-12), dated August 27, 2004, established a policy for creation, issuance, and use of personal identification credentials in the Federal Government. The Directive requires the development and use of a standard for secure and reliable forms of identification for federal employees and contractors. The Personal Identity Verification (PIV) specifications of the resulting standard (Federal Information Processing Standard (FIPS) 201) is the foundation for securely identifying every individual seeking access to valuable and sensitive federal resources, including buildings, information systems, and computer networks. The implementation of PIV specifications, in turn, involves operations such as the collection, access protection, and dissemination of personal information, which itself requires privacy protection."
+      },
+      {
+        "content": "NIST developed and published FIPS 201, Personal Identity Verification (PIV) of Federal Employees and Contractors, as well as several NIST Special Publications (SPs) to provide additional specifications and supporting information in response to HSPD-12. These documents provide the required foundation for standardizing the processes related to the adoption and use of government-wide personal identification credentials as a means to verify the identity of the credential holders."
+      },
+      {
+        "content": "In light of the requirements for both improved security and protection of personal privacy, HSPD-12 established four control objectives, one of which includes the call for forms of identification that are \"issued by providers whose reliability has been established by an official accreditation process.\" In response, Appendix A.1 of FIPS 201 specifies that NIST \"develop a new accreditation methodology that is objective, efficient, and will result in consistent and...\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+      },
+      {
+        "content": "repeatable accreditation decisions\u2026 This led to development of NIST SP 800-79 in 2005, Guidelines for the Accreditation of Personal Identity Verification Card Issuers. The update to this Special Publication (SP) reflects the second revision of FIPS 201 published in 2013 [FIPS 201-2]. It provides appropriate and useful guidelines for assessing the reliability of issuers of PIV Cards and provides guidelines for issuers of the newly introduced Derived PIV Credential for mobile devices. The reliability of an issuer is of utmost importance when an organization (e.g., a federal agency) is required to trust the identity credentials of individuals that were created and issued by another organization. This trust only exists if the relying organization has the necessary level of assurance of the issuing organization that the credential is established via a formal authorization process and thus reliable."
+      },
+      {
+        "content": "This SP provides an assessment and authorization methodology for verifying that issuers are adhering to standards and implementation directives developed under [HSPD-12]. The salient features of the methodology are:"
+      },
+      {
+        "content": "\nControls derived from specific requirements in FIPS 201-2 and relevant documents for PIV Card issuer (PCI) and Derived PIV Credential issuer (DPCI);\nProcedures for verifying and monitoring adherence to the requirements through an assessment of the implementation of the controls (control assessment); and\nGuidance for evaluating the result of an assessment in order to arrive at the accreditation decision.\n"
+      },
+      {
+        "content": "Authorizing an issuer based on the assessment and authorization methodology in this document establishes the reliability of the issuer. Authorization is the basis for establishing trust in an issuer and requires that the assessment be thorough and comprehensive. Careful planning, preparation, and commitment of time, energy, and resources are required. These guidelines are designed to assist agencies in creating the needed roles, assigning responsibilities, developing an acceptable operations plan, drawing the issuer's authorization boundary, evaluating the findings of all control assessments, and making a proper authorization decision. Realizing that organizations may vary significantly in how they choose to structure their operations, these guidelines have been developed to support organizational flexibility, and are designed to minimize the effort needed to assess, authorize, and monitor the reliability of the issuer."
+      },
+      {
+        "content": "In addition to flexibility and efficiency, the authorization methodology defined in these guidelines generates assessment findings and resulting authorization decisions that are consistent and repeatable. These characteristics provide assurance to an organization's management that when an issuer has been authorized based on these guidelines they can be trusted as a provider of secure and reliable identification credentials as required by [HSPD-12]. This document shall be used by both small and large organizations and can be applied whether issuance processes are:```markdown\n- Centrally located;\n- Geographically dispersed; or\n- Outsourced in varying degrees to another organization(s) or service provider(s)."
+      }
+    ]
+  },
+  {
+    "title": "1. Introduction",
+    "subsections": [
+      {
+        "content": "In order to enhance security, increase Federal Government efficiency, reduce identity fraud, and protect personal privacy, Homeland Security Presidential Directive 12 (HSPD-12), Policy for a Common Identification Standard for Federal Employees and Contractors was issued on August 27, 2004. This Directive established a federal policy to create and use government-wide secure and reliable forms of identification for federal employees and contractors. It further defined secure and reliable forms of identification as ones that:"
+      },
+      {
+        "content": "\nAre issued based on sound criteria for verifying an individual's identity;\nAre strongly resistant to identity fraud, tampering, counterfeiting, and terrorist exploitation;\nCan be rapidly authenticated electronically; and\nAre issued only by providers whose reliability has been established by an official accreditation process.\n"
+      },
+      {
+        "content": "NIST developed and published Federal Information Processing Standard (FIPS) 201, Personal Identity Verification (PIV) of Federal Employees and Contractors, and several Special Publications providing additional specifications in response to HSPD-12. These documents provide the foundation for Government personal identification, verification, and access control systems."
+      },
+      {
+        "content": "Appendix A.1 of FIPS 201-2 states the following:"
+      },
+      {
+        "content": "\"[HSPD-12] requires that all cards be issued by providers whose reliability has been established by an official accreditation process.\""
+      },
+      {
+        "content": "To determine consistency in operations of issuers of PIV Cards, NIST developed a set of attributes as the basis of reliability assessment and published the first version of this document in July 2005. Subsequent lessons learned in various agencies' implementation, experience in credential management and PIV Card issuance together with the evolution of PIV Card issuing organizations motivated NIST to develop an updated methodology that is objective, efficient, and resulted in consistent and repeatable authorization decisions. These developments led NIST to publish the first revision to SP 800-79 (i.e., SP 800-79-1) in June 2008. In 2013, FIPS 201 was superseded by FIPS 201 revision 2 (FIPS 201-2). FIPS 201-2 incorporates additional lessons learned from PIV Card issuers and allows for mobile device-integrated PIV credentials. This revision reflects the update to FIPS 201-2 and its new associated publication SP 800-157, Guidelines for Derived Personal Identity Verification (PIV) Credentials [SP800-157], which details the issuance and use of Derived PIV Credentials that are integrated in mobile devices."
+      },
+      {
+        "content": "Unless there is a need to differentiate between PCIs and DPCIs, this document uses the common term issuer to refer to both types of issuers. Similarly, Derived PIV Credential...\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+      },
+      {
+        "content": "and the PIV Card's credentials are collectively referred to as credentials, unless a distinction is made. An issuer is considered to be owned and managed by an organization which may be a federal department, agency, or a private entity authorized by a federal department or agency. Ensuring the reliability of an issuer is of critical importance in light of the security and privacy implications of credentials used for meeting the objective of secure and reliable forms of identification to millions of employees and contractors. [HSPD-12] and its standards and guidelines were developed to address a range of security concerns, including those posed by terrorists in a post-9/11 world. Providing a comprehensive set of standards for controlling access to the physical and logical resources through the use of standard credentials, provides the assurance that certain pre-defined levels of security can be achieved. However, it requires organizations to implement and use the standards in a consistent and reliable manner. An organization must have confidence in the credentials it issues to its own employees and contractors. Possibly more importantly, since [HSPD-12] requires a common inter-agency-interoperable standard, all organizations need to have confidence in the identity credentials issued by other organizations. This confidence can only be established if the issuer's functions in those other organizations are assessed and authorized. Thus, authorization of the issuer plays a key role in meeting the objectives of [HSPD-12]."
+      },
+      {
+        "content": "NIST has considerable experience in the development of assessment and authorization methodologies, most significantly with the widely accepted approach to authorization in SP 800-37-1, Guide for Applying the Risk Management Framework to Federal Information Systems [SP 800-37-1], and its family of related documents. While [SP 800-37-1] is focused on the authorization of the security of information systems, rather than the authorization of the reliability of an issuer, it does offer a practical foundation for the authorization programs envisioned by [HSPD-12]. This document utilizes the various aspects of [SP 800-37-1] and applies them to authorizing the reliability of an issuer. Authorization of an issuer requires prior assessment of the security of all information systems used by that issuer in accordance with [SP 800-37-1]. PIV Cards and Derived PIV Credentials are typically issued through the use of information systems and hence an assessment of their security (through the methodology in [SP 800-37-1]) is critical in determining the ability to comply with [FIPS 201-2] requirements. One difference between the authorization of the security of information systems and the authorization of the reliability of an issuer is that an organization has considerable flexibility in how they prepare for an [SP 800-37-1] authorization (particularly in implementing security controls), but have little room for variation for an SP 800-79-2 authorization.# CURRENT_PAGE_RAW_OCR_TEXT"
+      },
+      {
+        "content": "Much of the flexibility in [SP 800-37-1] comes from the necessity of acceptable variations in security controls, since individual information systems within varied environments may have significantly different security requirements. Conversely, the desire for standardization in [HSPD-12] has led to the development of a stable set of requirements. There may be some flexibility in how a requirement is met, but a majority of requirements must be satisfied in a uniform manner in order to deem an issuer as reliable. Allowing too much latitude in how a requirement is met undermines its reliability."
+      },
+      {
+        "content": "Although organizations may feel constrained by the uniformity required by FIPS 201-2, standardization greatly contributes to achieving the objectives of [HSPD-12] across issuer implementations. For all organizations to accept PIV Cards or Derived PIV Credentials of other organizations, one set of rules (i.e., FIPS 201-2) must be followed by all PIV system participants. This Special Publication provides a way of determining if the participants are following these rules. Assessment methods that are consistent, reliable, and repeatable provide a basis for determining the reliability and capability of issuers of PIV Cards and Derived PIV Credentials, which herein is defined as consistent adherence to the PIV standards. In particular, if an issuer meets the requirements of FIPS 201-2 and relevant documents as verified through applicable assessment procedures and maintain consistency of their operations with respect to meeting these criteria, they can be considered reliable as is required by [HSPD-12]."
+      },
+      {
+        "title": "Objectives of the Guidelines",
+        "content": [
+          {
+            "text": "The objectives of the guidelines in this document are to:"
+          },
+          {
+            "text": "\nOutline the requirements for PIV Card Issuers and for the Derived PIV Credentials Issuers, the rationale for the requirements and the assessment procedures required to determine the satisfaction of those requirements through a combination of policies, procedures, and operations.\nDescribe an authorization methodology that provides a framework for organizing the requirements and assessment procedures stated above and at the same time provides coverage for all the control objectives stated in [HSPD-12].\nEmphasize the role of risk associated with an authorization decision, based on assessment outcomes that take into account the organization's mission.\n"
+          }
+        ]
+      },
+      {
+        "title": "1.1 Applicability, Intended Audience, and Usage",
+        "content": [
+          {
+            "text": "This document is applicable to, and shall be used by all federal organizations. It may also be used by any other organization (e.g., state and local government, educational, non-profit) desiring close alignment with FIPS 201-2 and associated PIV credentials. All federal organizations are required to adopt [HSPD-12] and implement FIPS 201-2. They must use SP 800-79-2 to assess the adequacy of their implementations as well as the reliability of either the directly-controlled or sub-contracted services involved in creating and issuing the mandatory PIV Cards and the optional Derived PIV Credentials (if implemented).# SP 800-79-2 Overview"
+          },
+          {
+            "text": "SP 800-79-2 is consistent and compatible with the control objectives in [HSPD-12], [FIPS 201-2], and [SP 800-37-1]. SP 800-79-2 includes a number of roles, requirements, definitions, specifications, and procedures needed to assess the reliability of an issuing organization. In situations where an issuer fails to meet the assessment criteria in SP 800-79-2, they must immediately halt operations."
+          },
+          {
+            "text": "Once an issuer is authorized to operate using the guidelines from 800-79-2, trust can be established in the issued PIV Card or Derived PIV Credential throughout its lifecycle. Hence, organizations that accept PIV Cards or Derived PIV Credentials that do not follow these guidelines are doing so at their own risk since the reliability of their operations cannot be assured."
+          },
+          {
+            "text": "The keywords \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\", \"SHALL NOT\", \"SHOULD\", \"SHOULD NOT\", \"RECOMMENDED\", \"MAY\", and \"OPTIONAL\" in this specification are to be interpreted as described in IETF RFC 2119."
+          }
+        ]
+      },
+      {
+        "title": "1.2 Changes for this Revision",
+        "content": [
+          {
+            "text": "The major changes for this revision include additions and updates to issuer controls in response to new or changed requirements in FIPS 201-2. These are:"
+          },
+          {
+            "text": "\nInclusion of issuer controls for Derived PIV Credentials Issuers (DPCI),\nAddition of issuer controls for issuing PIV Cards under the grace period and for issuing PIV Cards to individuals under pseudonymous identity,\nAddition of issuer controls for the PIV Card's visual topography,\nProvided detailed controls to address post-issuance updates for PIV Cards,\nUpdated references to more recent credentialing guidance issued by Office of Personnel Management (OPM),\nAddition of issuer controls with respect to the chain-of-trust records maintained by a PIV Card issuer,\nModified process to include an independent review prior to authorization of issuer.\n"
+          }
+        ]
+      },
+      {
+        "title": "1.3 Timelines for using the revised Guidelines",
+        "content": [
+          {
+            "text": "This publication is effective immediately and it supersedes the previous version. FIPS 201-2 mandates the implementation of some PIV Card features that were previously optional to implement. The standard also requires that all new or replacement PIV Cards include these previously optional features beginning September 2014 (i.e., one year publication of FIPS 201-2). These new FIPS 201-2 requirements result in the following re-authorization scenarios:"
+          },
+          {
+            "text": "\nOrganizations whose current Authorization to Operate (ATO) (under SP 800-79-1) covers issuance of PIV Cards with the new mandatory features of FIPS 201-2 do not have to be re-authorized under SP 800-79-2;\nOrganizations whose current ATO (under SP 800-79-1) covers issuance of PIV Cards without the new mandatory features are required to be re-authorized under SP 800-79-2.\n"
+          },
+          {
+            "text": "Derived PIV Credentials are optional PIV credentials introduced in FIPS 201-2 and detailed in SP 800-157 Guidelines for Derived Personal Identity Verification (PIV) Credentials [SP 800-157]. The timeline for their use on mobile devices depends on Department and# Agencies to Achieve the ATO"
+          },
+          {
+            "text": "To issue Derived PIV Credential based on this document and on the availability of validated Derived PIV Credential tokens. No Derived PIV Credentials shall be issued unless the issuer has met the requirements of and is operating in accordance to the guidelines of SP 800-79-2."
+          }
+        ]
+      },
+      {
+        "title": "1.4 Key Related NIST Publications",
+        "content": [
+          {
+            "text": "The following NIST publications were utilized as the basis for the requirements listed in this document."
+          },
+          {
+            "text": "\nFIPS 201-2, Personal Identity Verification (PIV) of Federal Employees and Contractors [FIPS201-2];\nSP 800-37-1 Rev. 1, Guide for Applying the Risk Management Framework to Federal Information Systems: A Security Life Cycle Approach, or as amended [SP800-37];\nSP 800-73-4, Interfaces for Personal Identity Verification (3 Parts), or as amended [SP800-73-4]\nPt. 1- End Point PIV Card Application Namespace, Data Model & Representation\nPt. 2- PIV Card Application Card Command Interface\nPt. 3- PIV Client Application Programming Interface;\nSP 800-76-2, Biometric Data Specification for Personal Identity Verification, or as amended [SP800-76-2];\nSP 800-78-4, Cryptographic Algorithms and Key Sizes for Personal Identification Verification (PIV), or as amended;\nSP 800-85 A-4, PIV Card Application and Middleware Interface Test Guidelines (SP800-73-4 Compliance), or as amended;\nSP 800-85 B-4, PIV Data Model Conformance Test Guidelines, or as amended; and\nSP 800-157 Guidelines for Derived Personal Identity Verification (PIV) Credentials, or as amended [SP800-157].\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "each phase."
+      },
+      {
+        "content": "\nAppendices include\n(A) references;\n(B) glossary and acronyms;\n(C) issuer readiness review checklist;\n(D) issuer operations plan templates;\n(E) assessment report template;\n(F) sample authorization transmittal and decision letters;\n(G) issuer controls and assessment procedures;\n(H) summary of tasks and sub-tasks.\n"
+      },
+      {
+        "title": "2. PREPARATION FOR ASSESSMENT AND AUTHORIZATION",
+        "content": [
+          {
+            "text": "This chapter presents the fundamentals of an authorization of a PIV Card Issuer (PCI) and a Derived PIV Credential Issuer (DPCI). It includes:\n(i) definitions of an issuer and issuing facility;\n(ii) outsourcing issuer services or functions;\n(iii) the differences between an assessment and authorization;\n(iv) authorization boundaries of an issuer;\n(v) roles and responsibilities;\n(vi) the relationship between authorization under [SP 800-37-1] and SP 800-79-2;\n(vii) preparing for the assessment;\n(viii) types of authorization decisions;\n(ix) use of risk in the authorization decision;\n(x) the contents of the authorization package."
+          },
+          {
+            "subsection": "2.1 Issuer",
+            "text": []
+          },
+          {
+            "text": "At the highest level, an issuer provides a full set of functions required to produce, issue, and maintain PIV Cards or Derived PIV Credentials for an organization. A PCI or DPCI is considered operational if all relevant roles and responsibilities have been defined and appointed; suitable policies and compliant procedures have been implemented for all relevant PIV processes, including sponsorship, identity proofing/registration, adjudication, card/token production, activation/issuance, and maintenance; and information system components that are utilized for performing the above-mentioned functions (processes) have been assessed and shown to meet all technical and operational requirements prescribed in FIPS 201-2 and related documents."
+          },
+          {
+            "text": "In order to comply with Homeland Security Presidential Directive 12 ([HSPD-12]), an organization must first establish an issuer, to issue PIV Cards or Derived PIV Credentials, which conforms to and satisfies the requirements of FIPS 201-2 and related documents. The issuer must then be authorized (i.e., using the guidelines specified in this document). An organization has certain flexibility in implementing its issuance functions. It may outsource some of the required processes or establish multiple units for fulfilling these processes. Regardless of its structure, the organization is responsible for the management and oversight and maintains full responsibility for its functions as an issuer as required in [HSPD-12]."
+          },
+          {
+            "text": "The organization must completely describe its PIV Card and/or Derived PIV Credential issuance functions in an operations plan. This comprehensive document incorporates all the information about the issuer that is needed for any independent party to review and assess the capability and reliability of its operations. An operations plan includes a description of the structure of the issuer, its facilities, any external service providers, the roles and\n```# Responsibilities, Policies, and Procedures"
+          },
+          {
+            "text": "Responsibilities, policies and procedures which govern its operations, and a description of how requirements of FIPS 201-2 are being met. A template for an operations plan is provided in Appendix D."
+          }
+        ]
+      },
+      {
+        "title": "2.2 Issuing Facilities",
+        "content": [
+          {
+            "text": "An issuing facility is a physical site or location\u2014including all equipment, staff, and documentation\u2014that is responsible for carrying out one or more of the following PIV functions:"
+          },
+          {
+            "text": "(i) identity proofing/registration;\n(ii) card/token production;\n(iii) activation/issuance; and\n(iv) maintenance."
+          },
+          {
+            "text": "An issuing facility operates under the auspices of a PIV Card or Derived PIV Credential Issuer, and implements the policies and executes procedures prescribed by the issuer for those functions sanctioned for the facility (e.g., an identity proofing/registration facility)."
+          },
+          {
+            "text": "Based on certain characteristics (e.g., size, geographic locations, the organization(s) that it supports), an issuer may have its services and functions provided centrally, distributed across multiple locations, or may even be able to perform the entire issuance process remotely. For example, in the case of PIV Card issuance, a geographically dispersed organization may decide to have identity proofing/registration and activation/issuance functions performed in different facilities in different parts of the country so that applicants can minimize travel. In this example, the different issuing facilities fall under the purview (policy, management) of a single issuer which encompasses all the functions necessary to issue PIV Cards."
+          },
+          {
+            "text": "Within that issuer, the geographically dispersed issuing facilities have specific responsibilities and are under the direct management control of the issuer."
+          }
+        ]
+      },
+      {
+        "title": "2.3 Outsourcing of Issuing Functions",
+        "content": [
+          {
+            "text": "An organization may outsource its issuing functions to one or more organizations. As the complexity and cost of new technology increase, the organization may decide that the most efficient and cost-effective solution for implementing [HSPD-12] is to seek the services of an external service provider. An external service provider may be a Federal Government agency, a private entity, or some other organization that offers services or functions necessary to issue PIV Cards or Derived PIV Credentials."
+          },
+          {
+            "text": "Figure 1 provides an illustration of the functions that can be outsourced. Only the organization can decide which of its employees and contractors are required to apply for a PIV Card and a Derived PIV Credential (Sponsorship\u2014a responsible official of the organization providing the biographic and organizational affiliation of the applicant) and under what conditions the application will be approved (Adjudication\u2014the kind of background information that will form the basis for authorization to issue the PIV Card). Therefore, these two functions cannot be outsourced."
+          },
+          {
+            "text": "A PCI or DPCI which outsources services to an external provider must make sure that all privacy-related requirements are satisfied and as such is responsible for ensuring that privacy.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "requirements are being met both internally and by every external service provider.",
+        "content": [
+          {
+            "text": "If an issuer is considering using PIV services set up by another organization, the operations plan and associated documents, the authorization decision and evidence of implementation of FIPS 201-2 requirements of that issuer (PCI or DPCI service provider) must be reviewed by the Designated Authorizing Official (DAO) of the issuer. Similarly, if an issuer is using the services of an external service provider selectively for one or more of its processes, the provider's capability to meet FIPS 201-2 requirements for those processes must be reviewed as well. In both cases, the information gathered as part of this review activity must be included in the issuer's assessment leading to authorization. Outsourced functions must be assessed prior to authorization of an issuer."
+          }
+        ]
+      },
+      {
+        "title": "2.4 Assessment and Authorization",
+        "content": [
+          {
+            "text": "[HSPD-12] mandates that identification credentials be \"issued only by providers whose reliability has been established by an official accreditation process.\" This document contains guidelines for satisfying the requirements for an official authorization and provides a methodology that can be utilized to formally authorize an issuer. This methodology consists of two major sets of activities\u2014assessment and authorization. While assessment and authorization are very closely related, they are two very distinct activities."
+          },
+          {
+            "text": "Assessment occurs before authorization and is the process of gathering evidence regarding an issuer's satisfaction of the requirements of FIPS 201-2, both at the organization and facility level. Assessment activities include interviews with the issuer and the issuing facility's personnel, a review of documentation, observation of processes, and execution of tests to determine overall reliability of the issuer. The result of the assessment is a report that serves as the basis for an authorization decision. The report is also the basis for developing corrective actions for removing or mitigating discovered deficiencies."
+          },
+          {
+            "text": "Distinct from assessment, authorization is the decision to permit the operation of the issuer once it has been established that the requirements of FIPS 201-2 have been met and the risks regarding security and privacy are acceptable. The individual making the authorization decision must be knowledgeable of [HSPD-12] and aware of the potential risks to the organization's operations, assets, and personnel (e.g., applicants, issuing facility staff)."
+          },
+          {
+            "text": "The assessment and the authorization are both carried out by the organization (as per Section 5.3) that \"owns\" (i.e., manages, controls, or privately owns) the issuance of PIV Cards and/or Derived PIV Credentials. In order to make an informed, risk-based authorization decision, the assessment process should seek to answer the following questions:"
+          },
+          {
+            "text": "\nHas the issuer implemented the requirements of FIPS 201-2 in the manner consistent with the standard?\nDo personnel understand the responsibilities of their roles and/or# CURRENT PAGE RAW OCR TEXT\n"
+          }
+        ]
+      },
+      {
+        "title": "positions, and reliably",
+        "content": [
+          {
+            "text": "perform all required activities as described in the issuer's documentation?"
+          },
+          {
+            "text": "\nAre services and functions at the issuer and its facilities (e.g., identity proofing/registration, card/token production, activation/issuance) carried out in a consistent, reliable, and repeatable manner?\nHave deficiencies identified during the assessment been documented, current and potential impact on security and privacy been highlighted, and the recommendations and timelines for correction or mediation been included in the assessment report?\n"
+          }
+        ]
+      },
+      {
+        "title": "2.5 Authorization Boundary of the Issuer",
+        "content": [
+          {
+            "text": "The first step in authorizing an issuer is to identify the appropriate authorization boundary. The authorization boundary defines the specific operations that are to be the target of the assessment and authorization. A PCI comprises the complete set of functions required for the issuance and maintenance of PIV Cards while a DPCI comprises of the complete set of functions required for the issuance and maintenance of Derived PIV Credentials. In determining the authorization boundary, the organization must consider if the functions are being performed identically in all issuing facilities, are using identical information technology components, and are under the same direct management control. For instance, an organization may have two sub-organizations, each of which has distinct processes and management structures. The organization may decide to establish two separate issuers, each with its own authorization boundary. In this example, two separate assessments would be undertaken. Each assessment would result in an independent authorization decision."
+          },
+          {
+            "text": "In drawing an authorization boundary, an organization may want to include only a subset of its issuing facilities. For example, if a PCI has several facilities, some of which are ready for operation and some that are still in the development stage, the organization may choose to define the authorization boundary to include the PCI and only those facilities that are ready to be assessed. If the authorization is successful, the PCI and a subset of its issuing facilities will be authorized to operate and begin issuing PIV Cards. The remaining issuing facilities can continue with implementation and be included in the authorization boundary at a later date."
+          },
+          {
+            "text": "In the case of outsourcing issuance services that are not under direct management control of the organization nor physically located within its facilities, the organization must include the functions provided by external service providers within the authorization boundary to make certain that they are included within the scope of authorization. This assures that no matter how and where the functions are performed, the organization maintains complete accountability for the reliability of its PIV program. From an Issuer point of view, this translates to applying the necessary due diligence process with respect to assessment of controls to ensure outsourced functions are conducted in an acceptable and compliant manner.# Care should be used in defining the authorization boundary for the issuer."
+          },
+          {
+            "text": "A boundary that is unnecessarily expansive (i.e., including many dissimilar processes and business functions or geographically dispersed facilities) makes the assessment and authorization process extremely complex. Establishing a boundary and its subsequent authorization are organization-level activities that should include participation of all key personnel. An organization should strive to define the authorization boundary of their issuer such that it strikes a balance between the costs and benefits of assessment and authorization."
+          },
+          {
+            "text": "While the above considerations should be useful to an organization in determining the boundary for purposes of authorization, they should not limit the organization's flexibility in establishing a practical boundary that promotes an effective [HSPD-12] compliant implementation. The scope of an authorization is an issuer - that is a PCI or DPCI (whose boundaries are formed by included issuing facilities) and not individual issuing facilities."
+          }
+        ]
+      },
+      {
+        "title": "2.6 Issuer Roles and Responsibilities",
+        "content": [
+          {
+            "text": "PIV Card and Derived PIV Credential issuance roles and their processes are to be selected based on the organization's structure, its mission, and operating environment. The organization must make sure that a separation of roles has been established and the processes are in compliance with FIPS 201-2."
+          },
+          {
+            "text": "This document identifies roles and responsibilities of key personnel involved in the assessment and authorization of an issuer. Recognizing that organizations have widely varying missions and structures, there may be some differences in naming conventions for authorization-related roles and in how the associated responsibilities are allocated among personnel (e.g. one individual may perform multiple roles in certain circumstances)."
+          },
+          {
+            "subsection": "2.6.1 Senior Authorizing Official (SAO)",
+            "text": []
+          },
+          {
+            "text": "The Senior Authorizing Official (see Figure 2) of an organization is responsible for all operations. The SAO has budgetary control, provides oversight, develops policy, and has authority over all functions and services provided by the issuer."
+          },
+          {
+            "subsection": "2.6.2 Designated Authorizing Official (DAO)",
+            "text": []
+          },
+          {
+            "text": "The Designated Authorizing Official has the authority within an organization to review all assessments of an issuer and its facilities, and to provide an authorization decision as required by [HSPD-12]. Through authorization, the DAO accepts responsibility for the operation of the issuer at an acceptable level of risk to the organization. The SAO may also fulfill the role of the DAO. The DAO shall not assume the role of the OIMO."
+          },
+          {
+            "subsection": "2.6.3 Organization Identity Management Official (OIMO)",
+            "text": []
+          },
+          {
+            "text": "The Organization Identity Management Official is responsible for implementing policies of the organization, assuring that all PIV processes of the issuer are being performed reliably, and providing guidance and assistance to the issuing facilities. The OIMO implements and manages the operations plan; ensures that all roles are filled with capable, trustworthy, knowledgeable,# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "2.6.4 Issuing Facility Manager",
+        "content": [
+          {
+            "text": "An Issuing Facility Manager manages the day-to-day operations of an issuing facility. The Issuing Facility Manager is responsible for implementing all operating procedures for those functions that have been designated for that facility by the issuer. The Manager must ensure that all PIV processes adhere to the requirements of FIPS 201-2, and that all PIV services performed at the issuing facility are carried out in a consistent and reliable manner in accordance with the organization's policies and procedures and the OIMO's direction. In some cases (e.g. small organizations), the OIMO may fulfill the role of the Issuing Facility Manager."
+          }
+        ]
+      },
+      {
+        "title": "2.6.5 Assessor",
+        "content": [
+          {
+            "text": "The Assessor is responsible for performing a comprehensive and 3rd-party assessment of an issuer. The Assessor (usually supported by an assessment team) verifies the issuer's PIV processes comply with control objectives of FIPS 201-2. The OIMO reviews the assessment findings and prepares recommended corrective actions to reduce or eliminate any discrepancies or shortcomings prior to submission to the DAO for an authorization decision. The Assessor is also responsible for providing recommendations for reducing or eliminating deficiencies and security weaknesses, describing the potential impact of those deficiencies if not corrected. An Assessor shall not be assigned the DAO's role and vice versa."
+          },
+          {
+            "text": "To preserve the impartial and unbiased nature of the assessment, the Assessor must be a 3rd party that is independent of the office(s) and personnel directly responsible for the day-to-day operation of the issuer. The Assessor shall also be independent of those individuals responsible for correcting deficiencies and discrepancies identified during the assessment phase. The independence of the Assessor is an important factor in maintaining the credibility of the assessment results and ensuring that the DAO receives objective information in order to make an informed authorization decision."
+          }
+        ]
+      },
+      {
+        "title": "2.6.6 Applicant Representative (AR)",
+        "content": [
+          {
+            "text": "The Applicant Representative is an optional role and may be established and used at the discretion of the organization. The AR represents the interests of current or prospective employees and contractors who are applicants for PIV Cards or Derived PIV Credentials. ARs are responsible for assisting an applicant who is denied a PIV Card or Derived PIV Credential because of missing or incorrect information, and for ensuring that all applicants obtain useful information and assistance when needed. This role may be assigned to someone in the organization's personnel or human resources."
+          }
+        ]
+      },
+      {
+        "title": "2.6.7 Privacy Official (PO)",
+        "content": [
+          {
+            "text": "The responsibilities of the Privacy Official are defined in FIPS 201-2.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Person Filling This Role",
+        "content": [
+          {
+            "text": "The person filling this role shall not assume any other operational role within the issuer organization. The PO issues policy guidelines with respect to collection and handling of personally identifiable information from applicants so as to ensure that the issuer is in compliance with all relevant directives of the privacy laws. The PO's role may be filled by an organization's existing official for privacy (e.g., a Chief Privacy Officer)."
+          }
+        ]
+      },
+      {
+        "title": "2.6.8 Role Assignment Policies",
+        "content": [
+          {
+            "text": "Although issuer roles are independent and should be filled by different people if feasible, there may be a need (e.g., because of availability or economy) to have one person fill more than one role. Except for the roles of Assessor, Privacy Official and separation of duty provision under Section 2.6.2, one person may perform more than one role if needed. If an organization has established multiple issuers, one person may be assigned the same role in several or all of them. For instance, an Issuing Facility Manager may be responsible for a number of issuing facilities. Of the roles described, the SAO, DAO, OIMO, AR, Assessor and PO must be employees of the organization that owns the PCI or DPCI (e.g., Federal employees)."
+          }
+        ]
+      },
+      {
+        "title": "2.6.9 Assessment and Authorization Roles",
+        "content": [
+          {
+            "text": "Figure 2 illustrates a possible role structure when an issuer has multiple issuing facilities. The SAO has the primary authority and responsibility for the issuing organization. Reporting to the SAO are the OIMO and the DAO. An Issuing Facility Manager is responsible for managing operations at each issuing facility and reports to the OIMO. The dotted lines leading to the PO and the Assessor indicate their independence from the day to day operations of the issuer."
+          }
+        ]
+      },
+      {
+        "title": "2.7 The Relationship between SP 800-79-2 and SP 800-37-1",
+        "content": [
+          {
+            "text": "While authorization is the major topic of both special publications, the goals of authorization are different in [SP 800-37-1] and SP 800-79-2. Authorization compliant to [SP 800-37-1], as mandated by Appendix III of the Office of Management and Budget (OMB) Circular A-130, focuses on \"authorizing processing\" of information systems based on an assessment of security at the information system level. Authorization as discussed in this document and as mandated by [HSPD-12] is concerned with the assessment of the \"reliability\" of an issuer to perform its functions in accordance with FIPS 201-2. An authorization decision granted under [SP 800-37-1] signifies that an organization official accepts responsibility for the security (in terms of confidentiality, integrity, and availability of information) of the information system. Authorization of an issuer's reliability under SP 800-79-2 indicates that the organization official asserts that the issuer meets the control objectives and has the ability to operate within the objectives outlined in [HSPD-12] for \"secure and reliable forms of identification\" within an acceptable level of risk. However in both cases, the organization official (Authorizing Official).# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "(AO) in the case of [SP 800-37-1], and DAO in the case of SP 800-79-2) is fully accountable for any adverse impacts to the organization if a breach in security, privacy, or policy occurs."
+          },
+          {
+            "text": "SP 800-79-2 focuses on the authorization of an organization's capability and reliability, but depends on adequate security for all the supporting information systems that have been authorized under [SP 800-37-1]. Therefore, before the organization official authorizes the issuer and its facilities, all relevant PCI or DPCI information systems used must be authorized."
+          },
+          {
+            "text": "In many cases, authorization under [SP 800-37-1] will be granted by an organization official different than the official responsible for authorizing the issuer. The former is an organization official tasked with making a decision on whether to authorize operation of an information system based on its security posture. The latter must be someone designated specifically for authorizing the operation of an issuer after it has been assessed and determined to be compliant with FIPS 201-2 control objectives."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "Notified of the pending assessment, must understand their roles in the process, and must be made available in accordance with the planned assessment schedule. The OIMO must ensure that all relevant documentation has been completed and organized before the assessment begins. This documentation includes policies and procedures, organizational structure, information system architecture, product and vendor details, and specifics regarding the implementation of all the requirements from FIPS 201-2 and related publications. If the issuer has outsourced functions to an external service provider, all necessary documentation must be obtained from the provider regarding the outsourced operations. Before providing any documentation to the assessment team, the OIMO must review it to make certain it is complete, current and approved."
+      },
+      {
+        "content": "Another significant activity during the assessment is the observation by the assessment team of actual processes performed by the issuer. In order for the assessment team to confirm that processes are implemented in accordance with the operations plan, the issuer organization will need to ensure that assessment team members have access to facilities, and are able to observe PIV processes in real time. This could include scheduling activities to observe identity proofing, adjudication, card/token production, activation/issuance, and maintenance processes."
+      },
+      {
+        "content": "In order to aid the issuer's planning and preparation for the assessment, Appendix C includes an issuer readiness review checklist. This checklist contains items needed during the assessment process. Satisfying the list of items before the assessment commences will facilitate efficient utilization of the assessment team's time, and will contribute towards the overall effectiveness of the assessment activity."
+      },
+      {
+        "title": "2.8.2 Assessment Team Duties",
+        "content": [
+          {
+            "text": "The independence of the assessment team is an important factor in assessing the credibility of the assessment results. In order to ensure that the results of the assessment are impartial and unbiased, the members of the assessment team must not be involved in the development, day-to-day maintenance, and operations of the issuer, or in the removal, correction, or remediation of deficiencies."
+          },
+          {
+            "text": "The assessment team may obtain information during an assessment that the organization does not want to disclose publicly. The assessment team has an obligation to safely and securely store and protect the confidentiality of all security assessment related records and information, including limiting access to the individuals that need to know the information. When using, storing, and transmitting information related to the assessment, the assessment team shall follow the guidelines established by the organization in addition to all relevant laws, regulations, and standards regarding the need, protection, and privacy of information."
+          }
+        ]
+      },
+      {
+        "title": "2.9 Authorization Decisions",
+        "content": [
+          {
+            "text": "An authorization decision is a judgment made by the DAO regarding authorizing\n```# Operation of an Issuer and Its Facilities"
+          },
+          {
+            "text": "The DAO reviews the results of the assessment, considers the impact to the organization of any identified deficiencies, and then decides whether to authorize the operation of the issuer and its facilities. In doing so, the DAO agrees to accept the security and privacy risks of organization in issuing and maintaining PIV Cards or Derived PIV Credentials."
+          },
+          {
+            "text": "During the authorization decision process, the DAO must evaluate the assessment findings for the issuer and for each issuing facility within the authorization boundary. If the issuer has outsourced some of its services or functions, the DAO must review all relevant assessments and authorizations that have been granted to the external service provider and include them as a part of the overall evaluation of risk to the organization."
+          },
+          {
+            "text": "An authorization decision by a DAO must always be granted for a specific PCI or DPCI before commencement of operations, and for each issuer there can be only one authorization decision. In issuing this decision, the DAO must indicate the authorization boundary to which the authorization applies. A DAO grants an authorization to an issuer, and then specifies which facilities (along with any exceptions or restrictions) are permitted to operate under that authorization. This allows the issuer and any authorized issuing facilities to begin operations while any remaining facilities focus on addressing deficiencies identified during the assessment. At a later date, these facilities can be reassessed. After reviewing the new findings, the DAO can reissue the authorization for the issuer and expand the authorization boundary to which the authorization applies by including the newly assessed facilities."
+          },
+          {
+            "text": "The major input to the authorization decision is the assessment report. To ensure the assessment report is properly interpreted and the justification for the authorization decision properly communicated, the DAO should meet with the Assessor, the OIMO, and the Issuing Facility Manager(s) prior to issuing an authorization decision to discuss the assessment findings and the terms and conditions of the authorization."
+          }
+        ]
+      },
+      {
+        "title": "Authorization Alternatives",
+        "content": [
+          {
+            "text": "There are three authorization alternatives that can be rendered by the DAO:"
+          },
+          {
+            "text": "\nAuthorization to operate;\nInterim authorization to operate; or\nDenial of authorization to operate.\n"
+          },
+          {
+            "subsection": "2.9.1 Authorization to Operate (ATO)",
+            "text": []
+          },
+          {
+            "text": "If, after reviewing the results of the assessment phase, the DAO deems that the operations of the issuer and its facilities conform to control objectives of FIPS 201-2 to an acceptable degree, and will continue to do so reliably during the authorization validity period, an authorization to operate (ATO) may be issued. The issuer and its issuing facilities are authorized to perform services in compliance with all relevant policies, in conformance to all relevant standards, and in accordance with the documented operations plan. The DAO shall indicate exactly which issuing facilities are included in the ATO authorization decision. An ATO can only be...# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "2.9.1 Authorization to Operate (ATO)",
+        "content": [
+          {
+            "text": "granted to an issuer if there are no limitations or restrictions imposed on any of its issuing facilities that are included in the authorization boundary. The ATO is transmitted to the OIMO. After receiving an ATO that conforms to SP 800-79-2, re-authorization shall be performed within three (3) years or when there is a significant change in personnel or operating procedures (includes both improvement and degradation of operations) or when additional issuing facilities are being added to the issuer organization. There may also be cases where one or more issuing facilities cease operation. If this situation results in a PIV service identified in the operations plan becoming unavailable, then the DAO must issue a Denial of Authorization to Operate (DATO - See Section 2.9.3). On the other hand, if the issuer can continue to provide all services in the operations plan, then the authorization decision letter has to be modified to exclude those issuing facilities that have ceased operations (thus revising the authorization boundary). The required re-authorization activities are at the discretion of the DAO and based on the extent and type of change."
+          }
+        ]
+      },
+      {
+        "title": "2.9.2 Interim Authorization to Operate (IATO)",
+        "content": [
+          {
+            "text": "If, after reviewing the results of the assessment phase, the DAO deems the discrepancies to be significant, but there is an overarching necessity to allow the issuer to operate, an interim authorization to operate (IATO) may be issued. An interim authorization to operate is rendered to an issuer when the identified deficiencies are significant, but can be addressed in a timely manner. These deficiencies must be documented so that they can be addressed during the planning of corrective actions. An interim authorization is an authorization to operate under specific terms and conditions. The DAO shall indicate exactly which facilities are included in the IATO authorization decision during this interim period, along with any limitations or restrictions imposed. The maximum duration of an IATO is three (3) months. A maximum of two (2) consecutive IATOs may be granted. Failure to correct deficiencies after the expiration of the second IATO must result in an issuance of a denial of authorization to operate (DATO) for the issuer. The authorization boundary may be revised to exclude issuing facilities that exhibit significant deficiencies in performing their functions. The IATO is transmitted to the OIMO. An issuer is not considered authorized during the period of an IATO. When the deficiencies have been corrected, the IATO should be replaced with an ATO. Significant changes in the status of an issuer (e.g. addition of new issuing facilities) that occur during the IATO period shall be reported immediately to the DAO."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Deficiencies in Reliably Meeting the Requirements of FIPS 201-2",
+    "subsections": [
+      {
+        "content": "The issuer is not authorized and must not be allowed to operate. If issuance services are currently in operation, all functions must be halted including all operations at the any issuing facility. If an issuer was previously authorized and had issued PIV Cards or Derived PIV Credentials under an ATO, the OIMO along with the Issuing Facility Manager(s) should consider whether a revocation of PIV Cards and their Derived PIV Credentials are necessary. The DAO and the Assessor should work with the OIMO and Issuing Facility Manager(s) to ensure that proactive measures are taken to correct the deficiencies."
+      },
+      {
+        "title": "2.9.4 Authorization Impact of Information Systems under NIST SP 800-37-1",
+        "content": [
+          {
+            "text": "An issuer must not be authorized to operate if one or more of its critical information systems is deemed insecure and therefore is issued a DATO according to [SP 800-37-1]. In the case where an IATO (under [SP 800-37-1]) has been issued for an information system, the DAO may issue no greater than an IATO for the issuer. Once the [SP 800-37-1] IATO is replaced with an [SP 800-37-1] ATO, the DAO can issue a SP 800-79-2 ATO. If the [SP 800-37-1] ATO expires for one or more of information systems during the course of operation of an issuer, the OIMO shall assess the criticality of the system for operations and present the analysis to the DAO. The DAO then can exercise the following options:"
+          },
+          {
+            "text": "\nSpecify a short time during which the information systems of the issuer must be re-authorized under [SP 800-37-1] without changing the ATO status;\nDowngrade the current SP 800-79-2 ATO to an IATO; or\nIf circumstances warrant, issue a SP 800-79-2 DATO and halt all issuer operations.\n"
+          }
+        ]
+      },
+      {
+        "title": "2.10 The Use of Risk in the Authorization Decision",
+        "content": [
+          {
+            "text": "Authorization is the official management decision by the DAO to permit operation of an issuer based on an assessment of its reliability and an acceptance of the risk inherent in that decision. By granting an authorization to operate, the DAO accepts responsibility for the reliability of the issuer and is fully accountable for any adverse impact to the organization or any other organization from the use of issued PIV Card or Derived PIV Credentials."
+          },
+          {
+            "text": "The assessment of an issuer provides the DAO with the basis for not only determining its reliability, but also for determining whether to accept the risk to the organization in granting an ATO. As the requirements in FIPS 201-2 and related documents form the basis of the authorization and are ultimately derived from the policy objectives of [HSPD-12], those not reliably met by the issuer and its issuing facilities represent the potential for adverse impact. Implementation of an [HSPD-12] program exposes an organization to specific risks at the mission level of the organization. The PIV Card is used to establish assurance of an identity, and as such, it must be trusted as a basis for granting access to the logical and physical resources of the organization. Similarly, the Derived PIV Credential is also used to\n```# Establishing Assurance of Identity"
+          },
+          {
+            "text": "Establish the assurance of an identity, and must be trusted as a basis for granting access from mobile devices to the remote IT resources of the organization. Any problem with an issued PIV Card or Derived PIV Credential that undermines this assurance could expose an organization to harm. Furthermore, the collection, processing, and dissemination of personal information is required to issue these credentials and thereby increases the threat of this information being used for malicious purposes if not secured. It is the DAO's responsibility to weigh the risks of these and other security and privacy impacts when making the authorization decision."
+          },
+          {
+            "text": "Furthermore, as [HSPD-12] is a government-wide mandate based on a standard of interoperability allowing organizations to accept other organizations' credentials, authorization decisions within a single organization directly impact other organizations. For example, an interoperable credential issued by an authorized organization becomes the source of trust for another organization to grant access to physical and logical resources, based on verification of that identity. The DAO's signature on the authorization letter thus signifies his/her acceptance of responsibility (i.e., accountability) for the operations of the issuer, not only to the issuing organization, but also to other organizations that are in the federated circle of trust."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Reference or \"Point to\" the External Service Provider's Operation Plan",
+    "subsections": [
+      {
+        "content": "The external service provider's operation plan and related documentation, such as support agreements and any contracts. In this manner, the Assessor has access to the information regarding the external service provider's operations without requiring the issuer to duplicate any documentation. Upon receiving and reviewing the authorization package and in consultation with the Assessor, the DAO decides whether to authorize operations of the issuer."
+      },
+      {
+        "content": "The authorization decision letter transmits the authorization decision from the DAO to the OIMO. The authorization decision letter contains the following information:"
+      },
+      {
+        "content": "\nAuthorization decision;\nSupporting rationale for the decision; and\nTerms and conditions for the authorization, including which issuing facilities (Authorization Boundary) are included.\n"
+      },
+      {
+        "content": "The authorization decision letter (see Appendix F for examples) informs the OIMO that the issuer is (i) authorized to operate; (ii) authorized to operate on an interim basis; or (iii) not authorized to operate. The supporting rationale includes the justification for the DAO's decision. The terms and conditions for the authorization provide a description of any limitations or restrictions placed on the operation of the issuer, including which issuing facilities are included in the decision. The authorization decision letter is attached to the authorization submission package and becomes the authorization decision package."
+      },
+      {
+        "content": "The DAO sends the authorization decision package to the OIMO and retains a copy of it. The OIMO carefully reviews the terms and conditions of authorization before initiating the necessary steps for issuer operations. Both parties mark the authorization decision package appropriately for storage under the organization's record retention policy."
+      },
+      {
+        "title": "3. Taxonomy of Issuer Controls",
+        "content": [
+          {
+            "subsection": "3.1 Introducing Issuer Controls",
+            "text": []
+          },
+          {
+            "text": "Assessment of a PIV Card or Derived PIV Credential Issuer is a broader endeavor than assessment of the security of an information system under [SP 800-37-1]. The requirements specified in [FIPS201-2] cover all major aspects of an issuer, including organizational preparedness; security management and data protection; infrastructure; and issuance processes."
+          },
+          {
+            "text": "Each broad area is defined herein as an Issuer Authorization Topic (IAT). In addition to providing structure to the assessment, IATs are also used to summarize the assessment results for reporting. In addition, they are used to structure the report to senior organization management that provides an analysis of the strengths and weaknesses within an issuer organization."
+          },
+          {
+            "text": "The Issuer Authorization Topics (IAT):"
+          },
+          {
+            "text": "\nOrganizational Preparedness relates to the capability, knowledge, and understanding of senior management regarding the formation and operation of the issuer. Roles and responsibilities must be clearly identified, and policies and procedures must be defined, documented, implemented, and enforced.\nSecurity Management & Data Protection involves implementing and operating\n```# Current Page Raw OCR Text\n"
+          }
+        ]
+      },
+      {
+        "title": "Appropriate Security Management Procedures",
+        "content": [
+          {
+            "text": "appropriate security management procedures, operational controls, and technical protection measures to ensure that privacy requirements are satisfied, the rights of individuals are assured, and personal data is protected."
+          }
+        ]
+      },
+      {
+        "title": "Infrastructure Elements",
+        "content": [
+          {
+            "text": "\nInfrastructure Elements represents the activities required to procure, deploy, and maintain the information system components used for issuance of PIV Cards or Derived PIV Credentials tokens. These information system components (e.g., PKI, biometrics, card or token personalization, etc.) must meet the technical specifications defined in [FIPS 201-2] and related documents and need to be authorized under [SP 800-37-1] for FISMA compliance.\n"
+          }
+        ]
+      },
+      {
+        "title": "Processes",
+        "content": [
+          {
+            "text": "\nProcesses are classes of functions that collectively span the entire lifecycle activities, such as sponsorship, identity proofing/registration, adjudication, card/token production, activation/issuance, and maintenance of the PIV Card and the Derived PIV Credential. Each IAT is sub-divided into one or more Authorization Focus Areas. A focus area is a set of closely-related requirements that need to be met by an issuer. Under each focus area is a procedure or technical product (termed an \"Issuer Control\") that is used to satisfy a particular requirement listed under a focus area. However, the manner in which the requirements are satisfied and how the specifications are implemented and managed may vary from organization to organization.\n"
+          }
+        ]
+      },
+      {
+        "title": "Identity Proofing",
+        "content": [
+          {
+            "text": "For instance, each issuer (but not DPCI) is required to identity-proof their applicants (i.e., use due diligence in validating the claimed identity of the applicant). This process can be implemented in one of several ways, depending upon the structure, size, and geographical distribution of the organization's facilities. The process could be conducted at a central location or distributed throughout the country within regional centers. It could be operated directly by the organization or by an outside service provider. However, irrespective of the implementation approach, this identity proofing/registration activity must be reliably and accurately performed."
+          }
+        ]
+      },
+      {
+        "title": "Evidence of Issuer Controls",
+        "content": [
+          {
+            "text": "The evidence that ensures the presence of issuer controls that are derived from FIPS 201-2 requirements and its related documents as well as OMB Memoranda, and verified through appropriate assessments, establishes the capability of the issuer. However, authorization is generally based not merely on the demonstration of capability, but also on the presence of certain organizational characteristics that will provide a high degree of confidence to the Assessor that the demonstrated capabilities will be carried out in a dependable and sustainable manner. This dependability measure, or reliability (as it is generally called), has to be established by adequately assessing that an issuer has the desired organizational characteristics, including adequate issuing facilities, appropriate equipment, trained personnel, adequate resources.# Trustworthy Management and Operations Staff"
+          },
+          {
+            "text": "Hence, the assessment and authorization methodology includes a set of issuer controls, verification of which establishes the reliability of the issuer. This set of controls is grouped under the IAT's Authorization Focus Area called - \"Facility and Personnel Readiness\". These reliability-relevant issuer controls are formulated, based on \"commonly accepted security readiness measures\" that have evolved in response to lessons learned in security incidents that have taken place due to threats, such as insider attacks, and risks, such as physical security lapses. In addition to the controls provided herein, an organization may develop additional mission-specific controls that will contribute towards the overall reliability of the issuer to meet the organization's mission needs."
+          }
+        ]
+      },
+      {
+        "title": "Table 1",
+        "content": [
+          {
+            "text": "Table 1 provides a listing of the four Issuer Authorization Topics (IATs) and associated Authorization Focus Areas under each topic:"
+          },
+          {
+            "text": "Table G.1 and Table G.2 contain required issuer controls grouped by IAT and associated Authorization Focus Area for a PCI and a DPCI respectively. Each issuer control represents how one or more requirements from FIPS 201-2 and its related documents can be satisfied. Issuer controls are sequentially numbered using the two-character identifier assigned to the Authorization Focus Area under which they are listed. Identifiers for issuer controls applicable to both PCIs and DPCIs are aligned for ease of reference. In addition, controls for DPCIs are marked with (DC) for quick identification. For example, DO-1 applies to a PCI and DO(DC)-1 applies to a DPCI. Both these issuer controls are targeted at assessing the same requirement."
+          }
+        ]
+      },
+      {
+        "title": "Table 2",
+        "content": [
+          {
+            "text": "Table 2 shows the relationships between IATs, Authorization Focus Areas, and issuer controls for a PIV Card Issuer. Unlike for a PIV Card Issuer, not all issuer controls are applicable to a Derived PIV Credential Issuer. Certain issuer controls are applicable to only Level of Assurance 3 (LOA-3) or to only LOA-4 Derived PIV Credentials and therefore must be implemented by the issuer only if they are issuing that level of a Derived PIV Credential. This is represented via the \"applicability\" column within Table G.2 for DPCIs as seen in Table 3. Controls with an applicability column marked with DPCI (e.g., without LOA-4 or 3 postfix) applies to both LOA-3 and LOA-4 Derived PIV Credential."
+          },
+          {
+            "text": "All issuer controls apply, regardless of an individual system's FIPS 199 Standards for Security Categorization of Federal Information and Information Systems [FIPS199] impact level. Furthermore, nothing precludes an issuer from implementing additional controls to ensure a higher level of confidence in mitigating risks associated with issuing PIV Cards or Derived PIV Credentials."
+          }
+        ]
+      },
+      {
+        "title": "3.2 Implementing Issuer Controls",
+        "content": [
+          {
+            "text": "Each issuer control must be properly implemented, managed, and monitored in.# Order for the Issuer to be Authorized"
+          },
+          {
+            "text": "Depending on how an organization decides to implement their [HSPD-12] program, the authority to implement some of the controls may not directly come under the management of the issuer organization (due to outsourcing of certain PIV processes or using the issuing facilities of other organizations). However, it is still the responsibility of the management of the issuer organization to ensure that these issuer controls are being deployed, enforced, and maintained by its service provider."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "4. Issuer Controls Assessment & Authorization Decision Process",
+    "subsections": [
+      {
+        "content": "An assessment is a set of activities performed by the Assessor to gain assurance that the issuer controls for a PIV Card Issuer or a Derived PIV Credential Issuer have been implemented properly and meet their required function or purpose. Understanding the overall effectiveness of the issuer controls implemented by the issuer and its facilities is essential in determining the risk to the organization's overall mission, and forms the basis for the authorization decision by the Designated Authorizing Official."
+      },
+      {
+        "content": "An Assessor must (i) compile evidence that the issuer controls are implemented correctly, operating as intended, and producing the desired results; and (ii) present this evidence in a manner such that the DAO can make a credible, risk-based decision about the operation of the issuer."
+      },
+      {
+        "content": "The focus of an assessment is the issuer controls, each of which is designed to satisfy one or more specific requirements from FIPS 201-2 and related documents. The objective for the Assessor is to use the assessment procedures associated with each issuer control (described in Appendix G) as a means to measure conformance to the requirements. The assessment# Procedures for Evidence Gathering"
+      },
+      {
+        "content": "Procedures are designed to facilitate the gathering of evidence that issuer controls are implemented correctly, operating as intended, and producing the desired outcome. In preparation for an assessment, the Assessor performs the following two preparatory steps:"
+      },
+      {
+        "title": "Determination of the Authorization Boundary",
+        "content": [
+          {
+            "text": "\nDetermination of the authorization boundary to understand the target of the assessment. The authorization boundary dictates which issuing facilities and outsourced services are to be included in the assessment.\n"
+          }
+        ]
+      },
+      {
+        "title": "Review of the Operations Plan",
+        "content": [
+          {
+            "text": "\nReview of the operations plan to determine which issuer controls are implemented at the organizational level and which at the facility level. This analysis should provide the Assessor with an understanding of where different responsibilities lie within the issuer organization and how to address them during the assessment.\n"
+          },
+          {
+            "text": "In cases where PIV functions have been outsourced, the issuer is responsible for ensuring that the external service provider has implemented the control. During the assessment, it is the service provider's responsibility to provide documentation to the Assessor regarding the implementation of that control. If results from a previous assessment of the service provider (provided the current assessment is part of re-authorization after substantial changes) can be referenced, the Assessor may elect to incorporate these results (not exceeding one year) or re-do part or all of the assessment. The extent of re-use of the results of the previous assessment is entirely at the discretion of the Assessor."
+          },
+          {
+            "text": "Issuer controls implemented at the organizational level generally need to be assessed only once, since these controls span across the entire issuer and its issuing facilities. In other words, these controls may not be re-assessed when the authorization boundary changes (e.g., due to addition of facilities). Examples of organizational level controls include the set of controls under the authorization focus areas Preparation and Maintenance of Documentation (DO) and Assignment of Roles and Responsibilities (RR)."
+          },
+          {
+            "text": "There are certain controls that although they are put in place at the organizational level, they need to be reviewed at the issuing facility level. An example of such a control artifact is \"contingency/disaster recovery plan for information systems.\" Though the development of the contingency/disaster recovery plan is an organizational level control, a review of this control artifact is needed whenever new information systems in the existing facilities or new facilities are added to ensure that these new systems are brought within the scope of the plan."
+          },
+          {
+            "text": "Unlike organization level issuer controls, facility level issuer controls need to be assessed individually at each facility. A facility is often designated based on the type of PIV process it performs (exceptions are the Sponsorship Process and Adjudication Process). Hence, for example, if there are multiple facilities for identity proofing/registration (e.g., multiple registration centers), assessment of the issuer controls under the focus area...# Identity Proofing/Registration"
+          },
+          {
+            "text": "Identity proofing/registration should take place in each of the enrollment centers. However, if all facilities are operating using uniform operational procedures and underlying information systems, it is acceptable to perform assessments at facilities that are selected randomly or through some other established criteria (e.g., geographical region or service provider)."
+          },
+          {
+            "text": "Prior assessments may be used as a starting point for the assessment of an issuer. While past assessments provide insight into the implementation and operation of an issuer, a number of factors affect the validity of past assessments. These include updates in policies and procedures, changes in systems/technology, and turnover in employees and contractors. Any significant changes in one or more of these factors should trigger a new assessment. The Assessor must validate whether the issuer is currently operating as expected using the given assessment procedures, including specially tailored or augmented procedures. It is only through a current valid assessment of issuer controls that the Assessor and Organization Identity Management Official will have confidence in the reliability of the issuer and its issuing facilities."
+          },
+          {
+            "text": "The use of automated security controls, if reliably implemented and maintained in information systems, results in a high assurance of the protection of information and other organizational assets. Human involvement results in more variability in how issuer controls are implemented and operated, as security and reliability depend on many factors, including an individual's training, knowledge, motivation, experience, and management. Relying on humans for data protection, rather than on reliable, automated security mechanisms, makes it critical that trust and reliability assessments of management, operators, and maintenance personnel are current and up-to-date. Many of the assessment procedures rely on interactions among the Assessor, issuer management, and facilities staff. Interviews with all involved personnel and observations of all PIV processes are required. On-site visits, real-time observations, and reviews of processes are essential, as the Assessor must not rely solely on documentation to determine if a given issuer control has been implemented."
+          }
+        ]
+      },
+      {
+        "title": "4.1 Assessment Methods",
+        "content": [
+          {
+            "text": "In order to assess the capability and reliability of an issuer, one or more assessment procedures associated with each issuer control have to be completed. An assessment procedure is carried out using one or more of the following assessment methods. (The assessment methods associated with an assessment procedure are given in parenthesis in Table G.1 and Table G.2.)"
+          },
+          {
+            "text": "\nReview\nAn evaluation of documentation that describes plans, policies, and procedures in order to verify that they are adequate, understood by management and operations personnel, and that they are in accordance with applicable policies, regulations.# Standards, Technical Guidelines, and Organizational Guidance\n"
+          }
+        ]
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "A directed conversation with one or more issuer personnel in which both pre-established and follow-on questions are asked, responses documented, discussion encouraged, and conclusions reached."
+          }
+        ]
+      },
+      {
+        "title": "Observe",
+        "content": [
+          {
+            "text": "A real-time viewing of PIV processes in operation, including all information system components of the issuer involved in creation, issuance, maintenance, and termination of PIV Cards or Derived PIV Credentials."
+          }
+        ]
+      },
+      {
+        "title": "Test",
+        "content": [
+          {
+            "text": "An evaluation of a component against a set of relevant PIV specifications using applicable test methods and metrics (as given in the associated assessment procedure in Table G.1 and Table G.2)."
+          },
+          {
+            "text": "These methods are intended to provide the Assessor with sufficient, precise, accurate, and relevant evidence regarding an IAT topic and its focus areas. One or more assessment methods may be required to determine if the issuer has satisfactorily met the objective outlined for that assessment procedure. Assessment results are used by the Assessor to determine the overall effectiveness of the issuer control."
+          },
+          {
+            "text": "Table 4 shows an example of the relationships among an IAT, an Authorization Focus Area, several issuer controls, and their assessment procedures. Controls with an applicability column marked with DPCI (e.g., without LOA-4 or 3 postfix) applies to both LOA-3 and LOA-4 Derived PIV Credentials."
+          },
+          {
+            "text": "Some organizations may need to customize some of the issuer controls to meet their specific characteristics and mission needs. In such cases, the associated assessment procedures may also have to be customized/augmented to ensure proper implementation of these controls."
+          }
+        ]
+      },
+      {
+        "title": "4.2 The Issuer Assessment Report",
+        "content": [
+          {
+            "text": "The Assessment report contains the results of the assessment in a format that facilitates reviewing by the DAO. The DAO must evaluate the information in the Assessment Report in order to make a sound, credible decision regarding the residual risk of authorizing the operations of the issuer."
+          },
+          {
+            "text": "An Assessment Report template is provided in Appendix E. The report is organized by Authorization Focus Area. For each issuer control, it must be documented as to which entity is responsible for the implementation of that control (the organization or an external service provider) and if the issuer control is at the organizational or facility level."
+          },
+          {
+            "text": "The assessment result for each issuer control shall be one of the following:\n- Satisfied\n- Partially Satisfied\n- Not Satisfied\n- Not Applicable"
+          },
+          {
+            "text": "After carrying out an assessment procedure, the Assessor records his/her conclusion in one of two ways: MET, NOT MET. Using the list of conclusions pertaining to assessment procedures associated with an issuer control, the assessment result (which is one of the 4 outcomes listed above) is arrived at as follows:\n- If the conclusion from all assessment procedures is MET, then the assessment...# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Result for the Issuer Control",
+        "content": [
+          {
+            "text": "The result for the issuer control is \"Satisfied\".\n\u2022 If some of the conclusions are NOT MET, then the assessment result for the issuer control is marked as either \"Partially Satisfied\" or \"Not Satisfied\", depending on whether or not any of the underlying tasks in the assessment procedures are critical (i.e., they represent the only way to meet the issuer control's objective). An example of an assessment that resulted in \"Partially Satisfied\" is given in Figure 4. In this instance, there is an awareness of a task requirement, and the task itself is being carried out, but the reference to the task is missing in the document."
+          },
+          {
+            "text": "In drawing a conclusion after carrying out an assessment procedure, the Assessor must consider the potential subjective and objective aspects of the assessment methods used (e.g., interviews, document reviews, observations, and tests) for that assessment procedure. Deficiencies that result in \"Partially Satisfied\" or \"Not Satisfied\" must be reported by the Assessor. The Assessor must also outline the potential adverse impacts if the issuer control is deployed with the identified deficiencies."
+          },
+          {
+            "text": "The assessment report template provides the means for recording the assessment result for each issuer control. The assessment results for all issuer controls are aggregated to generate the assessment result for an Issuer Authorization Focus area. The set of Issuer Authorization Focus Area results are aggregated to generate Issuer Authorization Topic results. Finally, the group of Issuer Authorization Topic results is used to generate the overall Issuer Assessment Report and an accompanying Executive Summary (intended for Senior Management)."
+          }
+        ]
+      },
+      {
+        "title": "5.0 Assessment & Authorization Lifecycle",
+        "content": [
+          {
+            "text": "The authorization of a PIV Card Issuer (PCI) or a Derived PIV Credential Issuer (DPCI) consists of four phases: (i) Initiation; (ii) Assessment; (iii) Authorization; and (iv) Monitoring. Each phase consists of tasks and sub-tasks that are to be carried out by the responsible officials (e.g., the Designated Authorizing Official (DAO), Assessor, Organization Identity Management Official (OIMO), and Issuing Facility Manager(s)). Figure 5 provides a view of the authorization phases, including the tasks associated with each phase. A table of authorization phases, tasks, sub-tasks, and the official responsible for each is provided in Appendix H."
+          },
+          {
+            "subsection": "5.1 Initiation Phase",
+            "text": []
+          },
+          {
+            "text": "The Initiation Phase consists of three tasks: (i) preparation; (ii) resource identification; and (iii) operations plan analysis and acceptance. The primary purpose of this phase is to ensure that the issuer is prepared for the assessment, including having all the resources and documentation in place. The other purpose of this phase is to include the DAO early in the process in order to assure success of the assessment and authorization."
+          },
+          {
+            "text": "The objectives of this task are to prepare for authorization by reviewing the operations plan and...# Confirming that the plan is consistent with [FIPS201-2] and the template provided in Appendix D."
+          }
+        ]
+      },
+      {
+        "title": "Subtask 1.1:",
+        "content": [
+          {
+            "text": "Confirm that the operations of the issuer have been fully described and documented in their operations plan."
+          },
+          {
+            "text": "Responsibility: OIMO\nGuidance: The operation plan includes, at a minimum, the sections defined in the operations plan template in Appendices D.1 or D.2 depending on whether the issuer is issuing PIV Cards or Derived PIV Credentials. An issuer of both PIV Cards and Derived PIV Credentials may develop a single operations plan that addresses both without repeating common elements. It is the OIMO's responsibility to ensure that the organization's operations plan incorporates a complete and accurate description of the issuer's operations. If a process or function is provided by an external service provider, their operating procedures should be documented and incorporated by reference in the issuer's operations plan. In this case, the operations plan includes a pointer, guiding the reader to additional documentation and information."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Task 2: Resource Identification",
+    "subsections": [
+      {
+        "content": "The objectives of the resource identification task are to (i) identify and document the resources required for assisting with the assessment; (ii) identify the scope of the assessment and authorization boundary; and (iii) prepare a plan of assessment activities indicating the proposed schedule and key milestones."
+      },
+      {
+        "title": "Subtask 2.1:",
+        "content": [
+          {
+            "text": "Identify the Senior Authorizing Official (SAO), Designated Authorizing Official (DAO), Privacy Official (PO), Issuing Facility Managers, Assessor, and other key personnel at the facility level who are performing functions, such as identity proofing/registration, card production, and activation/issuance. Maintenance personnel also should be contacted to provide requested assessment information to the Assessor."
+          },
+          {
+            "text": "Responsibility: OIMO\nGuidance: Notify these individuals of the upcoming assessment, and inform them of the need for their participation during the process."
+          }
+        ]
+      },
+      {
+        "title": "Subtask 2.2:",
+        "content": [
+          {
+            "text": "Determine the authorization boundary for the issuer."
+          },
+          {
+            "text": "Responsibility: OIMO; DAO\nGuidance: The authorization boundary determines the target of the assessment. In preparation for the issuer assessment, the OIMO and DAO should identify which issuing facilities and external service providers are to be included. This ensures that functions performed and processes managed by the external service provider are considered during the authorization process. An organization may want to include only those issuing facilities that are ready to operate; other facilities can be assessed at a later date."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Judgments about the Size of the Assessment Team",
+    "subsections": [
+      {
+        "content": "The resources needed to support the assessment, and the time-frame for completing it."
+      },
+      {
+        "title": "Task 3: Operations Plan Analysis and Acceptance",
+        "content": [
+          {
+            "text": "The objectives of the operations plan analysis and acceptance task are:\n(i) determine if the requirements of FIPS 201-2 have been implemented;\n(ii) evaluate the operations plan and revise as needed; and\n(iii) obtain acceptance of the plan by the DAO prior to conducting an assessment of the issuer controls."
+          },
+          {
+            "subsection": "Subtask 3.1: Review the List of Required Issuer Controls",
+            "text": []
+          },
+          {
+            "text": "Review the list of required issuer controls documented in the organization's operation plan and then confirm that they have been implemented properly."
+          },
+          {
+            "text": "Responsibility: DAO; OIMO\nGuidance: Since the issuer controls serve as the basis for the assessment, review the operations plan and supporting documentation to identify the controls that must be implemented before investing time in assessment activities such as interviews or testing. The operations plan must document each issuer control, whether it is organization or facility specific, the owner of the issuer control, and how the control is implemented."
+          },
+          {
+            "subsection": "Subtask 3.2: Analyze the Operations Plan",
+            "text": []
+          },
+          {
+            "text": "Analyze the operations plan to determine if there are deficiencies in satisfying all the policies, procedures, and other requirements in FIPS 201-2 that could result in a Denial of Authorization to Operate (DATO) being issued. After discussing the discovered deficiencies in the documentation and operations plan with the OIMO, the organization may still want to continue with the assessment, if it has determined that it can address all deficiencies within the time period of the current assessment. In this situation, the DAO can either authorize continuation of the assessment or terminate the assessment effort depending upon the evaluation of the issuer's ability to address the deficiencies."
+          },
+          {
+            "text": "Responsibility: DAO, OIMO\nGuidance: The operations plan should adequately specify the policies, procedures, and processes of the issuer so that, subsequent to an initial review, deficiencies that could lead to an eventual DATO may be identified and remediated as soon as possible."
+          },
+          {
+            "subsection": "Subtask 3.3: Verify that the Operations Plan is Acceptable",
+            "text": []
+          },
+          {
+            "text": "Verify that the operations plan is acceptable."
+          },
+          {
+            "text": "Responsibility: DAO\nGuidance: If the operations plan is deemed acceptable, the DAO should authorize the authorization processes to advance to the next phase. Acceptance of the operations plan signifies that the resources required to initiate and complete the authorization activities may be deployed."
+          }
+        ]
+      },
+      {
+        "title": "5.2 Assessment Phase",
+        "content": [
+          {
+            "text": "The Assessment Phase consists of two tasks:\n(i) issuer control assessment; and\n(ii) assessment documentation. The purpose of this phase is to determine the extent to which the requirements of FIPS 201-2 are implemented correctly, operating as intended, and producing the desired outcomes. This phase also specifies actions to be taken to correct all identified deficiencies. An analysis of the impact of identified deficiencies that cannot be corrected or mitigated efficiently on the reliable operation of the issuer should be conducted and documented. Successful completion of this phase should provide the DAO with the information needed to make an appropriate authorization decision."
+          },
+          {
+            "subsection": "Task 4: Issuer Control Assessment",
+            "text": []
+          },
+          {
+            "text": "```# The objectives of this task are to"
+          },
+          {
+            "text": "(i) initiate and conduct an assessment of the issuer controls; and (ii) document the results of the assessment. The Assessor shall first verify the acceptability of all documentation, including the operations plan and previous assessments, along with all relevant Federal laws, regulations, standards, and directives. Issuer control assessment should then commence. The Assessor should schedule interviews, schedule real-time observations of issuance processes, and initiate all needed testing of the PIV Card, Derived PIV Credential and relevant information system components. Once the Assessor has gathered the results of the assessment procedures, descriptions of all discovered deficiencies shall be prepared, along with recommendations for removing these deficiencies."
+          }
+        ]
+      },
+      {
+        "title": "Subtask 4.1: Review the suggested and selected assessment methods for each issuer control in preparation for the assessment.",
+        "content": [
+          {
+            "text": "Responsibility: Assessor\nGuidance: Based on the authorization boundary, the scope of the assessment should be established. The Assessor should review the selected assessment procedures (based on the scope of the assessment) in order to plan and coordinate activities for the assessment. For instance, if a particular issuer control requires the observation of a particular process, the Assessor will need to schedule this activity in a timely fashion after coordinating it with the issuing facility management. The Assessor, as directed by the DAO, may supplement the assessment methods and procedures recommended in these guidelines. Assessment methods and procedures may be created or tailored for a particular issuer."
+          }
+        ]
+      },
+      {
+        "title": "Subtask 4.2: Assemble all documentation and supporting materials necessary for the assessment of the issuer; if these documents include previous assessments, review the findings and determine if they are applicable to the current assessment.",
+        "content": [
+          {
+            "text": "Responsibility: OIMO; Assessor\nGuidance: The OIMO assists the Assessor in gathering all relevant documents and supporting materials from the organization that will be required during the assessment of the issuer. Central to this effort is the operations plan. The issuer's operations shall be completely described in the operations plan. The operations plan may include by reference, or point to, the supporting materials. In this case, the OIMO will also need to gather this supporting material for the Assessor. Examples of other documentation include: (i) letters of appointment; (ii) privacy-related documentation; (iii) information forms utilized by the issuer; (iv) documentation from each outsourced service provider, including control implementation specifics, support and service level agreements, and contracts; (v) standard operating procedures for the issuing facilities within the authorization boundary; and (vi) signed authorization letters under [SP 800-37-1] for all information systems. When previous assessments exist, including the one on which the current Authorization to Operate (ATO) is based, the Assessor is strongly encouraged to review these results. The Assessor may satisfy some of the issuer control assessment requirements by reviewing and referencing previous assessment report(s). Although previous assessments cannot be used as a substitute for the current assessment, they provide a snapshot view of the issuer and highlight problems that may have existed in the past."
+          }
+        ]
+      },
+      {
+        "title": "Subtask 4.3: Assess the required issuer controls using the prescribed assessment# Assessment Procedures",
+        "content": []
+      },
+      {
+        "title": "Procedures Overview",
+        "content": [
+          {
+            "text": "Procedures found in Table G.1 and Table G.2 based on the scope of the issuance functions."
+          },
+          {
+            "subsection": "Responsibility: Assessor",
+            "text": []
+          },
+          {
+            "text": "Guidance: The Assessor performs the assessment procedures selected for each issuer control to assess if they have been implemented correctly, are operating as intended, and producing the desired outcomes. The Assessor uses the assessment methods specified in Section 4.1. Documentation collected in the previous task is reviewed, and any deficiencies are identified. Interviews can be used as an opportunity to clarify issues encountered during a review of the issuer's documentation, as well as to determine the expertise of the personnel performing key PIV functions. Processes need to be observed to ensure that they are being followed as documented and tests executed to determine if the PIV components have been configured and are operating in a PIV-compliant manner."
+          },
+          {
+            "text": "As part of an assessment, all applicable issuer controls need to be assessed. If PIV services have been outsourced to an external provider, the Assessor shall verify that the issuer controls applying to those services have been assessed, and the reliability of the service provider has been found satisfactory. If an issuer and its facilities have already been assessed and are operating under a current ATO, and the purpose of the assessment is to add a facility(s) to the authorization letter, the Assessor may reuse the results of a previous assessment for the organization level issuer controls and then assess a random sample of the new issuing facilities."
+          }
+        ]
+      },
+      {
+        "title": "Subtask 4.4: Prepare the Assessment Report",
+        "content": [
+          {
+            "subsection": "Responsibility: Assessor",
+            "text": []
+          },
+          {
+            "text": "Guidance: The assessment report contains (i) the results of the assessment; (ii) recommendations for correcting deficiencies; and (iii) the residual risk to the organization if those deficiencies are not corrected or mitigated. The assessment report is the Assessor's statement of the results of analyzing and evaluating the issuer's implementation of controls. The sample assessment report template in Appendix E should be used as a format for documenting the results after assessing the issuer controls."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Subtask 5.3: Prepare the corrective actions plan (CAP).",
+    "subsections": [
+      {
+        "content": "Responsibility: OIMO\nGuidance: The CAP, one of the three primary documents in the authorization submission package, describes actions that must be taken by the OIMO to correct deficiencies identified in the Assessment phase. The CAP identifies:\n(i) the tasks to be accomplished;\n(ii) the resources required to accomplish the tasks;\n(iii) scheduled completion dates for the tasks, and\n(iv) the person designated as responsible for completing each of the tasks."
+      }
+    ]
+  },
+  {
+    "title": "Subtask 5.4: Assemble the authorization submission package and submit to the DAO.",
+    "subsections": [
+      {
+        "content": "Responsibility: OIMO\nGuidance: The OIMO is responsible for the assembly and compilation of the authorization submission package with inputs from the OIMO. The authorization submission package shall contain:\n(i) the final assessment report;\n(ii) the CAP;\n(iii) the revised operations plan; and\n(iv) the [SP 800-37-1] authorization letters for all information systems used by the issuer. The OIMO may wish to consult other key organization participants (e.g., the Assessor, PO) prior to submitting the authorization submission package to the DAO. The authorization submission package can be submitted in either paper or electronic form. The contents of the authorization submission package must be protected in accordance with organization policy."
+      }
+    ]
+  },
+  {
+    "title": "5.3 Authorization Phase",
+    "subsections": [
+      {
+        "content": "The Authorization Phase consists of two tasks:\n(i) making an appropriate authorization decision; and\n(ii) completing the authorization documentation. Upon completion of this phase, the OIMO will have:\n(i) an authorization to operate the issuer's services as defined in its operations plan;\n(ii) an interim authorization to operate under specific terms and conditions; or\n(iii) a denial of authorization to operate."
+      },
+      {
+        "title": "Task 6: Authorization Decision",
+        "content": [
+          {
+            "text": "The authorization decision task determines if the assessment phase has been satisfactorily completed so that a recommendation concerning the operation of the issuer can be made with assurance. The DAO, working with the Assessor, reviews the contents of the assessment submission package, the identified and uncorrected or un-correctable deficiencies, the potential impacts on each organization using the issuer's services, and the CAP in determining the final risk to the organization(s) and the acceptability of that risk in light of the organization's mission."
+          },
+          {
+            "subsection": "Subtask 6.1: Review the authorization decision package to see if it is complete and that all applicable issuer controls have been fully assessed using the designated assessment procedures.",
+            "text": []
+          },
+          {
+            "text": "Responsibility: DAO\nGuidance: Coverage for all issuer controls and proper adherence to assessment procedures and appropriate assessment methods helps to create confidence in assessment findings and is the main objective of the assessment review. Part of the assessment review also includes understanding the impact of the identified deficiencies on the organization's operations, assets, and individuals."
+          },
+          {
+            "subsection": "Subtask 6.2: Determine if the risk to the organization's operations, assets, or potentially affected individuals is acceptable.",
+            "text": []
+          },
+          {
+            "text": "Responsibility: DAO# Guidance"
+          },
+          {
+            "text": "After the completion of the assessment review, the DAO has a clear understanding of the impact of deficiencies. This helps the DAO to judge which deficiencies are of greatest concern to the organization and which can be tolerated without creating unreasonable organization-level risk. The CAP is also considered in determining the risk to the organization in terms of when and how the OIMO intends to address the known deficiencies. The DAO may consult the OIMO, Assessor, or other organization officials before completing the final risk evaluation. This risk evaluation in turn determines the degree of acceptability of issuer operations. The logic for using the latter as the basis for an authorization decision is described in Section 2.9."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Task 7: Authorization Documentation",
+    "subsections": [
+      {
+        "content": "The authorization documentation task includes (i) completing and transmitting the authorization decision package to the appropriate individuals and organizations; and (ii) updating the issuer's operations plan."
+      },
+      {
+        "title": "Subtask 7.1: Provide copies of the authorization decision package, in either paper or electronic form, to the OIMO and any other organization officials having interests, roles, or responsibilities in the issuer's operations.",
+        "content": [
+          {
+            "text": "Responsibility: DAO"
+          },
+          {
+            "text": "Guidance: The authorization decision package, including the authorization decision letter, should be transmitted to the OIMO. Upon receipt of the authorization decision package, the OIMO must review the authorization and its terms and conditions. The original authorization decision package must be kept on file by the OIMO. The DAO shall retain copies of the contents of the authorization decision package. The authorization decision package must be appropriately safeguarded and stored, whenever possible, in a centralized organization filing system to ensure accessibility. The authorization decision package shall be available to authorized auditors and oversight organizations upon request. The authorization decision package must be retained in accordance with the organization's records retention policy. The issuer and specific facilities are authorized for a maximum of three (3) years from the date of the ATO. After the period ends, re-authorization must be performed."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "5.4 Monitoring Phase",
+    "subsections": [
+      {
+        "content": "The Monitoring Phase consists of two tasks (i) operations plan maintenance; and (ii) annual lifecycle walkthrough. Based on the importance of reliably creating and issuing PIV Cards and Derived PIV Credentials, it is imperative that once the authorization is completed, the issuer is monitored to ensure that policies, procedures, and processes remain in effect as originally.```markdown"
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "intended. There can be significant changes in an issuer's policies, management, operations personnel, and available technology during a three-year ATO. These changes must be monitored so that the organization minimizes exposing itself to security and privacy threats existing or arising after the authorization. For example, if there is a significant staff turnover, the organization must be sure that the new staff is performing the PIV functions using the same reliable processes that were previously approved. The overall responsibility for monitoring lies with the OIMO and the DAO."
+      },
+      {
+        "content": "In order to facilitate the monitoring of an issuer without undue burden in activities and paperwork, only two activities are required during this phase: maintenance of the operations plan and an annual lifecycle walkthrough of issuer operations. The latter entails reviewing all the services and functions of an issuer and its facilities for continued reliability. The annual walkthrough must cover a PIV Card's and/or Derived PIV Credential's lifecycle from sponsorship to maintenance. Observation of the full lifecycle ensures that all processes are still reliably operating as assessed during the authorization."
+      },
+      {
+        "title": "Task 8: Operations Plan Update",
+        "content": [
+          {
+            "text": "An operations plan is the primary description of what and how PIV Card and/or Derived PIV Credential issuing services are provided by the issuer. It is essential that this document be updated as changes occur in the issuer's operations. Management will be able to analyze the impact of changes as they occur and will be significantly better prepared when re-authorization is required."
+          },
+          {
+            "subsection": "Subtask 8.1: Document all relevant changes in the issuance processes within the operations plan.",
+            "text": []
+          },
+          {
+            "text": "Responsibility: OIMO\nGuidance: In addition to the policies, procedures, and processes that must be documented if changes are made, the organization shall update the operations plan if changes to the information system, the PIV Card, Derived PIV Credential, privacy policies, roles and responsibilities, or issuer controls are made."
+          },
+          {
+            "subsection": "Subtask 8.2: Analyze the proposed or actual changes to the issuer and determine the impact of such changes.",
+            "text": []
+          },
+          {
+            "text": "Responsibility: OIMO\nGuidance: If the results of the impact analysis indicate that changes to the issuer could affect the reliability of its operations, the changes and impact on the issuer must be reported to the DAO, corrective actions must be initiated, and the CAP must be updated. In instances where major changes have occurred, the issuer must be re-authorized."
+          }
+        ]
+      },
+      {
+        "title": "Task 9: Annual Lifecycle Walkthrough",
+        "content": [
+          {
+            "text": "The annual lifecycle walkthrough is a monitoring activity to be performed initially by the issuer when its PIV Card and/or Derived PIV Credential issuing services begin, and annually thereafter. The OIMO (or designated appointee) is responsible for observing and reviewing the entire lifecycle of the PIV Card and/or the Derived PIV Credential. This walkthrough should provide an accurate snapshot of the issuer's operations and reliability at a point in\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      }
+    ]
+  }
+]

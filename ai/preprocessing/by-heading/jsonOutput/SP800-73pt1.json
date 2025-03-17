@@ -1,0 +1,620 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "FIPS 201 defines the requirements and characteristics of government-wide interoperable identity credentials. It specifies that these identity credentials must be stored on a smart card and that additional common identity credentials, known as derived PIV credentials, may be issued by a federal department or agency and used when a PIV Card is not practical. This document contains the technical specifications to interface with the smart card to retrieve and use PIV identity credentials. The specifications reflect the design goals of interoperability and PIV Card functions. The goals are addressed by specifying a PIV data model, card edge interface, and application programming interface. Moreover, this document enumerates requirements for the options and branches in international integrated circuit card standards. The specifications go further by constraining interpretations of the normative standards to ease implementation, facilitate interoperability, and ensure performance in a manner tailored for PIV applications."
+      }
+    ]
+  },
+  {
+    "title": "1. Introduction",
+    "subsections": [
+      {
+        "content": "Homeland Security Presidential Directive-12 (HSPD-12) called for the adoption of a common identification standard to govern the interoperable use of identity credentials to allow physical and logical access to federally controlled facilities and information systems. In response, Federal Information Processing Standard (FIPS) 201 [FIPS201], Personal Identity Verification (PIV) of Federal Employees and Contractors, was developed to define reliable, government-wide identity credentials for use in applications such as access to federally controlled facilities and information systems. FIPS 201 supports multiple types of authenticators, including authenticators on smart cards (also known as PIV Cards) and derived PIV credential authenticators in various other form factors. This publication contains technical specifications to interface with PIV Cards to retrieve and use identity credentials. Other specifications, such as NIST Special Publication (SP) 800-157r1 (Revision 1), contain procedures and life cycle activities to issue, maintain, and use derived PIV credentials."
+      },
+      {
+        "title": "1.1. Purpose",
+        "content": [
+          {
+            "text": "FIPS 201 defines processes for binding identities to authenticators, such as the PIV Card and derived PIV credentials used in the federal PIV system. SP 800-73-5 contains the technical specifications to interface with the PIV Card to retrieve and use the identity credentials. The specifications reflect the design goals of interoperability and PIV Card functions. The goals are addressed by specifying a PIV data model, card edge interface, and application programming interface. Moreover, this document enumerates requirements for the options and branches in international integrated circuit card (ICC) standards [ISO7816]. The specifications go further by\n```# Constraining Interpretations of the Normative Standards"
+          },
+          {
+            "text": "to ease implementation, facilitate interoperability, and ensure performance in a manner tailored for PIV applications."
+          }
+        ]
+      },
+      {
+        "title": "1.2. Scope",
+        "content": [
+          {
+            "text": "SP 800-73-5 specifies the PIV data model, application programming interface (API), and card interface requirements necessary to comply with the use cases, as defined in Section 6 of FIPS 201 and further described in this document. Interoperability is defined as the use of PIV identity credentials such that client-application programs, compliant card applications, and compliant ICCs CAN be used interchangeably by all information processing systems across federal agencies. SP 800-73-5 defines the PIV data elements' identifiers, structure, and format, as well as the client API and card command interface for use with the PIV Card."
+          },
+          {
+            "text": "This document \u2014 SP 800-73-5, Interfaces for Personal Identity Verification: Part 1 \u2013 PIV Card Application Namespace, Data Model, and Representation \u2014 is a companion document to FIPS 201 and specifies the PIV Card Application Namespace, the PIV Data Model, and its logical representation on the PIV Card."
+          }
+        ]
+      },
+      {
+        "title": "1.3. Effective Date",
+        "content": [
+          {
+            "text": "These recommendations become effective upon final publication. New optional PIV Card features and deprecated PIV card features shall be phased in as part of new card stock acquisitions by federal department and agencies. FIPS 201 compliance of PIV components and subsystems is provided in accordance with OMB [M-19-17] through products and services from the U.S. General Services Administration's (GSA) Interoperability Test Program and Approved Products and Services List."
+          }
+        ]
+      },
+      {
+        "title": "1.4. Audience and Assumptions",
+        "content": [
+          {
+            "text": "This document is intended for federal agencies and implementers of PIV systems. Readers are assumed to have a working knowledge of smart card standards and applications."
+          }
+        ]
+      },
+      {
+        "title": "1.5. Document Overview and Structure",
+        "content": [
+          {
+            "text": "All sections in this document are normative (i.e., mandatory for compliance) unless specified as informative (i.e., non-mandatory) and are structured as follows:"
+          },
+          {
+            "text": "\nSection 1, Introduction, provides the purpose, scope, effective date, audience, and assumptions of the document and outlines its structure.\nSection 2, PIV Card Application Namespaces, defines the three NIST-managed namespaces used by the PIV Card Application.\nSection 3, PIV Data Model Elements, describes the PIV Data Model elements in detail.\nSection 4, PIV Data Objects Representation, describes the format and coding of the PIV data structures used by the PIV client-application programming interface and the PIV Card Application.\nSection 5, Data Types and Their Representation, describes the data types found on the PIV client-application programming interface and the PIV Card Application card command interface.\nAppendix A provides container information for PIV Cards.\nAppendix B describes the PIV authentication mechanisms and is informative.\nAppendix C describes recommended procedures for key size and algorithm discovery.# CURRENT_PAGE_RAW_OCR_TEXT\n"
+          },
+          {
+            "text": "and is informative."
+          },
+          {
+            "text": "\nAppendix D provides the list of symbols, abbreviations and acronyms used in this document and is informative.\nAppendix E provides a glossary of terms and is informative.\nAppendix F describes the notation used in this document and is informative.\nAppendix G provides the revision history of the document and is informative.\n"
+          }
+        ]
+      },
+      {
+        "title": "2. PIV Card Application Namespaces",
+        "content": [
+          {
+            "subsection": "2.1. Namespaces of the PIV Card Application",
+            "text": []
+          },
+          {
+            "text": "Names used on the PIV interfaces are drawn from three namespaces managed by NIST:"
+          },
+          {
+            "text": "\nProprietary Identifier eXtension (PIX) of the NIST Registered Application Provider IDentifier (RID)\nASN.1 object identifiers (OIDs) in the personal identity verification subset of the OIDs managed by NIST\nBasic Encoding Rules \u2014 Tag Length Value (BER-TLV) tags of the NIST PIV coexistent tag allocation scheme\n"
+          },
+          {
+            "text": "All unspecified names in these managed namespaces are reserved for future use. All interindustry tags defined in ISO/IEC 7816, Information Technology \u2013 Identification Cards \u2013 Integrated Circuit(s) Card with Contacts [ISO7816], and used in the NIST coexistent tag allocation scheme without redefinition have the same meaning as they have in [ISO7816]. All unspecified values in the following identifier and value namespaces are reserved for future use:"
+          },
+          {
+            "text": "\nAlgorithm identifiers\nKey reference values\nCryptographic mechanism identifiers\n"
+          },
+          {
+            "subsection": "2.2. PIV Card Application AID",
+            "text": []
+          },
+          {
+            "text": "The Application IDentifier (AID) of the Personal Identity Verification Card Application (PIV Card Application) SHALL be:"
+          },
+          {
+            "text": "'A0 00 00 03 08 00 00 10 00'"
+          },
+          {
+            "text": "The AID of the PIV Card Application consists of the NIST RID ('A0 00 00 03 08') followed by the application portion of the NIST PIX indicating the PIV Card Application ('00 00 10 00') and then the version portion of the NIST PIX ('01 00') for the first version of the PIV Card Application. All other PIX sequences on the NIST RID are reserved for future use."
+          },
+          {
+            "text": "The PIV Card Application CAN be selected as the current application by providing the full AID as listed above or by providing the right-truncated version (i.e., without the two-byte version), as follows:"
+          },
+          {
+            "text": "'A0 00 00 03 08 00 00 10 00'"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "6. Cardholder Facial Image",
+    "subsections": []
+  },
+  {
+    "title": "7. Security Object",
+    "subsections": [
+      {
+        "content": "The two data objects that are mandatory if the cardholder has a government-issued email account at the time of credential issuance are:"
+      },
+      {
+        "content": "\nX.509 Certificate for Digital Signature\nX.509 Certificate for Key Management\n"
+      },
+      {
+        "content": "The 27 optional data objects are:"
+      },
+      {
+        "content": "\nPrinted Information\nDiscovery Object\nKey History Object\n20 retired X.509 Certificates for Key Management\nCardholder Iris Images\nBiometric Information Templates Group Template\nSecure Messaging Certificate Signer\nPairing Code Reference Data Container\n"
+      },
+      {
+        "title": "3.1. Mandatory Data Elements",
+        "content": [
+          {
+            "text": "This section describes the seven mandatory data objects for interagency interoperable use."
+          },
+          {
+            "subsection": "3.1.1. Card Capability Container",
+            "text": []
+          },
+          {
+            "text": "The Card Capability Container (CCC) is a mandatory data object whose purpose is to facilitate the compatibility of Government Smart Card Interoperability Specification (GSC-IS) applications with PIV Cards."
+          },
+          {
+            "text": "The CCC supports minimum capability for retrieval of the data model and, optionally, the application information specified in [GSC-IS]. The data model of the PIV Card Application SHALL be identified by data model number 0x10. Deployed applications use 0x00 through 0x04. This enables the GSC-IS application domain to correctly identify a new data model namespace and structure as defined in this document."
+          },
+          {
+            "text": "For PIV Card Applications, the PIV data objects exist in a namespace tightly managed by NIST, and a CCC discovery mechanism is not needed by client applications that are not based on GSCIS. Therefore, all mandatory data elements of the CCC except for the data model number MAY optionally have a length value set to zero bytes (i.e., no value field will be supplied). Unused optional data elements SHALL be absent. Other than the data model number, the contents of the CCC data elements are out of scope for this specification."
+          },
+          {
+            "text": "The Security Object enforces integrity of the CCC according to the issuer."
+          },
+          {
+            "subsection": "3.1.2. Card Holder Unique Identifier (CHUID)",
+            "text": []
+          },
+          {
+            "text": "The Card Holder Unique Identifier (CHUID) data object is defined in accordance with the Technical Implementation Guidance: Smart Card Enabled Physical Access Control Systems (TIG SCEPACS) [TIG SCEPACS]. For this specification, the CHUID is common between the contact and contactless interfaces. For dual chip implementations, the CHUID is copied in its entirety between the two chips."
+          },
+          {
+            "text": "In addition to the requirements specified in TIG SCEPACS, the CHUID on the PIV Card SHALL meet the following requirements:"
+          },
+          {
+            "text": "\nThe previously deprecated Authentication Key Map data element SHALL NOT be present in the CHUID.\nThe Federal Agency Smart Credential Number (FASC-N) SHALL be in accordance with TIG SCEPACS [TIG SCEPACS] with the exception that credential series, individual\n```# Credential Issuance Guidelines\n"
+          }
+        ]
+      },
+      {
+        "title": "Overview",
+        "content": [
+          {
+            "text": "Credential issue, person identifier, organizational category, organizational identifier, and the person/organization association category MAY be populated with all zeros. The FASC-N SHALL NOT be modified post-issuance."
+          },
+          {
+            "text": "A subset of the FASC-N, the FASC-N Identifier, SHALL be the unique identifier as described in [TIG SCEPACS, Section 6.6]: \"The combination of an Agency Code, System Code, and Credential Number is a fully qualified number that is uniquely assigned to a single individual.\" The Agency Code is assigned to each department or agency by SP 800-87, Codes for Identification of Federal and Federally-Assisted Organizations [SP800-87]. The subordinate System Code and Credential Number value assignment is subject to department or agency policy, provided that the FASC-N identifier (i.e., the concatenated Agency Code, System Code, and Credential Number) is unique for each card. The same FASC-N value SHALL be used in all of the PIV data objects that include the FASC-N. To eliminate unnecessary use of personally identifiable information, the FASC-N's Person Identifier (PI) field SHOULD NOT encode Social Security numbers (SSNs). TIG SCEPACS also specifies PACS interoperability requirements in the tenth paragraph of [TIG SCEPACS, Section 2.1]: \"For full interoperability of a PACS, it must at a minimum be able to distinguish fourteen digits (i.e., a combination of an Agency Code, System Code, and Credential Number) when matching FASC-N-based credentials to enrolled card holders.\""
+          }
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          {
+            "text": "\nThe Global Unique Identification number (GUID) field must be present and SHALL include a Card Universally Unique Identifier (UUID) (see Sec. 3.4.1). The Card UUID SHALL NOT be modified post-issuance.\nThe Expiration Date is mapped to the reserved for future use (RFU) tag 0x35, keeping that within the existing scope of the TIG SCEPACS specification. This field SHALL be 8 bytes in length and SHALL be encoded in ASCII as YYYYMMDD. The expiration date SHALL be the same as printed on the card. The expiration date SHALL NOT be modified post-issuance.\nThe optional Cardholder UUID field is mapped to RFU tag 0x36. If present, it SHALL include a Cardholder UUID as described in Sec. 3.4.2. The Cardholder UUID SHALL NOT be modified post-issuance.\nThe CHUID SHALL be signed in accordance with Sec. 3.1.2.1. The card issuer's digital signature key SHALL be used to sign the CHUID, and the associated certificate SHALL be placed in the signature field of the CHUID.\n"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "\nThe message SHALL include a version field specifying version v3.\nThe digestAlgorithms field SHALL be as specified in [SP800-78].\nThe encapContentInfo SHALL:\nSpecify an eContentType of id-PIV-CHUIDSecurityObject\nOmit the eContent field\nThe certificates field SHALL include only a single X.509 certificate, which CAN be used to verify the signature in the SignerInfo field.\nThe crls field SHALL be omitted.\nsignerInfos SHALL be present and include only a single SignerInfo.\nThe SignerInfo SHALL:\nUse the issuerAndSerialNumber choice for SignerIdentifier\nSpecify a digestAlgorithm in accordance with [SP800-78]\nInclude, at a minimum, the following signed attributes:\nA MessageDigest attribute containing the hash computed in accordance with [SP800-78]\nA pivSigner-DN attribute containing the subject name that appears in the PKI certificate for the entity that signed the CHUID\nInclude the digital signature\n"
+      },
+      {
+        "content": "The public key required to verify the digital signature SHALL be provided in the certificates field of the CMS external digital signature in a content signing certificate, which SHALL be issued under the id-fpki-common-pivcontentSigning policy of [COMMON]. The content signing certificate SHALL also include an extended key usage (extKeyUsage) extension asserting id-PIV-contentsigning. The content signing certificate SHALL NOT expire before the expiration of the card authentication certificate."
+      },
+      {
+        "title": "3.1.3. X.509 Certificate for PIV Authentication",
+        "content": [
+          {
+            "text": "The X.509 Certificate for PIV Authentication and its associated private key, as defined in FIPS 201, is used to authenticate the card and the cardholder. The PIV Authentication private key and its corresponding certificate are only available over the contact interface or virtual contact interface (VCI). The read access control rule for the X.509 Certificate for PIV Authentication is \"Always,\" meaning that the certificate CAN be read without access control restrictions. The Public Key Infrastructure (PKI) cryptographic function (see Table 5) is protected with a Personal Identification Number (PIN) or on-card biometric comparison (OCC) access rule. In other words, private key operations using the PIV Authentication key require the PIN or OCC data to be submitted and verified, but a successful submission enables multiple private key operations without additional cardholder consent."
+          }
+        ]
+      },
+      {
+        "title": "3.1.4. X.509 Certificate for Card Authentication",
+        "content": [
+          {
+            "text": "FIPS 201 specifies the mandatory asymmetric Card Authentication key (CAK) as a private key that MAY be used to support physical access applications. The read access control rule of the corresponding X.509 Certificate for Card Authentication is \"Always,\" meaning that the certificate CAN be read without access control restrictions. The PKI cryptographic function (see Table 5) is under an \"Always\" access rule so private key operations CAN be performed without access control restrictions. The asymmetric CAK is generated by the PIV Card Issuer in accordance with FIPS 140-2 requirements for key generation. An asymmetric CAK MAY be\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "generated on-card or off-card.",
+        "content": [
+          {
+            "text": "If an asymmetric CAK is generated off-card, the result of each key generation SHALL be injected into at most one PIV Card."
+          },
+          {
+            "subsection": "3.1.5. Cardholder Fingerprints",
+            "text": []
+          },
+          {
+            "text": "The fingerprint data object specifies the primary and secondary fingerprints for off-card matching in accordance with FIPS 201 and [SP800-76]."
+          },
+          {
+            "subsection": "3.1.6. Cardholder Facial Image",
+            "text": []
+          },
+          {
+            "text": "The facial image data object is used for automated facial authentication in attended and unattended modes (e.g., BIO-A or BIO), as well as automated facial authentication for PIV reissuance and verification data reset in accordance with FIPS 201-3. The facial image data object MAY also be used for visual authentication by a guard (VIS). However, this authentication mechanism has been deprecated in accordance with FIPS 201-3. The facial image data object SHALL be encoded as specified in [SP800-76]."
+          },
+          {
+            "subsection": "3.1.7. Security Object",
+            "text": []
+          },
+          {
+            "text": "The Security Object is in accordance with Part 10 of Machine Readable Travel Documents (MRTD) [MRTD10]. Tag 0xBA is used to map the ContainerIDs in the PIV data model to the 16 Data Groups specified in the MRTD. The mapping enables the Security Object to be fully compliant for future activities with identity documents."
+          },
+          {
+            "text": "The \"DG-number-to-Container-ID\" mapping object TLV in tag 0xBA encapsulates a series of three-byte sequences \u2014 one for each PIV data object included in the Security Object. The first byte is the Data Group (DG) number, and the second and third bytes are the most and least significant bytes (respectively) of the Container ID value. The DG number assignment is arbitrary. However, the same number assignment applies to the DataGroupNumber in the DataGroupHash. This will ensure that the ContainerIDs in the mapping object refer to the correct hash values in the Security Object (0xBB)."
+          },
+          {
+            "text": "The 0xBB Security Object is formatted according to [MRTD10]. The Logical Data Structure (LDS) Security Object itself must be in ASN.1 DER format, formatted as specified in [MRTD10, Section 4.6.2.3]. This structure is then inserted into the encapContentInfo field of the Cryptographic Message Syntax (CMS) object specified in [MRTD10, Section 4.6.2.2]."
+          },
+          {
+            "text": "The card issuer's content signing digital signature key used to sign the CHUID SHALL also be used to sign the Security Object. The signature field of the Security Object, tag 0xBB, SHALL omit the issuer's content signing certificate since it is included in the CHUID. At a minimum, unsigned data objects SHALL be included in the Security Object if present, such as the Printed Information data object. For maximum protection against credential splicing attacks (credential substitution), it is recommended, however, that all PIV data objects be included in the Security Object except for the PIV X.509 certificates and the Secure Messaging Certificate Signer data object."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "government-issued",
+        "content": [
+          {
+            "text": "email account at the time of credential issuance. These two data elements, when implemented, SHALL conform to the specifications provided in this document."
+          },
+          {
+            "subsection": "3.2.1. X.509 Certificate for Digital Signature",
+            "text": []
+          },
+          {
+            "text": "The X.509 Certificate for Digital Signature and its associated private key, as defined in FIPS 201, support the use of digital signatures for the purpose of document signing. The digital signature private key and its corresponding certificate are only available over the contact interface or VCI. The read access control rule for the X.509 Certificate for Digital Signing is \"Always,\" meaning that the certificate CAN be read without access control restrictions. The PKI cryptographic function (see Table 5) is protected with a \"PIN Always\" or \"OCC Always\" access rule. In other words, the PIN or OCC data must be submitted and verified every time immediately before a digital signature key operation. This ensures cardholder participation every time the private key is used for digital signature generation."
+          },
+          {
+            "subsection": "3.2.2. X.509 Certificate for Key Management",
+            "text": []
+          },
+          {
+            "text": "The X.509 Certificate for Key Management and its associated private key, as defined in FIPS 201, support the use of encryption for the purpose of confidentiality. The key management private key and its corresponding certificate are only available over the contact interface or VCI. This key pair MAY be escrowed by the issuer for key recovery purposes. The read access control rule for the X.509 certificate is \"Always,\" meaning that the certificate CAN be read without access control restrictions. The PKI cryptographic function (see Table 5) is protected with a \"PIN\" or \"OCC\" access rule. In other words, once the PIN or OCC data is submitted and verified, subsequent key management key operations CAN be performed without requiring the PIN or OCC data again. This enables multiple private key operations without additional cardholder consent."
+          }
+        ]
+      },
+      {
+        "title": "3.3. Optional Data Elements",
+        "content": [
+          {
+            "text": "When implemented, the 27 optional data elements of FIPS 201 SHALL conform to the specifications provided in this document."
+          },
+          {
+            "subsection": "3.3.1. Printed Information",
+            "text": []
+          },
+          {
+            "text": "All FIPS 201 mandatory information printed on the card is duplicated on the chip in that data object. The printed information data object SHALL NOT be modified post-issuance. The Security Object enforces integrity of this information according to the issuer. This provides specific protection that the card information must match the printed information, mitigating alteration risks on the printed media."
+          },
+          {
+            "subsection": "3.3.2. Discovery Object",
+            "text": []
+          },
+          {
+            "text": "If implemented, the Discovery Object is the 0x7E interindustry ISO/IEC 7816-6 template that nests interindustry data objects. For the Discovery Object, the 0x7E template nests two mandatory BER-TLV structured interindustry data elements: 1) tag 0x4F contains the AID of the PIV Card Application, and 2) tag 0x5F2F lists the PIN Usage Policy.\n- Tag 0x4F encodes the PIV Card Application AID as follows:\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "{'4F 0B A0 00 00 03 08 00 00 10 00 01 00'}"
+          }
+        ]
+      },
+      {
+        "title": "Tag 0x5F2F",
+        "content": [
+          {
+            "text": "Tag 0x5F2F encodes the PIN Usage Policy in two bytes:"
+          },
+          {
+            "text": "\nFirst byte:\nBit 7 is set to 1 to indicate that the mandatory PIV Card Application PIN satisfies the PIV Access Control Rules (ACRs) for command execution and data object access.\nBit 6 indicates whether the optional Global PIN satisfies the PIV ACRs for command execution and PIV data object access.\nBit 5 indicates whether the optional OCC satisfies the PIV ACRs for command execution and PIV data object access.\nBit 4 indicates whether the optional VCI is implemented.\nBit 3 is set to zero if the pairing code is required to establish a VCI and is set to one if a VCI is established without a pairing code.\nBits 8, 2, and 1 of the first byte SHALL be set to zero.\n"
+          },
+          {
+            "text": "Table 1 lists the acceptable values for the first byte of the PIN Usage Policy and summarizes the meaning of each value."
+          },
+          {
+            "text": "\nSecond byte: The second byte of the PIN Usage Policy encodes the cardholder's PIN preference for PIV Cards with both the PIV Card Application PIN and the Global PIN enabled.\n0x10 indicates that the PIV Card Application PIN is the primary PIN used to satisfy the PIV ACRs for command execution and object access.\n0x20 indicates that the Global PIN is the primary PIN used to satisfy the PIV ACRs for command execution and object access.\n"
+          },
+          {
+            "text": "Note: If Bit 6 of the first byte of the PIN Usage Policy is set to zero, then the second byte is RFU and SHALL be set to 0x00."
+          },
+          {
+            "text": "PIV Card Applications that implement the VCI or for which the Global PIN or OCC satisfy the PIV ACRs for PIV data object access and command execution SHALL implement the Discovery Object."
+          },
+          {
+            "text": "The encoding of the 0x7E Discovery Object is as follows:"
+          },
+          {
+            "text": "{'7E 12' {'4F 0B A0 00 00 03 08 00 00 10 00 01 00'} {'5F 2F 02 xx yy'}}"
+          },
+          {
+            "text": "where xx and yy encode the first and second byte of the PIN Usage Policy, as described in this section."
+          },
+          {
+            "text": "The Security Object enforces integrity of the Discovery Object according to the issuer."
+          }
+        ]
+      },
+      {
+        "title": "3.3.3. Key History Object",
+        "content": [
+          {
+            "text": "Up to 20 retired key management private keys MAY be stored in the PIV Card Application. The Key History object provides information about the retired key management private keys that are present within the PIV Card Application. Retired key management private keys are private keys that correspond to X.509 Certificates for Key Management that have expired, have been revoked, or have otherwise been superseded. The Key History object SHALL be present in the PIV Card Application if the PIV Card Application contains any retired key management private keys but MAY be present even if no such keys are present in the PIV Card Application. For each retired key management private key in the PIV Card Application, the corresponding certificate MAY either be present within the PIV Card Application or MAY only be available from an online repository."
+          },
+          {
+            "text": "The Key History object includes two mandatory fields, keysWithOnCardCerts and keysWithOffCardCerts, and one optional field, offCardCertURL. The keysWithOnCardCerts field indicates the number of retired private keys within the PIV Card Application for which the corresponding certificates are also stored within the PIV Card Application.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "keysWithOffCardCerts",
+        "content": [
+          {
+            "text": "The keysWithOffCardCerts field indicates the number of retired private keys within the PIV Card Application for which the corresponding certificates are not stored within the PIV Card Application. The numeric values in both keysWithOnCardCerts and keysWithOffCardCerts are represented as unsigned binary integers. The offCardCertURL field contains a URL that points to a file containing the certificates that correspond to all of the retired private keys within the PIV Card Application, including those for which the corresponding certificate is also stored within the PIV Card Application. The offCardCertURL field SHALL be present if the keysWithOffCardCerts value is greater than zero and SHALL be absent if the values of both keysWithOnCardCerts and keysWithOffCardCerts are zero. The offCardCertURL field MAY be present if the keysWithOffCardCerts value is zero but the keysWithOnCardCerts value is greater than zero."
+          },
+          {
+            "text": "The file that is pointed to by the offCardCertURL field SHALL contain the DER encoding of the following data structure:"
+          },
+          {
+            "text": "OffCardKeyHistoryFile ::= SEQUENCE SIZE (1..20) OF SEQUENCE {\nkeyReference OCTET STRING (SIZE(1))\ncert Certificate\n}"
+          },
+          {
+            "text": "where keyReference is the key reference for the private key on the card, and cert is the corresponding X.509 certificate. The offCardCertURL field SHALL have the following format:"
+          },
+          {
+            "text": "\"http://\" <DNS name> \"/\" <ASCII-HEX encoded SHA-256 hash of OffCardKeyHistoryFile>"
+          },
+          {
+            "text": "The private keys for which the corresponding certificates are stored within the PIV Card Application SHALL be assigned to the lowest numbered key references reserved for retired key management private keys. For example, if keysWithOnCardCerts is 5, then the corresponding private keys SHALL be assigned to key references '82', '83', '84', '85', and '86'. The private keys for which the corresponding certificates are not stored within the PIV Card Application SHALL be assigned to the highest-numbered key references reserved for retired key management private keys. For example, if keysWithOffCardCerts is 3, then the corresponding private keys SHALL be assigned to key references '93', '94', and '95'."
+          },
+          {
+            "text": "Private keys do not have to be stored within the PIV Card Application in the order of their age. However, if the certificates that correspond to only some of the retired key management private keys are available within the PIV Card Application, then the certificates that are stored in the PIV Card Application SHALL be the ones that were most recently issued."
+          },
+          {
+            "text": "The Key History object is only available over the contact interface and VCI. The read access control rule for the Key History object is \"Always,\" meaning that it CAN be read without access control restrictions. The Security Object enforces integrity of the Key History object according to the issuer."
+          },
+          {
+            "subsection": "3.3.4. Retired X.509 Certificates for Key Management# CURRENT_PAGE_RAW_OCR_TEXT",
+            "text": []
+          },
+          {
+            "text": "These objects hold the X.509 Certificates for Key Management that corresponding to retired key management private keys, as described in Sec. 3.3.3. Retired key management private keys and their corresponding certificates are only available over the contact interface or VCI. The read access control rule for these certificates is \"Always,\" meaning that the certificates CAN be read without access control restrictions. The PKI cryptographic function (see Table 5) for all of the retired key management private keys is protected with a \"PIN\" or \"OCC\" access rule. In other words, once the PIN or OCC data is submitted and verified, subsequent key management key operations CAN be performed with any of the retired key management private keys without requiring the PIN or OCC data again. This enables multiple private key operations without additional cardholder consent."
+          }
+        ]
+      },
+      {
+        "title": "3.3.5. Cardholder Iris Images",
+        "content": [
+          {
+            "text": "The iris images data object specifies compact images of the cardholder's irises. The images are suitable for use in iris recognition systems for automated identity verification. The iris images data object SHALL be encoded as specified in [SP800-76]."
+          }
+        ]
+      },
+      {
+        "title": "3.3.6. Biometric Information Templates Group Template",
+        "content": [
+          {
+            "text": "The Biometric Information Templates (BIT) Group data object encodes the configuration information of the OCC data. The encoding of the BIT Group Template SHALL be as specified in Table 7 of [SP800-76]. When OCC satisfies the PIV ACRs for PIV data objects access and command execution, both the Discovery Object and the BIT Group Template data object SHALL be present, and bit 5 of the first byte of the PIN Usage Policy SHALL be set. The BIT Group Template MAY be present when OCC does not satisfy the PIV ACRs for PIV data objects access but, if present, SHALL contain no BITs. The Security Object enforces integrity of the BIT Group Template data object according to the issuer."
+          }
+        ]
+      },
+      {
+        "title": "3.3.7. Secure Messaging Certificate Signer",
+        "content": [
+          {
+            "text": "The Secure Messaging Certificate Signer data object, which SHALL be present if the PIV Card supports secure messaging for non-card management operations, contains the certificates needed to verify the signature on the secure messaging card verifiable certificate (CVC), as specified in SP 800-73-5 Part 2, Sec. 4.1.5. The public key required to verify the digital signature of the secure messaging CVC is an ECC key. It SHALL be provided in either an X.509 Certificate for Content Signing or an Intermediate CVC. If the public key required to verify the digital signature of the secure messaging CVC is provided in an Intermediate CVC, then the format of the Intermediate CVC SHALL be as specified in SP 800-73-5 Part 2, Sec. 4.1.5, and the public key required to verify the digital signature of the Intermediate CVC SHALL be provided in an X.509 Certificate for Content Signing. The X.509 Certificate for Content Signing SHALL be a digital signature certificate issued under.# the id-fpki-common-piv-contentSigning policy of [COMMON]"
+          },
+          {
+            "text": "The X.509 Certificate for Content Signing SHALL also include an extended key usage (extKeyUsage) extension asserting id-PIVcontent-signing. Additional descriptions for the PIV object identifiers are provided in Appendix B of FIPS 201-3. The X.509 Certificate for Content Signing needed to verify the digital signature of a secure messaging CVC or Intermediate CVC of a valid PIV Card SHALL NOT be expired."
+          },
+          {
+            "text": "Note that the option to include an Intermediate CVC is included as a temporary measure to accommodate the use of certification authorities that do not support the issuance of X.509 certificates that contain elliptic curve subject public keys. A future version of SP 800-73 is expected to deprecate the Intermediate CVC data element."
+          }
+        ]
+      },
+      {
+        "title": "3.3.8. Pairing Code Reference Data Container",
+        "content": [
+          {
+            "text": "The Pairing Code Reference Data Container, which SHALL be present if the PIV Card supports the virtual contact interface, includes a copy of the PIV Card's pairing code (see Sec. 5.1.3). The Security Object enforces the integrity of the Pairing Code Reference Data Container according to the issuer."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "Optionally, a Cardholder UUID value MAY be included in the SAN extension of the X.509 certificate for PIV Authentication. The Cardholder UUID value SHALL be a 16-byte binary representation of a valid UUID encoded as a Uniform Resource Name (URN) and version 4, as specified in [RFC4122, Section 4.1.3]. The identifier should be limited in scope to identify a PIV credential holder to their PIV credentials issued during PIV eligibility. The same Cardholder UUID value MAY optionally be present in the CHUID data object, as defined in Sec. 3.1.2."
+      },
+      {
+        "title": "3.5. Data Object Containers and Associated Access Rules and Interface Modes",
+        "content": [
+          {
+            "text": "Table 2 defines a high-level view of the data model. Each on-card storage container is labeled as mandatory (M), optional (O), or conditional (C). The conditional data objects are the digital signature key and the key management key, which are mandatory if the cardholder has a government-issued email account at the time of credential issuance. This data model is designed to enable and support dual interface cards. For dual chip implementations for any container that can be accessed over both the contact interface and the contactless interface (including the virtual contact interface), the data object SHALL be copied into the corresponding containers on both chips."
+          }
+        ]
+      },
+      {
+        "title": "4. PIV Data Objects Representation",
+        "content": [
+          {
+            "subsection": "4.1. Data Objects Definition",
+            "text": []
+          },
+          {
+            "text": "A data object is an item of information seen on the card command interface that has a specified name, a description of logical content, a format, and a coding. Each data object has a globally unique name called its object identifier (OID), as defined in ISO/IEC 8824-2:2002 [ISO8824]. A data object whose data content is encoded as a BER-TLV data structure, as in ISO/IEC 8825-1:2002 [ISO8825], is called a BER-TLV data object."
+          },
+          {
+            "text": "The content of a data object is the sequence of bytes that are said to be contained in or to be the value of the data object. The number of bytes in this byte sequence is referred to as the length of the data content as well as the size of the data object. The first byte in the sequence is regarded as being at byte position or offset zero in the content of the data object. The data content of a BER-TLV data object MAY consist of other BER-TLV data objects. In this case, the tag of the data object indicates that the data object is a constructed data object. A BER-TLV data object that is not a constructed data object is called a primitive data object. The PIV data objects are BER-TLV objects encoded as per [ISO8825]. However, tag values of the PIV data object's inner tag assignments do not conform to BER-TLV requirements due to the need to accommodate legacy tags inherited from [GSC-IS]. Before the card is issued, data objects that are created but not used SHALL be set to zero-length value."
+          },
+          {
+            "subsection": "4.2. OIDs and Tags of PIV Card Application Data Objects",
+            "text": []
+          },
+          {
+            "text": "Table 3 lists the ASN.1 object identifiers and BER-TLV tags of the thirty-six\n```# PIV Card Application"
+          }
+        ]
+      },
+      {
+        "title": "Data Objects",
+        "content": [
+          {
+            "text": "For the purpose of constructing PIV Card Application data object names in the CardApplicationURL in the CCC of the PIV Card Application, the NIST RID ('A0 00 00 03 08') SHALL be used and the card application type SHALL be set to '00'."
+          }
+        ]
+      },
+      {
+        "title": "4.3. Object Identifiers",
+        "content": [
+          {
+            "text": "Each of the data objects in the PIV Card Application has been provided with a BER-TLV tag and an ASN.1 OID from the NIST personal identity verification arc. These object identifier assignments are given in Table 3."
+          },
+          {
+            "text": "A data object SHALL be identified on the PIV client-application programming interface using its OID. An object identifier on the PIV client-application programming interface SHALL be a dot-delimited string of the integer components of the OID. For example, the representation of the OID of the CHUID on the PIV client-application programming interface is \"2.16.840.1.101.3.7.2.48.0.\""
+          },
+          {
+            "text": "A data object SHALL be identified on the PIV Card Application card command interface using its BER-TLV tag. For example, the CHUID is identified on the card command interface to the PIV Card Application by the three-byte identifier '5FC102'."
+          }
+        ]
+      },
+      {
+        "title": "5. Data Types and Their Representation",
+        "content": [
+          {
+            "text": "This section describes the data types used in the PIV Client Application Programming Interface (SP 800-73-5, Part 3) and PIV Card Command Interface (SP 800-73-5, Part 2). Unless otherwise indicated, the representation SHALL be the same on both interfaces."
+          },
+          {
+            "text": "The data types are defined in Part 1 rather than in Parts 2 and 3 in order to achieve smart card platform independence from Part 1. Thus, non-government smart card programs can readily adopt the interface specifications in Parts 2 and 3 while customizing Part 1 to their own data model, data types, and namespaces."
+          },
+          {
+            "subsection": "5.1. Key References",
+            "text": []
+          },
+          {
+            "text": "A key reference is a 1-byte reference data identifier that specifies a cryptographic key or PIN according to its PIV Key Type. Table 4, Table 5, and SP 800-78, Table 8, define the key reference values that SHALL be used on the PIV interfaces. For example, the key reference values are used in a cryptographic protocol, such as an authentication or a signing protocol."
+          },
+          {
+            "text": "Key references are only assigned to private and secret (symmetric) keys, PINs, PIN Unblocking Keys (PUKs), OCC, and the pairing code. All other PIV Card Application key reference values are reserved for future use."
+          },
+          {
+            "text": "In accordance with FIPS 201, no more than 10 consecutive activation retries for each of the activation methods (i.e., PIN and OCC attempts) SHALL be permitted. Issuers MAY further restrict the maximum retry limit to a lower value, as indicated in Table 4 below."
+          },
+          {
+            "text": "Secure messaging (SM) is defined in Sec. 5.4, and VCI is defined in Sec. 5.5. Table 2 of SP 800-73-5 Part 2 specifies the security conditions for each command."
+          },
+          {
+            "text": "When represented as a byte, the key reference occupies bits b8 and b5-b1, while b7 and b6 SHALL be set to 0. If b8 is 0, then the key reference names global reference data. If b8 is 1, then...# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "the key reference names application-specific reference data.",
+        "content": [
+          {
+            "text": "The access control rules for PIV data object access SHALL reference the PIV Card Application PIN and MAY optionally reference the cardholder Global PIN or OCC data. If the Global PIN is used by the PIV Card Application, then the Global PIN format SHALL follow the PIV Card Application PIN format defined in Sec. 2.4.3 of SP 800-73-5 Part 2."
+          },
+          {
+            "text": "PIV Card Applications with the Discovery Object and Bit 6 of the first byte of the PIN Usage Policy value set to one, as per Sec. 3.3.2, SHALL reference the PIV Card Application PIN and the cardholder Global PIN in the access control rules for PIV data object access. Additionally, the PIV Card Application card commands CAN change the status of the Global PIN and MAY change its reference data while the PIV Card Application is the currently selected application."
+          },
+          {
+            "text": "The rest of the document uses \"PIN\" to mean either the PIV Card Application PIN or the Global PIN."
+          }
+        ]
+      },
+      {
+        "title": "5.1.1. OCC Data",
+        "content": [
+          {
+            "text": "This document does not specify how the biometric reference data and comparison parameters are stored internally on the card. Moreover, the export of the biometric reference data SHALL NOT be allowed. Configuration data related to the biometric reference data MAY be read from the tag 0x7F61 BIT Group template data object (see Sec. 3.3.6). Configuration data is defined in Table 7 of [SP800-76]. The fingerprints used for OCC MAY be taken from the full set of fingerprints collected for PIV background investigations and SHOULD be imaged from fingers not imaged for off-card one-to-one comparison."
+          }
+        ]
+      },
+      {
+        "title": "5.1.2. PIV Secure Messaging Key",
+        "content": [
+          {
+            "text": "If the PIV Card supports secure messaging, the PIV Secure Messaging key SHALL be generated on the PIV Card, and the PIV Card SHALL NOT permit exportation of the PIV Secure Messaging key. The cryptographic operations that use the PIV Secure Messaging key SHALL be available through the contact and contactless interfaces of the PIV Card. The PKI cryptographic function (see Table 5) is under an \"Always\" access rule, and, thus private key operations (i.e., use of the key to establish session keys for secure messaging) CAN be performed without access control restrictions."
+          },
+          {
+            "text": "The PIV Card SHALL store a corresponding secure messaging CVC to support validation of the public key by the relying party. The format for the secure messaging CVC SHALL be as specified in SP 800-73-5 Part 2, Sec. 4.1.5. The public key required to verify the digital signature of the secure messaging CVC SHALL be provided in a certificate in the Secure Messaging Certificate Signer data object, as specified in Sec. 3.3.7."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Pairing Code",
+    "subsections": [
+      {
+        "content": "Generation SHALL be loaded onto \u2014 at most \u2014 one PIV Card and CANNOT be changed by the cardholder. The pairing code value for a PIV Card SHALL be stored in the Pairing Code Reference Data Container (see Sec. 3.3.8) on the card and MAY be printed on the back of the card in an agency-specific text area (i.e., Zones 9B or 10B). PIV Card Issuers MAY choose to provide the pairing code value to the cardholder in another manner, such as printing it on a slip of paper rather than printing it on the back of the card."
+      },
+      {
+        "content": "Unlike the PIV Card Application PIN or the Global PIN, there are no restrictions on the caching of the pairing code by client applications. It is recommended that a client application that needs to communicate with a PIV Card over its virtual contact interface obtain the card's pairing code during a registration step by asking the cardholder to enter the value or by reading it from the card over the contact interface from the Pairing Code Reference Data Container and then cache the pairing code until the card expires. The client application MAY then connect to the card and establish a virtual contact interface with it whenever the card is within read-range of the client application's contactless card reader without needing to prompt the cardholder."
+      },
+      {
+        "title": "5.2. PIV Algorithm Identifier",
+        "content": [
+          {
+            "text": "A PIV algorithm identifier is a 1-byte identifier of a cryptographic algorithm. The identifier specifies a cryptographic algorithm and key size. For symmetric cryptographic operations, the algorithm identifier also specifies a mode of operation (i.e., ECB). SP 800-78, Table 9 lists the PIV algorithm identifiers for the cryptographic algorithms that MAY be recognized on the PIV interfaces."
+          }
+        ]
+      },
+      {
+        "title": "5.3. Cryptographic Mechanism Identifiers",
+        "content": [
+          {
+            "text": "Cryptographic mechanism identifiers are defined in Table 6. These identifiers serve as inputs to the GENERATE ASYMMETRIC KEY PAIR card command and the SP 800-73-5 Part 3 pivGenerateKeyPair() client API function call, which initiates the generation and storage of the asymmetric key pair."
+          },
+          {
+            "text": "Higher strength keys are advised per SP 800-56 Part 1 starting in 2031. See SP 800-78-5, Tables 9 and 10, which reflect support for higher strength keys for PIV cards and supporting systems, where applicable."
+          },
+          {
+            "text": "All other cryptographic mechanism identifier values are reserved for future use."
+          }
+        ]
+      },
+      {
+        "title": "5.4. Secure Messaging and Authentication Using a Secure Messaging Key (SM-AUTH)",
+        "content": [
+          {
+            "text": "A PIV Card Application MAY optionally support SM. When secure messaging is established, the PIV Card Application is authenticated to the relying system, and a set of symmetric session keys are established. The symmetric session keys are used to provide confidentiality and integrity protection for the card commands that are sent to the card using secure messaging as well as for the responses from the PIV Card."
+          },
+          {
+            "text": "If implemented, SM for non-card management operations SHALL only be established using the PIV Secure Messaging key specified in Table 5 and the SM protocol in accordance.\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "with the specifications in Sec. 4 of SP 800-73-5 Part 2. A PIV Card Application may optionally support authentication using the Secure Messaging key (SM-AUTH). When SM-AUTH is supported, the PIV Card and, therefore the cardholder is authenticated to the relying system."
+          }
+        ]
+      },
+      {
+        "title": "5.5. Virtual Contact Interface",
+        "content": [
+          {
+            "text": "The term \"virtual contact interface (VCI)\" is used in this document as shorthand for a security condition. As described in access control rules in this document and in SP 800-73-5 Part 2, all non-card management operations that are allowed over the contact interface MAY be carried out over the contactless interface if the VCI security condition is satisfied. Support for the VCI is optional."
+          },
+          {
+            "text": "The VCI security condition supports two different configurations for the establishment of the VCI. In the default (and recommended) configuration, the VCI is only established after both secure messaging has been established and the pairing code has been presented to the card using secure messaging. In the non-default configuration, the VCI is established through secure messaging without any further steps."
+          },
+          {
+            "text": "The VCI security condition is:\n(command is submitted over secure messaging) AND (the Discovery Object is present) AND (Bit 4 of the first byte of the PIN Usage Policy is one) AND ((the security status indicator associated with the pairing code is TRUE) OR (Bit 3 of the first byte of the PIN Usage Policy is one))"
+          },
+          {
+            "text": "PIV Card Applications that support the VCI SHALL support the configuration in which Bit 3 of the first byte of the PIN Usage Policy is set to zero (i.e., the configuration in which submission of the pairing code to the PIV Card Application is required to establish the VCI) and MAY additionally support the configuration in which Bit 3 of the first byte of the PIN Usage Policy is set to one. Card management systems (CMS) SHALL be configured to set Bit 3 of the first byte of the PIN Usage Policy to zero by default whenever the Discovery Object is present."
+          },
+          {
+            "text": "Requiring that the pairing code be submitted to the PIV Card Application in order to establish the VCI protects the previously contact-restricted X.509 certificates from skimming and also protects PIN-based card activation from being blocked. While it is recommended that the default configuration of CMSs remain unchanged, the configuration of a CMS MAY be changed to set Bit 3 of the first byte of the PIN Usage Policy to one (i.e., to configure PIV Cards to establish VCIs without the submission of a pairing code) if the configuration change is approved by the designated approving authority (DAA) and if compensating controls are implemented to ensure that personally identifiable information (e.g., name, email address, and organization) CANNOT be skimmed from the PIV Card when in close proximity when the card is outside of its protective sleeve.# A DAA's Decision on PIV Cards"
+          },
+          {
+            "text": "A DAA's decision to approve the issuance of PIV Cards that implement the VCI without requiring the pairing code SHALL be based on a risk assessment that weighs the perceived benefit against the risk of unauthorized disclosure of cardholder data exposing previously contact-restricted X.509 certificates to skimming. The previously contact-restricted X.509 certificates include information about the cardholder, such as name and email address. Compensating controls SHALL be captured in the appropriate system security plan. Systems that accept externally issued PIV Cards SHALL be able to accept PIV Cards with either VCI configuration."
+          }
+        ]
+      }
+    ]
+  }
+]

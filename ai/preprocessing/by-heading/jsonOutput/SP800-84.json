@@ -1,0 +1,967 @@
+[
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "Organizations have information technology (IT) plans in place, such as contingency and computer security incident response plans, so that they can respond to and manage adverse situations involving IT. These plans should be maintained in a state of readiness, which should include having personnel trained to fulfill their roles and responsibilities within a plan, having plans exercised to validate their content, and having systems and system components tested to ensure their operability in an operational environment specified in a plan. These three types of events can be carried out efficiently and effectively through the development and implementation of a test, training, and exercise (TT&E) program. Organizations should consider having such a program in place because tests, training, and exercises are so closely related. For example, exercises and tests offer different ways of identifying deficiencies in IT plans, procedures, and training."
+      },
+      {
+        "content": "This document provides guidance on designing, developing, conducting, and evaluating TT&E events so that organizations can improve their ability to prepare for, respond to, manage, and recover from adverse events that may affect their missions. The scope of this document is limited to TT&E events for single organizations, as opposed to large-scale events involving multiple organizations, involving internal IT operational procedures for emergencies. This document does not address TT&E for a specific type of IT plan; rather, the TT&E methodology described in this document can be applied to TT&E events built around any IT plan or around an IT emergency-handling capability that is not necessarily documented in a plan, such as computer security incident response."
+      },
+      {
+        "content": "As part of creating a comprehensive TT&E program, a TT&E plan should be developed that outlines the steps to be taken. The TT&E plan should define the organization's roadmap for ensuring a viable capability, and outline the organization's approach to maintaining plans, as well as enhancing and managing the capability. Enhancing emergency plans, policies, and procedures will promote more efficient utilization of capabilities in responding to cyber attacks. In addition, the TT&E plan should identify resource and budget requirements that enable organizations to achieve an effective, proven capability, and provide a schedule for conducting various types of TT&E events. Creating the TT&E program should also involve several other steps, including developing a TT&E policy, identifying roles and responsibilities, and documenting a TT&E event methodology."
+      },
+      {
+        "content": "The TT&E program should include several types of events to ensure the availability of a wide range of methods for validating various planning elements in the context of cyber incidents. The types of events covered in this guide are as follows:"
+      },
+      {
+        "content": "\nTests. Tests are evaluation tools that use quantifiable metrics to validate the operability of an IT system or system component in an operational environment specified in an IT plan. For example, an organization could test if call tree cascades can be executed within prescribed time limits;# Testing and Training in IT Plans\n"
+      },
+      {
+        "title": "Testing",
+        "content": [
+          {
+            "text": "Another test would be removing power from a system or system component. A test is conducted in as close to an operational environment as possible; if feasible, an actual test of the components or systems used to conduct daily operations for the organization should be used. The scope of testing can range from individual system components or systems to comprehensive tests of all systems and components that support an IT plan. Tests often focus on recovery and backup operations; however, testing varies depending on the goal of the test and its relation to a specific IT plan."
+          }
+        ]
+      },
+      {
+        "title": "Training",
+        "content": [
+          {
+            "text": "For the purposes of this publication, training refers only to informing personnel of their roles and responsibilities within a particular IT plan and teaching them skills related to those roles and responsibilities, thereby preparing them for participation in exercises, tests, and actual emergency situations related to the IT plan. Training personnel on their roles and responsibilities before an exercise or test event is typically split between a presentation on their roles and responsibilities, and activities that allow personnel to demonstrate their understanding of the subject matter."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "Members, procedures, and assets involved in one or more functional aspects of a plan (e.g., communications, emergency notifications, IT equipment setup). Functional exercises vary in complexity and scope, from validating specific aspects of a plan to full-scale exercises that address all plan elements. Functional exercises allow staff to execute their roles and responsibilities as they would in an actual emergency situation, but in a simulated manner. Organizations should conduct TT&E events periodically; following organizational changes, updates to an IT plan, or the issuance of new TT&E guidance; or as otherwise needed. This assists organizations in ensuring that their IT plans are reasonable, effective, and complete, and that all personnel know what their roles are in the conduct of each IT plan. TT&E event schedules are often dictated in part by organizational requirements. For example, NIST Special Publication 800-53 requires Federal agencies to conduct exercises or tests for their systems' contingency plans and incident response capabilities at least annually."
+      },
+      {
+        "title": "1. Introduction",
+        "content": [
+          {
+            "subsection": "1.1 Authority",
+            "text": []
+          },
+          {
+            "text": "The National Institute of Standards and Technology (NIST) developed this document in furtherance of its statutory responsibilities under the Federal Information Security Management Act (FISMA) of 2002, Public Law 107-347. NIST is responsible for developing standards and guidelines, including minimum requirements, for providing adequate information security for all agency operations and assets; but such standards and guidelines shall not apply to national security systems. This guideline is consistent with the requirements of the Office of Management and Budget (OMB) Circular A-130, Section 8b(3), \"Securing Agency Information Systems,\" as analyzed in A-130, Appendix IV: Analysis of Key Sections. Supplemental information is provided in A-130, Appendix III. This guideline has been prepared for use by Federal agencies. It may be used by nongovernmental organizations on a voluntary basis and is not subject to copyright, though attribution is desired. Nothing in this document should be taken to contradict standards and guidelines made mandatory and binding on Federal agencies by the Secretary of Commerce under statutory authority, nor should these guidelines be interpreted as altering or superseding the existing authorities of the Secretary of Commerce, Director of the OMB, or any other Federal official."
+          },
+          {
+            "subsection": "1.2 Purpose and Scope",
+            "text": []
+          },
+          {
+            "text": "Although it is important to have plans in place to help an organization respond to and manage various situations involving information technology (IT), it is equally important to maintain these plans in a state of readiness. This includes having IT personnel trained to fulfill their roles and responsibilities; having plans exercised to validate their policies and procedures; and having systems tested to ensure their operability. These three types of events can be carried out efficiently and effectively through the development and implementation of a test, training, and exercise (TT&E) program.\n```# This publication seeks to assist organizations in designing, developing, conducting, and evaluating TT&E events"
+          },
+          {
+            "text": "This publication seeks to assist organizations in designing, developing, conducting, and evaluating TT&E events in an effort to aid personnel in preparing for adverse situations involving IT. The events are designed to train personnel, exercise IT plans, and test IT systems, so that an organization can maximize its ability to prepare for, respond to, manage, and recover from disasters that may affect its mission. The guide describes the design, development, conduct, and evaluation of events for single organizations, as opposed to large-scale events that may involve multiple organizations. The TT&E methodology described in this document can be applied to TT&E events built around any type of IT-related plan, including, but not limited to, contingency plans (e.g., disaster recovery plans) and computer security incident response plans. The vocabulary related to TT&E varies across organizations; this document provides definitions of the terms most commonly used for TT&E-related activities and teams."
+          }
+        ]
+      },
+      {
+        "title": "1.3 Audience",
+        "content": [
+          {
+            "text": "This document has been created for individuals responsible for their organization's TT&E program. Specifically, the document is designed to assist the IT personnel responsible for designing, developing, conducting, and/or evaluating TT&E events in fulfilling these responsibilities effectively."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "2. Establishing a Test, Training, and Exercise Program",
+    "subsections": [
+      {
+        "content": "An organization's IT plans need to be maintained to sustain the organization's ability to prepare for, respond to, manage, and recover from disasters affecting its mission. Common types of IT plans used for this purpose are as follows:"
+      },
+      {
+        "content": "\nContingency plan: Recovering and reconstituting IT systems.# Contingency Plans\n"
+      },
+      {
+        "content": "Contingency plans include continuity of operations plans, business continuity plans, and disaster recovery plans."
+      },
+      {
+        "title": "Incident Response Plan",
+        "content": [
+          {
+            "text": "Reporting and managing computer security incidents. The following are the major types of events used to maintain these plans:"
+          },
+          {
+            "subsection": "Tests",
+            "text": []
+          },
+          {
+            "text": "A test is an evaluation tool that uses quantifiable metrics to validate the operability of a system or system component in an operational environment specified in an IT plan. For example, an organization could test if call tree cascades can be executed within prescribed time limits; another test would be removing power from a system or system component. The quantifiable metrics are created by developing a test plan that identifies the systems or components to be tested (and the components of any systems being tested) and the overall test objectives. Testing that results in components or systems malfunctioning or becoming inoperable could indicate problems in personnel training or in IT plans and procedures. Tests often focus on recovery and backup operations; however, testing varies depending on the goal of the test and its relation to a specific IT plan. Section 6 contains detailed information about testing."
+          },
+          {
+            "subsection": "Training",
+            "text": []
+          },
+          {
+            "text": "For the purposes of this publication, training refers only to informing personnel of their roles and responsibilities within a particular IT plan, such as decision making, and teaching them skills related to those roles and responsibilities. This prepares the personnel for participation in exercises, tests, and actual emergency situations related to the IT plan. Training personnel on their roles and responsibilities before an exercise or test event is typically split between a presentation on their roles and responsibilities, and activities that allow personnel to demonstrate their understanding of the subject matter. Section 3 contains a brief overview of training events, which are already discussed in detail in other NIST publications."
+          },
+          {
+            "subsection": "Exercises",
+            "text": []
+          },
+          {
+            "text": "An exercise is a simulation of an emergency designed to validate the viability of one or more aspects of an IT plan. Exercises help to identify gaps and inconsistencies within IT plans and procedures, as well as cases where personnel need additional training or when training needs to be changed. In an exercise, personnel with roles and responsibilities in a particular IT plan meet to validate the content of a plan through discussion of their roles and their responses to emergency situations, execution of responses in a simulated operational environment, or other means of validating responses that does not involve using the actual operational environment for deployment of personnel. Exercises are scenario-driven, such as a power failure in one of the organization's data centers or a fire causing certain systems to be damaged, with additional situations often being presented during the course of an exercise. There are several types of exercises, and this publication focuses on the following two types that are widely used in TT&E.# Programs by Single Organizations"
+          }
+        ]
+      },
+      {
+        "title": "Tabletop",
+        "content": [
+          {
+            "text": "Tabletop exercises are discussion-based exercises where personnel meet in a classroom setting or in breakout groups to discuss their roles during an emergency and their responses to a particular emergency situation. A facilitator presents a scenario and asks the exercise participants questions related to the scenario, which initiates a discussion among the participants of roles, responsibilities, coordination, and decision-making. A tabletop exercise is discussion-based only and does not involve deploying equipment or other resources. Section 4 contains detailed information about tabletop exercises."
+          }
+        ]
+      },
+      {
+        "title": "Functional",
+        "content": [
+          {
+            "text": "Functional exercises allow personnel to validate their operational readiness for emergencies in a simulated operational environment. Functional exercises are designed to exercise the roles and responsibilities of specific team members, procedures, and assets involved in one or more functional aspects of an IT plan (e.g., communications, emergency notifications, IT equipment setup). Functional exercises vary in complexity and scope, from validating specific aspects of a plan to full-scale exercises that address all plan elements. Functional exercises allow staff to execute their roles and responsibilities as they would in an actual emergency situation, but in a simulated manner. Section 5 contains detailed information about functional exercises."
+          },
+          {
+            "text": "Although an organization could perform tests, training, and exercises as discrete activities without any coordination, organizations should consider having a program in place that addresses all three because they are so closely related. For example, exercises and tests offer different ways of identifying problems with IT plans, procedures, and training. An effective TT&E program should comprise a combination of training, exercise, and testing events. The program should include a TT&E plan, policy, event methodology, and procedures. Using these elements should cause TT&E events to be performed more consistently and effectively, particularly reducing duplication of effort. A program should also address resource and budget requirements, and provide a schedule for conducting types of TT&E events. This section discusses the steps involved in creating a TT&E program."
+          },
+          {
+            "text": "Regardless of the type of IT plans an organization has developed, it should have mechanisms in place to validate the plans' effectiveness and manage their maintenance. Organizations that want to establish a TT&E program should first develop a TT&E plan that outlines the steps to be taken to ensure that personnel are trained in their IT plan roles and responsibilities, IT plans are exercised to validate their viability; and IT components or systems are tested to validate their operability in the context of an IT plan. The TT&E plan should outline all elements of the program and ensure that information surrounding the program is documented. In addition to creating the TT&E plan, other major steps in creating a TT&E program are as follows:"
+          },
+          {
+            "text": "\n\nDevelop a comprehensive policy# CURRENT_PAGE_RAW_OCR_TEXT\n\n\nIdentify roles and responsibilities\n\nEstablish overall schedule\nDocument methodology.\n"
+          },
+          {
+            "text": "Develop a comprehensive policy# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Identify roles and responsibilities"
+          },
+          {
+            "text": "These steps are described in more detail in Sections 2.1 through 2.4."
+          }
+        ]
+      },
+      {
+        "title": "2.1 Develop Comprehensive TT&E Policy",
+        "content": [
+          {
+            "text": "A TT&E program should include a policy that outlines the organization's internal and external requirements associated with training personnel, exercising plans, and testing components and systems. The policy forms the framework for the purpose and objectives of the program and cites applicable Federal and internal guidance. The policy further provides the framework or \"rules\" that govern how the organization develops and administers the TT&E events. The policy establishes a clear and consistent framework for creating all of the documentation associated with TT&E events."
+          },
+          {
+            "text": "Key steps for developing a TT&E policy are as follows:"
+          },
+          {
+            "text": "\nWin the support and involvement of senior management, which includes ensuring that senior managers understand the program, the resources needed to make the program successful, the benefits and need for having the program, and any potential risks involved in creating the program.\nIdentify all relevant planning documentation (internal and external), such as past training records; organization's policies; Federal guidance; and other practices obtained from other organizations or industry partners.\nCollect all governing documentation and maintain the documentation within a central repository.\n"
+          },
+          {
+            "text": "The following are suggested elements to include in a TT&E policy:"
+          },
+          {
+            "text": "\nPurpose\nEffective date\nObjectives\nApplicability and scope\nAuthorities and related policies\nRoles and responsibilities of key business units and staff positions\nTT&E requirements\nTT&E review and approval\nEnforcement and compliance\nPoints of contact for additional information\nDefinition of terms.\n"
+          },
+          {
+            "text": "Once the TT&E policy is developed, the policy statement should be updated as new guidance is applied to or impacts the program."
+          }
+        ]
+      },
+      {
+        "title": "2.2 Identify TT&E Roles and Responsibilities",
+        "content": [
+          {
+            "text": "The office with primary oversight of and responsibility for a TT&E program varies based on the structure or requirements of the organization. In many organizations, it is led within the Office of the Chief Information Officer (OCIO). The TT&E program should be managed by a person or team with direct responsibility for the organization's IT planning capability. The program should have an IT plan coordinator who is responsible for all aspects of IT planning, including the TT&E element of maintaining the IT plans. The IT plan coordinator has overall responsibility for the IT plans, including development, implementation, and maintenance. One of the IT plan coordinator's responsibilities is to identify a TT&E program coordinator, who is responsible for developing a TT&E plan and coordinating events. To plan and conduct TT&E events, the TT&E program coordinator works with event design.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Teams",
+        "content": [
+          {
+            "text": "Organizations might elect to purchase specialized software or obtain external support to assist in forming or staffing these teams. Sections 4 through 6 contain information on the individual design teams and the roles within each team."
+          }
+        ]
+      },
+      {
+        "title": "2.3 Establish Overall TT&E Schedule",
+        "content": [
+          {
+            "text": "The TT&E plan should document the projected schedule of activities to be performed within the TT&E program. Although events should be conducted as needed, organizations should evaluate the required frequency of its events and document the frequency of each event in a TT&E schedule. For example, NIST Special Publication (SP) 800-53 requires Federal agencies to conduct exercises or tests for their systems' contingency plans and incident response capabilities at least annually. Sections 4 through 6 provide additional detail on how to evaluate an organization's specific TT&E needs."
+          }
+        ]
+      },
+      {
+        "title": "2.4 Document TT&E Event Methodology",
+        "content": [
+          {
+            "text": "As part of creating a TT&E program, an organization should select and document a high-level methodology for planning and performing TT&E events. Figure 2-1 shows one commonly used methodology, which has four phases:"
+          },
+          {
+            "text": "\n\nDesign the event. The TT&E program coordinator works with the plan coordinator to determine the TT&E event topic and scope based on the current needs of the organization. Examples of topics include training personnel on their specific roles and responsibilities within an IT plan, exercising response procedures, and testing a specific system. Next, the TT&E program coordinator identifies the objectives based on the topic and scope, and the personnel that should participate in the event. The TT&E program coordinator also identifies an event design team, which may consist of one person or a group of people, depending on the requirements of the event. The TT&E program coordinator oversees the event logistics, which could include document printing, room setup, meals, and audiovisual equipment.\n\n\nDevelop the event documentation. Upon completion of the design phase, the TT&E program coordinator works with the design team on the development of the documentation to be used before, during, and after the event. The types of documentation vary for each type of event, but examples include briefing materials, participant manuals, instructor and facilitator guides, test plans and scripts, and evaluation criteria.\n\n\nConduct the event. In this phase, the event\u2014the training, exercise, or test\u2014is actually conducted. The details of this vary greatly by event type and scope.\n\n\nEvaluate lessons learned from the event. The evaluation phase is used to analyze the event and identify lessons learned, both to improve the IT plans and their execution, and to improve the TT&E process. Evaluation is performed somewhat differently by event type, as follows:\n\nTraining: Participants typically complete an evaluation/critique form on the success of the event and areas where enhancements can be made in terms of the personnel's knowledge of.# Training, Testing, and Evaluation (TT&E) Program\n"
+          },
+          {
+            "text": "Design the event. The TT&E program coordinator works with the plan coordinator to determine the TT&E event topic and scope based on the current needs of the organization. Examples of topics include training personnel on their specific roles and responsibilities within an IT plan, exercising response procedures, and testing a specific system. Next, the TT&E program coordinator identifies the objectives based on the topic and scope, and the personnel that should participate in the event. The TT&E program coordinator also identifies an event design team, which may consist of one person or a group of people, depending on the requirements of the event. The TT&E program coordinator oversees the event logistics, which could include document printing, room setup, meals, and audiovisual equipment."
+          },
+          {
+            "text": "Develop the event documentation. Upon completion of the design phase, the TT&E program coordinator works with the design team on the development of the documentation to be used before, during, and after the event. The types of documentation vary for each type of event, but examples include briefing materials, participant manuals, instructor and facilitator guides, test plans and scripts, and evaluation criteria."
+          },
+          {
+            "text": "Conduct the event. In this phase, the event\u2014the training, exercise, or test\u2014is actually conducted. The details of this vary greatly by event type and scope."
+          },
+          {
+            "text": "Evaluate lessons learned from the event. The evaluation phase is used to analyze the event and identify lessons learned, both to improve the IT plans and their execution, and to improve the TT&E process. Evaluation is performed somewhat differently by event type, as follows:"
+          },
+          {
+            "text": "The trained subject matter. Feedback is analyzed and documented in a training analysis report, and future sessions are modified as needed."
+          }
+        ]
+      },
+      {
+        "title": "Exercise or Test",
+        "content": [
+          {
+            "text": "Participants typically engage in a facilitated debrief, also called a hotwash, to discuss areas that went particularly well and areas where enhancements can be made in terms of the plan's contents and/or the tested systems. Findings discussed during the debrief, observations made during the course of the event, and considerations for enhancement are documented in an after action report."
+          },
+          {
+            "text": "Although the details of each phase typically vary based on the type of event conducted, the same phases should be used for each event. Details pertaining to each type of event can be found within Sections 4 through 6."
+          }
+        ]
+      },
+      {
+        "title": "2.5 Recommendations",
+        "content": [
+          {
+            "text": "Organizations should consider having a TT&E program that validates the effectiveness of IT plans such as contingency plans and computer security incident response plans, and manages their maintenance. The TT&E program should include a TT&E plan, policy, and event methodology. Using these elements should cause TT&E events to be performed more consistently and effectively. The TT&E plan should outline all elements of the program and ensure that information surrounding the program is documented."
+          },
+          {
+            "text": "In addition to creating the TT&E plan, other major steps in creating a TT&E program are as follows:"
+          },
+          {
+            "text": "\n\nDevelop comprehensive TT&E policy. The policy should outline the organization's internal and external requirements associated with training personnel, exercising plans, and testing components and systems.\n\n\nIdentify TT&E roles and responsibilities. The TT&E program should be managed by a person or team with direct responsibility for the organization's IT planning capability. The program should have a plan coordinator who is responsible for all aspects of IT planning, including the TT&E element of maintaining the IT plans. The plan coordinator has overall responsibility for the TT&E plan, including development, implementation, and maintenance. The plan coordinator should identify a TT&E program coordinator, who is responsible for developing a TT&E plan and coordinating events. Depending on the type of event conducted, the TT&E program coordinator works with one or more design teams.\n\n\nEstablish overall TT&E schedule. The TT&E plan should document the projected schedule of activities to be performed within the TT&E program. Although events should be conducted as needed, organizations should evaluate the required frequency of its events and document the frequency of each event in a TT&E schedule.\n\n\nDocument the TT&E event methodology. As part of creating a TT&E program, an organization should select and document a high-level methodology for planning and performing TT&E events. Although the details of each phase typically vary based on the type of event conducted, the same phases should be used for each event. One commonly used methodology.# CURRENT_PAGE_RAW_OCR_TEXT\n\n"
+          },
+          {
+            "text": "Develop comprehensive TT&E policy. The policy should outline the organization's internal and external requirements associated with training personnel, exercising plans, and testing components and systems."
+          },
+          {
+            "text": "Identify TT&E roles and responsibilities. The TT&E program should be managed by a person or team with direct responsibility for the organization's IT planning capability. The program should have a plan coordinator who is responsible for all aspects of IT planning, including the TT&E element of maintaining the IT plans. The plan coordinator has overall responsibility for the TT&E plan, including development, implementation, and maintenance. The plan coordinator should identify a TT&E program coordinator, who is responsible for developing a TT&E plan and coordinating events. Depending on the type of event conducted, the TT&E program coordinator works with one or more design teams."
+          },
+          {
+            "text": "Establish overall TT&E schedule. The TT&E plan should document the projected schedule of activities to be performed within the TT&E program. Although events should be conducted as needed, organizations should evaluate the required frequency of its events and document the frequency of each event in a TT&E schedule."
+          },
+          {
+            "text": "Document the TT&E event methodology. As part of creating a TT&E program, an organization should select and document a high-level methodology for planning and performing TT&E events. Although the details of each phase typically vary based on the type of event conducted, the same phases should be used for each event. One commonly used methodology.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Phases",
+        "content": [
+          {
+            "text": "has the following phases:"
+          },
+          {
+            "subsection": "Design",
+            "text": []
+          },
+          {
+            "text": "The TT&E program coordinator works with the plan coordinator to determine the TT&E event topic and scope based on the current needs of the organization. Next, the TT&E program coordinator identifies the objectives based on the topic and scope, and the personnel that should participate in the event. The TT&E program coordinator identifies an event design team, which may consist of one person or a group of people, depending on the requirements of the event. The TT&E program coordinator also oversees the event logistics."
+          },
+          {
+            "subsection": "Development",
+            "text": []
+          },
+          {
+            "text": "The TT&E program coordinator works with the design team on the development of the documentation to be used before, during, and after the event. Examples include briefing materials, participant manuals, and evaluation criteria."
+          },
+          {
+            "subsection": "Conduct",
+            "text": []
+          },
+          {
+            "text": "In this phase, the event is conducted\u2014the personnel are trained, the IT plans exercised, or the systems or system components tested. The details of the conduct phase vary greatly by event type."
+          },
+          {
+            "subsection": "Evaluation",
+            "text": []
+          },
+          {
+            "text": "This phase involves analyzing the event and identifying lessons learned, both to improve the IT plans and their execution, and to improve the TT&E process."
+          }
+        ]
+      },
+      {
+        "title": "Training Sessions",
+        "content": [
+          {
+            "text": "Training is a continuum of learning activities that enables staff to maintain and enhance their skills and technical proficiencies and to remain current with technological advances. For the purpose of this publication, training refers only to informing participants of their roles and responsibilities within a particular IT plan and teaching them skills related to those roles and responsibilities, thereby preparing them for participation in exercises, tests, and actual emergency situations related to that plan. Training events can be instructor-led (e.g., classroom setting, interactive online) or self-study (e.g., paper, online)."
+          },
+          {
+            "text": "The scheduling of training events that support IT plans should be coordinated closely with the schedules of other events in a TT&E program. For example, training sessions typically precede exercises and tests. This ensures that personnel are familiar with their roles and responsibilities within a given IT plan before exercising the plan itself. Another outcome of performing training is identifying areas where additional training might be necessary."
+          },
+          {
+            "text": "Other NIST publications have already described training programs and events in detail. Refer to NIST SP 800-50, Building an Information Technology Security Awareness and Training Program, and NIST SP 800-16, Information Technology Security Training Requirements: A Role- and Performance-Based Model, for more information on training."
+          }
+        ]
+      },
+      {
+        "title": "Tabletop Exercises",
+        "content": [
+          {
+            "text": "Tabletop exercises are discussion-based events where personnel with roles and responsibilities in a particular IT plan meet in a classroom setting or in breakout groups to discuss their roles during an emergency and their responses to a particular emergency situation. Tabletop exercises are conducted in an informal environment, with a facilitator guiding participants through a discussion designed to meet pre-defined objectives. One or more scenarios may be discussed during a single.# Tabletop Exercise"
+          },
+          {
+            "text": "The duration of a tabletop exercise (typically two to eight hours) varies depending on the audience, the topic being exercised, and the exercise objectives. Tabletop exercises are cost-effective tools to validate the content of IT plans, such as contingency plans and incident response plans, to ensure the plan content is viable and implementable in an emergency situation."
+          },
+          {
+            "text": "This section provides guidance on evaluating the need for a tabletop exercise, and designing, developing, conducting, and evaluating a tabletop exercise. The section then summarizes the key elements to consider before, during, and after the conduct of a tabletop exercise. Appendix A provides a sample tabletop exercise facilitator guide, sample participant guide, and sample after action report."
+          }
+        ]
+      },
+      {
+        "title": "4.1 Evaluate the Need for a Tabletop Exercise and Create a Schedule",
+        "content": [
+          {
+            "text": "As part of the TT&E program, the program coordinator should routinely determine the need for a tabletop exercise for a particular IT plan by considering the organization's overall objectives for conducting a tabletop exercise and answering questions such as the following:"
+          },
+          {
+            "text": "\nHave the personnel who would participate in the tabletop exercise been trained on their roles and responsibilities within the plan? If the personnel have not yet been trained, the TT&E program coordinator should consider conducting a training event before the tabletop exercise so that the personnel can participate more effectively in the tabletop exercise, increasing its benefits.\nWhen was the last time the organization conducted a tabletop exercise for the plan?\nHave recent organizational changes been made that could impact the content of the plan?\nHas new TT&E guidance been issued that could impact the content of the plan?\n"
+          },
+          {
+            "text": "Organizations should conduct tabletop exercises periodically; following organizational changes, updates to an IT plan, or the issuance of new TT&E guidance; or as otherwise needed. For each tabletop exercise, the program coordinator should choose a form of tabletop exercise that is well-suited to meeting the identified needs and objectives. The tabletop exercise schedule should be coordinated closely with the schedules of the other events of the TT&E program. The TT&E program coordinator usually ensures that tabletop exercises are scheduled within a reasonable timeframe after a training event so that the personnel participating in the tabletop exercise are recently trained in their roles and responsibilities. It is important that when an exercise is being scheduled, managers are notified and their approval obtained. Ensuring that management has agreed to an exercise is an essential step in the development of the exercise."
+          }
+        ]
+      },
+      {
+        "title": "4.2 Design the Tabletop Exercise Event",
+        "content": [
+          {
+            "text": "Once the need to conduct a tabletop exercise has been established, the TT&E program coordinator should work with the tabletop exercise design team to design the event. The design phase is often the most time-consuming phase of planning a tabletop exercise. Planning is typically started at least three months before the conduct date for large, complex exercises and at least one month in advance for less complex exercises. Sections 4.2.1 through 4.2.6 describe the major steps in the event design process."
+          },
+          {
+            "subsection": "4.2.1 Determine the Topics# The design team should determine the exercise topic based on the focus of the plan being exercised.",
+            "text": []
+          },
+          {
+            "text": "General topics can include contingency planning and incident response; specific topics range from sustaining essential functions to managing and reporting IT security incidents. For example, disaster recovery plan exercise discussion topics would likely include the roles and responsibilities of personnel with regard to the processes and procedures associated with restoring an organization's information systems. Incident response plan exercise discussion topics would likely include processes and procedures for managing and reporting IT security incidents."
+          }
+        ]
+      },
+      {
+        "title": "4.2.2 Determine the Scope",
+        "content": [
+          {
+            "text": "The scope of the tabletop exercise should be determined based on the target audience. All personnel with responsibilities under the IT plan should participate in exercises; however, senior-level teams and operational-level teams should participate in separate tabletop exercises initially because of their different levels of responsibility. Once these two groups have been exercised individually, both groups should participate in a combined exercise to validate coordination between the groups. The exercise should apply to the roles and responsibilities of personnel within the IT plan being exercised and focus on validating that the documented roles, responsibilities, and interdependencies are accurate and current. The types of questions asked of the participants during the course of the exercise should be tailored to the level of personnel exercised. Senior-level tabletop exercises typically range from two to four hours, while operational-level tabletop exercises range from two to eight hours. To ensure that the knowledge of the roles and responsibilities identified in the plan being exercised is current, it is often effective to conduct a training session in conjunction with any tabletop exercise lasting more than four hours."
+          }
+        ]
+      },
+      {
+        "title": "4.2.3 Identify the Objectives",
+        "content": [
+          {
+            "text": "The objectives of any tabletop exercise should be validating the content of the IT plan and related policies and procedures, validating participants' roles and responsibilities as documented in the plan, and validating the interdependencies documented in the plan. An additional objective for some exercises is meeting regulatory and other such requirements associated with exercising plans, such as the requirement in NIST SP 800-53 for Federal agencies to conduct exercises or tests for their systems' contingency plans at least annually."
+          }
+        ]
+      },
+      {
+        "title": "4.2.4 Identify the Participants",
+        "content": [
+          {
+            "text": "Based on the topic, scope, and objectives of the exercise, the design team determines who should participate in the event. The participants should be comprised of the personnel with roles and responsibilities identified in the plan to help ensure the exercise meets its stated objectives. For example, senior-level personnel should be invited to participate if the primary exercise objective is to validate the decision-making and oversight processes within the plan. If the primary objective is to validate operational procedures, operational-level personnel should be invited to the exercise. If both groups have participated in previous tabletop exercises separately, it is appropriate to...# Conduct a Combined Session"
+          },
+          {
+            "text": "Conduct a combined session, where senior-level and operational-level personnel discuss individual and team roles and responsibilities and coordination requirements. Once the appropriate participants have been identified, they should receive a written invitation or announcement of the exercise as soon as possible. This is typically accomplished in the form of an e-mail or memorandum by a member of the tabletop exercise design team, but, if more appropriate, may instead be distributed by a member of management."
+          }
+        ]
+      },
+      {
+        "title": "4.2.5 Identify the Tabletop Exercise Staff",
+        "content": [
+          {
+            "text": "The design team usually designates an exercise facilitator, who leads the discussion among the exercise participants, and a data collector, who records information about the actions that occur during the exercise. The facilitator and the data collector should be thoroughly familiar with the content of the IT plan being exercised and with the exercise objectives. The facilitator and data collector should meet before the event to discuss the details surrounding the exercise, including its scope and objectives. At this time, the facilitator and the data collector review the results from previous tabletop exercises, if applicable, to heighten their awareness of potential issues before the event."
+          }
+        ]
+      },
+      {
+        "title": "4.2.6 Coordinate the Logistics",
+        "content": [
+          {
+            "text": "One person on the design team should typically be responsible for coordinating the exercise event's logistics. The logistics coordinator usually begins to do this at least one month before the conduct of the tabletop exercise. The checklist in Table 4-1 can be used as a starting point by the logistics coordinator to ensure the necessary tasks are completed."
+          }
+        ]
+      },
+      {
+        "title": "4.3 Develop the Tabletop Exercise Material",
+        "content": [
+          {
+            "text": "Once the event is designed, the design team should assign roles and responsibilities to its members to develop the tabletop exercise material. Tabletop exercises typically include the following documentation:"
+          },
+          {
+            "text": "\nBriefing. A briefing is created for the participants; it includes an agenda and logistics information.\nFacilitator Guide. The facilitator guide includes the following:\nThe purpose for conducting the exercise\nThe exercise's scope and objectives\nThe exercise's scenario, which is a sequential, narrative account of a hypothetical incident that provides the catalyst for the exercise and is intended to introduce situations that will inspire responses and thus allow demonstration of the exercise objectives\nA list of questions regarding the scenario that address the exercise objectives\nA copy of the IT plan being exercised.\n"
+          },
+          {
+            "text": "The types of questions documented in the facilitator guide should be tailored to the participants. For example, if senior-level personnel are the participants, the questions should be of a more general, high-level nature and focus on decision-making and oversight, which are consistent with their roles and responsibilities within the plan. If operational personnel are the participants, the questions should typically be focused on specific procedures and processes that are followed to carry out roles and responsibilities."
+          },
+          {
+            "text": "\nParticipant Guide. The participant guide includes the same information as the facilitator guide.# Current Page Raw OCR Text\n"
+          }
+        ]
+      },
+      {
+        "title": "Without the list of questions.",
+        "content": [
+          {
+            "text": "Participant guides contain a modified, shorter list of questions to orient participants to the types of issues that may be discussed during the exercise."
+          },
+          {
+            "text": "\nAfter Action Report. An after action report is developed after the exercise event; it contains information based on pre-identified evaluation criteria. The criteria should be developed before the exercise to ensure data collectors know what type of information to capture during the exercise and, ultimately, document in the after action report. Evaluation criteria are based on the exercise objectives and provide a means to evaluate how well exercise objectives were met and identify areas where additional exercises might be necessary. After action reports are discussed in more detail in Section 4.5.\n"
+          },
+          {
+            "text": "Sample tabletop exercise documentation is located in Appendix A."
+          },
+          {
+            "text": "A common misconception is that scenarios must be very detailed to be effective. Actually, it is often more effective to develop a short, concise scenario. During tabletop exercises with long, detailed scenarios, participants often spend more time dissecting the scenario and discussing its content than they spend on meeting the objectives of the exercise. If a detailed scenario is desired, a trusted agent with detailed knowledge of the plan and all the procedures documented within the plan should aid in the development of the scenario to ensure accuracy. In addition, the facilitator should have the ability to redirect the participants' focus from the scenario to the objectives, should they begin focusing too much on the content of the scenario."
+          }
+        ]
+      },
+      {
+        "title": "4.4 Conduct the Tabletop Exercise",
+        "content": [
+          {
+            "text": "Tabletop exercises are usually conducted in a classroom-type setting. This permits a facilitator to address each individual or the participants as a group while facilitating the exercise. This also fosters communication among the participants, as does placing a name tent on the table for each participant before the start of the exercise. This is particularly important if participants and teams work within different operational areas of the organization. Participants are usually not seated with their teammates to encourage independent thought processes and provide exposure to other operational areas. A copy of the participant guide should be placed with each name tent."
+          },
+          {
+            "text": "At the start of the exercise, the facilitator welcomes the participants to the event and requests that the participants introduce themselves by name and give a general description of their roles within the organization. The facilitator then projects the briefing and discusses the scope of the exercise and logistics information. The facilitator then walks participants through the scenario and kicks off the discussion with one of the discussion questions documented in the facilitator guide, designed to prompt decision-making or coordination among participants. Following the kickoff, the discussion occurs naturally among participants based on the scenario and the objectives. The facilitator may inject periodic questions from the facilitator guide. If the discussion does not occur naturally, the facilitator should prompt discussion by asking additional questions from the facilitator guide.# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "until all objectives are met.",
+        "content": [
+          {
+            "text": "During the course of the exercise, the data collector should record observations to be included in the after action report. Immediately following the facilitated discussion, the facilitator and data collector should conduct an exercise debrief, often referred to as a hotwash. During the debrief, the facilitator asks participants in which areas they felt they excelled, in which areas they could use additional training, and which areas of the plan should be updated."
+          }
+        ]
+      },
+      {
+        "title": "4.5 Evaluate the Tabletop Exercise",
+        "content": [
+          {
+            "text": "The comments that surface during the debrief, along with lessons learned documented by the data collector during the exercise, should be captured in the after action report. The introduction to the after action report should describe background information about the exercise such as purpose, objectives, participants, and the scenario. The after action report should also contain documented observations made by the facilitator and data collector during the exercise and recommendations for enhancing the IT plan that was exercised."
+          },
+          {
+            "text": "Following the development of the after action report, the plan coordinator might assign action items to select personnel to update the IT plan being exercised. The plan coordinator should then update the plan, if appropriate, by implementing recommendations made in the after action report. It may also be necessary to brief certain managers on the results of the exercise, update other security-related documents, and perform other actions based on the exercise."
+          }
+        ]
+      },
+      {
+        "title": "4.6 Summary",
+        "content": [
+          {
+            "text": "Tabletop exercises are discussion-based events where personnel with roles and responsibilities in a particular IT plan meet in a classroom setting or in breakout groups to discuss their roles during an emergency and their responses to a particular emergency situation. Tabletop exercises are conducted in an informal environment, with a facilitator guiding participants through a discussion designed to meet pre-defined objectives. One commonly used methodology for planning and performing tabletop exercise events has the following phases:"
+          },
+          {
+            "text": "\nDesign. The TT&E program coordinator works with a tabletop exercise design team to design the event. The design phase is often the most time-consuming, and planning for exercises typically starts at least one month in advance (three months for large, complex exercises). The major steps in the event design process are as follows:\nDetermine the exercise topic based on the focus of the plan being exercised\nDetermine the exercise scope based on the target audience\nIdentify the objectives of the exercise\nIdentify the individuals that should participate in the exercise and invite them to the event\nIdentify the staff for the exercise, including a facilitator and a data collector\n\nCoordinate the logistics for the exercise event.\n\n\nDevelopment. The design team creates the documentation to be used before, during, and after the exercise event. Typical documentation includes a briefing, a facilitator guide, a participant guide, and an after action report.# CURRENT_PAGE_RAW_OCR_TEXT\n\n"
+          },
+          {
+            "text": "Coordinate the logistics for the exercise event."
+          },
+          {
+            "text": "Development. The design team creates the documentation to be used before, during, and after the exercise event. Typical documentation includes a briefing, a facilitator guide, a participant guide, and an after action report.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Conduct",
+        "content": [
+          {
+            "text": "In this phase, the IT plan is actually exercised. Tabletop exercises are usually conducted in a classroom-type setting. The facilitator provides a briefing to the participants, then walks them through the scenario and initiates a group discussion using a question from the facilitator guide. As the discussion continues, the facilitator may inject additional questions periodically. The data collector documents issues to be included in the after action report. Immediately following the facilitated discussion, the facilitator and data collector conduct an exercise debrief, in which they ask the participants in which areas they excel, in which areas they could use additional training, and which areas of the IT plan should be updated."
+          }
+        ]
+      },
+      {
+        "title": "Evaluation",
+        "content": [
+          {
+            "text": "The comments from the debrief, along with lessons learned during the exercise, should be captured in an after action report. The report should include background information about the exercise, documented observations made by the facilitator and data collector, and recommendations for enhancing the IT plan that was exercised. Outcomes of the evaluation could include updating the IT plan or other security-related documents, briefing managers on the results, and performing other actions."
+          }
+        ]
+      },
+      {
+        "title": "5. Functional Exercises",
+        "content": [
+          {
+            "text": "Functional exercises allow personnel with operational responsibilities to validate their IT plans and their operational readiness for emergencies by performing their duties in a simulated operational environment. Activities for a functional exercise are scenario-driven, such as a particular building's IT systems becoming unavailable in the simulated environment and the participants then learning that the building is on fire. Additional situations are often simulated during the course of the exercise. Functional exercises are designed to exercise specific team members, procedures, and assets involved in one or more functional aspects of an IT plan (e.g., communications, emergency notifications, IT equipment set-up). Functional exercises vary in complexity and scope, from validating specific aspects of a plan to full-scale exercises that address all plan elements. The duration of functional exercises typically lasts from between several hours to several days, depending on the event's objectives and the complexity of the plan being exercised."
+          },
+          {
+            "text": "This section provides guidance on evaluating the need for a functional exercise, and designing, developing, conducting, and evaluating a functional exercise. The section then summarizes the key elements to consider before, during, and after the conduct of a functional exercise. Appendix B provides functional exercises samples, including a scenario, a tracking form, and an after action report."
+          },
+          {
+            "subsection": "5.1 Evaluate the Need for a Functional Exercise and Create a Schedule",
+            "text": []
+          },
+          {
+            "text": "As part of the TT&E program, the program coordinator should routinely determine the need for a functional exercise for a particular IT plan by considering the organization's overall objectives for conducting a functional exercise and answering questions such as the following:\n- Have the personnel who would participate in the functional exercise been trained on their roles?# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "and responsibilities within the plan?",
+        "content": [
+          {
+            "text": "Have tabletop exercises for the plan been held on which potential functional exercises could build? If the personnel have not yet been trained, or initial tabletop exercises have not been held, the TT&E program coordinator should consider first conducting a training event and a tabletop exercise before the functional exercise so that the personnel can participate more effectively in the functional exercise, increasing its benefits."
+          },
+          {
+            "text": "\nWhen was the last time the organization conducted a functional exercise for the plan?\nHave recent organizational changes impacted the contents of the plan?\nHas new TT&E guidance been issued that could impact the contents of the plan?\n"
+          },
+          {
+            "text": "Organizations should conduct functional exercises periodically; following organizational changes, updates to an IT plan, or the issuance of new TT&E guidance; or as otherwise needed. It is usually best to ensure adequate staff training and tabletop exercises have taken place before engaging in a functional exercise. The functional exercise schedule should be coordinated closely with the schedules of the other events of the TT&E program. The TT&E program coordinator usually ensures that functional exercises are scheduled within a reasonable timeframe after a tabletop exercise event. It is important that when an exercise is being scheduled, that managers are notified and their approval obtained. Ensuring that management has agreed to an exercise is an essential step in the development of the exercise."
+          }
+        ]
+      },
+      {
+        "title": "5.2 Design the Functional Exercise Event",
+        "content": [
+          {
+            "text": "Once the need to conduct a functional exercise has been established, the TT&E program coordinator should work with the functional exercise design team to design the functional exercise event. The team is comprised of personnel who are familiar with the plan's content and can facilitate the exercise design process. The design phase of a functional exercise is usually started at least a few months before the desired conduct date, depending on the complexity of the exercise. Sections 5.2.1 through 5.2.6 describe the major steps in the event design process."
+          },
+          {
+            "subsection": "5.2.1 Determine the Topic",
+            "text": []
+          },
+          {
+            "text": "The design team should determine the overarching objectives for exercising the IT plan (e.g., as part of a strategic long-term plan, in response to ad hoc requirements). These broad objectives represent the topic areas that will be addressed in the exercise. The topic areas chosen will depend on whether the exercise will address the full plan or specific aspects of the plan. Topic areas addressing the full plan could include (but are not limited to) validating the plan's procedures, evaluating an organization's ability to implement the plan, and assessing interdependencies of organizations and personnel responsible for carrying out the plan. Examples of topic areas that are more narrowly focused on specific aspects of the plan are assessing the plan's alert and notification process, validating personnel responsibilities associated with the operational phase of the plan, and evaluating the processes involved in resuming normal operations."
+          },
+          {
+            "subsection": "5.2.2 Determine the Scope",
+            "text": []
+          },
+          {
+            "text": "The scope of the functional exercise should be determined based on which# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Portions of the IT Plan",
+        "content": [
+          {
+            "text": "Portions of the IT plan (or all of it) should be exercised. If only portions of the plan are to be exercised, the design team should consider examining a specific phase of plan implementation, such as activation, operation, or reconstitution, or specific functions."
+          },
+          {
+            "text": "When determining the scope of a functional exercise, the design team should clearly identify the specific element or elements of the IT plan that will be assessed and consider the types of participants necessary to carry out the exercise. Ultimately, a robust TT&E program ensures that all elements of a plan are exercised; however, the emphasis of initial functional exercises is often placed on operational-level team roles and responsibilities. As an organization's TT&E program matures, senior-level participants can also engage in functional exercises to fully validate decision-making aspects of the plan."
+          }
+        ]
+      },
+      {
+        "title": "5.2.3 Identify the Objectives",
+        "content": [
+          {
+            "text": "The objectives of any functional exercise should be validating the content of the IT plan, validating participants' roles and responsibilities as documented in the plan, validating the interdependencies documented in the plan, and providing an opportunity for participants to get hands-on practice in executing their functions. An additional objective for some exercises is meeting regulatory and other such requirements associated with exercising plans, such as the requirement in NIST SP 800-53 for Federal agencies to conduct exercises or tests for their systems' contingency plans at least annually. Specific objectives should be documented and clearly articulated to exercise participants."
+          }
+        ]
+      },
+      {
+        "title": "5.2.4 Identify the Participants",
+        "content": [
+          {
+            "text": "Based on the topic, scope, and objectives of the exercise, the design team determines who should participate in the event. The participants should be comprised of the personnel with roles and responsibilities under the plan that will be needed to help ensure the exercise meets its stated objectives. For example, senior-level personnel should be invited to participate if the primary exercise objective is to validate the decision-making and oversight processes within the plan. If the primary objective is to validate operational procedures, operational-level personnel should be invited to the exercise. Finally, if the primary objective is to validate the full-scale readiness of a plan, both senior-level personnel and operational-level personnel should participate. Once the appropriate participants have been identified, they should receive a written invitation or announcement of the exercise as soon as possible. This is typically accomplished in the form of an e-mail or memorandum by a member of the functional exercise design team, but, if more appropriate, may instead be distributed by a member of management."
+          }
+        ]
+      },
+      {
+        "title": "5.2.5 Identify the Functional Exercise Staff",
+        "content": [
+          {
+            "text": "The design team usually designates an exercise director, who is responsible for all aspects of the exercise, including staffing, development, conduct, and logistics. The exercise director designates one or more controllers, who monitor, manage, and control exercise activity; data collectors, who record information about the actions that occur during the exercise; and simulators, who simulate.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "or otherwise represent non-participating individuals and organizations whose input is necessary to the flow of the exercise. The controllers, data collectors, and simulators should be thoroughly familiar with the content of the IT plan being exercised and with the exercise objectives. The exercise director, controllers, data collectors, and simulators should meet before the event to discuss the details surrounding the exercise, including its scope and objectives. At this time, the exercise director, controllers, data collectors, and simulators review the results from previous tabletop and functional exercises, if applicable, to heighten their awareness of potential issues before the event."
+          }
+        ]
+      },
+      {
+        "title": "5.2.6 Coordinate the Logistics",
+        "content": [
+          {
+            "text": "One or more members of the design team should typically be responsible for coordinating the exercise event's logistics. The logistics coordinator(s) typically begin to do this approximately three months before the conduct of the functional exercise. The checklist in Table 5-1 can be used as a starting point by the logistics coordinator(s) to ensure the necessary tasks are completed."
+          }
+        ]
+      },
+      {
+        "title": "5.3 Develop the Functional Exercise Material",
+        "content": [
+          {
+            "text": "Once the event is designed, the exercise director should assign roles and responsibilities to the team to develop the functional exercise material. Functional exercises typically include the following documentation:"
+          },
+          {
+            "text": "\n\nBriefings. Briefings and/or briefing books are usually created for participants and the exercise staff; briefings may be conducted in person or through read-ahead packages. Depending on the nature of the exercise, a single briefing might be presented approximately one week before the exercise, or multiple briefings might be presented in the weeks and months before the exercise, with the final briefing typically occurring a week or more before the exercise. The briefings document any information pertaining to the scope and objectives of the exercise, rules of engagement, and administrative aspects of the event. In addition, briefings are conducted to provide the exercise staff with information pertaining to management aspects of the event, the level of activities that are simulated, and the level of activities that are directed by player action.\n\n\nScenario. The scenario is designed to add realism to the exercise by providing participants with situations that will inspire responses that help participants achieve exercise objectives. The scenario chosen should be crafted to adequately address the broad topic areas and specific objectives selected in the design phase. In addition, exercise developers should ensure the scenario does not stray outside the scope of the exercise. Exercise scenarios may be crafted to explore worst-case situations; however, it is often useful to develop scenarios that cause participants to respond to topical issues they are apt to encounter in the real world. For example, an exercise of an IT contingency plan for an organization that is prone to disruptions from natural disasters may consider a scenario involving a significant power outage caused by a hurricane. A narrative scenario is documented and typically distributed to participants via.# Handouts or an Oral Presentation on the Day of the Exercise\n\n"
+          },
+          {
+            "text": "Briefings. Briefings and/or briefing books are usually created for participants and the exercise staff; briefings may be conducted in person or through read-ahead packages. Depending on the nature of the exercise, a single briefing might be presented approximately one week before the exercise, or multiple briefings might be presented in the weeks and months before the exercise, with the final briefing typically occurring a week or more before the exercise. The briefings document any information pertaining to the scope and objectives of the exercise, rules of engagement, and administrative aspects of the event. In addition, briefings are conducted to provide the exercise staff with information pertaining to management aspects of the event, the level of activities that are simulated, and the level of activities that are directed by player action."
+          },
+          {
+            "text": "Scenario. The scenario is designed to add realism to the exercise by providing participants with situations that will inspire responses that help participants achieve exercise objectives. The scenario chosen should be crafted to adequately address the broad topic areas and specific objectives selected in the design phase. In addition, exercise developers should ensure the scenario does not stray outside the scope of the exercise. Exercise scenarios may be crafted to explore worst-case situations; however, it is often useful to develop scenarios that cause participants to respond to topical issues they are apt to encounter in the real world. For example, an exercise of an IT contingency plan for an organization that is prone to disruptions from natural disasters may consider a scenario involving a significant power outage caused by a hurricane. A narrative scenario is documented and typically distributed to participants via.# Handouts or an Oral Presentation on the Day of the Exercise"
+          }
+        ]
+      },
+      {
+        "title": "Master Scenario Events List (MSEL)",
+        "content": [
+          {
+            "text": "The MSEL is a chronologically sequenced outline of the simulated events and key event descriptions that participants will be asked to respond to during the course of exercise play. It also contains a list of expected actions resulting from the events and objectives that should be met based on the events. The MSEL regulates simulated events by coordinating the actions of participants and defining the schedule of events. The MSEL should be planned carefully to ensure that key events lead to the achievement of exercise objectives and that all participants remain active throughout the duration of the event. The MSEL is for exercise development and management purposes only."
+          }
+        ]
+      },
+      {
+        "title": "Message Injects",
+        "content": [
+          {
+            "text": "A message inject, also known as an implementer or an event inject, is a pre-scripted message that will be provided to participants during the course of an exercise. An example of a message inject is \"The vehicle transporting the backup tapes to the restoration site is in a traffic jam, and is expected to arrive 3 hours later than originally scheduled.\" Message injects can be provided in many forms, including e-mails, letters, memoranda, telephone calls, and radio call scripts. Each message inject contains information designed to supplement the scenario and prompt additional actions. They expand on the outline of key events portrayed in the MSEL; therefore, each MSEL entry may have multiple injects associated with it. The intent of each inject is in concert with the storyline of the overall scenario and MSEL, and prompts a player to take an action that will ultimately lead to achievement of an exercise objective(s). Each inject includes the time at which the message will be injected, to whom it will go, from whom the message will come, the means by which it will be delivered (e.g., fax, phone, e-mail), and the actual text of the message. The number of injects selected should be designed to keep participants adequately occupied but should not be so many that participants will become overwhelmed. Therefore, the number of injects selected will vary based on the duration of the exercise."
+          }
+        ]
+      },
+      {
+        "title": "Message Inject Tracking Form",
+        "content": [
+          {
+            "text": "Message inject tracking forms contain the inject numbers, scheduled times for the messages to be injected into the exercise, actual times that the messages were injected, summaries of the message, and any comments for the individuals injecting the messages."
+          }
+        ]
+      },
+      {
+        "title": "Controller, Data Collector, and Simulator Books",
+        "content": [
+          {
+            "text": "These books contain all information relevant to the exercise staff. Each controller, data collector, and simulator typically receives a book the day of the exercise (or the day of the briefing, if deemed appropriate) containing information pertinent to their roles during the exercise. The books contain the exercise scenario, MSEL, and injects."
+          }
+        ]
+      },
+      {
+        "title": "After Action Report",
+        "content": [
+          {
+            "text": "An after action report is developed after the exercise.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Event",
+        "content": [
+          {
+            "text": "It contains information based on pre-identified evaluation criteria. Another important aspect of the development phase is determining and documenting exercise evaluation criteria that will be used by data collectors during the conduct of the event. Evaluation criteria are closely tied to the exercise objectives to help data collectors know what type of information to capture during the exercise and ultimately document in an after action report. Once evaluation criteria have been developed, it is often helpful to create forms or other tools that will aid in the data collection process. Such forms instruct data collectors of specific player actions to look for and serve as a roadmap that is used in determining whether specific exercise objectives were met, how they were met, what improvements may need to be made to the plan that is being exercised, and where additional exercises might be necessary. After action reports are discussed in more detail in Section 5.5."
+          },
+          {
+            "text": "Sample functional exercise documentation is located in Appendix B."
+          },
+          {
+            "text": "In addition to the members of the design team discussed previously, functional exercise material development might require assistance from other individuals. For example, a trusted agent who has detailed knowledge of the IT plan and the associated procedures could aid in the development of the scenario, MSEL, and message injects to ensure accuracy. As described in Section 4.3, it is often most effective to have a short, concise scenario so that participants do not focus on critiquing the scenario itself."
+          }
+        ]
+      },
+      {
+        "title": "5.4 Conduct the Functional Exercise",
+        "content": [
+          {
+            "text": "Functional exercises are typically conducted in real or near-real time and prompt participants to carry out their roles and responsibilities as realistically as possible. A functional exercise is often initiated by a telephone call or other appropriate means, alerting selected personnel of the implementation or activation of a specific IT plan. This alert prompts further notification of all personnel who would be notified via the means identified in the plan. Once the notification process is completed, participants are expected to carry out operational or decision-making activities documented in the plan. Depending on the scope of the exercise, activities could range from implementing notification procedures to deploying to an alternate site to mobilizing resources, including staff and equipment. The exercise scope dictates whether deployments or mobilizations are simulated or if they actually occur. Regardless of location, the participants should carry out the activities as they would according to the plan being exercised. Participants should be informed of any exercise artificialities during the participant briefing."
+          },
+          {
+            "text": "Controllers, data collectors, and simulators should be pre-positioned at the location where the exercise takes place. Controllers form a control cell\u2014a central location for exercise coordination, typically in a separate area from the exercise participants\u2014from which the controllers introduce the scenario and message injects to participants. Controllers administer the exercise by# Referring to the Message Inject"
+          },
+          {
+            "text": "Tracking form and MSEL to ensure the exercise remains on schedule and within scope."
+          },
+          {
+            "text": "Data collectors directly observe player actions during the exercise. They refer to the evaluation criteria and any other evaluation forms that the data collection team may create to aid their efforts. Simulators assume the roles of various internal and external entities that are not participating in the event, such as other government organizations, private citizens, or law enforcement. Information provided by simulators should be delivered in accordance with how it would be provided by the organization(s) being simulated. They coordinate closely with the controllers and exercise director to ensure their responses are consistent with the MSEL. Simulators may be collocated with controllers or assemble a response cell in a separate room. During the course of exercise, the exercise director, controllers, data collectors, and simulators should remain in constant contact with each other to ensure that the exercise remains coordinated and on schedule."
+          },
+          {
+            "text": "The exercise director announces when the exercise concludes. Typically, this occurs when the time allocated for the exercise has ended, or earlier if all objectives have been met or the MSEL and injects have been fully played out. In cases where a real-world emergency occurs, it is the exercise director's responsibility to call an immediate end to the event. Following the conclusion of exercise play, the exercise director, controllers, and data collectors should conduct an exercise debrief with participants, often referred to as a hotwash. The exercise director leads the hotwash and requests feedback from participants, controllers, simulators, and data collectors. Immediately following the exercise, the controllers, data collectors, simulators, and participants should be asked to provide the exercise director with their notes or any forms completed during the course of the exercise and the hotwash session."
+          }
+        ]
+      },
+      {
+        "title": "5.5 Evaluate the Functional Exercise",
+        "content": [
+          {
+            "text": "During the evaluation phase, the exercise director relies on the design team or other specified staff to develop the after action report that documents findings and recommendations from the functional exercise. Exercise notes, forms, and other material created during the course of exercise play and during the hotwash are the basis of the after action report. The introduction to the after action report should document background information about the exercise such as the scope, objectives, and scenario. The after action report should also document observations made by the exercise staff and participants during the exercise and recommendations for enhancing the IT plan that was exercised. The after action report should also include a list of exercise participants and may provide information from any participant surveys that were distributed during the hotwash to solicit feedback."
+          },
+          {
+            "text": "Following the development of the after action report, the plan coordinator might assign action items to select personnel in an effort to update the IT plan being exercised. The plan coordinator should then update the plan, if appropriate, by implementing recommendations made in the after action report. It may...# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "also be necessary to brief certain managers on the results of the exercise, update other security-related documents, and perform other actions based on the exercise."
+          }
+        ]
+      },
+      {
+        "title": "5.6 Summary",
+        "content": [
+          {
+            "text": "Functional exercises allow personnel with operational responsibilities to validate their IT plans and their operational readiness for emergencies in a simulated operational environment. Activities for a functional exercise are scenario-driven, such as a particular building's IT systems becoming unavailable in the simulated environment and the participants then learning that the building is on fire. Additional situations are often simulated during the course of the exercise. Functional exercises are designed to exercise specific team members, procedures, and assets involved in one or more functional aspects of an IT plan. Functional exercises vary in complexity and scope, from validating specific aspects of a plan to full-scale exercises that address all plan elements."
+          },
+          {
+            "text": "One commonly used methodology for planning and performing functional exercises has the following phases:"
+          },
+          {
+            "subsection": "\u2022 Design",
+            "text": []
+          },
+          {
+            "text": "The TT&E program coordinator works with a functional exercise design team to design the event. The design phase is usually started three to six months in advance of the event. The major steps in the event design process are as follows:"
+          },
+          {
+            "text": "\nDetermine the exercise topic based on the overarching objectives for exercising the IT plan\nDetermine the exercise scope based on which portions of the IT plan should be exercised\nIdentify the objectives of the exercise\nIdentify the individuals that should participate in the exercise and invite them to the event\nIdentify the staff for the exercise, including an exercise director and one or more controllers, data collectors, and simulators\nCoordinate the logistics for the exercise event.\n"
+          },
+          {
+            "subsection": "\u2022 Development",
+            "text": []
+          },
+          {
+            "text": "The design team creates the documentation to be used before, during, and after the exercise event. Typical documentation includes briefings for participants and exercise staff; a scenario; a master scenario events list (MSEL); message injects and a message inject tracking form; an after action report; and controller, data collector, and simulator books."
+          },
+          {
+            "subsection": "\u2022 Conduct",
+            "text": []
+          },
+          {
+            "text": "Functional exercises are typically conducted in real or near-real time and prompt participants to carry out their roles and responsibilities as realistically as possible. A functional exercise is often initiated by a telephone call or other appropriate means, alerting selected personnel of the implementation or activation of a specific IT plan. Participants are expected to carry out operational or decision-making activities documented in the plan. The exercise controllers administer the exercise, including introducing the scenario and message injects to participants. Data collectors directly observe player actions during the exercise. Simulators assume the roles of entities that are not participating in the event, such as external organizations or private citizens. The exercise director announces the conclusion of the exercise. Immediately# Exercise Debrief and Evaluation"
+          },
+          {
+            "text": "Following the exercise play, the exercise director, controllers, and data collectors conduct an exercise debrief with the participants, requesting feedback from everyone present."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Tests",
+    "subsections": [
+      {
+        "content": "Tests are evaluation tools that use quantifiable metrics or expected outcomes to validate the operability of one or more IT systems or system components (e.g., operating system, application, pager, Blackberry) that are identified as critical in an IT plan. Tests can take several forms, including the following:"
+      },
+      {
+        "title": "Component Testing",
+        "content": [
+          {
+            "text": "Component testing is testing individual hardware or software components, or groups of related components. A component test also might test processes and procedures that are part of any of the organization's IT plans. The testing of hardware or software components at the conclusion of their development should also be conducted, but this is not within the scope of this document. Component testing in this document is concerned with individual components already operational that are critical to the effective operation of the organization that they should be regularly tested."
+          }
+        ]
+      },
+      {
+        "title": "System Testing",
+        "content": [
+          {
+            "text": "System testing is testing complete systems to evaluate each system's compliance with specified requirements. A system test should also include an examination of any processes or procedures related to the system being tested."
+          }
+        ]
+      },
+      {
+        "title": "Comprehensive Testing",
+        "content": [
+          {
+            "text": "Comprehensive testing is testing all systems and components that support an IT plan. These tests generally involve multiple components and systems and may become quite extensive in their scope. An example of a comprehensive test is confirming that IT operations can be restored at a backup site in the event of an extended power failure at the primary site."
+          },
+          {
+            "text": "A test is conducted in as close to an operational environment as possible, which means that the test should be conducted in a manner that resembles the everyday work environment in which the system or component is found. If feasible, an actual test of the components or systems used to conduct daily operations for the organization should be used. Tests can potentially be disruptive to an organization's operations, so tests are sometimes performed on systems that mimic the actual operational systems, especially if there is not strong confidence that the tests will be completely successful."
+          },
+          {
+            "text": "This section provides guidance on evaluating the need for testing; creating a test plan; and designing, developing, conducting, and evaluating a test. The section then summarizes the key elements to consider during a test and after conducting a test. Appendix C provides test documentation examples, including a...# Test Plan"
+          },
+          {
+            "text": "A test briefing, test validation and evaluation worksheets, and an after action report."
+          }
+        ]
+      },
+      {
+        "title": "6.1 Evaluate the Need for a Test and Create a Schedule",
+        "content": [
+          {
+            "text": "As part of the TT&E program, the program coordinator should routinely determine the need for a test by considering the organization's overall objectives for conducting a test and answering questions such as the following:"
+          },
+          {
+            "text": "\nIs the system or component to be tested installed and ready for operational use?\nAre the processes and procedures for the system or component established?\nHave the personnel been trained on the use of the system or component? Was the training effective?\nAre there requirements (e.g., compliance efforts, regulations) that mandate certain tests be performed on a specific schedule or frequency, such as compliance with NIST SP 800-53?\nWhen was the last time that this component, system, or group of components and systems was tested? Have there been any significant changes or updates since the completion of the last test?\n"
+          },
+          {
+            "text": "Tests are usually conducted after personnel have been trained on the use of the systems or components being tested and before the systems or components become operational, to ensure they do not adversely affect the security posture or other operational aspects of the organization. If personnel have not yet been trained, system testing should be delayed until the training has been completed. After operational use has begun, periodic testing should be conducted to ensure the continued proper and secure use of the systems or components. Comprehensive tests should also be scheduled periodically to ensure that the IT plans are reasonable, effective, and complete, and that personnel know what their roles and responsibilities are in the conduct of the plans. High personnel turnover might necessitate more frequent testing to maintain the level of preparedness the organization requires."
+          },
+          {
+            "text": "The scheduling of tests should also consider factors such as available resources and the potential impact on the organization. It is important that when a test is being scheduled, that senior managers are notified and the potential impact on operations assessed to determine the best time to conduct the test. For example, conducting a test that might affect the operations of the organization might not be wise during known peak operational periods. Although scheduling comprehensive tests when many employees are on vacation or on holiday breaks might have a minimal impact on operations, it also could limit the number of available personnel. Ensuring that senior leadership in the organization has agreed to the test, especially for comprehensive tests, is an essential step in the development of the test."
+          },
+          {
+            "text": "Testing schedules might also be affected by factors external to the organization itself. For example, compliance and regulatory issues might dictate that certain tests be performed on a periodic basis. Another example is environmental and safety issues; a test requiring that staff relocate operations from one facility to another might be better accomplished when the weather is not unpredictable so that employees do not have to travel under extreme conditions, such as a blizzard.# 6.2 Design the Test Event"
+          },
+          {
+            "text": "Once the need to conduct a test has been established, the TT&E program coordinator should create a test design team to design each specific test. Several factors can have a significant bearing on the design of the test, including the level of the test (component, system, or comprehensive), the organizational entities involved, and the scope of the test. These factors can affect the lead time required to develop the test, the level of complexity for the test, and the length of time the test will take. At an early stage in the design process, the personnel who will participate in the test should be identified and the senior managers for these affected areas should be contacted. Sections 6.2.1 through 6.2.6 describe the major steps in the event design process."
+          }
+        ]
+      },
+      {
+        "title": "6.2.1 Determine the Scope",
+        "content": [
+          {
+            "text": "The scope of the test should be determined based on current system or security requirements and any potential compliance or regulatory requirements. The scope of the test is directly shaped by the type of test. Component tests are more focused and generally involve fewer individuals and organizational entities. System tests are broader in scope and include more personnel and multiple components. Comprehensive tests involve much larger portions of the organization, potentially all personnel, and require more extensive coordination and planning."
+          }
+        ]
+      },
+      {
+        "title": "6.2.2 Identify the Objectives",
+        "content": [
+          {
+            "text": "The design team should define the tests that will be conducted and specify the expected results or outcomes. The test plan could consist of a series of smaller individual tests each designed to examine a part of the component, system, or group of components and systems being tested. The objectives for each test should be to measure, check, or verify whether the component, system, or group of components and systems satisfies its intended purpose and functions adequately. Where possible, the expected results or outcomes should be expressed in an objective and measurable manner, with subjective measurements being minimized. The results should be quantifiable and repeatable to the extent reasonably possible. Tests are often performed as part of standard operational activities, such as restoring a backup, moving a server from one room to another, upgrading or patching operating systems or applications, or changing hardware components (e.g., swapping hard drives, replacing a failed power supply). Combining tests with operational activities is generally more efficient than performing them separately and is also less likely to negatively impact operations. Other examples of common tests are activating call tree cascades and determining if they can be executed within prescribed time limits, and removing power from a system or system component."
+          }
+        ]
+      },
+      {
+        "title": "6.2.3 Determine the Testing Tools",
+        "content": [
+          {
+            "text": "The design team should specify the assessment tools and procedures needed to accomplish the test. The specific tools needed may vary greatly depending upon the scope of the test. Tools might range from specialized software or hardware tools (e.g., network sniffers, vulnerability scanners) to measurement and recording devices (e.g., stopwatches, cameras, video recorders) to checklists.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "used to measure adherence to defined processes and procedures. Tools might also include items needed by the test team for logistical support (e.g., radios, cell phones, badges)."
+          }
+        ]
+      },
+      {
+        "title": "6.2.4 Identify the Participants",
+        "content": [
+          {
+            "text": "The participants in a test vary based on the scope of the test to be performed. Participation in testing events can be thought of in two levels:"
+          },
+          {
+            "text": "\nThe first level of participant consists of the individuals who are operating the components or systems being tested.\nThe second level of participant consists of those individuals who are not directly involved in the test, but who might be impacted by the test or related activities. For example, if the test included an evacuation drill, the involved participants would be all personnel who were forced to evacuate, while affected individuals would include those individuals who might be trying to contact the evacuated people but could not reach them because they were not in their offices.\n"
+          },
+          {
+            "text": "The design team should attempt to identify both levels of participants, although for larger tests the affected individuals might have to be identified in groups instead of individually. Individuals in the first level of participants should be notified well in advance of the test through an e-mail or memorandum. Individuals and groups in the second level of participants should be notified before the test occurs; examples of this include an announcement to the participants of possible disruptions to the systems being tested and a message on a help desk phone number stating that disruptions may occur to the systems being tested between certain hours."
+          }
+        ]
+      },
+      {
+        "title": "6.2.5 Identify the Test Staff",
+        "content": [
+          {
+            "text": "The design team usually designates a test director, who is responsible for all aspects of the test, including staffing, development, conduct, logistics, and oversight of the design team. The test director designates one or more data collectors, who monitor and record the results of the test. The test director and data collectors should meet before the event to discuss the details surrounding the test, including its scope and objectives. At this time, the test director and data collectors review the results from previous exercises and tests, if applicable, to heighten their awareness of potential issues before the event."
+          },
+          {
+            "text": "The design team also often includes one or more individuals that are subject matter experts in the areas being tested. These individuals can help develop the test plan and identify the necessary testing tools. Because they are aware of the details of the test, these individuals should not be participants in the test; instead, they can be test observers, facilitators, data collectors, or controllers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "6.3 Develop the Test Material",
+    "subsections": [
+      {
+        "content": "Once the event is designed, the design team needs to create test documentation. The magnitude of this work depends on the scope of the test. This documentation could include the following:"
+      },
+      {
+        "title": "Briefings",
+        "content": [
+          {
+            "text": "For larger system or comprehensive tests, an initial meeting may be used to signal the start of the event. Specific briefings to senior management and to the managers of others that might be affected by the test need to be developed to provide an understanding of what the test will comprise and why it is important."
+          }
+        ]
+      },
+      {
+        "title": "Test Guide",
+        "content": [
+          {
+            "text": "This document outlines the basic steps involved in conducting a test and includes a list of the participants. It should also include a list of all individuals and groups who might be affected by the test, and discuss procedures for early termination of the test should events necessitate this action. This guide provides an overall examination of what will occur during the test."
+          }
+        ]
+      },
+      {
+        "title": "Test Plans",
+        "content": [
+          {
+            "text": "For each specific test to be performed, a test plan needs to be developed that outlines the specific steps that will be performed. Each step should include a list of required logistical items and delineate the expected outcome or response from this step. The procedures for early test termination should be repeated in this documentation, because the evaluators or the people conducting the test should be using the documentation during the test. A list of emergency contact numbers (including cell phone and pager numbers) should also be included."
+          }
+        ]
+      },
+      {
+        "title": "After Action Report",
+        "content": [
+          {
+            "text": "An after action report is developed after the test is completed. It should contain the results of each individual test as well as an overall synopsis of the test activities. Corrective actions and recommendations are one element of this report. For larger tests, an executive summary for senior management should also be created that provides a synopsis of the test, the results of the test, and the recommendations for improvement."
+          },
+          {
+            "text": "When developing a comprehensive test for an IT plan, there might be significant overlap with what would occur when developing a functional exercise for the same plan. In fact, many comprehensive tests have test plans that include materials similar to those used for functional exercises, including a scenario, an MSEL, and message injects. For example, during a test, participants may be told that a particular backup tape has failed, a certain server is unusable, or a road to the backup facility is closed. The key difference between a functional exercise and a test is that a test is conducted in an operational environment whenever possible, and it is designed to validate the actual effectiveness of both the processes and procedures for system recovery and restoration outlined in the plan, as well as...\n```# the training that has been"
+          },
+          {
+            "text": "conducted, to ensure personnel understand their responsibilities and know how to react in a given situation."
+          }
+        ]
+      },
+      {
+        "title": "6.4 Conduct the Test",
+        "content": [
+          {
+            "text": "The locations for tests vary based on the type of test being conducted and the test's scope. For example, a small component test could be conducted in a single office, while a comprehensive test of components and systems for an IT plan could involve many different parts of an organization in various locations."
+          },
+          {
+            "text": "Safety and security are two elements that should be maintained during any test. The organization's operational systems and networks need to be protected so that they do not sustain damage. The core function or mission of the organization should not be disrupted to the extent that the organization can no longer function and provide the services that it was created to provide. For these reasons, the test director should monitor all tests closely. At any sign of a possible catastrophic disruption, or in the event that the safety of an individual is at stake or the security of the organization or its data is in question, the test director and any member of the test team should have the ability to terminate the test immediately."
+          },
+          {
+            "text": "Following the conclusion of the test, the test director and data collectors should conduct an informal test debrief with participants, often referred to as a hotwash. The test director leads the hotwash and requests feedback from the participants and data collectors. Immediately following the test, the data collectors and participants should be asked to provide the test director with their notes or any forms completed during the course of the test and the hotwash session."
+          }
+        ]
+      },
+      {
+        "title": "6.5 Evaluate the Test",
+        "content": [
+          {
+            "text": "During the evaluation phase, a member of the design team or another selected staff member should develop an after action report that determines how well the tested systems or components functioned. The introduction to the after action report should document background information about the test such as the scope, objectives, and tests. The after action report should also document observations made by the test team during the test and recommendations for enhancing the IT plan that had its components or systems tested, along with associated procedures and components. The after action report should also include a list of test participants and may provide information from any participant surveys that were distributed during the hotwash to solicit feedback."
+          },
+          {
+            "text": "The after action report typically takes a few days to prepare. In the event that critical lapses in security or safety are noted, the test director should not wait until the final report is created to notify management. An informal report should be generated immediately with any critical changes that should be made, with the full report following in a reasonable amount of time. A formal debrief is sometimes conducted after a test so that the test director, plan coordinator, and other management staff can discuss the results of the test. Stakeholders typically review the report and may provide suggestions for minor wording changes, such as strengthening a recommendation to ensure that its importance is clear. Following the development of the after action report, the plan coordinator might# Assign Action Items"
+          },
+          {
+            "text": "Assign action items to select personnel to update the IT plan that had its components or systems tested. The plan coordinator should then update the plan, if appropriate, by implementing recommendations made in the after action report. It may also be necessary to brief additional managers on the results of the test, update other security-related documents, and perform other actions based on the test."
+          }
+        ]
+      },
+      {
+        "title": "6.6 Summary",
+        "content": [
+          {
+            "text": "Tests are evaluation tools that use quantifiable metrics or expected outcomes to validate the operability of one or more IT systems or system components that are identified as critical in an IT plan. Tests can take several forms, including component testing (testing individual hardware or software components, or groups of related components), system testing (testing complete systems), and comprehensive testing (testing all systems and components that support an IT plan). A test is conducted in as close to an operational environment as possible, which means that the test should be conducted in a manner that resembles the everyday work environment in which the system or component is found. If possible, an actual test of the components or systems used to conduct daily operations for the organization should be used. Tests can potentially be disruptive to an organization's operations, so tests are sometimes performed on systems that mimic the actual operational systems, especially if there is not strong confidence that the tests will be completely successful."
+          },
+          {
+            "text": "One commonly used methodology for planning and performing test events has the following phases:"
+          },
+          {
+            "subsection": "Design",
+            "text": []
+          },
+          {
+            "text": "The TT&E program coordinator works with a test design team to design the event. Several factors can affect the design of the test, including the form (component, system, or comprehensive), the organizational entities involved, and the scope of the test. The major steps in the event design process are as follows:"
+          },
+          {
+            "text": "\nDetermine the test scope based on current system or security requirements and any potential compliance or regulatory requirements\nIdentify the objectives of the test\nDetermine which assessment tools and procedures are needed to accomplish the test\nIdentify the individuals that should participate in the test and notify them of when it will occur\nIdentify the staff for the test, including a test director and one or more data collectors\nCoordinate the logistics for the test event.\n"
+          },
+          {
+            "subsection": "Development",
+            "text": []
+          },
+          {
+            "text": "The design team creates the documentation to be used before, during, and after the test event. Typical documentation includes briefings, a test guide, test plans, and an after action report. For some tests, especially comprehensive tests, materials similar to those used for functional exercises, such as a scenario, MSEL, and message injects may also be needed."
+          },
+          {
+            "subsection": "Conduct",
+            "text": []
+          },
+          {
+            "text": "The locations for tests vary based on the type of test being conducted and the test's scope. For example, a small component test could be conducted in a single office, while a comprehensive test of components and systems for an IT plan could involve many.# Different Parts of an Organization"
+          },
+          {
+            "text": "During a test, the mission of the organization should not be disrupted to the extent that the organization can no longer function and provide the services that it was created to provide. The test director should monitor all tests closely, and if there is any sign of a possible catastrophic disruption, or the safety of an individual is at stake or the security of the organization or its data is in question, the test director and any other member of the test staff should have the ability to terminate the test immediately. After the test concludes, the test director and data collectors should conduct an informal test debrief, requesting feedback from everyone present."
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,412 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "Modern computers rely on fundamental system firmware, commonly known as the Basic Input/Output System (BIOS), to facilitate the hardware initialization process and transition control to the hypervisor or operating system. Unauthorized modification of BIOS firmware by malicious software constitutes a significant threat because of the BIOS's unique and privileged position within the PC architecture. The guidelines in this document include requirements on servers to mitigate the execution of malicious or corrupt BIOS code. They apply to BIOS firmware stored in the BIOS flash, including the BIOS code, the cryptographic keys that are part of the Root of Trust for Update, and static BIOS data. This guide is intended to provide server platform vendors with recommendations and guidelines for a secure BIOS update process."
+      }
+    ]
+  },
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "Modern computers rely on fundamental system firmware, commonly known as the Basic Input/Output System (BIOS), to facilitate the hardware initialization process and transition control to the hypervisor or operating system. The BIOS is typically developed by both original equipment manufacturers (OEMs) and independent BIOS vendors, and is distributed to end-users by motherboard or computer manufacturers. Manufacturers frequently update system firmware to fix bugs, patch vulnerabilities, and support new hardware. This document is the second in a series of publications on BIOS protections. The first document, SP800-147, BIOS Protection Guidelines, was released in April 2011 and provides guidelines for desktop and laptop systems deployed in enterprise environments. Unauthorized modification of BIOS firmware by malicious software constitutes a significant threat because of the BIOS's unique and privileged position within modern computing architectures. Malicious BIOS modification could be part of a sophisticated, targeted attack on an organization\u2014either a permanent denial of service or a persistent malware presence."
+      },
+      {
+        "content": "This document covers BIOS protections for basic, managed and blade servers. These types of servers often contain Service Processors\u2014specialized microcontrollers that provide administrators with an interface to manage the host server. Servers, particularly those with Service Processors, may implement multiple BIOS update mechanisms. Servers implementing a single BIOS update mechanism may implement the guidelines in SP800-147, if the update mechanism is sufficiently similar to those in PC client systems, or they may implement the guidelines in this document."
+      },
+      {
+        "content": "The security guidelines in this publication do not attempt to prevent installation of an inauthentic BIOS through the supply chain, by physical replacement of the BIOS chip, or through secure local update procedures."
+      },
+      {
+        "content": "Security guidelines are specified for four system BIOS security features:\n- Authenticated BIOS update mechanisms, where digital signatures prevent the execution of BIOS update images that are not authentic.\n- An optional secure local update mechanism, which requires that an administrator be physically\n```# BIOS Protections in Server-Class Systems"
+      },
+      {
+        "content": "present at the machine in order to install BIOS images without signature verification."
+      },
+      {
+        "content": "\nFirmware integrity protections, to prevent unintended or malicious modification of the BIOS outside the authenticated BIOS update process.\nNon-bypassability features, to ensure that there are no mechanisms that allow the main processor or any other system component to bypass the BIOS protections.\n"
+      },
+      {
+        "content": "This document also provides additional information and recommendations for implementing BIOS protections using three BIOS update mechanisms that are commonly implemented in servers. This material is intended to help implementers design systems that meet the security requirements in this publication."
+      },
+      {
+        "content": "Service Processors are critical management components in many modern server designs. They are responsible for various management features, depending on the implementation of the system. Some, but not all, Service Processors are able to update the system BIOS. This document describes the possible roles of Service Processors in the system BIOS update process, and describes how the security guidelines apply to systems containing these components."
+      },
+      {
+        "title": "1. Introduction",
+        "content": [
+          {
+            "subsection": "1.1 Purpose and Scope",
+            "text": []
+          },
+          {
+            "text": "This document provides guidelines for BIOS protections in server-class systems. It is the second in a series of publications on BIOS protections. The first document, SP800-147, BIOS Protection Guidelines, was released in April 2011 and provides guidelines for desktop and laptop systems deployed in enterprise environments."
+          },
+          {
+            "text": "Unauthorized modification of BIOS firmware by malicious software constitutes a significant threat because of the BIOS's unique and privileged position within modern computer system architectures. Malicious BIOS modification could be part of a sophisticated, targeted attack on an organization\u2014either a permanent denial of service (if the BIOS is corrupted) or a persistent malware presence (if the BIOS is implanted with malware)."
+          },
+          {
+            "text": "The three core principles of BIOS protection outlined in NIST SP 800-147 for client systems\u2014authenticated firmware updates, integrity protection, and non-bypassability of protection mechanisms\u2014apply to server-class machines. However, the architectural and operational complexity in servers due to the need to remotely manage them makes it more difficult to implement BIOS security protections in the same manner as clients; the core reason for the increased difficulty is that servers typically possess multiple BIOS update mechanisms. In addition, some servers have one or more Service Processors (SPs). SPs perform various management functions for the hosts, which may include BIOS updates. This introduces the SP as a security-critical component, and thus this document includes guidelines for SPs that are part of the BIOS update process."
+          },
+          {
+            "text": "Boot firmware refers to software or firmware used to facilitate the hardware initialization process and transition control to the hypervisor or operating system. This publication uses the term BIOS as a generic, recognized term for system boot firmware in servers, including, but not limited to, BIOS, UEFI, and other firmware types.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "limited to, boot firmware",
+        "content": [
+          {
+            "text": "based on conventional BIOS, Extensible Firmware Interface (EFI) BIOS, and Unified Extensible Firmware Interface (UEFI) BIOS. The guidelines in this document include requirements on servers to mitigate the execution of malicious or corrupt BIOS code. They apply to BIOS firmware stored in the BIOS flash memory, including the BIOS code, the cryptographic keys that are part of the Root of Trust for Update (RTU), and static BIOS data. Device firmware that is stored with the system BIOS firmware and is updated by the same mechanism is considered part of the BIOS for the purposes of this document (e.g., Option ROMs embedded in the BIOS flash). These guidelines do not apply to other device firmware or Option ROMs stored elsewhere in a server, such as on an option card itself. This guide is intended to provide server platform vendors with recommendations and guidelines for a secure BIOS update process. System administrators should consult Section 3.2 of NIST SP 800-147 for recommended best practices for managing BIOS in client and server systems."
+          }
+        ]
+      },
+      {
+        "title": "1.2 Audience",
+        "content": [
+          {
+            "text": "The intended audience for this document includes BIOS and platform vendors of server-class systems, and information system security professionals who are responsible for managing the servers' security. The material may also be of use when developing enterprise-wide procurement strategies and deployment. The material in this document is technically oriented, and it is assumed that readers have at least a basic understanding of system and network security. The document provides background information to help such readers understand the topics that are discussed. Readers are encouraged to take advantage of other resources (including those listed in this document) for more detailed information."
+          }
+        ]
+      },
+      {
+        "title": "1.3 Document Structure",
+        "content": [
+          {
+            "text": "The remainder of this document is organized into the following major sections:\n- Section 2 presents an overview of the BIOS, describes server architectures and update mechanisms, identifies potential threats to BIOS in servers, and explains the Root of Trust for Update.\n- Section 3 identifies security controls for BIOS implementations that are required or recommended to mitigate threats to BIOS in servers.\n- Section 4 provides additional security guidelines for each of the three update mechanisms.\n- Section 5 provides additional security guidelines for Service Processors."
+          },
+          {
+            "text": "The document also contains appendices with supporting material:\n- Appendix A contains a summary of the security guidelines for system BIOS implementations.\n- Appendices B, C, and D describe examples of possible system designs for implementing the BIOS protections in servers.\n- Appendix E defines terms used in this document.\n- Appendix F contains a list of acronyms and abbreviations used in this document.\n- Appendix G contains a list of references used in the development of this document."
+          }
+        ]
+      },
+      {
+        "title": "2. Background",
+        "content": [
+          {
+            "text": "This section provides background information on the system BIOS and types of server architectures. It identifies the primary methods used for updating the system BIOS, and it also# Discusses Security Issues and Threats to the System BIOS"
+          },
+          {
+            "text": "Finally, it discusses Root of Trust for Update components."
+          }
+        ]
+      },
+      {
+        "title": "2.1 System BIOS",
+        "content": [
+          {
+            "text": "Exclusive of certain configuration and security code that may be embedded into a platform's silicon components, e.g., processor, the system BIOS is the first software executed on the main central processing unit (CPU) when a computer is powered on. While the system BIOS was originally responsible for providing operating systems access to hardware, its primary role on modern machines is to initialize and test hardware components and load the operating system. In addition, the BIOS loads and initializes important system management functions, such as power and thermal management. The system BIOS may also load CPU microcode patches during the boot process."
+          },
+          {
+            "text": "There are several different types of BIOS firmware. Some computers use a 16-bit conventional BIOS, while many newer systems use boot firmware based on the UEFI specifications [UEFI], or use other customized boot firmware. In this document we refer to all types of boot firmware as BIOS firmware, the system BIOS, or simply BIOS. When necessary, we differentiate conventional BIOS firmware from UEFI firmware by calling them the conventional BIOS and UEFI BIOS, respectively."
+          },
+          {
+            "text": "System BIOS is typically developed by the original equipment manufacturer (OEM) of the server. Manufacturers frequently update system firmware to fix bugs, patch vulnerabilities, and support new hardware. The system BIOS is typically stored on electrically erasable programmable read-only memory (EEPROM) or other forms of flash memory. Typically, system BIOS firmware is updated using a utility or tool that has special knowledge of the non-volatile storage components in which the BIOS is stored. This tool may run on one of the CPUs in the server itself, or it could run on a management processor within the server chassis."
+          },
+          {
+            "text": "A given computer system can have BIOS in several different locations. In addition to the motherboard, BIOS may be found on hard drive controllers, video cards, network cards and other add-in cards. This additional firmware generally takes the form of Option ROMs (containing conventional BIOS and/or UEFI drivers). These are loaded by the system firmware during the boot process and executed on the host CPU. Option ROMs should not be confused with device firmware; there are many system devices in a server with microcontrollers that run their own firmware."
+          },
+          {
+            "text": "The guidelines in this document apply to BIOS firmware stored in the BIOS flash memory, including the BIOS code, the cryptographic keys that are part of the Root of Trust for Update, and static BIOS data. Option ROMs that are stored with the system BIOS firmware and are updated by the same mechanism are considered part of the BIOS for the purposes of this document. However, the guidelines do not apply to Option ROMs and other device firmware stored elsewhere in a server, such as on an add-on card."
+          },
+          {
+            "text": "For more information on system BIOS fundamentals, see Section 2 of NIST SP 800-147."
+          }
+        ]
+      },
+      {
+        "title": "2.2 Server Architectures",
+        "content": [
+          {
+            "text": "In this subsection, we differentiate servers into three classes: Basic Servers,# Managed Servers and Blade Servers"
+          },
+          {
+            "text": "The distinctions made here have to do with the mechanisms employed to update the system BIOS."
+          }
+        ]
+      },
+      {
+        "title": "Basic Server",
+        "content": [
+          {
+            "text": "A Basic Server is architecturally similar to a client PC system with a single BIOS update mechanism. The requirements for protecting BIOS updates for a Basic Server can be satisfied by meeting the requirements listed in this document or those in Section 3.1 of NIST SP 800-147. Typically the Root of Trust for Update (RTU) on a Basic Server is part of the system BIOS (see Section 2.5 for more on RTUs)."
+          }
+        ]
+      },
+      {
+        "title": "Managed Server",
+        "content": [
+          {
+            "text": "A Managed Server is a computer system with a dedicated management channel used for device maintenance and additional server management features. In addition to host processors, a Managed Server may have a Service Processor (see below) capable of performing system management, possibly including BIOS updates. It is critical to prevent the execution of malicious or corrupt code on the Service Processor since it has direct control over other operational aspects of the server. As a potential BIOS update mechanism, the code executed on the Service Processor may contain an RTU and must be protected from unauthorized modification."
+          }
+        ]
+      },
+      {
+        "title": "Blade Server",
+        "content": [
+          {
+            "text": "A Blade Server is a specialized server hardware platform design that is configured as a mounted device in a chassis/enclosure that can be installed in a rack system. These platforms often have shared power and cooling and a shared management interface. Blades function either autonomously in a chassis/enclosure/rack as a bank of servers or they may be controlled by a central bus manager. This system configuration also may have multiple paths for updating the BIOS used to run the individual blades. From the BIOS update perspective, a Blade Server is typically similar to a managed server. Industry also uses the term multi-node (or modular) servers which have the same requirements as the Blade Servers for BIOS protections."
+          }
+        ]
+      },
+      {
+        "title": "Server Architecture",
+        "content": [
+          {
+            "text": "Server architectures vary greatly. While most servers fit into one of the classes listed above, in some cases it may be difficult to classify a server as strictly belonging to one of those classes. The classes are provided as examples to help clarify requirements; however, the security guidelines in this document are intended to have broad applicability to any type of server."
+          }
+        ]
+      },
+      {
+        "title": "Service Processor",
+        "content": [
+          {
+            "text": "A server may have a Service Processor, sometimes called a Baseboard Management Controller, which is a specialized microcontroller. The Service Processor is often a special add-in card or embedded on the server motherboard. The Service Processor microcontroller runs a specialized operating system typically stored in flash memory, and provides administrators with an interface to manage the host server. The Service Processor is typically a highly privileged component in modern servers, often capable of updating firmware and software on the system, changing configuration settings, and reading from system memory."
+          },
+          {
+            "text": "This document assumes administrators will implement proper computer, network, and physical security controls to mitigate the unique risks to Service Processors. For instance, typically administrators interact with the Service Processor over a network interface. Security best practices.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Service Processor",
+        "content": [
+          {
+            "text": "Dictate that the Service Processor should be on a private LAN accessible only to system administrators. Service Processors are responsible for various features, depending on the implementation of the system. The Service Processor will typically monitor various sensors in the server, such as temperature and power sensors for thermal and power management. It might provide administrators with a mechanism to update software or firmware on the server and host operating system. Maintaining the security of the Service Processor is critical to maintaining the integrity and availability of the server. See Section 5 for security requirements for Service Processors."
+          }
+        ]
+      },
+      {
+        "title": "2.3 System BIOS Update Mechanisms",
+        "content": [
+          {
+            "text": "The guidelines in this publication are intended to secure BIOS update mechanisms so that only authentic, authorized BIOS images are written to BIOS flash memory, a process sometimes referred to as \"flashing\" the image. While client systems typically only have one path for updating the BIOS, server systems may implement several update mechanisms to allow administrators to update the BIOS from different environments. This publication identifies three general types of authenticated BIOS update mechanisms. A server will typically implement one or more of these update mechanisms. Each mechanism is briefly described below:"
+          },
+          {
+            "text": "\n\nUpdate Mechanism 1 \u2013 Authenticated BIOS update that can occur anytime. This update mechanism allows the BIOS flash memory to be securely updated irrespective of the operating state of the server. This includes being able to update the BIOS flash while the server operates, without requiring a reboot. This mechanism must protect the BIOS flash memory from unauthorized modifications.\n\n\nUpdate Mechanism 2 \u2013 Authenticated BIOS update on reboot. This BIOS update mechanism allows the flash process to be initiated during server runtime, but the actual update of the BIOS flash memory does not occur until the system reboots. Like the previous mechanism, this mechanism must protect the BIOS flash memory from unauthorized modifications.\n\n\nUpdate Mechanism 3 \u2013 BIOS update at runtime and verification of BIOS on reboot. With this BIOS update mechanism, the BIOS is verified to be authentic before it is executed on every boot. This mechanism is necessary if the BIOS flash locking mechanism is inadequate to protect the integrity of a running system's BIOS flash memory. If the BIOS flash memory is determined to be inauthentic during boot, a recovery process is initiated and the inauthentic BIOS is not executed.\n\n"
+          },
+          {
+            "text": "Update Mechanism 1 \u2013 Authenticated BIOS update that can occur anytime. This update mechanism allows the BIOS flash memory to be securely updated irrespective of the operating state of the server. This includes being able to update the BIOS flash while the server operates, without requiring a reboot. This mechanism must protect the BIOS flash memory from unauthorized modifications."
+          },
+          {
+            "text": "Update Mechanism 2 \u2013 Authenticated BIOS update on reboot. This BIOS update mechanism allows the flash process to be initiated during server runtime, but the actual update of the BIOS flash memory does not occur until the system reboots. Like the previous mechanism, this mechanism must protect the BIOS flash memory from unauthorized modifications."
+          },
+          {
+            "text": "Update Mechanism 3 \u2013 BIOS update at runtime and verification of BIOS on reboot. With this BIOS update mechanism, the BIOS is verified to be authentic before it is executed on every boot. This mechanism is necessary if the BIOS flash locking mechanism is inadequate to protect the integrity of a running system's BIOS flash memory. If the BIOS flash memory is determined to be inauthentic during boot, a recovery process is initiated and the inauthentic BIOS is not executed."
+          },
+          {
+            "text": "In addition, some servers may include a secure local update mechanism that updates the system BIOS without using any of the three authenticated update mechanisms discussed above. A secure local update mechanism ensures the authenticity and integrity of the BIOS update image by requiring that an administrator be physically present at the server to conduct the update. The requirement for physical presence mitigates the risk of remote attacks against the system BIOS."
+          }
+        ]
+      },
+      {
+        "title": "2.4 Threats to the System BIOS# A server is susceptible to the same forms of attack that threaten a client system.",
+        "content": [
+          {
+            "text": "Execution of operating system-level malware on servers could precede a BIOS attack. Server BIOS updates that are executed without being authenticated as coming from a trusted source are vulnerable to attacks. Since servers may have multiple BIOS update mechanisms, each mechanism has a risk of vulnerability. The interaction between update mechanisms potentially can also introduce vulnerabilities."
+          },
+          {
+            "text": "The Service Processor in servers has elevated privileges to perform system management, which may include modifying BIOS. While the Service Processor might be controlled through an isolated communication channel, unauthorized access to this channel exposes great risk to the server. While many security practices focus on the data network, the management network might be less vetted and less protected without special efforts."
+          },
+          {
+            "text": "If insufficiently protected, BIOS image backups on servers (often maintained for recovery features) are vulnerable to rewrite attacks even while the primary BIOS is protected from modification. Subsequent to successful subversion of a BIOS backup, an adversary could employ other means to cause the server to reboot with the infected backup image."
+          }
+        ]
+      },
+      {
+        "title": "2.5 Root of Trust for Update",
+        "content": [
+          {
+            "text": "A Root of Trust for Update (RTU) is an inherently trusted combination of hardware and firmware that performs a secure update of the BIOS and maintains the integrity of the BIOS. The RTU may comprise functionality for verifying digitally signed BIOS images, engaging and disengaging write-protection mechanisms, writing BIOS updates to flash, performing BIOS recovery, and updating the RTU itself."
+          },
+          {
+            "text": "Section 3 specifies requirements on the RTU for performing secure BIOS updates and maintaining BIOS integrity. The inherent trust of the RTU is derived from an isolated execution environment\u2014minimizing the risk to subvert the functionality of the RTU and hence maintaining the inherent trust of the RTU."
+          },
+          {
+            "text": "Each functional component of the RTU may be considered a Root of Trust for the specific function:"
+          },
+          {
+            "text": "\n\nThe Verification Component is responsible for verifying a digitally signed BIOS image to determine if control should be passed to the image. This component has a trusted execution path since it is entered from a known good state of the machine. The verification component can be used to extend trusted execution to code in unprotected memory locations. The verification component verifies the BIOS image and if the verification is successful then it passes control to the image. If the verification fails then the verification component returns to the trusted execution path and does not pass control to the image.\n\n\nThe Recovery Component is responsible for initiating a return of the system to a known good state.\n\n\nThe Integrity Component is responsible for maintaining the integrity of a BIOS image. This may include engaging hardware and firmware based locking mechanisms to prevent unauthorized modification of the image. It also prevents race/logic conditions from unauthorized modification.# of a BIOS image.\n\n\nThe Update Component is responsible for performing a secure update of the RTU and maintaining the integrity of the RTU.\n\n"
+          },
+          {
+            "text": "The Verification Component is responsible for verifying a digitally signed BIOS image to determine if control should be passed to the image. This component has a trusted execution path since it is entered from a known good state of the machine. The verification component can be used to extend trusted execution to code in unprotected memory locations. The verification component verifies the BIOS image and if the verification is successful then it passes control to the image. If the verification fails then the verification component returns to the trusted execution path and does not pass control to the image."
+          },
+          {
+            "text": "The Recovery Component is responsible for initiating a return of the system to a known good state."
+          },
+          {
+            "text": "The Integrity Component is responsible for maintaining the integrity of a BIOS image. This may include engaging hardware and firmware based locking mechanisms to prevent unauthorized modification of the image. It also prevents race/logic conditions from unauthorized modification.# of a BIOS image."
+          },
+          {
+            "text": "The Update Component is responsible for performing a secure update of the RTU and maintaining the integrity of the RTU."
+          }
+        ]
+      },
+      {
+        "title": "3. BIOS Security Principles",
+        "content": [
+          {
+            "text": "The security principles presented in NIST SP 800-147 for client systems\u2014update authentication, flash region integrity, and non-bypassability\u2014apply directly to server class machines. These security principles are intended to mitigate threats targeting the system BIOS. The complexity of server architectures and the multiple update paths for BIOS on servers require the extension of the guidelines in NIST SP 800-147. This section enumerates the requirements for servers to assert the security principles for BIOS update."
+          },
+          {
+            "text": "The principles use the terms authorize and authenticate in the following context. Authentication of an image assures the integrity and origin of the image. It is typically rooted at the firmware or server manufacturer. Authentication is performed cryptographically using digital signatures. Authorization is permission for an update to be performed by the system. Authorization of updates is typically rooted in the server administrator."
+          },
+          {
+            "subsection": "3.1 BIOS Update Authentication",
+            "text": []
+          },
+          {
+            "text": "Authenticated BIOS update mechanisms shall be implemented in an RTU (see Section 2.5). These mechanisms employ digital signatures to ensure the authenticity and integrity of BIOS update images. The Verification Component of the RTU shall contain the digital signature verification algorithm and a key store. The key store shall include the public key needed to verify the signature of the BIOS update image or an approved cryptographic hash [FIPS180-4] of the key. In the latter case, the update mechanism shall hash the public key provided with the BIOS update image and ensure that it matches a hash which appears in the key store before using the provided public key to verify the signature on the BIOS update image."
+          },
+          {
+            "text": "BIOS images shall be signed in conformance with NIST SP 800-89, Recommendation for Obtaining Assurances for Digital Signature Applications [SP800-89], using an approved digital signature algorithm as specified in NIST FIPS 186-4, Digital Signature Standard (DSS) [FIPS186-4], that provides at least 112 bits of security strength, in accordance with NIST SP 800-131A, Transitions: Recommendation for Transitioning the Use of Cryptographic Algorithms and Key Lengths [SP800-131A]."
+          },
+          {
+            "text": "Authenticated update mechanisms shall ensure that BIOS update images have been digitally signed and that the digital signature can be verified using a key stored or verified by the RTU before updating the BIOS. These mechanisms may also verify digital signatures over BIOS code in flash memory prior to execution, particularly if the BIOS flash is not protected (see Section 3.3). Recovery mechanisms should also use an authenticated update mechanism, unless the recovery process meets the guidelines for a secure local update."
+          },
+          {
+            "text": "The system should provide mechanisms capable of preventing unauthorized update of the BIOS to an earlier authentic version. This limitation of the rollback mechanism may be accomplished, for example,# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "by verifying that the version number of the BIOS image is higher than the currently installed BIOS image's version number.",
+        "content": [
+          {
+            "text": "Appropriate rollback protections will depend upon the environment in which the server is used and the security and availability needs of the organization operating the server. The system may allow administrators to authorize rollback to an earlier version, disable these mechanisms, or otherwise configure these mechanisms based on their needs."
+          },
+          {
+            "subsection": "3.2 Secure Local Update",
+            "text": []
+          },
+          {
+            "text": "Servers may optionally include a secure local update mechanism that updates the system BIOS without using the authenticated update mechanism. Secure local update mechanisms shall authorize and authenticate the BIOS update image by requiring that an administrator be physically present at the server to conduct the update. This requirement for physical presence mitigates the risk of a remote attacker conducting a malicious update to an inauthentic system BIOS image. Interacting with a server via a remote console does not satisfy this requirement for physical presence. A secure local update mechanism can be used, for example, to recover from a corrupted BIOS that cannot be updated using an authenticated update or an automated recovery mechanism. The secure local update mechanism could also be used by a physically-present administrator to update to an earlier BIOS version on a system that does not allow rollback."
+          },
+          {
+            "text": "However, note that systems that implement the secure local update mechanism are potentially vulnerable to attacks by rogue administrators or other attacks with physical access to the server. Therefore, additional physical, environmental and technical security measures are essential to protecting these servers, but they are beyond the scope of this document."
+          },
+          {
+            "subsection": "3.3 Firmware Integrity Protection",
+            "text": []
+          },
+          {
+            "text": "To prevent the execution of inauthentic or malicious BIOS code, the integrity of the system BIOS shall be maintained between the verification of the system BIOS by the RTU and the execution of the system BIOS during the boot process."
+          },
+          {
+            "text": "To prevent unintended or malicious modification of the system BIOS outside the authenticated BIOS update process, the system flash memory containing BIOS (i.e., BIOS flash), excluding configuration data used by the system BIOS that is stored in non-volatile memory, should be protected from modifications outside the authenticated BIOS update mechanisms. If implemented, BIOS flash protections shall be engaged prior to execution of code outside of the RTU and shall be enforced by hardware mechanisms that are disengaged only by an authorized mechanism (e.g., system reset)."
+          },
+          {
+            "text": "If BIOS flash protections are not implemented, then BIOS integrity shall be verified prior to each execution, using the Verification Component of the RTU to authenticate the BIOS image. If the verification fails, then the system shall initiate a recovery procedure, which may involve operator intervention or be automatic. Automatic recovery mechanisms which initiate recovery to a protected authentic BIOS should be supported. Automatic recovery mechanisms mitigate the risk of a denial of service attack, whereby an attacker would load an inauthentic BIOS and put the system at risk.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "System in an Unbootable State",
+        "content": [
+          {
+            "text": "The system may allow authorized administrators to configure security policies on the server that drive these recovery procedures. Each RTU shall be protected from modifications outside the authenticated update mechanisms. Protection mechanisms that ensure the integrity of the RTU shall be engaged prior to execution of code outside of the RTU. RTU integrity protections shall be enforced by hardware mechanisms that are disengaged only by an authorized mechanism, for example system reset."
+          }
+        ]
+      },
+      {
+        "title": "3.4 Non-Bypassability",
+        "content": [
+          {
+            "text": "The design of the system and accompanying system components and firmware shall ensure that there are no mechanisms to install and execute unauthenticated BIOS code, except through physical intervention and the secure local update mechanism. In particular, the authenticated update mechanisms shall be the exclusive mechanisms for modifying the RTU absent physical intervention through the secure local update mechanism. The design of the system and accompanying system components and firmware shall ensure that there are no mechanisms that allow the host processor or any other system component to bypass the authenticated update mechanism for updating the RTU, except for the secure local update mechanism."
+          },
+          {
+            "text": "A modern platform includes design features that give system components direct access to the RTU or system BIOS for performance and management improvements, such as shadowing the BIOS in RAM or for system management mode operations. A system component may have read access to system flash memory, but it shall not be able to directly modify the RTU unless that component serves as an extension to the RTU or as an RTU itself."
+          }
+        ]
+      },
+      {
+        "title": "4. Security Guidelines by Update Mechanism",
+        "content": [
+          {
+            "text": "The following provides detailed recommendations for implementing the security guidelines in this document for three typical secure BIOS update mechanisms. A server may implement one or more of these mechanisms, and the method(s) implemented by a given server may be dictated by the hardware support on the platform. These methods differ on when an RTU can be established and the availability of a secure locking mechanism for the flash to prevent unintended or malicious modification of the code and data stored in the BIOS flash memory. All mechanisms depend on a digitally signed BIOS update image and the ability of the verification component of an RTU, using a public key, to verify the signature of that image."
+          },
+          {
+            "subsection": "4.1 Update Mechanism 1: Secure BIOS Update at Anytime",
+            "text": []
+          },
+          {
+            "text": "With this BIOS update mechanism, the secure update of the BIOS flash memory may occur during numerous operating states of the server. This includes being able to update the BIOS flash while the server operates, without requiring a reboot. While the new BIOS is not expected to execute until reboot, the flash can be updated at runtime using a System Management Interrupt (SMI) handler, a Service Processor, or other secure methods. The reboot that causes the new BIOS to execute could occur at any later time (potentially months after the actual flash update takes place). Because this secure update mechanism prevents writing inauthentic code to the# BIOS Update Mechanism Guidelines"
+          },
+          {
+            "text": "BIOS flash memory, it is not necessary to verify the BIOS during boot. The relevant guidelines for implementing this BIOS update mechanism are listed below:"
+          },
+          {
+            "text": "\nThe BIOS update image must be digitally signed in accordance with the BIOS Update Authentication requirements in Section 3.1. An implementation may divide the BIOS update image into multiple, individually digitally signed parts.\nAn RTU, as defined in Section 2.5, must be available at runtime (and may be available during other operating states of the server) to update the BIOS flash memory.\nA locking mechanism must exist such that only an RTU can write to the BIOS flash. Only an RTU should be able to unlock the flash and, when unlocked, only the RTU may have the ability to write to the BIOS flash memory. An RTU may always have access to write to the BIOS flash memory.\nThe digitally signed BIOS update image must be transferred to an RTU. The RTU must have the ability to store the BIOS update image in a location that does not allow unauthorized write access to the BIOS update image.\n"
+          }
+        ]
+      },
+      {
+        "title": "General Steps for Implementing the Mechanism",
+        "content": [
+          {
+            "text": "\nA digitally signed BIOS update image is transferred to the RTU.\nThe RTU stores the BIOS update image in a location that can only be written to by an RTU.\nThe RTU verifies the BIOS update image is authentic. If the BIOS update image is determined to be inauthentic, the BIOS update image will not be written to the BIOS flash memory. If the BIOS update image is authentic, the RTU configures the locking mechanism such that only an RTU has access to write the BIOS flash memory. A viable locking mechanism design could allow the RTU to always have access to write the BIOS flash memory as long as only RTUs have the same capability.\nThe RTU writes the BIOS update image into the BIOS flash memory.\nThe RTU ensures that the BIOS flash memory is locked prior to transferring control to code outside the RTU (e.g., Option ROMs), per the Firmware Integrity Protection requirements in Section 3.3.\n"
+          },
+          {
+            "text": "See Appendix B for an example of this update mechanism."
+          }
+        ]
+      },
+      {
+        "title": "4.2 Update Mechanism 2: Secure BIOS Update at Reboot",
+        "content": [
+          {
+            "text": "With this BIOS update mechanism, the BIOS flash memory process is initiated at server runtime. However, the actual update of the BIOS flash memory does not occur until a server reboot. This BIOS update mechanism prevents inauthentic code from ever being written to the BIOS flash memory."
+          },
+          {
+            "text": "The relevant guidelines for implementing this BIOS update mechanism are listed below:"
+          },
+          {
+            "text": "\nThe BIOS update image must be digitally signed in accordance with the BIOS Update Authentication requirements in Section 3.1. An implementation may divide the BIOS update image into multiple, individually digitally signed parts.\nA locking mechanism must exist for the BIOS flash memory such that no entity except an RTU has write access to the BIOS flash memory at runtime. Although it is not necessary for an RTU to...# BIOS Update Mechanisms\n"
+          }
+        ]
+      },
+      {
+        "title": "General Requirements",
+        "content": [
+          {
+            "text": "\nHave write access to the BIOS flash memory for this update mechanism; additional BIOS update mechanisms may be supported that do have this requirement.\nAn RTU, as defined in Section 2.5, must be available during system boot that can update the BIOS flash memory at runtime. The RTU must execute on reboot before the BIOS flash memory is updated. The RTU will verify the BIOS update image's digital signature before any changes to the flash occur.\nA memory location whose contents are preserved on reboot must exist in which the signed BIOS update image can be buffered at runtime and which the RTU can access during the reboot to verify the BIOS update image's digital signature before updating the contents of the BIOS flash memory. During reboot, the memory location holding the BIOS update image during verification must not be accessible by any entities other than an RTU.\n"
+          }
+        ]
+      },
+      {
+        "title": "General Steps for Implementing This Mechanism",
+        "content": [
+          {
+            "text": "\nA digitally signed BIOS update image is buffered into a storage location whose contents are preserved when the server is rebooted.\nWhen the server is rebooted, execution is transferred to the RTU.\nThe RTU verifies the BIOS update image is authentic. If found to be authentic, the RTU will unlock the BIOS flash memory if necessary and write the update into the BIOS flash memory. If the BIOS update image is determined to be inauthentic, the BIOS flash memory will not be updated.\nThe locking mechanism for the BIOS flash memory is enabled before executing untrusted code, including Option ROMs.\n"
+          },
+          {
+            "text": "See Appendix C for an example of this update mechanism."
+          }
+        ]
+      },
+      {
+        "title": "Update Mechanism 3: Secure BIOS Update Requiring Verification at Boot",
+        "content": [
+          {
+            "text": "With this BIOS update mechanism, a locking mechanism to protect the BIOS flash memory at runtime does not exist or has limitations such that writes to the BIOS flash memory by an entity other than an RTU are not prevented. A rogue update of the BIOS flash memory might occur as the BIOS flash memory is not write-protected or locked. However, the contents of the BIOS flash memory shall be authenticated before being executed on every boot. If the BIOS flash memory is determined to be inauthentic during boot, a recovery process is initiated and the inauthentic BIOS is not executed."
+          },
+          {
+            "subsection": "Relevant Guidelines for Implementing This BIOS Update Mechanism",
+            "text": []
+          },
+          {
+            "text": "\nThe BIOS image must be digitally signed in accordance with the BIOS Update Authentication requirements in Section 3.1.\nAn RTU, as defined in Section 2.5, must verify the digital signature of the BIOS update image before writing the image to the BIOS flash memory.\nAs the system BIOS is not protected from modification at runtime, the RTU must include a verification component capable of verifying the system BIOS prior to execution, per the Firmware Integrity Protection requirements in Section 3.3. The verification component must execute on boot and verify the system BIOS before any updatable BIOS code is executed.# CURRENT_PAGE_RAW_OCR_TEXT\n"
+          },
+          {
+            "text": "\u2022 If it is determined that the system BIOS is inauthentic, the RTU must initiate a recovery process, and the inauthentic system BIOS must never be executed. The general steps for implementing this mechanism are:"
+          },
+          {
+            "text": "\nA digitally signed BIOS image is verified and written into the BIOS flash memory.\nOn every boot, execution is transferred to the RTU.\nIf the verification component of the RTU determines the BIOS flash memory is authentic, execution is transferred to the BIOS.\nIf it is determined that the BIOS flash memory is inauthentic, the RTU initiates a recovery process, and the inauthentic BIOS is never executed. See Appendix D for an example of this update mechanism.\n"
+          }
+        ]
+      }
+    ]
+  }
+]

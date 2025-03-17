@@ -1,0 +1,585 @@
+[
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "The objective of system security planning is to improve protection of information system resources. All federal systems have some level of sensitivity and require protection as part of good management practice. The protection of a system must be documented in a system security plan."
+      },
+      {
+        "content": "The completion of system security plans is a requirement of the Office of Management and Budget (OMB) Circular A-130, \"Management of Federal Information Resources,\" Appendix III, \"Security of Federal Automated Information Resources,\" and \"Title III of the E-Government Act, entitled the Federal Information Security Management Act (FISMA)."
+      },
+      {
+        "content": "The purpose of the system security plan is to provide an overview of the security requirements of the system and describe the controls in place or planned for meeting those requirements. The system security plan also delineates responsibilities and expected behavior of all individuals who access the system. The system security plan should be viewed as documentation of the structured process of planning adequate, cost-effective security protection for a system. It should reflect input from various managers with responsibilities concerning the system, including information owners, the system owner, and the senior agency information security officer (SAISO). Additional information may be included in the basic plan and the structure and format organized according to agency needs, so long as the major sections described in this document are adequately covered and readily identifiable."
+      },
+      {
+        "content": "In order for the plans to adequately reflect the protection of the resources, a senior management official must authorize a system to operate. The authorization of a system to process information, granted by a management official, provides an important quality control. By authorizing processing in a system, the manager accepts its associated risk."
+      },
+      {
+        "content": "Management authorization should be based on an assessment of management, operational, and technical controls. Since the system security plan establishes and documents the security controls, it should form the basis for the authorization, supplemented by the assessment report and the plan of actions and milestones. In addition, a periodic review of controls should also contribute to future authorizations. Re-authorization should occur whenever there is a significant change in processing, but at least every three years."
+      },
+      {
+        "title": "1. Introduction",
+        "content": [
+          {
+            "text": "Today's rapidly changing technical environment requires federal agencies to adopt a minimum set of security controls to protect their information and information systems. Federal Information Processing Standard (FIPS) 200, Minimum Security Requirements for Federal Information and Information Systems, specifies the minimum security requirements for federal information and information systems in seventeen security-related areas. Federal agencies must meet the minimum security requirements defined in FIPS 200 through the use of the security controls in NIST Special Publication 800-53.# Recommended Security Controls for Federal Information Systems"
+          },
+          {
+            "text": "NIST SP 800-53 contains the management, operational, and technical safeguards or countermeasures prescribed for an information system. The controls selected or planned must be documented in a system security plan. This document provides guidance for federal agencies for developing system security plans for federal information systems."
+          }
+        ]
+      },
+      {
+        "title": "1.1 Background",
+        "content": [
+          {
+            "text": "Title III of the E-Government Act, entitled the Federal Information Security Management Act (FISMA), requires each federal agency to develop, document, and implement an agency-wide information security program to provide information security for the information and information systems that support the operations and assets of the agency, including those provided or managed by another agency, contractor, or other source."
+          },
+          {
+            "text": "System security planning is an important activity that supports the system development life cycle (SDLC) and should be updated as system events trigger the need for revision in order to accurately reflect the most current state of the system. The system security plan provides a summary of the security requirements for the information system and describes the security controls in place or planned for meeting those requirements. The plan also may reference other key security-related documents for the information system such as a risk assessment, plan of action and milestones, accreditation decision letter, privacy impact assessment, contingency plan, configuration management plan, security configuration checklists, and system interconnection agreements as appropriate."
+          }
+        ]
+      },
+      {
+        "title": "1.2 Target Audience",
+        "content": [
+          {
+            "text": "Program managers, system owners, and security personnel in the organization must understand the system security planning process. In addition, users of the information system and those responsible for defining system requirements should be familiar with the system security planning process. Those responsible for implementing and managing information systems must participate in addressing security controls to be applied to their systems. This guidance provides basic information on how to prepare a system security plan and is designed to be adaptable in a variety of organizational structures and used as reference by those having assigned responsibility for activity related to security planning."
+          }
+        ]
+      },
+      {
+        "title": "1.3 Organization of Document",
+        "content": [
+          {
+            "text": "This publication introduces a set of activities and concepts to develop an information system security plan. A brief description of its contents follows:"
+          },
+          {
+            "text": "Chapter 1 includes background information relevant to the system security planning process, target audience, information on FIPS 199, Standards for Security Categorization of Federal Information and Information Systems, a discussion of the various categories of information systems, identification of related NIST publications, and a description of the roles and responsibilities related to the development of system security plans.\nChapter 2 discusses how agencies should analyze their information system inventories in the process of establishing system boundaries. It also discusses identification of common security controls and scoping guidance.\nChapter 3 takes the reader through the steps of system security plan development.\nAppendix A provides a system security plan template.```markdown"
+          }
+        ]
+      },
+      {
+        "title": "Appendix B",
+        "content": [
+          {
+            "text": "Appendix B provides a glossary of terms and definitions."
+          }
+        ]
+      },
+      {
+        "title": "Appendix C",
+        "content": [
+          {
+            "text": "Appendix C includes references that support this publication."
+          }
+        ]
+      },
+      {
+        "title": "1.4 Systems Inventory and Federal Information Processing Standards (FIPS 199)",
+        "content": [
+          {
+            "text": "FISMA requires that agencies have in place an information systems inventory. All information systems in the inventory should be categorized using FIPS 199 as a first step in the system security planning activity."
+          },
+          {
+            "text": "FIPS 199 is the mandatory standard to be used by all federal agencies to categorize all information and information systems collected or maintained by or on behalf of each agency based on the objectives of providing appropriate levels of information security according to impact. Security categorization standards for information and information systems provide a common framework and understanding for expressing security that, for the federal government, promotes:"
+          },
+          {
+            "text": "(i) effective management and oversight of information security programs, including the coordination of information security efforts throughout the civilian, national security, emergency preparedness, homeland security, and law enforcement communities; and"
+          },
+          {
+            "text": "(ii) consistent reporting to the Office of Management and Budget (OMB) and Congress on the adequacy and effectiveness of information security policies, procedures, and practices."
+          }
+        ]
+      },
+      {
+        "title": "1.5 Major Applications, General Support Systems, and Minor Applications",
+        "content": [
+          {
+            "text": "All information systems must be covered by a system security plan and labeled as a major application or general support system. Specific system security plans for minor applications are not required because the security controls for those applications are typically provided by the general support system or major application in which they operate. In those cases where the minor application is not connected to a major application or general support system, the minor application should be briefly described in a general support system plan that has either a common physical location or is supported by the same organization. Additional information is provided in Chapter 2."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Resource Center website at: http://csrc.nist.gov/.",
+    "subsections": [
+      {
+        "title": "1.7 System Security Plan Responsibilities",
+        "content": [
+          {
+            "text": "Agencies should develop policy on the system security planning process. System security plans are living documents that require periodic review, modification, and plans of action and milestones for implementing security controls. Procedures should be in place outlining who reviews the plans, keeps the plan current, and follows up on planned security controls. In addition, procedures should require that system security plans be developed and reviewed prior to proceeding with the security certification and accreditation process for the system."
+          },
+          {
+            "text": "During the security certification and accreditation process, the system security plan is analyzed, updated, and accepted. The certification agent confirms that the security controls described in the system security plan are consistent with the FIPS 199 security category determined for the information system, and that the threat and vulnerability identification and initial risk determination are identified and documented in the system security plan, risk assessment, or equivalent document. The results of a security certification are used to reassess the risks, develop the plan of action and milestones (POA&Ms) which are required to track remedial actions, and update the system security plan, thus providing the factual basis for an authorizing official to render a security accreditation decision. For additional information on the certification and accreditation process, see NIST SP 800-37. Figure 1, depicts the key inputs/outputs into the security planning process."
+          },
+          {
+            "text": "The roles and responsibilities in this section are specific to information system security planning. Recognizing that agencies have widely varying missions and organizational structures, there may be differences in naming conventions for security planning-related roles and how the associated responsibilities are allocated among agency personnel (e.g., multiple individuals filling a single role or one individual filling multiple roles)."
+          },
+          {
+            "subsection": "1.7.1 Chief Information Officer",
+            "text": []
+          },
+          {
+            "text": "The Chief Information Officer (CIO) is the agency official responsible for developing and maintaining an agency-wide information security program and has the following responsibilities for system security planning:"
+          },
+          {
+            "text": "Designates a senior agency information security officer (SAISO) who shall carry out the CIO's responsibilities for system security planning,\nDevelops and maintains information security policies, procedures, and control techniques to address system security planning,\nManages the identification, implementation, and assessment of common security controls,\nEnsures that personnel with significant responsibilities for system security plans are trained,\n``````markdown"
+          }
+        ]
+      },
+      {
+        "title": "CURRENT_PAGE_RAW_OCR_TEXT:",
+        "content": [
+          {
+            "text": "Assists senior agency officials with their responsibilities for system security plans, and\nIdentifies and coordinates common security controls for the agency."
+          },
+          {
+            "subsection": "1.7.2 Information System Owner",
+            "text": []
+          },
+          {
+            "text": "The information system owner is the agency official responsible for the overall procurement, development, integration, modification, or operation and maintenance of the information system. The information system owner has the following responsibilities related to system security plans:"
+          },
+          {
+            "text": "Develops the system security plan in coordination with information owners, the system administrator, the information system security officer, the senior agency information security officer, and functional \"end users,\"\nMaintains the system security plan and ensures that the system is deployed and operated according to the agreed-upon security requirements,\nEnsures that system users and support personnel receive the requisite security training (e.g., instruction in rules of behavior),\nUpdates the system security plan whenever a significant change occurs, and\nAssists in the identification, implementation, and assessment of the common security controls."
+          },
+          {
+            "subsection": "1.7.3 Information Owner",
+            "text": []
+          },
+          {
+            "text": "The information owner is the agency official with statutory or operational authority for specified information and responsibility for establishing the controls for its generation, collection, processing, dissemination, and disposal. The information owner has the following responsibilities related to system security plans:"
+          },
+          {
+            "text": "Establishes the rules for appropriate use and protection of the subject data/information (rules of behavior),\nProvides input to information system owners regarding the security requirements and security controls for the information system(s) where the information resides,\nDecides who has access to the information system and with what types of privileges or access rights, and\nAssists in the identification and assessment of the common security controls where the information resides."
+          },
+          {
+            "subsection": "1.7.4 Senior Agency Information Security Officer (SAISO)",
+            "text": []
+          },
+          {
+            "text": "The senior agency information security officer is the agency official responsible for serving as the CIO's primary liaison to the agency's information system owners and information system security officers. The SAISO has the following responsibilities related to system security plans:"
+          },
+          {
+            "text": "Carries out the CIO's responsibilities for system security planning,\nCoordinates the development, review, and acceptance of system security plans with information system owners, information system security officers, and the authorizing official,\nCoordinates the identification, implementation, and assessment of the common security controls, and\nPossesses professional qualifications, including training and experience, required to develop and review system security plans."
+          },
+          {
+            "subsection": "1.7.5 Information System Security Officer",
+            "text": []
+          },
+          {
+            "text": "The information system security officer is the agency official assigned responsibility by the SAISO, authorizing official, management official, or information system owner for\n```# Ensuring Operational Security Posture"
+          },
+          {
+            "text": "Ensuring that the appropriate operational security posture is maintained for an information system or program. The information system security officer has the following responsibilities related to system security plans:"
+          },
+          {
+            "text": "Assists the senior agency information security officer in the identification, implementation, and assessment of the common security controls, and\nPlays an active role in developing and updating the system security plan as well as coordinating with the information system owner any changes to the system and assessing the security impact of those changes."
+          }
+        ]
+      },
+      {
+        "title": "1.7.6 Authorizing Official",
+        "content": [
+          {
+            "text": "The authorizing official (or designated approving/accrediting authority as referred to by some agencies) is a senior management official or executive with the authority to formally assume responsibility for operating an information system at an acceptable level of risk to agency operations, agency assets, or individuals. The authorizing official has the following responsibilities related to system security plans:"
+          },
+          {
+            "text": "Approves system security plans,\nAuthorizes operation of an information system,\nIssues an interim authorization to operate the information system under specific terms and conditions, or\nDenies authorization to operate the information system (or if the system is already operational, halts operations) if unacceptable security risks exist."
+          }
+        ]
+      },
+      {
+        "title": "1.8 Rules of Behavior",
+        "content": [
+          {
+            "text": "The rules of behavior, which are required in OMB Circular A-130, Appendix III, and is a security control contained in NIST SP 800-53, should clearly delineate responsibilities and expected behavior of all individuals with access to the system. The rules should state the consequences of inconsistent behavior or noncompliance and be made available to every user prior to receiving authorization for access to the system. It is required that the rules contain a signature page for each user to acknowledge receipt, indicating that they have read, understand, and agree to abide by the rules of behavior. Electronic signatures are acceptable for use in acknowledging the rules of behavior."
+          },
+          {
+            "text": "Figure 2 lists examples from OMB Circular A-130 Appendix III of what should be covered in typical rules of behavior. These are examples only and agencies have flexibility in the detail and contents. When developing the rules of behavior, keep in mind that the intent is to make all users accountable for their actions by acknowledging that they have read, understand, and agree to abide by the rules of behavior. The rules should not be a complete copy of the security policy or procedures guide, but rather cover, at a high level, some of the controls described in the following Figure."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "2. System Boundary Analysis and Security Controls# System Security Plan Development",
+    "subsections": [
+      {
+        "content": "Before the system security plan can be developed, the information system and the information resident within that system must be categorized based on a FIPS 199 impact analysis. Then a determination can be made as to which systems in the inventory can be logically grouped into major applications or general support systems. The FIPS 199 impact levels must be considered when the system boundaries are drawn and when selecting the initial set of security controls (i.e., control baseline). The baseline security controls can then be tailored based on an assessment of risk and local conditions including organization-specific security requirements, specific threat information, cost-benefit analyses, the availability of compensating controls, or special circumstances."
+      },
+      {
+        "content": "Common security controls, which is one of the tailoring considerations, must be identified prior to system security plan preparation in order to identify those controls covered at the agency level, which are not system-specific. These common security controls can then be incorporated into the system security plan by reference."
+      },
+      {
+        "title": "2.1 System Boundaries",
+        "content": [
+          {
+            "text": "The process of uniquely assigning information resources to an information system defines the security boundary for that system. Agencies have great flexibility in determining what constitutes an information system (i.e., major application or general support system). If a set of information resources is identified as an information system, the resources should generally be under the same direct management control. Direct management control does not necessarily imply that there is no intervening management. It is also possible for an information system to contain multiple subsystems."
+          },
+          {
+            "text": "A subsystem is a major subdivision or component of an information system consisting of information, information technology, and personnel that perform one or more specific functions. Subsystems typically fall under the same management authority and are included within a single system security plan. Figure 3 depicts a general support system with three subsystems."
+          },
+          {
+            "text": "In addition to the consideration of direct management control, it may be helpful for agencies to consider if the information resources being identified as an information system:"
+          },
+          {
+            "text": "Have the same function or mission objective and essentially the same operating characteristics and security needs, and\nReside in the same general operating environment (or in the case of a distributed information system, reside in various locations with similar operating environments)."
+          },
+          {
+            "text": "While the above considerations may be useful to agencies in determining information system boundaries for purposes of security accreditation, they should not be viewed as limiting the agency's flexibility in establishing boundaries that promote effective information security within the available resources of the agency. Authorizing officials and senior agency information security officers should consult with prospective information system owners when establishing information system boundaries.# Process of Establishing Boundaries for Agency Information Systems"
+          },
+          {
+            "text": "The process of establishing boundaries for agency information systems and the associated security implications is an agency-level activity that should include careful negotiation among all key participants, taking into account the mission/business requirements of the agency, the technical considerations with respect to information security, and the programmatic costs to the agency."
+          }
+        ]
+      },
+      {
+        "title": "FIPS 199 Security Categories",
+        "content": [
+          {
+            "text": "FIPS 199 defines security categories for information systems based on potential impact on organizations, assets, or individuals should there be a breach of security\u2014that is, a loss of confidentiality, integrity, or availability. FIPS 199 security categories can play an important part in defining information system boundaries by partitioning the agency's information systems according to the criticality or sensitivity of the information and information systems and the importance of those systems in accomplishing the agency's mission."
+          },
+          {
+            "text": "This is particularly important when there are various FIPS 199 impact levels contained in one information system. The FIPS 199 requirement to secure an information system to the high watermark or highest impact level must be applied when grouping minor applications/subsystems with varying FIPS 199 impact levels into a single general support system or major application unless there is adequate boundary protection, e.g., firewalls and encryption, around those subsystems or applications with the highest impact level."
+          },
+          {
+            "text": "Additionally, there must be assurance that the shared resources, i.e., networks, communications, and physical access within the whole general support system or major application, are protected adequately for the highest impact level. Having the ability to isolate the high impact systems will not only result in more secure systems, but will also reduce the amount of resources required to secure many applications/systems that do not require that level of security."
+          },
+          {
+            "text": "NIST SP 800-53 provides three security control baselines, i.e., low, moderate, and high, that are associated with the three FIPS 199 impact levels; as the impact level increases, so do the minimum assurance requirements. For reporting purposes, i.e., FISMA annual report, when an information system has varying FIPS 199 impact levels, that system is categorized at the highest impact level on that information system."
+          }
+        ]
+      },
+      {
+        "title": "2.2 Major Applications",
+        "content": [
+          {
+            "text": "All federal applications have value and require some level of protection. Certain applications, because of the information they contain, process, store, or transmit, or because of their criticality to the agency's mission, require special management oversight. These applications are major applications. A major application is expected to have a FIPS 199 impact level of moderate or high. OMB Circular A-130 defines a \"major application.\"# Information System"
+          },
+          {
+            "text": "An \"information system\" is defined as an information system that requires special management attention because of its importance to an agency mission; its high development, operating, or maintenance costs; or its significant role in the administration of agency programs, finances, property, or other resources. Major applications are by definition major information systems."
+          },
+          {
+            "text": "Major applications are systems that perform clearly defined functions for which there are readily identifiable security considerations and needs (e.g., an electronic funds transfer system). A major application might comprise many individual programs and hardware, software, and telecommunications components. These components can be a single software application or a combination of hardware/software focused on supporting a specific, mission-related function. A major application may also consist of multiple individual applications if all are related to a single mission function (e.g., payroll or personnel)."
+          },
+          {
+            "text": "If a system is defined as a major application and the application is run on another organization's general support system, the major application owner is responsible for acceptance of risk and in addition:"
+          },
+          {
+            "text": "Notifies the general support system owner that the application is critical and provides specific security requirements;\nProvides a copy of the major application's system security plan to the operator of the general support system;\nRequests a copy of the system security plan of the general support system and ensures that it provides adequate protection for the application and information; and\nIncludes a reference to the general support system security plan in the major application system security plan."
+          }
+        ]
+      },
+      {
+        "title": "2.3 General Support Systems",
+        "content": [
+          {
+            "text": "A general support system is an interconnected set of information resources under the same direct management control that shares common functionality. A general support system normally includes hardware, software, information, data, applications, communications, facilities, and people and provides support for a variety of users and/or applications. A general support system, for example, can be a:"
+          },
+          {
+            "text": "LAN including smart terminals that support a branch office;\nBackbone (e.g., agency-wide);\nCommunications network;\nAgency data processing center including its operating system and utilities;\nTactical radio network; or\nShared information processing service facility."
+          },
+          {
+            "text": "A general support system can have a FIPS 199 impact level of low, moderate, or high in its security categorization depending on the criticality or sensitivity of the system and any major applications the general support system is supporting. A general support system is considered a major information system when special management attention is required.# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "2.4 Minor Applications",
+        "content": [
+          {
+            "text": "There are high development, operating, or maintenance costs; and the system/information has a significant role in the administration of agency programs. When the general support system is a major information system, the system's FIPS 199 impact level is either moderate or high."
+          },
+          {
+            "text": "A major application can be hosted on a general support system. The general support system plan should reference the major application system security plan."
+          },
+          {
+            "text": "Agencies are expected to exercise management judgment in determining which of their applications are minor applications and to ensure that the security requirements of minor applications are addressed as part of the system security plan for the applicable general support systems or, in some cases, the applicable major application. It is very common that a minor application may have a majority of its security controls provided by the general support system or major application on which it resides. If this is the case, the information system owner of the general support system or major application is the information system owner for the minor application and is responsible for developing the system security plan. The additional security controls specific to the minor application should be documented in the system security plan as an appendix or paragraph. The minor application owner (often the same as information owner) may develop the appendix or paragraph describing the additional controls. The complete general support system or major application system security plan should be shared with the information owner."
+          },
+          {
+            "text": "The minor application can have a FIPS 199 security category of low or moderate. However, if the minor application resides on a system that does not have adequate boundary protection, the minor application must implement the minimum baseline controls required by the host or interconnected system."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "should document all tailoring activities."
+      },
+      {
+        "title": "2.5.1 Scoping Guidance",
+        "content": [
+          {
+            "text": "Scoping guidance provides an agency with specific terms and conditions on the applicability and implementation of individual security controls in the security control baselines defined in NIST SP 800-53. Several considerations described below can potentially impact how the baseline security controls are applied by the agency. System security plans should clearly identify which security controls employed scoping guidance and include a description of the type of considerations that were made. The application of scoping guidance must be reviewed and approved by the authorizing official for the information system."
+          },
+          {
+            "subsection": "Technology-related considerations",
+            "text": []
+          },
+          {
+            "text": "Security controls that refer to specific technologies (e.g., wireless, cryptography, public key infrastructure) will only be applicable if those technologies are employed or are required to be employed within the information system.\nSecurity controls will only be applicable to those components of the information system that typically provide the security capability addressed by the minimum security requirements.\nSecurity controls that can be either explicitly or implicitly supported by automated mechanisms will not require the development of such mechanisms if the mechanisms do not already exist or are not readily available in commercial or government off-the-shelf products. In situations where automated mechanisms are not readily available or technically feasible, compensating security controls, implemented through non-automated mechanisms or procedures, will be used to satisfy minimum security requirements."
+          },
+          {
+            "subsection": "Common security control-related considerations",
+            "text": []
+          },
+          {
+            "text": "Security controls designated by the agency as common controls will, in most cases, be managed by an organizational entity other than the information system owner. Every control in a security control baseline must be addressed either by the agency through common security controls or by the information system owner. Decisions on common control designations must not, however, affect the agency's responsibility in providing the necessary security controls required to meet the minimum security requirements for the information system. (Additional information on common controls is provided in Section 2.5.3.)"
+          },
+          {
+            "subsection": "Public access information systems-related considerations",
+            "text": []
+          },
+          {
+            "text": "Security controls associated with public access information systems must be carefully considered and applied with discretion since some of the security controls from the specified security control baselines (e.g., personnel security controls, identification and authentication controls) may not be applicable to users accessing information systems through public interfaces."
+          },
+          {
+            "subsection": "Infrastructure-related considerations",
+            "text": []
+          },
+          {
+            "text": "Security controls that refer to agency facilities (e.g., physical access controls such as locks and guards, environmental controls for temperature, humidity, lighting, fire, and power) will be applicable only to those sections of the facilities that directly provide protection to, support for, or are related to the information system (including its information technology assets such as electronic mail or web servers, server farms, data centers, networking nodes, controlled interface equipment, and communications equipment)."
+          },
+          {
+            "subsection": "Scalability-related considerations",
+            "text": []
+          },
+          {
+            "text": "Security controls will be scalable by the size and complexity of the particular\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Agency Implementing the Controls and the Impact Level of the Information System",
+        "content": [
+          {
+            "text": "Scalability addresses the breadth and depth of security control implementation. Discretion is needed in scaling the security controls to the particular environment of use to ensure a cost-effective, risk-based approach to security control implementation."
+          },
+          {
+            "subsection": "Risk-related Considerations",
+            "text": []
+          },
+          {
+            "text": "Security controls that uniquely support the confidentiality, integrity, or availability security objectives can be downgraded to the corresponding control in a lower baseline (or appropriately modified or eliminated if not defined in a lower baseline) if, and only if, the downgrading action:\n(i) is consistent with the FIPS 199 security categorization for the corresponding security objectives of confidentiality, integrity, or availability before moving to the high watermark;\n(ii) is supported by an agency's assessment of risk; and\n(iii) does not affect the security-relevant information within the information system."
+          }
+        ]
+      },
+      {
+        "title": "2.5.2 Compensating Controls",
+        "content": [
+          {
+            "text": "Compensating security controls are the management, operational, or technical controls employed by an agency in lieu of prescribed controls in the low, moderate, or high security control baselines, which provide equivalent or comparable protection for an information system. Compensating security controls for an information system will be employed by an agency only under the following conditions:\n(i) the agency selects the compensating controls from the security control catalog in NIST SP 800-53;\n(ii) the agency provides a complete and convincing rationale and justification for how the compensating controls provide an equivalent security capability or level of protection for the information system; and\n(iii) the agency assesses and formally accepts the risk associated with employing the compensating controls in the information system. The use of compensating security controls must be reviewed, documented in the system security plan, and approved by the authorizing official for the information system."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Further Control Refinement",
+    "subsections": [
+      {
+        "content": "An agency may choose, for example, to implement the CP-2 (Contingency Plan) security control as a master template for a generalized contingency plan for all agency information systems with individual information system owners tailoring the plan, where appropriate, for system-specific issues."
+      },
+      {
+        "content": "Information system owners are responsible for any system-specific issues associated with the implementation of an agency's common security controls. These issues are identified and described in the system security plans for the individual information systems. The SAISO, acting on behalf of the CIO, should coordinate with agency officials (e.g., facilities managers, site managers, personnel managers) responsible for the development and implementation of the designated common security controls to ensure that the required controls are put into place, the controls are assessed, and the assessment results are shared with the appropriate information system owners."
+      },
+      {
+        "content": "Partitioning security controls into common security controls and system-specific security controls can result in significant savings to the agency in control development and implementation costs. It can also result in a more consistent application of the security controls across the agency at large. Moreover, equally significant savings can be realized in the security certification and accreditation process. Rather than assessing common security controls in every information system, the certification process draws upon any applicable results from the most current assessment of the common security controls performed at the agency level. An agency-wide approach to reuse and sharing of assessment results can greatly enhance the efficiency of the security certifications and accreditations being conducted by an agency and significantly reduce security program costs."
+      },
+      {
+        "content": "While the concept of security control partitioning into common security controls and system-specific controls is straightforward and intuitive, the application of this principle within an agency takes planning, coordination, and perseverance. If an agency is just beginning to implement this approach or has only partially implemented this approach, it may take some time to get the maximum benefits from security control partitioning and the associated reuse of assessment evidence. Because of the potential dependence on common security controls by many of an agency's information systems, a failure of such common controls may result in a significant increase in agency-level risk\u2014risk that arises from the operation of the systems that depend on these controls."
+      },
+      {
+        "title": "3. Plan Development",
+        "content": [
+          {
+            "text": "The remainder of this document guides the reader in writing a system security plan, including logical steps which should be followed in approaching plan development.\n```# Recommended Structure and Content"
+          },
+          {
+            "text": "and how to maximize the use of current NIST publications to effectively support system security planning activity. There should be established agency policy on how the information system security plans are to be controlled and accessed prior to initiation of the activity."
+          }
+        ]
+      },
+      {
+        "title": "3.1 System Name and Identifier",
+        "content": [
+          {
+            "text": "The first item listed in the system security plan is the system name and identifier. As required in OMB Circular A-11, each system should be assigned a name and unique identifier. Assignment of a unique identifier supports the agency's ability to easily collect agency information and security metrics specific to the system as well as facilitate complete traceability to all requirements related to system implementation and performance. This identifier should remain the same throughout the life of the system and be retained in audit logs related to system use."
+          }
+        ]
+      },
+      {
+        "title": "3.2 System Categorization",
+        "content": [
+          {
+            "text": "Each system identified in the agency's system inventory must be categorized using FIPS 199. NIST Special Publication 800-60, Guide for Mapping Types of Information and Information Systems to Security Categories, provides implementation guidance in completing this activity. See Table 1 for a summary of FIPS 199 categories."
+          }
+        ]
+      },
+      {
+        "title": "3.3 System Owner",
+        "content": [
+          {
+            "text": "A designated system owner must be identified in the system security plan for each system. This person is the key point of contact (POC) for the system and is responsible for coordinating system development life cycle (SDLC) activities specific to the system. It is important that this person have expert knowledge of the system capabilities and functionality. The assignment of a system owner should be documented in writing and the plan should include the following contact information:"
+          },
+          {
+            "text": "Name\nTitle\nAgency\nAddress\nPhone Number\nEmail Address"
+          }
+        ]
+      },
+      {
+        "title": "3.4 Authorizing Official",
+        "content": [
+          {
+            "text": "An authorizing official must be identified in the system security plan for each system. This person is the senior management official who has the authority to authorize operation (accredit) of an information system (major application or general support system) and accept the residual risk associated with the system. The assignment of the authorizing official should be in writing, and the plan must include the same contact information listed in Section 3.3."
+          }
+        ]
+      },
+      {
+        "title": "3.5 Other Designated Contacts",
+        "content": [
+          {
+            "text": "This section should include names of other key contact personnel who can address inquiries regarding system characteristics and operation. The same information listed in Section 3.3 should be included for each person listed under this section."
+          }
+        ]
+      },
+      {
+        "title": "3.6 Assignment of Security Responsibility",
+        "content": [
+          {
+            "text": "Within an agency, an individual must be assigned responsibility for each system. This can be accomplished in many ways. In some agencies, the overall responsibility may be delegated to the SAISO. Often, the SAISO is supported by a subnet of security officers.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Assigned Responsibilities",
+        "content": [
+          {
+            "text": "Assigned to each major component. These security officers may be authorized to address the security requirements for all systems within their domain of authority. Other models may segment this responsibility in other ways based on agency structure and responsibility. The same contact information, as listed under Section 3.3, should be provided for these individuals. Most important is that this responsibility be formalized in writing either in the employee's Position Description or by delegation Memorandum."
+          }
+        ]
+      },
+      {
+        "title": "3.7 System Operational Status",
+        "content": [
+          {
+            "text": "Indicate one or more of the following for the system's operational status. If more than one status is selected, list which part of the system is covered under each status."
+          },
+          {
+            "text": "Operational \u2013 the system is in production.\nUnder Development \u2013 the system is being designed, developed, or implemented.\nUndergoing a major modification \u2013 the system is undergoing a major conversion or transition."
+          },
+          {
+            "text": "If the system is under development or undergoing a major modification, provide information about the methods used to assure that up-front security requirements are included. Include specific controls in the appropriate sections of the plan depending on where the system is in the security life cycle."
+          }
+        ]
+      },
+      {
+        "title": "3.8 Information System Type",
+        "content": [
+          {
+            "text": "In this section of the plan, indicate whether the system is a major application or general support system. If the system contains minor applications, describe them in the General Description/Purpose section of the plan. If the agency has additional categories of information system types, modify the template to include the other categories."
+          }
+        ]
+      },
+      {
+        "title": "3.9 General Description/Purpose",
+        "content": [
+          {
+            "text": "Prepare a brief description (one to three paragraphs) of the function and purpose of the system (e.g., economic indicator, network support for an agency, business census data analysis, crop reporting support). If the system is a general support system, list all applications supported by the general support system. Specify if the application is or is not a major application and include unique name/identifiers, where applicable. Describe each application's function and the information processed. Include a list of user organizations, whether they are internal or external to the system owner's agency."
+          }
+        ]
+      },
+      {
+        "title": "3.10 System Environment",
+        "content": [
+          {
+            "text": "Provide a brief (one to three paragraphs) general description of the technical system. Include any environmental or technical factors that raise special security concerns, such as use of Personal Digital Assistants, wireless technology, etc. Typically, operational environments are as follows:"
+          },
+          {
+            "text": "Standalone or Small Office/Home Office (SOHO) describes small, informal computer installations that are used for home or business purposes. Standalone encompasses a variety of small-scale environments and devices, ranging from laptops, mobile devices, or home computers, to telecommuting systems, to small businesses and small branch offices of a company.\nManaged or Enterprise are typically large agency systems with defined,# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Organized suites of hardware and software configurations, usually consisting of centrally managed workstations and servers protected from the Internet by firewalls and other network security devices."
+          },
+          {
+            "text": "Custom environments contain systems in which the functionality and degree of security do not fit the other environments. Two typical Custom environments are Specialized Security-Limited Functionality and Legacy:\nSpecialized Security-Limited Functionality. A Specialized Security-Limited Functionality environment contains systems and networks at high risk of attack or data exposure, with security taking precedence over functionality. It assumes systems have limited or specialized (not general purpose workstations or systems) functionality in a highly threatened environment such as an outward facing firewall or public web server or whose data content or mission purpose is of such value that aggressive trade-offs in favor of security outweigh the potential negative consequences to other useful system attributes such as legacy applications or interoperability with other systems. A Specialized Security-Limited Functionality environment could be a subset of another environment.\nLegacy. A Legacy environment contains older systems or applications that may use older, less-secure communication mechanisms. Other machines operating in a Legacy environment may need less restrictive security settings so that they can communicate with legacy systems and applications. A Legacy environment could be a subset of a standalone or managed environment."
+          }
+        ]
+      },
+      {
+        "title": "3.11 System Interconnection/Information Sharing",
+        "content": [
+          {
+            "text": "System interconnection is the direct connection of two or more IT systems for the purpose of sharing information resources. System interconnection, if not appropriately protected, may result in a compromise of all connected systems and the data they store, process, or transmit. It is important that system owners, information owners, and management obtain as much information as possible regarding vulnerabilities associated with system interconnections and information sharing. This is essential to selecting the appropriate controls required to mitigate those vulnerabilities. An Interconnection Security Agreement (ISA), Memorandum of Understanding (MOU), or Memorandum of Agreement (MOA) is needed between systems (not between workstations/desktops or publicly accessed systems) that share data that are owned or operated by different organizations. An ISA is not needed with internal agency systems if an agency manages and enforces a rigid system development life cycle, which requires approvals and sign-offs ensuring compliance with security requirements. For additional information on interconnections, see NIST SP 800-47, Security Guide for Interconnecting Information Technology Systems."
+          },
+          {
+            "text": "In this section, for each interconnection between systems that are owned or operated by different organizations, provide the following information concerning the authorization for the connection to other systems or the sharing of information:"
+          },
+          {
+            "text": "Name of system;\nOrganization;\nType of interconnection (Internet, Dial-Up, etc.);\nAuthorizations for interconnection (MOU/MOA, ISA);\nDate of agreement;\nFIPS 199 Category;\nCertification and accreditation status of system; and\nName and title of authorizing official(s)."
+          },
+          {
+            "text": "For agencies with numerous interconnections, a table format including the above.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "3.12 Laws, Regulations, and Policies Affecting the System",
+        "content": [
+          {
+            "text": "List any laws, regulations, or policies that establish specific requirements for confidentiality, integrity, or availability of the system and information retained by, transmitted by, or processed by the system. General agency security requirements need not be listed since they mandate security for all systems. Each agency should decide on the level of laws, regulations, and policies to include in the system security plan. Examples might include the Privacy Act of 1974 or a specific statute or regulation concerning the information processed (e.g., tax or census information). If the system processes records subject to the Privacy Act, include the number and title of the Privacy Act system(s) of records and whether the system(s) are used for computer matching activities."
+          }
+        ]
+      },
+      {
+        "title": "3.13 Security Control Selection",
+        "content": [
+          {
+            "text": "In preparation for documenting how the NIST SP 800-53 security controls for the applicable security control baseline (low-, moderate-, or high impact information systems) are implemented or planned to be implemented, the security controls contained in the baseline should be reviewed and possibly tailored. The scoping guidelines explained in Section 2.5.1 should be used when determining the applicability or tailoring of individual controls. Additionally, the controls that are common among numerous systems or within the whole agency should be identified and then documented in the plan. See Section 2.5.3 for guidance on how the common controls should be determined, documented, and coordinated. The process of selecting the appropriate security controls and applying the scoping guidelines to achieve adequate security is a multifaceted, risk-based activity involving management and operational personnel within the agency and should be conducted before the security control portion of the plan is written."
+          },
+          {
+            "text": "For low-impact information systems, an agency must, as a minimum, employ the security controls from the low baseline of security controls defined in NIST SP 800-53 and must ensure that the minimum assurance requirements associated with the low baseline are satisfied.\nFor moderate-impact information systems, an agency must, as a minimum, employ the security controls from the moderate baseline of security controls defined in NIST SP 800-53 and must ensure that the minimum assurance requirements associated with the moderate baseline are satisfied.\nFor high-impact information systems, an agency must, as a minimum, employ the security controls from the high baseline of security controls defined in NIST SP 800-53 and must ensure that the minimum assurance requirements associated with the high baseline are satisfied."
+          }
+        ]
+      },
+      {
+        "title": "3.14 Minimum Security Controls",
+        "content": [
+          {
+            "text": "Now that the security controls have been selected, tailored, and the common controls identified, describe each control. The description should contain 1) the security control title; 2) how the security control is being implemented or planned to be implemented; 3) any scoping guidance that has been applied and what type of consideration; and 4) indicate if the security control is a common control and who is responsible for its implementation.# Security controls in the security control catalog (NIST SP 800-53, Appendix F)"
+          },
+          {
+            "text": "Security controls in the security control catalog (NIST SP 800-53, Appendix F) have a well-defined organization and structure. The security controls are organized into classes and families for ease of use in the control selection and specification process. There are three general classes of security controls (i.e., management, operational, and technical). Each family contains security controls related to the security function of the family. A standardized, two-character identifier is assigned to uniquely identify each control family."
+          },
+          {
+            "text": "Table 2 summarizes the classes and families in the security control catalog and the associated family identifiers."
+          }
+        ]
+      },
+      {
+        "title": "Security Control Class Designations",
+        "content": [
+          {
+            "text": "Security control class designations (i.e., management, operational, and technical) are defined below for clarification in preparation of system security plans."
+          },
+          {
+            "text": "Management controls focus on the management of the information system and the management of risk for a system. They are techniques and concerns that are normally addressed by management.\nOperational controls address security methods focusing on mechanisms primarily implemented and executed by people (as opposed to systems). These controls are put in place to improve the security of a particular system (or group of systems). They often require technical or specialized expertise and often rely upon management activities as well as technical controls.\nTechnical controls focus on security controls that the computer system executes. The controls can provide automated protection for unauthorized access or misuse, facilitate detection of security violations, and support security requirements for applications and data."
+          }
+        ]
+      },
+      {
+        "title": "3.15 Completion and Approval Dates",
+        "content": [
+          {
+            "text": "The completion date of the system security plan should be provided. The completion date should be updated whenever the plan is periodically reviewed and updated. When the system is updated, a version number should be added. The system security plan should also contain the date the authorizing official or the designated approving authority approved the plan. Approval documentation, i.e., accreditation letter, approval memorandum, should be on file or attached as part of the plan."
+          }
+        ]
+      }
+    ]
+  }
+]

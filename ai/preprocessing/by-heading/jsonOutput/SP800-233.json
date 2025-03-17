@@ -1,0 +1,942 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "The service mesh has become the de facto application services infrastructure for cloud-native applications. It enables the various runtime functions of an application through proxies that form the data plane of the service mesh. Depending on the distribution of the network layer functions and the granularity of association of the proxies to individual services and computing nodes, different proxy models or data plane architectures have emerged. This document describes a threat profile for each of the data plane architectures with a detailed threat analysis to make recommendations on their applicability for cloud-native applications with different security risk profiles."
+      }
+    ]
+  },
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "A centralized infrastructure called a service mesh can provide run-time services for cloud-native applications that consist of multiple loosely coupled components called microservices. These services include secure communication, service discovery, resiliency, and authorization of application communication. These services are mainly provided through proxies that form the data plane of the service mesh, which is the layer that handles application traffic at runtime and enforces policy."
+      },
+      {
+        "content": "The functions that the proxies provide can be broadly categorized into two groups based on the Open Systems Interconnection (OSI) model's network layer to which those functions pertain: Layer 4 (\"L4\") and Layer 7 (\"L7\"). In most service mesh deployments in production environments today, all proxy functions that provide services in both L4 and L7 layers are packed into a single proxy that is assigned to a single microservice. This service mesh proxy model is called a sidecar proxy model since the proxy is not only associated with a single service but is implemented to execute in the same network space as the service."
+      },
+      {
+        "content": "However, performance and resource considerations have led to the exploration of alternate proxy models that involve splitting L4 and L7 functions into different proxies and the association or assignments of these proxies to either a single service or a group of services. This enables the proxies to be implemented at different locations at the granularity of a node rather than at the level of services. Though different models are theoretically possible, this document only considers service mesh proxy models in the data plane implementation of commonly used service mesh offerings at different stages."
+      },
+      {
+        "content": "Various potential or likely threats to proxy functions may result in different types of exploits in different proxy models. This variation is due to several factors, such as the attack surface (i.e., communication patterns to which a particular proxy is exposed), the number of clients (services) served, and the OSI layer functions that they provide (e.g., L7 functions are more complicated and likely to have more vulnerabilities than L4 functions). The two main# Contributions of this Document"
+      },
+      {
+        "content": "The contributions of this document are the following:"
+      },
+      {
+        "content": "\n\nThe nature of the exploits that are possible for each threat in each of the proxy models is characterized by assigning scores to the impact and likelihood of each of the threats in each of the proxy models or architectural patterns, resulting in a threat profile that is associated with each architectural pattern or proxy model of service mesh.\n\n\nEach threat profile has an inherent set of security trade-offs at an architectural level. The implications of these trade-offs in meeting the requirements associated with the security risk profiles of different cloud-native applications are analyzed to make a broad set of recommendations toward specific architectural patterns that are appropriate for applications with different security risk profiles.\n\n"
+      },
+      {
+        "content": "The nature of the exploits that are possible for each threat in each of the proxy models is characterized by assigning scores to the impact and likelihood of each of the threats in each of the proxy models or architectural patterns, resulting in a threat profile that is associated with each architectural pattern or proxy model of service mesh."
+      },
+      {
+        "content": "Each threat profile has an inherent set of security trade-offs at an architectural level. The implications of these trade-offs in meeting the requirements associated with the security risk profiles of different cloud-native applications are analyzed to make a broad set of recommendations toward specific architectural patterns that are appropriate for applications with different security risk profiles."
+      },
+      {
+        "title": "1. Introduction",
+        "content": [
+          {
+            "text": "\"Cloud-native\" refers to an architectural philosophy for building scalable, resilient systems that are designed to leverage the advantages of cloud computing environments. Cloud-native applications can run both on-premises and in public cloud platforms and are normally built using agile development methodologies, such as continuous integration/continuous delivery (CI/CD). Typically, technologies such as containerization and virtual machines (VMs) are used, and resilience and fail-safe features will be built in."
+          },
+          {
+            "text": "Microservices-based applications use an architectural approach in which the entire application is broken into loosely coupled components that can be independently updated and scaled. The implementation of microservices is enabled using containers that in turn require orchestration tools and often employ a centralized services infrastructure (e.g., service mesh) to provide all runtime application services, including network connectivity, security, resiliency, and monitoring capabilities. Microservices-based applications can be implemented and deployed as cloud-native, though they represent an independent architectural approach."
+          },
+          {
+            "text": "The infrastructure services or functions provided by a service mesh during application runtime are provided by entities called proxies, which constitute the data plane of the service mesh. In addition, the service mesh consists of another architectural component called the control plane, which supports the functions of the data plane through interfaces to define configurations, inject software programs, and provide security artifacts (e.g., certificates)."
+          },
+          {
+            "text": "Various configurations for proxies are being developed and tested based on the performance and security assurance data obtained during the deployment of service mesh over the last several years. These configurations are proxy (implementation) models that are based on the OSI layer functions that they provide (described in the following paragraphs) and the granularity of association between a proxy and services. Since proxies are the predominant entities of the data plane of a service mesh, these various proxy models are also called data.# Plane Architectures"
+          },
+          {
+            "text": "The OSI model [1] is a useful abstraction for thinking about the functions required to serve an application over the network. It describes seven \"layers,\" from the physical wires that connect two machines (i.e., Layer 1 \u2013 L1, the physical layer) to the application itself (i.e., Layer 7 \u2013 L7, the application layer)."
+          },
+          {
+            "text": "Layers 3, 4, and 7 are key to facilitating communication between cloud-native applications (e.g., two microservices making Hypertext Transfer Protocol (HTTP)/REST calls to each other):"
+          },
+          {
+            "text": "\nLayer 3 (\"L3\"), the network layer, facilitates baseline connectivity between two workloads or service instances. In nearly all cases, the Internet Protocol (IP) is used as the L3 implementation.\nLayer 4 (\"L4\"), the transport layer, facilitates the reliable transmission of data between workloads on the network. It also includes capabilities like encryption. Transport Control Protocol (TCP) and User Datagram Protocol (UDP) are commonly used L4 implementations, where transport layer security (TLS) provides encryption.\nLayer 7 (\"L7\"), the application layer, is where protocols like HTTP operate \u2013 in user applications themselves (e.g., HTTP web servers, Secure Shell (SSH) servers).\n"
+          },
+          {
+            "text": "With respect to the layers above, a service mesh's proxies in cloud-native environments are:"
+          },
+          {
+            "text": "\nAgnostic to L3 if the microservice instances can communicate at L3 and the proxy can communicate with the mesh's control plane.\nAt Layer 4 (L4): Connection establishment, management, and resiliency (e.g., connection-level retries); TLS (encryption in transit); application identity, authentication, and authorization; access policy based on network 5-tuple (e.g., source IP address and port, destination IP address and port, and transport protocol).\nAt Layer 7 (L7): Service discovery, request-level resiliency (e.g., retries, circuit breakers, outlier detection); and application observability.\n"
+          }
+        ]
+      },
+      {
+        "title": "1.1. L4 and L7 Functions of Proxies",
+        "content": [
+          {
+            "text": "There are two key aspects of proxy models:"
+          },
+          {
+            "text": "\n\nProxy functions: The functions that a service mesh's proxies provide can be broadly categorized into two groups based on the OSI model's layer [1] to which those functions pertain: Layer 4 (\"L4\") and Layer 7 (\"L7\"). The associated proxies are called L4 proxies and L7 proxies, respectively. The study of proxy functions requires an understanding of the OSI's L4 and L7 layers from the network stack point of view and the specific network services provided by those layers.\n\n\nGranularity of association: A proxy can be associated with a single microservice instance, an entire service, or deployed to provide functions for a group of services. Depending on the nature of this association, a proxy may execute within the same network space as the service, at the same node where the group of services to which it caters run, or in an independent node dedicated to proxies where no application services run.\n\n"
+          },
+          {
+            "text": "Proxy functions: The functions that a service mesh's proxies provide can be broadly categorized into two groups based on the OSI model's layer [1] to which those functions pertain: Layer 4 (\"L4\") and Layer 7 (\"L7\"). The associated proxies are called L4 proxies and L7 proxies, respectively. The study of proxy functions requires an understanding of the OSI's L4 and L7 layers from the network stack point of view and the specific network services provided by those layers."
+          },
+          {
+            "text": "Granularity of association: A proxy can be associated with a single microservice instance, an entire service, or deployed to provide functions for a group of services. Depending on the nature of this association, a proxy may execute within the same network space as the service, at the same node where the group of services to which it caters run, or in an independent node dedicated to proxies where no application services run."
+          }
+        ]
+      },
+      {
+        "title": "1.2. Objective and Target Audience",
+        "content": [
+          {
+            "text": "This document will give a brief overview of the four data plane architectures.# (proxy models)"
+          },
+          {
+            "text": "being pursued by a range of service mesh implementations today. It will also provide threat profiles for different proxy models with a detailed threat analysis that involves 10 types of common threats. These threat profiles will inform recommendations regarding their applicability (usage) for cloud-native applications with different security risk profiles."
+          }
+        ]
+      },
+      {
+        "title": "The target audience for these recommendations includes:",
+        "content": [
+          {
+            "text": "\nInfrastructure owners, platform/infrastructure engineers, and their team leaders who build and deploy secure runtime environments for applications by choosing the right architecture for their environment given the risk factors of the applications that they will be running and the resulting security risk profile.\nPersonnel in charge of infrastructure operations who need to be familiar with the various building blocks of the proxy models or data plane architectures (and their associated functions and interactions) to troubleshoot in the event of performance (i.e., availability) and security issues.\n"
+          }
+        ]
+      },
+      {
+        "title": "1.3. Relationship to Other NIST Documents",
+        "content": [
+          {
+            "text": "This document can be used as an adjunct to the NIST Special Publication (SP) 800-204 series of publications [2][3][4][5], which offer guidance on providing security assurance for cloud-native applications integrated with a service mesh from the following perspectives: strategy, configuration, and development/deployment paradigm. However, this document focuses on the various configurations of the application service infrastructure elements (i.e., proxies) and the resulting architectures (i.e., data plane architecture of the service mesh) that have different security implications for the application that is hosted under each of these configurations."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "2. Typical Service Mesh Data Plane Capabilities and Associated Proxy Functions",
+    "subsections": [
+      {
+        "content": "This document's methodology examines the security trade-offs of the proxy models (i.e., data plane architectures) and the implementations of the various capabilities that result as L4 and L7 functions in proxies. Determining the totality of proxy functions requires an analysis of each capability, the category it falls under, and the granularity of the function that it provides at L4 and L7 levels."
+      },
+      {
+        "content": "L7 functions that are carried out by proxies are much more complex than L4 functions as the latter are carried out in lower layers of the OSI stack and involve protocols such as IP and TCP. For example, parsing a TCP stream for L4 functionality simply requires decoding a fixed set of bytes as integers (i.e., the packet header), while handling HTTP requests for L7 functionality requires decoding HTTP headers, including complex string parsing and compression with variable amounts of data. Additionally, the data dealt with in an L7 function are user-supplied (i.e., can be controlled by an attacker), while the TCP data at L4 are typically system-supplied as part of routing a request to the infrastructure. This means that there is less room to embed malicious data without breaking the system itself. In one case study, the proxy Envoy is used as the data plane by several service mesh implementations. Historically, the majority of Envoy vulnerabilities have been in L7 function-related code compared to L4 function-related code."
+      }
+    ]
+  },
+  {
+    "title": "3. Proxy Models (Data Plane Architectures) in Service Mesh Implementations",
+    "subsections": [
+      {
+        "content": "Different data plane architectures or proxy models in the service mesh are consequences of the following parameters:"
+      },
+      {
+        "content": "\nDelineation of L4 and L7 functions\nNature of association of a proxy to service instances (1:1 or 1:N)\n"
+      },
+      {
+        "content": "This section provides an overview of the building blocks of different data plane architectures to facilitate the threat analysis in Sec. 5. Iterations of the different architectures were driven by the adoption of mesh across a variety of use cases, necessitating trade-offs in terms of performance, reliability, and security for organizations with different application risk profiles. In spite of these different operating scenarios, the sidecar model has been the primary method for delivering service mesh capabilities."
+      },
+      {
+        "content": "The various alternate data plane architectures, including the one with widespread deployment at present, are:"
+      },
+      {
+        "content": "\nL4 and L7 per Service Instance (DPA-1) \u2013 Sidecar model\nShared L4 \u2013 L7 per Service (DPA-2) \u2013 A shared L4 proxy per node (i.e., shared among all applications that execute on the same physical host) with L7 proxies dedicated per service account or namespace.\nShared L4 and L7 Model (DPA-3) \u2013 A shared L4 and L7 proxy per node (i.e., shared among all applications on the same physical host)\nL4 and L7 as Part of the Application (gRPC proxy-less model [14]) (DPA-4) \u2013 Both L4 and L7 functions are part of the application server itself (e.g., gRPC, Java Spring)\n```# CURRENT_PAGE_RAW_OCR_TEXT\n"
+      },
+      {
+        "title": "3.1. L4 and L7 Proxy per Service Instance (DPA-1) \u2013 Sidecar Model",
+        "content": [
+          {
+            "text": "The most common service mesh data plane architecture is called the \"sidecar model\" because the proxy sits beside every instance of every service. The model dedicates a proxy that has the capability to implement both L4 and L7 functions for each application (service) instance. In its security model, the proxy holds one identity for the service it is deployed beside and resides in the same trust domain as the application (e.g., in Kubernetes, it exists in the same pod; on a virtual machine (VM), it is deployed in the same VM as the service itself). The service and the proxy communicate with each other through the \"local host interface\" rather than through a network socket. However, the proxy presents a larger attack surface than the service because it implements complex L7 functions. An example of a data plane architecture is one that is implemented in the Istio service mesh with an envoy proxy deployed per pod that performs both L4 and L7 functions."
+          }
+        ]
+      },
+      {
+        "title": "3.2. Shared L4 \u2013 L7 per Service Model (DPA-2)",
+        "content": [
+          {
+            "text": "In Shared L4 \u2013 L7 per Service architecture, there is a shared L4 proxy per node (i.e., shared among all service instances that execute on the same physical host) with L7 proxies dedicated per service account. A variation in this architecture is to dedicate an L7 proxy for an entire namespace. This is not desirable from a security viewpoint for the same reasons that shared service accounts for an entire namespace are not recommended. Hence, it is not considered for threat analysis in this document. An example of the implementation of this data plane architecture is Istio's \"ambient mode\", where the per node L4 proxy is called a Ztunnel proxy, and the per service account L7 proxy is called a Waypoint proxy. It is to be noted that not every service needs an L7 proxy but when an L7 proxy is installed, it is dedicated to a single service."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Proxy Based on its CiliumEnvoyConfig Specification [8][9][12]",
+    "subsections": []
+  },
+  {
+    "title": "4. Data Plane Architecture Threat Scenarios and Analysis Methodology",
+    "subsections": [
+      {
+        "content": "The threat scenario considers a service mesh deployed in a Kubernetes cluster with the assumption that no human can directly access the cluster, achieved via k8s role-based access control (RBAC). The only interaction with the cluster is via a continuous integration/continuous delivery (CI/CD) system-controlled declarative configuration in a version-controlled repository with a multi-step approval process to change that configuration, including the approval of each change by one other human at minimum."
+      },
+      {
+        "content": "This scenario starts by identifying access by external threat actors, internal threat actors, and malicious co-tenants."
+      },
+      {
+        "title": "External Threat Actors Include:",
+        "content": [
+          {
+            "text": "\nCompromised workload (application) container (e.g., via a supply chain attack)\nCompromised node L4 proxy or container network interface (CNI)\nCompromised node L7 proxy\nCompromised node with limited privileged access (e.g., a container breakout)\nRoot compromise of node (e.g., a container breakout chained with the exploitation of a privilege escalation vulnerability)\nNetwork access to the Kubernetes API server\n"
+          }
+        ]
+      },
+      {
+        "title": "Internal Threat Actors Include:",
+        "content": [
+          {
+            "text": "\nCluster administrators who have wide-ranging rights to view the cluster and approve changes to the version-controlled repository and may even have direct access to the Kubernetes cluster (e.g., via a break-glass debugging account; such super-accounts should generate detailed audit records of their usage)\nApplication developers who can build images and approve configurations that go into the cluster.\nInfrastructure engineers who have permission to deploy and configure the mesh gated by the version-controlled repository's approval process.\nCompromised network infrastructure between nodes (e.g., unencrypted cross-data center communication)\n"
+          },
+          {
+            "text": "Finally, malicious co-tenants - In general, k8s is not a hard multi-tenant system (i.e., one where tenants do not trust each other), and isolating tenants from each other with stronger boundaries is recommended. In this context, a malicious co-tenant would fall...\n```# CURRENT PAGE RAW OCR TEXT"
+          },
+          {
+            "text": "into one of the internal threat actor categories above. In this context, consider the following threats in an environment as they relate to the service mesh:"
+          },
+          {
+            "text": "\nCompromised L4 proxy\nCompromise of the application container\nCompromise of business data\nCompromised L7 proxy\nCompromised shared L7 Proxy\nOutdated client libraries in applications\nDenial of service (DoS)\nResource consumption\nPrivileged L4 Proxy\nBypassing traffic interception\n"
+          }
+        ]
+      },
+      {
+        "title": "4.1. Threat Analysis Methodology",
+        "content": [
+          {
+            "text": "The threat analysis methodology begins by identifying 10 potential threats to the components that make up the four architectural patterns for the proxy model or data plane architecture. The methodology then describes how the functionality of each component of the architecture is adversely affected by each threat and rates the impact and likelihood of their occurrence, justifying each rating. There are three values for the ratings: low, medium, and high. The values assigned to these ratings are relative to other data plane architectures and are not absolute values based on a metric. For example, assigning a rating value of \"high\" to the likelihood parameter for a threat does not imply that the threat is highly likely in all situations. Rather, it means that the threat is most likely to be executed against that architecture relative to the other architectures under discussion."
+          },
+          {
+            "text": "The impact (I) of the exploitation of each threat is then evaluated along with the likelihood (L) of that threat being exploited. For both parameters, there is a rating of low, medium, or high, which are translated to numeric scores of 1, 2, and 3, respectively. Multiplying I * L yields an indication of how important that threat is and the necessity to mitigate that threat relative to other architectures under discussion. Summing up the values of this indicator for all 10 potential threats provides an indication of the threat profile for that architectural pattern. Threats whose impact and likelihood are the same irrespective of the architecture (i.e., the threats are agnostic to the architecture) are assigned a relative score of 1 for impact and 1 for likelihood."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "5.1.2. Compromised Application Container (TR-2)",
+    "subsections": [
+      {
+        "content": "Threat Description: A compromised application container (e.g., via a supply chain attack during the development phase) leads to a takeover of the identity associated with that application."
+      },
+      {
+        "content": "Proxy Function Impacted: Proxies run in the same network space (i.e., same pod in Kubernetes environment) as the application container, meaning that a compromise of the application container that hosts the service instance can easily lead to a compromise of any key material (e.g., full access to key material pertaining to the identity of the service) possessed by the proxy."
+      },
+      {
+        "content": "Impact Score = 2: Because of the nature of impact discussed above (i.e., single workload/single identity affected), this threat is assigned an impact score of 2. Even though only a single identity is compromised, like TR-1, this has a higher impact score as the application itself must be updated. A compromised proxy can be remediated without requiring the application itself to be updated, so there is a higher chance that a central team can successfully remediate a compromise without involving application teams."
+      },
+      {
+        "content": "Likelihood Score = 1: The likelihood score is the same, regardless of architecture."
+      }
+    ]
+  },
+  {
+    "title": "5.1.3. Compromise of Business Data (TR-3)",
+    "subsections": [
+      {
+        "content": "Threat Description: A compromised identity is used to pivot through the infrastructure in order to compromise the confidentiality, integrity, or availability of business data."
+      },
+      {
+        "content": "Proxy Function Impacted and Impact Score (= 1) and Likelihood Score (= 1): The scores are the same, regardless of architecture. This is the fundamental risk of identity-based policy and why the principle of least privilege (PoLP) should be practiced. The telemetry provided by the service mesh (regardless of architecture) is invaluable for understanding communications in a system and creating accurate access policies."
+      }
+    ]
+  },
+  {
+    "title": "5.1.4. Compromised L7 Proxy (TR-4)",
+    "subsections": [
+      {
+        "content": "Threat Description: There is a vulnerability in the L7 processing stack of the service mesh proxy.# CURRENT_PAGE_RAW_OCR_TEXT"
+      },
+      {
+        "content": "Since L7 processing is inherently more complex, there is a higher probability for vulnerabilities to arise in this part of the stack, as supported by historical Common Vulnerabilities and Exposures (CVE) data."
+      },
+      {
+        "title": "Proxy Function Impacted",
+        "content": [
+          {
+            "text": "There is no separation between L4 and L7 processing. Although any exploitable vulnerability in a sidecar proxy can lead to the compromise of all identities in the mesh, this would involve more individual proxy instances being compromised, and it may be more difficult for an attacker to accomplish this feat undetected."
+          },
+          {
+            "subsection": "Impact Score = 1",
+            "text": []
+          },
+          {
+            "text": "A single workload is impacted (e.g., leaking credentials, becoming unavailable due to a denial-of-service attack). The same exploit could be used against all sidecars in the mesh with applications opting in to the L7 behavior, resulting in a compromise of all identities (Impact 3). In practice, this requires many more events than any other architecture and increases the likelihood of detecting and responding to the event in a timely manner."
+          },
+          {
+            "subsection": "Likelihood Score = 1",
+            "text": []
+          },
+          {
+            "text": "A full L7 capability is available in the proxy, meaning that a relatively large attack surface is exposed. In practice for the service mesh use case, however, the HTTP processing is most likely targeted. If the application is using L7 mesh capabilities, they would be vulnerable to exploit."
+          }
+        ]
+      },
+      {
+        "title": "5.1.5. Compromise of Shared L7 Proxy (TR-5)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "A co-tenant exploits an L7 traffic processing vulnerability in a shared proxy, which affects the confidentiality, integrity, or availability of traffic to and from another workload running on the same node."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "Because the proxy is dedicated per application, the impact on availability is limited to the resource constraints imposed by the scheduling system (e.g., Kubernetes). Confidentiality is impacted the same as if another application itself is compromised (i.e., containers provide some guarantee; micro-VMs provide a stronger degree of isolation; full-blown VMs are the strongest)."
+          },
+          {
+            "subsection": "Impact Score = 1",
+            "text": []
+          },
+          {
+            "text": "For noisy neighbors (i.e., other L7 proxies on the same host that are compromised), the impact is limited by the underlying scheduling and resource constraint system (e.g., k8s, VM sizing). The following are identical across all architectures: for a shared ingress gateway, all services exposed on that gateway would be impacted (Impact 2); for a shared egress gateway, all services that utilize the egress gateway would be impacted (Impact 3). Typically, only a single deployment of egress gateways is used."
+          },
+          {
+            "subsection": "Likelihood Score = 1",
+            "text": []
+          },
+          {
+            "text": "The sidecar itself is not a shared proxy. By its nature, it is dedicated to an individual application. In this case, TR-5 refers to noisy neighbors, other proxies on the same node that cause a denial of service (DoS), and shared ingress or egress gateways. Noisy neighbors are mitigated based on the degree of isolation of the host (i.e., container versus micro-VM versus VM). The likelihood of exploiting a shared L7 ingress or egress...# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "and reduce overhead. While some specific implementations do better than others due to engineer trade-offs (e.g., lazily loading configuration the first time that an application needs it versus eagerly pushing all configuration ahead of use), it is a more common situation where the most resource utilization occurs with a sidecar architecture."
+      },
+      {
+        "title": "5.1.9. Privileged L4 Proxy (TR-9)",
+        "content": [
+          {
+            "text": "Threat Description: A service mesh implementation requires an L4 component (e.g., deployed as a DaemonSet on a Kubernetes cluster) to run with an overprivileged security context (e.g., Privileged Pod)."
+          },
+          {
+            "text": "Proxy Function Impacted & Impact Score (= 1) and Likelihood Score (= 1): The impact and likelihood are the same, regardless of architecture. In a per-node case, this is usually encapsulated as a CNI provider that runs in a privileged context by default. In a sidecar case, privilege is only needed at startup to establish traffic interception rules. Depending on the implementation (e.g., Kubernetes init containers), this can ensure that the privileged user is not run alongside the application but only during initialization. In all cases, Kubernetes-defined CAP_NET_ADMIN is typically the only privilege required for mesh data plane functionality."
+          }
+        ]
+      },
+      {
+        "title": "5.1.10. Data Plane (Service Mesh) Bypassed (TR-10)",
+        "content": [
+          {
+            "text": "Threat Description: Traffic is sent directly to a workload, bypassing mesh functionality and authorization policies."
+          },
+          {
+            "text": "Proxy Function Impacted: It is the easiest to bypass of all of the available models, from the application choosing not to use a sidecar to the container-local bypasses/configurations."
+          },
+          {
+            "text": "Impact Score = 2: An application is exposed without mesh security controls."
+          },
+          {
+            "text": "Likelihood Score = 2: Because the proxy runs in user space in the same control groups as the application, there are a variety of attacks available that are not relevant or applicable to other implementations."
+          }
+        ]
+      },
+      {
+        "title": "5.1.11 Overall Threat Score",
+        "content": [
+          {
+            "text": "Cumulative Threat Score = 23: This is computed based on the methodology in Sec. 4.1."
+          }
+        ]
+      },
+      {
+        "title": "5.2. Threat Analysis for Shared L4 \u2013 L7 per Service Model (DPA-2)",
+        "content": [
+          {
+            "subsection": "5.2.1. Compromised L4 Proxy (TR-1)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: A compromised L4 proxy (or L4 functions in the case of sidecar proxy with combined L4 and L7 functions) leads to leaked identities for every workload (i.e., service) running on the node."
+          },
+          {
+            "text": "Proxy Function Impacted: The L4 proxy has access to all of the keys associated with the workloads running on the node."
+          },
+          {
+            "text": "Impact Score = 3: The identities of all of the workloads (i.e., services) on the node are compromised."
+          },
+          {
+            "text": "Likelihood Score = 1: Only code that delivers L4 functions is present. This minimal code footprint and functionality present the lowest attack surface of all options."
+          },
+          {
+            "subsection": "5.2.2. Compromised Application Container (TR-2)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: A compromised application container (e.g., via a supply chain attack during the development phase) leads to a takeover of the identity associated with that\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "Likelihood Score = 1",
+        "content": [
+          {
+            "text": "The likelihood is the same, regardless of architecture."
+          }
+        ]
+      },
+      {
+        "title": "5.2.7. Denial of Service (TR-7)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "There is a conventional DoS threat."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "A DoS executed at L4 has the same impact as the centralized per-node model because the L4 process is centralized per node. All applications on the node are impacted. A DoS executed at L7 impacts all application instances of the target application since a set of dedicated L7 proxies is deployed per app. The number of proxies that implement L7 functionality is typically less than the number of application instances, making them an easier target for DoS than every instance of the target application."
+          },
+          {
+            "subsection": "Impact Score",
+            "text": []
+          },
+          {
+            "text": "= 2: An L4 DoS would impact all application instances on the target host."
+          },
+          {
+            "subsection": "Likelihood Score",
+            "text": []
+          },
+          {
+            "text": "= 2: The L4 proxy is deployed once per node, so it presents a better target for DoS than DPA-1 or DPA-4. This is mitigated somewhat by the simplified functionality of an L4 proxy compared to a combined L4 and L7 proxy. The L7 proxy is shared by multiple instances of the same application and presents an easier DoS target than the application itself. Therefore, it is more likely than the sidecar model (DPA-1)."
+          }
+        ]
+      },
+      {
+        "title": "5.2.8. Resource Consumption (TR-8)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "There is overall resource consumption by the data plane of the service mesh infrastructure."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "The shared L4 proxy typically has a much lower memory (RAM) footprint and CPU usage due to a lower rate of change of configuration, less configuration overall, and less responsibility than a combined L4 and L7 sidecar proxy (DPA-1). For the service mesh's data plane, L7 processing is typically the dominating CPU cost, followed by encryption. L7 proxies are shared by all instances of the same application and deployed as a few traditional \"reverse proxies\" per application. This results in much lower resource consumption for L7 processing than the sidecar model (DPA-1). Overall, DPA-2 uses more resources than the shared per node model (DPA-3) but substantially less than the sidecar model (DPA-1) due to reduced overhead (e.g., an application with 50 instances requires 50 sidecars but might be served with five shared L7 proxies or fewer)."
+          },
+          {
+            "subsection": "Impact Score",
+            "text": []
+          },
+          {
+            "text": "= 2: DPA-3 has lower consumption than sidecar and is easier to achieve but is not as low as all shared (DPA-3) or all in app (DPA-4)."
+          },
+          {
+            "subsection": "Likelihood Score",
+            "text": []
+          },
+          {
+            "text": "= 1: This model was intentionally designed to mitigate the resource overhead of running an entire sidecar proxy instance per service instance. Instead, the single node-level proxy receives full configurations for all services on the node, and dedicated L7 proxies receive configuration for only their service. As a result, total resource consumption is low by default."
+          }
+        ]
+      },
+      {
+        "title": "5.2.9 Privileged L4 Proxy (TR-9)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "A service mesh implementation requires an L4 component (e.g., deployed as a DaemonSet on a Kubernetes cluster) to run with an overprivileged security context (e.g., Privileged Pod).\n```# Proxy Function Impacted and Impact Score (= 1) and Likelihood Score (= 1)"
+          },
+          {
+            "text": "The impact and likelihood are the same, regardless of architecture. In the per-node case, this is usually encapsulated as a CNI provider that runs in a privileged context by default. In a sidecar case, privilege is only needed at startup to establish traffic interception rules. Depending on the implementation (e.g., Kubernetes init containers), this can ensure that the privileged user is not run alongside the application but only during initialization. In all cases, Kubernetes-defined CAP_NET_ADMIN is typically the only privilege required for mesh data plane functionality."
+          }
+        ]
+      },
+      {
+        "title": "5.2.10 Data Plane (Service Mesh) Bypassed (TR-10)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "Traffic is sent directly to a workload, bypassing mesh functionality and authorization policies."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "Part of the goal of moving enforcement out of the application context and into a shared context is to use stronger primitives to ensure the non-bypassability of the mesh data plane. In general, with a per-node L4 setup, sending traffic to an individual application instance on the node should not be achievable (e.g., similar to but not necessarily implemented as a host-level Virtual Private Network (VPN) that requires workloads to be part of the VPN overlay to connect). L7 proxies are deployed independently from the applications that they represent, which requires special configuration in the mesh to ensure that they are routed through and making the ability to bypass easier than other models. The impact of a missing L7 policy can be significant. Other models rely on one thing at most to ensure that traffic is directed to the correct policy enforcement point. This model relies on two things to ensure that traffic is subject to the correct policy enforcement points (PEPs): traffic interception and mesh configuration to route via middle proxies."
+          },
+          {
+            "subsection": "Impact Score",
+            "text": []
+          },
+          {
+            "text": "= 2: An app is exposed without mesh security controls."
+          },
+          {
+            "subsection": "Likelihood Score",
+            "text": []
+          },
+          {
+            "text": "= 2: L4 controls are designed and built to mitigate this. L7 controls are easier to bypass compared to the sidecar model."
+          }
+        ]
+      },
+      {
+        "title": "5.2.11 Overall Threat Score",
+        "content": [
+          {
+            "text": "Cumulative Threat Score = 22: This is computed based on the methodology in Sec. 4.1."
+          }
+        ]
+      },
+      {
+        "title": "5.3. Threat Analysis for Shared L4 and L7 Model (DPA-3)",
+        "content": [
+          {
+            "subsection": "5.3.1. Compromised L4 Proxy (TR-1)",
+            "text": []
+          },
+          {
+            "text": "A compromised L4 proxy (or L4 functions in the case of sidecar proxy with combined L4 and L7 functions) leads to leaked identities for every workload (i.e., service) running on the node."
+          },
+          {
+            "text": "The L4 proxy has access to all of the keys associated with the workloads running on the node."
+          },
+          {
+            "text": "= 3: All identities on the node are impacted."
+          },
+          {
+            "text": "= 3: L7 code may be enabled for another server that can be exploited to affect all applications on the host."
+          },
+          {
+            "subsection": "5.3.2. Compromised Application Container (TR-2)",
+            "text": []
+          },
+          {
+            "text": "A compromised application container (e.g., via a supply chain attack) leads to unauthorized access to the application and its data.# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Chain Attack During Development Phase",
+        "content": [
+          {
+            "text": "A chain attack during the development phase leads to a takeover of the identity associated with that application."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "Data plane components are not located in the same pod as workload containers, so a compromised workload does not necessarily lead to the access of keys or secrets."
+          },
+          {
+            "text": "\nImpact Score = 1: A single workload/single identity is impacted, and there is no direct access to underlying key material.\nLikelihood Score = 2: The likelihood is the same, regardless of architecture.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.3. Compromise of Business Data (TR-3)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "An identity is used to pivot through the infrastructure in order to compromise the confidentiality, integrity, or availability of business data."
+          },
+          {
+            "subsection": "Proxy Function Impacted and Impact Score",
+            "text": []
+          },
+          {
+            "text": "\nImpact Score (= 1) and Likelihood Score (= 1): The impact and likelihood are the same, regardless of architecture. This is the fundamental risk of identity-based policy and is why the PoLP should be practiced. The telemetry provided by the service mesh (regardless of architecture) is invaluable for understanding communication patterns in a given system and creating accurate access policies.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.4. Compromised L7 Proxy (TR-4)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "There is a vulnerability in the L7 processing stack of the service mesh proxy. As L7 processing is inherently more complex, there is a higher probability for vulnerabilities to arise in this part of the stack, as supported by historical CVE data."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "This topology allows for \"less complex\" L4 capabilities (e.g., mTLS) to be adopted with L7 processing only occurring if there is a strict requirement for it. The blast radius of a proxy compromise affects all workloads on the node. This means that its failure represents a shared fate outage and is susceptible to DoS attacks."
+          },
+          {
+            "text": "\nImpact Score = 3: An L7 capability is shared across all applications on the node, so a single application's configuration may cause the proxy to become susceptible to failure and result in attacks on all applications on the node (e.g., a credential leak or denial of service, depending on the attack).\nLikelihood Score = 2: For a given application using L7 capabilities, the likelihood is the same as for the sidecar model. However, because workloads that are only doing L4 are susceptible to attack, the likelihood is higher if they share the same node that would have been safe under the sidecar model (DPA-1).\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.5. Compromise of Shared L7 Proxy (TR-5)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "A co-tenant exploits an L7 traffic processing vulnerability in a shared proxy and affects the confidentiality, integrity, or availability of traffic to or from another workload that runs on the same node."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "A single proxy instance does not provide an inherently multi-tenant setup. Hence, security concerns arise when combining complex processing rules for L7 traffic from multiple unconstrained tenants in a shared instance. In this configuration, L7 processing of the traffic of multiple co-tenants is performed within one process with no# Memory Protection"
+          }
+        ]
+      },
+      {
+        "title": "Isolation Benefits",
+        "content": [
+          {
+            "text": "Isolation benefits that could be gained by containerizing L7 functionality per workload."
+          },
+          {
+            "text": "\nImpact Score = 3: All workloads on the node are impacted.\nLikelihood Score = 2: A compromise is as likely as in the sidecar model (DPA-1), but applications that would not be susceptible to attack under DPA-1 are susceptible under this model (DPA-3) (see Sec. 5.3.4).\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.6. Outdated Client Libraries in Applications (TR-6)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "Client libraries are not updated frequently or consistently across the estate of microservices, leading to potential vulnerabilities and weaknesses that can be exploited."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "The infrastructure code is decoupled from the application code."
+          },
+          {
+            "text": "\nImpact Score = 1: The impact is the same as the sidecar model (DPA-1) (see Sec. 5.1.6).\nLikelihood Score = 1: The likelihood is the same, regardless of architecture.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.7. Denial of Service (TR-7)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "There is a conventional DoS threat."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "Because processing for all application instances on the node is shared and a single proxy instance is not inherently multi-tenant (i.e., provides no controls with regard to resource utilization across independent backends and clients), the blast radius of a DoS threat on the mesh data plane affects every application on the node."
+          },
+          {
+            "text": "\nImpact Score = 3: The impact applies to all workloads on the node.\nLikelihood Score = 2: If any application configuration triggers exploitable paths in the shared proxy, all applications on the node suffer.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.8. Resource Consumption (TR-8)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "There is overall resource consumption by the data plane of the service mesh infrastructure."
+          },
+          {
+            "subsection": "Proxy Function Impacted",
+            "text": []
+          },
+          {
+            "text": "Because all functionality is shared at the node level, DPA-3 has the most opportunity for deduplication and a subsequent reduction in resource usage. A configuration (e.g., service discovery) needs to be sent only once to each node rather than to each and every application instance. Overall, this results in the lowest rate of change, the least data transferred, and a lower runtime footprint (e.g., RAM, CPU)."
+          },
+          {
+            "text": "\nImpact Score = 1: This has the lowest overall resource utilization of all available architectures.\nLikelihood Score = 1: Because there is only a single proxy instance per node, rather than a data plane instance per service or per service instance, resource consumption should be the lowest of all out-of-process (i.e., non-gRPC) models.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3.9. Privileged L4 Proxy (TR-9)",
+        "content": [
+          {
+            "subsection": "Threat Description",
+            "text": []
+          },
+          {
+            "text": "A service mesh implementation requires an L4 component (e.g., deployed as a Daemon Set on a Kubernetes cluster) to run with an overprivileged security context (e.g., Privileged Pod)."
+          },
+          {
+            "subsection": "Proxy Function Impacted and Impact Score",
+            "text": []
+          },
+          {
+            "text": "\nImpact Score = 1 and Likelihood Score = 1: The impact and likelihood are the same, regardless of architecture. In the per-node case, this is usually encapsulated as a CNI provider that runs in a privileged context by default. In the sidecar case,# CURRENT_PAGE_RAW_OCR_TEXT\n"
+          }
+        ]
+      },
+      {
+        "title": "privilege is only needed at startup to establish traffic interception rules.",
+        "content": [
+          {
+            "text": "Depending on the implementation (e.g., Kubernetes init containers), this can ensure that the privileged user is not run alongside the application but only during initialization. In all cases, Kubernetes-defined CAP_NET_ADMIN is typically the only privilege required for mesh data plane functionality."
+          },
+          {
+            "subsection": "5.3.10. Data Plane (Service Mesh) Bypassed (TR-10)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: Traffic is sent directly to a workload, bypassing mesh functionality and authorization policies."
+          },
+          {
+            "text": "Proxy Function Impacted: Part of the goal of moving enforcement out of the application context and into a shared context is to use stronger primitives to ensure the non-bypassability of the mesh data plane. In general, with a per-node setup, sending traffic to an individual application instance on the node should not be achievable (e.g., similar to but not necessarily implemented as a host-level VPN that requires workloads to be part of the VPN overlay to connect)."
+          },
+          {
+            "text": "Impact Score = 3: All applications on the node are exposed without mesh security controls."
+          },
+          {
+            "text": "Likelihood Score = 1: By design, this architecture is built to mitigate this kind of bypass."
+          },
+          {
+            "subsection": "5.3.11 Overall Threat Score",
+            "text": []
+          },
+          {
+            "text": "Cumulative Threat Score = 37: This is computed based on the methodology in Sec. 4.1."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "Likelihood Score = 2",
+        "content": [
+          {
+            "text": "The likelihood is the same, regardless of architecture."
+          },
+          {
+            "subsection": "5.4.3. Compromise of Business Data (TR-3)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: An identity is used to pivot through the infrastructure in order to compromise the confidentiality, integrity, or availability of business data."
+          },
+          {
+            "text": "Proxy Function Impacted and Impact Score (= 1) and Likelihood Score (= 1): The impact and likelihood are the same, regardless of architecture. This is the fundamental risk of identity-based policy and is why the PoLP should be practiced. The telemetry provided by the service mesh (regardless of architecture) is invaluable for understanding communication patterns in a given system and creating accurate access policies."
+          },
+          {
+            "subsection": "5.4.4. Compromised L7 Proxy (TR-4)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: There is a vulnerability in the L7 processing stack of the service mesh proxy. As L7 processing is inherently more complex than typical L4 proxy processing, there is a higher probability for vulnerabilities to arise in this part of the stack, as supported by historical CVE data."
+          },
+          {
+            "text": "Proxy Function Impacted: Compromising the L7 processing stack results in compromising the entire application and in more risk of compromise beyond runtime identity and DoS for other users."
+          },
+          {
+            "text": "Impact Score = 3: The application itself is compromised, including non-mesh credentials (e.g., truncate table users) that are not available if only the proxy is compromised."
+          },
+          {
+            "text": "Likelihood Score = 3: Since L7 processing code is the application, the surface area is much larger."
+          },
+          {
+            "subsection": "5.4.5. Compromise of Shared L7 Proxy (TR-5)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: A co-tenant exploits an L7 traffic processing vulnerability in a shared proxy and affects the confidentiality, integrity, or availability of traffic to or from another workload that runs on the same node."
+          },
+          {
+            "text": "Proxy Function Impacted: L7 processing is entirely isolated by whatever mechanisms isolate the applications themselves (e.g., containers, micro-VMs, VMs). The impact is limited by the strength of that boundary."
+          },
+          {
+            "text": "Impact Score = 1: See Sec. 5.1.5."
+          },
+          {
+            "text": "Likelihood Score = 1: The likelihood is the same as any other application compromise."
+          },
+          {
+            "subsection": "5.4.6. Outdated Client Libraries in Applications (TR-6)",
+            "text": []
+          },
+          {
+            "text": "Threat Description: Client libraries are not updated frequently or consistently across the estate of microservices, leading to potential vulnerabilities and weaknesses that can be exploited."
+          },
+          {
+            "text": "Proxy Function Impacted: Infrastructure concerns are embedded within the application code. Challenges can arise when enforcing consistency in versions between microservices."
+          },
+          {
+            "text": "Impact Score = 3: The mesh functionality itself is part of the application. Therefore, bad application updates result in bad mesh updates. This means that vulnerabilities remain for longer, and since the mesh is part of the application, a vulnerability in the application is a vulnerability in the mesh data plane."
+          },
+          {
+            "text": "Likelihood Score = 2: The likelihood depends on the frequency of updates. If applications can be\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "5.4.7. Denial of Service (TR-7)",
+        "content": [
+          {
+            "text": "Threat Description: There is a conventional denial-of-service threat.\nProxy Function Impacted: A DoS threat to the mesh data plane (L4 or L7) is a threat to the application itself. In all other respects, it is very similar to the sidecar model.\nImpact Score = 1: There is a single instance of a single application, so an attack could be repeated across all applications (see Sec. 5.1.7).\nLikelihood Score = 2: The functionality of both the mesh data plane and the application code itself are susceptible to DoS."
+          }
+        ]
+      },
+      {
+        "title": "5.4.8. Resource Consumption (TR-8)",
+        "content": [
+          {
+            "text": "Threat Description: There is overall resource consumption by the data plane of the service mesh infrastructure.\nProxy Function Impacted: Because it is built into the application, resources devoted to mesh data plane functionality are very low. The only reason that overall resource utilization may be higher than the shared L4 and L7 model (DPA-3) is because some duplication of configuration and processing needs to occur to push the configuration to every application instance.\nImpact Score = 2: This has a potentially lower resource usage on a per-app basis than any other model but is likely higher in aggregate because resources and configuration cannot be shared across data plane instances.\nLikelihood Score = 1: gRPC achieves the lowest overhead of all possible options because there is no separate data plane, strictly the application itself. If an application is already using gRPC, it will see little-to-no additional overhead for using a mesh data plane to configure gRPC functionality."
+          }
+        ]
+      },
+      {
+        "title": "5.4.9. Privileged L4 Proxy (TR-9)",
+        "content": [
+          {
+            "text": "Threat Description: A service mesh implementation requires an L4 component (e.g., deployed as a Daemon Set on a Kubernetes cluster) to run with an overprivileged security context (e.g., Privileged Pod).\nProxy Function Impacted and Impact Score (= 0) and Likelihood Score (= 0): The mesh data plane functionality runs in the application context without any special privileges and is the same as the application itself. No special capabilities or permissions are required to intercept traffic or implement policy enforcement."
+          }
+        ]
+      },
+      {
+        "title": "5.4.10. Data Plane (Service Mesh) Bypassed (TR-10)",
+        "content": [
+          {
+            "text": "Threat Description: Traffic is sent directly to a workload, bypassing mesh functionality and authorization policies.\nProxy Function Impacted: The application is the enforcement point, so there is no bypassing.\nImpact Score = 1: The application is exposed in a degraded state or without some controls.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Likelihood Score",
+        "content": [
+          {
+            "text": "Likelihood Score = 1: Due to the nature of RPC frameworks and in-process enforcement, mesh data plane policy should not be able to be bypassed."
+          }
+        ]
+      },
+      {
+        "title": "Overall Threat Score",
+        "content": [
+          {
+            "text": "Cumulative Threat Score = 28: This is computed based on the methodology in Sec 4.1."
+          }
+        ]
+      },
+      {
+        "title": "Recommendations Based on the Application Security Risk Profile",
+        "content": [
+          {
+            "text": "While the ratings or scores for the impact and likelihood parameters for different threats in different data plane architectures are dictated by the number of service instances affected, the risk profiles associated with the applications are determined by the criticality of the entire application with respect to the business process that it supports."
+          },
+          {
+            "text": "When developing threat profiles for architectural patterns (see Sec. 5), consider that the impact and likelihood parameters for some threats are the same irrespective of the proxy model or data plane architecture. Since the ratings assigned to these parameters are relative, both parameters are assigned a rating of 1, which results in an overall threat rating of 1 for those threats. The threats that fall under this category and should be ignored are:\n- Compromise of business data (TR-3)\n- Privileged L4 proxy (TR-9)"
+          },
+          {
+            "text": "Additionally, threats that have no direct security implications but may have performance implications should also be ignored, namely Resource consumption (TR-8)."
+          },
+          {
+            "subsection": "Cloud-Native Applications With Low Risk Profiles",
+            "text": []
+          },
+          {
+            "text": "The service mesh capability requirements for this class of application are:\n- LOW-REQ1: Service-to-service authorization (i.e., Service A can call Service B) is based on network location/parameter (e.g., subnet) and authorization at the granularity of the called service method. Calling the user and a per-call request are not required.\n- LOW-REQ2: Logging and metrics need to be captured only at the level of network parameters (e.g., source/destination IP address) and not at the level of per-call request.\n- LOW-REQ3: All traffic management capabilities (e.g., load balancing, rate limiting) need to be enforced at the network connection level and not at the per-call request."
+          },
+          {
+            "text": "These capabilities essentially involve network-transport/network-level data that can be provided by the proxy's L4 functions. Hence, the following are recommendations for this class of application:\n- Since all requirements can be met by L4 proxies or L4 functions built into the libraries, all four data plane architectures can be theoretically used.\n- Since neither method-level nor per-call request handling is required, thus eliminating all L7 functions, data plane architectures that deploy an L7 proxy per service instance (i.e., side-car model [DPA-1]) expose an unnecessary attack surface. Therefore, either of the two models with a shared L4 proxy (i.e., DPA-2 or DPA-3) is recommended. A gRPC proxy-less model (i.e., DPA-4) is also usable for this class of applications, though it does expose a larger attack surface than DPA-2 or DPA-3."
+          },
+          {
+            "subsection": "Cloud-Native Applications with Medium Risk Profiles",
+            "text": []
+          },
+          {
+            "text": "The service mesh capability requirements for this class of application are:\n- MEDIUM-REQ1: In addition to service-to-service authorization at the level of service, a# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Full Authorization Policy",
+        "content": [
+          {
+            "text": "A full authorization policy at the method level (i.e., Service A can execute GET on B's billing method with valid end user credentials that contain the READ scope) is required."
+          },
+          {
+            "text": "\nMEDIUM-REQ2: Logging and metrics data need to be captured at the level of network parameters (e.g., source/destination IP address) along with some metadata (e.g., the called service and method).\nMEDIUM-REQ3: All traffic management capabilities (e.g., load balancing, rate limiting) can be enforced at the network-connection level (as in low risk profile case) and not at the per-call request or per-method level.\n"
+          },
+          {
+            "text": "These capabilities essentially involve both the network-transport/network-level data (all L4 functions) and some L7 functions (not all), such as authenticating user identities not only locally from tokens (e.g., JSON Web Tokens [JWT]) and remotely using standardized protocols (e.g., OAuth and OIDC). Since the use of L7 proxies with some limited functionality is mandatory, the following are recommendations for this class of application:"
+          },
+          {
+            "text": "\nJust like for applications with a low risk profile, all four data plane architectures can be theoretically used.\nSince L7 functions are limited, it is not essential to dedicate an L7 proxy for each service. Hence, data plane architectures that deploy an L7 proxy for each service (e.g., sidecar model [DPA-1]) may consume more resources than other models for limited additional assurance. In contrast, most exploitable vulnerabilities lie in L7 code. A shared L4 and L7 model (i.e., DPA-3) is not desirable since the shared L7 component introduces risks for all services that share the same physical host. Therefore, the shared L4 and L7 per service model (i.e., DPA-2) is likely the best combination of resource utilization and risk. A gRPC proxy-less model (i.e., DPA-4) that includes libraries for L4 functions and limited L7 functions is also recommended with similar risks but even less resource utilization than DPA-2 in most cases.\n"
+          }
+        ]
+      },
+      {
+        "title": "Cloud-Native Applications With High Risk Profiles",
+        "content": [
+          {
+            "text": "The service mesh capability requirements for this class of application are:"
+          },
+          {
+            "text": "\nHIGH-REQ1: A full user-to-resource-level access control is required in addition to (a) service-to-service authorization at the level of service and (b) a full authorization policy at the method level (i.e., Service A can execute GET on B's billing method with valid end user credentials that contain the READ scope). This necessitates the proxy making an external authorization call for each request.\nHIGH-REQ2: Logging and metrics meta data relating to a request must be captured (e.g., rate of requests, rate of positive outcomes, processing time for each request).\nHIGH-REQ3: All traffic management capabilities are required at the request level and should involve application layer parameters in addition to those at the network connection level.\n"
+          },
+          {
+            "text": "These capabilities reveal that a complete suite of L7 functions is required.```markdown"
+          }
+        ]
+      },
+      {
+        "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+        "content": [
+          {
+            "text": "\nJust like for applications with low risk and medium risk profiles, all four data plane architectures can be theoretically used.\nBased on the requirements, this class of applications belongs to highly critical applications that require a great degree of isolation and in which any compromise should be limited to only one service instance rather than multiple service instances. Data plane architectures that deploy an L7 proxy for each service (e.g., sidecar model [DPA-1]) are most applicable. A shared L7 proxy per service (e.g., DPA-2) can be an acceptable trade-off for some organizations if they have other mechanisms for mitigating shared-fate failures of all instances of the service that the shared service mesh L7 proxy brings (e.g., mitigating a DoS attack via L3 controls outside of the mesh). However, tightly integrating both L4 and L7 functions with the service instance provides a greater degree of isolation, so DPA-1 is highly recommended.\n"
+          },
+          {
+            "text": "All relevant network traffic data pertaining to their level in the stack they operate will be collected by L4 and L7 proxies. This guidance does not make any distinction between these proxy types as far as a network data collection ability is concerned. Additionally, all proxies will be configured to send the collected data to the appropriate monitoring tools in the enterprise infrastructure. The tools for aggregating and filtering traffic is beyond the scope of the data plane architecture components considered in this document. The same applies to the monitoring tools that provide the dashboard, analyze the traffic, generate the required metrics, and send alerts regarding the threats detected. Hence, nothing in this recommendation compromises the observability requirements of applications in the enterprise."
+          },
+          {
+            "text": "Moreover, this guidance does not recommend a particular data plane architecture for the entire enterprise. Applications have different levels of security requirements within an enterprise, such as functions that do not require L7 proxy functions. Therefore, an enterprise can choose to deploy DPA-1 (i.e., sidecar proxies) for some selected applications while using different architectures (e.g., DPA-2, DPA-3, or DPA-4) for others to leverage their increased performance and still meet the enterprise's security needs."
+          }
+        ]
+      }
+    ]
+  }
+]

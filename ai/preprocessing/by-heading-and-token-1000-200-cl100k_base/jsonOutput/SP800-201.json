@@ -1,0 +1,411 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "This document summarizes the research performed by the NIST Cloud Computing Forensic Science Working Group and presents the NIST Cloud Computing Forensic Reference Architecture (CC FRA or FRA), whose goal is to provide support for a cloud system's forensic readiness. The CC FRA helps users understand the cloud forensic challenges that might exist for an organization's cloud system. It identifies challenges that require at least partial mitigation strategies and how a forensic investigator would apply those strategies to a particular forensic investigation. The CC FRA presented here is both a methodology and an initial implementation. Users are encouraged to customize this initial implementation for their specific situations and needs."
+      }
+    ]
+  },
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "New methodologies are needed to identify, acquire, preserve, examine, and interpret digital evidence in multi-tenant cloud environments with rapid provisioning, global elasticity, and broad network accessibility. These methodologies will provide capabilities for incident response, secure internal enterprise operations, and support for the criminal justice and civil litigation systems. This document presents the NIST Cloud Computing Forensic Reference Architecture (CC FRA or FRA), which provides support for a cloud system's forensic readiness. The CC FRA is meant to help users understand the cloud forensic challenges that might exist for an organization's cloud system. It enables cloud forensic stakeholders to analyze the impacts of cloud forensic challenges by considering each challenge in the context of the functional capabilities presented in the Cloud Security Alliance's Enterprise Architecture. It also identifies forensic challenges that require mitigation strategies and how a forensic investigator would apply those strategies to a particular forensic investigation. While the CC FRA can be used by any cloud computing practitioner, it is specifically designed to allow cloud system architects, cloud engineers, forensic practitioners, and cloud consumers to ask questions related to their cloud computing architectures. The CC FRA is both a methodology and an initial implementation, and users are encouraged to customize this initial implementation for their specific situations and needs."
+      }
+    ]
+  },
+  {
+    "title": "1. Introduction",
+    "subsections": [
+      {
+        "content": "The NIST Cloud Computing Forensic Science Working Group (NCC FSWG) was established to research forensic science challenges and architectures related to the cloud environment. It previously published NIST Interagency Report (IR) 8006, NIST Cloud Computing Forensic Science Challenges [1], which highlighted the unique digital forensic challenges of public cloud computing services under three aspects of operation: normal operations, adverse operations (i.e., when cloud computing resources are under attack), and operations during criminal exploitation. A description and discussion of digital forensics in cloud computing is provided in Section 1.1.# Close Examination of Security Challenges"
+      },
+      {
+        "content": "Close examination of these challenges involved analyzing a security reference architecture of choice. For convenience, an already developed security architecture was analyzed -- the Cloud Security Alliance's (CSA's) Enterprise Architecture (EA) [2], along with its various functional capabilities and processes, and the potential impacts of each challenge on performing a forensic investigation if a specific functional capability or process were involved in an attack or breach or were used during criminal exploitation. The analysis spans hypothetical scenarios that would result in exploitation of potential weaknesses, vulnerabilities, exposures, or cloud technology for criminal activities. Such elements are of fundamental concern in forensic analysis as they present opportunities that adversaries may seek to exploit or characteristics that can be leveraged by criminals. In any case, there will be evidence of the attack or criminal exploitation for future forensic analysis. The EA is composed of a large set of specific functional capabilities that enable detailed consideration of the effects of each forensic challenge on each of the capabilities."
+      },
+      {
+        "content": "The nature of each challenge was also examined (i.e., whether the challenge is technological or non-technological) to determine its role and impact on the forensic examination process. As each challenge was analyzed, the applicability of techniques or technologies became clearer in terms of how they function and contribute to the identification, acquisition, preservation, examination, and interpretation of evidence."
+      },
+      {
+        "content": "This document describes how forensics in the cloud can achieve the same level of acceptance as forensics in traditional computing models. This document, the associated research, and IR 8006 [1] proactively address Executive Order 14028, Improving the Nation's Cybersecurity [3], which points out the importance of having forensic-ready information systems, including cloud systems."
+      },
+      {
+        "title": "1.1. The Need for a Cloud-Specific Forensic Reference Architecture",
+        "content": [
+          {
+            "text": "Digital forensics is the application of science and technology to the discovery and examination of digital artifacts to establish facts and evidence concerning events and conditions that occur within information systems and networks. For decades, information processing systems have enabled the storage, processing, and transmission of information for public and private organizations and individuals. The maintenance, operation, and protection of these information systems have become paramount concerns since a disruption of sufficient magnitude or specific type could threaten business activities. In addition, the use of these systems in support of criminal activities has been of major concern. Digital forensics has traditionally been used for judicial proceedings and regulatory issues but may also be used for other purposes described below. As computer and information science technologies, their implementations, and their operations have changed, digital forensics has adapted. The number of scenarios that may require the application of digital forensic techniques have increased along with the complexity of the...# Underlying Architectures"
+          },
+          {
+            "text": "One common scenario involves the detailed investigation of criminal activities, including \"traditional\" forms of crime (e.g., violent crime, property crime, drug trafficking, human trafficking, white-collar crime) and crimes that occur in cyberspace (e.g., ransomware attacks, phishing attacks, data breaches, identity theft, cyber-terrorism, distributed denial of service, illicit cryptocurrency mining, child pornography, and attacks against governments, key corporations, or power grids). Digital forensic procedures involve locating and analyzing digital traces that can help solve the crime and/or allow for incident response."
+          },
+          {
+            "text": "Forensic procedures are also used to investigate civil actions, such as divorce proceedings, asset discovery, insurance claims, lawsuits, and similar cases that often require forensic methods to determine the presence, absence, and movement of data and funds. In each of these cases, forensics plays an essential role in determining facts; assisting in the analysis, validation, and authentication of data; and enabling the documentation of findings."
+          },
+          {
+            "text": "The application of forensic methods may also be required for normal business operations, such as data recovery. During incident response, forensic methods may help mitigate future cyber-attacks, prevent system failure, or minimize data loss. Forensics can also help determine the root cause of an outage event, such as component failure, corrupted software, or intentional sabotage. Other scenarios may involve the close examination of system configurations, potentially questionable employee data storage and activities, and operational aspects related to compliance matters."
+          }
+        ]
+      },
+      {
+        "title": "Frameworks",
+        "content": [
+          {
+            "text": "The frameworks listed below can provide core support for the design, implementation, assessment, monitoring, and operations of information systems:"
+          },
+          {
+            "text": "NIST Risk Management Framework (RMF) [4] \u2013 A focused guide to information system risk management\nISO 27000 Series [5] \u2013 A series of standards on a wide range of information security topics, such as:\nISO/IEC 27001 [6] \u2013 Information security management\nISO/IEC 27002 [7] \u2013 Information security controls\nISO/IEC 27017 [26] \u2013 Safeguarding cloud environments and minimizing risk of security incidents\nISO/IEC 27018 [8] \u2013 Securing personally identifiable information (PII) in the cloud\nISO/IEC 27035 [9] \u2013 Incident response\nISO/IEC 27037 [10] \u2013 Digital evidence collection and preservation\nIT Infrastructure Library (ITIL) [11] \u2013 A service-oriented architecture (SOA)\nSherwood Applied Business Security Architecture (SABSA) [12]\nThe Open Group Architecture Framework (TOGAF) [13] \u2013 A general security framework\nCloud Security Alliance STAR program [14] \u2013 A progressive security certification"
+          },
+          {
+            "text": "The focus of each of these frameworks varies but generally facilitates architecting, implementing, and operating secure and resilient information systems. The RMF is focused on security from a risk identification and management perspective. As varied as the ISO 27000 series [5] is, it contains...# Cloud Computing Forensics"
+          },
+          {
+            "text": "Standards that address digital evidence and incident response. However, there is not a readily apparent, in-depth exploration of cloud-system forensics."
+          },
+          {
+            "text": "The material presented here deals with the matter of forensics performed within a cloud computing environment. The advent of cloud computing has simplified business operations and introduced a level of business agility not previously experienced with traditional or on-premises computing. However, cloud computing has also introduced a range of security and forensics challenges. Enhanced capabilities enjoyed by legitimate businesses and friendly governments are often equally available to opposing nation-states, terrorist groups, and international criminal elements and assets. As a result, targets that were once unassailable by nefarious actors may now be vulnerable to attack or exploitation."
+          },
+          {
+            "text": "To a great extent, cloud computing runs on virtualization\u2014that is, the creation of processing resources that have hardware as their basis but run as multiplexed programs and are thus functionally multiplied through it. Cloud forensics involves performing analysis on \"virtual machines\" using techniques that require \"real machines.\" In addition, the information obtained from \"machines\" that are essentially \"unreal\" is different from traditional digital evidence."
+          },
+          {
+            "text": "Cloud computing has become increasingly pervasive as more entities discover its advantages. These entities include legitimate businesses, governments, and individuals who use software-as-a-service (SaaS) cloud platforms, as well as criminal and terrorist organizations and opposing nation-states. For legitimate consumers, cloud computing provides capabilities such as:"
+          },
+          {
+            "text": "More rapid business continuity and disaster recovery\nMore effective incident response\nImproved information access, management, and archiving\nEasier and more immediate collaboration between widely separated individuals and groups"
+          },
+          {
+            "text": "This research has adapted solutions that originated in the on-premises data center to the significant differences presented by the cloud."
+          },
+          {
+            "text": "As important as they are for addressing significant events related to business operations, forensic methods have at least equal importance when contributing to matters of compliance, legality, and criminal exploitation. Careful treatment has been given to these questions during this research to ensure that the findings do not merely consider technical aspects but also address the broader aspects of their material application. Unquestionably, close examination of these adverse events is required to understand their incipience and progression and\u2014in particular\u2014to ensure that remediation, event reconstruction, and attribution are effectively and credibly realized."
+          },
+          {
+            "text": "Thus, it has been the specific focus and goal of this effort to research these issues, examine and clarify the forensic challenges, and ultimately formulate and validate the capabilities required to apply accepted forensic techniques and technologies to this unique computing environment. The result is the Cloud Computing Forensic Reference Architecture.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "In as much as a security reference architecture must incorporate standards and requirements that will inform system actualization and operation with respect to security, applying a forensic reference architecture will likewise inform that system actualization and operation with the capability to more effectively examine, understand, reconstruct, and remediate a variety of system events and disruptions."
+          },
+          {
+            "text": "The goal of the CC FRA is to support a cloud system's forensic readiness by helping users understand the forensic challenges that might exist for an organization's cloud system. It identifies which forensic challenges require mitigation strategies and how a forensic investigator would apply those strategies to a particular forensic investigation. The CC FRA will likely evolve over time with more use and research."
+          }
+        ]
+      },
+      {
+        "title": "1.2. The Approach",
+        "content": [
+          {
+            "text": "The CC FRA builds on several foundational layers, the first of which is the understanding that it addresses forensics in the context of a cloud computing environment. Building upon the fundamental relationship between security, incident response, and forensics, the CC FRA is designed to be an overlay to SP 800-200 ipd (initial public draft), NIST Cloud Computing Security Reference Architecture (SRA) [15], which focuses on security risk management considerations and security controls selection for cloud ecosystems and leverages the CSA's Enterprise Architecture (EA). Section 3 and Appendix C describe the CSA's EA and its use in deriving the reference architecture, while Sec. 4 elaborates on the overlay approach employed for the CC FRA."
+          },
+          {
+            "text": "The bottom layer in Figure 1 graphically represents the cloud reference architecture of choice for this document, which is the CSA EA [2]. The layer above represents the NIST cloud SRA (see Appendix D \u2013 Figure 5). The next layer represents the NIST cloud forensic challenges (see Appendix D \u2013 Figure 6). The top layer graphically represents the NIST FRA (see Appendix D \u2013 Figure 7) described in this document. This overlay approach (i.e., a superimposed, adapted set or subset) leverages components, concepts and attributes defined in the CSA EA [2] \u2013 more precisely, the CSA TCI v1.1 (the initial version of the CSA's EA - see Appendix C) and in the NIST cloud SRA, analyzed in the context of the NIST IR 8006 cloud forensic challenges."
+          },
+          {
+            "text": "More precisely, the FRA layer leverages the three layers graphically represented beneath it by analyzing each capability of the SRA (previously derived from the CSA's EA [2] - see Appendix D - Figure 5) in the context of the challenges documented in IR 8006 [1] (see Appendix D - Figure 6). The analysis determines whether each challenge affects the capability if implemented in a cloud environment as part of a cloud service or solution. If the challenge does affect the capability, then the functional capability is considered to have forensic importance, and it is imported to or considered a capability of the FRA (see Appendix E - Figure 8 for a larger).# Overview of NIST Cloud Forensic Challenges"
+          },
+          {
+            "text": "In IR 8006 [1], the NCC FSWG identified 62 challenges related to cloud computing forensics along with the potential results of overcoming each challenge. That document provides a preliminary analysis of these challenges by including:"
+          },
+          {
+            "text": "the relationship between each challenge and the five essential characteristics of cloud computing, as defined in the NIST cloud computing model [16];\nhow the challenges correlate to cloud technology; and\nnine categories to which the challenges belong."
+          },
+          {
+            "text": "The analysis also considers logging data, data in media, and issues associated with time, location, and sensitive data. In addition, the relevance of topics such as rapid elasticity, multi-tenancy, and hypervisor/virtual machine layers is discussed. These 62 challenges support the criminal justice and civil litigation systems, security incident response, and internal enterprise operations."
+          },
+          {
+            "text": "The nine categories to which the challenges belong are reproduced below [1]:"
+          }
+        ]
+      },
+      {
+        "title": "1. Architecture",
+        "content": [
+          {
+            "text": "(e.g., diversity, complexity, provenance, multi-tenancy, data segregation)."
+          },
+          {
+            "text": "Architecture challenges in cloud forensics include:\n- Dealing with variability in cloud architectures between providers\n- Tenant data compartmentalization and isolation during resource provisioning\n- Proliferation of systems, locations, and endpoints that can store data\n- Accurate and secure provenance for maintaining and preserving chain of custody"
+          }
+        ]
+      },
+      {
+        "title": "2. Data collection",
+        "content": [
+          {
+            "text": "(e.g., data integrity, data recovery, data location, imaging)."
+          },
+          {
+            "text": "Data collection challenges in cloud forensics include:\n- Locating forensic artifacts in large, distributed, and dynamic systems\n- Locating and collecting volatile data\n- Data collection from virtual machines\n- Data integrity in a multi-tenant environment where data is shared among multiple computers in multiple locations and accessible by multiple parties\n- Inability to image all of the forensic artifacts in the cloud\n- Accessing the data of one tenant without breaching the confidentiality of other tenants\n- Recovery of deleted data in a shared and distributed virtual environment"
+          }
+        ]
+      },
+      {
+        "title": "3. Analysis",
+        "content": [
+          {
+            "text": "(e.g., correlation, reconstruction, time synchronization, logs, metadata, timelines)."
+          },
+          {
+            "text": "Analysis challenges in cloud forensics include:\n- Correlation of forensic artifacts across and within cloud providers\n- Reconstruction of events from virtual images or storage\n- Integrity of metadata\n- Timeline analysis of log data, including synchronization of timestamps"
+          }
+        ]
+      },
+      {
+        "title": "4. Anti-forensics",
+        "content": [
+          {
+            "text": "(e.g., obfuscation, data hiding, malware)."
+          },
+          {
+            "text": "Anti-forensics is a set of techniques used specifically to prevent or mislead forensic analysis. Anti-forensic challenges in cloud forensics include:\n- The use of obfuscation, malware, data hiding, or other techniques to compromise the integrity of evidence\n- Malware may circumvent virtual machine isolation methods"
+          }
+        ]
+      },
+      {
+        "title": "5. Incident first responders",
+        "content": [
+          {
+            "text": "(e.g., trustworthiness of cloud providers, response time, reconstruction)."
+          },
+          {
+            "text": "Incident first responder challenges in cloud forensics include:\n- Confidence, competence, and trustworthiness of the cloud providers to act as first responders and perform data collection# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "1. Difficulty in performing initial triage",
+        "content": [
+          {
+            "text": "Processing a large volume of collected forensic artifacts"
+          }
+        ]
+      },
+      {
+        "title": "2. Role management (e.g., data owners, identity management, users, access control)",
+        "content": [
+          {
+            "text": "Role management challenges in cloud forensics include:\n- Uniquely identifying the owner of an account\n- Decoupling between cloud user credentials and physical users\n- Ease of anonymity and creating fictitious identities online\n- Determining exact ownership of data\n- Authentication and access control"
+          }
+        ]
+      },
+      {
+        "title": "3. Legal (e.g., jurisdictions, laws, service-level agreements, contracts, subpoenas, international cooperation, privacy, ethics)",
+        "content": [
+          {
+            "text": "Legal challenges in cloud forensics include:\n- Identifying and addressing issues of jurisdictions for legal access to data\n- Lack of effective channels for international communication and cooperation during an investigation\n- Data acquisition that relies on the cooperation, competence, and trustworthiness of cloud providers\n- Missing terms in contracts and service-level agreements\n- Issuing subpoenas without knowledge of the physical location of data"
+          }
+        ]
+      },
+      {
+        "title": "4. Standards (e.g., standard operating procedures, interoperability, testing, validation)",
+        "content": [
+          {
+            "text": "Standards challenges in cloud forensics include:\n- Lack of minimum/basic SOPs, practices, and tools\n- Lack of interoperability among cloud providers\n- Lack of test and validation procedures"
+          }
+        ]
+      },
+      {
+        "title": "5. Training (e.g., forensic investigators, cloud providers, qualification, certification)",
+        "content": [
+          {
+            "text": "Training challenges in cloud forensics include:\n- Misuse of digital forensic training materials that are not applicable to cloud forensics\n- Lack of cloud forensic training and expertise for both investigators and instructors\n- Limited knowledge about evidence by record-keeping personnel in cloud providers"
+          }
+        ]
+      },
+      {
+        "title": "6. CSA's Enterprise Architecture",
+        "content": [
+          {
+            "text": "NIST does not prescribe the use of the CSA EA and only uses it for convenience and illustration. Another security architecture could have been used instead. The CSA EA was developed by a public working group and, therefore, represents the thinking of the community more broadly rather than just a single company. An overview of the CSA EA is provided in Appendix C."
+          },
+          {
+            "text": "The CSA's EA is both a methodology and a set of tools that enable security architects, enterprise architects, and risk management professionals to leverage a common set of solutions and controls. These solutions and controls fulfill common requirements that risk managers must assess regarding the operational status of internal IT security and cloud provider controls. These controls are expressed in terms of security capabilities and designed to create a common roadmap to meet the security needs of businesses."
+          },
+          {
+            "text": "With the CSA EA, a set of functional capabilities is defined within the following domains: Business Operation Support Services, Information Technology Operation and Support, Security and Risk Management, Presentation Services, Application Services, Information Services, and Infrastructure.# Services"
+          },
+          {
+            "text": "Together, there are 347 functional capabilities within these domains. The CSA's EA functional capabilities are leveraged by the NIST Cloud SRA [15], which is comprised of a formal model designed as a security overlay to the NIST Cloud Computing Reference Architecture [22] and a methodology for architecting and orchestrating a cloud-based solution."
+          },
+          {
+            "text": "The methodology allows cloud architects to identify the system's functional capabilities. The orchestration employs a risk-based approach that follows the Risk Management Framework (RMF) [4] applied to cloud-based systems."
+          },
+          {
+            "text": "The SRA's risk-based approach for determining a cloud actor's responsibilities for implementing specific system components supports a clear delineation between the security responsibilities of cloud providers and consumers and an understanding of the customer responsibility matrix. Specifically, for each cloud service model, system components are analyzed to identify the level of involvement of each cloud actor when implementing those components."
+          }
+        ]
+      },
+      {
+        "title": "4. Forensic Reference Architecture Methodology",
+        "content": [
+          {
+            "text": "The CC FRA aims to help users understand the cloud forensic challenges that might exist for an organization's cloud systems. When architecting or orchestrating a new cloud system, cloud architects and cloud security and forensic practitioners are encouraged to use the CC FRA to identify which challenges could impact the system and require at least partial mitigation strategies to minimize the risk incurred during operations (e.g., allowing real-time interventions based on the proactively generated forensic data to eliminate potential negative impacts on digital forensic investigations)."
+          },
+          {
+            "text": "While the FRA can be used by any cloud computing practitioner, it is specifically designed to help the following target audiences find answers to specific questions related to their cloud computing architectures:"
+          },
+          {
+            "text": "Target Audience #1: Cloud system architects and engineers. This target audience might ask: \"To what extent does the cloud system I'm designing facilitate the use of digital forensics?\" The architectural methodology and initial architecture presented here can help this audience identify potential challenges to conducting forensics and focus on areas of concern. System trade-offs can be considered as well (e.g., the more that a system facilitates the use of forensics, the greater the negative operational or economic impacts might be, or the greater the chance that privacy might be impacted negatively).\n\n\nTarget Audience #2: Forensic investigators. This target audience might ask: \"What items do I need to be aware of to conduct digital forensics in the cloud environment versus a traditional or on-premises computing environment?\" This audience will also benefit from identifying potential challenges to conducting forensics and which challenges may impact the system under investigation. To the extent that these challenges have been at least partially mitigated, the forensic investigator can determine whether and how.# Forensic Artifacts and Cloud Services"
+          },
+          {
+            "text": "Target Audience #1: Cloud system architects and engineers. This target audience might ask: \"To what extent does the cloud system I'm designing facilitate the use of digital forensics?\" The architectural methodology and initial architecture presented here can help this audience identify potential challenges to conducting forensics and focus on areas of concern. System trade-offs can be considered as well (e.g., the more that a system facilitates the use of forensics, the greater the negative operational or economic impacts might be, or the greater the chance that privacy might be impacted negatively)."
+          },
+          {
+            "text": "Target Audience #2: Forensic investigators. This target audience might ask: \"What items do I need to be aware of to conduct digital forensics in the cloud environment versus a traditional or on-premises computing environment?\" This audience will also benefit from identifying potential challenges to conducting forensics and which challenges may impact the system under investigation. To the extent that these challenges have been at least partially mitigated, the forensic investigator can determine whether and how.# Forensic Artifacts and Cloud Services"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Capabilities",
+    "subsections": [
+      {
+        "content": "The flowchart provides users with a uniform method for determining the applicability of a challenge to a particular capability. In conducting the analysis, the NCC FSWG placed each cloud forensic challenge into one of two groups:"
+      },
+      {
+        "content": "Challenges that are primarily technical in nature (e.g., architecture)\nChallenges that are primarily non-technical in nature (e.g., legal)."
+      },
+      {
+        "content": "This led to the creation of questions Q2-a, Q2-b, Q2-c, and Q2-d in the flowchart, which inform placement into the two groups. If a challenge deals primarily with standards, legal issues, contracts, service-level agreements, jurisdiction issues, privacy, ethical issues, training, qualifications, or certifications, then the challenge is considered non-technical. Otherwise, it is considered technical. This grouping provides a simple and straightforward method for analyzing the high-level characteristics of each challenge."
+      },
+      {
+        "content": "Similarly, the NCC FSWG placed each of the cloud functional capabilities into one of two groups:"
+      },
+      {
+        "content": "Primarily technical\nPrimarily non-technical."
+      },
+      {
+        "content": "If a capability deals primarily with standards, legal issues, contracts, service-level agreements, jurisdiction issues, privacy, ethical issues, training, qualification, or certification, then the capability is considered non-technical. Otherwise, it is considered technical. This led to the creation of questions Q3-a and Q3-b."
+      },
+      {
+        "content": "To ensure a precise and limited mapping, the flowchart attempts to map challenges that are primarily technical only to capabilities that are primarily technical and challenges that are primarily non-technical only to capabilities that are primarily non-technical. If a challenge and a capability pair are assigned to the same group, the user considers whether overcoming the challenge makes it easier to conduct forensics on the capability. The answer determines whether the capability is affected by the challenge. In summary, if the appropriate grouping is done and overcoming the challenge makes it easier to conduct forensics, then the challenge is considered to affect the capability (i.e., the mapping is YES; otherwise, the mapping is NO). If there are challenges in one group that affect capabilities in another group, the mapping is considered to be NO because that does not provide the precise, limited mapping."
+      },
+      {
+        "title": "Example of Precise, Limited Mapping",
+        "content": [
+          {
+            "text": "The following is an example of a precise, limited mapping. Suppose that the challenge deals with training (e.g., Challenge FC-65: There is a lack of training materials that educate investigators on cloud computing technology and cloud forensic operating policies and procedures; see [1], page 52). This is a non-technical challenge. In addition, suppose that the capability under consideration is technical. Enhanced training would clearly provide a significant benefit to forensic investigators and cloud providers because training is so broadly applicable. However, a cloud forensic architecture in which training affects almost every capability is undesirable because then the architecture applies too broadly; most of the capabilities are not affected by this challenge in an...\n```# CURRENT PAGE RAW OCR TEXT"
+          },
+          {
+            "text": "important way. This makes the architecture less useful because the architecture will have many challenges that affect too many capabilities. The architecture with a narrower mapping is also more practical because the fewer YESs in the mappings, the easier for an investigator to apply the mappings in real-world scenarios."
+          },
+          {
+            "text": "As described above and shown in Fig. 2, if both the challenge and the capability being evaluated deal with the same type of issue (i.e., technical or non-technical), then the following question is asked: \"If the challenge were overcome, would that make it easier to conduct a cloud forensic investigation on the functional capability?\" If the answer is \"yes,\" then the mapping is YES. However, if the challenge is primarily technical in nature and the capability is non-technical in nature (or vice versa), then an analysis is conducted to determine whether the use of technical or non-technical solutions to implement the capability would significantly enhance the ability of a forensic investigator to overcome the challenge, as illustrated in questions Q2-c and Q2-d. If the answer to this question is \"no,\" then no further analysis is required. If the answer to question Q2-c or Q2-d is \"yes,\" then the analysis will continue to determine: \"If the challenge were overcome, would that make it easier to conduct a cloud forensic investigation on the functional capability?\""
+          },
+          {
+            "text": "This methodology provides a well-defined, structural approach for the analysis. As a result, the flowchart will help cloud designers, forensic investigators, and other interested parties focus specifically on functional capabilities that are affected by a specific cloud forensic challenge. The process of traversing the flowchart involves asking questions about the particular challenge and capability pair being analyzed. Starting at the top right of the flowchart (labeled \"Q2-a\"), each box asks a question about the challenge or the capability. The answer to each question \u2013 YES or NO \u2013 then leads to either another box with a question or to one of the circles or the hexagon shown in Table 1."
+          },
+          {
+            "text": "To determine whether the forensic challenge affects the functional capability, three fundamental types of questions are asked:"
+          },
+          {
+            "text": "Question 1 (Q1) \u2013 If the challenge were overcome, would that make it easier to conduct a cloud forensic investigation on the functional capability? Note that the term \"cloud forensic investigation\" means the identification, acquisition, preservation, examination, interpretation, and reporting of potential digital evidence in the cloud. When analyzing Question 1, it is narrowly considered only with regard to the particular functional capability, ignoring all other capabilities as if they do not exist. So, the question really asked is: If the challenge were overcome, would that make it easier to conduct a cloud forensic investigation on this functional capability only while ignoring other capabilities?\n\n\nQuestion 2 (Q2-a, Q2-b, Q2-c, and Q2-d) \u2013 These questions only relate to the challenges.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Question 1 (Q1) \u2013 If the challenge were overcome, would that make it easier to conduct a cloud forensic investigation on the functional capability? Note that the term \"cloud forensic investigation\" means the identification, acquisition, preservation, examination, interpretation, and reporting of potential digital evidence in the cloud. When analyzing Question 1, it is narrowly considered only with regard to the particular functional capability, ignoring all other capabilities as if they do not exist. So, the question really asked is: If the challenge were overcome, would that make it easier to conduct a cloud forensic investigation on this functional capability only while ignoring other capabilities?"
+          },
+          {
+            "text": "Question 2 (Q2-a, Q2-b, Q2-c, and Q2-d) \u2013 These questions only relate to the challenges.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "and not capabilities. The purpose of these questions is to determine whether the challenge deals with technical or non-technical issues and if either technical solutions or nontechnical solutions significantly amplify the ability to overcome the challenge."
+          }
+        ]
+      },
+      {
+        "title": "3. Question 3 (Q3-a and Q3-b)",
+        "content": [
+          {
+            "text": "These questions only relate to the capabilities and not the challenges. The purpose of these questions is to determine whether the capability deals primarily with technical or non-technical issues. Questions 2 and 3 ask about the issues that a challenge or capability deals with, which are determined as follows. As discussed in Sec. 2, the NCC FSWG labeled each of the 62 challenges according to the following nine categories: architecture, data collection, analysis, anti-forensics, incident first responders, role management, legal, standards, and training. The labels for each challenge may be found in [1], Annex A, Table 2, in the columns labeled \"Primary Category\" and \"Related Category.\" These categories and the challenge descriptions are used to determine the type of issue each challenge deals with. If the primary issues are standards, legal issues, contracts, service-level agreements, jurisdiction issues, privacy, ethical issues, training, qualification, or certification, then the challenge is considered non-technical. Otherwise, it is considered technical."
+          },
+          {
+            "text": "Similarly, if a capability deals primarily with standards, legal issues, contracts, service-level agreements, jurisdiction issues, privacy, ethical issues, training, qualification, or certification, then the capability is considered non-technical. Otherwise, it is considered technical."
+          },
+          {
+            "text": "The NCC FSWG developed consensus answers for all of the questions related to Question 2 and Question 3 in the flowchart. Therefore, when a particular challenge and capability pair was considered, all these questions were already answered. This resulted in much more consistent mappings across all challenges and capabilities."
+          },
+          {
+            "text": "When traversing the flowchart starting at the box labeled \"Q2-a,\" if a NO node is not reached, then the box labeled \"Q1\" is eventually reached. For any challenge and capability pair, it may lie in one of two groups when Q1 is reached (see Fig. 2). As discussed above, Group 1 is the \"Technical Group,\" and Group 2 is the \"Non-Technical Group.\" They are defined as follows:"
+          },
+          {
+            "subsection": "Group 1 (Technical Group)",
+            "text": []
+          },
+          {
+            "text": "[The challenge is technical, OR the challenge is non-technical but requires technology (at least partially) to overcome the challenge.]\nAND\n[The functional capability is technical.]"
+          },
+          {
+            "subsection": "Group 2 (Non-Technical Group)",
+            "text": []
+          },
+          {
+            "text": "[The challenge is non-technical, OR the challenge is technical but requires non-technical solutions (at least partially) to overcome the challenge.]\nAND\n[The functional capability is non-technical.]"
+          },
+          {
+            "text": "Once a challenge and capability pair are assigned to the appropriate group, the question of whether overcoming the challenge makes it easier to conduct forensics on the capability is asked.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "This determines whether the capability is affected by the challenge. If the grouping is appropriate and overcoming the challenge makes it easier to conduct forensics, then the challenge is considered to affect the capability (i.e., the mapping is YES). However, a challenge may be non-technical but requires technology to overcome it. Examples of non-technical challenges that have both non-technical and technical solutions include ([1], Annex A):"
+          },
+          {
+            "text": "FC-56 (confidentiality and PII) deals with legal and privacy issues (i.e., a non-technical challenge). Privacy issues can be resolved with a combination of legal steps (e.g., legislation) and technological steps (e.g., privacy-enhancing technologies).\nFC-64 and FC-65 deal with training (i.e., non-technical challenges). Training issues can be resolved with better and more widely available training classes, but they can also be resolved with better technology to perform the training."
+          },
+          {
+            "text": "There are non-technical challenges that require solutions that are non-technical, technical, or a combination of both. If the non-technical challenge requires only a non-technical solution (and the capability is non-technical), it is in Group 2. If it requires only a technical solution (and the capability is technical), it is in Group 1. If it requires both, then it is in Group 1 or Group 2, depending on whether the capability is technical or non-technical. When a challenge is technical but requires a non-technical solution (and the capability is non-technical), then it is in Group 2."
+          },
+          {
+            "text": "In Fig. 2, the two purple hexagons refer to two notes, as follows:"
+          },
+          {
+            "text": "NOTE 1: When this circle is reached, the challenge is neither technical nor non-technical. Fortunately, none of the challenges reach this node as none have this property. This node is included simply for logical completeness of the flowchart, so that every node has both a YES exit path and a NO exit path.\nNOTE 2: When this circle is reached, the capability is neither technical nor non-technical. There are a few capabilities that reach this node. However, these capabilities do not deal with issues directly related to digital forensics for cloud computing. Rather, they involve controlling physical access to facilities (e.g., using barriers, security patrols, checking physical ID cards) and mitigating physical threats to facilities (e.g., installing fire suppression equipment)."
+          },
+          {
+            "text": "This process for analyzing any pair that consists of a cloud functional capability and a cloud forensic challenge represents a core component of the CC FRA methodology. It can be applied to any set of capability-challenge pairs, either modified from the sets used in this document or adapted from a different architectural framework or empirical data."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT PAGE RAW OCR TEXT",
+    "subsections": [
+      {
+        "content": "Pairings were evaluated using the flowchart in Fig. 1. The results of the NCC FSWG's analysis are summarized in a Mapping Table (MT). An entry in the MT is YES if the associated challenge was identified as affecting the paired capability. Otherwise, the entry is NO."
+      },
+      {
+        "content": "All users of CC FRA data are encouraged to use the data as an initial implementation of the methodology but use their own judgment when employing the CC FRA methodology in the context of their cloud systems and modify or customize NIST's initial dataset for their specific situations and needs. For example, if the existing capabilities are not appropriate for the user's situation, some or all can be removed. Similarly, new challenges that are appropriate for the user's situation can be added, or challenges that have been adequately mitigated can be removed. This architectural methodology can help users focus on how challenges can be mitigated because it considers each challenge specifically in the context of affected capabilities."
+      },
+      {
+        "content": "The CC FRA dataset provides responses for every challenge-capability pairing based on the analysis performed by the authors and collaborators of this document. A sample excerpt of the table is displayed in Fig. 3. The full CC FRA Mapping Table is available for download (see Appendix E for a partial image and a link for downloading the data). A private entity may eventually develop a tool that allows users to input the forensic challenges in IR 8006 or other challenges and input the user's cloud security architecture of choice."
+      },
+      {
+        "content": "The CC FRA data has 62 cloud forensic challenges obtained from IR 8006 [1]. Originally, IR 8006 identified 65 challenges. However, three challenges were deleted from the final IR 8006 because the authors considered them to be obsolete challenges at the time of publication. Subsequent work derived from this document uses the initial challenge numbering system for compatibility and traceability. In the CC FRA Mapping Table, each cloud forensic challenge is shown across the top row (i.e., Forensic Challenge 1 [FC01], Forensic Challenge 2 [FC02], etc.). In Fig. 3, only FC01-FC09 and FC58-FC65 are shown, and the rest of the challenges are hidden for the sake of readability in the figure. Additionally, the CC FRA data has 347 cloud functional capabilities. In the CC FRA Mapping Table, each cloud functional capability is listed on the left column labeled \"CAPABILITY\" (see Fig. 3). The CC FRA dataset preserves the grouping of the cloud functional capabilities provided by the CSA EA [2] into \"CONTAINERS\" and \"DOMAINS.\" Fig. 3 shows the first nine and last nine capabilities; the rest are hidden."
+      },
+      {
+        "content": "Each row, therefore, represents a separate capability and includes the following information: the domain of the capability (all of the domains are described in Sec. 3), the container (the highest-level elements within the architectural diagram in Appendix E), the name of the capability, and a description of the capability (not shown in Fig. 3 but shown in Appendix E). The entry in the table that corresponds to a specific column and row (i.e., a specific challenge-capability pair) is either YES or NO based on the result of traversing the mapping flowchart in Fig.\n```# 2. Traversing the Flowchart"
+      },
+      {
+        "content": "Traversing the flowchart requires answers to Questions 1 (Q1), 2 (Q2-a, Q2-b, Q2-c, Q2-d), and 3 (Q3-a, Q3-b). As described in Sec. 4, Q1 must be answered for each individual challenge-capability pair that reaches Q1 when the flowchart is traversed. However, Questions 2 and 3, which relate only to challenges and capabilities separately, can be answered ahead of time, and the NCC FSWG developed consensus answers for these. These answers are shown in the table in Fig. 3. The second row in the table has the answers for Q2-a, the third row for Q2-b, the fourth row for Q2-c, and the fifth row for Q2-d. The fifth column in the table has the answers for Q3-a and the sixth column for Q3-b."
+      },
+      {
+        "content": "Each entry in the table (i.e., YES, NO, NO*) is color-coded as follows:"
+      },
+      {
+        "content": "Orange \u2013 A NO is obtained (coded as NO*) before reaching question Q1 in the flowchart. These entries can be filled in automatically once the answers to questions Q2-a, Q2-b, Q2-c, Q2-d, Q3-a, and Q3-b are entered.\nRed \u2013 A NO is obtained as a result of answering Q1.\nGreen \u2013 A YES is obtained as a result of answering Q1."
+      },
+      {
+        "content": "Analysis of the correlation between the forensic science challenges and the functional capabilities constitutes the foundation for achieving consistent and repeatable answers to the questions identified in the CC FRA methodology. Each challenge is further categorized based on its overall impact on cloud functional capabilities. This categorization focuses on the overall number of affected capabilities and identifies whether only a limited set of capabilities is impacted versus most capabilities composing the cloud ecosystem being impacted. The term \"impact\" is used to indicate how broadly or narrowly a challenge affects the set of functional capabilities. Therefore, the impact of each challenge was categorized along a generic-to-specific scale as follows (see IR 8006 [1], Annex A, Table 2, column 4):"
+      },
+      {
+        "content": "Generic (G) \u2013 A challenge is labeled generic if it affects most of the capabilities.\nSpecific (S) \u2013 A challenge is labeled specific if it affects a limited set of capabilities.\nQuasi (Q) \u2013 A challenge is labeled quasi if it falls somewhere between generic and specific."
+      },
+      {
+        "content": "A specific challenge applies narrowly and affects only a limited number of capabilities, while a generic challenge affects a broad set of capabilities. The specific challenge affects a capability in a direct manner that is determined by the particular issues addressed by the capability. This results in the capability being affected in an important and profound way. However, because the generic challenge affects most of the capabilities, the effect is not tied closely to the issues addressed in each capability, and the capabilities are affected in a much less important and profound way."
+      },
+      {
+        "content": "Thus, a specific challenge is more impactful overall than a generic one when it comes to conducting a cloud forensic investigation. The generic-to-specific label of each challenge is also part of the CC FRA, as shown in Appendix E. The NCC FSWG developed consensus.# Labels for All of the Challenges [1]"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1264 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "The protection of Controlled Unclassified Information (CUI) in nonfederal systems and organizations is important to federal agencies and can directly impact the ability of the Federal Government to successfully carry out its assigned missions and business operations. This publication provides federal agencies and nonfederal organizations with assessment procedures that can be used to carry out assessments of the requirements in NIST Special Publication 800-172, Enhanced Security Requirements for Protecting Controlled Unclassified Information: A Supplement to NIST Special Publication 800-171. The assessment procedures are flexible and can be tailored to the needs of organizations and assessors. Assessments can be conducted as 1) self-assessments; 2) independent, third-party assessments; or 3) government-sponsored assessments. The assessments can be conducted with varying degrees of rigor based on customer-defined depth and coverage attributes. The findings and evidence produced during the assessments can be used to facilitate risk-based decisions by organizations related to the CUI enhanced security requirements."
+      },
+      {
+        "title": "DEFINITION AND USAGE OF THE TERM INFORMATION SYSTEM",
+        "content": [
+          {
+            "text": "Unless specified by legislation, regulation, or government-wide policy, the term system is used in this publication instead of information system. This change reflects a broad-based and holistic definition of systems that includes general-purpose systems, industrial control systems, cyber-physical systems, and individual devices that are part of the Internet of Things. As computing systems and information technologies are deployed ubiquitously worldwide and systems and components are increasingly connected through wired and wireless networks, the susceptibility of Controlled Unclassified Information to loss or compromise grows \u2013 as does the potential for adverse consequences resulting from such occurrences."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER ONE",
+    "subsections": [
+      {
+        "title": "INTRODUCTION",
+        "content": [
+          {
+            "subsection": "THE NEED TO ASSESS ENHANCED SECURITY REQUIREMENTS FOR CUI",
+            "text": []
+          },
+          {
+            "text": "In 2010, Executive Order 13556 established a government-wide Controlled Unclassified Information (CUI) Program to standardize the way that the executive branch handles unclassified information that requires protection. The regulation that implements the CUI# Program Overview"
+          },
+          {
+            "text": "Program is 32 CFR part 2002. Only federal information that requires safeguarding or dissemination controls pursuant to federal law, regulation, or government-wide policy may be designated as CUI. NIST Special Publication (SP) 800-172, a supplement to NIST SP 800-171, specifies enhanced security requirements to ensure the confidentiality, integrity, and availability of CUI when it is associated with a high value asset or a critical program."
+          }
+        ]
+      },
+      {
+        "title": "1.1 Purpose and Applicability",
+        "content": [
+          {
+            "text": "The purpose of this publication is to describe procedures for assessing the enhanced security requirements in [SP 800-172]. Compliance with the security requirements is addressed in CUI guidance and the CUI Federal Acquisition Regulation (FAR) or as supplemented by federal agencies (e.g., Department of Defense Federal Acquisition Regulation). Organizations can use the assessment procedures to generate evidence to support the assertion that the enhanced security requirements have been satisfied. The assessment procedures are typically used as part of an assessment process. An assessment process is an information-gathering and evidence-producing activity to determine the effectiveness of the safeguards implemented to meet the set of security requirements specified in [SP 800-172]. The information gathered and evidence produced can be used by an organization to:"
+          },
+          {
+            "text": "Identify problems or shortfalls in the organization's security and risk management programs,\nIdentify security weaknesses and deficiencies in organizational systems and the environments in which those systems operate,\nPrioritize risk mitigation decisions and activities,\nConfirm that identified security weaknesses and deficiencies in organizational systems and environments of operation have been addressed,\nSupport continuous monitoring activities, and\nProvide information security situational awareness."
+          },
+          {
+            "text": "The assessment procedures in this publication offer the flexibility to customize assessments based on organizational policies and requirements, known threat and vulnerability information, system and platform dependencies, operational considerations, and tolerance for risk."
+          }
+        ]
+      },
+      {
+        "title": "The Scope of Enhanced Security Requirement Assessments",
+        "content": [
+          {
+            "text": "The scope of the assessments conducted using the procedures described in this publication is guided and informed by the system security plans for the organizational systems processing, storing, or transmitting CUI. The assessments focus on the overall effectiveness of the security safeguards intended to satisfy the enhanced security requirements defined in [SP 800-172]."
+          }
+        ]
+      },
+      {
+        "title": "1.2 Target Audience",
+        "content": [
+          {
+            "text": "This publication serves system, information security, and privacy professionals, including individuals with:"
+          },
+          {
+            "text": "System development responsibilities (e.g., program managers, system developers, system owners, systems integrators, system security engineers);\nInformation security assessment and monitoring responsibilities (e.g., system evaluators, assessors, independent verifiers/validators, auditors, analysts, system owners);# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Information Security, Privacy, Risk Management, Governance, and Oversight Responsibilities",
+        "content": [
+          {
+            "text": "Information security, privacy, risk management, governance, and oversight responsibilities (e.g., authorizing officials, chief information officers, chief privacy officers, chief information security officers, system managers, information security managers); and\nInformation security implementation and operational responsibilities (e.g., system owners, information owners/stewards, mission and business owners, systems administrators, system security officers)."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER TWO",
+    "subsections": [
+      {
+        "title": "The Fundamentals",
+        "content": [
+          {
+            "subsection": "Basic Concepts for Assessments of CUI Enhanced Security Requirements",
+            "text": []
+          },
+          {
+            "text": "The CUI enhanced security requirements in [SP 800-172] are organized into 10 families, as illustrated in Table 1. The process to assess the CUI enhanced security requirements includes preparing for assessment, developing assessment plans, conducting assessments, and analyzing results. The assessment procedures in Chapter Three are grouped by family designations to help ensure the completeness and consistency of assessments."
+          },
+          {
+            "text": "An assessment procedure consists of an assessment objective and a set of potential assessment methods and objects that can be used to conduct the assessment. Each assessment objective includes a set of determination statements related to the CUI enhanced security requirement that is the subject of the assessment. Organization-defined parameters (ODP) that are part of selected enhanced security requirements are included in the initial determination statements for the assessment procedure. ODPs are included since the specified parameter values are used in subsequent determination statements. ODPs are numbered sequentially and noted in bold italics."
+          },
+          {
+            "text": "Determination statements reflect the content of the enhanced security requirements to ensure traceability of the assessment results to the requirements. The application of an assessment procedure to an enhanced security requirement produces assessment findings. The findings are used to determine if the enhanced security requirement has been satisfied. Assessment objects are associated with the specific items being assessed. These objects can include...# Specifications, Mechanisms, Activities, and Individuals"
+          },
+          {
+            "text": "Specifications are the document-based artifacts (e.g., security policies, procedures, plans, requirements, functional specifications, architectural designs) associated with a system. Mechanisms are the specific hardware, software, or firmware safeguards employed within a system. Activities are the protection-related actions supporting a system that involve people (e.g., conducting system backup operations, exercising a contingency plan, and monitoring network traffic). Individuals are people who apply the specifications, mechanisms, or activities described above."
+          }
+        ]
+      },
+      {
+        "title": "Assessment Methods",
+        "content": [
+          {
+            "text": "Assessment methods define the nature and extent of the assessor's actions. The methods include examine, interview, and test."
+          },
+          {
+            "text": "The examine method is the process of reviewing, inspecting, observing, studying, or analyzing assessment objects (i.e., mechanisms, activities, specifications).\nThe interview method is the process of holding discussions with individuals or groups of individuals to facilitate understanding, achieve clarification, or obtain evidence.\nThe test method is the process of exercising assessment objects (i.e., activities, mechanisms) under specified conditions to compare actual with expected behavior."
+          },
+          {
+            "text": "The purpose of the assessment methods is to facilitate understanding, achieve clarification, and obtain evidence. The results obtained from applying the methods are used for making the specific determinations called for in the determination statements and thereby achieving the objectives for the assessment procedure."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Organization-Defined Parameters",
+    "subsections": [
+      {
+        "content": "Selected enhanced security requirements contain selection and assignment operations to give# Organizations Flexibility in Defining Variable Parts of Those Requirements"
+      },
+      {
+        "title": "Selection Operations",
+        "content": [
+          {
+            "text": "Require organizations to select from a list of predefined items. Assignment operations require organizations to define specific parameter values. Determination statements for organization-defined parameters (ODP) are listed first in the assessment objective section followed by the list of determination statements for the assessment objective. Determination statements for ODPs are noted in bold italics. The ODP values are used in the appropriate determination statements in the assessment procedure, also noted in bold italics."
+          }
+        ]
+      },
+      {
+        "title": "2.2 Assurance Cases",
+        "content": [
+          {
+            "text": "Building an effective assurance case for determining compliance to the enhanced security requirements is a process that involves compiling evidence from a variety of sources and conducting different types of assessment activities. An assurance case is a body of evidence organized into an argument demonstrating that some claim about a system is true. For the assessments conducted using the procedures in this publication, that claim is compliance with the enhanced security requirements specified in [SP 800-172]. Assessors obtain evidence during the assessment process to allow designated officials to make objective determinations about compliance to the CUI enhanced security requirements. The evidence needed to make such determinations can be obtained from various sources, including self-assessments, independent third-party assessments, government-sponsored assessments, or other types of assessments, depending on the needs of the organization establishing the requirements and the organization conducting the assessments."
+          },
+          {
+            "text": "For example, some enhanced security requirements are satisfied by security capabilities built into commercial information technology products and systems. Product assessments are typically conducted by independent, third-party testing organizations. These assessments examine the security functions of the products and the established configuration settings. Assessments can also be conducted to demonstrate compliance to industry, national, or international security standards, as well as developer and vendor claims. Since many information technology products are assessed by commercial testing organizations and then subsequently deployed in hundreds of thousands of systems, these assessments can be carried out at a greater level of depth and provide deeper insights into the security capabilities of the products."
+          },
+          {
+            "text": "Ultimately, the evidence needed to determine compliance comes from the implementation of the safeguards to satisfy the enhanced security requirements and from the assessments of that implementation. Assessors can build on previously developed artifacts that started with the specification of the organization's information security needs and is further developed during the design, development, and implementation of the system and system components.# CURRENT PAGE RAW OCR TEXT"
+          },
+          {
+            "text": "These artifacts, obtained while implementing security throughout the system development life cycle, provide the initial evidence for an assurance case. Assessments can be conducted by system developers, system integrators, system owners, evaluators, auditors, or the security staff of organizations. The assessors or assessment teams begin by obtaining and reviewing the results from individual component product or compliance assessments. The assessors then determine the additional system-level assessments required to achieve the needed assurance using the procedures and methods contained in this publication and based on the specific implementation information provided by nonfederal organizations in their system security plans. Assessments can be used to compile and evaluate the evidence needed by organizations to determine the effectiveness of the safeguards implemented to protect CUI, the actions needed to mitigate security-related risks, and compliance to the enhanced security requirements."
+          }
+        ]
+      },
+      {
+        "title": "SECURITY ASSESSMENT PLANS",
+        "content": [
+          {
+            "text": "The system security plan is used to describe how the organization meets or plans to meet the CUI enhanced security requirements. Once the organization completes the system security plan, a security assessment plan can be developed using the appropriate assessment procedures described in Chapter Three. An assessment procedure is developed for each enhanced security requirement that is selected for the system or system component. The assessment procedures can be tailored to meet the specific needs of the organization. [SP 800-53A] provides additional information on how organizations can prepare for assessments, develop assessment plans, conduct assessments, and analyze results."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "satisfied indicates that\n\u2013 for the security requirement addressed by the determination statement \u2013 the\nassessment information obtained (i.e., the evidence collected) demonstrates that the\nassessment objective has been met, producing a fully acceptable result. A finding of other than\nsatisfied indicates that\n\u2013 for the security requirement addressed by the determination statement \u2013 the\nassessment findings demonstrate potential anomalies that may need to be addressed by the\norganization. The findings may also indicate that the assessor was unable to obtain sufficient\ninformation to make the determination for reasons described in the assessment report."
+      },
+      {
+        "content": "For assessment findings that are other than satisfied, organizations may define subcategories of\nfindings that indicate the severity or criticality of the weaknesses or deficiencies discovered and\npotential adverse impacts on organizational missions or business functions. Such subcategories\ncan help to establish priorities for needed risk mitigation actions."
+      },
+      {
+        "title": "CAUTIONARY NOTE",
+        "content": [
+          {
+            "text": "This publication can be used for many different assessment-related purposes in determining\nwhether implementing organizations satisfy the CUI enhanced security requirements in [SP 800-172]. Organizations have the flexibility to tailor the assessment procedures by selecting the\nassessment methods and objects needed to achieve the stated assessment objectives. These\nmethods and objects are needed to obtain the evidence to support claims of compliance. There\nis no expectation that every assessment method and object in an assessment procedure will\nbe used for every assessment. Moreover, the list of potential assessment objects should not be\nviewed as required artifacts needed to determine compliance with the requirements."
+          },
+          {
+            "subsection": "3.1 ACCESS CONTROL",
+            "text": []
+          },
+          {
+            "text": "Employ dual authorization to execute critical or sensitive system and organizational\noperations."
+          },
+          {
+            "text": "Determine if:\n- 3.1.1e[a] Critical or sensitive system and organizational operations for which dual\nauthorization is to be enforced are identified.\n- 3.1.1e[b] Dual authorization is employed to execute critical or sensitive system and\norganizational operations."
+          },
+          {
+            "text": "3.1.1e Examine: [SELECT FROM: List of critical or sensitive system and\norganizational operations; access control policy; dual authorization policy; procedures addressing access\nenforcement and dual authorization; security plan; configuration management plan; system\ndesign documentation; system configuration settings and associated documentation; list of privilege\naccess authorizations; commands requiring dual authorization; list of actions\nrequiring dual authorization; system audit records; list of approved authorizations (user\nprivileges); system\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Generated List of Dual Authorization Credentials or Rules",
+        "content": [
+          {
+            "text": "Logs or records of deletion or destruction of backup information\nList of system media requiring dual authorization for sanitization\nAuthorization records\nMedia sanitization records\nAudit records\nOther relevant documents or records"
+          },
+          {
+            "subsection": "3.1.1e Interview",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: System and network administrators; system developers; organizational personnel responsible for access enforcement, system backup, dual authorization enforcement for implementing system changes, system media sanitization, audit and accountability, and information security]."
+          },
+          {
+            "subsection": "3.1.1e Test",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Mechanisms implementing the enforcement of dual authorization]."
+          }
+        ]
+      },
+      {
+        "title": "3.1.2e ENHANCED SECURITY REQUIREMENT",
+        "content": [
+          {
+            "text": "Restrict access to systems and system components to only those information resources that are owned, provisioned, or issued by the organization."
+          },
+          {
+            "subsection": "ASSESSMENT OBJECTIVE",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.1.2e[a] Information resources that are owned, provisioned, or issued by the organization are identified.\n- 3.1.2e[b] Access to systems and system components is restricted to only those information resources that are owned, provisioned, or issued by the organization."
+          },
+          {
+            "subsection": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Access control policy; procedures addressing the use of external systems; list of information resources owned, provisioned, or issued by the organization; security plan; system design documentation; system configuration settings and associated documentation; system connection or processing agreements; system audit records; account management documents; other relevant documents or records]."
+          },
+          {
+            "text": "[SELECT FROM: Organizational personnel responsible for restricting or prohibiting the use of non-organizationally owned systems, system components, or devices; system and network administrators; organizational personnel responsible for system security]."
+          },
+          {
+            "text": "[SELECT FROM: Mechanisms implementing restrictions on the use of non-organizationally owned systems, components, or devices]."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "3.1.3e Interview",
+        "content": [
+          {
+            "text": "[SELECT FROM: System and network administrators; organizational personnel responsible for information security; system developers]."
+          }
+        ]
+      },
+      {
+        "title": "3.1.3e Test",
+        "content": [
+          {
+            "text": "[SELECT FROM: Mechanisms implementing information flow enforcement policy; mechanisms implementing secure information transfer solutions]."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Supervisors",
+    "subsections": [
+      {
+        "title": "Potential Assessment Methods and Objects",
+        "content": [
+          {
+            "text": "Examine:\n- [SELECT FROM: Awareness training policy; procedures addressing awareness training implementation; appropriate codes of federal regulations; awareness training curriculum; awareness training materials; security plan; training records; threat information on social engineering, advanced persistent threat actors, suspicious behaviors, breaches, or other relevant adversary tactics, techniques, or procedures; feedback on practical exercises and awareness training; other relevant documents or records]."
+          },
+          {
+            "text": "Interview:\n- [SELECT FROM: Organizational personnel responsible for awareness training; organizational personnel responsible for information security; organizational personnel with roles identified for practical exercises; supervisors of personnel with roles identified for practical exercises]."
+          },
+          {
+            "text": "Test:\n- [SELECT FROM: Mechanisms managing awareness training; mechanisms managing threat information]."
+          }
+        ]
+      },
+      {
+        "title": "3.3 Audit and Accountability",
+        "content": [
+          {
+            "text": "There are no enhanced security requirements for audit and accountability."
+          }
+        ]
+      },
+      {
+        "title": "3.4 Configuration Management",
+        "content": [
+          {
+            "subsection": "3.4.1e Enhanced Security Requirement",
+            "text": []
+          },
+          {
+            "text": "Establish and maintain an authoritative source and repository to provide a trusted source and accountability for approved and implemented system components."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.4.1e[a] Approved system components are identified.\n- 3.4.1e[b] Implemented system components are identified.\n- 3.4.1e[c] An authoritative source and repository are established to provide a trusted source and accountability for approved and implemented system components.\n- 3.4.1e[d] An authoritative source and repository are maintained to provide a trusted source and accountability for approved and implemented system components."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine:\n- [SELECT FROM: Configuration management policy; procedures addressing the baseline configuration of the system; configuration management plan; enterprise architecture documentation; system design documentation; system architecture and configuration documentation; system configuration settings and associated documentation; change control records; system and system component inventory records; inventory reviews and update records; security plan; system audit records; change control audit and review reports; other relevant documents or records]."
+          },
+          {
+            "text": "Interview:\n- [SELECT FROM: Organizational personnel responsible for configuration management; organizational personnel responsible for system component inventory; organizational personnel responsible for configuration change control; organizational personnel responsible for information security; system/network administrators; members of a change control board or similar]."
+          },
+          {
+            "text": "Test:\n- [SELECT FROM: Mechanisms that implement configuration change control; mechanisms.\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Supporting Configuration Control of the Baseline Configuration",
+        "content": [
+          {
+            "text": "Mechanisms supporting and/or implementing the system component inventory."
+          },
+          {
+            "subsection": "3.4.2e Enhanced Security Requirement",
+            "text": []
+          },
+          {
+            "text": "Employ automated mechanisms to detect misconfigured or unauthorized system components; after detection, [Selection (one or more): remove the components; place the components in a quarantine or remediation network] to facilitate patching, reconfiguration, or other mitigations."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.4.2e_ODP[1] One or more of the following is/are selected: remove the components; place the components in a quarantine or remediation network.\n3.4.2e[a] Automated mechanisms to detect misconfigured or unauthorized system components are identified.\n3.4.2e[b] Automated mechanisms are employed to detect misconfigured or unauthorized system components.\n3.4.2e[c] Misconfigured or unauthorized system components are detected.\n3.4.2e[d] After detection, system components are <3.4.2.e_ODP[1]: removed and/or placed in a quarantine or remediation network> to facilitate patching, re-configuration, or other mitigations."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: Configuration management policy; procedures addressing the baseline configuration of the system; configuration management plan; authoritative source or repository; enterprise architecture documentation; system design documentation; system architecture and configuration documentation; system procedures addressing system configuration change control; configuration settings and associated documentation; change control records; change control audit and review reports; agenda/minutes from configuration change control oversight meetings; alerts/notifications of unauthorized baseline configuration changes; security plan; system audit records; other relevant documents or records]."
+          },
+          {
+            "text": "Interview: [SELECT FROM: Organizational personnel responsible for configuration management; organizational personnel responsible for information security; organizational personnel responsible for configuration change control; system developers; system/network administrators; members of a change control board or similar roles]."
+          },
+          {
+            "text": "Test: [SELECT FROM: Automated mechanisms supporting configuration control of the baseline configuration; automated mechanisms that implement security responses to changes to the baseline configurations; automated mechanisms that implement configuration change control; automated mechanisms that detect misconfigured or unauthorized system components]."
+          },
+          {
+            "subsection": "3.4.3e Enhanced Security Requirement",
+            "text": []
+          },
+          {
+            "text": "Employ automated discovery and management tools to maintain an up-to-date, complete, accurate, and readily available inventory of system components."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.4.3e[a] Automated discovery and management tools for the inventory of system components are identified.\n3.4.3e[b] An up-to-date, complete, accurate, and readily available inventory of system components exists.# 3.4.3e[c] Automated Discovery and Management Tools"
+          },
+          {
+            "text": "Automated discovery and management tools are employed to maintain an up-to-date, complete, accurate, and readily available inventory of system components."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.5 Identification and Authentication",
+    "subsections": [
+      {
+        "title": "3.5.1e Enhanced Security Requirement",
+        "content": [
+          {
+            "text": "Identify and authenticate [Assignment: organization-defined systems and system components] before establishing a network connection using bidirectional authentication that is cryptographically-based and replay-resistant."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.5.1e_ODP[1] Systems and system components to identify and authenticate are defined.\n3.5.1e[a] Bidirectional authentication that is cryptographically-based is implemented.\n3.5.1e[b] Bidirectional authentication that is replay-resistant is implemented.\n3.5.1e[c] <3.5.1e_ODP[1]: systems and system components> are identified and authenticated before establishing a network connection using bidirectional authentication that is cryptographically-based and replay-resistant."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "and/or implementing replay-resistant authentication mechanisms; mechanisms supporting and/or implementing an identification and authentication capability; mechanisms supporting and/or implementing a device identification and authentication capability]."
+      },
+      {
+        "title": "3.5.2e ENHANCED SECURITY REQUIREMENT",
+        "content": [
+          {
+            "text": "Employ automated mechanisms for the generation, protection, rotation, and management of passwords for systems and system components that do not support multifactor authentication or complex account management."
+          },
+          {
+            "subsection": "ASSESSMENT OBJECTIVE",
+            "text": []
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.5.2e[a] Systems and system components that do not support multifactor authentication or complex account management are identified.\n3.5.2e[b] Automated mechanisms for the generation, protection, rotation, and management of passwords for systems and system components that do not support multifactor authentication or complex account management are identified.\n3.5.2e[c] Automated mechanisms for the generation, protection, rotation, and management of passwords for systems and system components that do not support multifactor authentication or complex account management are employed."
+          },
+          {
+            "subsection": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: Identification and authentication policy; password policy; procedures addressing authenticator management; system design documentation; security plan; system configuration settings and associated documentation; list of system authenticator types; change control records associated with managing system authenticators; system audit records; password configurations and associated documentation; other relevant documents or records]."
+          },
+          {
+            "text": "Interview: [SELECT FROM: Organizational personnel responsible for information security; organizational personnel responsible for authenticator management; system developers; system/network administrators]."
+          },
+          {
+            "text": "Test: [SELECT FROM: Automated mechanisms supporting and/or implementing an authenticator management capability]."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Monitoring",
+    "subsections": [
+      {
+        "content": "Tools and techniques\nConfiguration management plan\nSecurity plan\nSystem design documentation\nSystem configuration settings and associated documentation\nSystem inventory records\nConfiguration management records\nSystem monitoring records\nAlerts/notifications of unauthorized components within the system\nChange control records\nSystem audit records\nSystem monitoring tools and techniques documentation\nDocumented authorization/approval of network services\nNotifications or alerts of unauthorized network services\nSystem monitoring logs or records\nOther relevant documents or records"
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "Select from:\n- Organizational personnel responsible for managing the mechanisms implementing unauthorized system component detection\n- Organizational personnel responsible for device identification and authentication\n- Organizational personnel responsible for information security\n- Organizational personnel responsible for installing, configuring, and/or maintaining the system\n- System/network administrators\n- Organizational personnel responsible for monitoring the system\n- System developers"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.6 Incident Response",
+    "subsections": [
+      {
+        "title": "3.6.1e Enhanced Security Requirement",
+        "content": [
+          {
+            "text": "Establish and maintain a security operations center capability that operates [Assignment: organization-defined time period]."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.6.1e_ODP[1] A time period to operate a security operations center capability is defined.\n- 3.6.1e[a] A security operations center capability is established.\n- 3.6.1e[b] The security operations center capability operates <3.6.1e_ODP[1]: time period>.\n- 3.6.1e[c] The security operations center capability is maintained."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine:\n- Select from:\n- Incident response policy\n- Contingency planning policy\n- Procedures addressing incident handling\n- Procedures addressing the security operations center operations\n- Mechanisms supporting dynamic response capabilities\n- Incident response plan\n- Contingency plan\n- Security plan\n- Other relevant documents or records"
+          },
+          {
+            "text": "Interview:\n- Select from:\n- Organizational personnel responsible for incident handling\n- Organizational personnel responsible for contingency planning\n- Security operations center personnel\n- Organizational personnel responsible for information security"
+          },
+          {
+            "text": "Test:\n- Select from:\n- Mechanisms that support and/or implement the security\n```# Operations Center"
+          }
+        ]
+      },
+      {
+        "title": "Capability",
+        "content": [
+          {
+            "text": "Mechanisms that support and/or implement the incident handling process."
+          },
+          {
+            "subsection": "3.6.2e Enhanced Security Requirement",
+            "text": []
+          },
+          {
+            "text": "Establish and maintain a cyber incident response team that can be deployed by the organization within [Assignment: organization-defined time period]."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.6.2e_ODP[1] A time period for deploying a cyber incident response team is defined.\n- 3.6.2e[a] A cyber incident response team is established.\n- 3.6.2e[b] The cyber incident response team can be deployed by the organization within <3.6.2e_ODP[1]: time period>.\n- 3.6.2e[c] The cyber incident response team is maintained."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: Incident response policy; procedures addressing incident response; incident response plan; security plan; other relevant documents or records].\nInterview: [SELECT FROM: Organizational personnel responsible for incident response; organizational personnel from the incident response team; organizational personnel responsible for information security].\nTest: [SELECT FROM: Mechanisms supporting and/or implementing incident response]."
+          }
+        ]
+      },
+      {
+        "title": "3.7 Maintenance",
+        "content": [
+          {
+            "text": "There are no enhanced security requirements for maintenance."
+          }
+        ]
+      },
+      {
+        "title": "3.8 Media Protection",
+        "content": [
+          {
+            "text": "There are no enhanced security requirements for media protection."
+          }
+        ]
+      },
+      {
+        "title": "3.9 Personnel Security",
+        "content": [
+          {
+            "subsection": "3.9.1e Enhanced Security Requirement",
+            "text": []
+          },
+          {
+            "text": "Conduct [Assignment: organization-defined enhanced personnel screening] for individuals and reassess individual positions and access to CUI [Assignment: organization-defined frequency]."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.9.1e_ODP[1] Enhanced personnel screening for individuals is defined.\n- 3.9.1e_ODP[2] The frequency with which to reassess individual positions and access to CUI is defined.\n- 3.9.1e[a] Individuals that require enhanced personnel screening are identified.\n- 3.9.1e[b] Positions that require access to CUI are identified.\n- 3.9.1e[c] <3.9.1e_ODP[1]: enhanced personnel screening> is conducted for individuals.\n- 3.9.1e[d] Individual positions and access to CUI is reassessed <3.9.1e_ODP[2]: frequency>."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: Personnel security policy; system and services acquisition policy; records of screened personnel; procedures addressing personnel screening; security plan; list of appropriate access authorizations required by developers of the system; personnel screening criteria and associated documentation; other relevant documents or records].\nInterview: [SELECT FROM: Organizational personnel responsible for personnel security; organizational personnel responsible for information security; organizational personnel responsible for system and services acquisition; organizational personnel responsible for].# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.11.1e[f]",
+    "subsections": [
+      {
+        "title": "Sources of Threat Intelligence",
+        "content": [
+          {
+            "text": "are employed as part of a risk assessment to guide and inform response and recovery activities."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.11.2e Enhanced Security Requirement",
+    "subsections": [
+      {
+        "content": "Conduct cyber threat hunting activities [Selection (one or more): [Assignment: organization-defined frequency]; [Assignment: organization-defined event]] to search for indicators of compromise in [Assignment: organization-defined systems] and detect, track, and disrupt threats that evade existing controls."
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": []
+  },
+  {
+    "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+    "subsections": [
+      {
+        "title": "Examine:",
+        "content": [
+          {
+            "text": "[SELECT FROM: System and information integrity policy; policy and procedures addressing system monitoring; threat hunting program documentation; procedures for the threat hunting program; threat hunting results; system design documentation; security plan; system monitoring tools and techniques documentation; security planning policy and procedures; system configuration settings and associated documentation; system monitoring logs or records; system audit records; other relevant documents or records]."
+          }
+        ]
+      },
+      {
+        "title": "Interview:",
+        "content": [
+          {
+            "text": "[SELECT FROM: Organizational personnel responsible for threat hunting program; system/network administrators; organizational personnel responsible for information security; system developers; organizational personnel installing, configuring, and/or maintaining the system; organizational personnel responsible for monitoring the system and/or network]."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.11.3e ENHANCED SECURITY REQUIREMENT",
+    "subsections": [
+      {
+        "content": "Employ advanced automation and analytics capabilities in support of analysts to predict and identify risks to organizations, systems, and system components."
+      }
+    ]
+  },
+  {
+    "title": "ASSESSMENT OBJECTIVE",
+    "subsections": [
+      {
+        "content": "Determine if:"
+      },
+      {
+        "content": "Advanced automation and analytics capabilities to predict and identify risks to organizations, systems, and system components are identified."
+      },
+      {
+        "content": "Analysts to predict and identify risks to organizations, systems, and system components are identified."
+      },
+      {
+        "content": "Advanced automation and analytics capabilities are employed in support of analysts to predict and identify risks to organizations, systems, and system components."
+      }
+    ]
+  },
+  {
+    "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+    "subsections": [
+      {
+        "title": "Examine:",
+        "content": [
+          {
+            "text": "[SELECT FROM: System and information integrity policy; risk assessment policy; security planning policy and procedures; procedures addressing organizational assessments of risk; procedures addressing system monitoring; enterprise architecture documentation; system design documentation; system architecture and configuration documentation; system monitoring tools and techniques documentation; system configuration settings and associated documentation; system monitoring logs or records; system audit records; security plan; risk assessment artifacts; risk assessment results; risk].\n```# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Assessment Reviews",
+        "content": [
+          {
+            "text": "Risk assessment updates; other relevant documents or records."
+          }
+        ]
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "Select from:\nOrganizational personnel responsible for information security;\nOrganizational personnel responsible for risk assessments;\nRisk analysts;\nSystem developers;\nOrganizational personnel installing, configuring, and/or maintaining the system;\nOrganizational personnel responsible for monitoring;\nSystem/network administrators."
+          }
+        ]
+      },
+      {
+        "title": "Test",
+        "content": [
+          {
+            "text": "Select from:\nAutomated mechanisms supporting and/or implementing risk analytics capabilities;\nAutomated mechanisms supporting and/or implementing system monitoring capability;\nAutomated mechanisms supporting and/or implementing the discovery, collection, distribution, and use of indicators of compromise;\nAutomated mechanisms for conducting, documenting, reviewing, disseminating, and updating risk assessments."
+          }
+        ]
+      },
+      {
+        "title": "3.11.4e Enhanced Security Requirement",
+        "content": [
+          {
+            "text": "Document or reference in the system security plan the security solution selected, the rationale for the security solution, and the risk determination."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n3.11.4e[a] The system security plan documents or references the security solution selected.\n3.11.4e[b] The system security plan documents or references the rationale for the security solution.\n3.11.4e[c] The system security plan documents or references the risk determination."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine:\nSelect from:\nSystem security plan;\nRecords of security plan reviews and updates;\nSystem design documentation;\nSecurity planning policy;\nProcedures addressing security plan development;\nProcedures addressing security plan reviews and updates;\nEnterprise architecture documentation;\nEnterprise security architecture documentation;\nSystem interconnection security agreements and other information exchange agreements;\n\nOther relevant documents or records.\n\n\nInterview:\n\nSelect from:\nOrganizational personnel responsible for information security;\nOrganizational personnel responsible for developing, implementing, or approving system interconnection and information exchange agreements;\nPersonnel managing the systems to which the Interconnection Security Agreement/Information Exchange Agreement applies;\nSystem developers;\nOrganizational personnel responsible for security planning and plan implementation;\nOrganizational personnel responsible for boundary protection;\nSystem developers;\n\nSystem/network administrators.\n\n\nTest:\n\nSelect from:\nOrganizational processes for security plan development, review, update, and approval."
+          },
+          {
+            "text": "Other relevant documents or records."
+          },
+          {
+            "text": "Interview:"
+          },
+          {
+            "text": "System/network administrators."
+          },
+          {
+            "text": "Test:"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT PAGE RAW OCR TEXT",
+    "subsections": [
+      {
+        "title": "Determine if:",
+        "content": [
+          {
+            "subsection": "3.11.5e_ODP[1]",
+            "text": []
+          },
+          {
+            "text": "The frequency to assess the effectiveness of security solutions is defined."
+          },
+          {
+            "subsection": "3.11.5e[a]",
+            "text": []
+          },
+          {
+            "text": "Security solutions are identified."
+          },
+          {
+            "subsection": "3.11.5e[b]",
+            "text": []
+          },
+          {
+            "text": "Current and accumulated threat intelligence is identified."
+          },
+          {
+            "subsection": "3.11.5e[c]",
+            "text": []
+          },
+          {
+            "text": "Anticipated risk to organizational systems and the organization based on current and accumulated threat intelligence is identified."
+          },
+          {
+            "subsection": "3.11.5e[d]",
+            "text": []
+          },
+          {
+            "text": "The effectiveness of security solutions is assessed <3.11.5e_ODP[1]: frequency> to address anticipated risk to organizational systems and the organization based on current and accumulated threat intelligence."
+          }
+        ]
+      },
+      {
+        "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+        "content": [
+          {
+            "subsection": "Examine:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Risk assessment policy; security planning policy and procedures; security assessment policy and procedures; security assessment plans; security assessment results; procedures addressing organizational assessments of risk; security plan; risk assessment; risk assessment results; risk assessment reviews; risk assessment updates; threat intelligence information; other relevant documents or records]."
+          },
+          {
+            "subsection": "Interview:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Organizational personnel responsible for security assessments; organizational personnel responsible for risk assessments; organizational personnel responsible for threat analysis; organizational personnel responsible for information security]."
+          },
+          {
+            "subsection": "Test:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Mechanisms supporting, conducting, documenting, reviewing, disseminating, and updating risk assessments; mechanisms supporting and/or implementing security assessments]."
+          }
+        ]
+      },
+      {
+        "title": "3.11.6e ENHANCED SECURITY REQUIREMENT",
+        "content": [
+          {
+            "text": "Assess, respond to, and monitor supply chain risks associated with organizational systems and system components."
+          }
+        ]
+      },
+      {
+        "title": "ASSESSMENT OBJECTIVE",
+        "content": [
+          {
+            "subsection": "Determine if:",
+            "text": []
+          },
+          {
+            "text": "Supply chain risks associated with organizational systems and system components are identified."
+          },
+          {
+            "text": "Supply chain risks associated with organizational systems and system components are assessed."
+          },
+          {
+            "text": "Supply chain risks associated with organizational systems and system components are responded to."
+          },
+          {
+            "text": "Supply chain risks associated with organizational systems and system components are monitored."
+          }
+        ]
+      },
+      {
+        "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+        "content": [
+          {
+            "subsection": "Examine:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Risk assessment policy; procedures addressing organizational assessments of risk; security planning policy and procedures; supply chain risk management plan; security plan; risk assessment; risk assessment results; risk assessment reviews; risk assessment updates; threat intelligence information; other relevant documents or records]."
+          },
+          {
+            "subsection": "Interview:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Organizational personnel responsible for information security; organizational personnel responsible for risk assessments; organizational personnel responsible for supply chain risk management]."
+          },
+          {
+            "subsection": "Test:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Mechanisms supporting, conducting, documenting, reviewing, disseminating, and updating risk assessments].\n```# 3.11.7e ENHANCED SECURITY REQUIREMENT\nDevelop a plan for managing supply chain risks associated with organizational systems and system components; update the plan [Assignment: organization-defined frequency]."
+          }
+        ]
+      },
+      {
+        "title": "ASSESSMENT OBJECTIVE",
+        "content": [
+          {
+            "text": "Determine if:\n- 3.11.7e_ODP[1] The frequency for updating the supply chain risk management plan is defined.\n- 3.11.7e[a] Supply chain risks associated with organizational systems and system components are identified.\n- 3.11.7e[b] Organizational systems and system components to include in a supply chain risk management plan are identified.\n- 3.11.7e[c] A plan for managing supply chain risks associated with organizational systems and system components is developed.\n- 3.11.7e[d] The plan for managing supply chain risks is updated <3.11.7e_ODP[1]: frequency>."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.12 SECURITY ASSESSMENT",
+    "subsections": []
+  },
+  {
+    "title": "3.13 SYSTEM AND COMMUNICATIONS PROTECTION",
+    "subsections": [
+      {
+        "title": "3.13.1e ENHANCED SECURITY REQUIREMENT",
+        "content": [
+          {
+            "text": "Create diversity in [Assignment: organization-defined system components] to# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Reduce the extent of malicious code propagation.",
+        "content": [
+          {
+            "subsection": "ASSESSMENT OBJECTIVE",
+            "text": []
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.13.1e_ODP[1] System components that require diversity are defined.\n3.13.1e[a] Diversity in <3.13.1e_ODP[1]: system components> is created to reduce the extent of malicious code propagation."
+          },
+          {
+            "subsection": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: Security planning policy; procedures addressing information security architecture development; procedures addressing information security architecture reviews and updates; enterprise architecture documentation; information security architecture documentation; security plan; security CONOPS for the system; records of information security architecture reviews and updates; system and communications protection policy; system design documentation; system component inventory; list of technologies deployed in the system; acquisition documentation; acquisition contracts for system components or services; system audit records; system and services acquisition policy; enterprise architecture policy; procedures addressing developer security architecture and design specification for the system; solicitation documentation; service-level agreements; design specification and security architecture documentation for the system; other relevant documents or records]."
+          },
+          {
+            "text": "Interview: [SELECT FROM: Organizational personnel responsible for information security; organizational personnel responsible for information security architecture design and development; organizational personnel responsible for system acquisition, development, and implementation; system/network administrators; system developers]."
+          },
+          {
+            "text": "Test: [SELECT FROM: Mechanisms supporting and/or implementing the development, review, and update of the information security architecture; mechanisms supporting and/or implementing employment of a diverse set of information technologies]."
+          }
+        ]
+      },
+      {
+        "title": "3.13.2e ENHANCED SECURITY REQUIREMENT",
+        "content": [
+          {
+            "text": "Implement the following changes to organizational systems and system components to introduce a degree of unpredictability into operations: [Assignment: organization-defined changes and frequency of changes by system and system component]."
+          },
+          {
+            "subsection": "ASSESSMENT OBJECTIVE",
+            "text": []
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.13.2e_ODP[1] Changes to organizational systems and system components to introduce a degree of unpredictability into operations are defined.\n3.13.2e_ODP[2] The frequency of changes by system and system components is defined.\n3.13.2e[a] Organizational systems and system components necessitating unpredictability are identified.\n3.13.2e[b] <3.13.2e_ODP[1]: changes> to organizational systems and system components are implemented <3.13.2e_ODP[2]: frequency> to introduce a degree of unpredictability into operations."
+          },
+          {
+            "subsection": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: System and communications protection policy; procedures addressing concealment and misdirection techniques for the system; system design documentation; security plan; system configuration settings and associated documentation; system change control documentation; system architecture documentation; list of].# Techniques to Introduce Randomness into Organizational Operations"
+          }
+        ]
+      },
+      {
+        "title": "Techniques to be Employed",
+        "content": [
+          {
+            "text": "Introduce randomness into organizational operations and assets.\nSystem audit records.\nOther relevant documents or records."
+          }
+        ]
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "Select from:\n- Organizational personnel responsible for information security.\n- Organizational personnel responsible for change management.\n- Organizational personnel responsible for implementing concealment and misdirection techniques for systems.\n- System/network administrators."
+          }
+        ]
+      },
+      {
+        "title": "Test",
+        "content": [
+          {
+            "text": "Select from:\n- Mechanisms supporting and/or implementing randomness as a concealment and misdirection technique.\n- Mechanisms supporting and/or implementing change control for the system."
+          }
+        ]
+      },
+      {
+        "title": "3.13.3e Enhanced Security Requirement",
+        "content": [
+          {
+            "text": "Employ [Assignment: organization-defined technical and procedural means] to confuse and mislead adversaries."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.13.3e_ODP[1] Technical and procedural means to confuse and mislead adversaries are defined.\n- 3.13.3e[a] <3.13.3e_ODP[1]: technical and procedural means> are employed to confuse and mislead adversaries."
+          },
+          {
+            "subsection": "Potential Assessment Methods and Objects",
+            "text": []
+          },
+          {
+            "text": "Examine:\n- Select from:\n- System and communications protection policy.\n- Procedures addressing concealment and misdirection techniques for the system.\n- List of concealment and misdirection techniques to be employed for organizational systems.\n- System design documentation.\n- Procedures addressing the use of honeypots.\n- Security plan.\n- System configuration settings and associated documentation.\n- System design documentation.\n- System architecture.\n- List of techniques to be employed to introduce randomness into organizational operations and assets.\n- System audit records.\n- Other relevant documents or records."
+          },
+          {
+            "text": "Interview:\n- Select from:\n- Organizational personnel responsible for information security.\n- System developers.\n- System/network administrators.\n- Organizational personnel responsible for implementing concealment and misdirection techniques for systems."
+          },
+          {
+            "text": "Test:\n- Select from:\n- Mechanisms supporting and/or implementing the concealment or randomization of communications patterns.\n- Mechanisms supporting and/or implementing alternative physical safeguards.\n- Mechanisms supporting and/or implementing honeypots.\n- Mechanisms supporting and/or implementing concealment and misdirection techniques."
+          }
+        ]
+      },
+      {
+        "title": "3.13.4e Enhanced Security Requirement",
+        "content": [
+          {
+            "text": "Employ [Selection: (one or more): [Assignment: organization-defined physical isolation techniques]; [Assignment: organization-defined logical isolation techniques]] in organizational systems and system components."
+          },
+          {
+            "subsection": "Assessment Objective",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.13.4e_ODP[1] One or more of the following is/are selected: physical isolation techniques; logical isolation techniques.\n- 3.13.4e_ODP[2] Physical isolation techniques are defined. (If selected in 3.13.4e_ODP[1])\n- 3.13.4e_ODP[3] Logical isolation techniques are defined. (If selected in 3.13.4e_ODP[1])# 3.13.4e"
+          },
+          {
+            "text": "[3.13.4e_ODP[2]: physical isolation techniques and/or 3.13.4e_ODP[3] logical isolation techniques] are employed in organizational systems and system components.**"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.13.5e ENHANCED SECURITY REQUIREMENT",
+    "subsections": [
+      {
+        "content": "Distribute and relocate the following system functions or resources [Assignment: organization-defined frequency]: [Assignment: organization-defined system functions or resources]."
+      },
+      {
+        "title": "ASSESSMENT OBJECTIVE",
+        "content": [
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.13.5e_ODP[1] System functions or resources to distribute and relocate are defined.\n3.13.5e_ODP[2] Frequency to distribute and relocate system functions or resources is defined.\n3.13.5e[a] <3.13.5e_ODP[1]: system functions or resources> are distributed and relocated <3.13.5e_ODP[2]: frequency>."
+          }
+        ]
+      },
+      {
+        "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+        "content": [
+          {
+            "text": "Examine: [SELECT FROM: System and communications protection policy; security plan; configuration management policy and procedures; procedures addressing concealment and misdirection techniques for the system; list of processing/storage locations to be changed at organizational time intervals; system component inventory; change control records; configuration management records; system audit records; other relevant documents or records]."
+          },
+          {
+            "text": "Interview: [SELECT FROM: Organizational personnel responsible for information security; organizational personnel responsible for changing processing and/or storage].# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "locations;",
+        "content": [
+          {
+            "subsection": "system/network administrators].",
+            "text": []
+          },
+          {
+            "subsection": "Test:",
+            "text": []
+          },
+          {
+            "text": "[SELECT FROM: Mechanisms supporting and/or implementing changing processing and/or storage locations]."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "Settings",
+        "content": [
+          {
+            "text": "and associated documentation; system protocols; system audit records; security plan; system component inventory; records of actions taken to terminate suspicious events; alerts/notifications generated based on detected suspicious events; network diagram; system monitoring logs or records; list of profiles representing common traffic patterns and/or events; system protocols documentation; list of acceptable thresholds for false positives and false negatives; list of individuals who have been identified as posing an increased level of risk; list of privileged users; other relevant documents or records]."
+          }
+        ]
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "[SELECT FROM: Organizational personnel responsible for audit review, analysis, and reporting; organizational personnel responsible for information security; organizational personnel responsible for physical access monitoring; organizational personnel responsible for installing, configuring, and/or maintaining the system; organizational personnel responsible for monitoring the system; organizational personnel responsible for the intrusion detection system; system/network administrators]."
+          }
+        ]
+      },
+      {
+        "title": "Test",
+        "content": [
+          {
+            "text": "[SELECT FROM: Mechanisms supporting and/or implementing the system monitoring capability; mechanisms supporting and/or implementing actions to terminate suspicious events; mechanisms supporting and/or implementing the monitoring of inbound/outbound communications traffic; mechanisms implementing the capability to correlate information from audit records with information from monitoring physical access; mechanisms supporting and/or implementing notifications to incident response personnel; mechanisms supporting and/or implementing analysis of outbound communications traffic; mechanisms supporting and/or implementing analysis of communications traffic/event patterns]."
+          },
+          {
+            "subsection": "3.14.3e ENHANCED SECURITY REQUIREMENT",
+            "text": []
+          },
+          {
+            "text": "Ensure that [Assignment: organization-defined systems and system components] are included in the scope of the specified enhanced security requirements or are segregated in purpose-specific networks."
+          },
+          {
+            "subsection": "ASSESSMENT OBJECTIVE",
+            "text": []
+          },
+          {
+            "text": "Determine if:\n- 3.14.3e_ODP[1] Systems and system components included in the scope of the specified enhanced security requirements are identified.\n- 3.14.3e[a] <3.14.3e_ODP[1]: systems and system components> are included in the scope of the specified enhanced security requirements.\n- 3.14.3e[b] Systems and system components that are not included in <3.14.3e_ODP[1]: systems and system components> are segregated in purpose-specific networks."
+          },
+          {
+            "subsection": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+            "text": []
+          },
+          {
+            "text": "Examine: [SELECT FROM: Access control policy; information flow control policies; system and services acquisition policy; system and communications protection policy; procedures addressing security function isolation; procedures addressing application partitioning; procedures addressing security engineering principles used in the specification, design,\n```# Development, Implementation, and Modification of the System"
+          }
+        ]
+      },
+      {
+        "title": "Procedures",
+        "content": [
+          {
+            "text": "Addressing information flow enforcement\nAddressing access enforcement\nSystem architecture\nSystem design documentation\nSecurity plan\nSystem component inventory\nSystem configuration settings and associated documentation\nSystem baseline configuration\nList of security functions to be isolated from non-security functions\nSystem audit records\nSecurity requirements and specifications for the system\nList of approved authorizations (user privileges)\nList of information flow authorizations\nOther relevant documents or records"
+          }
+        ]
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "Select from:\n- Organizational personnel responsible for access enforcement\n- System/network administrators\n- Organizational personnel responsible for information security\n- System developers\n- System integrators\n- Organizational personnel responsible for acquisition/contracting\n- Organizational personnel responsible for determining system security requirements\n- System security architects\n- Enterprise architects\n- Organizational personnel responsible for system specification, design, development, implementation, and modification"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.14.4e Enhanced Security Requirement",
+    "subsections": [
+      {
+        "content": "Refresh [Assignment: organization-defined systems and system components] from a known, trusted state [Assignment: organization-defined frequency]."
+      },
+      {
+        "title": "Assessment Objective",
+        "content": [
+          {
+            "text": "Determine if:\n- 3.14.4e_ODP[1] Systems and system components to refresh from a known, trusted state are defined.\n- 3.14.4e_ODP[2] The frequency to refresh systems and systems components is defined.\n- 3.14.4e[a] A known, trusted state is identified for <3.14.4e_ODP[1]: systems and system components>.\n- 3.14.4e[b] <3.14.4e_ODP[1]: systems and system components> are refreshed from a known, trusted state ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.14.5e Enhanced Security Requirement",
+    "subsections": [
+      {
+        "content": "Conduct reviews of persistent organizational storage locations [Assignment: organization-defined frequency] and remove CUI that is no longer needed.```markdown"
+      }
+    ]
+  },
+  {
+    "title": "ASSESSMENT OBJECTIVE",
+    "subsections": [
+      {
+        "content": "Determine if:"
+      },
+      {
+        "title": "3.14.5e_ODP[1]",
+        "content": [
+          {
+            "text": "The frequency with which to conduct reviews of persistent organizational storage locations is defined."
+          }
+        ]
+      },
+      {
+        "title": "3.14.5e[a]",
+        "content": [
+          {
+            "text": "Persistent organizational storage locations are identified."
+          }
+        ]
+      },
+      {
+        "title": "3.14.5e[b]",
+        "content": [
+          {
+            "text": "Reviews of persistent organizational storage locations are conducted to identify CUI that is no longer needed."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+    "subsections": [
+      {
+        "content": "Examine: [SELECT FROM: System and communications protection policy; procedures addressing the protection of information at rest; system and information integrity policy; procedures addressing non-persistence for system components; system audit records; system design documentation; system configuration settings and associated documentation; security plan; cryptographic mechanisms and associated configuration documentation; offline storage locations for information at rest; system audit records; other relevant documents or records]."
+      },
+      {
+        "content": "Interview: [SELECT FROM: System/network administrators; system developers; organizational personnel responsible for non-persistence; organizational personnel responsible for information security]."
+      },
+      {
+        "content": "Test: [SELECT FROM: Mechanisms supporting and/or implementing the removal of information from online storage; mechanisms supporting and/or implementing the storage of information offline; mechanisms supporting and/or implementing the initiation and termination of nonpersistent components]."
+      }
+    ]
+  },
+  {
+    "title": "3.14.6e ENHANCED SECURITY REQUIREMENT",
+    "subsections": [
+      {
+        "content": "Use threat indicator information and effective mitigations obtained from [Assignment: organization-defined external organizations] to guide and inform intrusion detection and threat hunting."
+      }
+    ]
+  },
+  {
+    "title": "ASSESSMENT OBJECTIVE",
+    "subsections": [
+      {
+        "content": "Determine if:"
+      },
+      {
+        "title": "3.14.6e_ODP[1]",
+        "content": [
+          {
+            "text": "External organizations from which to obtain threat indicator information and effective mitigations are defined."
+          }
+        ]
+      },
+      {
+        "title": "3.14.6e[a]",
+        "content": [
+          {
+            "text": "Threat indicator information is identified."
+          }
+        ]
+      },
+      {
+        "title": "3.14.6e[b]",
+        "content": [
+          {
+            "text": "Effective mitigations are identified."
+          }
+        ]
+      },
+      {
+        "title": "3.14.6e[c]",
+        "content": [
+          {
+            "text": "Intrusion detection approaches are identified."
+          }
+        ]
+      },
+      {
+        "title": "3.14.6e[d]",
+        "content": [
+          {
+            "text": "Threat hunting activities are identified."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "POTENTIAL ASSESSMENT METHODS AND OBJECTS",
+    "subsections": [
+      {
+        "content": "Examine: [SELECT FROM: System and information integrity policy; information security program plan; procedures addressing security alerts, advisories, and directives; threat awareness program documentation; procedures addressing system monitoring; procedures for the threat awareness program; risk assessment results relevant to threat awareness; records of security alerts and advisories; system design documentation; security plan; system monitoring tools and techniques documentation; system configuration settings and associated documentation; system monitoring logs or records; system audit records;].\n``````markdown"
+      }
+    ]
+  },
+  {
+    "title": "Documentation on the Cross-Organization Information-Sharing Capability",
+    "subsections": [
+      {
+        "content": "other relevant documents or records."
+      },
+      {
+        "title": "Interview",
+        "content": [
+          {
+            "text": "[SELECT FROM: Organizational personnel responsible for information security program planning and plan implementation; system/network administrators; organizational personnel responsible for the threat awareness program; organizational personnel responsible for the cross-organization information-sharing capability; organizational personnel responsible for information security; organizational personnel responsible for installing, configuring, and/or maintaining the system; organizational personnel responsible for monitoring system hosts; organizational personnel responsible for security alerts and advisories; organizational personnel responsible for implementing, operating, maintaining, and using the system; organizational personnel, organizational elements, and/or external organizations to whom alerts, advisories, and directives are to be disseminated; personnel with whom threat awareness information is shared by the organization; system developers]."
+          }
+        ]
+      },
+      {
+        "title": "Test",
+        "content": [
+          {
+            "text": "[SELECT FROM: Mechanisms supporting and/or implementing the threat awareness program; mechanisms supporting and/or implementing the cross-organization information-sharing capability; mechanisms supporting and/or implementing the system monitoring capability; mechanisms supporting and/or implementing the definition, receipt, generation, and dissemination of security alerts, advisories, and directives; mechanisms supporting and/or implementing security directives; mechanisms supporting and/or implementing threat hunting; mechanisms supporting and/or implementing intrusion detection; mechanisms supporting and/or implementing the discovery, collection, distribution, and use of indicators of compromise]."
+          },
+          {
+            "subsection": "3.14.7e Enhanced Security Requirement",
+            "text": []
+          },
+          {
+            "text": "Verify the correctness of [Assignment: organization-defined security critical or essential software, firmware, and hardware components] using [Assignment: organization-defined verification methods or techniques]."
+          },
+          {
+            "text": "Determine if:"
+          },
+          {
+            "text": "3.14.7e_ODP[1] Security critical or essential software components for which to verify correctness are defined.\n3.14.7e_ODP[2] Security critical or essential firmware components for which to verify correctness are defined.\n3.14.7e_ODP[3] Security critical or essential hardware components for which to verify correctness are defined.\n3.14.7e_ODP[4] Verification methods or techniques are defined.\n3.14.7e[a] The correctness of <3.14.7e_ODP[1]: security critical or essential software components> is verified using <3.14.7e_ODP[4]: verification methods or techniques>.\n3.14.7e[b] The correctness of <3.14.7e_ODP[2]: security critical or essential firmware components> is verified using <3.14.7e_ODP[4]: verification methods or techniques>.\n```# 3.14.7e[c]"
+          },
+          {
+            "text": "The correctness of <3.14.7e_ODP[3]: security critical or essential hardware components> is verified using <3.14.7e_ODP[4]: verification methods or techniques>."
+          }
+        ]
+      }
+    ]
+  }
+]

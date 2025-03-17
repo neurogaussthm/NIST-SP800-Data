@@ -1,0 +1,135 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "Few software development life cycle (SDLC) models explicitly address software security in detail, so secure software development practices usually need to be added to each SDLC model to ensure that the software being developed is well-secured. This document recommends the Secure Software Development Framework (SSDF) \u2013 a core set of high-level secure software development practices that can be integrated into each SDLC implementation. Following such practices should help software producers reduce the number of vulnerabilities in released software, reduce the potential impact of the exploitation of undetected or unaddressed vulnerabilities, and address the root causes of vulnerabilities to prevent future recurrences. Because the framework provides a common vocabulary for secure software development, software acquirers can also use it to foster communications with suppliers in acquisition processes and other management activities."
+      }
+    ]
+  },
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "This document describes a set of fundamental, sound practices for secure software development called the Secure Software Development Framework (SSDF). Organizations should integrate the SSDF throughout their existing software development practices, express their secure software development requirements to third-party suppliers using SSDF conventions, and acquire software that meets the practices described in the SSDF. Using the SSDF helps organizations to meet the following secure software development recommendations:"
+      },
+      {
+        "content": "\nOrganizations should ensure that their people, processes, and technology are prepared to perform secure software development.\nOrganizations should protect all components of their software from tampering and unauthorized access.\nOrganizations should produce well-secured software with minimal security vulnerabilities in its releases.\nOrganizations should identify residual vulnerabilities in their software releases and respond appropriately to address those vulnerabilities and prevent similar ones from occurring in the future.\n"
+      },
+      {
+        "content": "The SSDF does not prescribe how to implement each practice. The focus is on the outcomes of the practices rather than on the tools, techniques, and mechanisms to do so. This means that the SSDF can be used by organizations in any sector or community, regardless of size or cybersecurity sophistication. It can also be used for any type of software development, regardless of technology, platform, programming language, or operating environment."
+      },
+      {
+        "content": "The SSDF defines only a high-level subset of what organizations may need to do, so organizations should consult the references and other resources for additional information on implementing the practices. Not all practices are applicable to all use cases; organizations should adopt a risk-based approach to determine what practices are relevant, appropriate, and effective.\n``````markdown"
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "to mitigate the threats to their software development practices. Organizations can communicate how they are addressing the clauses from Section 4 of the President's Executive Order (EO) on \"Improving the Nation's Cybersecurity (14028)\" by referencing the SSDF practices and tasks described in Appendix A."
+      },
+      {
+        "title": "1 Introduction",
+        "content": [
+          {
+            "text": "A software development life cycle (SDLC) is a formal or informal methodology for designing, creating, and maintaining software (including code built into hardware). There are many models for SDLCs, including waterfall, spiral, agile, and \u2013 in particular \u2013 agile combined with software development and IT operations (DevOps) practices. Few SDLC models explicitly address software security in detail, so secure software development practices usually need to be added to and integrated into each SDLC model. Regardless of which SDLC model is used, secure software development practices should be integrated throughout it for three reasons: to reduce the number of vulnerabilities in released software, to reduce the potential impact of the exploitation of undetected or unaddressed vulnerabilities, and to address the root causes of vulnerabilities to prevent recurrences. Vulnerabilities include not just bugs caused by coding flaws, but also weaknesses caused by security configuration settings, incorrect trust assumptions, and outdated risk analysis. [IR7864]"
+          },
+          {
+            "text": "Most aspects of security can be addressed multiple times within an SDLC, but in general, the earlier in the SDLC that security is addressed, the less effort and cost is ultimately required to achieve the same level of security. This principle, known as shifting left, is critically important regardless of the SDLC model. Shifting left minimizes any technical debt that would require remediating early security flaws late in development or after the software is in production. Shifting left can also result in software with stronger security and resiliency."
+          },
+          {
+            "text": "There are many existing documents on secure software development practices, including those listed in the References section. This document does not introduce new practices or define new terminology. Instead, it describes a set of high-level practices based on established standards, guidance, and secure software development practice documents. These practices, collectively called the Secure Software Development Framework (SSDF), are intended to help the target audiences achieve secure software development objectives. Many of the practices directly involve the software itself, while others indirectly involve it (e.g., securing the development environment)."
+          },
+          {
+            "text": "Future work may expand on this publication and potentially cover topics such as how the SSDF may apply to and vary for particular software development methodologies and associated practices like DevOps, how an organization can transition from their current software development practices to also incorporating the SSDF practices, and how the SSDF could be\n```# Secure Software Development Practices"
+          },
+          {
+            "text": "applied in the context of open-source software. Future work will likely take the form of use cases so that the insights will be more readily applicable to specific types of development environments, and it will likely include collaboration with the open-source community and other groups and organizations."
+          },
+          {
+            "text": "This document identifies secure software development practices but does not prescribe how to implement them. The focus is on the outcomes of the practices to be implemented rather than on the tools, techniques, and mechanisms used to do so. Advantages of specifying the practices at a high level include the following:"
+          },
+          {
+            "text": "\nCan be used by organizations in any sector or community, regardless of size or cybersecurity sophistication\nCan be applied to software developed to support information technology (IT), industrial control systems (ICS), cyber-physical systems (CPS), or the Internet of Things (IoT)\nCan be integrated into any existing software development workflow and automated toolchain; should not negatively affect organizations that already have robust secure software development practices in place\nMakes the practices broadly applicable, not specific to particular technologies, platforms, programming languages, SDLC models, development environments, operating environments, tools, etc.\nCan help an organization document its secure software development practices today and define its future target practices as part of its continuous improvement process\nCan assist an organization currently using a classic software development model in transitioning its secure software development practices for use with a modern software development model (e.g., agile, DevOps)\nCan assist organizations that are procuring and using software to understand secure software development practices employed by their suppliers\n"
+          },
+          {
+            "text": "This document provides a common language to describe fundamental secure software development practices. This is similar to the approach taken by the Framework for Improving Critical Infrastructure Cybersecurity, also known as the NIST Cybersecurity Framework [NISTCSF]. Expertise in secure software development is not required to understand the practices. The common language helps facilitate communications about secure software practices among both internal and external organizational stakeholders, such as:"
+          },
+          {
+            "text": "\nBusiness owners, software developers, project managers and leads, cybersecurity professionals, and operations and platform engineers within an organization who need to clearly communicate with each other about secure software development\nSoftware acquirers, including federal agencies and other organizations, that want to define required or desired characteristics for software in their acquisition processes in order to have higher-quality software (particularly with fewer significant security vulnerabilities)\nSoftware producers (e.g., commercial-off-the-shelf [COTS] product vendors, government-off-the-shelf [GOTS] software developers, software developers working# CURRENT_PAGE_RAW_OCR_TEXT\n"
+          }
+        ]
+      },
+      {
+        "title": "Introduction",
+        "content": [
+          {
+            "text": "Within or on behalf of software acquirer organizations that want to integrate secure software development practices throughout their SDLCs, express their secure software practices to their customers, or define requirements for their suppliers. This document's practices are not based on the assumption that all organizations have the same security objectives and priorities. Rather, the recommendations reflect that each software producer may have unique security assumptions, and each software acquirer may have unique security needs and requirements."
+          },
+          {
+            "text": "While the aim is for each software producer to follow all applicable practices, the expectation is that the degree to which each practice is implemented and the formality of the implementation will vary based on the producer's security assumptions. The practices provide flexibility for implementers, but they are also clear to avoid leaving too much open to interpretation."
+          }
+        ]
+      },
+      {
+        "title": "Applicability of Practices",
+        "content": [
+          {
+            "text": "Although most of these practices are relevant to any software development effort, some are not. For example, if developing a particular piece of software does not involve using a compiler, there would be no need to follow a practice on configuring the compiler to improve executable security. Some practices are foundational, while others are more advanced and depend on certain foundational practices already being in place. Also, practices are not all equally important for all cases."
+          },
+          {
+            "text": "Factors such as risk, cost, feasibility, and applicability should be considered when deciding which practices to use and how much time and resources to devote to each practice. Automatability is also an important factor to consider, especially for implementing practices at scale. The practices, tasks, and implementation examples represent a starting point to consider; they are meant to be changed and customized, and they are not prioritized. Any stated frequency for performing practices is notional."
+          },
+          {
+            "text": "The intention of the SSDF is not to create a checklist to follow, but to provide a basis for planning and implementing a risk-based approach to adopting secure software development practices."
+          }
+        ]
+      },
+      {
+        "title": "Responsibility for Implementation",
+        "content": [
+          {
+            "text": "The responsibility for implementing the practices may be distributed among different organizations based on the delivery of the software and services (e.g., infrastructure as a service, software as a service, platform as a service, container as a service, serverless). In these situations, it likely follows a shared responsibility model involving the platform/service providers and the tenant organization that is consuming those platforms/services. The tenant organization should establish an agreement with the providers that specifies which party is responsible for each practice and task and how each provider will attest to their conformance with the agreement."
+          }
+        ]
+      },
+      {
+        "title": "The Secure Software Development Framework",
+        "content": [
+          {
+            "text": "This document defines version 1.1 of the Secure Software Development Framework (SSDF) with fundamental, sound, and secure recommended practices based on established.# Secure Software Development Practices"
+          },
+          {
+            "text": "The practices are organized into four groups:"
+          }
+        ]
+      },
+      {
+        "title": "1. Prepare the Organization (PO)",
+        "content": [
+          {
+            "text": "Organizations should ensure that their people, processes, and technology are prepared to perform secure software development at the organization level. Many organizations will find some PO practices to also be applicable to subsets of their software development, like individual development groups or projects."
+          }
+        ]
+      },
+      {
+        "title": "2. Protect the Software (PS)",
+        "content": [
+          {
+            "text": "Organizations should protect all components of their software from tampering and unauthorized access."
+          }
+        ]
+      },
+      {
+        "title": "3. Produce Well-Secured Software (PW)",
+        "content": [
+          {
+            "text": "Organizations should produce well-secured software with minimal security vulnerabilities in its releases."
+          }
+        ]
+      }
+    ]
+  }
+]

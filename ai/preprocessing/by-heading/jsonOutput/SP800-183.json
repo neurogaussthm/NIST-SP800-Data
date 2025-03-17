@@ -1,0 +1,139 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "System primitives allow formalisms, reasoning, simulations, and reliability and security risk-tradeoffs to be formulated and argued. In this work, five core primitives belonging to most distributed systems are presented. These primitives apply well to systems with large amounts of data, scalability concerns, heterogeneity concerns, temporal concerns, and elements of unknown pedigree with possible nefarious intent. These primitives are the basic building blocks for a Network of 'Things' (NoT), including the Internet of Things (IoT). This document offers an underlying and foundational understanding of IoT based on the realization that IoT involves sensing, computing, communication, and actuation. The material presented here is generic to all distributed systems that employ IoT technologies (i.e., 'things' and networks). The expected audience is computer scientists, IT managers, networking specialists, and networking and cloud computing software engineers. To our knowledge, the ideas and the manner in which IoT is presented here is unique."
+      }
+    ]
+  },
+  {
+    "title": "1 Introduction",
+    "subsections": [
+      {
+        "content": "From agriculture, to manufacturing, to smart homes, to healthcare, and beyond, there is value in having numerous sensory devices connected to larger infrastructures. This technology advance acknowledges the reality that human society is moving towards 'smart' and 'smarter' systems. The rapid advances in computer science, software engineering, systems engineering, networking, sensing, communication, and artificial intelligence are converging. The tethering factor is data. There is no formal, analytic, or even descriptive set of the building blocks that govern the operation, trustworthiness, and lifecycle of IoT. A composability model and vocabulary that defines principles common to most, if not all networks of things, is needed to address the question: \"what is the science, if any, underlying IoT?\" This document offers an underlying and foundational science to IoT based on a belief that IoT involves sensing, computing, communication, and actuation."
+      },
+      {
+        "content": "This document uses two acronyms, IoT and NoT (Network of Things), extensively and interchangeably\u2014the relationship between NoT and IoT is subtle. IoT is an instantiation of a NoT, more specifically, IoT has its 'things' tethered to the Internet. A different type of NoT could be a Local Area Network (LAN), with none of its 'things' connected to the Internet. Social media networks, sensor networks, and the Industrial Internet are all variants of NoTs. This differentiation in terminology provides ease in separating out use cases from varying vertical and quality domains (e.g., transportation, medical, financial, agricultural, safety-critical, security-critical, performance-critical, high assurance, to name a few). That is useful since there is no singular IoT, and it is meaningless to speak of comparing one IoT to another.\n```# Primitives in Networks of Things (NoTs)"
+      },
+      {
+        "content": "Primitives are building blocks that offer the possibility of an answer to the aforementioned questions and statements by allowing comparisons between NoTs. We use the term primitive to represent smaller pieces from which larger blocks or systems can be built. For example, in software coding, primitives typically include the arithmetic and logical operations (plus, minus, and, or, etc.). In this document, we do not employ the restriction that primitives cannot be developed or derived from something else; this is often a common, paraphrased definition for \"primitive,\" but it is not employed here."
+      },
+      {
+        "content": "This model does not specify a definition for what is or is not a 'thing.' Instead, we consider that each primitive injects a behavior representing that 'thing' into a NoT's workflow and dataflow. 'Things' can occur in physical space or virtual space. In physical space, consider humans, vehicles, residences, computers, switches, routers, smart devices, road networks, office buildings, etc. In virtual space, consider software, social media threads, files, data streams, virtual machines, virtual networks, etc. More ideas concerning 'things' are presented in Appendix C."
+      },
+      {
+        "content": "Primitives offer a unifying vocabulary that allows for composition and information exchange among differently purposed networks. They offer clarity regarding concerns that are subtle, including interoperability, composability, and continuously-binding assets that come and go on-the-fly. Because no simple, actionable, and universally-accepted definition for IoT exists, the model and vocabulary proposed here reveal underlying foundations of the IoT, i.e., they expose the ingredients that can express how the IoT behaves, without defining IoT. This offers insights into issues specific to trust."
+      },
+      {
+        "content": "Further, we employ a paraphrased, general definition for a distributed system: a software system in which components located on networked computers communicate and coordinate their actions by passing messages. The components interact with each other in order to achieve a common goal. NoTs satisfy this definition. Thus we consider IoT to be one type of a NoT and a NoT to be one type of a distributed system."
+      },
+      {
+        "title": "2 The Primitives",
+        "content": [
+          {
+            "text": "The primitives of a NoT are:\n1. Sensor\n2. Aggregator\n3. Communication channel\n4. External utility (eUtility)\n5. Decision trigger"
+          },
+          {
+            "text": "There may be some NoTs that do not contain all of these, but that will be rare."
+          },
+          {
+            "text": "Each primitive, along with its definition, assumptions, properties, and role, is presented. We employ a data-flow model, captured as a sequence of four figures in this document, to illustrate how primitives, when composed in a certain manner, could impact a confidence in trustworthiness of NoTs. Although this model may seem overly abstract at first glance, its simplicity offers a certain elegance by not over complicating IoT's small handful of building blocks."
+          },
+          {
+            "subsection": "2.1 Primitive #1: Sensor",
+            "text": []
+          },
+          {
+            "text": "A sensor is an electronic utility that measures physical properties such as# Sensor Properties and Characteristics"
+          },
+          {
+            "text": "Temperature, acceleration, weight, sound, location, presence, identity, etc. All sensors employ mechanical, electrical, chemical, optical, or other effects at an interface to a controlled process or open environment. Basic properties, assumptions, recommendations, and general statements about sensors include:"
+          },
+          {
+            "text": "\nSensors are physical; some may have an Internet access capability.\nSensor output is data; in our writings, s1 -> d1 means that sensor 1 has produced a piece of data that is numbered 1. Likewise, s2 -> d2 means that sensor 2 has produced a piece of data that is numbered 2. (d1, d2, d3, \u2026 dn will likely be digital data.) Analog sensors such as microphones and voltmeters are counterexamples.\nA sensor may also transmit device identification information, such as via Radio Frequency Identification (RFID).\nSensors may have an identity or have the identity of the 'thing' to which they are attached.\nSensors may have little or no software functionality and computing power; more advanced sensors may have software functionality and computing power.\nSensors may be heterogeneous, from different manufacturers, and collect data, with varying levels of data integrity.\nSensors may be associated with fixed geographic locations or may be mobile.\nSensors may provide surveillance. Cameras and microphones are sensors.\nSensors may have an owner(s) who will have control of the data their sensors collect, who is allowed to access it, and when.\nSensors will have pedigree \u2013 geographic locations of origin and manufacturers. Pedigree may be unknown, and suspect.\nSensors may be cheap, disposable, and susceptible to wear-out over time.\nThere may be differentials in sensor security, safety, and reliability, e.g., between consumer grade, military grade, industrial grade, etc.\nSensors may return no data, totally flawed data, partially flawed data, or correct and acceptable data. Sensors may fail completely or intermittently. They may lose sensitivity or calibration.\nSensors are expected to return data in certain ranges, e.g., [1 \u2026 100]. When ranges are violated, rules may be needed on whether to turn control over to a human or machine when ignoring out-of-bounds data is inappropriate.\nSensors may be disposable or serviceable in terms of calibration, sensitivity or other forms of refresh. Complex and expensive sensors may be repaired instead of replaced.\nSensors may be powered in a variety of ways including alternating current (AC), solar, wind, battery, or passively via radio waves.\nSensors may be acquired off-the-shelf or built to specification.\nSensors acquire data that can be event-driven, driven by manual input, command-driven, or released at pre-defined times.\nSensors may have a level of data integrity ascribed (see Section 2.2.2).\nSensors may have their data encrypted to void some security concerns.\nSensors should have the capability to be authenticated as genuine.# CURRENT_PAGE_RAW_OCR_TEXT\n"
+          }
+        ]
+      },
+      {
+        "title": "22.",
+        "content": [
+          {
+            "text": "Sensor data may be sent and communicated to multiple NoTs. A sensor may have multiple recipients of its data. Sensor data may be leased to one or more NoTs."
+          }
+        ]
+      },
+      {
+        "title": "23.",
+        "content": [
+          {
+            "text": "The frequency with which sensors release data impacts the data's currency and relevance. Sensors may return valid but stale data. Sensor data may be 'at rest' for long periods of time."
+          }
+        ]
+      },
+      {
+        "title": "24.",
+        "content": [
+          {
+            "text": "A sensor's precision may determine how much information is provided. Uncertainty of sensor data should be considered."
+          }
+        ]
+      },
+      {
+        "title": "25.",
+        "content": [
+          {
+            "text": "Sensors may transmit data about the \"health\" of a system, such as is done in prognostics and health management (PHM)."
+          }
+        ]
+      },
+      {
+        "title": "26.",
+        "content": [
+          {
+            "text": "In this document and model, we do not classify humans as sensors; humans are classified as an eUtility, our fourth primitive (see Section 2.4), and/or classified as our fourth element, owner (see Section 3). When classified as an eUtility, humans can still act in a sensor-like role by manually feeding data into a NoT's workflow and dataflow."
+          }
+        ]
+      },
+      {
+        "title": "27.",
+        "content": [
+          {
+            "text": "Humans can influence sensor performance through failure to follow policy, sensor misplacement, etc. (or their positive analogs). Humans are potential contributors to sensor failures."
+          }
+        ]
+      },
+      {
+        "title": "28.",
+        "content": [
+          {
+            "text": "Security is a concern for sensors if they or their data is tampered with, stolen, deleted, dropped, or transmitted insecurely so it can be accessed by unauthorized parties. Building security into specific sensors may or may not be necessary based on the overall system design."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "2.2 Primitive #2: Aggregator",
+    "subsections": [
+      {
+        "content": "An aggregator is a software implementation based on mathematical function(s) that transforms groups of raw data into intermediate, aggregated data. Raw data can come from any source. Aggregators help in managing 'big' data. Basic properties, assumptions, recommendations, and general statements about aggregator include:"
+      },
+      {
+        "content": "\n\nAggregators may be virtual due to the benefit of changing implementations quickly and increased malleability. A situation may exist where aggregators are physically manufactured, e.g., a field-programmable gate array (FPGA) or hard-coded aggregator that is not programmable. Aggregators may also act in a similar way as n-version voters.\n\n\nAggregators require computing horsepower, however this assumption can be relaxed by changing the definition and assumption of virtual to physical, e.g. firmware, microcontroller or microprocessor. For example, aggregators could execute on faster hardware such as a smartphone. Aggregators will likely use weights (see Section 2.2.2) to compute intermediate, aggregated data.\n\n\nAggregators have two actors for consolidating large volumes of data into lesser amounts: Clusters (see Section 2.2.1), and Weights (see Section 2.2.2). Aggregators process big data concerns within NoTs, and to satisfy this role computational \"performance enhancing\" technologies will be needed. This is the only primitive with actors.\n\n\nSensors may communicate directly with other sensors, and thus act in some situations.\n\n"
+      },
+      {
+        "content": "Aggregators may be virtual due to the benefit of changing implementations quickly and increased malleability. A situation may exist where aggregators are physically manufactured, e.g., a field-programmable gate array (FPGA) or hard-coded aggregator that is not programmable. Aggregators may also act in a similar way as n-version voters."
+      },
+      {
+        "content": "Aggregators require computing horsepower, however this assumption can be relaxed by changing the definition and assumption of virtual to physical, e.g. firmware, microcontroller or microprocessor. For example, aggregators could execute on faster hardware such as a smartphone. Aggregators will likely use weights (see Section 2.2.2) to compute intermediate, aggregated data."
+      },
+      {
+        "content": "Aggregators have two actors for consolidating large volumes of data into lesser amounts: Clusters (see Section 2.2.1), and Weights (see Section 2.2.2). Aggregators process big data concerns within NoTs, and to satisfy this role computational \"performance enhancing\" technologies will be needed. This is the only primitive with actors."
+      },
+      {
+        "content": "Sensors may communicate directly with other sensors, and thus act in some situations."
+      }
+    ]
+  }
+]

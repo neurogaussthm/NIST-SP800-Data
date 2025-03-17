@@ -1,0 +1,578 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "The predominant application architecture for cloud-native applications consists of multiple microservices, accompanied in some instances by a centralized application infrastructure, such as a service mesh, that provides all application services. This class of applications is generally developed using a flexible and agile software development paradigm called DevSecOps. A salient feature of this paradigm is the use of flow processes called continuous integration and continuous deployment (CI/CD) pipelines, which initially take the software through various stages (e.g., build, test, package, and deploy) in the form of source code through operations that constitute the software supply chain (SSC) in order to deliver a new version of software. This document outlines strategies for integrating SSC security measures into CI/CD pipelines."
+      }
+    ]
+  },
+  {
+    "title": "Executive Summary",
+    "subsections": [
+      {
+        "content": "Cloud-native applications are made up of multiple loosely coupled components called microservices. This class of applications is generally developed through an agile software development life cycle (SDLC) paradigm called DevSecOps, which uses flow processes called Continuous Integration/Continuous Delivery (CI/CD) pipelines."
+      },
+      {
+        "content": "Analyses of recent software attacks and vulnerabilities have led both government and private-sector organizations involved in software development, deployment, and integration to focus on the activities involved in the entire SDLC. This collection of activities constitutes the software supply chain (SSC), and the integrity of the individual activities contributes to the overall security of an SSC. Threats can arise from attack vectors unleashed by malicious actors during SSC activities as well as defects introduced when due diligence practices are not followed by legitimate actors during the SDLC."
+      },
+      {
+        "content": "Executive Order (EO) 14028, NIST's Secure Software Development Framework (SSDF) [2], other government initiatives, and industry forums have discussed the security of SSC and provided a roadmap to enhance the security of all deployed software. This document uses this roadmap as the basis for developing actionable measures to integrate the various building blocks of SSC security assurance into CI/CD pipelines to enhance the preparedness of organizations to address SSC security in the development and deployment of cloud-native applications. To demonstrate that the SSC security integration strategies for CI/CD pipelines meet the objectives of SSDF, a mapping of these strategies to the high-level practices in the SSDF has also been provided."
+      },
+      {
+        "content": "Building a robust SSC security edifice requires various artifacts, such as a software bill of materials (SBOM) and frameworks for the attestation of software components. Since the specification of these artifacts, their mandatory constituents, and the requirements that processes using them must satisfy are continually evolving through projects in government.\n``````markdown"
+      }
+    ]
+  },
+  {
+    "title": "organizations and various industry forums, they are beyond the scope of this document.",
+    "subsections": [
+      {
+        "title": "1. Introduction",
+        "content": [
+          {
+            "text": "Cloud-native applications typically consist of multiple loosely coupled services or microservices and are sometimes accompanied by an integrated application service infrastructure, such as a service mesh. The applications are developed through an agile software development life cycle (SDLC) paradigm called DevSecOps, which uses flow processes called Continuous Integration/Continuous Delivery (CI/CD) pipelines. The security of applications during runtime is ensured through various security measures, such as assigning unique service identities for microservices and subjects that invoke those services and policy enforcement through proxies. However, sophisticated attacks on software have been carried out through the stealthy introduction of attack vectors during various activities in the SDLC, which collectively constitute the software supply chain (SSC). Thus, in the context of cloud-native applications, SSC security assurance measures must be integrated into CI/CD pipelines."
+          },
+          {
+            "subsection": "1.1. Purpose",
+            "text": []
+          },
+          {
+            "text": "This document outlines strategies for integrating SSC security assurance measures into CI/CD pipelines to protect the integrity of the underlying activities. The overall goal is to ensure that the CI/CD pipeline activities that take source code through the build, test, package, and deployment stages are not compromised."
+          },
+          {
+            "subsection": "1.2. Scope",
+            "text": []
+          },
+          {
+            "text": "SSC security assurance measures use various artifacts, such as a software bill of materials (SBOM) and frameworks for the attestation of software components. The specification of these artifacts, their mandatory constituents, and the requirements that processes using them must satisfy are continually evolving through projects in government organizations and various industry forums and are, therefore, beyond the scope of this document. Rather, this document focuses on actionable measures to integrate various building blocks for SSC security assurance into CI/CD pipelines to enhance the preparedness of organizations to address SSC security in the development and deployment of their cloud-native applications."
+          },
+          {
+            "subsection": "1.3. Target Audience",
+            "text": []
+          },
+          {
+            "text": "This document is intended for a broad group of practitioners in the software industry, including site reliability engineers, software engineers, project and product managers, and security architects and engineers."
+          },
+          {
+            "subsection": "1.4. Relationship to Other NIST Documents",
+            "text": []
+          },
+          {
+            "text": "This document is part of the NIST Special Publication (SP) 800-204 series of publications, which offer guidance on providing security assurance for cloud-native applications that are developed and deployed using the DevSecOps SDLC paradigm that uses CI/CD pipelines. SP 800-204C [1] discusses DevSecOps, which is an agile software development paradigm for cloud-native applications that focuses on the various types of code involved in\n```# Microservices-Based Applications and SSC Security"
+          },
+          {
+            "text": "Microservices-based applications that are supported by a service mesh infrastructure. SP 800-218 [2] provides a comprehensive list of high-level practices and tasks for ensuring SSC security under the Secure Software Development Framework (SSDF) based on the directives in Executive Order (EO) 14028 [3]. Other documents in the SP 800-204 series outline the mechanisms for enforcing various types of access controls for inter-service calls in the microservices environment during runtime."
+          },
+          {
+            "text": "This document presents strategies for integrating SSC security into CI/CD pipelines through the identification of workflow tasks that can meet the goals of the various high-level practices outlined in the SSDF. Not all practices and tasks outlined in the SSDF may be applicable to the environment under discussion in this document\u2014i.e., cloud-native applications developed using the DevSecOps SDLC paradigm with CI/CD pipelines, representing a specific application architecture and SDLC, respectively. The SSDF is agnostic to both application architecture and the SDLC paradigm. However, to demonstrate that the SSC security integration strategies for CI/CD pipelines meet the objectives of SSDF, Appendix A provides a mapping of these strategies to the high-level practices in the SSDF. However, tasks relating to secure software design and the enterprise-level vulnerability management strategies are beyond the scope of this document and these are indicated in Appendix B."
+          }
+        ]
+      },
+      {
+        "title": "1.5. Document Structure",
+        "content": [
+          {
+            "text": "This document is organized as follows:"
+          },
+          {
+            "text": "\nSection 2 presents a series of definitions for modelling and understanding software supply chains and their compromises.\nSection 3 provides a broad understanding of common risk factors and potential mitigation measures with a particular focus on the software developer environment.\nSection 4 provides the background for CI/CD pipelines, the broad security goals of the processes involved, and the entities that need to be trusted.\nSection 5 outlines strategies for integrating SSC security assurance measures into CI/CD pipelines.\nSection 6 provides a summary and conclusions.\nAppendix A provides a mapping of the SSC security integration strategies for CI/CD pipelines to the SSDF's high-level practices.\nAppendix B provides a justification for the omission of certain measures related to SSDF practices in this document.\n"
+          }
+        ]
+      },
+      {
+        "title": "2. Software Supply Chain (SSC) \u2013 Definition and Model",
+        "content": [
+          {
+            "subsection": "2.1. Definition",
+            "text": []
+          },
+          {
+            "text": "Most activities in the SSC strongly affect the resulting software product. As such, the security of each individual activity is paramount for the security of the end result. This includes both the integrity of the activities themselves as well as the assurance that all activities were carried out and\u2014conversely\u2014that no unauthorized activities were injected into the chain. While software composition (e.g., dependency management) is under the purview of# Software Supply Chain Security"
+          },
+          {
+            "text": "Software supply chain activities, other often overlooked activities are central to the software supply chain. This includes writing source code; building, packaging, and delivering an application; and repackaging and containerization."
+          }
+        ]
+      },
+      {
+        "title": "SSC Attack Forms",
+        "content": [
+          {
+            "text": "An SSC attack can take on several forms, such as:"
+          },
+          {
+            "text": "\nSubverting, removing, or introducing a step within the SSC to maliciously modify or sabotage the resulting software product\nStealing credentials from the build system to mint and sign unauthorized malicious software\nCausing naming collisions\n"
+          },
+          {
+            "text": "SSC attacks can have a wide range of consequences that affect the correctness, integrity, or availability of a software product (e.g., making upstream dependencies unavailable). In practice, attackers often target the activities mentioned above to implant backdoors and subsequently compromise a target (i.e., end product) or exfiltrate sensitive information once the application is delivered."
+          }
+        ]
+      },
+      {
+        "title": "SSC Security Considerations",
+        "content": [
+          {
+            "text": "SSC security should also account for discovering and tracking software security defects rather than simply mitigating attacks. To facilitate this, the software bill of materials (SBOM) must be shared with end users so that they can build inventories of software components. However, while SBOMs enable the identification of components and provenance, they do not provide enough information to address vulnerabilities nor content to address software defects. Hence, SBOMs alone cannot be used for vulnerability management. They simply provide the list of components to focus on when addressing vulnerabilities or defects in software."
+          }
+        ]
+      },
+      {
+        "title": "2.2. Economics of Security",
+        "content": [
+          {
+            "text": "SSC attacks have two fundamental properties that make them appealing to attackers. First, they allow attackers to infiltrate highly-regulated environments through less secure but legitimate channels. Second, due to the highly-interconnected nature of supply chains, they allow for widespread damage in a short period of time."
+          },
+          {
+            "text": "Insufficient care in operating highly regulated environments throughout the SDLC often allows motivated attackers to identify weak spots in the chain. In the case of SOLORIGATE, for example, attackers identified a single point of compromise that delivered software to multiple government agencies. Such attacks are also stealthy because they typically propagate through legitimate channels, such as software updates, which allows for widespread damage to users of the target software. These attacks are successful because of the significant amount of implicit trust present in these legitimate channels, and a first defensive measure calls for the removal of this implicit trust. Since attackers typically seek this avenue to obtain short-term benefits, widespread attacks of this nature often rely on the use of private crypto miners and cryptojackers. This is evidenced in the prevalence of these vectors existing in breadth-first.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "approaches, such as typo and combosquatting attacks. Regardless of the motivations of the attackers, both vectors highlight the possibility of devastating impacts when attacks are successful.",
+        "content": [
+          {
+            "subsection": "2.3. Governance Model",
+            "text": []
+          },
+          {
+            "text": "Due to the distributed nature of an SSC, multiple practices, developer cultures, security and quality expectations, and legislative frameworks exist. As a consequence, there is no unified governance model, and these distinct models often overlap."
+          },
+          {
+            "subsection": "2.4. SSC Model",
+            "text": []
+          },
+          {
+            "text": "At a high level, an SSC is a collection of steps that create, transform, and assess the quality and policy conformance of software artifacts. These steps are often carried out by different actors who use and consume artifacts to produce new artifacts. For example, a build step uses a series of artifacts as tools (e.g., a compiler and a linker) and consumes artifacts (i.e., source code) to produce a new artifact (i.e., the compiled binary)."
+          },
+          {
+            "text": "Without a loss of generality, this same definition can be applied to other actions, such as writing code, packaging an application inside of a container, and performing quality assurance. This definition also encompasses more activities than are colloquially considered. That is, it includes elements of secure software development, secure build systems, and dependency management. These elements collectively define the SSC model."
+          },
+          {
+            "text": "While this simplified model can accommodate multiple activities, mitigations and attacks may surface in different, nuanced ways for each activity."
+          },
+          {
+            "text": "Much like software defects (i.e., bugs), defective artifacts can propagate throughout an SSC and affect its security posture. A noteworthy example of such a defect is Log4Shell [5], where a vulnerability in a highly-used software artifact allowed attackers to compromise a large number of targets with very little effort."
+          },
+          {
+            "text": "If software is used in a manner that it was not originally intended or configured for, it may result in an insecure state. However, while the line between a defect and an attack is often blurred in the context of SSC, the guiding principle is that of intent \u2013 that is, whether or not the upstream actor intended to exploit that defect. In the context of software engineering, not all defects are vulnerabilities, regardless of intent. Vulnerabilities may be present for other reasons, and that presence does not guarantee exploitation, which is what defines an attack. Malicious actors complete the defect-attack chain by intentionally introducing weaknesses that they can later exploit."
+          },
+          {
+            "text": "In contrast to defects, an SSC attack is when a malicious party tampers with the steps, artifacts, or actors within the chain to compromise the consumers of a software artifact down the line. Explicitly, an SSC attack is a three-stage process:\n1. Artifact, step, or actor compromise: An attacker compromises an element of the SSC.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "(see Fig. 1) to modify an artifact or the information of such."
+          },
+          {
+            "text": "\n\nPropagation: The attack propagates throughout the chain.\n\n\nExploitation: The attacker exploits the target to achieve their goals (e.g., exfiltration of data, cryptojacking).\n\n"
+          },
+          {
+            "text": "Propagation: The attack propagates throughout the chain."
+          },
+          {
+            "text": "Exploitation: The attacker exploits the target to achieve their goals (e.g., exfiltration of data, cryptojacking)."
+          }
+        ]
+      },
+      {
+        "title": "3. SSC Security \u2013 Risk Factors and Mitigation Measures",
+        "content": [
+          {
+            "text": "This section considers the various risk factors that are applicable to the SDLC environment and the mitigation measures that can counter those risks."
+          },
+          {
+            "subsection": "3.1. Risk Factors, Targets, and Types of Exploits in an SSC",
+            "text": []
+          },
+          {
+            "text": "The risk factors in an SSC typically include:"
+          },
+          {
+            "text": "\nVulnerabilities in the developer environment\nThreat actors\nAttack vectors\nAttack targets (i.e., assets)\nTypes of exploits\n"
+          },
+          {
+            "text": "Developer workstations and their environments present a fundamental risk to the security of an SSC and should not be trusted as part of the build process since they are at risk of compromise. Mature SDLC processes accept code and assets into their software configuration management (SCM) mainline and versions branches only after code reviews and scanners are in place."
+          },
+          {
+            "text": "Threat actors are generally:"
+          },
+          {
+            "text": "\nExternal attackers who seek privileged access to an SSC\nDisgruntled employees or contractors who perpetuate insider threats\n"
+          },
+          {
+            "text": "External attackers may include foreign adversaries, criminal organizations, and cyber-activists who target an SSC for various reasons, such as espionage or sabotage. Internal attackers pose a significant risk, as they may have insider access to sensitive information \u2013 often using legitimate access rights \u2013 that allow them to launch attacks or steal confidential information."
+          },
+          {
+            "text": "Additionally, both categories of threat actors may use a variety of techniques to compromise the SDLC environment and steal or manipulate software, such as phishing, malware, social engineering, and physical access. Therefore, companies should be aware of these risks and take appropriate measures (see Sec. 3.2) to secure their SSC."
+          },
+          {
+            "text": "Non-malicious threat actors may also impact the security of supply chains, such as a software engineer who inadequately manages secrets through a lack of tooling or purposeful subterfuge for ease of use. Organizations should be aware of these situations and take suitable measures to avoid such practices."
+          },
+          {
+            "text": "Attack vectors in an SSC include:"
+          },
+          {
+            "text": "\nMalware\nCode reuse or the ingest of libraries and dependencies\nSocial engineering\nNetwork-based attacks\nPhysical attacks\n"
+          },
+          {
+            "text": "Attack vectors can originate from various sources, including malware attacks on developer workstations, social engineering attacks on developers, network-based attacks on the development environment, and physical attacks on the hardware or networks used.```markdown\nby developers. These different attack vectors require distinct countermeasures, including endpoint protection software, network security controls, access control policies, and physical security measures. Companies should identify potential risks and vulnerabilities, assess their security posture, and implement appropriate defensive measures to mitigate threats to their SDLC environment."
+          },
+          {
+            "text": "In the case of ingested code, it is essential to verify the provenance information of the component being used to ensure that it is what it says it is and is coming from an expected source. Mitigations for this involve caching or curating packages and components for preferred use."
+          }
+        ]
+      },
+      {
+        "title": "3.1.4. Attack Targets (Assets)",
+        "content": [
+          {
+            "text": "The assets targeted under an SSC may include:"
+          },
+          {
+            "text": "\nSource code\nCredentials\nSensitive data\nInternal operations\nBuild systems\n"
+          },
+          {
+            "text": "A software developer's workstation typically contains various assets, including source code, credentials, and access to sensitive information, such as personally identifiable information (PII), protected health information (PHI), intellectual property (IP), cryptographic materials (e.g., software artifact signing keys), and proprietary information. Companies should identify critical assets and implement controls to protect them from unauthorized access, such as access controls, multi-factor authentication, encryption of data at rest and in transit, and data loss prevention (DLP) measures."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "When open-source code is used, an artifact or package is often pulled from a repository based on the reputation of the developer or the repository. However, there is no guarantee that pulled code is the same software that the developer authored and checked into their source code repository. The following actions could have potentially occurred, resulting in a lack of assurance or an inability to trust the code:"
+      },
+      {
+        "content": "\nThe source code could have been modified.\nVulnerabilities could have been introduced due to an insecure build system.\nChecks, such as scanning and various types of tests (e.g., static, dynamic, or interactive), may have been bypassed in the CI/CD process.\nThe repository owner may have improperly configured the repository, allowing malicious actors to submit pull requests with the intention of stealing secrets configured within a CI/CD pipeline.\n"
+      },
+      {
+        "title": "3.2. Mitigation Measures",
+        "content": [
+          {
+            "text": "A secure SDLC environment can reduce the likelihood of security incidents and ensure the confidentiality, integrity, and availability of software assets and systems. It is crucial to assess security risks and implement appropriate defensive measures to protect software supply chains against compromise."
+          },
+          {
+            "text": "The following generic mitigation measures are applicable to the entire SDLC but are particularly relevant to an SSC:"
+          },
+          {
+            "text": "\nPatch management\nDependency management\nAuthentication and authorization\nMalware protection\nSecure SDLC\nData protection\nPhysical security\nAudit and monitoring\nAdherence to applicable security standards (e.g., regulatory requirements)\n"
+          },
+          {
+            "text": "Organizations can implement various controls to mitigate risks to their SDLC environment, including regular patch management, robust authentication, granular authorization, malware protection, secure SDLC practices, data protection measures, physical security controls, and auditing and monitoring tools. They should regularly assess their security posture, identify potential weaknesses and vulnerabilities, and implement appropriate defensive measures to address them. Organizational network policies that account for and actively block maliciously known content-serving domains can reduce the use of software from non-curated or undesired locations. Another integral part of SSC security involves capturing the dependencies (e.g., package name, version) of the artifacts in a central repository. Organizations should also ensure that their SDLC environment remains compliant with various security and other relevant standards, such as the Open Worldwide Application Security Project (OWASP) Top Ten, SP 800-53, Health Insurance Portability and Accountability Act (HIPAA), and Payment Card Industry Data Security Standard (PCI DSS)."
+          },
+          {
+            "text": "The choice of a mitigation approach will depend on the organization's customized threat.\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "tightly controlled. A mature SDLC process allows developers to propose patches to the SCM, but another developer should perform a code review before the patch is merged. Code analysis tools should be implemented to catch common mistakes, but care should be taken to not inundate the developers with too many false positives to prevent alert fatigue."
+      },
+      {
+        "title": "4. CI/CD Pipelines \u2013 Background, Security Goals, and Entities to be Trusted",
+        "content": [
+          {
+            "text": "DevSecOps is an agile paradigm used for the development and deployment of cloud-native applications. This paradigm consists of a series of stages that takes code from variously sourced repositories (e.g., first-party or in-house, third parties or open-source/commercial) to perform tasks or activities, such as building, packaging, testing, and deploying."
+          },
+          {
+            "text": "In this document, the term \"artifacts\" denotes source code as well as the things generated from it, such as builds and packages. Each of the artifacts is associated with an owner. The logical containers that hold these artifacts are called repositories. The build process is based on application logic-driven dependencies and generates builds using many individual source-code artifacts that are stored in build repositories. The build artifacts are tested and used to generate packages whose artifacts are then stored in designated repositories and scanned before being deployed in testing or production environments. These stages and the various tasks performed at each stage are collectively called CI/CD pipelines. In other words, CI/CD pipelines use processes called workflows to transform source artifacts to deployable packages in production environments."
+          },
+          {
+            "text": "A common approach to SSC security in all of these workflows is to generate as much provenance data as possible. Provenance data are associated with the chronology of the origin, development, ownership, location, and changes to a system or system component, including the personnel and processes that enabled those changes or modifications. The generation of these data should be accompanied by corresponding mechanisms to validate, authenticate, and leverage them in policy decisions."
+          },
+          {
+            "text": "From the above description of CI/CD pipelines and associated activities, one can identify the set of security assurance measures that need to be added:"
+          },
+          {
+            "text": "\nInternal SSC security practices that are applied during the development and deployment of first-party software\nSecurity practices that are applied with respect to the procurement, integration, and deployment of third-party software (i.e., open-source and commercial software modules)\n"
+          },
+          {
+            "subsection": "4.1. Broad Security Goals for CI/CD Pipelines",
+            "text": []
+          },
+          {
+            "text": "There are two security goals in the application of SSC security measures or practices in CI/CD pipelines:"
+          },
+          {
+            "text": "\nActively defend the CI/CD pipeline and build processes.\nEnsure the integrity of upstream sources and artifacts (e.g., repositories).\n"
+          },
+          {
+            "text": "The most common approach is to introduce security measures into the CI/CD platform, which allows developers to automate their build, test, and deployment pipelines. There\n```# are many open-source and commercial CI/CD platforms available on the market."
+          }
+        ]
+      },
+      {
+        "title": "4.2. Entities That Need Trust in CI/CD Pipelines \u2013 Artifacts and Repositories",
+        "content": [
+          {
+            "text": "Zero trust architectures focus on protecting resources such as hardware systems (e.g., servers), services and the application itself. The entities that access these assets (e.g., users, services, and other servers) are not inherently trusted, and the primary goal of zero trust architecture is to establish this trust. In the context of CI/CD pipelines, the scope of trust is much larger and requires, at a minimum, the following steps:"
+          },
+          {
+            "text": "\nThe entities involved in performing various SSC activities (e.g., building, packaging, deployment) should be authenticated through the verification of credentials. Based on this authentication, appropriate permissions or access rights are assigned to those entities based on enterprise business policies through a process called authorization.\nThe integrity of artifacts and the repositories where they are stored should be ensured through the verification of the digital signatures associated with them. This integrity assurance results in trust.\nThe establishment of trust above should be a recurring process throughout the CI/CD system since artifacts travel through various repositories to ultimately become the final product.\nThe inputs and outputs of each build step should be verified to ensure that the correct steps have been executed by the expected component or entity.\n"
+          },
+          {
+            "text": "Table 1 gives examples of entities (i.e., artifacts and repositories) that need to be trusted in typical CI/CD pipelines [7]."
+          }
+        ]
+      },
+      {
+        "title": "5. Integrating SSC Security Into CI/CD Pipelines",
+        "content": [
+          {
+            "text": "In order to outline the strategies for integrating SSC security into CI/CD pipelines, it is necessary to understand the workflows in each of the two pipelines (i.e., CI pipelines and CD pipelines) and their overall security goals."
+          },
+          {
+            "text": "The prerequisites to activating CI/CD pipelines include the following:"
+          },
+          {
+            "text": "\nHarden the CI/CD execution environment (e.g., VM or pod) to reduce its attack surface.\nDefine roles for the actors who operate the various CI/CD pipelines (e.g., application updaters, package managers, deployment specialists).\nIdentify the granular authorizations to perform various tasks, such as generating and committing code to SCMs, generating builds and packages, and checking various artifacts (e.g., builds and packages) into and out of the repositories.\n\nAutomate the entire CI/CD pipeline through the deployment of appropriate tools. The driver tools for CI and CD pipelines are at a higher level and invoke a sequence of function-specific tools, such as those for code checkouts from repositories, edits and compilation, code commits, and testing (e.g., static application security testing [SAST], dynamic application security testing [DAST], and software composition analysis [SCA] testers). In general, the driver tools or build control plane execute at a higher level of trust than the individual functional steps, such as build.# CURRENT_PAGE_RAW_OCR_TEXT\n\n\nDefine CI/CD pipeline activities and associated security requirements for the development and deployment of application code; infrastructure as code, which contains details about the deployment platform; and policy as code and configuration code, which specify runtime settings (e.g., Yet Another Markup Language (YAML) files).\n\n"
+          },
+          {
+            "text": "Automate the entire CI/CD pipeline through the deployment of appropriate tools. The driver tools for CI and CD pipelines are at a higher level and invoke a sequence of function-specific tools, such as those for code checkouts from repositories, edits and compilation, code commits, and testing (e.g., static application security testing [SAST], dynamic application security testing [DAST], and software composition analysis [SCA] testers). In general, the driver tools or build control plane execute at a higher level of trust than the individual functional steps, such as build.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Define CI/CD pipeline activities and associated security requirements for the development and deployment of application code; infrastructure as code, which contains details about the deployment platform; and policy as code and configuration code, which specify runtime settings (e.g., Yet Another Markup Language (YAML) files)."
+          }
+        ]
+      },
+      {
+        "title": "5.1. Securing Workflows in CI Pipelines",
+        "content": [
+          {
+            "text": "The workflows in the CI pipeline mainly consist of build operations, push/pull operations on repositories (both public and private), software updates, and code commits. The overall security goals for the framework used for securely running CI pipelines include:"
+          },
+          {
+            "text": "\nThe capability to support both cloud-native and other types of applications.\nStandard compliant evidence structures, such as metadata and digital signatures.\nSupport for multiple hardware and software platforms.\nSupport for infrastructures for generating the evidence (e.g., SBOM generators, Digital signature generators).\n"
+          },
+          {
+            "text": "The following subsections consider the SSC security tasks for the various workflows in CI. Although providing support for artifact testing (that generates tamper-proof records of test runs and associated results) is an important security goal, it is beyond the scope of this document."
+          },
+          {
+            "subsection": "5.1.1. Secure Build",
+            "text": []
+          },
+          {
+            "text": "The following tasks are required to obtain SSC security assurance in the build process:"
+          },
+          {
+            "text": "\nSpecify policies regarding the build, including (a) the use of a secure isolated platform for performing the build and hardening the build servers, (b) the tools that will be used to perform the build, and (c) the authentication/authorization required for the developers performing the build process.\nEnforce those build policies using techniques such as an agent and policy enforcement engine.\nEnsure the concurrent generation of evidence for build attestation to demonstrate compliance with secure build processes during the time of software delivery.\n"
+          },
+          {
+            "text": "A common technique for facilitating the second task is to wrap commands from a CI tool with capabilities to gather evidence and ultimately create an evidence trail of the entire SDLC [8]. The first type of evidence is from the build system itself, which should be able to confirm that the tools or processes used are in an isolated environment. This provides internal operational assurance. The second type of evidence that should be gathered consists of the hash of the final build artifact, files, libraries, and other materials used in the artifacts and all events. This is then signed by a trusted component of the build framework that is not under the control of the developers using a digital certificate to create the attestation, which provides verifiable proof of the quality of the software to consumers and enables them to verify the quality of that artifact independently from the producer of the software, thus providing consumer assurance. In this context, the artifact is the build generated by a series of CI process steps. In the context of \"concurrent generation of evidence,\" the evidence generated should be.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Enabled by a process with a higher level of trust or isolation than the build itself to protect against tampering. The generation of such evidence requires verification within the build as it occurs."
+          },
+          {
+            "text": "The attestation for a build consists of the following components [9]:"
+          }
+        ]
+      },
+      {
+        "title": "1. Environment Attestation",
+        "content": [
+          {
+            "text": "Environment attestation involves an inventory of the system when the CI process happens and generally refers to the platform on which the build process is run. The components of the platform (e.g., compiler, interpreter) must be hardened, isolated, and secure."
+          }
+        ]
+      },
+      {
+        "title": "2. Process Attestation",
+        "content": [
+          {
+            "text": "Process attestation pertains to the computer programs that transformed the original source code or materials into an artifact (e.g., compilers, packaging tools) and/or the programs that performed testing on that software (i.e., code testing tool). It is sometimes difficult for tooling that simply observes CI processes to distinguish between data that should populate the process attestation and data that should populate the materials attestation. A file read by tooling that performs the source transformation may be used to influence the choices that the transformation tool makes, or it might be included in the output of the transformation itself. As a result, the population of the process attestation should be considered \"best effort.\""
+          }
+        ]
+      },
+      {
+        "title": "3. Materials Attestation",
+        "content": [
+          {
+            "text": "Materials attestation pertains to any raw data and can include configuration, source code, and other data (e.g., dependencies)."
+          }
+        ]
+      },
+      {
+        "title": "4. Artifacts Attestation",
+        "content": [
+          {
+            "text": "An artifact is the result or outcome of a CI process. For example, if the CI process step involves running a compiler (e.g., GNU Compiler Collection (GCC)) on a source code written in C, the artifact that will result is an executable binary of that source code. If the step involves running a SAST tool on the same source code, the artifact will be the \"Scan Result.\" The step that generated it can be a final or intermediate step. An attestation pertaining to this newly generated product falls under the category of artifacts attestation."
+          },
+          {
+            "text": "The requirements associated with signed evidence (i.e., attestation) and its storage must include the following:"
+          },
+          {
+            "text": "\nThe attestations must be cryptographically signed using a secure key.\nThe storage location must be tamper-proof and protected using robust access control.\n"
+          },
+          {
+            "text": "The attestations can then be used to evaluate policy compliance. A policy is a signed document that encodes the requirements for an artifact to be validated. The policy may include checks as to whether each of the functionaries involved in the CI process has used the right keys to generate the attestations, the required attestations are found, and the methodology to evaluate the attestation against its associated metadata has also been specified. The policy enables the verifiers to trace the compliance status of the artifact at any point during its life cycle.# The above capabilities collectively provide the following assurances:"
+          },
+          {
+            "text": "\nThe software was built by authorized systems using authorized tools (e.g., infrastructure for each step) in the correct sequence of steps.\nThere is no evidence of potential tampering or malicious activity.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.1.2. Secure Pull-Push Operations on Repositories",
+        "content": [
+          {
+            "text": "The first SSC security task is to secure source-code development practices. In the context of CI/CD pipelines, code resides in repositories, is extracted by authorized developers using a PULL operation, is modified, and is then put back into the repositories using a PUSH operation. To authorize these PULL-PUSH operations, two forms of checks are required:"
+          },
+          {
+            "text": "\nThe type of authentication required for developers authorized to perform the PULL-PUSH operations. The request made by the developer must be consistent with their role (e.g., application updater, package manager). Developers with \"merge approval\" permissions cannot approve their own merges.\nThe integrity of the code in the repository can be trusted such that it can be used for further updates.\n"
+          },
+          {
+            "text": "The various mechanisms for ensuring the trustworthiness of the code in the repository are:"
+          },
+          {
+            "text": "\nPULL-PUSH_REQ-1: The project maintainer should run automated checks on all artifacts covered in the change being pushed, such as unit tests, linters, integrity tests, security checks, and more.\nPULL-PUSH-REQ-2: CI pipelines should only be run using tools when confidence is established in the trustworthiness of the source-code origin of those tools.\nPULL-PUSH-REQ-3: The repository or source-code management system (e.g., GitHub, GitLab) should either a) run CI workflows in sandboxed environments without access to the network, any privileged access, or the ability to read secrets or b) have built-in protection that incorporates a delay in CI workflow runs until they are approved by a maintainer with write access. This built-in protection should go into effect when an outside contributor submits a pull request to a public repository. The setting for this protection should be at the strictest level, such as \"Require approval for all outside collaborators\" [10].\nPULL-PUSH_REQ-4: If there are no built-in protections available in the source-code management system, then external security tools with the following features are required:\nFunctionality to evaluate and enhance the security posture of the SCM systems with or without a policy (e.g., Open Policy Agent (OPA)) to assess the security settings of the SCM account and generate a status report with actionable recommendations.\nFunctionality to enhance the security of the source-code management system by detecting and remediating misconfigurations, security vulnerabilities, and compliance issues.\n"
+          },
+          {
+            "text": "An example of such a tool is the popular open-source tool OpenSSF scorecard."
+          }
+        ]
+      },
+      {
+        "title": "5.1.3. Integrity of Evidence Generation During Software Updates",
+        "content": [
+          {
+            "text": "The software update process is typically carried out by a special class of software development tool called software update systems. Ensuring the security of these software update systems...# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "plays a critical role in the overall security of an SSC. Threats to software update systems primarily target the evidence generation process so as to erase the trail of updates and prevent the ability to determine whether the updates were legitimate or not."
+          },
+          {
+            "text": "There are several types of software update systems [11]:"
+          },
+          {
+            "text": "\nPackage managers that are responsible for all of the software installed on a system\nApplication updaters that are only responsible for individual installed applications\nSoftware library managers that install software that adds functionality, such as plugins or programming language libraries.\n"
+          },
+          {
+            "text": "The primary task performed by a software update system is to identify the files that are needed for a given update ticket and download trusted files. At first glance, it may appear that the only checks needed to establish trust in downloaded files are the various integrity and authenticity checks performed by verifying the signatures on the metadata associated with individual files or the package. However, the very process of signature generation may be vulnerable to known attacks, so software update systems require many other security measures related to signature generation and verification."
+          },
+          {
+            "text": "The evolving framework for providing security for software update systems has incorporated many of these required security measures into its specification and prescribed some others for future specifications. A framework is a set of libraries, file formats, and utilities that can be used to secure new and existing software update systems. The framework should protect the signing operation by requiring the policy defined in Sec. 5.1.1 to be satisfied prior to performing the signing operation. The following are some of the consensus goals for the framework:"
+          },
+          {
+            "text": "\nThe framework should provide protection against all known attacks on the tasks performed by the software update systems, such as metadata (hash) generation, the signing process, the management of signing keys, the integrity of the authority performing the signing, key validation, and signature verification.\nThe framework should provide a means to minimize the impacts of key compromise by supporting roles with multiple keys and threshold or quorum trust (with the exception of minimally trusted roles designed to use a single key). The compromise of roles that use highly-vulnerable keys should have minimal impact. Therefore, online keys (i.e., keys used in an automated fashion) should not be used for any role that clients ultimately trust for files they may install [11]. When keys are online, exceptional care should be taken in caring for them, such as storing them in a Hardware Security Module (HSM) and only allowing their use if the artifacts being signed pass the policy defined in Sec. 5.1.1.\nThe framework must be flexible enough to meet the needs of a wide variety of software update systems.\nThe framework must be easy to integrate with software update systems.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.1.4. Secure Code Commits# Appropriate Forms of Testing",
+        "content": [
+          {
+            "text": "Appropriate forms of testing should be performed before code commits, and the following requirements must be met:"
+          },
+          {
+            "text": "\nSAST and DAST tools (covering all languages used in development) should be run in CI/CD pipelines with code coverage reports being provided to developers and security personnel.\nIf open-source modules and libraries are used, dependencies must be enumerated, understood, and evaluated for policy (potentially using appropriate SCA tools). The security conditions that they should meet for their inclusion must also be tested. Dependency file detectors should detect all dependencies, including transitive dependencies with preferably no limit to the depth of nested or transitive dependencies that are to be analyzed [19].\n"
+          },
+          {
+            "text": "One SSC security measure required during code commits is the prevention of secrets getting into the committed code. This is enabled by a scanning operation for secrets and results in a feature called push protection [12], [20]. This feature should satisfy the following requirements:"
+          },
+          {
+            "text": "\nCOMMIT-REQ-1: (e.g., personal access token) Evaluate committed code for adherence to organizational policy, including the absence of secrets such as keys and Application Programming Interface (API) tokens. The detected secrets should be displayed prominently through media such as security dashboards, and appropriate alerts should be generated upon detection of policy violations with documented methods to remediate violations.\nCOMMIT-REQ-2: Push protection features should be enabled for all repositories assigned to an administrator [13]. Such protection should include the verification of developer identity/authorization, the enforcement of developer signing of code commits, and file name verification [21].\n"
+          }
+        ]
+      },
+      {
+        "title": "5.2. Securing Workflows in CD Pipelines",
+        "content": [
+          {
+            "text": "Supply chain security measures also apply to controls during the CD process. The following are some due diligence measures that should be used during CD. These measures can be implemented by defining verification policies for allowing or disallowing an artifact for deployment."
+          },
+          {
+            "text": "\nDEPLOY-REQ-1: For code that is already in the repository and ready to be deployed, a security scanning sub-feature should be invoked to detect the presence of secrets in the code, such as keys and access tokens. In many instances, the repository should be scanned for the presence of secrets, even before being populated with code, since their presence in a repository can mean that the credentials are already leaked, depending on the repository's visibility.\nDEPLOY-REQ-2: Before merging pull requests, it should be possible to view the details of any vulnerable versions through a form of dependency review [15], [19].\nDEPLOY-REQ-3: If a secure build environment and associated process have been established, it should be possible to specify that the artifact (i.e., container image) being...# Deployment Requirements\n"
+          }
+        ]
+      },
+      {
+        "title": "DEPLOY_REQ-4",
+        "content": [
+          {
+            "text": "There should be evidence that the container image was scanned for vulnerabilities and attested for vulnerability findings. An important factor in vulnerability scans is the time when it was run. Since tools used to scan artifacts are continuously updated to detect new and emerging vulnerabilities, more recent scan results are more likely to be accurate and provide better assurance than results from the past. This technique enables DevOps teams to implement a proactive container security posture by ensuring that only verified container images are admitted into the environment and remain trusted during runtime [14]. Specifically, it should be possible to allow or block image deployment based on organization-defined policies."
+          }
+        ]
+      },
+      {
+        "title": "DEPLOY_REQ-5",
+        "content": [
+          {
+            "text": "The release build scripts should be periodically checked for malicious code. Specific tasks to be performed include:\n- A container image should be scanned for vulnerabilities as soon as it is built, even before it is pushed to a registry. The early scanning feature can also be built into local workflows.\n- The tools used to interact with repositories that contain container images and language packages should be capable of integration with CD tools, thus making all activities an integral part of automated CD pipelines."
+          }
+        ]
+      },
+      {
+        "title": "5.2.1. Secure CD Pipeline \u2013 Case Study (GitOps)",
+        "content": [
+          {
+            "text": "All operations during and after a build in the CI/CD pipeline involve interacting with a central repository (e.g., Bitbucket, GitHub, and GitLab). The operations are collectively called GitOps, which is an automated deployment process facilitated by open-source tools, such as Argo CD and Flux. GitOps is carried out for both infrastructure code and application code and consist of commits, forking, and pull and push requests. The usage of GitOps covers the following [16]:\n- Managing infrastructure as code\n- Managing and applying cluster configurations\n- Automating the deployment of containerized applications and their configurations to distributed systems."
+          },
+          {
+            "text": "The following SSC security tasks should be applied with respect to creating configuration data prior to deployment, capturing all data pertaining to a particular release, modifying software during runtime, and performing monitoring operations:\n- GitOps-REQ-1: The process should rely on automation rather than manual operations. For example, manually configuring hundreds of YAML files to roll back a deployment on a cluster in a Git repository should be avoided.\n- GitOps-REQ-2: Package managers that facilitate GitOps should preserve all data on the packages that were released, including the version numbers of all modules, all associated configuration files, and other metadata as appropriate for the software operational environment.\n- GitOps-REQ-3: Changes should not be manually applied at runtime (e.g., kubectl).# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Instead, changes should be made to the relevant code, and a new release that incorporates those changes should be triggered. This ensures that Git commits remain the single source of truth for what runs in the cluster."
+          }
+        ]
+      },
+      {
+        "title": "GitOps-REQ-4",
+        "content": [
+          {
+            "text": "Since the Git repository contains the application definitions and configuration as code, it should be pulled automatically and compared with the specified state of these configurations (i.e., monitoring and remediation for drift). For any configurations that deviate from their specified state, the following actions may be performed:"
+          },
+          {
+            "text": "\nAdministrators can choose to automatically resync configurations to the defined state.\nNotifications should be sent regarding the differences, and manual remediation should be performed.\n"
+          }
+        ]
+      },
+      {
+        "title": "5.3. SSC Security for CI/CD Pipelines \u2013 Implementation Strategy",
+        "content": [
+          {
+            "text": "The extensive set of steps needed for SSC security cannot be implemented all at once in the SDLC of all enterprises without a great deal of disruption to underlying business processes and operational costs. Rather, solutions that provide SSC security can be broadly classified into the following types [17]:"
+          },
+          {
+            "text": "\n\nSolutions that ensure SSC security through features associated with each task in the DevSecOps pipelines:\na. Verifying that the software is built correctly by ensuring tamper-proof build pipelines, such as by providing verified visibility into the dependencies and steps used in the build [18], since compromised dependencies or build tools are the greatest sources for poisoned workflows.\nb. Including features for the specification of checklists for each step of the delivery pipeline to provide guidance for implementation and to check and enforce controls for complying with checklists.\n\n\nSolutions that ensure integrity and provenance through digital signatures and attestations.\n\n\nStrategy to ensure that running code is up to date, such as instituting a \"build horizon\" (i.e., code that is older than a certain time period should not be launched), to keep production as close as possible to the committed code in the repositories.\n\n\nSecuring CI/CD clients to prevent malicious code from stealing confidential information (e.g., proprietary source code, signing keys, cloud credentials), reading environment variables that may contain secrets, or exfiltrating data to an adversary-controlled remote endpoint.\n\n"
+          },
+          {
+            "text": "Solutions that ensure SSC security through features associated with each task in the DevSecOps pipelines:\na. Verifying that the software is built correctly by ensuring tamper-proof build pipelines, such as by providing verified visibility into the dependencies and steps used in the build [18], since compromised dependencies or build tools are the greatest sources for poisoned workflows.\nb. Including features for the specification of checklists for each step of the delivery pipeline to provide guidance for implementation and to check and enforce controls for complying with checklists."
+          },
+          {
+            "text": "Solutions that ensure integrity and provenance through digital signatures and attestations."
+          },
+          {
+            "text": "Strategy to ensure that running code is up to date, such as instituting a \"build horizon\" (i.e., code that is older than a certain time period should not be launched), to keep production as close as possible to the committed code in the repositories."
+          },
+          {
+            "text": "Securing CI/CD clients to prevent malicious code from stealing confidential information (e.g., proprietary source code, signing keys, cloud credentials), reading environment variables that may contain secrets, or exfiltrating data to an adversary-controlled remote endpoint."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "forums. Further,\nNIST is aware of the emergence of a DevSecOps platform that provides an\nintegrated set of services covering both CI and CD pipelines. Since this platform is not yet\nmature and there is a lack of consensus regarding the set of baseline features pertaining to it, the\nrequirements for the secure use of this platform to carry out the activities in the CI/CD\nworkflows are not discussed in this document."
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_HTML",
+    "subsections": [
+      {
+        "content": "```"
+      }
+    ]
+  }
+]

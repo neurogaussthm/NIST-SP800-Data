@@ -1,0 +1,1216 @@
+[
+  {
+    "title": "ABSTRACT",
+    "subsections": [
+      {
+        "content": "NIST Special Publication (SP) 800-160, Volume 2, focuses on cyber resiliency engineering\u2014an emerging specialty systems engineering discipline applied in conjunction with systems security engineering and resilience engineering to develop survivable, trustworthy secure systems. Cyber resiliency engineering intends to architect, design, develop, implement, maintain, and sustain the trustworthiness of systems with the capability to anticipate, withstand, recover from, and adapt to adverse conditions, stresses, attacks, or compromises that use or are enabled by cyber resources. From a risk management perspective, cyber resiliency is intended to help reduce the mission, business, organizational, enterprise, or sector risk of depending on cyber resources."
+      },
+      {
+        "content": "This publication can be used in conjunction with ISO/IEC/IEEE 15288:2015, Systems and software engineering\u2014Systems life cycle processes; NIST Special Publication (SP) 800-160, Volume 1, Systems Security Engineering\u2014Considerations for a Multidisciplinary Approach in the Engineering of Trustworthy Secure Systems; NIST SP 800-37, Risk Management Framework for Information Systems and Organizations\u2014A System Life Cycle Approach for Security and Privacy; and NIST SP 800-53, Security and Privacy Controls for Information Systems and Organizations. It can be viewed as a handbook for achieving the identified cyber resiliency outcomes based on a systems engineering perspective on system life cycle and risk management processes, allowing the experience and expertise of the implementing organization to help determine how the content will be used for its purpose. Organizations can select, adapt, and use some or all of the cyber resiliency constructs (i.e., goals, objectives, techniques, approaches, and design principles) described in this publication and apply the constructs to the technical, operational, and threat environments for which systems need to be engineered."
+      }
+    ]
+  },
+  {
+    "title": "EXECUTIVE SUMMARY",
+    "subsections": [
+      {
+        "content": "The goal of the NIST Systems Security Engineering initiative is to address security, safety, and resiliency issues from the perspective of stakeholder requirements and protection needs using established engineering processes to ensure that those requirements and needs are addressed across the entire system life cycle to develop more trustworthy systems. To that end, NIST Special Publication (SP) 800-160, Volume 2, focuses on cyber resiliency engineering\u2014an emerging specialty systems engineering discipline applied in conjunction with resilience engineering and systems security engineering to develop more survivable, trustworthy systems. Cyber resiliency engineering intends to architect, design, develop, maintain, and sustain the trustworthiness of systems with the capability to anticipate, withstand, recover from, and adapt to adverse conditions, stresses, attacks, or compromises that use or are enabled by cyber resources.\n```# Cyber Resiliency Framework"
+      },
+      {
+        "title": "Introduction",
+        "content": [
+          {
+            "text": "Resources. From a risk management perspective, cyber resiliency is intended to reduce the mission, business, organizational, or sector risk of depending on cyber resources. This publication can be used in conjunction with ISO/IEC/IEEE 15288:2015, Systems and software engineering\u2014Systems life cycle processes; NIST SP 800-160, Volume 1, Systems Security Engineering\u2014Considerations for a Multidisciplinary Approach in the Engineering of Trustworthy Secure Systems; NIST SP 800-37, Risk Management Framework for Information Systems and Organizations\u2014A System Life Cycle Approach for Security and Privacy; and NIST SP 800-53, Security and Privacy Controls for Information Systems and Organizations."
+          }
+        ]
+      },
+      {
+        "title": "Purpose",
+        "content": [
+          {
+            "text": "The application of the concepts in this publication\u2014in combination with the system life cycle processes in SP 800-160, Volume 1, and the risk management methodology in SP 800-37\u2014can be viewed as a handbook for achieving cyber resiliency outcomes. Guided and informed by stakeholder protection needs, mission and business assurance needs, and stakeholder concerns with cost, schedule, and performance, the cyber resiliency constructs and analysis approach can be applied to critical systems to identify, prioritize, and implement solutions to meet the unique cyber resiliency needs of organizations."
+          }
+        ]
+      },
+      {
+        "title": "Cyber Resiliency Engineering Framework",
+        "content": [
+          {
+            "text": "NIST SP 800-160, Volume 2, presents a cyber resiliency engineering framework to aid in understanding and applying cyber resiliency, a concept of use for the framework, and the engineering considerations for implementing cyber resiliency in the system life cycle. The framework constructs include goals, objectives, techniques, implementation approaches, and design principles. Organizations can select, adapt, and use some or all of the cyber resiliency constructs in this publication and apply the constructs to the technical, operational, and threat environments for which systems need to be engineered."
+          }
+        ]
+      },
+      {
+        "title": "Considerations for Application",
+        "content": [
+          {
+            "text": "Building from the cyber resiliency engineering framework, this publication also identifies considerations for determining which cyber resiliency constructs are most relevant to a system of interest and a tailorable cyber resiliency analysis approach to apply the cyber resiliency concepts, constructs, and practices to a system. The cyber resiliency analysis is intended to determine whether the cyber resiliency properties and behaviors of a system of interest, wherever it is in the life cycle, are sufficient for the organization using that system to meet its mission assurance, business continuity, or other security requirements in a threat environment that includes the advanced persistent threat (APT). A cyber resiliency analysis is performed with the expectation that such analysis will support engineering and risk management decisions about the system of interest."
+          }
+        ]
+      },
+      {
+        "title": "Technical Appendices",
+        "content": [
+          {
+            "text": "The cyber resiliency engineering framework is supplemented by several technical appendices that provide additional information to support its application, including:# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Background and contextual information on cyber resiliency",
+        "content": [
+          {
+            "text": "Detailed descriptions of the individual cyber resiliency constructs (i.e., goals, objectives, techniques, implementation approaches, design principles) that are part of the cyber resiliency engineering framework\nControls in [SP 800-53] that directly support cyber resiliency (including the questions used to determine if controls support cyber resiliency, the relevant controls, and cyber resiliency techniques and implementation approaches)\nAn approach for adversary-oriented analysis of a system and applications of cyber resiliency, a vocabulary to describe the current or potential effects of a set of mitigations, and a representative analysis of how cyber resiliency approaches and controls could mitigate adversary tactics, techniques, and procedures\nAn analysis of the potential effects of cyber resiliency on adversary tactics, techniques, and procedures used to attack operational technologies (e.g., Industrial Control Systems)"
+          }
+        ]
+      },
+      {
+        "title": "RELATIONSHIP BETWEEN ISO 15288 AND OPERATIONAL RESILIENCE",
+        "content": [
+          {
+            "text": "Although the focus of [ISO 15288] is systems and software engineering processes, operational resilience, which includes cyber resiliency for systems that include or depend on cyber resources, is addressed indirectly by requiring organization-wide commitment, resources, practices, and processes. The interacting elements in the definition of a system include layers of resilience in hardware, software, data, information, humans, processes, procedures, facilities, materials, and naturally occurring physical entities. This is important because if the organization's missions or business functions require sustainability during perturbations, disruptions, disturbances, or cyber-attacks, then operational resilience practices and procedures must be applied to all of the system's assets. It would be of limited value to have resilience measures implemented in the software architecture if there is no redundancy and survivability in the hardware, if the communications networks are fragile, if critical personnel are not available (e.g., in a natural disaster or inclement weather) to operate and maintain the system, or if there are no facilities available for producing the organization's products and/or services."
+          }
+        ]
+      },
+      {
+        "title": "ADVERSARY PERSISTENCE AND LONG-TERM PRESENCE",
+        "content": [
+          {
+            "text": "Numerous reports of cyber incidents and cyber breaches indicate that extended periods of time transpired between the time an adversary initially established a presence in an organizational system by exploiting a vulnerability and when that presence was revealed or detected. In certain instances, the time period before detection can be as long as months or years. In the worst case, the adversary's presence may never be detected."
+          },
+          {
+            "text": "The following examples illustrate the types of situations in which an adversary can maintain a long-term presence or persistence in a system without attacking the system via cyberspace:"
+          },
+          {
+            "text": "Compromising the pre-execution environment of a system through a hardware or software# Implant"
+          },
+          {
+            "text": "(e.g., compromise of the firmware or microcode of a system element, such as a network switch or a router, that activates before initialization in the system's environment of operation). This is extremely difficult to detect and can result in compromise of the entire environment."
+          },
+          {
+            "text": "Compromising the software development toolchain (e.g., compilers, linkers, interpreters, continuous integration tools, code repositories). This allows malicious code to be inserted by the adversary without modifying the source code or without the knowledge of the software developers.\nCompromising a semiconductor product or process (e.g., maliciously altering the hardware description language [HDL] of a microprocessor, a field-programmable gate array [FPGA], a digital signal processor [DSP], or an application-specific integrated circuit [ASIC])."
+          }
+        ]
+      },
+      {
+        "title": "Threat Detection and Cyber Resiliency",
+        "content": [
+          {
+            "text": "Cyber resiliency is based on the recognition that adversaries can establish and maintain a covert presence in systems. Therefore, many cyber resiliency techniques and approaches are not predicated on the assumption of successfully detecting adversity, including cyber-attacks. These include the Coordinated Protection, Deception, Diversity, Non-Persistence, Realignment, Redundancy, Substantiated Integrity, and Unpredictability techniques, and the Fragmentation, Distributed Functionality, Predefined Segmentation, Attribute-Based Usage Restriction, and Trust-Based Privilege Management approaches."
+          },
+          {
+            "text": "Other techniques and approaches can provide automatic responses or support cyber defender responses to detected indicators of possible or suspected adversity or to warnings of potential forthcoming adverse conditions (including announcements of planned outages of supporting services or the predictions of increased system load). These include the Adaptive Response technique and the Functional Relocation of Sensors, Functional Relocation of Cyber Resources, Asset Mobility, Dynamic Privileges, and Dynamic Segmentation and Isolation approaches."
+          },
+          {
+            "text": "Two cyber resiliency techniques directly involve the detection of adversity or its effects: Analytic Monitoring and Contextual Awareness. The Substantiated Integrity technique and the Consistency Analysis approach support detection of some effects of adversity."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "\"In the past, it has been assumed that to show that a system is safe, it is sufficient to provide assurance that the process for identifying the hazards has been as comprehensive as possible, and that each identified hazard has one or more associated controls. While historically this approach has been used reasonably effectively to ensure that known risks are controlled, it has become increasingly apparent that evolution to a more holistic approach is needed as systems become more complex and the cost of designing, building, and operating them become more of an issue.\"\nPreface, NASA System Safety Handbook, Volume 1, November 2011"
+      },
+      {
+        "content": "\"This whole economic boom in cybersecurity seems largely to be a consequence of poor engineering.\"\nCarl Landwehr\nCommunications of the ACM, February 2015"
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER ONE",
+    "subsections": [
+      {
+        "title": "INTRODUCTION",
+        "content": [
+          {
+            "subsection": "THE NEED FOR CYBER-RESILIENT SYSTEMS",
+            "text": []
+          },
+          {
+            "text": "The need for trustworthy secure systems stems from a variety of stakeholder needs that are driven by mission, business, and other objectives and concerns. The principles, concepts, and practices for engineering trustworthy secure systems can be expressed in various ways, depending on which aspect of trustworthiness is of concern to stakeholders. NIST Special Publication (SP) 800-160, Volume 1 [SP 800-160 v1], provides guidance on systems security engineering with an emphasis on protection against asset loss. In addition to security, other aspects of trustworthiness include reliability, safety, and resilience. Specialty engineering disciplines address different aspects of trustworthiness. While each discipline frames the problem domain and the potential solution space for its aspect of trustworthiness somewhat differently, [SP 800-160 v1] includes systems engineering processes to align the concepts, frameworks, and analytic processes from multiple disciplines to make trade-offs within and between the various aspects of trustworthiness applicable to a system of interest."
+          },
+          {
+            "text": "NIST SP 800-160, Volume 2, focuses on the property of cyber resiliency, which has a strong relationship to security and resilience but provides a distinctive framework for its identified problem domain and solution space. Cyber resiliency is the ability to anticipate, withstand, recover from, and adapt to adverse conditions, stresses, attacks, or compromises on systems that use or are enabled by cyber resources."
+          },
+          {
+            "text": "Cyber resiliency can be sought at multiple levels, including for system elements, systems, missions or business functions and the system-of-systems that support those functions, organizations, sectors, regions, the Nation, or transnational missions/business functions. From an engineering perspective, cyber resiliency is an emergent quality property of an engineered system, where an \"engineered system\" can be a system element made up of constituent components, a system, or a system-of-systems. Cyber-resilient systems are\n```# Cyber Resiliency"
+          },
+          {
+            "text": "Systems that have security measures or safeguards \"built in\" as a foundational part of the architecture and design and that display a high level of resiliency. Thus, cyber-resilient systems can withstand cyberattacks, faults, and failures and continue to operate in a degraded or debilitated state to carry out the mission-essential functions of the organization. From an enterprise risk management perspective, cyber resiliency is intended to reduce the mission, business, organizational, or sector risk of potentially compromised cyber resources."
+          },
+          {
+            "text": "Cyber resiliency supports mission assurance in a contested environment for missions that depend on systems that include cyber resources. A cyber resource is an information resource that creates, stores, processes, manages, transmits, or disposes of information in electronic form and that can be accessed via a network or using networking methods. However, some information resources are specifically designed to be accessed using a networking method only intermittently (e.g., via a low-power connection to check the status of an insulin pump, via a wired connection to upgrade software in an embedded avionic device). These cyber resources are characterized as operating primarily in a disconnected or non-networked mode."
+          }
+        ]
+      },
+      {
+        "title": "Cyber-Resilient Systems",
+        "content": [
+          {
+            "text": "Cyber-resilient systems operate like the human body. The human body has an effective immune system that can readily absorb a continuous barrage of environmental hazards and provides the necessary defense mechanisms to maintain a healthy state. The body also has self-repair systems to recover from illnesses and injuries when defenses are breached. But cyber-resilient systems, like the human body, cannot defend against all hazards at all times. While the body cannot always recover to the same state of health as before an injury or illness, it can adapt. Similarly, cyber-resilient systems can recover minimal essential functionality (e.g., functionality to meet critical mission needs). Understanding the limitations of individuals, organizations, and systems is fundamental to managing risk."
+          },
+          {
+            "text": "Systems incorporate cyber resources as system elements and may be susceptible to harm resulting from the effects of adversity on those resources and particularly to harm resulting from cyber-attacks. In some cases, susceptibility to harm may exist even with the employment of traditional cybersecurity safeguards and countermeasures intended to protect systems from adversity. The cyber resiliency problem is defined as how to achieve adequate mission resilience by providing (1) adequate system resilience and (2) adequate mission/business function and operational/organizational resilience in the presence of possible adversities that affect cyber resources. The cyber resiliency problem domain overlaps with the security problem domain since a system should be securely resilient."
+          },
+          {
+            "text": "The cyber resiliency problem domain is informed by an understanding of the threat landscape.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "and, in particular, the advanced persistent threat (APT). The APT stems from an adversary that possesses significant levels of expertise and resources that allow it to create opportunities to achieve its objectives by using multiple attack vectors, including cyber, physical, and deception. These objectives include establishing and extending footholds within the systems of targeted organizations for the express purposes of exfiltrating information; undermining or impeding critical aspects of a mission, program, or organization; or positioning itself to carry out these objectives in the future. The APT pursues its objectives repeatedly over an extended period, adapts to defenders' efforts to resist it, and is determined to maintain the level of interaction needed to execute its objectives [SP 800-39] [CNSSI 4009]. In addition, the APT can take advantage of human errors (e.g., lapses in basic cybersecurity), exploit other stresses on systems (e.g., increased or unusual system use in response to a natural disaster or other event), and execute sophisticated supply chain attacks."
+          },
+          {
+            "text": "All discussions of cyber resiliency focus on assuring mission or business functions and are predicated on the assumption that the adversary will breach defenses and establish a long-term presence in organizational systems. A cyber-resilient system is a system that provides a degree of cyber resiliency commensurate with the system's criticality."
+          }
+        ]
+      },
+      {
+        "title": "1.1 PURPOSE AND APPLICABILITY",
+        "content": [
+          {
+            "text": "The purpose of this publication is to provide guidance on how to apply cyber resiliency concepts, constructs, and engineering practices to systems security engineering and risk management for systems and organizations. This publication identifies considerations for the engineering of the following types of systems that depend on cyber resources:"
+          },
+          {
+            "text": "General-purpose or multi-use systems (e.g., enterprise information technology [EIT]), shared services, or common infrastructures\nDedicated or special-purpose systems (e.g., security-dedicated/purposed systems)\nLarge-scale processing environments\nCyber-physical systems [CPS]\nInternet of Things [IoT] or Network of Things [NoT] devices\nSystems-of-systems (e.g., critical infrastructure systems [CIS])"
+          },
+          {
+            "text": "The guidance in this publication can be applied to new systems, reactive modifications to fielded systems, planned upgrades to fielded systems while continuing to sustain day-to-day operations, evolving systems, and systems identified for retirement."
+          }
+        ]
+      },
+      {
+        "title": "1.2 TARGET AUDIENCE",
+        "content": [
+          {
+            "text": "This publication is intended for systems security engineering and other professionals who are responsible for the activities and tasks related to the system life cycle processes in [SP 800-160 v1], the risk management processes in [SP 800-39], or the Risk Management Framework (RMF) in [SP 800-37]. The term systems security engineer is used in this publication to include those security professionals who perform any of the activities and tasks in [SP 800-160 v1]. This publication can also be used by professionals who perform other system life.# Cycle Activities Impacting Trustworthiness"
+          },
+          {
+            "text": "This document discusses cycle activities that impact trustworthiness or who perform activities related to the education or training of systems engineers and systems security engineers. These include but are not limited to:"
+          },
+          {
+            "text": "Individuals with systems engineering, architecture, design, development, and integration responsibilities\nIndividuals with software engineering, architecture, design, development, integration, and software maintenance responsibilities\nIndividuals with acquisition, budgeting, and project management responsibilities\nIndividuals with security governance, risk management, and oversight responsibilities, particularly those defined in [SP 800-37]\nIndividuals with forensic and threat analysis responsibilities\nIndividuals with independent security verification, validation, testing, evaluation, auditing, assessment, inspection, and monitoring responsibilities\nIndividuals with system security administration, operations, maintenance, sustainment, logistics, and support responsibilities\nProviders of technology products, systems, or services\nAcademic institutions offering systems security engineering and related programs"
+          },
+          {
+            "text": "This publication assumes that the systems security engineering activities in [SP 800-160 v1] and risk management processes in [SP 800-37] are performed under the auspices of, or within, an organization (referred to as \"the organization\" in this document). The activities and processes take into consideration the concerns of a variety of stakeholders, within and external to the organization. The organization\u2014through systems security engineering and risk management activities\u2014identifies stakeholders, elicits their concerns, and represents those concerns in the systems security engineering and risk management activities."
+          }
+        ]
+      },
+      {
+        "title": "1.3 How to Use This Publication",
+        "content": [
+          {
+            "text": "This publication is intended to be used in conjunction with [SP 800-160 v1] and is designed to be flexible in its application to meet the diverse and changing needs of systems and organizations. It is not intended to provide a \"recipe\" for execution or a \"cookbook\" approach to developing cyber-resilient systems. Rather, the publication can be viewed as a tutorial for achieving the identified cyber resiliency outcomes from a systems engineering perspective, leveraging the experience and expertise of the individuals in the organization to determine what is correct for its purpose."
+          },
+          {
+            "text": "Stakeholders who choose to use this guidance can employ some or all of the cyber resiliency constructs (i.e., goals, objectives, techniques, approaches, and design principles) as well as the analytic and life cycle processes, tailoring them to the technical, operational, and threat environments for which systems need to be engineered. In addition, organizations that choose to use this guidance for their systems security engineering efforts can select and employ some or all of the 30 processes in [ISO 15288] and some or all of the security-related activities.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "tasks defined for each process. Note that there are process dependencies in [ISO 15288]. The successful completion of some activities and tasks invokes other processes or leverages the results of other processes."
+          },
+          {
+            "text": "The system life cycle processes can be used for new systems, system upgrades, or systems that are being repurposed. The processes can be employed at any stage of the system life cycle and can take advantage of any system or software development methodology, including waterfall, spiral, or agile. The life cycle processes can also be applied recursively, iteratively, concurrently, sequentially, or in parallel and to any system regardless of its size, complexity, purpose, scope, environment of operation, or special nature."
+          },
+          {
+            "text": "The full extent of the application of the content in this publication is informed by stakeholder needs, organizational capabilities, cyber resiliency goals and objectives, cost, schedule, and performance. The tailorable nature of the engineering activities and tasks and the system life cycle processes help to ensure that the systems resulting from the application of the security design principles and concepts have a level of trustworthiness deemed sufficient to protect stakeholders from suffering unacceptable losses of assets and the associated consequences."
+          },
+          {
+            "text": "Such trustworthiness is made possible by the rigorous application of these cyber resiliency constructs within a structured set of processes that provides the necessary evidence and transparency to support risk-informed decision making and trades."
+          }
+        ]
+      },
+      {
+        "title": "1.4 PUBLICATION ORGANIZATION",
+        "content": [
+          {
+            "text": "The remainder of this special publication is organized as follows:"
+          },
+          {
+            "text": "Chapter Two describes the framework for cyber resiliency engineering.\nChapter Three describes considerations for selecting and prioritizing cyber resiliency techniques and implementation approaches and presents a tailorable process for applying cyber resiliency concepts, constructs, and practices to a system."
+          },
+          {
+            "text": "The following sections provide additional cyber resiliency-related information, including:"
+          },
+          {
+            "text": "References\nAppendix A: Glossary\nAppendix B: Acronyms\nAppendix C: Background\nAppendix D: Cyber Resiliency Constructs\nAppendix E: Controls Supporting Cyber Resiliency\nAppendix F: Adversary-Oriented Analysis\nAppendix G: Operational Technologies"
+          }
+        ]
+      },
+      {
+        "title": "FLEXIBLE APPLICATION OF CYBER RESILIENCY GUIDANCE",
+        "content": [
+          {
+            "text": "While this publication focuses on cyber resiliency engineering, the higher-level cyber resiliency constructs (i.e., cyber resiliency goals, objectives, and techniques) are defined to have broad applicability. The definitions of these constructs are written in a technology-neutral manner and are silent with regard to cyber resources. Thus, while these constructs can be applied to \"cyber systems\" (i.e., systems entirely constituted of cyber resources or for which cyber components are viewed as central), they can also be readily applied to \"non-cyber systems\"\u2014that is, systems.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "that include no cyber resources (e.g., water-powered sawmills). For the lower-level construct of cyber resiliency implementation approaches, the definitions become technology-specific and focus on cyber resources. Moreover, except for the Deception and Unpredictability techniques, the higher-level constructs are defined so that they can be applied to adversarial (e.g., cyberattacks) and non-adversarial (e.g., fires, floods) threat events."
+          },
+          {
+            "text": "The technology-neutral (and largely threat-neutral) nature of the higher-level cyber resiliency constructs reflects the fact that they are drawn from well-established, cross-cutting resilience concepts. In addition, it means that stakeholders and systems engineers for non-cyber systems (or systems for which cyber components are not viewed as central) can apply many of the constructs described in this publication, as can systems that are not concerned with adversarial threat events. This may prove beneficial given the rapid convergence of cyber and physical systems that reflects a movement of cyber into traditional non-cyber realms (e.g., vehicles, medical devices) and the growth of bio-integrated technology."
+          },
+          {
+            "text": "Finally, while much of the cyber resiliency analysis in this publication uses the MITRE Adversarial Tactics, Techniques, and Common Knowledge (ATT&CK\u2122) framework [Strom17], organizations can employ any framework that is suitable to their organizational needs."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "THE FUNDAMENTALS",
+    "subsections": [
+      {
+        "title": "UNDERSTANDING THE CONCEPTS ASSOCIATED WITH CYBER RESILIENCY",
+        "content": [
+          {
+            "text": "This section presents an engineering framework for understanding and applying cyber resiliency, the cyber resiliency constructs that are part of the framework, a concept of use for the framework, and engineering considerations for implementing cyber resiliency in the system life cycle. The discussion relies on several terms including cyber resiliency concepts and constructs, engineering practices, and solutions."
+          },
+          {
+            "text": "Cyber resiliency concepts are related to the problem domain and the solution set for cyber resiliency. The concepts are represented in cyber resiliency risk models and by cyber resiliency constructs. The constructs are the basic elements (i.e., building blocks) of the cyber resiliency engineering framework and include goals, objectives, techniques, implementation approaches, and design principles. The framework provides a way to understand the cyber resiliency problem and solution domain. Cyber resiliency goals and objectives identify the \"what\" of cyber resiliency\u2014that is, what properties and behaviors are integral to cyber-resilient systems. Cyber resiliency techniques, implementation approaches, and design principles characterize the ways of achieving or improving resilience in the face of threats to systems and system components (i.e., the \"how\" of cyber resiliency). Cyber resiliency constructs address both adversarial and non-adversarial threats from cyber and non-cyber sources."
+          },
+          {
+            "text": "Cyber resiliency engineering practices are the methods, processes, modeling, and analytical# Techniques for Cyber Resiliency Solutions"
+          },
+          {
+            "text": "Techniques used to identify and analyze proposed solutions. The application of these practices in system life cycle processes ensures that cyber resiliency solutions are driven by stakeholder requirements and protection needs, which, in turn, guide and inform the development of system requirements for the system of interest [ISO 15288, SP 800-160 v1]. Such solutions consist of combinations of technologies, architectural decisions, systems engineering processes, and operational policies, processes, procedures, or practices that solve problems in the cyber resiliency domain. They provide a sufficient level of cyber resiliency to meet stakeholder needs and reduce risks to organizational mission or business capabilities in the presence of a variety of threat sources, including the APT."
+          },
+          {
+            "text": "Cyber resiliency solutions use cyber resiliency techniques and approaches to implementing those techniques, as described in Section 2.1.3. Cyber resiliency solutions apply the design principles described in Section 2.1.4 and implement mechanisms (e.g., controls and control enhancements defined in [SP 800-53]) that apply one or more cyber resiliency techniques or implementation approaches or that are intended to achieve one or more cyber resiliency objectives. These mechanisms are selected in response to the security and cyber resiliency requirements defined as part of the system life cycle and requirements engineering process described in [SP 800-160 v1] or to mitigate security and cyber resiliency risks that arise from architectural or design decisions."
+          }
+        ]
+      },
+      {
+        "title": "2.1 Cyber Resiliency Engineering Framework",
+        "content": [
+          {
+            "text": "The following sections provide a description of the framework for cyber resiliency engineering. The framework constructs include cyber resiliency goals, objectives, techniques, implementation approaches, and design principles. The relationship among constructs is also described. These constructs, like cyber resiliency, can be applied at levels beyond the system (e.g., mission or business function level, organizational level, or sector level). Table 1 summarizes the definition and purpose of each construct, and how each construct is applied at the system level."
+          },
+          {
+            "subsection": "2.1.1 Cyber Resiliency Goals",
+            "text": []
+          },
+          {
+            "text": "Cyber resiliency, like security, is a concern at multiple levels in an organization. The four cyber resiliency goals, which are common to many resilience definitions, are included in the definition and the cyber resiliency engineering framework to provide linkage between risk management decisions at the system level, the mission and business process level, and the organizational level. Organizational risk management strategies can use cyber resiliency goals and associated strategies to incorporate cyber resiliency."
+          },
+          {
+            "text": "For cyber resiliency engineering analysis, cyber resiliency objectives rather than goals are the starting point. The term adversity, as used in the cyber resiliency goals in Table 2, includes stealthy, persistent, sophisticated, and well-resourced adversaries (i.e., the# APT) who may have compromised system components and established a foothold within an organization's systems."
+          }
+        ]
+      },
+      {
+        "title": "2.1.2 Cyber Resiliency Objectives",
+        "content": [
+          {
+            "text": "Cyber resiliency objectives are specific statements of what a system is intended to achieve in its operational environment and throughout its life cycle to meet stakeholder needs for mission assurance and resilient security. Cyber resiliency objectives, as described in Table 3, support interpretation, facilitate prioritization and assessment, and enable development of questions such as:"
+          },
+          {
+            "text": "What does each cyber resiliency objective mean in the context of the organization and the mission or business process that the system is intended to support?\nWhich cyber resiliency objectives are most important to a given stakeholder?\nTo what degree can each cyber resiliency objective be achieved?\nHow quickly and cost-effectively can each cyber resiliency objective be achieved?\nWith what degree of confidence or trust can each cyber resiliency objective be achieved?"
+          },
+          {
+            "text": "Because stakeholders may find the cyber resiliency objectives difficult to relate to their specific concerns, the objectives can be tailored to reflect the organization's missions and business functions or operational concept for the system of interest. Tailoring the cyber resiliency objectives can also help stakeholders determine which objectives apply and the priority to assign to each objective. Cyber resiliency objectives can be hierarchically refined to emphasize the different aspects of an objective or the methods to achieve an objective, thus creating sub-objectives. Cyber resiliency objectives (and sub-objectives as needed to help stakeholders interpret the objectives for their concerns) enable stakeholders to assert their different resiliency priorities based on organizational missions or business functions."
+          }
+        ]
+      },
+      {
+        "title": "2.1.3 Cyber Resiliency Techniques and Approaches",
+        "content": [
+          {
+            "text": "Cyber resiliency goals and objectives provide a vocabulary for describing what properties and capabilities are needed. Cyber resiliency techniques, approaches, and design principles (discussed in Section 2.1.4) provide a vocabulary for discussing how a system can achieve its cyber resiliency goals and objectives. A cyber resiliency technique is a set or class of practices and technologies intended to achieve one or more goals or objectives by providing capabilities. The following 14 techniques are part of the cyber resiliency engineering framework:"
+          },
+          {
+            "text": "Adaptive Response: Implement agile courses of action to manage risks.\nAnalytic Monitoring: Monitor and analyze a wide range of properties and behaviors on an ongoing basis and in a coordinated way.\nContextual Awareness: Construct and maintain current representations of the posture of missions or business functions while considering threat events and courses of action.\nCoordinated Protection: Ensure that protection mechanisms operate in a coordinated and effective manner.\n\nDeception: Mislead, confuse, hide critical assets from, or expose covertly tainted assets.# Cyber Resiliency Techniques\n\n\nDiversity: Use heterogeneity to minimize common mode failures, particularly threat events exploiting common vulnerabilities.\n\n\nDynamic Positioning: Distribute and dynamically relocate functionality or system resources.\n\n\nNon-Persistence: Generate and retain resources as needed or for a limited time.\n\n\nPrivilege Restriction: Restrict privileges based on attributes of users and system elements, as well as on environmental factors.\n\n\nRealignment: Structure systems and resource uses to align with mission or business function needs, reduce current and anticipated risks, and accommodate the evolution of technical, operational, and threat environments.\n\n\nRedundancy: Provide multiple protected instances of critical resources.\n\n\nSegmentation: Define and separate system elements based on criticality and trustworthiness.\n\n\nSubstantiated Integrity: Ascertain whether critical system elements have been corrupted.\n\n\nUnpredictability: Make changes randomly or unpredictably."
+          },
+          {
+            "text": "Deception: Mislead, confuse, hide critical assets from, or expose covertly tainted assets.# Cyber Resiliency Techniques"
+          },
+          {
+            "text": "Diversity: Use heterogeneity to minimize common mode failures, particularly threat events exploiting common vulnerabilities."
+          },
+          {
+            "text": "Dynamic Positioning: Distribute and dynamically relocate functionality or system resources."
+          },
+          {
+            "text": "Non-Persistence: Generate and retain resources as needed or for a limited time."
+          },
+          {
+            "text": "Privilege Restriction: Restrict privileges based on attributes of users and system elements, as well as on environmental factors."
+          },
+          {
+            "text": "Realignment: Structure systems and resource uses to align with mission or business function needs, reduce current and anticipated risks, and accommodate the evolution of technical, operational, and threat environments."
+          },
+          {
+            "text": "Redundancy: Provide multiple protected instances of critical resources."
+          },
+          {
+            "text": "Segmentation: Define and separate system elements based on criticality and trustworthiness."
+          },
+          {
+            "text": "Substantiated Integrity: Ascertain whether critical system elements have been corrupted."
+          },
+          {
+            "text": "Unpredictability: Make changes randomly or unpredictably."
+          },
+          {
+            "text": "The cyber resiliency techniques are described in Appendix D. Each technique is characterized by both the capabilities it provides and the intended consequences of using the technologies or the processes it includes. The cyber resiliency techniques reflect an understanding of the threats as well as the technologies, processes, and concepts related to improving cyber resiliency to address the threats."
+          },
+          {
+            "text": "The cyber resiliency engineering framework assumes the cyber resiliency techniques will be selectively applied to the architecture or design of organizational mission or business functions and their supporting system resources. Since natural synergies and conflicts exist among the cyber resiliency techniques, system engineering trade-offs must be made. Cyber resiliency techniques are expected to change over time as threats evolve, technology advances are made based on research, security practices evolve, and new ideas emerge."
+          },
+          {
+            "text": "Twelve of the 14 cyber resiliency techniques can be applied to adversarial or non-adversarial threats (including cyber-related and non-cyber-related threats). The cyber resiliency techniques specific to adversarial threats are Deception and Unpredictability. Cyber resiliency techniques are also interdependent. For example, the Analytic Monitoring technique supports Contextual Awareness. The Unpredictability technique, however, is different from the other techniques in that it is always applied in conjunction with some other technique (e.g., working with the Dynamic Positioning technique to establish unpredictable times for repositioning potential targets of interest)."
+          },
+          {
+            "text": "The definitions of cyber resiliency techniques are intentionally broad to insulate the definitions from changing technologies and threats, thus limiting the need for frequent changes to the set of techniques."
+          },
+          {
+            "text": "To support engineering analysis, multiple representative approaches to implementing each...# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "technique are identified.",
+        "content": [
+          {
+            "text": "As illustrated in Figure 1, an implementation approach (or, for brevity, an approach) is a subset of the technologies and processes included in a technique that are defined by how the capabilities are implemented or how the intended outcomes are achieved. Table D-4 in Appendix D defines representative approaches and gives representative examples of technologies and practices. The set of approaches for a specific technique is not exhaustive and represents relatively mature technologies and practices. Thus, technologies emerging from research can be characterized in terms of the techniques they apply while not being covered by any of the representative approaches."
+          },
+          {
+            "subsection": "2.1.4 Cyber Resiliency Design Principles",
+            "text": []
+          },
+          {
+            "text": "Systems engineers and architects use design principles as guidance in design decisions and analysis. A design principle takes the form of a terse statement or a phrase identifying a key concept accompanied by one or more statements that describe how that concept applies to system design (where \"system\" is broadly construed to include operational processes and procedures and may also include development and maintenance environments) [Bodeau17]. Design principles are defined for many specialty engineering disciplines using the terminology, experience, and research results that are specific to the specialty."
+          },
+          {
+            "text": "Cyber resiliency design principles, like those from other specialty disciplines, can be applied in different ways at multiple stages in the system life cycle, including the operations and maintenance stage. The design principles can also be used in a variety of system development models, including agile and spiral development. The cyber resiliency design principles identified in this publication can serve as a starting point for systems engineers and architects. For any given situation, only a subset of the design principles is selected, and those principles are tailored or \"re-expressed\" in terms more meaningful to the program, system, or system-of-systems to which they apply."
+          },
+          {
+            "text": "The cyber resiliency design principles are strongly informed by and can be aligned with design principles from other specialty disciplines, such as the security design principles in [SP 800-160 v1]. Many of the cyber resiliency design principles are based on design principles for security, resilience engineering, or both. Design principles can be characterized as strategic (i.e., applied throughout the systems engineering process, guiding the direction of engineering analyses) or structural (i.e., directly affecting the architecture and design of the system or system elements) [Ricci14]. Both strategic and structural cyber resiliency design principles can be reflected in security-related systems engineering artifacts. A complete list of strategic and structural cyber resiliency design principles is provided in Appendix D."
+          },
+          {
+            "subsection": "2.1.5 Relationship Among Cyber Resiliency Constructs",
+            "text": []
+          },
+          {
+            "text": "Cyber resiliency constructs, including goals, objectives, techniques, implementation approaches, and design principles, enable systems engineers to express cyber resiliency.# Concepts and Relationships"
+          },
+          {
+            "text": "The cyber resiliency constructs also relate to risk management. That relationship leads systems engineers to analyze cyber resiliency solutions in terms of potential effects on risk and on specific threat events or types of malicious cyber activities. The selection and relative priority of these cyber resiliency constructs is determined by the organization's strategy for managing the risks of depending on systems, which include cyber resources\u2014in particular, by the organization's risk framing."
+          },
+          {
+            "text": "The relative priority of the cyber resiliency goals and objectives and relevance of the cyber resiliency design principles are determined by the risk management strategy of the organization, which takes into consideration the concerns of, constraints on, and equities of all stakeholders (including those who are not part of the organization)."
+          },
+          {
+            "text": "Figure 2 illustrates the relationships among the cyber resiliency constructs. These relationships are represented by mapping tables in Appendix D. As Figure 2 illustrates, a cyber-resilient system is the result of the engineering selection, prioritization, and application of cyber resiliency design principles, techniques, and implementation approaches. The risk management strategy for the organization is translated into specific interpretations and prioritizations of cyber resiliency goals and objectives, which guide and inform trade-offs among different forms of risk mitigation."
+          }
+        ]
+      },
+      {
+        "title": "2.2 Cyber Resiliency in the System Life Cycle",
+        "content": [
+          {
+            "text": "The following section describes general considerations for applying cyber resiliency concepts and framework constructs to system life cycle stages and processes. Considerations include addressing the similarities and differences in security and cyber resiliency terminology and how the application of cyber resiliency goals, objectives, techniques, implementation approaches, and design principles can impact systems at key stages in the life cycle."
+          },
+          {
+            "text": "Figure 3 lists the system life cycle processes and illustrates their application across all stages of the system life cycle. It must be emphasized, however, that cyber resiliency engineering does not assume any specific life cycle or system development process, and cyber resiliency analysis can be performed at any point in and iteratively throughout the life cycle."
+          },
+          {
+            "text": "Cyber resiliency constructs are interpreted and cyber resiliency engineering practices are applied in different ways depending on the system life cycle stages. During the Concept stage, cyber resiliency goals and objectives are tailored in terms of the concept of use for the system of interest. Tailoring actions are used to elicit stakeholder priorities for the cyber resiliency goals and objectives. The organization's risk management strategy is used to help determine which strategic design principles are most relevant. The strategic design principles and corresponding structural design principles are aligned with design principles from other specialty engineering disciplines. Notional or candidate system architectures are analyzed with...# Cyber Resiliency Goals and Objectives"
+          },
+          {
+            "text": "Respect to how well the prioritized cyber resiliency goals and objectives can be achieved and how well the relevant strategic cyber resiliency design principles can be applied. The tailoring of objectives can also be used to identify or define potential metrics or measures of effectiveness for proposed cyber resiliency solutions."
+          },
+          {
+            "text": "Once again, the risk management strategy that constrains risk response or risk treatment (e.g., commitment to specific technologies, requirements for interoperability with or dependence on other systems) is used to help determine which techniques and approaches can or cannot be used in cyber resiliency solutions."
+          },
+          {
+            "text": "In addition, during the Concept stage, cyber resiliency concerns for enabling systems for production, integration, validation, and supply chain management are identified, and strategies for addressing those concerns are defined."
+          }
+        ]
+      },
+      {
+        "title": "Development Stage",
+        "content": [
+          {
+            "text": "During the Development stage, the relevant structural cyber resiliency design principles (i.e., those principles that can be applied to the selected system architecture and that support the strategic cyber resiliency design principles) are identified and prioritized based on how well the design principles enable the prioritized cyber resiliency objectives to be achieved."
+          },
+          {
+            "text": "The cyber resiliency techniques and approaches indicated by the structural design principles are analyzed with respect to whether and where they can be used in the selected system architecture given the constraints identified earlier. Cyber resiliency solutions are defined and analyzed with respect to potential effectiveness and compatibility with other aspects of trustworthiness."
+          },
+          {
+            "subsection": "Analysis of Potential Effectiveness",
+            "text": []
+          },
+          {
+            "text": "Analysis of potential effectiveness considers the relative effectiveness of the solution against potential threat events or scenarios [SP 800-30] and the measures of effectiveness for cyber resiliency objectives."
+          },
+          {
+            "subsection": "Analysis of Compatibility",
+            "text": []
+          },
+          {
+            "text": "Analysis of compatibility with other aspects of trustworthiness considers potential synergies or conflicts associated with technologies, design principles, or practices specific to other specialty engineering disciplines, particularly security, reliability, survivability, and safety."
+          },
+          {
+            "text": "In addition, specific measures for assessing whether or not the prerequisite requirements have been satisfied within the solution space are defined. This may include, for example, a determination of the baseline reliability of the technology components needed to deliver cyber-resilient capabilities within a system element."
+          }
+        ]
+      },
+      {
+        "title": "Implementation of Cyber Resiliency Solutions",
+        "content": [
+          {
+            "text": "In addition, during the Development stage, the implementation of cyber resiliency solutions is analyzed and evaluated. The verification strategy for cyber resiliency solutions at this stage typically includes adversarial testing or demonstration of mission or business function measures of performance in a stressed environment with adversarial activities."
+          },
+          {
+            "text": "The operational processes and procedures for using technical solutions are defined, refined, and validated with respect to the ability to meet mission and business objectives despite the adversity involving systems.# Cyber Resiliency Lifecycle"
+          }
+        ]
+      },
+      {
+        "title": "Introduction",
+        "content": [
+          {
+            "text": "Containing cyber resources. The cyber resiliency perspective calls for testing and other forms of validation or verification that include adversarial threats among (and in combination with) other stresses on the system. During this life cycle stage, resources (e.g., diverse implementations of critical system elements, alternative processing facilities) required to implement specific courses of action are also developed."
+          }
+        ]
+      },
+      {
+        "title": "Production Stage",
+        "content": [
+          {
+            "text": "During the Production stage, the verification strategy is applied to instances or versions of the system of interest and associated spare parts or components. The verification strategy for the cyber resiliency requirements as applied to such instances and system elements includes adversarial testing or demonstration in a stressed environment. In addition, during the Production stage, cyber resiliency concerns for enabling systems for production, integration, validation, and supply chain management continue to be identified and addressed."
+          }
+        ]
+      },
+      {
+        "title": "Utilization Stage",
+        "content": [
+          {
+            "text": "During the Utilization stage, the effectiveness of cyber resiliency solutions in the operational environment is monitored. Effectiveness may decrease due to changes in the operational environment (e.g., new mission or business processes, new stakeholders, increased user population, configuration drift, deployment in new locations, addition or removal of systems or system elements with which the system of interest interacts), the threat environment (e.g., new threat actors, new vulnerabilities in commonly used technologies), or the technical environment (e.g., the introduction of new technologies into other systems with which the system of interest interacts). Cyber resiliency solutions may need to be adapted to address such changes (e.g., defining new courses of action, reconfiguring system elements, changing mission or business processes and procedures). The relative priorities of cyber resiliency objectives may shift based on changes to stakeholders, stakeholder concerns, mission or business processes, or project funding. Finally, changes in the threat or technical environment may make some techniques or approaches less feasible, while changes in the technical or operational environment may make others more viable."
+          }
+        ]
+      },
+      {
+        "title": "Support Stage",
+        "content": [
+          {
+            "text": "During the Support stage, maintenance and upgrade of the system or system elements can include integration of new cyber resiliency solutions into the system of interest. This stage also provides opportunities to revisit the prioritization and tailoring of cyber resiliency objectives. Upgrades to or modifications of system capabilities can include significant architectural changes that address accumulated changes to the operational, threat, and technical environments. System modifications and upgrades can also introduce additional vulnerabilities, particularly with architectural changes."
+          }
+        ]
+      },
+      {
+        "title": "Retirement Stage",
+        "content": [
+          {
+            "text": "During the Retirement stage, system elements or the entire system of interest are removed from operations. The retirement process can affect other systems with which the system of interest interacts.# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Interest Interacts and Cyber Resiliency",
+        "content": [
+          {
+            "text": "Interest interacts and can decrease the cyber resiliency of those systems and of the supported mission or business processes. Retirement strategies can include phased removal of system elements, turnkey removal of all system elements, phased replacement of system elements, and turnkey replacement of the entire system of interest. Cyber resiliency objectives and priorities are identified for the systems, missions, and business functions in the operational environment to inform analysis of the potential or expected effects of different retirement strategies on the ability to achieve those objectives. Like the support stage, the retirement stage can introduce significant vulnerabilities, particularly during disposal and unintended residue remaining from decommissioned assets."
+          },
+          {
+            "text": "Table 4 illustrates changes in emphasis for the different cyber resiliency constructs, particularly with respect to cyber resiliency objectives (bolded)."
+          }
+        ]
+      },
+      {
+        "title": "2.3 Risk Management and Cyber Resiliency",
+        "content": [
+          {
+            "text": "Organizations manage the missions, business functions, and operational risks related to dependencies on systems that include cyber resources as part of a larger portfolio of risks, including financial and reputational risks; programmatic or project-related risks associated with developing a system (e.g., cost, schedule, performance); security risks associated with the organization's mission or business activities, information the organization processes or handles, or requirements arising from legislation, regulations, policies, or standards; and cybersecurity risks. A proposed cyber resiliency solution, while intended primarily to reduce mission, business, or operational risk, can also reduce other types of risk (e.g., security risk, reputational risk, supply chain risk, performance risk). However, like any solution to a risk management problem, it can also increase other types of risk (e.g., financial, cost, or schedule risk)."
+          },
+          {
+            "text": "As part of a multidisciplinary systems engineering effort, systems security engineers and risk management professionals are responsible for articulating the potential adverse impacts of alternative solutions, determining whether those impacts fall within the organizational risk tolerance, deciding whether the adoption of a proposed solution is consistent with the organization's risk management strategy, and informing the organization's risk executive of risk trade-offs."
+          },
+          {
+            "text": "At the organizational level, a cyber resiliency perspective on risk management can lead to the analysis and management of risks associated with programs and initiatives at multiple levels, which involve investment in, transition to, use of, or transition away from different cyber technologies. The environment in which a system of interest is engineered is rarely static. Related programs, initiatives, or other efforts at federal agencies, driven by [EO 14028], can include efforts to transition to a zero trust architecture, reduce software supply chain risks, and transition from IPv4 to IPv6. Such organization-level programs and initiatives.# can affect the\nexecution of efforts at lower levels (e.g., an acquisition program for a\nspecific system or service, an initiative to redefine a mission or business process to better accommodate telework)."
+          },
+          {
+            "text": "Motivated by the cyber resiliency Adapt goal, an organization's risk management strategy can also consider the following questions:"
+          },
+          {
+            "text": "How does each step in a transition plan or an investment plan change the attack surface?\nAre new attack vectors enabled by a given step? How will they be mitigated? Will they be removed in a later step?\nDoes this step increase fragility, complexity, or instability? If so, how will those risks be managed?\nOn what other programs or initiatives does this step depend? If those efforts do not achieve the expected objectives, how will the risks be managed?\nWhat new or modified operational procedures and processes are assumed? How will they be resourced and staffed?\nWhat policy or governance changes are assumed? How will they be achieved? What risks would result if they are not achieved?\nHow will the cyber resiliency objectives (as interpreted and prioritized by the organization) continue to be achieved in the face of changes resulting from different programs and initiatives?"
+          }
+        ]
+      },
+      {
+        "title": "GENERALIZED CYBER RESILIENCY CONSTRUCTS",
+        "content": [
+          {
+            "text": "Cyber resiliency goals, objectives, and techniques are generally defined so they can be applied to all types of threats (not solely cyber threats) and all types of systems (not solely systems that include or are enabled by cyber resources). However, the motivation for these definitions and for the selection of objectives and techniques for inclusion in the cyber resiliency engineering framework is the recognition of dependence on systems involving cyber resources in a threat environment that includes the APT."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CHAPTER THREE",
+    "subsections": [
+      {
+        "title": "CYBER RESILIENCY IN PRACTICE# APPLYING CYBER RESILIENCY CONCEPTS, CONSTRUCTS, PRACTICES",
+        "content": [
+          {
+            "text": "This chapter identifies considerations for determining which cyber resiliency constructs are most relevant to a system of interest and describes a tailorable process for applying cyber resiliency concepts, constructs, and practices to a system. It also includes guidance on the cyber resiliency analysis carried out during the system life cycle to determine whether the cyber resiliency properties and behaviors of a system of interest, regardless of its life cycle stage, are sufficient for the organization using that system to meet its mission assurance, business continuity, or other security requirements in a threat environment and contested cyberspace that includes the APT."
+          }
+        ]
+      },
+      {
+        "title": "3.1 SELECTING AND PRIORITIZING CYBER RESILIENCY CONSTRUCTS",
+        "content": [
+          {
+            "text": "The variety of concerns, technologies, and practices related to cyber resiliency results in an extensive framework for cyber resiliency engineering. For example, the engineering framework identifies 14 cyber resiliency techniques and 50 cyber resiliency implementation approaches. The engineering framework is also complex, with relationships among the constructs of goals, objectives, design principles, techniques, and approaches, as discussed in Appendix D. Cyber resiliency design principles, techniques, and approaches build on, complement, or function in synergy with mechanisms intended to ensure other quality properties (e.g., security, safety, and system resilience)."
+          },
+          {
+            "text": "The variety of circumstances and types of systems for which cyber resiliency can be applied means that no single cyber resiliency technique, approach, or set of approaches is universally optimal or applicable. Systems security engineering seeks to manage risk rather than provide a universal solution. The choice of a risk-appropriate set of cyber resiliency techniques and approaches depends on various trade space considerations and risk factors that are assessed during the systems engineering processes. Employment of all cyber resiliency techniques and approaches is not needed to achieve the cyber resiliency objectives prioritized by stakeholders. In fact, it is not possible to employ all techniques and approaches simultaneously. The following subsections describe factors to consider when selecting a set of cyber resiliency techniques and implementation approaches that best fits the system of interest."
+          },
+          {
+            "subsection": "3.1.1 Achievement of Goals and Objectives",
+            "text": []
+          },
+          {
+            "text": "Cyber resiliency techniques and associated implementation approaches are employed to achieve mission or business objectives. The relative priorities of cyber resiliency goals and objectives are determined by the mission or business objectives. The selection of specific cyber resiliency techniques and approaches is, therefore, driven in part by the relative priorities of the objectives they support."
+          },
+          {
+            "subsection": "3.1.2 Cyber Risk Management Strategy",
+            "text": []
+          },
+          {
+            "text": "An organization's cyber risk management strategy (i.e., its strategy for managing risks stemming# CURRENT PAGE RAW OCR TEXT"
+          },
+          {
+            "text": "from dependencies on systems that include cyber resources) is part of its risk management strategy and includes its risk framing for cyber risks. The organization's risk frame identifies which risks or risk factors (i.e., potential impacts or consequences) are unacceptable. For cyber resiliency, the risk frame assumes an adversary with a persistent presence in organizational systems. The risk response portion of the risk management strategy can include priorities or preferences for the types of effects on adversary activities to seek in cyber resiliency solutions."
+          },
+          {
+            "text": "An organization's risk management strategy is constrained by such factors as legal, regulatory, and contractual requirements as reflected in organizational policies and procedures, financial resources, legacy investments, and organizational culture. These constraints imply the need to consider the costs, ease of use, and operational impacts of security and cyber resiliency solutions. The constraints can be reflected in the selection and tailoring of cyber resiliency techniques, approaches, and design principles. For example, organizational policies and culture can influence whether and how the cyber resiliency technique of Deception is used. The risk management strategy can define an order of precedence for responding to identified risks analogous to the safety order of precedence, such as \"harden, sensor, isolate, obfuscate.\" Together with the strategic design principles selected and specifically tailored to a given program, mission, business function, or system, the order of precedence can guide the selection and application of structural design principles at different locations in an architecture."
+          }
+        ]
+      },
+      {
+        "title": "3.1.3 System Type",
+        "content": [
+          {
+            "text": "The set of cyber resiliency techniques and approaches that are most relevant to and useful in a system depends on the type of system. The following present some general examples of system types and the techniques and approaches that might be appropriate for those types of systems. In addition to the techniques and approaches listed in the examples below, there may be other techniques and approaches that could be useful for a particular type of system. The specific aspects of the system in question will impact the selection as well."
+          },
+          {
+            "text": "Enterprise IT Systems, Shared Services, and Common Infrastructures\nEnterprise IT (EIT) systems are typically general-purpose computing systems\u2014very often with significant processing, storage, and bandwidth\u2014capable of delivering information resources that can meet the business or other mission needs of an enterprise or a large stakeholder community. As such, all of the cyber resiliency techniques and associated approaches may potentially be viable, although their selection would depend on the other considerations noted in this section.\n\n\nLarge-Scale Processing Environments\nLarge-scale processing environments (LSPEs) handle large numbers of events and data (e.g., process transactions) with high confidence in service delivery. The scale of# Current Page Raw OCR Text"
+          },
+          {
+            "text": "Enterprise IT Systems, Shared Services, and Common Infrastructures\nEnterprise IT (EIT) systems are typically general-purpose computing systems\u2014very often with significant processing, storage, and bandwidth\u2014capable of delivering information resources that can meet the business or other mission needs of an enterprise or a large stakeholder community. As such, all of the cyber resiliency techniques and associated approaches may potentially be viable, although their selection would depend on the other considerations noted in this section."
+          },
+          {
+            "text": "Large-Scale Processing Environments\nLarge-scale processing environments (LSPEs) handle large numbers of events and data (e.g., process transactions) with high confidence in service delivery. The scale of# Current Page Raw OCR Text"
+          }
+        ]
+      },
+      {
+        "title": "Such Systems",
+        "content": [
+          {
+            "text": "makes them highly sensitive to disruptions to or degradation of service. Therefore, the selective use of the Offloading and Restriction implementations approaches can make the scale of such systems more manageable. This, in turn, will support the application of Analytic Monitoring and the Mission Dependency and Status Visualization approach to Contextual Awareness in a manner that does not significantly affect performance. LSPEs often implement Dynamic Positioning functionality that can be repurposed to help improve cyber resiliency via the Functional Relocation of Cyber Resources, Fragmentation, and Distributed Functionality approaches."
+          }
+        ]
+      },
+      {
+        "title": "System-of-Systems",
+        "content": [
+          {
+            "text": "Many cyber resiliency techniques are likely to be applicable to a system-of-systems, but some techniques and approaches can offer greater benefits than others. For example, Contextual Awareness implemented via Mission Dependency and Status Visualization can be applied to predict the potential mission impacts of cyber effects of adversary activities on constituent systems or system elements. The Calibrated Defense-in-Depth and Consistency Analysis approaches to the technique of Coordinated Protection can help ensure that the disparate protections of the constituent systems operate consistently and in a coordinated manner to prevent or delay the advance of an adversary across those systems. For a system-of-systems involving constituent systems that were not designed to work together and that were developed with different missions, functions, and risk frames, Realignment could also be beneficial. In particular, the Offloading and Restriction approaches could be used to ensure that the core system elements are appropriately aligned to the overall system-of-system mission."
+          }
+        ]
+      },
+      {
+        "title": "Critical Infrastructure Systems",
+        "content": [
+          {
+            "text": "Critical infrastructure systems are often specialized, high confidence, dedicated, purpose-built systems that have highly deterministic properties. Therefore, the availability and integrity of the functionality of the systems are very important as the corruption or lack of availability of some of the key system elements could result in significant harm. For these reasons, techniques adapted from system resilience, such as Redundancy (particularly the Protected Backup and Restore and Surplus Capacity approaches) coupled with aspects of Diversity (e.g., Architectural Diversity, Supply Chain Diversity), could prevent attacks from having mission or business consequences and also maximize the chance of continuation of the critical or essential mission or business operations. Segmentation can isolate highly critical system elements to protect them from an adversary's activities. Approaches such as Trust-Based Privilege Management and Attribute-Based Usage Restriction could constrain the potential damage that an adversary could inflict on a system."
+          }
+        ]
+      },
+      {
+        "title": "Cyber-Physical Systems# Cyber-Physical Systems and Internet of Things",
+        "content": [
+          {
+            "text": "As with critical infrastructure systems, cyber-physical systems (CPS) may have limitations regarding storage capacity, processing capabilities, and bandwidth. In addition, many of these systems have a high degree of autonomy with limited human interaction. Some cyber-physical systems operate with no active network connection, although they may connect to a network under specific circumstances (e.g., scheduled maintenance). Non-Persistent Services support the periodic refreshing of software and firmware from a trusted source (e.g., an offline redundant component), in effect flushing out any malware. However, that approach applies only if the organization can allow for the periodic downtime that the refresh would entail. Similarly, the Integrity Checks approach to Substantiated Integrity implemented via cryptographic checksums on critical software could help enable embedded systems to detect corrupted software components."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "so that the first cannot be implemented without the second; for example,"
+      },
+      {
+        "title": "Adaptive Response",
+        "content": [
+          {
+            "text": "depends on Analytic Monitoring or Contextual Awareness since a response requires a stimulus."
+          },
+          {
+            "text": "One technique can support another, making the second more effective; for example,"
+          }
+        ]
+      },
+      {
+        "title": "Diversity",
+        "content": [
+          {
+            "text": "and Redundancy are mutually supportive. One technique can use another so that more design options are available than if the techniques were applied independently; for example, Analytic Monitoring can use Diversity in a design, which includes a diverse set of monitoring tools."
+          },
+          {
+            "text": "However, one technique can also conflict with or complicate the use of another. For example,"
+          }
+        ]
+      },
+      {
+        "title": "Diversity and Segmentation",
+        "content": [
+          {
+            "text": "can each make Analytic Monitoring and Contextual Awareness more difficult. A design that incorporates Diversity requires monitoring tools that can handle the diverse set of system elements, while implementation of Segmentation can limit the visibility of such tools. By selecting techniques in accordance with the risk management strategy and design principles, synergies and conflicts between various techniques are taken into consideration. The text below offers three illustrative examples of the interplay, focusing on the techniques that increase an adversary's work factor."
+          },
+          {
+            "text": "As a first example,"
+          }
+        ]
+      },
+      {
+        "title": "Dynamic Positioning and Non-Persistence",
+        "content": [
+          {
+            "text": "enable operational agility by making it more difficult for an adversary to target critical resources. These techniques support the Continue, Constrain, and Reconstitute objectives and are part of applying the Support agility and architect for adaptability strategic design principle and the Change or disrupt the attack surface structural design principle. At the same time, these techniques (and the associated implementation approaches) also make it more difficult for an organization to maintain situational awareness of its security posture. That is, Dynamic Positioning and Non-Persistence complicate the use of Contextual Awareness and aspects of Analytic Monitoring and, thus, can conflict with the Maintain situational awareness structural design principle."
+          },
+          {
+            "text": "As a second example,"
+          }
+        ]
+      },
+      {
+        "title": "Redundancy and Diversity",
+        "content": [
+          {
+            "text": "together are effective at resisting adversary attacks. These techniques enhance the system's ability to achieve the Continue and Reconstitute objectives and apply the Plan and manage diversity and Maintain redundancy structural design principles. However, the implementation of both Redundancy and Diversity will increase the system's attack surface."
+          },
+          {
+            "text": "As a final example,"
+          }
+        ]
+      },
+      {
+        "title": "Deception",
+        "content": [
+          {
+            "text": "can lead the adversary to waste effort and reveal tactics, techniques, and procedures (TTP), but it can also complicate the use of aspects of Analytic Monitoring and Contextual Awareness. In general, while Redundancy, Diversity, Deception, Dynamic Positioning, and Unpredictability will likely greatly increase the adversary work factor, they come at a cost to some other cyber resiliency objectives, techniques, and design principles."
+          },
+          {
+            "text": "No technique or set of techniques is optimal with respect to all decision.\n```# Factors"
+          },
+          {
+            "text": "There are always ramifications for employing any given technique. The determination of the appropriate selection of techniques is a trade decision that systems engineers make considering all relevant factors. A more complete identification of potential interactions (e.g., synergies and conflicts) between cyber resiliency techniques is presented in Table D-3."
+          }
+        ]
+      },
+      {
+        "title": "3.1.5 Other Disciplines and Existing Investments",
+        "content": [
+          {
+            "text": "Many of the techniques and implementation approaches that support cyber resiliency are well established. Some technologies or processes are drawn from other disciplines (e.g., Continuity of Operations [COOP], cybersecurity) but are used or executed in a different manner to support cyber resiliency. These include Adaptive Response, Analytic Monitoring, Coordinated Protection, Privilege Restriction, Redundancy, and Segmentation. Others are drawn from disciplines that deal with non-adversarial threats (e.g., safety, reliability). These include Contextual Awareness, Diversity, Non-Persistence, Realignment, and Substantiated Integrity. Still others are cyber adaptations of non-cyber concepts drawn from disciplines that deal with adversarial threats (e.g., medicine, military/defense, sports). These include Deception, Dynamic Positioning, and Unpredictability. Legacy investments made by an organization in these other disciplines can influence which cyber resiliency techniques and approaches are most appropriate to pursue."
+          },
+          {
+            "subsection": "3.1.5.1 Investments from Cybersecurity, COOP, and Resilience Engineering",
+            "text": []
+          },
+          {
+            "text": "Redundancy-supporting approaches\u2014such as backup, surplus capacity, and replication\u2014are well established in COOP programs. From a cyber resiliency perspective, however, these approaches are not sufficient to protect against the APT. A threat actor might choose to target backup servers as optimum locations to implant malware if those servers are not sufficiently protected. In addition, remote backup servers that employ the same architecture as the primary server are vulnerable to malware that has compromised the primary server. However, if an organization has already invested in backup services (in support of COOP or cybersecurity), those services can be enhanced by requiring an adversary to navigate multiple distinct defenses, authentication challenges (Calibrated Defense-in-Depth approach to Coordinated Protection), or some form of Synthetic Diversity to compensate for known attack vectors."
+          },
+          {
+            "text": "Contextual Awareness and Analytic Monitoring capabilities are often provided by performance management and cybersecurity functions, including cyber situational awareness, anomaly detection, and performance monitoring. However, the off-the-shelf implementations of these functions are generally insufficient to detect threats from advanced adversaries. Enhancing existing investments in both detection and monitoring by integrating data from sensor and monitor readings from disparate sources is a way to take these existing investments and make them an effective cyber resiliency tool. Another way to make existing technology...# Cyber Resiliency"
+          },
+          {
+            "text": "More cyber-resilient is to complement the existing monitoring services with information from threat intelligence sources, enabling these tools to be better tuned to look for known observables (e.g., indicators of adversary TTPs)."
+          },
+          {
+            "text": "Some approaches to Segmentation and Coordinated Protection appear in information security or cybersecurity. Predefined Segmentation, as reflected in boundary demilitarized zones (DMZs), is a well-established construct in cybersecurity. One important distinction of cyber resiliency is that the segmentation is applied throughout the system, not just at the system boundary. In addition, the Dynamic Segmentation and Isolation approach allows for changing the placement and/or activation of the protected segments. For Coordinated Protection, the defense-in-depth approach is often used for security or system resilience. Ensuring that those protections work in a coordinated fashion is one of the distinguishing aspects of cyber resiliency."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "3.1.6 Architectural Locations",
+    "subsections": [
+      {
+        "content": "The selection of cyber resiliency techniques or approaches depends, in part, on where (i.e., at what layers, to which components or system elements, at which interfaces between layers or system elements) in the system architecture cyber resiliency solutions can be applied. The set of layers, like the set of system components or system elements, in an architecture depends on the type of system. For example, an embedded system offers a different set of possible locations than an enterprise architecture that includes applications running in a cloud. The set of layers can include an operational (people-and-processes) layer, a support layer (e.g., programmatic, systems engineering, maintenance, and sustainment), and a layer to represent the physical environment."
+      },
+      {
+        "content": "Different cyber resiliency techniques or approaches lend themselves to implementation at different architectural layers. Some approaches can be implemented at multiple layers in different ways and with varying degrees of maturity. Other approaches are highly specific to a layer; for example, Asset Mobility is implemented in the operations layer or in the physical environment. For some layers, many approaches may be applicable; for others, relatively few approaches may be available. For example, relatively few approaches can be implemented at the hardware layer. These include Dynamic Reconfiguration, Architectural Diversity, Design Diversity, Replication, Predefined Segmentation, and Integrity Checks."
+      },
+      {
+        "content": "Similarly, some cyber resiliency approaches lend themselves to specific types of components or system elements. For example, Fragmentation applies to information stores. Some approaches assume that a system element or set of system elements has been included in the architecture specifically to support cyber defense. These include Dynamic Threat Awareness, Forensic and Behavioral Analysis, and Misdirection. Other cyber resiliency approaches assume.# Cyber Resiliency Techniques and Approaches"
+      },
+      {
+        "content": "that a system element has been included in the architecture, explicitly or virtually, to support the mission, security, or business operations. These include Sensor Fusion and Analysis, Consistency Analysis, Orchestration, and all of the approaches to Privilege Restriction. Finally, some techniques or approaches lend themselves to implementation at interfaces between layers or between system elements. These include Segmentation, Monitoring and Damage Assessment, and Behavior Validation."
+      },
+      {
+        "title": "3.1.7 Effects on Adversaries, Threats, and Risks",
+        "content": [
+          {
+            "text": "The selection of cyber resiliency techniques and approaches can be motivated by potential effects on adversary activities or on risk. Two resiliency techniques or approaches listed as both potentially having the same effect may differ in how strongly that effect applies to a given threat event, scope (i.e., the set of threat events for which the effect is or can be produced), and affected risk factors. For example, all approaches to Non-Persistence can degrade an adversary's ability to maintain a covert presence via the malicious browser extension TTP; closing the browser session when it is no longer needed, a use of Non-Persistent Services, degrades the adversary's activity more than other Non-Persistence approaches do. Some techniques or approaches will affect more risk factors (e.g., reduce the likelihood of impact or reduce the level of impact) than others. The security mechanisms or processes used to implement a particular cyber resiliency approach will also vary with respect to their scope and strength. For example, a Misdirection approach to the Deception technique, implemented via a deception net, and the Sensor Fusion and Analysis approach to Analytic Monitoring, implemented via a holistic suite of intrusion detection systems, will both achieve the detect effect. However, the effectiveness and scope of the two vary widely. For this reason, engineering trade-offs among techniques, approaches, and implementations should consider the actual effects to be expected in the context of the system's architecture, design, and operational environment."
+          },
+          {
+            "text": "In general, systems security engineering decisions seek to provide as complete a set of effects as possible and to maximize those effects with the recognition that this optimization problem will not have a single solution. The rationale for selecting cyber resiliency techniques or approaches that have complete coverage of the potential effects relates to the long-term nature of the threat campaigns. Potentially, engagements with the APT may go on for months, if not years, possibly starting while a system is in development or even earlier in the life cycle. Given the nature of the threat, its attacks will likely evolve over time in response to a defender's actions. Having a selection of techniques and approaches\u2014where each technique and approach supports (to different degrees and in different ways) multiple effects on the adversary, and the union of the techniques and approaches allows for all potential effects on an# Adversary"
+          },
+          {
+            "text": "provides the systems engineers with the flexibility to evolve and tailor the effects to the adversary's changing actions. This is analogous to team sports where a team will change its game plan in response to player injuries and the changing game plan of the other team. A team with players who can play multiple positions gives it the flexibility to respond to changes by the opposition and to potentially replace injured players."
+          },
+          {
+            "text": "Different cyber resiliency techniques and approaches can have different effects on threat events and risk. No single technique or approach can create all possible effects on a threat event, and no technique or approach or set of techniques or approaches can eliminate risk. However, by considering the desired effects, systems engineers can select a set of techniques that will collectively achieve those effects."
+          }
+        ]
+      },
+      {
+        "title": "3.1.8 Maturity and Potential Adoption",
+        "content": [
+          {
+            "text": "Approaches to applying cyber resiliency techniques vary in maturity and adoption. The decision to use less mature technologies depends on the organization's risk management strategy and its strategy for managing technical risks. Many highly mature and widely adopted technologies and processes that were developed to meet the general needs of performance, dependability, or security can be used or repurposed to address cyber resiliency concerns. These pose little, if any, technical risk. Changes in operational processes, procedures, and configuration changes may be needed to make these technologies and processes effective against the APT and, thus, part of cyber resiliency solutions."
+          },
+          {
+            "text": "A growing number of technologies are specifically oriented toward cyber resiliency, including moving target defenses and deception toolkits. These technologies are currently focused on enterprise IT environments. As these technologies become more widely adopted, the decision to include the technologies is influenced more by policy than by technical risk considerations. This is particularly the case for applications of the Deception and Unpredictability cyber resiliency techniques."
+          },
+          {
+            "text": "Cyber resiliency is an active research area. Technologies are being explored to improve the cyber resiliency of cyber-physical systems, high-confidence, dedicated-purpose systems, and large-scale processing environments. The integration of solutions involving new technologies to reduce risks due to the APT should be balanced against risks associated with perturbing such systems."
+          }
+        ]
+      },
+      {
+        "title": "3.2 Analytic Practices and Processes",
+        "content": [
+          {
+            "text": "In the context of systems security engineering, cyber resiliency analysis is intended to determine whether the cyber resiliency properties and behaviors of a system of interest, regardless of its system life cycle stage, are sufficient for the organization using that system to meet its mission assurance, business continuity, or other security requirements in a threat environment that# Cyber Resiliency Analysis"
+          },
+          {
+            "text": "Cyber resiliency analysis is performed with the expectation that such analysis will support systems engineering and risk management decisions about the system of interest. Depending on the life cycle stage, programmatic considerations, and other factors discussed above, a cyber resiliency analysis could recommend architectural changes, the integration of new products or technologies into the system, changes in how existing products or technologies are used, or changes in operating procedures or environmental protections consistent with and designed to implement the organization's risk management strategy."
+          }
+        ]
+      },
+      {
+        "title": "General Process for Cyber Resiliency Analysis",
+        "content": [
+          {
+            "text": "The following subsections describe a general, tailorable process for cyber resiliency analysis consisting of steps and tasks, as summarized in Table 5. A variety of motivations for a cyber resiliency analysis are possible, including ensuring that cyber risks due to the APT are fully considered as part of the RMF process or other risk management process, supporting systems security engineering tasks, and recalibrating assessments of risk and risk responses based on information about new threats (e.g., information about a cyber incident or an APT actor), newly discovered vulnerabilities (e.g., discovery of a common design flaw), and problematic dependencies (e.g., discovery of a supply chain issue)."
+          },
+          {
+            "text": "Although described in terms of a broad analytic scope, the process can be tailored to have a narrow scope, such as analyzing the potential cyber resiliency improvement that could be achieved by integrating a specific technology or identifying ways to ensure adequate cyber resiliency against a specific threat scenario."
+          }
+        ]
+      },
+      {
+        "title": "Integration with Other Engineering Disciplines",
+        "content": [
+          {
+            "text": "The analytic processes and practices related to cyber resiliency are intended to be integrated with those for other specialty engineering disciplines, including security, systems engineering, resilience engineering, safety, cybersecurity, and mission assurance. In addition, analytic processes and practices related to cyber resiliency can leverage system representations offered by model-based systems engineering (MBSE) and analytic methods (including those involving artificial intelligence [AI] and machine learning [ML]) integrated into MBSE."
+          },
+          {
+            "text": "Cyber resiliency analysis, like other types of engineering analysis (e.g., safety, security), should be performed repeatedly throughout the life cycle as changes arise in the operational, technical, and threat environments."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "800-161], reports on security posture [SP 800-37], penetration test results, contingency plans [SP 800-34], risk analyses [SP 800-30], after-action reports from exercises, incident reports, and recovery plans."
+      },
+      {
+        "content": "Cyber resiliency analysis complements both system life cycle and RMF tasks. The life cycle and RMF tasks produce information that can be used in cyber resiliency analysis, and cyber resiliency analysis enables cyber risks to be considered more fully in life cycle and RMF tasks."
+      },
+      {
+        "title": "3.2.1 Understand the Context",
+        "content": [
+          {
+            "text": "The problem of providing sufficient cyber resiliency properties and behaviors is inherently situated in a programmatic, operational, architectural, and threat context. This step is intended to ensure that the context is sufficiently understood and that cyber resiliency constructs can be interpreted in that context, the relative priorities of cyber resiliency objectives can be assessed, and the applicability of cyber resiliency design principles, techniques, and approaches can be determined. The activities in this step can and should be integrated into activities under the Technical Management Processes in [SP 800-160 v1] and the Prepare and Categorize steps of the RMF [SP 800-37]."
+          },
+          {
+            "subsection": "3.2.1.1 Identify the Programmatic Context",
+            "text": []
+          },
+          {
+            "text": "The programmatic context identifies how the system of interest is being acquired, developed, modified, or repurposed, including the life cycle stage, life cycle model, or system development approach (e.g., spiral, waterfall, agile, DevOps). Identification of the life cycle stage, life cycle model, and system development approach enables maturity as a consideration in defining cyber resiliency solutions. The programmatic context also identifies the stakeholders for the system of interest, roles and responsibilities related to the system of interest, and entities (organizations, organizational units, or individuals) in those roles."
+          },
+          {
+            "text": "In particular, the programmatic context identifies the entities responsible for directing, executing, and determining the acceptability of the results of engineering efforts related to the system (e.g., program office, systems engineer, systems integrator, authorizing official, and mission or business function owner). Each of these key stakeholders has a risk management strategy focused on different potential risks (e.g., cost, schedule, and technical or performance risks for a program office or systems engineer; security risks for an authorizing official; mission or business risks for a mission or business function owner). When these entities are part of the same organization, the risk management strategies for their respective areas of responsibility instantiate or are aligned with the organization's cyber risk management strategy."
+          },
+          {
+            "text": "Technical or performance risks can include risks that quality properties (e.g., security, safety, system resilience, cyber resiliency) are insufficiently provided, as evidenced by the absence or poor execution of behaviors that should demonstrate those properties. The\n```# Programmatic Risk Management Strategy"
+          },
+          {
+            "text": "Programmatic risk management strategy can reflect the relative priorities that other stakeholders\u2014\nin particular, the mission or business process owner and the authorizing official\u2014assign to different quality properties. The programmatic risk management strategy can also include constraints on less mature technologies, less commonly used products, or less commonly applied operational practices as part of managing technical or performance risks."
+          },
+          {
+            "text": "In addition, other stakeholders may have their own risk management strategies or may be represented by an official within these entities (e.g., a system security officer to represent the security concerns of program managers whose proprietary information is handled by the system of interest) with a corresponding risk management strategy. An appreciation of the different risk management strategies (i.e., how the various stakeholders frame risk, including what threats and potential harms or adverse consequences are of concern to them, what their risk tolerances are, and what risk trade-offs they are willing to make) will enable the threat model to be defined and cyber resiliency constructs to be interpreted and prioritized in subsequent steps."
+          },
+          {
+            "text": "The programmatic context is not static. Technical, schedule, or security risks can include risks related to other programs or initiatives within the organization, its partners, or its suppliers. The design of the system of interest could assume successful completion of milestones by other programs or initiatives prior to a step in its development, contributing to technical or schedule risks. Schedule slips or failures to meet specific requirements by other programs or initiatives could also increase the attack surface of the system of interest or make it more fragile. Thus, understanding which other programs or initiatives could affect the system of interest is part of identifying the programmatic context."
+          },
+          {
+            "text": "Identification of the programmatic context highlights the aspects of the programmatic risk management strategy that constrain possible solutions. One aspect is the relative priority of such quality attributes as safety, security, reliability, maintainability, system resilience, and cyber resiliency. Another is the relative preference for operational changes versus technical changes. Depending on the life cycle stage and the programmatic risk management strategy, changes to operational processes and procedures may be preferred to technical changes to the system."
+          }
+        ]
+      },
+      {
+        "title": "3.2.1.2 Identify the Architectural Context",
+        "content": [
+          {
+            "text": "The architectural context identifies the type of system; its architecture or architectural patterns, if already defined; and its interfaces with or dependencies on other systems with consideration of whether it is (or is intended to be) part of a larger system-of-systems or a participant in a larger ecosystem. Key technologies, technical standards, or products included (or expected to be included) in the system are identified. Depending on the life cycle stage,# Identification of the Architectural Context"
+          },
+          {
+            "text": "Identification of the architectural context can also include system locations, sub-systems or components, or layers in the architecture where cyber resiliency solutions could be applied. If this information is not yet available, it will be developed in a subsequent step."
+          },
+          {
+            "text": "The identification of the type of system begins with the identification of its general type (e.g., CPS, application, enterprise service, common infrastructure as part of EIT or LSPE, EIT as a whole, or LSPE as a whole). The type of system determines which cyber resiliency techniques and approaches are most relevant. Each type of system has an associated set of architectural patterns. For example, a CPS device typically includes a sensor, a controller (which is present in cyberspace), an actuator, and a physical layer. EIT typically includes enterprise services (e.g., identity and access management, mirroring and backup, email), common infrastructures (e.g., an internal communications network, a storage area network, a virtualization, or a cloud infrastructure), a demilitarized zone (DMZ) for interfacing with the Internet, and a collection of enterprise applications."
+          },
+          {
+            "text": "Identification of other systems with which the system of interest interfaces or on which it depends includes consideration of federation, networking, and scope. Federation typically restricts the set of solutions that can be applied and the metrics that can be defined and used since different system owners may be unwilling or unable to use the same technologies or share certain types or forms of information. Some systems are designed to operate without a network connection, at least transiently and often normally. The cyber resiliency solutions and means of assessing system cyber resiliency or solution effectiveness will be limited by whether the system is operating in detached mode. Depending on the programmatic context, the scope of \"other systems\" can include those constituting the system's development, test, or maintenance environment."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "content": "or business function but also secondary or likely additional uses. The description includes the identification of external interfaces\u2014to networks, other supporting infrastructures and services, and end users\u2014in a functional sense, keeping in mind that these interfaces can vary."
+      },
+      {
+        "title": "Criticality",
+        "content": [
+          {
+            "text": "Describe the system's criticality to its missions, stakeholders, end users, or the general public. Criticality is \"an attribute assigned to an asset that reflects its relative importance or necessity in achieving or contributing to the achievement of stated goals\" [SP 800-160 v1] and relates strongly to the potential impacts of system malfunction, degraded or denied performance, or not performing to the missions it supports, human life or safety, national security, or economic security (e.g., as in the context of critical infrastructure [NIST CSF])."
+          }
+        ]
+      },
+      {
+        "title": "High-Value Asset",
+        "content": [
+          {
+            "text": "Identify whether the system is or contains a high-value asset (HVA) (e.g., as defined in [OMB M-19-03], repositories of large volumes of PII or financial assets) or plays a central role (even if non-critical) in a critical infrastructure sector (e.g., financial services, Defense Industrial Base [DIB]) since these characteristics could attract specific types of adversaries."
+          }
+        ]
+      },
+      {
+        "title": "Measures of Effectiveness and Performance",
+        "content": [
+          {
+            "text": "If possible, identify measures of effectiveness (MOEs) and measures of performance (MOPs) for organizational missions or business functions. Cyber resiliency effectiveness metrics, which can be defined and used later in the analysis process, can sometimes repurpose mission MOEs, MOPs, or data collected to evaluate MOEs and MOPs and can often be related to MOEs and MOPs, particularly for cyber resiliency metrics related to Withstand or Recover."
+          }
+        ]
+      },
+      {
+        "title": "Usage Context",
+        "content": [
+          {
+            "text": "The usage context also provides a general characterization of the system user population, including its size, scope, and assumed user awareness of and ability to respond to cyber threats. The usage context also indicates whether cyber defenders are actively involved in monitoring the system and responding to indications and warnings (I&W) of adverse conditions or behaviors."
+          }
+        ]
+      },
+      {
+        "title": "Support Context",
+        "content": [
+          {
+            "text": "The support context similarly provides a general characterization of the administrative and maintenance population, describes how system maintenance or updates are performed, and describes operational restrictions on maintenance activities or updates. For example, updates to embedded control units (ECUs) in a vehicle should be disallowed when driving. These aspects of the operational context determine the extent to which procedural solutions can be applied to the system of interest."
+          }
+        ]
+      },
+      {
+        "title": "Dependency Context",
+        "content": [
+          {
+            "text": "The dependency context identifies adjacent systems (i.e., systems with which the system of interest is connected, for example, through procedure calls or information sharing); describes the types of information received from, supplied to, or exchanged with those systems; and identifies the criticality of the information connection to the system of interest.\n```# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Interest and Mission Context",
+        "content": [
+          {
+            "text": "The dependency context also identifies infrastructures on which the system of interest depends (e.g., networks, power suppliers, and environmental control systems). These aspects of the operational context are used to bound the scope of the analysis (e.g., whether and for which adjacent or infrastructure systems changes are in scope, whether characteristics and behavior of these systems can be investigated or must be assumed)."
+          },
+          {
+            "text": "If the system of interest is part of a system-of-systems or is a participant in a larger ecosystem, the dependency context identifies the implications of aggregation or federation for governance, system administration, and information sharing with other organizations or systems."
+          },
+          {
+            "text": "The temporal context identifies whether and how the usage and dependency contexts can change, depending on whether the system is operating under normal, stressed, or maintenance conditions; whether the system is being used for one of its secondary purposes; and how the system's usage and dependencies change over time during the course of executing mission or business functions."
+          },
+          {
+            "text": "Information about the support and dependency contexts can be used at this point in the analysis to characterize and subsequently identify the system's attack surfaces. The operational context can be communicated by defining a motivating operational scenario or a small set of operational scenarios."
+          }
+        ]
+      },
+      {
+        "title": "3.2.1.4 Identify the Threat Context",
+        "content": [
+          {
+            "text": "The threat context identifies threat sources, threat events, and threat scenarios of concern for the system of interest. In particular, the threat context helps to identify the characteristics and behaviors of adversaries whose attacks would necessarily undermine the system's ability to execute or support its missions, as well as the characteristics of relevant non-adversarial threats."
+          },
+          {
+            "text": "Adversaries can include insiders as well as individuals or groups located outside of the system's physical and logical security perimeter. Adversary goals are identified and translated into cyber and mission effects. Adversary behaviors (i.e., threat events, attack scenarios, or TTPs) are also identified."
+          },
+          {
+            "text": "The threat context can:"
+          },
+          {
+            "text": "Identify the types of threats considered in programmatic or organizational risk framing. In addition to adversarial threats, these can include non-adversarial threats of human error, faults and failures, and natural disasters. A cyber resiliency analysis can identify scenarios in which adversaries can take advantage of the consequences of non-adversarial threat events.\nIdentify the adversary's characteristics, to construct an adversary profile. Characteristics can include the adversary's ultimate goals and intended cyber effects, the specific time frame over which the adversary operates, the adversary's persistence (or, alternately, how easily).# Cyber Resiliency Analysis"
+          },
+          {
+            "text": "The adversary can be deterred, discouraged, or redirected to a different target, the adversary's concern for stealth, and the adversary's targeting, which relates to the scope or scale of the effects that the adversary intends to achieve. Note that multiple adversaries can be profiled."
+          }
+        ]
+      },
+      {
+        "title": "Identify Threat Events or Adversarial Behaviors",
+        "content": [
+          {
+            "text": "Identify the types of threat events or adversarial behaviors of concern. Behaviors are described in terms of adversary TTPs and can be categorized using the categories of the Adversarial Tactics, Techniques, and Common Knowledge (ATT&CK\u2122) framework [Strom17] or .govCAR [DHSCDM].\nIdentify the potential attack scenarios of concern and describe each scenario with a phrase or a sentence. A set of attack scenarios (e.g., as identified in [Bodeau18a] [Bodeau16]) can serve as a starting point. The attack scenarios of concern in the cyber resiliency use case should be clearly related to the system's mission. Note that a cyber resiliency analysis can focus on a single attack scenario or consider a set of scenarios."
+          },
+          {
+            "text": "A threat model can also include potential threat scenarios related to non-adversarial threat sources. For these threat sources, the scope or scale of effects, duration or time frame, and types of assets affected are identified. If possible, provide a reference to a publicly available description of a similar scenario to serve as an anchoring example. Depending on its scope and purpose, a cyber resiliency analysis can focus on a single threat scenario. For example, a cyber resiliency analysis can be motivated by a publicized incident with the purpose of the analysis being to determine the extent to which a particular system, mission or business function, or organization could be affected by a similar incident."
+          }
+        ]
+      },
+      {
+        "title": "Interpret and Prioritize Cyber Resiliency Constructs",
+        "content": [
+          {
+            "text": "To ensure that cyber resiliency concepts and constructs are meaningful in the identified contexts, one or more of the following sub-tasks can be performed:"
+          },
+          {
+            "text": "Restate and prioritize cyber resiliency objectives and sub-objectives. Identify, restate, and prioritize capabilities or activities that are needed to achieve relevant sub-objectives based on the identified threat context. These constructs are restated in terms that are meaningful in the architectural and operational contexts and prioritized based on programmatic considerations and stakeholder concerns. Note that responsibility for some capabilities or activities may be allocated to system elements outside of the scope of the engineering or risk management decisions that the cyber resiliency analysis is intended to support.\nDetermine the potential applicability of cyber resiliency design principles. This involves considering organizational and programmatic risk management strategies to determine which strategic design principles may apply. It also involves considering the architecture, operational context, and threat environment to identify the relevance of structural design.# Principles to This Situation"
+          },
+          {
+            "text": "Relevant structural design principles are restated in situation-specific terms (e.g., in terms of the technologies that are part of the system)."
+          },
+          {
+            "text": "Determine the potential applicability of cyber resiliency techniques and (depending on the level of detail with which the architectural context is defined) implementation approaches. This involves considering the architecture, operational context, and threat context. The relevance of the techniques and of the approaches to this situation is described and assessed. Relevant techniques and approaches can be restated and described in terms of architectural elements (e.g., allocating an implementation approach to a specific system element or identifying an architectural layer at which a technique can be applied). However, detailed descriptions are generally deferred to a later stage in a cyber resiliency analysis. The determination that some cyber resiliency constructs are not applicable, based on the considerations discussed in Section 3.1, narrows the focus of subsequent steps in the cyber resiliency analysis, which saves work and increases the usefulness of the results."
+          }
+        ]
+      },
+      {
+        "title": "3.2.2 Develop the Cyber Resiliency Baseline",
+        "content": [
+          {
+            "text": "In order to determine whether cyber resiliency improvement is needed, the baseline for the system (as it is understood at the stage in the life cycle when the cyber resiliency analysis is performed) must be established."
+          },
+          {
+            "subsection": "3.2.2.1 Establish the Initial Cyber Resiliency Baseline",
+            "text": []
+          },
+          {
+            "text": "As discussed in Section 3.1.5.1, a system reflects architectural and design decisions and investments in specific technologies and products motivated by other specialty engineering disciplines. Capabilities are identified from such functional areas as COOP and contingency planning; security, cybersecurity, and cyber defense; performance management; reliability, maintainability, and availability (RMA); safety; and survivability. Identification of capabilities can involve decomposition of the system of interest into constituent sub-systems, functional areas, and/or architectural locations."
+          },
+          {
+            "text": "Capabilities can be characterized in terms of the cyber resiliency techniques and approaches they can implement and/or the cyber resiliency design principles they can be used to apply. Capabilities can also be characterized in terms of how easily their configuration or operational use can be adapted to address specific cyber resiliency concerns, how dynamically they can be reconfigured or repurposed, and how compatible they are with other cyber resiliency techniques and approaches (e.g., deception, unpredictability)."
+          },
+          {
+            "subsection": "3.2.2.2 Identify Gaps and Issues",
+            "text": []
+          },
+          {
+            "text": "Depending on the life cycle stage, issues may already be tracked, or it may be possible to identify gaps in required capabilities and issues with the system's design, implementation, or use. Such information can be found in after-action reports from exercises, penetration test reports, incident reports, and reporting related to ongoing assessments and.# Ongoing Risk"
+          }
+        ]
+      },
+      {
+        "title": "Response Actions (RMF Tasks M-2 and M-3) [SP 800-37]",
+        "content": [
+          {
+            "text": "Security gaps may also have been identified from a coverage analysis with respect to a taxonomy of attack events or TTPs [DHSCDM]. Because senior leadership is often aware of issues and gaps, recommended cyber resiliency solutions will need to be characterized in terms of how and how well the solutions address the issues and gaps, as well as in terms of other benefits that the recommended solutions provide (e.g., improved stability, improved performance)."
+          },
+          {
+            "subsection": "3.2.2.3 Define Evaluation Criteria and Make Initial Assessment",
+            "text": []
+          },
+          {
+            "text": "One or more evaluation criteria are established and used to make an initial assessment. Cyber resiliency can be evaluated in multiple ways, including:"
+          },
+          {
+            "text": "How well the system achieves (or, assuming it meets its requirements, will achieve) cyber resiliency objectives and sub-objectives (considering the priority weighting established earlier). An initial assessment can be expressed as high-level qualitative assessments (e.g., on a scale from Very Low to Very High) for the cyber resiliency objectives and subsequently refined based on analysis of the system. An initial assessment can also take the form of a cyber resiliency coverage map that indicates whether and how well the cyber resiliency constructs that were determined to be relevant have been applied. Alternately (if the information is available) or subsequently (based on the analysis described in Section 3.2.3.1 and Section 3.2.3.3), this assessment can be expressed as a cyber resiliency score.\n\n\nHow well the system's capabilities cover (i.e., have at least one effect on) adversary activities as identified by the threat context. This can be expressed as a threat heat map [DHSCDM] or a simple threat coverage score. For an initial assessment, coverage can be in terms of attack stages. Alternately or subsequently, a more nuanced threat coverage score based on the organization's risk management strategy can be computed using the relative priorities of the general types of effects (e.g., increase adversary cost, decrease adversary benefits, increase adversary risk) and of the specific effects (e.g., redirect, preclude, impede, detect, limit, expose) if the risk management strategy establishes such priorities.\n\n\nThe level of cyber risk in terms of risk to missions, business functions, or other forms of risk (e.g., security, safety, reputation). An assessment of this form is possible if the organization has established a risk model, or at least a consequence model, for such forms of risk. An initial assessment will typically rely on an existing security risk assessment [SP 800-30].\n\n\nThe level of operational resilience (i.e., mission or business function resilience) in terms of functional performance measures under stress. An assessment of this form is possible if the organization has established such performance measures. An initial assessment.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "How well the system achieves (or, assuming it meets its requirements, will achieve) cyber resiliency objectives and sub-objectives (considering the priority weighting established earlier). An initial assessment can be expressed as high-level qualitative assessments (e.g., on a scale from Very Low to Very High) for the cyber resiliency objectives and subsequently refined based on analysis of the system. An initial assessment can also take the form of a cyber resiliency coverage map that indicates whether and how well the cyber resiliency constructs that were determined to be relevant have been applied. Alternately (if the information is available) or subsequently (based on the analysis described in Section 3.2.3.1 and Section 3.2.3.3), this assessment can be expressed as a cyber resiliency score."
+          },
+          {
+            "text": "How well the system's capabilities cover (i.e., have at least one effect on) adversary activities as identified by the threat context. This can be expressed as a threat heat map [DHSCDM] or a simple threat coverage score. For an initial assessment, coverage can be in terms of attack stages. Alternately or subsequently, a more nuanced threat coverage score based on the organization's risk management strategy can be computed using the relative priorities of the general types of effects (e.g., increase adversary cost, decrease adversary benefits, increase adversary risk) and of the specific effects (e.g., redirect, preclude, impede, detect, limit, expose) if the risk management strategy establishes such priorities."
+          },
+          {
+            "text": "The level of cyber risk in terms of risk to missions, business functions, or other forms of risk (e.g., security, safety, reputation). An assessment of this form is possible if the organization has established a risk model, or at least a consequence model, for such forms of risk. An initial assessment will typically rely on an existing security risk assessment [SP 800-30]."
+          },
+          {
+            "text": "The level of operational resilience (i.e., mission or business function resilience) in terms of functional performance measures under stress. An assessment of this form is possible if the organization has established such performance measures. An initial assessment.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "will typically rely on an existing performance assessment, which describes operational resilience in the face of prior incidents and will be subject to uncertainty since prior incidents may be poor predictors of future ones. Additional evaluation criteria can consider how well the system meets its security requirements or achieves its security objectives and how well the system satisfies its mission or business function requirements. While such evaluations are independent of cyber resiliency analysis, they can form part of the baseline against which potential solutions can be evaluated. Stakeholder concerns and priorities are used to determine which (or which combination) of these will be used to evaluate alternative solutions. Approaches to assessment (e.g., scoring systems, qualitative assessment scales, metrics and measures of effectiveness) and candidate metrics can be identified for use in subsequent steps. In addition, evaluation criteria can involve assessments of potential costs in terms of financial investment over subsequent life cycle stages (e.g., acquiring, integrating, operating, and maintaining a cyber resiliency solution), opportunity costs (e.g., constraints on future engineering decisions or system uses), and increased programmatic risk (e.g., potential cost risk, schedule impacts, performance impacts)."
+          }
+        ]
+      },
+      {
+        "title": "3.2.3 Analyze the System",
+        "content": [
+          {
+            "text": "In this step, the system is analyzed in its operational context from two perspectives. First, a mission or business function perspective is applied to identify critical resources (i.e., those resources for which damage or destruction would severely impact operations) and sources of system fragility. Second, an adversarial perspective is applied to identify high-value primary and secondary targets of APT actors [OMB M-19-03] and develop representative attack scenarios. Based on this analysis and the results of the previous baseline assessment, opportunities for improvement are identified."
+          },
+          {
+            "subsection": "3.2.3.1 Identify Critical Resources, Sources of Fragility, and Attack Surfaces",
+            "text": []
+          },
+          {
+            "text": "A critical resource can be a resource for which damage (e.g., corruption or reduced availability), denial of service, or destruction results in the inability to complete a critical task. In addition, if a resource is used in multiple tasks, it can be highly critical overall even if it is not critical to any of those functions individually if its damage, denial, or destruction results in a delay for a time-critical mission or business function. Critical resources can be identified using a variety of methods specific to contingency planning, resilience engineering, and mission assurance. These include Criticality Analysis [IR 8179], Mission Impact Analysis (MIA), Business Impact Analysis (BIA) [SP 800-34], Crown Jewels Analysis (CJA), and cyber mission impact analysis (CMIA). For cyber resiliency analysis, the identification of critical resources is based on an understanding of functional flows or of mission or business function threads. A resource can be highly critical at# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "one point in a functional flow or a mission thread and of very low criticality at other points. A functional flow analysis or a mission thread analysis can reveal such time dependencies. Systems can also be analyzed to identify sources of fragility or brittleness. While identification of single points of failure is a result of the analysis methods mentioned above, network analysis or graph analysis (i.e., analysis of which system elements are connected, how and how tightly the system elements are connected, and whether some sets of system elements are more central) can determine whether the system is fragile (i.e., whether it will break if a stress beyond a well-defined set is applied). Similarly, graphical analysis of the distribution of different types of components can help determine how easily a given stress (e.g., exploitation of a zero-day vulnerability) could propagate. Finally, the attack surfaces to which cyber resiliency solutions can be applied can be identified. Information about the programmatic, architectural, and operational context determines which attack surfaces are within the scope of potential cyber resiliency solutions. For example, if the programmatic context determines support systems to be in scope, those systems are an attack surface in addition to the interfaces and procedures by which updates are made to the system of interest; if the system of interest is an enterprise service (architectural context), its interfaces to other services on which it depends as well as to applications which use it are also attack surfaces; if the system has users (operational context), the user community is an attack surface."
+          }
+        ]
+      },
+      {
+        "title": "3.2.3.2 Represent the Adversary Perspective",
+        "content": [
+          {
+            "text": "Cyber resiliency analysis assumes an architectural, operational, and threat context for the system being analyzed. These contextual assumptions provide the starting point for a detailed analysis of how an adversary could affect the system and thereby cause harm to the mission or business functions it supports, the organization, individuals for whom the system handles PII or whose safety depends on the system, or the operational environment. The attack scenarios of concern that were identified as part of the threat context serve as a starting point. Depending on the scope of the analysis, these attack scenarios can be complemented by scenarios driven by adversary goals, scenarios targeting critical assets or high-value assets, or scenarios that take advantage of sources of fragility. The adversary perspective (i.e., what harm can be done, how easily, and at what cost to the attacker) can be represented in different ways, depending on the stage of the system life cycle and the corresponding level and amount of information about the system architecture, design, implementation, and operations. At a minimum, an attack scenario can identify stages in the attack (e.g., administer, engage, persist, cause effect, and maintain ongoing presence), the adversary objectives or categories of TTPs at each stage (e.g., reconnaissance,# Exploitation, Lateral Movement, Denial"
+          },
+          {
+            "text": "and the system elements compromised in each stage. Depending on the system life cycle stage, it may be possible to identify individual TTPs (e.g., pass the hash) or examples of specific malware. Attack scenarios can be represented as part of a model-based engineering effort; using attack tree or attack graph analysis; in terms of fault tree analysis or failure modes, effects, and criticality analysis (FMECA); or based on the identification of loss scenarios from System-Theoretic Process Analysis (STPA). Common elements across the attack scenarios (e.g., recurring adversary TTPs) can be starting points for identifying potential alternative solutions. Depending on the scope of the cyber resiliency analysis, attack scenarios can be developed that target supporting systems. Such attack scenarios may be the result of a supply chain risk analysis or a cyber resiliency or cybersecurity analysis of systems or organizations responsible for development, integration, testing, or maintenance."
+          }
+        ]
+      },
+      {
+        "title": "3.2.3.3 Identify and Prioritize Opportunities for Improvement",
+        "content": [
+          {
+            "text": "The identification of potential areas of improvement typically relies on the interpretation and prioritization of cyber resiliency constructs performed earlier. Potential cyber resiliency techniques or implementation approaches can be identified in system-specific terms, mapped to system elements or architectural layers, and stated as desired improvements to system elements or to the system as a whole. Desired improvements are prioritized based on how and how well they are expected to reduce risks as identified by stakeholders."
+          },
+          {
+            "text": "In more detail, this task in the analysis process can include the following sub-tasks:"
+          },
+          {
+            "text": "Identify potentially applicable techniques or approaches. If the set of potentially applicable techniques and approaches has already been identified, it can be narrowed by identifying the set of techniques and approaches related to prioritized objectives using Appendix D, Table D-13 or to potentially applicable structural design principles using Table D-15. (If only the applicable strategic design principles were identified, Table D-14 can be used to identify relevant objectives and Table D-10 can be used to identify relevant structural design principles.) Otherwise, the set of techniques and approaches related to prioritized objectives or structural design principles can be refined by taking the architectural and programmatic context into consideration. The potentially applicable techniques or approaches are described in system-specific terms.\n\n\nIdentify locations where cyber resiliency solutions could be applied. The set of locations (i.e., sub-systems or components, layers in the architecture, or interfaces between sub-systems or between layers) where cyber resiliency solutions could be applied is determined by the system architecture as constrained by context. For example, the programmatic context may prioritize cyber resiliency solutions that change how existing technologies are.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Identify potentially applicable techniques or approaches. If the set of potentially applicable techniques and approaches has already been identified, it can be narrowed by identifying the set of techniques and approaches related to prioritized objectives using Appendix D, Table D-13 or to potentially applicable structural design principles using Table D-15. (If only the applicable strategic design principles were identified, Table D-14 can be used to identify relevant objectives and Table D-10 can be used to identify relevant structural design principles.) Otherwise, the set of techniques and approaches related to prioritized objectives or structural design principles can be refined by taking the architectural and programmatic context into consideration. The potentially applicable techniques or approaches are described in system-specific terms."
+          },
+          {
+            "text": "Identify locations where cyber resiliency solutions could be applied. The set of locations (i.e., sub-systems or components, layers in the architecture, or interfaces between sub-systems or between layers) where cyber resiliency solutions could be applied is determined by the system architecture as constrained by context. For example, the programmatic context may prioritize cyber resiliency solutions that change how existing technologies are.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "used over changes to the system architecture (e.g., replacing specific system elements); the architectural context may restrict locations to specific interfaces (e.g., if the system of interest is an enterprise service, solutions may be applied to its interfaces with sub-systems or applications that use it or with supporting services, particularly security services); or the operational context may constrain the extent to which new user procedures can be made part of the system (e.g., depending on the size of, cyber expertise of, or organizational control over the user population)."
+          },
+          {
+            "text": "Identify desired improvements to system elements or to the system of interest as a whole. Statements of desired improvements described in terms specific to the architectural and operational context can be more meaningful to stakeholders than general statements about improved use of a cyber resiliency technique or a more effective application of a cyber resiliency design principle. Potential improvements can be described in terms of improved protection for critical resources, reduced fragility, or the ability to address threats more effectively.\n\n\nPrioritize desired improvements using the identified evaluation criteria (e.g., improve the ability of a given system element to continue functioning by enabling that element to be dynamically isolated, decrease adversary benefits by reducing the concentration of highly sensitive information in a single asset, or reduce mission risks by providing extra resources for high-criticality tasks)."
+          },
+          {
+            "text": "Identify desired improvements to system elements or to the system of interest as a whole. Statements of desired improvements described in terms specific to the architectural and operational context can be more meaningful to stakeholders than general statements about improved use of a cyber resiliency technique or a more effective application of a cyber resiliency design principle. Potential improvements can be described in terms of improved protection for critical resources, reduced fragility, or the ability to address threats more effectively."
+          },
+          {
+            "text": "Prioritize desired improvements using the identified evaluation criteria (e.g., improve the ability of a given system element to continue functioning by enabling that element to be dynamically isolated, decrease adversary benefits by reducing the concentration of highly sensitive information in a single asset, or reduce mission risks by providing extra resources for high-criticality tasks)."
+          }
+        ]
+      },
+      {
+        "title": "3.2.4 Define and Analyze Specific Alternatives",
+        "content": [
+          {
+            "text": "In this step, specific ways to make desired improvements (i.e., architectural changes, ways to implement cyber resiliency techniques in the context of the existing architecture, ways to use existing system capabilities more effectively to improve resilience) are identified and analyzed in terms of potential effectiveness. These specific alternatives form a solution set that will be used in the final step to construct potential courses of action."
+          },
+          {
+            "subsection": "3.2.4.1 Define Potential Technical and Procedural Solutions",
+            "text": []
+          },
+          {
+            "text": "Potential applications of cyber resiliency techniques and implementation approaches to the system of interest in its environment of operations in order to provide one or more desired improvements are identified. These applications (i.e., potential solutions to the problem of improving mission or operational resilience by improving cyber resiliency) can be purely technical, purely procedural, or combinations of the two."
+          },
+          {
+            "text": "Potential solutions can incorporate or build on investments from other disciplines. The set of technologies and products that is available at some level of maturity for incorporation into the system depends on the system type. The degree to which relatively immature technologies can be considered depends on the programmatic risk management strategy."
+          },
+          {
+            "text": "The level of detail with which a potential solution is described depends on how specifically the# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Context Description",
+        "content": [
+          {
+            "text": "Context was described in the first step. In particular, if the architectural and operational contexts were described in general terms, potential solutions will necessarily be described at a high level. Alternatively, if the cyber resiliency analysis is being performed for an existing system, a potential solution can be described in terms of specific technologies or products to be integrated into the system, where in the system those technologies will be used, how they will interface with other system elements, configuration settings or ranges of settings for products, and processes or procedures to make effective use of existing or newly acquired technologies."
+          },
+          {
+            "text": "The description of a potential solution can include identification of the gaps it is expected to address, the threats (e.g., attack scenarios, adversary objectives or categories of TTPs, or adversary actions) it is intended to address, or the reduced exposure of critical resources, sources of fragility, or attack surfaces to threats. These different elements of a potential solution's description can be used to evaluate the solution."
+          }
+        ]
+      },
+      {
+        "title": "3.2.4.2 Define Potential Solutions for Supporting Systems and Processes",
+        "content": [
+          {
+            "text": "If programmatic and operational contexts support improvements to supporting systems and processes, the potential applications of cyber resiliency techniques and approaches to these systems and processes are also identified. Such applications can include modifications to contracting to help ensure that controlled unclassified information (CUI) or other sensitive information is protected [SP 800-171], improvements to supply chain risk management (SCRM) as determined by SCRM analysis [SP 800-161], and restrictions on or re-architecting of system development, testing, or maintenance environments to improve the cyber resiliency of those environments."
+          }
+        ]
+      },
+      {
+        "title": "3.2.4.3 Analyze Potential Solutions with Respect to Criteria",
+        "content": [
+          {
+            "text": "Potential solutions can be analyzed with respect to one or more criteria. Evaluation can employ qualitative or semi-quantitative assessments (using subject matter expert [SME] judgments) or quantitative metrics (evaluated in a model-based environment, laboratory, cyber range, or test environment; metrics to support analysis of alternatives are typically not evaluated in an operational environment). For example, potential solutions can be analyzed to determine:"
+          },
+          {
+            "text": "How much the solution could improve the ability of the system to achieve its (priority-weighted) cyber resiliency objectives or sub-objectives. This can be expressed as a change in a cyber resiliency score or as a coverage map for the relevant cyber resiliency constructs. Alternately or in support of scoring, performance metrics for activities or capabilities related to cyber resiliency sub-objectives can be evaluated.\nHow well the system, with the solution applied, addresses adversary activities or attack scenarios as identified by the threat context. As noted in Section 3.2.2.3, this can take the form of a threat heat map or a threat coverage score using a taxonomy of.# Adversary Activities"
+          },
+          {
+            "text": "(e.g., [MITRE18]). It can also take the form of an adversary return on investment (ROI) score or a more nuanced threat coverage score. Alternately or in support of scoring, performance metrics for specific types of effects on adversary actions can be defined and evaluated before and after the solution is applied (e.g., length of time it takes an adversary to move laterally across a system or an enclave)."
+          },
+          {
+            "text": "How much the solution could improve the system's coverage of adversary TTPs using capabilities defined in [NIST CSF]. This can be expressed as a change in a score or using a threat heat map [DHSCDM].\nHow much the solution could decrease the level of cyber risk or a specific component of risk (e.g., level of consequence). As discussed in Appendix F, effects on adversary activities have associated effects on risk.\nHow much the solution could improve the level of operational resilience in terms of functional performance measures under stress. As discussed in Section D.5.1, some strategic design principles for cyber resiliency are closely related to design principles for Resilience Engineering. Thus, a solution that applies one or more of those design principles can be expected to improve resilience against non-adversarial as well as adversarial threats.\nWhether and how much the solution could improve the system's ability to meet its security requirements. Evaluation with respect to this criterion can involve qualitative assessments by subject matter experts (SME), an explanatory description, a list of previously unmet requirements that the solution can help meet, or specific security performance metrics that can be evaluated before and after the solution is applied.\nWhether and how much the solution could improve the system's ability to meet its mission or business function performance requirements. Similar to a security requirements criterion, evaluation with respect to this criterion can involve an explanatory description, qualitative assessments by SMEs, a list of previously unmet requirements that the solution can help meet, or specific functional performance metrics that can be evaluated before and after the solution is applied."
+          },
+          {
+            "text": "In addition, the potential costs of a solution can be identified or assessed. The product of this step is a list of alternative solutions, with each alternative characterized (e.g., using a coverage map or a description) or assessed with respect to the identified criteria."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CURRENT_PAGE_RAW_OCR_TEXT",
+    "subsections": [
+      {
+        "title": "whether specific solutions should be applied sequentially rather than simultaneously.",
+        "content": [
+          {
+            "text": "In addition, programmatic and operational risks associated with alternative solutions can be identified."
+          },
+          {
+            "subsection": "3.2.5.1 Identify and Analyze Alternatives",
+            "text": []
+          },
+          {
+            "text": "One or more alternatives (i.e., sets of potential solutions that could be implemented at the same time or sequentially such as in successive spirals) can be identified using either total cost or a requirement for a consistent level of maturity (e.g., requiring all technical solutions in the set to be available as commercial products by a specific milestone) to bound each set. Where possible, a set of potential solutions should be defined to take advantage of synergies (as discussed in Section 3.1.4 and identified in Appendix D, Table D-3). At a minimum, each set should be analyzed to ensure that there are no internal conflicts. If the solutions in a set are to be implemented sequentially, functional dependencies among those solutions should be identified. In addition, functional dependencies on other system elements (particularly those involving investments due to other disciplines) should be identified since changes in system elements can be made for a variety of reasons. Finally, functional dependencies on other organizational efforts (e.g., programs, initiatives) should be identified to ensure that changes to the attack surfaces of the system of interest, the organization's infrastructure and supporting services, and other systems or assets are understood and the associated risks managed."
+          },
+          {
+            "subsection": "3.2.5.2 Assess Alternatives",
+            "text": []
+          },
+          {
+            "text": "Each alternative can be assessed or characterized in terms of the evaluation criteria. To support assessments, the adversarial analysis can be revisited for each alternative. Due to synergies or other interactions between cyber resiliency techniques, changes in scores, heat maps, or coverage maps must be determined by analysis rather than by simply combining previously determined values. In addition, each alternative should be analyzed to determine whether it makes new attack scenarios (or non-adversarial threat scenarios) possible. If it does, those scenarios should be analyzed to determine whether changes should be made to the alternative."
+          },
+          {
+            "text": "Each alternative can also be described in terms of the issues it resolves, the gaps it fills, or whether it provides improved protection for critical resources, reduced fragility, or the ability to address threats more effectively. Finally, each alternative can be assessed or described in terms of its effects on programmatic risk (e.g., total costs, changes to schedule risk, changes to technical or performance risk) or other risks of concern to stakeholders. If an alternative diverges from the risk management strategies of one or more stakeholders, this divergence should be noted so that a compensating risk management approach can be made part of the...\n```# Recommendation if the Alternative is in Fact Recommended"
+          }
+        ]
+      }
+    ]
+  }
+]

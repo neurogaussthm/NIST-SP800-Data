@@ -1,0 +1,572 @@
+[
+  {
+    "title": "Abstract",
+    "subsections": [
+      {
+        "content": "This document provides guidance on how an organization can develop information security measures to identify the adequacy of in-place security policies, procedures, and controls. It explains the measures prioritization process and how to evaluate measures."
+      }
+    ]
+  },
+  {
+    "title": "1. Introduction",
+    "subsections": [
+      {
+        "content": "Information security measurement enables organizations to describe and quantify information security, allocate finite resources, and make informed and data-driven decisions for improved outcomes. However, organizations first need to know what policies, procedures, and controls they have in place at any given time; whether those policies and procedures are having the desired results; and how the organization and its risks are impacted. By developing and monitoring measurements that evaluate what an organization has in place for information security risk management and how well those efforts are working, an organization can better address their goals and direct resources."
+      },
+      {
+        "title": "1.1. Purpose and Scope",
+        "content": [
+          {
+            "text": "NIST Special Publication (SP) 800-55v1 (Volume 1) is a flexible guide for developing and selecting information security measures at the organization, mission/business, and system levels to identify the success of in-place policies, procedures, and controls. This document expands on previous NIST work on information security measures and measurements by focusing on quantitative assessments and addressing organizational and program maturity. The SP 800-55v2 provides a methodology for implementing an information security measurement program. Additionally, while many of the principles of information security measurement may apply to privacy, privacy is out of scope for this document."
+          }
+        ]
+      },
+      {
+        "title": "1.2. Relationship to Other NIST Publications",
+        "content": [
+          {
+            "text": "This document is intended to provide considerations for measuring the information security program activities described in other NIST publications, including:\n- SP 800-137A, Assessing Information Security Continuous Monitoring Programs\n- The NIST Cybersecurity Framework (CSF) 2.0\n- SP 800-30r1 (Revision 1), Guide for Conducting Risk Assessments\n- SP 800-37r2, Risk Management Framework for Information Security Systems and Organizations: A System Life Cycle Approach for Security and Privacy\n- SP 800-161r1, Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations\n- NIST Engineering Statistics Handbook\n- NIST Internal Report (IR) 8286, Identifying and Estimating Cybersecurity Risk for Enterprise Risk Management (ERM)"
+          }
+        ]
+      },
+      {
+        "title": "1.3. Document Organization",
+        "content": [
+          {
+            "text": "The remaining sections of this document discuss the following:\n- Section 2, Fundamentals\n- Section 3, Measurement Considerations\n- Section 4, Selecting and Prioritizing Measures\n- Appendix A, Glossary\n- Appendix B, Data Analysis Dictionary\n- Appendix C, Modeling Impact and Likelihood\n- Appendix D, Change Log"
+          }
+        ]
+      },
+      {
+        "title": "1.4. Document Terminology",
+        "content": [
+          {
+            "text": "In the context of this document, the following terms are defined as follows:# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Assessment",
+        "content": [
+          {
+            "text": "The action of evaluating, estimating, or judging against defined criteria. Different types of assessment (i.e., qualitative, quantitative, and semi-quantitative) are used to assess risk. Some types of assessment yield measures."
+          }
+        ]
+      },
+      {
+        "title": "Assessment result",
+        "content": [
+          {
+            "text": "The output or outcome of an assessment."
+          }
+        ]
+      },
+      {
+        "title": "Information security",
+        "content": [
+          {
+            "text": "The protection of information and systems from unauthorized access, use, disclosure, disruption, modification, or destruction to provide confidentiality, integrity, and availability."
+          }
+        ]
+      },
+      {
+        "title": "Measurement",
+        "content": [
+          {
+            "text": "The process of obtaining quantitative values using quantitative methods."
+          }
+        ]
+      },
+      {
+        "title": "Measures",
+        "content": [
+          {
+            "text": "Quantifiable and objective values that result from measurement."
+          }
+        ]
+      },
+      {
+        "title": "Metrics",
+        "content": [
+          {
+            "text": "Measures and assessment results designed to track progress, facilitate decision-making, and improve performance with respect to a set target."
+          }
+        ]
+      },
+      {
+        "title": "Qualitative assessment",
+        "content": [
+          {
+            "text": "The use of a set of methods, principles, or rules for assessing risk based on nonnumerical categories or levels."
+          }
+        ]
+      },
+      {
+        "title": "Quantitative assessment",
+        "content": [
+          {
+            "text": "The use of a set of methods, principles, or rules for assessing risks based on the use of numbers where the meanings and proportionality of values are maintained inside and outside of the context of the assessment."
+          }
+        ]
+      },
+      {
+        "title": "Semi-quantitative assessment",
+        "content": [
+          {
+            "text": "The use of a set of methods, principles, or rules for assessing risk based on bins, scales, or representative numbers whose values and meanings are not maintained in other contexts."
+          }
+        ]
+      },
+      {
+        "title": "2. Fundamentals",
+        "content": [
+          {
+            "text": "The terms assessment and measurement are often used interchangeably in the information security field, as both aid in risk management and security posture analysis. This document provides a lexicon for key terminology and an overview of foundational concepts for measuring and assessing information security risk and clarifies the distinction between assessment and measurement. As described in Sec. 1.4, assessment refers to the process of evaluating, estimating, or judging against defined criteria, and measurement is the process of obtaining quantitative values. Hence, assessment is a broader concept that also includes measurement."
+          },
+          {
+            "text": "Organizations perform multiple kinds of assessment when evaluating information security risk, such as risk assessments, program assessments, and control assessments. Risk assessments are used to identify the risks that an organization faces and can support decision-making. Program-level assessments are used for decision-making about the strategies, policies, procedures, and operations that determine the security posture of an information security program. In control assessments, organizations evaluate whether specific controls are performing the way they were intended and achieving the desired results. Both program assessments and control assessments are in and of themselves a form of risk assessment and provide a different lens for viewing information security risk. SP 800-55 is intentionally agnostic on specific risk assessment models. Many of these models may help identify areas of threat, likelihood, vulnerability, and impact that require further assessment.# 2.1. Measurement and Quantitative Assessment"
+          },
+          {
+            "text": "Measures are numerically expressed data that are gathered through the process of measurement. Measures can be derived from any operations or systems that can be measured with numbers. Quantitative assessments judge measures data against a set criteria or target and can be used to analyze information security risks using frequency, rates, financial impacts, and other numeric indicators."
+          },
+          {
+            "text": "Using quantitative assessments requires a knowledge of measurement techniques and data analysis processes. One challenge of measurement is using the right measures and quantity of measures to perform useful analysis. A single measure alone may not provide sufficient data to make risk-based decisions, but organizations may also have restraints on resources that prevent them from employing and analyzing every potential measure. An organization finds the number of measures and depth of analysis that work best for their needs."
+          },
+          {
+            "text": "The ability to measure information security risks relies on data availability. Methods for collecting information security data may include experimentation, observation, or sampling. The NIST Engineering Statistics Handbook offers detailed information on choosing a sampling scheme, including the following methods:"
+          },
+          {
+            "text": "Experimentation is a systematic approach to testing new ideas, methods, or activities that applies principles and techniques at the data collection stage to ensure the generation of valid, defensible, and supportable conclusions. A recognizable use of experimentation to collect information security data is a phishing test, which is a form of internal security testing where organizations send fake phishing emails to determine which users respond to it. The rates of success are then judged against set criteria.\n\n\nObservational data refers to capturing data through the observation of an activity or behavior without the direct involvement of the subject. Observational data is often gathered as part of routine information security operations, such as log management tools that are used to collect and analyze network activities. Data from these logs is observational and can be used for further analysis.\n\n\nSampling is the process of taking samples of something for the purpose of analysis. Sampling may be used when continuous observation and passive data collection are not an option or when random, stratified, or systematic sampling may be preferred. Random sampling is a method of sampling in which each sample has an equal chance of selection in hopes of gathering an unbiased representation. Stratified sampling is the process of segmenting a population across levels of some factors to minimize variability within those segments (e.g., taking a sample from a terminal in each department of an organization). Stratified sampling may help an assessment target organizational units without being overwhelmed by noisy data collection but can provide biased.# Results"
+          },
+          {
+            "text": "Experimentation is a systematic approach to testing new ideas, methods, or activities that applies principles and techniques at the data collection stage to ensure the generation of valid, defensible, and supportable conclusions. A recognizable use of experimentation to collect information security data is a phishing test, which is a form of internal security testing where organizations send fake phishing emails to determine which users respond to it. The rates of success are then judged against set criteria."
+          },
+          {
+            "text": "Observational data refers to capturing data through the observation of an activity or behavior without the direct involvement of the subject. Observational data is often gathered as part of routine information security operations, such as log management tools that are used to collect and analyze network activities. Data from these logs is observational and can be used for further analysis."
+          },
+          {
+            "text": "Sampling is the process of taking samples of something for the purpose of analysis. Sampling may be used when continuous observation and passive data collection are not an option or when random, stratified, or systematic sampling may be preferred. Random sampling is a method of sampling in which each sample has an equal chance of selection in hopes of gathering an unbiased representation. Stratified sampling is the process of segmenting a population across levels of some factors to minimize variability within those segments (e.g., taking a sample from a terminal in each department of an organization). Stratified sampling may help an assessment target organizational units without being overwhelmed by noisy data collection but can provide biased.# Results"
+          },
+          {
+            "text": "Systematic sampling involves taking samples at a regular interval (e.g., once an hour or from every tenth user). Systematic sampling is useful for identifying macro-trends but may not provide enough conclusive measurements for the entire population if an underlying pattern is present."
+          },
+          {
+            "text": "Once the data from measurement is procured, the outputs of quantitative analysis can be used in a quantitative assessment to determine whether the organization is meeting its information security goals and support risk-based decision-making. Data analysis methods are largely based on the type of questions that the organization is asking about their information security risks, program, and controls. The NIST Engineering Statistics Handbook [18] identifies three popular approaches to data analysis:"
+          }
+        ]
+      },
+      {
+        "title": "1. Classical",
+        "content": [
+          {
+            "text": "In the classical data analysis approach, data collection is directly followed by modeling, and the analysis, estimation, and testing that come after focus on the parameters of that model. Classical data analysis includes deterministic and probabilistic models, such as regression and the analysis of variance (ANOVA)."
+          }
+        ]
+      },
+      {
+        "title": "2. Exploratory",
+        "content": [
+          {
+            "text": "Exploratory data analysis begins by inferring what model would be appropriate before trying different analytic models. Identifying patterns in the data may give insight as to what models would produce the most useful information. Some common exploratory data analysis graphical techniques include standard deviation plots and histograms."
+          }
+        ]
+      },
+      {
+        "title": "3. Bayesian",
+        "content": [
+          {
+            "text": "Bayesian/predictive methodology consists of formally combining both the prior distribution of the parameters and the collected data to jointly make inferences and/or test assumptions about the model of parameters. Bayesian methods can be used for expected range setting and predictive models."
+          }
+        ]
+      },
+      {
+        "title": "2.2. Types of Assessment",
+        "content": [
+          {
+            "text": "There are three types of assessment:"
+          },
+          {
+            "text": "Qualitative assessments are subjective and interpretive, using nonnumerical values or categories, such as high, medium, and low or heat maps.\n\n\nSemi-quantitative assessments use numbers, but those numbers do not maintain their value outside of the assessment context. This is commonly seen in models that use number rankings to show a level of organizational integration. While the assessment may say that the organization is at \"level 3,\" that \"3\" represents a set of qualities rather than a numerical value.\n\n\nQuantitative assessments use data and statistics to obtain objective, precise results, and the numbers retain their values outside of the context. For example, 98% of authorized accounts belong to current employees, and 2% belong to former employees. Here, the values \"98%\" and \"2%\" stay the same regardless of the context. Since for the purpose of SP 800-55 measurement is the process of obtaining quantifiable values using quantifiable assessment methods, measures are quantitative assessment results. Quantitative assessments (i.e., measurements) can provide objective data that.# CURRENT_PAGE_RAW_OCR_TEXT"
+          },
+          {
+            "text": "Qualitative assessments are subjective and interpretive, using nonnumerical values or categories, such as high, medium, and low or heat maps."
+          },
+          {
+            "text": "Semi-quantitative assessments use numbers, but those numbers do not maintain their value outside of the assessment context. This is commonly seen in models that use number rankings to show a level of organizational integration. While the assessment may say that the organization is at \"level 3,\" that \"3\" represents a set of qualities rather than a numerical value."
+          },
+          {
+            "text": "Quantitative assessments use data and statistics to obtain objective, precise results, and the numbers retain their values outside of the context. For example, 98% of authorized accounts belong to current employees, and 2% belong to former employees. Here, the values \"98%\" and \"2%\" stay the same regardless of the context. Since for the purpose of SP 800-55 measurement is the process of obtaining quantifiable values using quantifiable assessment methods, measures are quantitative assessment results. Quantitative assessments (i.e., measurements) can provide objective data that.# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "allows for",
+        "content": [
+          {
+            "text": "tracking and shows changes. However, they can be difficult to produce in early stages of measurement since they require more data and resources than nonnumerical and categorified qualitative assessments. In contrast, simple nonnumerical and categorified qualitative assessments may be more commonly used and easier to conduct, but their results can also be subjective and require everyone to have an equal understanding of the scale used."
+          },
+          {
+            "text": "It is important for organizations to consider their motivations for measuring information security risks before determining whether a quantitative or qualitative assessment is appropriate. For example, an organization motivated primarily by compliance with an industry certification or international standard has different measurement needs than an organization motivated by cost reduction. An organization could have multiple, competing motivations that drive the identification and selection of measures."
+          },
+          {
+            "text": "When real and attainable numbers based on gathered data can be found and analyzed, a quantitative assessment may be the appropriate action. If there are proposed questions that do not have measurable numbers attached to them but still need to be addressed, a qualitative assessment may be the best option."
+          },
+          {
+            "text": "Commonly used qualitative methods include color scales that represent risk levels or number scales that show rankings. For the purposes of this document, qualitative and semi-quantitative assessments are not considered measurements, and the values produced by these types of assessments are not considered measures. Most organizations will use a mixture of quantitative, semi-quantitative, and qualitative assessments. Ultimately, some or all of the assessment results will be used to determine success."
+          }
+        ]
+      },
+      {
+        "title": "2.3. Benefits of Using Measures",
+        "content": [
+          {
+            "text": "Developing and establishing measurements to capture and provide meaningful data at all levels of an organization requires careful consideration. Meaningful measures take organizational information security goals and objectives into account and are obtainable, repeatable, and feasible to measure. Information security measurement enables organizations to quantify improvements or gaps in securing systems and demonstrate quantifiable progress in accomplishing strategic goals and objectives (i.e., security posture). Well-designed measurements can provide information on the implementation, effectiveness, efficiency, and business impacts of controls, such as the results of information security activities, events (e.g., incident data, revenue lost to cyber attacks), and information security investments."
+          },
+          {
+            "text": "Measurement provides data that can enable an organization to examine the impacts of implementing information security programs, specific controls, and associated policies and procedures. Such data is integral when making risk-based decisions, weighing.# Performance Measurement and Metrics"
+          },
+          {
+            "text": "Performance against designated metrics, and demonstrating compliance. Measurement can also increase accountability and strengthen governance by providing data that can facilitate the identification of the personnel responsible for controls implemented within specific organizational components or systems and support an environment that allows for continuous analysis and improvement."
+          }
+        ]
+      },
+      {
+        "title": "2.4. Metrics",
+        "content": [
+          {
+            "text": "In addition to measurements, organizations also utilize metrics to track progress, facilitate decision-making, and improve performance. Information gained from measurements may be used to identify and define new metrics. Metrics can be applied at the system level, program level, and organization level. System-level metrics, such as the frequency of third-party access to a system or the number of communication ports open, can facilitate tactical decision-making and support program-level metrics. Program-level metrics, such as the number of security incidents in a year or the cost per incident, may be helpful when making organizational strategic decisions. Both system- and program-level metrics can also support risk management-informed decision-making."
+          },
+          {
+            "text": "Metrics are designed to track progress, facilitate decision-making, and improve performance with respect to a set target. Metrics leverage measures to provide insight into how well an organization is performing at the program or system level and whether the organization is reducing their information security risk. As with measures, the characteristics of meaningful metrics include the value being objective, accurate, precise, tied to a fixed reference or point in time, replicable, and comparable to previous measurements. Metrics are set with organizational goals in mind and drive subsequent assessments whose results then inform the metrics going forward."
+          },
+          {
+            "text": "Knowing why measurements are being taken can help when selecting which potential measurements or metrics to focus on. The purpose and output of measurements must be unambiguous and easily understood, and the chosen metrics tell a meaningful story about organization-, program-, or system-level information security. For example, when evaluating cybersecurity awareness training, consider completion rates and the results of review quizzes instead of marking participation as \"low, medium, or high.\""
+          },
+          {
+            "text": "When initially selecting quantitative metrics, it is natural to want to adopt any available data points, perhaps with the intent to use them to narrow down focus on critical elements. Poorly selected quantitative metrics can undermine the overall quality of reporting and erode confidence in the work product. When considering a quantitative metric, consider whether the data point directly illustrates the performance of a valid control or tracks the presence of a material risk to the organization's objective. If not, it may be best to exclude the data item in question. With quantitative metrics - initially at least - less is often more."
+          },
+          {
+            "text": "By keeping metrics consistent over time, organizations can evaluate long-term performance.# Trends and Expected Ranges"
+          },
+          {
+            "text": "A new metric may provide important insights, but tracking the measurements related to metrics over a continuous period (e.g., quarter to quarter, year to year) will give more information about the success of organization-, program-, and system-level information security plans, policies, procedures, and goals. Some metrics may be gathered because of external guidance or regulations."
+          },
+          {
+            "text": "Key risk indicators (KRIs) and key performance indicators (KPIs) are examples of metrics, though not all metrics fall into these categories. Organizations may find that a wide variety of metrics fit their needs. For example, appropriate measures at the organization level may include the cost per security incident as part of the budget allocation process, whereas measurements at the system level may include the frequency of virus scans across individual systems."
+          }
+        ]
+      },
+      {
+        "title": "3. Measurement Considerations",
+        "content": [
+          {
+            "text": "Because measurement can involve large amounts of data, having a plan for data handling is critical to ensuring that factors such as documentation, data management, data quality, and uncertainty are all considered. An organized and repeatable process that allows for the consistent assessment of collected data provides much-needed context for measurements."
+          },
+          {
+            "text": "Information security measurements can be scoped to a variety of environments and needs. Assets, controls, vulnerabilities, and security incidents can all be measured. Measures can be applied to organizational units, sites, processes, and other constructs. Since the high volume of measurements may be too numerous to track, organizations may want to aggregate data to help track security trends across an organization. Organizations will carefully define the scope of measures based on specific stakeholder needs, strategic goals and objectives, operating environments, risk priorities, and resources. As an organization develops measurements, they may want to consider options to make the data collection process easier, such as automation."
+          },
+          {
+            "text": "Information security measures can be applied at the system level to provide quantifiable data regarding the implementation, effectiveness, efficiency, and impact of required or desired security controls. System-level measures can be used to determine the system's security posture, demonstrate compliance with organizational requirements, and identify areas of improvement."
+          },
+          {
+            "text": "Measurements can be used to monitor organizational information security activities at the program and organization levels. These measurements may be derived by aggregating multiple system-level measures or developed by using the entire enterprise as the scope. Organization-level measurements require that the processes on which the measures depend are consistent and repeatable and ensure the availability of data across the organization."
+          },
+          {
+            "text": "Perfectly measuring information security is challenging due to the gap between mathematical# Models and Practical Implementations"
+          },
+          {
+            "text": "Instead, experimenting as possible with relative metrics, models, and approaches over time is the best way to identify the most effective performance indicators."
+          }
+        ]
+      },
+      {
+        "title": "3.1. Organizational Measures Considerations",
+        "content": [
+          {
+            "subsection": "3.1.1. Measures Documentation",
+            "text": []
+          },
+          {
+            "text": "Organizations document their measures in a standard format to ensure the repeatability of measures development, collection, and reporting activities. By keeping a consistent record of what is being measured, where the data comes from, what formulas and calculations are being used, and who interacts with the data, it becomes easier to trace data and ensure continuity of the process."
+          },
+          {
+            "text": "Organizations can tailor their standard format to their unique environments and requirements based on internal practices and procedures. However, the following fields offer a common starting point:"
+          },
+          {
+            "text": "Unique ID: A unique identifier for tracking and sorting. The unique identifier can use an organization-specific naming convention or directly reference another source.\nGoal: Statement of strategic and/or information security goals to guide control implementation for system-level control measures and higher-level measures. These goals are usually articulated in strategic and performance plans. When possible, include both the organization-level goal and the specific information security goal extracted from organization documentation, or identify an information security goal that would contribute to the accomplishment of the selected strategic goal.\nScope: Definition of what is considered in and out of scope. The scope helps explain aggregated risks and distinguish the total risk from the risks currently being measured.\nMeasure: Statement of measurement. Use a numeric statement that begins with the words \"percentage,\" \"number,\" \"frequency,\" \"average,\" or other similar term.\nType: Statement of whether this is a record of implementation or a measure of effectiveness, efficiency, or impact.\nFormula: Calculation that results in a numeric expression of a measure. The organization may also note the information gathered in an implementation survey.\nTarget: A range or a designated upper or lower bound. A threshold for a satisfactory rating for the measure (e.g., a milestone completion or statistical measure) can be expressed in percentages, time, currency, or other unit of measurement. The target may be tied to a required completion time frame. It may also be useful to select and record final and interim targets to track progress toward a stated goal.\nImplementation evidence: Evidence used to compute the measure, validate that the activity is performed, and identify probable causes of unsatisfactory results for a specific measure.\nFor manual data collection, identify questions and data elements that would provide the data inputs necessary to calculate the measure's formula, qualify the# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Measure for Acceptance",
+        "content": [
+          {
+            "text": "Validate the information provided.\nFor automated data collection, identify data elements that would be required for the formula, qualify the measure for acceptance, and validate the information provided."
+          }
+        ]
+      },
+      {
+        "title": "Time-based Reference",
+        "content": [
+          {
+            "text": "When the measure was taken. This supports the repeatability of measures and helps identify expired or invalid data.\nHow often the data is collected, analyzed, and reported. Select the frequency of data collection based on a rate of change that is being evaluated. Select the frequency of data reporting based on external reporting requirements and internal customer preferences."
+          }
+        ]
+      },
+      {
+        "title": "Responsible Parties",
+        "content": [
+          {
+            "text": "Key stakeholders, such as:\n- Information owner \u2014 Identify the organizational component and the individual who owns the required information.\n- Information collector \u2014 Identify the organizational component and the individual responsible for collecting the data.\n- Information customer \u2014 Identify the organizational component and the individual who will review the data."
+          }
+        ]
+      },
+      {
+        "title": "Data Source",
+        "content": [
+          {
+            "text": "Location of the data to be used in calculating the measure, including databases, tracking tools, logs, organizations, and specific roles within the organization that can provide the required information."
+          }
+        ]
+      },
+      {
+        "title": "Reporting Format",
+        "content": [
+          {
+            "text": "Indication of how the measure will be reported, such as a pie chart, line chart, bar graph, or other format. It may also be beneficial to include a sample."
+          },
+          {
+            "subsection": "3.1.2. Measurement Reporting",
+            "text": []
+          },
+          {
+            "text": "If a measure is reported to stakeholders without proper context, there can be unintended consequences or indecision. Therefore, a report could include elements such as:\n- Any risk indicated by the measure\n- Whether the findings fit in the organization's risk appetite\n- What prioritization, action, or decision might need to be taken\n- Any compliance issues that may be associated with the finding\n- The impact on being audit-ready"
+          },
+          {
+            "text": "These examples are not meant to provide a complete list of elements to be included in measurement reporting but highlight how measurement reporting can support organizational decision-making by providing context around measurements and findings. More information about measurement reporting and communication about measurements can be found in SP 800-55v2, Measurement Guide for Information Security: Volume 2 \u2014 Program."
+          },
+          {
+            "subsection": "3.1.3. Data Management",
+            "text": []
+          },
+          {
+            "text": "Although substantial amounts of information security data may be collected, not all data will be useful for the information security measurement program. Any data collected specifically for information security measures are as non-intrusive as possible and of maximum usefulness to ensure that available resources are primarily used to correct problems rather than collect data. Information security data repositories represent a significant collection of operational and vulnerability data. Due to the sensitivity of this data, they are protected in accordance with applicable laws, regulations, policies, and procedures."
+          },
+          {
+            "subsection": "3.1.4. Data Quality",
+            "text": []
+          },
+          {
+            "text": "Data collection methods and the data repositories used for measures data collection and...# Reporting and Data Validity"
+          },
+          {
+            "text": "Reporting (either directly or as data sources) are clearly defined to ascertain the quality and validity of the data. This also helps ensure that testing is repeatable and can show changes over time."
+          },
+          {
+            "text": "Data validity is suspect if the primary data source is an incident-reporting database that only stores information reported by a few organizational elements or if reporting processes between organizations are inconsistent. The importance of standardizing reporting processes cannot be overemphasized. When organizations are developing and implementing processes that may serve as inputs into an information security measurement program, ensuring that data gathering and reporting are clearly defined helps facilitate valid data collection. Having a validation process in place to check the integrity, accuracy, and structure of the data provides a way to address potential errors before any analysis is done. By setting a standard process to validate data, an organization can have a repeatable way to look at the data and ensure its quality."
+          }
+        ]
+      },
+      {
+        "title": "3.1.5. Uncertainty and Errors",
+        "content": [
+          {
+            "text": "Even when measurements are intended to be precise and accurate, random and systemic errors can still occur. While there is no guaranteed way to measure uncertainty in all measurements, statistical information calculated from the data (e.g., standard deviation, standard error of mean, and confidence intervals) can provide more insight. In addition to making the data itself more usable, data analysis methods can address uncertainty within the data. Organizations often make quantitative projections using statistical methods, such as regression, time series analysis, and machine learning methods. When looking at projections, it is helpful to consider that future events and other unknown factors can cause unforeseen changes."
+          }
+        ]
+      },
+      {
+        "title": "3.2. Characteristics of Measures",
+        "content": [
+          {
+            "text": "The reliability and effectiveness of security measures require their adherence to a set of defined characteristics. These characteristics act as a foundation for the development, implementation, and assessment of information security measures:"
+          },
+          {
+            "text": "Accuracy: Collecting and analyzing accurate data that aligns closely with the security objectives and requirements specified within the assessment's scope and reflects the intended security objectives under evaluation.\nNumeric precision: Using precise and objective data that naturally uses real numeric values. This facilitates consistent analysis and comparison and enables stakeholders to make informed decisions regarding security posture.\nCorrectness: Data collection processes and methodologies that adhere to predetermined specifications and standards to provide accuracy and reliability. The correctness of data collection procedures ensures the consistency and validity of results.\nConsistency: Security measurements that remain independent of the individuals or...# CURRENT PAGE RAW OCR TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Entities Conducting Them",
+        "content": [
+          {
+            "text": "Consistency in measurement methodologies and criteria fosters reliability across different evaluators and environments and enhances the trustworthiness of assessment outcomes."
+          },
+          {
+            "text": "Time-based reference: Establishing a fixed reference point for data collection and analysis. Time-based measurements provide context and facilitate the identification of evolving security threats and vulnerabilities.\nReplicability: Security measurements that are repeatable under identical conditions and yield consistent results across multiple assessments. Replicability ensures the reliability and validity of measurement outcomes and supports longitudinal analysis and benchmarking efforts.\nUnit-based standardization: Data that is expressed using standardized units and formats. Unit-based standardization facilitates interoperability and comparability across diverse datasets and evaluation contexts."
+          },
+          {
+            "text": "These characteristics collectively define the foundation of robust security measurement frameworks. Adherence to these principles ensures the reliability, consistency, and replicability of security measures developed to safeguard assets and information."
+          }
+        ]
+      },
+      {
+        "title": "3.3. Types of Measures",
+        "content": [
+          {
+            "text": "This document separates measures/assessment results into four types:\n1. Implementation\n2. Effectiveness\n3. Efficiency\n4. Impact"
+          },
+          {
+            "subsection": "3.3.1. Implementation Measures",
+            "text": []
+          },
+          {
+            "text": "Implementation measures demonstrate the progress of specific controls. Monitoring implementation may include assessment results, such as a tally of known systems or a binary \"yes/no\" about which systems have up-to-date patches. Implementation measures look at quantitative outputs and are usually demonstrated in percentages. Examples of implementation measures related to information security programs include the percentage of systems with approved system security plans and the percentage of systems with password policies that are configured as required. Implementation measures can also examine system-level areas, such as the percentage of servers in a system with a standard configuration."
+          },
+          {
+            "text": "By gathering this data, an organization can understand how its goals are being implemented and what tasks still need to be accomplished. Organizations never fully retire implementation measures because they are a record of what exists and what needs improvement. However, once implementation measures are completed, the emphasis and resources of the measurement program broaden to include effectiveness, efficiency, and impact measures."
+          },
+          {
+            "subsection": "3.3.2. Effectiveness Measures",
+            "text": []
+          },
+          {
+            "text": "Effectiveness measures evaluate how well implementation processes and controls are working and whether they are meeting desired outcomes. An effectiveness assessment can either concentrate on the evidence and results of a quantitative analysis of measures or be applied in a qualitative \"yes/no\" paradigm. Effectiveness measures may require multiple data points that...# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "3.3.3. Efficiency Measures",
+        "content": [
+          {
+            "text": "Efficiency measures examine the timeliness of controls by determining the speed at which they give useful feedback and how quickly those issues are addressed. An efficiency assessment concentrates on the evidence and results of quantitative measures analysis. Effectiveness and efficiency together are often referred to as Program Results."
+          }
+        ]
+      },
+      {
+        "title": "3.3.4. Impact Measures",
+        "content": [
+          {
+            "text": "Impact measures articulate the impact of information security on an organization's unique mission, goals, and objectives by quantifying the following:"
+          },
+          {
+            "text": "Cost savings produced by the information security program\nCosts incurred from addressing information security events\nThe cost-effectiveness of any given processes and controls\nBusiness value gained or lost\nRegulatory fines\nContractual penalties\nThe degree of public trust gained or maintained by the information security program\nOther mission-related impacts of information security"
+          },
+          {
+            "text": "These measures combine the results of control implementation with a variety of information about resources. They can provide the most direct insight into the value of information security to the organization and are sought by executives. While impact measures are largely organization-specific, a general example would be the percentage of the organization's budget devoted to information security controls. After implementation measures are gathered, further analysis \u2014 not dissimilar to normalization \u2014 is required before the results can be expressed to a non-technical audience."
+          }
+        ]
+      },
+      {
+        "title": "4. Selecting and Prioritizing Measures",
+        "content": [
+          {
+            "text": "Developing and selecting information security measures consists of four major activities:"
+          },
+          {
+            "text": "Identifying and defining the current information security program\nDeveloping, testing, and validating specific measures to gauge the implementation, program results, and impacts of security controls to ensure that they adequately safeguard the relevant attributes of the assets being protected\nPrioritizing measures based on organizational needs\nEvaluating collected measures data"
+          },
+          {
+            "subsection": "4.1. Identification and Definition",
+            "text": []
+          },
+          {
+            "text": "This document focuses on the development of measures related to information security risk management, which is part of a larger implementation process of information security measurement. The identification and definition of the existing information security program are important to the development of measures."
+          },
+          {
+            "text": "Identification and definition include:"
+          },
+          {
+            "text": "Establishing and analyzing assets: An accounting of the assets in place and their potential impacts on the organization\nStakeholders and interests: Identifying relevant stakeholders and their interests in information security measurement\n\nGoals and objectives: Identifying and documenting security goals and objectives that will guide control implementation and ensuring that they can be reliably and# Objectively Translated from Technical Data Sources to Meaningful Business Intelligence\n\n\nInformation security policies, guidelines, and procedures review: Examining existing organization-specific policies, guidelines, and procedures related to information security.\n\nInformation security implementation review: Reviewing any existing measures and data repositories that can be used to derive measures data."
+          },
+          {
+            "text": "Goals and objectives: Identifying and documenting security goals and objectives that will guide control implementation and ensuring that they can be reliably and# Objectively Translated from Technical Data Sources to Meaningful Business Intelligence"
+          },
+          {
+            "text": "Information security policies, guidelines, and procedures review: Examining existing organization-specific policies, guidelines, and procedures related to information security."
+          }
+        ]
+      },
+      {
+        "title": "4.2. Developing, Testing, and Validating Measures",
+        "content": [
+          {
+            "text": "Knowing what controls are implemented in an organization is foundational to quantitative assessment. The system- and program-level controls that need to be tracked must be understood before an organization can evaluate what kinds of measurements to take or the process of prioritizing potential measures. This creates a structure for determining what measurements need to be taken and what metrics are used for evaluation."
+          },
+          {
+            "text": "When developing measures, an organization needs to know the attributes of the asset it is trying to protect. For example, there is no organizational gain in trying to measure the confidentiality of a Domain Name System (DNS) registry when the critical characteristics are its integrity and availability. As an organization cannot take and evaluate infinite measures, the most successful measures consider stated priorities that inform the organization's information security strategy. For example, if the organization considers the resource availability of a public website to be of critical importance, then selecting \"the average number of port scans per day\" as a measure might yield an accurate and informative result but not one that is relevant to the stated goals of the organization."
+          },
+          {
+            "subsection": "4.2.1. Comparing Measures and Assessment Results",
+            "text": []
+          },
+          {
+            "text": "Qualitative and semi-quantitative assessments may also be useful or even necessary to assess implementation, effectiveness, efficiency, and impact. After implementation measures are gathered, further analysis, not dissimilar to data normalization, is required before the results can be expressed to a non-technical audience. Successful effectiveness and efficiency assessments of individual phenomena may require additional analysis using multiple measures. For example, when looking for \"delayed vulnerability remediations,\" simply checking the mean time to incident response is unlikely to provide all of the information necessary to determine the causes of an issue."
+          }
+        ]
+      },
+      {
+        "title": "4.3. Prioritizing Measures",
+        "content": [
+          {
+            "text": "After implementation measures are in place, organizations prioritize which efficiency, effectiveness, and impact measures to implement. Prioritization can be driven by a variety of factors, including an organization's risk management strategy, mission and business objectives, the availability of data collection for target assets, the value of the asset, the cost of the controls required to prevent adverse outcomes, the potential availability of imperfect or partial controls, information from risk assessments, policies, and legal, regulatory, or other considerations.# Requirements"
+          }
+        ]
+      },
+      {
+        "title": "4.3.1. Likelihood and Impact Modeling",
+        "content": [
+          {
+            "text": "Likelihood and impact modeling are meant to work in tandem as part of a larger risk assessment process. Simply knowing either the likelihood or the potential impact of an event is not enough information to determine the importance of a potential measure to an organization."
+          },
+          {
+            "text": "Identifying existing data for use in likelihood and impact modeling typically involves working with stakeholders from across the organizational structure. When possible, data from existing risk assessments can be utilized to reduce redundancy and enable decision-making (e.g., using existing modeled data to help decide what measurements to prioritize). Organizations may also have useful data from audits, interviews, surveys, or studies and external data on likelihood and impact. Annual reports can provide information on threat landscapes and the financial impacts of information security incidents that can be used to create models. A wide range of event likelihood models can be used to assess the likelihood of adverse events when determining which systems and controls to measure."
+          },
+          {
+            "text": "Organizations can also compare impact models with event probability models (e.g., expected loss and statistical analysis of historical market trends) to determine their measurement priorities. Controls or systems with higher likelihoods of incident or higher potential impacts if affected could then be prioritized when organizations decide how to allocate measurement resources. Where possible, leverage existing event likelihood and impact models (e.g., risk registers) to avoid a duplication of efforts. More information on quantitative likelihood and impact models can be found in Appendix C."
+          },
+          {
+            "text": "In addition to using historical information for likelihood and impact modeling, current trends may provide useful datapoints when prioritizing and selecting measures. Staying updated on current threats allows for more effective continuous measurement and assessment. At the same time, recency bias about current events often influences choices when determining courses of action and resource allocation. Outliers and unexampled events may occur over time. An organization can prepare for these issues using horizon scanning, stress tests, and system resilience."
+          }
+        ]
+      },
+      {
+        "title": "4.3.2. Weighing Scale",
+        "content": [
+          {
+            "text": "Information gained from modeling likelihood and impact can be combined with knowledge about organizational goals and existing controls to create a customized weighing scale to prioritize potential measures. Using a weighing scale with set parameters ensures consistency when prioritizing and selecting measures, even those that are unrelated to information security."
+          },
+          {
+            "text": "Measures that are ultimately selected are useful for:\n- Identifying causes of unsatisfactory performance# CURRENT_PAGE_RAW_OCR_TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Pinpointing areas for improvement",
+        "content": []
+      },
+      {
+        "title": "Facilitating consistent policy implementation",
+        "content": []
+      },
+      {
+        "title": "Redefining goals and objectives",
+        "content": []
+      },
+      {
+        "title": "Modifying security policies",
+        "content": [
+          {
+            "subsection": "4.4. Evaluating Methods for Supporting Continuous Improvement",
+            "text": []
+          },
+          {
+            "text": "After an organization selects its measures, the collected data is evaluated. Evaluation may look different depending on the types of measures being analyzed. Quantitative data analysis methods, like those in Sec. 2.3, can be used to evaluate measures. For implementation measures, evaluation may be as simple as comparing the percentage of controls implemented with the goal percentage of implementation. Effectiveness, efficiency, and impact measures will likely be more complicated to evaluate. Both effectiveness and efficiency measures often begin by establishing average data output and evaluating acceptable ranges against output going forward. For example, an organization may want to know if the volume of data being transferred on the network has an anomaly. To monitor for changes, the average volume of data transferred is established. An organization may also set an acceptable range based on a standard deviation from this average. This may mean looking for outliers in the data or monitoring for changes over time. Evaluating impact measures will likely include outcomes outside of information security, such as financial outcomes or even public perception."
+          },
+          {
+            "text": "Various indicators and inputs can be useful to track the effectiveness and efficiency of an information security program by monitoring performance and security over time, such as:"
+          },
+          {
+            "text": "False positive rate: The proportion of positive reports that were incorrectly identified\nKey performance indicators: A measure of progress toward intended results\nKey risk indicators: A metric used to measure risk\nLeading indicators: A predictive metric that tracks events or behaviors that precede incidents\nLagging indicator: A metric that tracks the outcome of events or trends\nMean time to detect: A metric that tracks the average amount of time that a problem exists before it is found\nMean time to recovery: A metric that tracks the average amount of time it takes to recover from a product or system failure\nMean time between failures: A predictive metric that tracks the average time between system breakdowns\nMean time to repair: A predictive metric that tracks the average time it takes to repair a system"
+          },
+          {
+            "text": "Access to average outputs, acceptable ranges, and long-term data makes effectiveness and efficiency measures more accurate and beneficial by enabling organizations to track changes over time. Even if processes are not yet consistent, average outputs and acceptable ranges help organizations set metrics. Some metrics are directly related to established averages, while others are set by other sources, and established ranges may not have any effect.# Organizational Goals"
+          },
+          {
+            "text": "While inconsistent processes will not provide meaningful data, measurements may still be used to establish average outputs and acceptable ranges for future analysis. Data analysis for finding average outputs and acceptable ranges will typically include historical data and a forecast of what that trend may continue to look like in the future if all variables stay the same."
+          }
+        ]
+      }
+    ]
+  }
+]
