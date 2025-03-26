@@ -30,6 +30,8 @@ services:
     environment:
       ETCD_ENDPOINTS: etcd:2379
       MINIO_ADDRESS: minio:9000
+      COMMON_GRPC_SERVER_MAX_SEND_SIZE: 419430400
+      COMMON_GRPC_SERVER_MAX_RECEIVE_SIZE: 419430400
     volumes:
       - ../milvus/volumes/milvus:/var/lib/milvus
     ports:

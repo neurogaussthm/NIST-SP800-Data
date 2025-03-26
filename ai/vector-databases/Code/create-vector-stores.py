@@ -3,16 +3,22 @@ import faiss
 import numpy as np
 import weaviate
 import pandas as pd
-from pymilvus import connections, Collection, CollectionSchema, FieldSchema, DataType
+from pymilvus import connections, Collection, CollectionSchema, FieldSchema, DataType, utility
 
 def create_faiss_store(method_path, output_path):
     for embedding_file in os.listdir(method_path):
         embedding_path = os.path.join(method_path, embedding_file)
-        if embedding_file.endswith(".npy"):
-            embeddings = np.load(embedding_path)
+        # if embedding_file.endswith(".npy"):
+        #     embeddings = np.load(embedding_path)
+        #     dimension = embeddings.shape[1]
+        if embedding_file.endswith(".parquet") and "ALL" in embedding_file:
+            df = pd.read_parquet(embedding_path)
+            embeddings = np.array(df["embedding"].tolist(), dtype=np.float32)
             dimension = embeddings.shape[1]
             if os.path.exists(output_path):
                 index = faiss.read_index(output_path)
+                if index.d != dimension:
+                    raise ValueError(f"Dimension mismatch: existing is {index.d} new is {dimension}")
             else:
                 index = faiss.IndexFlatL2(dimension)
             index.add(embeddings)
@@ -28,7 +34,7 @@ def create_weaviate_store(method_path, collection_name):
     try:
         for embedding_file in os.listdir(method_path):
             embedding_path = os.path.join(method_path, embedding_file)
-            if embedding_file.endswith(".parquet"):
+            if embedding_file.endswith(".parquet") and "ALL" in embedding_file:
                 df = pd.read_parquet(embedding_path)
                 if not client.collections.exists(collection_name):
                     client.collections.create(name=collection_name, vectorizer_config=config.Vectorizer.none(), vector_index_config=config.VectorIndex.hnsw(distance_metric=weaviate.classes.config.VectorDistances.COSINE), properties=properties)
@@ -46,16 +52,15 @@ def create_milvus_store(method_path, collection_name):
     connections.connect("default", host="localhost", port="19530")
     for embedding_file in os.listdir(method_path):
         embedding_path = os.path.join(method_path, embedding_file)
-        if embedding_file.endswith(".parquet"):
+        if embedding_file.endswith(".parquet") and "ALL" in embedding_file:
             df = pd.read_parquet(embedding_path)
             vectors = np.array(df['embedding'].tolist())
             if vectors.dtype != np.float32:
                 vectors = vectors.astype(np.float32)
             vector_dim = vectors.shape[1]
-            if collection_name in Collection.list():
+            if utility.has_collection(collection_name):
                 collection = Collection(name=collection_name)
                 collection.load()
-                collection.insert([vectors])
             else:
                 fields = [
                     FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
@@ -63,7 +68,11 @@ def create_milvus_store(method_path, collection_name):
                 ]
                 schema = CollectionSchema(fields, description="Vector store")
                 collection = Collection(name=collection_name, schema=schema)
-                collection.insert([vectors])
+            batch_size = 1000
+            for i in range(0, len(vectors), batch_size):
+                batch = vectors[i:i + batch_size]
+                collection.insert([batch])
+            if not utility.has_collection(collection_name):
                 index_params = {
                     "metric_type": "L2",
                     "index_type": "IVF_FLAT",
