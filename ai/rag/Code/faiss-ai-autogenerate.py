@@ -1,4 +1,5 @@
 import faiss
+import time
 import numpy as np
 import os
 import json
@@ -32,7 +33,7 @@ def get_top_k_chunks(question, model, embed_file, index_file, k=top_k):
 
 def build_prompt(question, context_chunks):
     context = "\n\n".join(context_chunks)
-    prompt = f"""\nUser the following context to answer the question. Be concise and accurate, and say if you do not know instead of making something up.
+    prompt = f"""User the following context to answer the question. Be concise and accurate, and say if you do not know instead of making something up.
 
                  Context:
                  {context}
@@ -54,13 +55,20 @@ def rag_pipeline(question, embed_file, model):
     return answer
 
 if __name__ == "__main__":
-    while True:
-        q = input("\nAsk a question (or 'exit'): ")
-        if q.strip().lower() == "exit":
-            break
-        for file in embedding_files:
-            for model in EMBEDDING_MODELS:
-                if not model.replace('_', '') in file:
-                    continue
-                answer = rag_pipeline(q, file, model)
-                print(f"\nAnswer from {file}: {answer}\n")
+    with open("question-set-0.txt", 'r') as f:
+        qs = f.readlines()
+    for file in embedding_files:
+        for model in EMBEDDING_MODELS:
+            if not model.replace('_', '') in file:
+                continue
+            for q in qs:
+                if q[0] != '#':
+                    start_time = time.perf_counter()
+                    answer = rag_pipeline(q, file, model)
+                    total_time = time.perf_counter() - start_time
+                    print(f"\nAnswer from {file} ({total_time}): {answer}\n")
+                    output = f"{q}\n{total_time}\n\n{answer}\n\n"
+                else:
+                    output = f"{q}\n\n"
+                with open(f"../faiss-responses/q0-answer{file.split('.')[0]}.txt", 'a') as f:
+                    f.write(output)
