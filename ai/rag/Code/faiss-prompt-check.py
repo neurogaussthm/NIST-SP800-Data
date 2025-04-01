@@ -1,3 +1,4 @@
+import re
 import faiss
 import numpy as np
 import os
@@ -7,7 +8,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 
 embedding_base = "../../embeddings/SP800"
-index_base = "../../vector-databases/faiss"
+index_base = "../../vector-databases/faiss-cosine"
 
 embedding_files = os.listdir(embedding_base)
 index_files = os.listdir(index_base)
@@ -19,7 +20,8 @@ ollama_api_url = "http://localhost:11434/api/generate"
 model_name = "mistral:latest"
 
 top_k = 5
-similarity_threshold = 0.3
+similarity_threshold = 0.8
+boost = 1.5
 
 def get_index_file(embed_file, model):
     index_file = [item for item in index_files if embed_file.split('-')[0] in item][0]
@@ -28,11 +30,31 @@ def get_index_file(embed_file, model):
 def get_top_k_chunks(question, model, embed_file, index_file, k=top_k, sim=similarity_threshold):
     query_embedding = SentenceTransformer(EMBEDDING_MODELS[model]).encode(question, normalize_embeddings=True).astype("float32")
     index_path = os.path.join(index_base, index_file)
-    D, I = faiss.read_index(index_path).search(np.array([query_embedding]), k)
+    D, I = faiss.read_index(index_path).search(np.array([query_embedding]), 2000)
     path = os.path.join(embedding_base, embed_file)
     df = pd.read_parquet(path)
-    filtered_chunks = [("Source document: ****" + df["source"].tolist()[i] + "****\n" + df["text"].tolist()[i]) for d, i in zip(D[0], I[0]) if d <= sim]
-    return filtered_chunks
+    titles = set(df["source"].unique())
+    matched_doc = None
+    pattern = re.compile(r"SP\s*800-(\d+)|800-(\d+)", re.IGNORECASE)
+    match = pattern.search(question)
+    if match:
+        doc_number = match.group(1) or match.group(2)
+        for title in titles:
+            if re.search(rf"SP?800-{doc_number}", title, re.IGNORECASE):
+                matched_doc = title
+                break
+    boosted_results = []
+    for d, i in zip(D[0], I[0]):
+        source = df["source"].tolist()[i]
+        text = df["text"].tolist()[i]
+        if matched_doc and re.search(rf"SP?800-{doc_number}", source, re.IGNORECASE):
+            d *= boost
+        boosted_results.append((d, f"Source document: ****{source}****\n{text}"))
+    boosted_results.sort(reverse=True, key=lambda x: x[0])
+    return [i for d, i in boosted_results if d >= sim][:k]
+
+#    filtered_chunks = [("Source document: ****" + df["source"].tolist()[i] + "****\n" + df["text"].tolist()[i]) for d, i in zip(D[0], I[0]) if d >= sim]
+#    return filtered_chunks
 
 def build_prompt(question, context_chunks):
     context = "\n\n".join(context_chunks)
