@@ -8,7 +8,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 
 embedding_base = "../../embeddings/SP800"
-index_base = "../../vector-databases/faiss"
+index_base = "../../vector-databases/faiss-cosine"
 
 embedding_files = os.listdir(embedding_base)
 index_files = os.listdir(index_base)
