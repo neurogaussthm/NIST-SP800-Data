@@ -32,13 +32,17 @@ def get_top_k_chunks(question, model, embed_file, index_file, k=top_k):
 
 def build_prompt(question, context_chunks):
     context = "\n\n".join(context_chunks)
-    prompt = f"""\nUser the following context to answer the question. Be concise and accurate, and say if you do not know instead of making something up.
+    prompt = f"""You are an AI assistant with expertise in cybersecurity policy, particularly the NIST SP 800 series. You can answer technical questions related to cybersecurity policy as well as general inquiries. You are also capable of engaging in casual conversation when appropriate.
 
-                 Context:
-                 {context}
+                If helpful information is available, it will be included under "Context." If the context is directly relevant to the query, use it in your response and cite its source (marked with ****). If the context is **not relevant**, ignore it and answer naturally. If a question is unclear, ask for clarification. If you do not know an answer, say so rather than making something up.
 
-                 Question: {question}
-                 Answer: """
+                ### Context:
+                {context}
+
+                ### Query:
+                {question}
+
+                ### Answer: """
     return prompt
 
 def query_ollama(prompt, model):
