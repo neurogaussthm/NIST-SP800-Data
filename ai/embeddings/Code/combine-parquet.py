@@ -5,7 +5,10 @@ base_dir = ".."
 
 for method_dir in os.listdir(base_dir):
     method_path = os.path.join(base_dir, method_dir)
-    if not os.path.isdir(method_path) or method_dir == "Code" or "numpy" in method_dir:
+    if not os.path.isdir(method_path) or method_dir == "Code" or "numpy" in method_dir or "SP800" == method_dir:
+        continue
+    if "SP800-ALL.parquet" in os.listdir(method_path):
+        print(f"Skipping {method_dir}")
         continue
     all_dfs = []
     for filename in os.listdir(method_path):

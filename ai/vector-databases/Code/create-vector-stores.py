@@ -20,7 +20,7 @@ def create_faiss_store(method_path, output_path):
                 if index.d != dimension:
                     raise ValueError(f"Dimension mismatch: existing is {index.d} new is {dimension}")
             else:
-                index = faiss.IndexFlatL2(dimension)
+                index = faiss.IndexFlatIP(dimension)
             index.add(embeddings)
             faiss.write_index(index, output_path)
     print(f"Successfully created FAISS store {output_path}")
@@ -85,15 +85,15 @@ def create_milvus_store(method_path, collection_name):
 def process_embeddings(base_embedding_dir, vector_store_dir):
     for method_dir in os.listdir(base_embedding_dir):
         method_path = os.path.join(base_embedding_dir, method_dir)
-        if not os.path.isdir(method_path) or method_dir == "Code":
+        if not os.path.isdir(method_path) or method_dir == "Code" or method_dir == "SP800": # or "by-heading" in method_path:
             continue
 
         output_faiss = os.path.join(vector_store_dir, f"{method_dir.replace('-', '').replace('_', '')}FAISS.index")
         create_faiss_store(method_path, output_faiss)
         collection_name = f"{method_dir.replace('-', '').replace('_', '')}WEAVIATE"
-        create_weaviate_store(method_path, collection_name)
+#        create_weaviate_store(method_path, collection_name)
         collection_name = f"{method_dir.replace('-', '').replace('_', '')}MILVUS"
-        create_milvus_store(method_path, collection_name)
+#        create_milvus_store(method_path, collection_name)
 
 if __name__ == "__main__":
-    process_embeddings("../../embeddings", "../faiss")
+    process_embeddings("../../embeddings", "../faiss-cosine")
