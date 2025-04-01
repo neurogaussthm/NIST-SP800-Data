@@ -1,3 +1,4 @@
+import re
 import faiss
 import time
 import numpy as np
@@ -96,5 +97,5 @@ if __name__ == "__main__":
                     output = f"{q}\n{total_time}\n\n{answer}\n\n"
                 else:
                     output = f"{q}\n\n"
-                with open(f"../faiss-responses/q0-answer{file.split('.')[0]}.txt", 'a') as f:
+                with open(f"../faiss-responses-1/q0-answer{file.split('.')[0]}.txt", 'a') as f:
                     f.write(output)
