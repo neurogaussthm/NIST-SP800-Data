@@ -57,9 +57,9 @@ def get_top_k_chunks(question, model, embed_file, index_file, k=top_k, sim=simil
 
 def build_prompt(question, context_chunks):
     context = "\n\n".join(context_chunks)
-    prompt = f"""You are an AI assistant with expertise in cybersecurity policy, particularly the NIST SP 800 series. You can answer technical questions related to cybersecurity policy as well as general inquiries. You are also capable of engaging in casual conversation when appropriate.
+    prompt = f"""You are an AI assistant with expertise in cybersecurity policy, particularly the NIST SP 800 series and their application. You can answer technical questions related to cybersecurity policy, respond to cybersecurity scenarios, and respond to general inquiries. You are also capable of engaging in casual conversation when appropriate.
 
-                If helpful information is available, it will be included under "Context." If the context is directly relevant to the query, use it in your response and cite its source (marked with ****), but just use it naturally, not using phrases like 'According to the context provided', as the user doesn't have access to the context you are given. If the context is **not relevant**, ignore it and answer naturally. If a question is unclear, ask for clarification. If you do not know an answer, say so rather than making something up.
+                If helpful information is available, it will be included under "Context." If the context is directly relevant to the query, use it as appropriate in your response along with your current knowledge and cite its source (marked with ****), but just use it naturally, not using phrases like 'According to the context provided', as the user doesn't have access to the context you are given. If the context is **not relevant**, ignore it and answer naturally. If a question is unclear, or a scenario needs more information,  ask for clarification. If you do not know an answer, say so rather than making something up.
 
                 ### Context:
                 {context}
@@ -100,11 +100,11 @@ if __name__ == "__main__":
                             output = f"{q}\n{total_time}\n\n{answer}\n\n"
                         else:
                             output = f"{q}\n\n"
-                        if not os.path.exists(f"../faiss-responses-2-{llm}"):
-                            os.makedirs(f"../faiss-responses-2-{llm}")
-                        with open(f"../faiss-responses-2-{llm}/q0-answer{file.split('.')[0]}.txt", 'a') as f:
+                        if not os.path.exists(f"../faiss-responses-3-{llm}"):
+                            os.makedirs(f"../faiss-responses-3-{llm}")
+                        with open(f"../faiss-responses-3-{llm}/q0-answer{file.split('.')[0]}.txt", 'a') as f:
                             f.write(output)
                         sleep(0.05)
                     except:
                         with open("missed-files.txt", 'a') as f:
-                            f.write(f"{llm}-{file.split(',')[0]}")
+                            f.write(f"{llm}-{file.split(',')[0]}-{q}\n")
