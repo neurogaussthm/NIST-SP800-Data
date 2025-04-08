@@ -91,20 +91,18 @@ if __name__ == "__main__":
                 if not model.replace('_', '') in file:
                     continue
                 for q in qs:
-                    try:
-                        if q[0] != '#':
-                            start_time = time.perf_counter()
-                            answer = rag_pipeline(q, file, model, llm)
-                            total_time = time.perf_counter() - start_time
-                            print(f"\nAnswer from model: {llm} and file: {file}. Time: ({total_time}): {answer}\n")
-                            output = f"{q}\n{total_time}\n\n{answer}\n\n"
-                        else:
-                            output = f"{q}\n\n"
-                        if not os.path.exists(f"../faiss-responses-3-{llm}"):
-                            os.makedirs(f"../faiss-responses-3-{llm}")
-                        with open(f"../faiss-responses-3-{llm}/q0-answer{file.split('.')[0]}.txt", 'a') as f:
-                            f.write(output)
-                        sleep(0.05)
-                    except:
-                        with open("missed-files.txt", 'a') as f:
-                            f.write(f"{llm}-{file.split(',')[0]}-{q}\n")
+                    if q[0] != '#':
+                        start_time = time.perf_counter()
+                        answer = rag_pipeline(q, file, model, llm)
+                        total_time = time.perf_counter() - start_time
+#                        print(f"\nAnswer from model: {llm} and file: {file}. Time: ({total_time}): {answer}\n")
+                        output = f"{q}\n{total_time}\n\n{answer}\n\n"
+                    else:
+                        output = f"{q}\n\n"
+                    if not os.path.exists(f"../faiss-responses-3-{llm}"):
+                        os.makedirs(f"../faiss-responses-3-{llm}")
+                    with open(f"../faiss-responses-3-{llm}/q0-answer{file.split('.')[0]}.txt", 'a') as f:
+                        f.write(output)
+                    time.sleep(0.05)
+                    with open("missed-files.txt", 'a') as f:
+                        f.write(f"{llm}-{file.split(',')[0]}-{q}\n")
