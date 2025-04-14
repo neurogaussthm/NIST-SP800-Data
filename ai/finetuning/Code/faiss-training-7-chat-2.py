@@ -80,7 +80,7 @@ def rag_pipeline(question, embed_file, model, llm_model):
     return answer
 
 if __name__ == "__main__":
-    with open("trainingScenarioPrompts.txt", 'r') as f:
+    with open("trainingChatPrompts.txt", 'r') as f:
         qs = f.readlines()
     for llm in model_names:
         start = time.perf_counter()
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 #                    print(output)
                     if not os.path.exists(f"../faiss-training-7-{llm.replace(':','_')}"):
                         os.makedirs(f"../faiss-training-7-{llm.replace(':','_')}")
-                    with open(f"../faiss-training-7-{llm.replace(':','_')}/{llm.split(':')[0]}-training-scenario-answer.txt", 'a') as f:
+                    with open(f"../faiss-training-7-{llm.replace(':','_')}/{llm.split(':')[0]}-training-chat-answer.txt", 'a') as f:
                         f.write(output)
                     time.sleep(0.05)
         total_time = time.perf_counter() - start

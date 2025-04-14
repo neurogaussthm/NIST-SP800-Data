@@ -60,11 +60,11 @@ def build_prompt(question, context_chunks):
                 ### Context:
                 {context}
 
-                Output as your answer only the following query and the response you would give to it. The query is a series of one or more user/assistant interactions. Formulate your response to the final user query, using any interactions that proceed it as context. Format the entire query (i.e. all of the back and forth, including the user and assistant labels) and your response in JSON format, as in "query" and "response" being the JSON keys. Both should just be simple strings in markdown formatting. Make sure to include them both, in the format {{"query":INSERT FOLLOWING QUERY HERE, "response":INSERT YOUR RESPONSE HERE}}
-                ### Query:
+                Output as your answer only the following prompt exactly as written and the response you would give to continue the conversation provided in the prompt in exactly the format {{"prompt": INSERT ENTIRE FOLLOWING PROMPT, \n"completion": INSERT RESPONSE}}. Insert exactly the entire prompt (which will always start with "User: " and end with "Assistant: ") as "prompt" and your response as "completion" in the JSON. Both should just be simple strings in markdown formatting. Make sure to include them both in valid JSON format!
+
                 {question}
 
-                ### Answer: """
+                """
     return prompt
 
 def query_ollama(prompt, llm_model):
