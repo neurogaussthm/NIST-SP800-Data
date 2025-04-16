@@ -3,17 +3,6 @@ import json
 models = ["granite3.1-dense", "granite3.2"]
 sourceTypes = ["questions", "chat", "scenario"]
 
-def numInstancesSubstring(string, substring):
-    indices = []
-    startIndex = 0
-    while True:
-        index = string.find(substring, startIndex)
-        if index == -1:
-            break
-        indices.append(index)
-        startIndex = index + 1
-    return indices
-
 for model in models:
     for sourceType in sourceTypes:
         original = f"../faiss-training-7-{model}_2b/{model}-training-{sourceType}-answer.txt"
@@ -53,7 +42,7 @@ for model in models:
                         "prompt": obj.get("query", "").strip(),
                         "completion": " " + obj.get(responseKey, "").strip()  # note: leading space helps fine-tuning
                     }
-                    if len(numInstancesSubstring(obj.get("completion"), "\nUser:")) < len(numInstancesSubstring(obj.get("completion"), "\nAssistant:")):
+                    if ("Assistant: " in obj.get("completion")) or ("User: " in obj.get("completion")) or ("Assistant: " in obj.get("prompt")) or ("User: " in obj.get("prompt")):
                         buffer = ""
                         numSkip += 1
                         continue
