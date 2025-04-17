@@ -42,7 +42,7 @@ for model in models:
                         "prompt": obj.get("query", "").strip(),
                         "completion": " " + obj.get(responseKey, "").strip()  # note: leading space helps fine-tuning
                     }
-                    if ("Assistant: " in obj.get("completion")) or ("User: " in obj.get("completion")) or ("Assistant: " in obj.get("prompt")) or ("User: " in obj.get("prompt")):
+                    if ("Assistant: " in obj.get("completion")) or ("User: " in obj.get("completion")) or ("Assistant: " in obj.get("prompt")) or ("User: " in obj.get("prompt")) or (obj.get("completion").strip() == "") or (obj.get("prompt").strip() == ""):
                         buffer = ""
                         numSkip += 1
                         continue
