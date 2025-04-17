@@ -1,6 +1,8 @@
 import requests
 import time
 
+question_set_num = 1
+
 ollama_api_url = "http://localhost:11434/api/generate"
 
 #with open("./models.txt", "r") as f:
@@ -15,16 +17,16 @@ def query_ollama(prompt, llm_model):
     return response.json()["response"]
 
 if __name__ == "__main__":
-    with open("question-set-0-expanded.txt", 'r') as f:
+    with open(f"question-set-{question_set_num}.txt", 'r') as f:
         qs = f.readlines()
     for i, set in llmset.items():
         gdict = {}
         gtimes = {}
-        outfile = f"../comparison/g{i}-type-q0-responses.txt"
+        outfile = f"../comparison/g{i}-type-q{question_set_num}-responses.txt"
         numresponse = 0
         for llm in set:
             name = '' if ':' in llm else llm.split('.' + str(i))[-1]
-            llmout = f"../comparison/g{i}{name}-q0-responses.txt"
+            llmout = f"../comparison/g{i}{name}-q{question_set_num}-responses.txt"
             start_total = time.perf_counter()
             qnum = 0
             for q in qs:
