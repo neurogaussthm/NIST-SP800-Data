@@ -152,7 +152,7 @@ for model in ["granite3.1-dense", "granite3.2"]:
     mergeModel(model)
 
 
-# Still need to convert to GGUF file with llama.cpp's convert.py script, like the following
+# Still need to convert to GGUF file with llama.cpp's convert.py script, like the following, but use convert_hf_to_gguf.py, slightly different format
 # python3 convert.py \
 #     --outfile ./granite3.1-2b-NIST.gguf \
 #     --tokenizer_path ./merged_ \
