@@ -23,7 +23,7 @@ if __name__ == "__main__":
         outfile = f"../comparison/g{i}-type-q0-responses.txt"
         numresponse = 0
         for llm in set:
-            name = '' if ':' in llm else llm.split(str(i))[-1]
+            name = '' if ':' in llm else llm.split('.' + str(i))[-1]
             llmout = f"../comparison/g{i}{name}-q0-responses.txt"
             start_total = time.perf_counter()
             qnum = 0
